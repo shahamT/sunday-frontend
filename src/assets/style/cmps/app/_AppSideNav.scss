@@ -1,0 +1,59 @@
+.AppSideNav {
+    grid-area: side-nav;
+
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
+
+    height: calc(100% - var(--app-header-size, 0px));
+    width: 100%;
+    
+    pointer-events: none;
+    
+    &.opened {
+        .side-panel {
+            transform: translateX(0%);
+        }
+    }
+    
+    // panel
+    .side-panel {
+        margin-inline-start: 12px;
+        border-top-left-radius: var(--border-radius-md);
+        background: linear-gradient(135deg, rgba(255, 255, 255, .5), rgba(255, 255, 255, 0));
+        box-shadow: var(--box-shadow-xs);
+        height: 100%;
+        pointer-events: auto;
+        transform: translateX(-100%);
+        transition: transform var(--transition-lg, 250ms) ease-in-out;
+
+    }
+
+    // handle
+    .resize-handle {
+        position: relative;
+        z-index: 11;
+        width: 8px;
+        background-color: transparent;
+        opacity: 0;
+        transition: var(--transition-lg);
+        transition-delay: 300ms;
+    }
+
+    [data-resize-handle-state='hover'],
+    [data-resize-handle-state='drag'] {
+        position: relative;
+        opacity: 1;
+
+    }
+
+    [data-resize-handle-state='hover']::after,
+    [data-resize-handle-state='drag']::after {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 3px;
+        background-color: var(--primary-color, #0073ea);
+        box-shadow: var(--box-shadow-small, 0px 4px 8px rgba(0, 0, 0, 0.2));
+    }
+}

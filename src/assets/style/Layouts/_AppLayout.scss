@@ -1,0 +1,16 @@
+.AppLayout {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+
+    grid-template-areas:
+        "header header"
+        "side-nav main"
+    ;
+
+    height: 100vh;
+
+    background-color: var(--primary-surface-color);
+
+
+}

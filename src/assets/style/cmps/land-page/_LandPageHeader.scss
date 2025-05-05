@@ -1,0 +1,16 @@
+.LandPageHeader {
+    position: sticky;
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    padding-inline: 32px;
+    height: 72px;
+
+.land-page-nav{
+    display: flex;
+    gap: 16px;
+}
+
+}

@@ -1,6 +1,8 @@
 /* Setup */
 @import 'setup/vars.scss';
 @import 'setup/typography.scss';
+@import 'setup/functions.scss';
+
 @import '../font/mon-i/mon-i-font.css'; //monday icons font
 
 /* Base */
@@ -22,15 +24,27 @@
 // the style is imported through the jsx.
 
 
-/* App-Cmps */
-@import 'cmps/app/root.scss';
-@import 'cmps/app/app.scss';
+/* Root */
+@import 'cmps/root/root.scss';
+@import 'cmps/root/app.scss';
+
+
+// =====Layouts=====
+@import 'layouts/AppLayout.scss';
+@import 'layouts/LandPageLayout.scss';
+
+
+// ===== Pages =====
+
+
+// === Land Page ===
+// =================
+@import 'cmps/land-page/LandPageHeader.scss';
+@import 'cmps/land-page/MondayMainLogo.scss';
+
+// ====== App ======
+// =================
+
 @import 'cmps/app/AppHeader.scss';
-
-
-
-/* Pages */
-
-/* Section 1 Cmps */
-
-/* Section 2 Cmps */
+@import 'cmps/app/_WMLogo.scss';
+@import 'cmps/app/_AppSideNav.scss';

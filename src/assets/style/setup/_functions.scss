@@ -1,0 +1,11 @@
+@function torem($size) {
+  @return ($size / 16px) * 1rem;
+}
+
+@function to-em($pixels, $context: 16px) {
+  @return calc($pixels/$context) * 1em;
+}
+
+@function lh($pixels, $context: 16px) {
+  @return calc($pixels/$context);
+}

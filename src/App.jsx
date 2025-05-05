@@ -1,32 +1,36 @@
 //style
 import './assets/style/main.scss'
 
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
-
-//main cmps
-import { AppHeader } from './cmps/AppHeader.jsx'
 
 //pages
-import { HomePage } from './pages/HomePage.jsx'
-import { AboutUs } from './pages/AboutUs.jsx'
-import { Signup } from './pages/Signup'
-import { Login } from './pages/Login'
+import { HomePage } from './pages/land-page/HomePage.jsx'
+import { AboutUs } from './pages/land-page/AboutUs.jsx'
+import { Signup } from './pages/auth/Signup'
+import { Login } from './pages/auth/Login'
 
 //dev pages
 import { Reusables } from './pages/DevPages/Reusables/Reusables'
 import { XDevPage } from './pages/DevPages/TemplateDevPage/XDevPage'
 
+//hooks / react
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
+import { useDocumentTitle } from './hooks/useDocumentTitle'
+
 //services
 import { store } from './store/store.js'
 import { Provider } from 'react-redux'
 
+//main cmps
+import { AppHeader } from './cmps/app/header/AppHeader.jsx'
+
 // === Child Components
 import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
 import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
+import { LandPageLayout } from './layouts/LandPageLayout'
+import { AppLayout } from './layouts/AppLayout'
 
 
 export default function App() {
-
     // routes with no header:
     const noHeaders = ['/signup', '/login']
 
@@ -36,30 +40,44 @@ export default function App() {
             <Router>
 
                 <section className="app">
-                    <AppHeader />
+                    <TitleNamer /> {/*this is only for dynamic document title*/}
 
                     <main className='main-content main-layout'>
                         <Routes>
-                            <Route path="/" element={<Navigate to="/home" />} />
-                            <Route path="/home" element={<HomePage />} />
-                            <Route path="/about" element={<AboutUs />} />
+
+                            {/* landing page routes */}
+                            <Route element={<LandPageLayout />}>
+                                <Route path="/" element={<Navigate to="/home" />} />
+                                <Route path="/home" element={<HomePage />} />
+                                <Route path="/about" element={<AboutUs />} />
+                            </Route>
+
+
+
+
                             <Route path="/signup" element={<Signup />} />
                             <Route path="/login" element={<Login />} />
+
+                            {/* app routes */}
+                            <Route element={<AppLayout />}>
+                                <Route path="/app" element={<Navigate to="/app/home" />} />
+                                <Route path="/app/home" element={<Login />} />
+
+                            </Route>
 
                             {/* <Route path="/template" element={<TemplateIndex />} />
                             <Route path="/template/:templateId" element={<TemplateDetails />} />
                             <Route path="/template/edit/:templateId" element={<TemplateEdit />} /> */}
 
-                            {/* dev pages starts here */}
-                            <Route path="/reusables" element={<Reusables/>} />
-                            <Route path="/x-dev-page" element={<XDevPage/>} />
-                            {/* ends here */}
+                            {/* dev pages routes */}
+                            <Route path="/reusables" element={<Reusables />} />
+                            <Route path="/x-dev-page" element={<XDevPage />} />
 
                         </Routes>
                     </main>
 
                     <FlashMsg />
-                    <GlobalModal/>
+                    <GlobalModal />
                 </section>
 
             </Router>
@@ -69,3 +87,10 @@ export default function App() {
 }
 
 
+
+// this component is only used to hold the document title changer hook.
+// it changes the document title dynamically based on path
+function TitleNamer() {
+    useDocumentTitle()
+    return <></>
+}

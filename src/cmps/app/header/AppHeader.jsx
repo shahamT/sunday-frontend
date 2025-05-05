@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { MainLogo } from './reusables/main-logo/MainLogo'
+import { MainLogo } from './WMLogo'
 
 export function AppHeader(props) {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
@@ -9,8 +9,6 @@ export function AppHeader(props) {
         <header className="app-header">
                     <MainLogo />
                 <nav className="app-nav">
-                    <NavLink to="/" >Home</NavLink>
-                    <NavLink to="/about" >About</NavLink>
                 </nav>
         </header>
     )

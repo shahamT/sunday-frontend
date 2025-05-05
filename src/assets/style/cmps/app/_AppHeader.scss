@@ -1,0 +1,19 @@
+.app-header {
+    grid-area: header;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding-inline: 6px 24px;
+    height: var(--app-header-size);
+
+    background-color: var(--primary-surface-color);
+
+
+    .app-nav {
+        display: flex;
+        gap: 15px;
+    }
+
+}

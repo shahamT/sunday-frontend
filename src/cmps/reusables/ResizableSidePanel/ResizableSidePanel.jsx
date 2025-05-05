@@ -1,4 +1,3 @@
-import { CSSTransition } from 'react-transition-group';
 import { Panel, PanelGroup, PanelResizeHandle, } from 'react-resizable-panels';
 import './ResizableSidePanel.scss';
 import { useSelector } from 'react-redux';
