@@ -1,0 +1,15 @@
+/* Add this to a CSS file or use inline styles with emotion */
+.remirror-theme .remirror-toolbar {
+    justify-content: space-between;
+    background-color: #f0f0f0;
+    padding: 0.5rem 1rem;
+    border-radius: 8px 8px 0 0;
+    border: none;
+  }
+  
+  .remirror-editor.ProseMirror {
+    text-align: left; /* Default */
+    margin: 0;
+    padding: 1rem;
+  }
+  

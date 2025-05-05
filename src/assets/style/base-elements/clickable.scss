@@ -1,0 +1,368 @@
+// ===========================
+// ========== base ===========
+// ===========================
+
+.clickable {
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: max-content;
+
+    border-radius: var(--border-radius-sm);
+    font-weight: 400;
+
+    cursor: pointer;
+    transition: scale var(--transition-xs);
+}
+
+// click effect (not applying to select buttons)
+.clickable:active:not(.select):not(.disabled) {
+    scale: 0.95;
+}
+
+
+// ===========================
+// ====== type variants ======
+// ===========================
+
+// ====== clear ======
+
+.clickable.clear {
+    background-color: rgba(0, 0, 0, 0);
+    color: var(--primary-text-color);
+}
+
+.clickable.clear:hover {
+    background-color: var(--primary-background-hover-color);
+}
+
+.clickable.clear.active {
+    background-color: var(--primary-selected-color)
+}
+
+// ====== filled ======
+
+// filled normal
+
+.clickable.filled {
+    background-color: var(--primary-color);
+    color: var(--text-color-on-inverted);
+}
+
+.clickable.filled:hover {
+    background-color: var(--primary-hover-color);
+}
+
+.clickable.filled.active {
+    background-color: var(--primary-hover-color);
+}
+
+// filled Positive
+
+.clickable.filled.positive {
+    background-color: var(--positive-color);
+}
+
+.clickable.filled.positive:hover {
+    background-color: var(--positive-color-hover);
+}
+
+// filled Negative
+
+.clickable.filled.negative {
+    background-color: var(--negative-color);
+}
+
+.clickable.filled.negative:hover {
+    background-color: var(--negative-color-hover);
+}
+
+
+
+// ===========================
+// ====== size variants ======
+// ===========================
+
+.clickable.size-24 {
+    height: 24px;
+    font-size: 18px;
+}
+
+.clickable.size-32 {
+    height: 32px;
+    font-size: 14px;
+    padding-inline: var(--space-8);
+}
+
+.clickable.size-40 {
+    height: 40px;
+    font-size: 16px;
+    padding-inline: var(--space-16);
+}
+
+.clickable.size-48 {
+    height: 48px;
+    font-size: 16px;
+    padding-inline: var(--space-24);
+}
+
+.clickable.size-32::before,
+.clickable.size-40::before,
+.clickable.size-48::before {
+    font-size: 18px;
+}
+
+
+// ===========================
+// == text + icon variants ===
+// ===========================
+
+.clickable.icon-start {
+    flex-direction: row;
+    font-family: inherit !important;
+}
+
+.clickable.icon-start::before {
+    font-family: mon-i;
+    margin-inline-end: var(--space-8);
+}
+
+.clickable.icon-end {
+    flex-direction: row-reverse;
+    font-family: inherit !important;
+}
+
+.clickable.icon-end::before {
+    font-family: mon-i;
+    margin-inline-start: var(--space-8);
+}
+
+// ===========================
+// == icon btns ===
+// ===========================
+.clickable.icon-btn.size-24 {
+    width: 24px;
+}
+
+.clickable.icon-btn.size-32 {
+    width: 32px;
+}
+
+.clickable.icon-btn.size-40 {
+    width: 40px;
+}
+
+.clickable.icon-btn::before {
+    font-family: mon-i;
+}
+
+.clickable.icon-btn.size-24::before {
+    font-size: 16px;
+}
+
+.clickable.icon-btn.size-40.icon-big::before {
+    font-size: 20px;
+}
+
+
+
+
+// ===========================
+// ======  split-button ======
+// ===========================
+
+.split-button {
+    display: flex;
+
+    .btn-left {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    .seperator {
+        display: inline-block;
+        width: 1px;
+
+    }
+
+    .btn-right {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 29px;
+    }
+
+}
+
+.split-button.filled .seperator {
+    background-color: var(--primary-hover-color);
+}
+
+.split-button.clear .seperator {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+
+.split-button.size-32 {
+    height: 32px;
+
+    .btn-left {
+        padding-inline: var(--space-8);
+        height: 32px;
+    }
+
+    .btn-right {
+        height: 32px;
+    }
+}
+
+.split-button.size-40 {
+    height: 40px;
+
+    .btn-left {
+        padding-inline: var(--space-16);
+        height: 40px;
+    }
+
+    .btn-right {
+        height: 40px;
+    }
+}
+
+.split-button.size-48 {
+    height: 48px;
+
+    .btn-left {
+        padding-inline: var(--space-24);
+        height: 48px;
+    }
+
+    .btn-right {
+        height: 48px;
+    }
+}
+
+
+
+
+
+
+
+// ===========================
+// ====  other attributes ====
+// ===========================
+
+// disabled
+.clickable.disabled {
+    pointer-events: none;
+    cursor: default;
+    opacity: var(--disabled-component-opacity);
+}
+
+
+
+// full width
+.clickable.full-width {
+    width: 100%;
+}
+
+// == loading ===
+
+// hiding all content -
+
+.clickable.loading {
+    color: transparent;
+}
+
+.clickable.loading>* {
+    visibility: hidden;
+}
+
+.clickable.loading::before,
+.clickable.loading::after {
+    color: transparent;
+    border: none;
+}
+
+// show loader
+
+.clickable.loading.clear::after {
+    border: 2px solid var(--primary-text-color);
+}
+
+.clickable.loading.filled::after {
+    border: 2px solid var(--text-color-on-inverted);
+}
+
+.clickable.loading.size-32::after {
+    width: 16px;
+}
+
+.clickable.loading.size-40::after {
+    width: 20px;
+}
+
+.clickable.loading.size-48::after {
+    width: 24px;
+}
+
+.clickable.loading::after {
+    content: '';
+    position: absolute;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    animation:
+        l20-1 0.7s infinite linear alternate,
+        l20-2 1.4s infinite linear;
+}
+
+@keyframes l20-1 {
+    0% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 50% 0%, 50% 0%, 50% 0%, 50% 0%)
+    }
+
+    12.5% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 0%, 100% 0%, 100% 0%)
+    }
+
+    25% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 100% 100%, 100% 100%)
+    }
+
+    50% {
+        clip-path: polygon(50% 50%, 0 0, 50% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+    }
+
+    62.5% {
+        clip-path: polygon(50% 50%, 100% 0, 100% 0%, 100% 0%, 100% 100%, 50% 100%, 0% 100%)
+    }
+
+    75% {
+        clip-path: polygon(50% 50%, 100% 100%, 100% 100%, 100% 100%, 100% 100%, 50% 100%, 0% 100%)
+    }
+
+    100% {
+        clip-path: polygon(50% 50%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 50% 100%, 0% 100%)
+    }
+}
+
+@keyframes l20-2 {
+    0% {
+        transform: scaleY(1) rotate(0deg)
+    }
+
+    49.99% {
+        transform: scaleY(1) rotate(135deg)
+    }
+
+    50% {
+        transform: scaleY(-1) rotate(0deg)
+    }
+
+    100% {
+        transform: scaleY(-1) rotate(-135deg)
+    }
+}

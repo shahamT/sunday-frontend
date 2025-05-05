@@ -1,0 +1,19 @@
+.ConfirmDelete{
+display: flex;
+flex-direction: column;
+gap: 24px;
+
+.title{
+    font-size: 22px;
+    text-align: center;
+
+    .entity{
+        color: var(--secondary-text-color);
+    }
+}
+
+.btns-container{
+    display: flex;
+    justify-content: center;
+}
+}

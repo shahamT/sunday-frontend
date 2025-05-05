@@ -1,0 +1,80 @@
+.global-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(41, 47, 76, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+
+  animation: fadeInBackdrop var(--transition-md, 150ms) forwards;
+  transition: opacity var(--transition-md, 150ms) forwards;
+
+  &.closing {
+    animation: fadeOutBackdrop var(--transition-md, 150ms) forwards;
+  }
+
+
+  .global-modal {
+    position: relative;
+
+    width: max-content;
+
+    background-color: var(--primary-background-color, #fff);
+    border-radius: 16px;
+    box-shadow: var(--box-shadow-large, 0px 15px 50px rgba(0, 0, 0, 0.3));
+
+    animation: modalIn var(--transition-md, 150ms) ease-out forwards;
+
+    &.padded{
+    padding-inline:24px;
+    padding-block: 32px 24px;
+    }
+
+    &.closing {
+      animation: modalOut var(--transition-md, 150ms) ease-out forwards;
+    }
+  }
+}
+
+
+
+@keyframes fadeInBackdrop {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeOutBackdrop {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes modalOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+}

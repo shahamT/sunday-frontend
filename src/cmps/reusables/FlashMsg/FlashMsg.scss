@@ -1,0 +1,32 @@
+.flash-msg {
+    position: fixed;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%) translateY(20px);
+    padding: 0.5em 1.5em;
+    border-radius: 0.5em;
+    font-weight: 500;
+    color: white;
+    font-size: 1rem;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 9999;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* Visible state */
+  .flash-msg.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+  }
+  
+  /* Types */
+  .flash-msg.success {
+    background-color: var(--positive-color, #00854d);
+  }
+  
+  .flash-msg.error {
+    background-color: var(--negative-color, #d83a52); 
+  }

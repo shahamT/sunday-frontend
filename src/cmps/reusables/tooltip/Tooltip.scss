@@ -1,0 +1,182 @@
+
+/* === Tooltip not relevant on touch screens === */
+@media (hover: none) {
+  .tooltip-box {
+    display: none;
+  }
+}
+
+/* === Tooltip Base Styles === */
+.tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip-box {
+  position: absolute;
+  z-index: 999;
+  pointer-events: none;
+}
+
+.tooltip-gap {
+  display: inline-block;
+}
+
+.tooltip-inner {
+  background: var(--inverted-color-background, #323338);
+  color: white;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0;
+  transform: scale(0.7);
+  position: relative;
+  transform-origin: center center;
+  box-shadow: var(--box-shadow-medium, 0px 6px 20px rgba(0, 0, 0, 0.2));
+  transition: none;
+
+  &.visible {
+    transition: opacity 0.1s ease, transform 0.1s ease;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  &.no-animation {
+    transition: none !important;
+  }
+}
+
+.tooltip-arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-radius: 2px;
+  background: var(--inverted-color-background, #323338);
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+// Position mixin logic
+$positions: top, top-start, top-end, bottom, bottom-start, bottom-end, left, left-start, left-end, right, right-start, right-end;
+
+@each $pos in $positions {
+  .tooltip-#{$pos} {
+    @if $pos == top {
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    } @else if $pos == top-start {
+      bottom: 100%;
+      left: 0;
+      transform: translate(0, 0);
+    } @else if $pos == top-end {
+      bottom: 100%;
+      right: 0;
+      transform: translate(0, 0);
+    } @else if $pos == bottom {
+      top: 100%;
+      left: 50%;
+      transform: translate(-50%, 0);
+    } @else if $pos == bottom-start {
+      top: 100%;
+      left: 0;
+      transform: translate(0, 0);
+    } @else if $pos == bottom-end {
+      top: 100%;
+      right: 0;
+      transform: translate(0, 0);
+    } @else if $pos == left {
+      right: 100%;
+      top: 50%;
+      transform: translate(0, -50%);
+    } @else if $pos == left-start {
+      right: 100%;
+      top: 0;
+      transform: translate(0, 0);
+    } @else if $pos == left-end {
+      right: 100%;
+      bottom: 0;
+      transform: translate(0, 0);
+    } @else if $pos == right {
+      left: 100%;
+      top: 50%;
+      transform: translate(0, -50%);
+    } @else if $pos == right-start {
+      left: 100%;
+      top: 0;
+      transform: translate(0, 0);
+    } @else if $pos == right-end {
+      left: 100%;
+      bottom: 0;
+      transform: translate(0, 0);
+    }
+
+    .tooltip-inner {
+      @if $pos == top         { transform-origin: bottom center; }
+      @else if $pos == top-start { transform-origin: bottom left; }
+      @else if $pos == top-end   { transform-origin: bottom right; }
+      @else if $pos == bottom    { transform-origin: top center; }
+      @else if $pos == bottom-start { transform-origin: top left; }
+      @else if $pos == bottom-end   { transform-origin: top right; }
+      @else if $pos == left         { transform-origin: center right; }
+      @else if $pos == left-start   { transform-origin: top right; }
+      @else if $pos == left-end     { transform-origin: bottom right; }
+      @else if $pos == right        { transform-origin: center left; }
+      @else if $pos == right-start  { transform-origin: top left; }
+      @else if $pos == right-end    { transform-origin: bottom left; }
+    }
+  }
+
+  .tooltip-arrow-#{$pos} {
+    @if $pos == top {
+      top: 96%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    } @else if $pos == top-start {
+      top: 96%;
+      left: 16px;
+      transform: translateY(-50%) rotate(45deg);
+    } @else if $pos == top-end {
+      top: 96%;
+      right: 16px;
+      transform: translateY(-50%) rotate(45deg);
+    } @else if $pos == bottom {
+      bottom: 96%;
+      left: 50%;
+      transform: translate(-50%, 50%) rotate(45deg);
+    } @else if $pos == bottom-start {
+      bottom: 96%;
+      left: 16px;
+      transform: translateY(50%) rotate(45deg);
+    } @else if $pos == bottom-end {
+      bottom: 96%;
+      right: 16px;
+      transform: translateY(50%) rotate(45deg);
+    } @else if $pos == left {
+      left: 96%;
+      top: 50%;
+      transform: translate(-50%, -50%) rotate(45deg);
+    } @else if $pos == left-start {
+      left: 96%;
+      top: 16px;
+      transform: translateX(-50%) rotate(45deg);
+    } @else if $pos == left-end {
+      left: 96%;
+      bottom: 16px;
+      transform: translateX(-50%) rotate(45deg);
+    } @else if $pos == right {
+      right: 96%;
+      top: 50%;
+      transform: translate(50%, -50%) rotate(45deg);
+    } @else if $pos == right-start {
+      right: 96%;
+      top: 16px;
+      transform: translateX(50%) rotate(45deg);
+    } @else if $pos == right-end {
+      right: 96%;
+      bottom: 16px;
+      transform: translateX(50%) rotate(45deg);
+    }
+  }
+}

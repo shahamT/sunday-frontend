@@ -1,0 +1,321 @@
+:root {
+
+  /* ============ MAIN COLORS ============ */
+
+  /* === Semantic Colors === */
+
+  --primary-color: #0073ea;
+  --primary-hover-color: #0060b9;
+  
+  --positive-color: #00854d;
+  --positive-color-hover: #007038;
+  --positive-color-selected: #bbdbc9;
+  --positive-color-selected-hover: #b5cec0;
+  
+  --negative-color: #d83a52;
+  --negative-color-hover: #b63546;
+  --negative-color-selected: #f4c3cb;
+  --negative-color-selected-hover: #ecb7bf;
+  
+  --warning-color: #ffcb00;
+  --warning-color-hover: #eaaa15;
+  --warning-color-selected: #fceba1;
+  --warning-color-selected-hover: #f2d973;
+  
+  --inverted-color-background: #323338;
+  --icon-color: #676879;
+  --fixed-light-color: #ffffff;
+  --fixed-dark-color: #323338;
+  
+  /* === Background Colors === */
+  
+  --primary-background-color: #ffffff;
+  --secondary-background-color: #ffffff;
+  --grey-background-color: #f6f7fb;
+  --allgrey-background-color: #f6f7fb;
+  --ui-background-color: #dcdfec;
+
+  --primary-background-hover-color: rgba(103, 104, 121, 0.1);
+  
+  --primary-selected-color: #cce5ff;
+  --primary-selected-hover-color: #aed4fc;
+  
+  --primary-highlighted-color: #f0f7ff;
+  --primary-surface-color: #eceff8;
+  
+  /* === Text Colors === */
+
+  --primary-text-color: #323338;
+  --secondary-text-color: #676879;
+  --secondary-text-on-secondary-color: #676879;
+  --text-color-on-inverted: #ffffff;
+  --text-color-on-primary: #ffffff;
+  --placeholder-color: #676879;
+  --link-color: #1f76c2;
+
+  /* === Border Colors === */
+
+  --ui-border-color: #c3c6d4;
+  --layout-border-color: #d0d4e4;
+
+  /* === Disabled === */
+  --disabled-component-opacity: 0.38;
+  
+  /* ============ FONTS ============ */
+
+  --font-family: Figtree, Roboto, Noto Sans Hebrew, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+  --title-font-family: Poppins, Roboto, Noto Sans Hebrew, Noto Kufi Arabic, Noto Sans JP, sans-serif;
+
+  /* ============ SPACING ============ */
+  --space-2: 2px;
+  --space-4: 4px;
+  --space-8: 8px;
+  --space-12: 12px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-80: 80px;
+
+  /* ============ BORDER & RADIUS ============ */
+
+  --border-radius-sm: 4px;
+  --border-radius-md: 8px;
+  --border-radius-lg: 16px;
+  --border-radius-round: 9999px;
+
+  /* ============ SHADOWS ============ */
+
+  --box-shadow-xs: 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  --box-shadow-small: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  --box-shadow-medium: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  --box-shadow-large: 0px 15px 50px rgba(0, 0, 0, 0.3);
+
+  /* ============ TRANSITIONS ============ */
+
+  --transition-xs: 70ms;
+  --transition-sm: 100ms;
+  --transition-md: 150ms;
+  --transition-lg: 250ms;
+  --transition-xl: 400ms;
+
+  /* ============ ELEMENTS-SPESIFIC-SIZES ============ */
+
+  --header-size: 80px;
+
+  
+  /* ============ Color Picker PALETTE ============ */
+  
+
+  /* === Unselected Gray === */
+  --color-unselected-gray: #C4C4C4;
+
+  /* === Grass Green === */
+  --color-grass_green: #037f4c;
+  --color-grass_green-hover: #116846;
+  --color-grass_green-selected: #81bfa5;
+
+  /* === Done Green === */
+  --color-done-green: #00c875;
+  --color-done-green-hover: #0f9b63;
+  --color-done-green-selected: #80e3ba;
+
+  /* === Bright Green === */
+  --color-bright-green: #9cd326;
+  --color-bright-green-hover: #7ca32b;
+  --color-bright-green-selected: #cde992;
+
+  /* === Saladish === */
+  --color-saladish: #cab641;
+  --color-saladish-hover: #9d8f3e;
+  --color-saladish-selected: #e4daa0;
+
+  /* === Egg Yolk === */
+  --color-egg_yolk: #ffcb00;
+  --color-egg_yolk-hover: #eaaa15;
+  --color-egg_yolk-selected: #ffe580;
+  --color-egg_yolk-rgb: 255, 213, 51;
+
+  /* === Working Orange === */
+  --color-working_orange: #fdab3d;
+  --color-working_orange-hover: #c0873c;
+  --color-working_orange-selected: #fed59e;
+
+  /* === Dark Orange === */
+  --color-dark-orange: #ff6d3b;
+  --color-dark-orange-hover: #c25531;
+  --color-dark-orange-selected: #ffb196;
+
+  /* === Peach === */
+  --color-peach: #ffadad;
+  --color-peach-hover: #c2888a;
+  --color-peach-selected: #ffd6d6;
+
+  /* === Sunset === */
+  --color-sunset: #ff7575;
+  --color-sunset-hover: #c26163;
+  --color-sunset-selected: #ffbaba;
+
+  /* === Stuck Red === */
+  --color-stuck-red: #df2f4a;
+  --color-stuck-red-hover: #ad3f51;
+  --color-stuck-red-selected: #f0a1ad;
+
+  /* === Dark Red === */
+  --color-dark-red: #bb3354;
+  --color-dark-red-hover: #92334c;
+  --color-dark-red-selected: #dd99a9;
+
+  /* === Sofia Pink === */
+  --color-sofia_pink: #e50073;
+  --color-sofia_pink-hover: #c20062;
+  --color-sofia_pink-selected: #ff8ac4;
+
+  /* === Lipstick === */
+  --color-lipstick: #ff5ac4;
+  --color-lipstick-hover: #c24e9a;
+  --color-lipstick-selected: #fface1;
+
+  /* === Bubble === */
+  --color-bubble: #faa1f1;
+  --color-bubble-hover: #be80ba;
+  --color-bubble-selected: #fcd0f8;
+
+  /* === Purple === */
+  --color-purple: #9d50dd;
+  --color-purple-hover: #7d45b0;
+  --color-purple-selected: #d0aeed;
+
+  /* === Dark Purple === */
+  --color-dark_purple: #784bd1;
+  --color-dark_purple-hover: #6344a3;
+  --color-dark_purple-selected: #bba5e8;
+
+  /* === Berry === */
+  --color-berry: #7e3b8a;
+  --color-berry-hover: #673971;
+  --color-berry-selected: #be9dc4;
+
+  /* === Dark Indigo === */
+  --color-dark_indigo: #401694;
+  --color-dark_indigo-hover: #3c1f78;
+  --color-dark_indigo-selected: #a08bc9;
+
+  /* === Indigo === */
+  --color-indigo: #5559df;
+  --color-indigo-hover: #4b4ead;
+  --color-indigo-selected: #aaacef;
+
+  /* === Navy === */
+  --color-navy: #225091;
+  --color-navy-hover: #274776;
+  --color-navy-selected: #90a7c8;
+
+  /* === Bright Blue === */
+  --color-bright-blue: #579bfc;
+  --color-bright-blue-hover: #4c7cc1;
+  --color-bright-blue-selected: #abcdfd;
+
+  /* === Dark Blue === */
+  --color-dark-blue: #007eb5;
+  --color-dark-blue-hover: #0f6d97;
+  --color-dark-blue-selected: #80c2df;
+
+  /* === Aquamarine === */
+  --color-aquamarine: #4eccc6;
+  --color-aquamarine-hover: #469e9b;
+  --color-aquamarine-selected: #a6e5e2;
+
+  /* === Chili Blue === */
+  --color-chili-blue: #66ccff;
+  --color-chili-blue-hover: #569ec3;
+  --color-chili-blue-selected: #b2e5ff;
+
+  /* === River === */
+  --color-river: #74afcc;
+  --color-river-hover: #588095;
+  --color-river-selected: #b3d0de;
+
+  /* === Winter === */
+  --color-winter: #9aadbd;
+  --color-winter-hover: #7b8895;
+  --color-winter-selected: #ccd6de;
+
+  /* === Explosive === */
+  --color-explosive: #c4c4c4;
+  --color-explosive-hover: #98999a;
+  --color-explosive-selected: #e1e1e1;
+
+  /* === American Gray === */
+  --color-american_gray: #757575;
+  --color-american_gray-hover: #69696a;
+  --color-american_gray-selected: #bfbfbf;
+
+  /* === Blackish === */
+  --color-blackish: #333333;
+  --color-blackish-hover: #222222;
+  --color-blackish-selected: #999999;
+
+  /* === Brown === */
+  --color-brown: #7f5347;
+  --color-brown-hover: #684943;
+  --color-brown-selected: #bfa9a3;
+
+  /* === Orchid === */
+  --color-orchid: #e484bd;
+  --color-orchid-hover: #ae5d8d;
+  --color-orchid-selected: #ecbad7;
+
+  /* === Tan === */
+  --color-tan: #bca58a;
+  --color-tan-hover: #8a7862;
+  --color-tan-selected: #d6cabc;
+
+  /* === Sky === */
+  --color-sky: #a1e3f6;
+  --color-sky-hover: #81b6c5;
+  --color-sky-selected: #d0f1fa;
+
+  /* === Coffee === */
+  --color-coffee: #cd9282;
+  --color-coffee-hover: #976758;
+  --color-coffee-selected: #dec0b7;
+
+  /* === Royal === */
+  --color-royal: #216edf;
+  --color-royal-hover: #225eb7;
+  --color-royal-selected: #95bbf2;
+
+  /* === Teal === */
+  --color-teal: #175a63;
+  --color-teal-hover: #12484f;
+  --color-teal-selected: #8bacb1;
+
+  /* === Lavender === */
+  --color-lavender: #bda8f9;
+  --color-lavender-hover: #9786c7;
+  --color-lavender-selected: #ded4fc;
+
+  /* === Steel === */
+  --color-steel: #a9bee8;
+  --color-steel-hover: #8798ba;
+  --color-steel-selected: #d4dff4;
+
+  /* === Lilac === */
+  --color-lilac: #9d99b9;
+  --color-lilac-hover: #7e7a94;
+  --color-lilac-selected: #ceccdc;
+
+  /* === Pecan === */
+  --color-pecan: #563e3e;
+  --color-pecan-hover: #453232;
+  --color-pecan-selected: #ab9f9f;
+
+
+}
+
+
+

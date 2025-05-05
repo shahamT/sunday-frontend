@@ -1,0 +1,12 @@
+const { useEffect, useRef } = React
+
+export function useEffectUpdate(callBack, dependencies) {
+    const isFirstRender = useRef(true)
+    useEffect(() => {
+        if (isFirstRender.current) {
+            isFirstRender.current = false
+            return
+        }
+        callBack()
+    }, dependencies)
+}

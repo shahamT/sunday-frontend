@@ -1,0 +1,60 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--font-family);
+	font-weight: 400;
+	color: var(--clr-black);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: var(--gray3);
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	margin: 0;
+	padding: 0;
+	font-size: 1rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: var(--title-font-family);
+}
+
+a {
+	text-decoration: none;
+	color: unset;
+}
+
+img,
+embed,
+video,
+object {
+	display: block;
+	max-width: 100%;
+}
+
+
+button {
+	cursor: pointer;
+}
+
+select {
+	cursor: pointer;
+}

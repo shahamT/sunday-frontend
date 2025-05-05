@@ -1,0 +1,36 @@
+/* Setup */
+@import 'setup/vars.scss';
+@import 'setup/typography.scss';
+@import '../font/mon-i/mon-i-font.css'; //monday icons font
+
+/* Base */
+@import 'base/base.scss';
+@import 'base/helpers.scss';
+@import 'base/layout.scss';
+
+/* base elements */
+@import 'base-elements/clickable.scss';
+
+/* MEDIA QUERIES */
+@import 'setup/mq.scss';
+
+
+/* =============== Components ================ */
+
+/* Reusable-Cmps */
+// all the styles for reusables components can be found nex to the component jsx in it's folder.
+// the style is imported through the jsx.
+
+
+/* App-Cmps */
+@import 'cmps/app/root.scss';
+@import 'cmps/app/app.scss';
+@import 'cmps/app/AppHeader.scss';
+
+
+
+/* Pages */
+
+/* Section 1 Cmps */
+
+/* Section 2 Cmps */

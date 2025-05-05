@@ -1,0 +1,142 @@
+.popup-wrapper {
+  position: relative;
+  width: max-content;
+  max-width: 100%;
+  flex-shrink: 0;
+}
+
+.popup-container {
+  position: absolute;
+  z-index: 9999;
+
+  &.bottom-start,
+  &.top-start {
+    left: 0;
+  }
+
+  &.bottom,
+  &.top {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &.bottom-end,
+  &.top-end {
+    right: 0;
+  }
+
+  &.bottom,
+  &.bottom-start,
+  &.bottom-end {
+    top: 100%;
+  }
+
+  &.top,
+  &.top-start,
+  &.top-end {
+    bottom: 100%;
+  }
+}
+
+.popup-menu-inner {
+  position: relative;
+  background: white;
+  padding: 8px;
+  border-radius: 4px;
+  min-width: 160px;
+  max-width: calc(100vw - 16px);
+  font-size: 14px;
+  color: #323338;
+  word-break: break-word;
+  box-shadow: 0px 6px 20px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(0px);
+  transform-origin: center center;
+  transition: none;
+
+  &.visible {
+    transition: opacity 0.12s ease, transform 0.16s ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.no-animation {
+    transition: none !important;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup-arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 2px;
+  transform: rotate(45deg);
+  z-index: -1;
+}
+
+// Arrow positions (you can add left/right if needed)
+.popup-arrow-bottom,
+.popup-arrow-bottom-start,
+.popup-arrow-bottom-end {
+  bottom: 95%;
+}
+
+.popup-arrow-top,
+.popup-arrow-top-start,
+.popup-arrow-top-end {
+  top: 95%;
+}
+
+.popup-arrow-bottom,
+.popup-arrow-top {
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.popup-arrow-bottom-start,
+.popup-arrow-top-start {
+  left: 16px;
+}
+
+.popup-arrow-bottom-end,
+.popup-arrow-top-end {
+  right: 16px;
+}
+
+
+.popup-menu-inner[data-placement^="top"] {
+  transform-origin: bottom center;
+}
+
+.popup-menu-inner[data-placement^="bottom"] {
+  transform-origin: top center;
+}
+
+.popup-menu-inner[data-placement^="left"] {
+  transform-origin: center right;
+}
+
+.popup-menu-inner[data-placement^="right"] {
+  transform-origin: center left;
+}
+
+.popup-menu-inner[data-placement^="bottom"] {
+  transform: translateY(-16px); // slide in from above
+  transform-origin: top center;
+
+  &.visible {
+    transform: translateY(0);
+  }
+}
+
+.popup-menu-inner[data-placement^="top"] {
+  transform: translateY(16px); // slide in from below
+  transform-origin: bottom center;
+
+  &.visible {
+    transform: translateY(0);
+  }
+}
