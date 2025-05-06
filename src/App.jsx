@@ -28,6 +28,8 @@ import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
 import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
 import { LandPageLayout } from './layouts/LandPageLayout'
 import { AppLayout } from './layouts/AppLayout'
+import { AppHome } from './cmps/app/main/home/AppHome'
+import { BoardIndex } from './cmps/app/main/board/BoardIndex'
 
 
 export default function App() {
@@ -61,8 +63,9 @@ export default function App() {
                             {/* app routes */}
                             <Route element={<AppLayout />}>
                                 <Route path="/app" element={<Navigate to="/app/home" />} />
-                                <Route path="/app/home" element={<Login />} />
-
+                                <Route path="/app/home" element={<AppHome />} />
+                                <Route path="/app/board/:boardId" element={<BoardIndex />} />
+                                <Route path="/app/board/:boardId/task/:taskId" element={<BoardIndex />} />
                             </Route>
 
                             {/* <Route path="/template" element={<TemplateIndex />} />
