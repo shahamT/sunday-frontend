@@ -176,7 +176,7 @@
 
 
             .asset-img {
-                padding-inline: var(--space-32);
+                padding-inline-end: var(--space-32);
 
                 width: 100%;
                 max-width: 970px;
@@ -190,7 +190,7 @@
 
                     opacity: 0;
 
-                    transition: var(--transition-xl);
+                    transition: 0.6s;
 
                     &.selected {
                         opacity: 1;
