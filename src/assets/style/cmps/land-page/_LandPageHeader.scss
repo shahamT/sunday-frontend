@@ -1,5 +1,7 @@
 .LandPageHeader {
     position: sticky;
+    top: 0px;
+    background-color: white;
     
     display: flex;
     align-items: center;
@@ -10,6 +12,9 @@
 
 .land-page-nav{
     display: flex;
+    align-items: center;
+
+    
     gap: 16px;
 }
 

@@ -21,7 +21,8 @@ export function Tooltip({
     noArrow = false,
     noAnimation = false,
     delayIn = 300,
-    delayOut = 150
+    delayOut = 150,
+    additionalClass = ''
   }) {
     const [visible, setVisible] = useState(false)
     const enterTimeout = useRef(null)
@@ -42,7 +43,7 @@ export function Tooltip({
     }
   
     return (
-      <div className="tooltip-wrapper" onMouseEnter={show} onMouseLeave={hide}>
+      <div className={`tooltip-wrapper ${additionalClass}`} onMouseEnter={show} onMouseLeave={hide}>
         {children}
         <div className={`tooltip-box tooltip-${position}`}>
           <div className="tooltip-gap" style={getGapStyle(position, gap)}>

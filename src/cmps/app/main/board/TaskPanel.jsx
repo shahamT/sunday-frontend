@@ -1,9 +1,8 @@
 import { Panel, PanelGroup, PanelResizeHandle, } from 'react-resizable-panels';
-import './ResizableSidePanel.scss';
 import { useSelector } from 'react-redux';
 import { useRef } from 'react';
 
-export function ResizableSidePanel({
+export function TaskPanel({
     children,
     side = 'right',
     defaultWidth = 400,
@@ -11,7 +10,7 @@ export function ResizableSidePanel({
     maxWidth = 700,
 }) {
 
-    const isOpen = useSelector(storeState => storeState.appModule.isSidePanelOpen)
+    const isOpen = useSelector(storeState => storeState.boardModule.isTaskPanelOpen)
     const nodeRef = useRef(null);
 
 
@@ -32,7 +31,7 @@ export function ResizableSidePanel({
                     {side === 'right' ?
                         <>
                             <Panel defaultSize={invertedDefault} />
-                            <PanelResizeHandle className="resize-handle" />
+                            <PanelResizeHandle className="side-panel-resize-handle" />
                         </>
                         : ''}
 
@@ -47,7 +46,7 @@ export function ResizableSidePanel({
 
                     {side === 'left' ?
                         <>
-                            <PanelResizeHandle className="resize-handle" />
+                            <PanelResizeHandle className="side-panel-resize-handle" />
                             <Panel defaultSize={invertedDefault} />
                         </>
                         : ''}

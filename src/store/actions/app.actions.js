@@ -1,5 +1,5 @@
 import { store } from "../store.js"
-import { CLOSE_GLOBAL_MODAL, CLOSE_SIDE_PANEL, OPEN_GLOBAL_MODAL, OPEN_SIDE_PANEL, SET_GLOBAL_MODAL_CLOSING } from "../reducers/app.reducer.js"
+import { CLOSE_GLOBAL_MODAL, CLOSE_SIDE_NAV, OPEN_GLOBAL_MODAL, OPEN_SIDE_NAV, SET_GLOBAL_MODAL_CLOSING } from "../reducers/app.reducer.js"
 
 
 // Global modal
@@ -18,10 +18,10 @@ export function closeGlobalModal() {
 
 // Side panel
 
-export function openSIdePanel() {
-  store.dispatch({ type: OPEN_SIDE_PANEL})
+export function openSidePanel() {
+  store.dispatch({ type: OPEN_SIDE_NAV})
 }
 
-export function closeSIdePanel() {
-  store.dispatch({ type: CLOSE_SIDE_PANEL})
+export function closeSidePanel() {
+  store.dispatch({ type: CLOSE_SIDE_NAV})
 }

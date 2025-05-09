@@ -15,12 +15,15 @@
         height: 25px;
         width: 25px;
         margin: 4px;
+        margin-block-end: 7px;
+        
     }
 
     .logo-txt {
         font-size: 1rem;
+        line-height: 16px;
         .main{
-            font-weight: 800;
+            font-weight: 700;
         }
         .regular{
             font-weight: 300;

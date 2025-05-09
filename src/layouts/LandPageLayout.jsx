@@ -8,17 +8,20 @@
 
 // === Hooks / React
 import { Outlet } from "react-router-dom";
-import { LandPageHeader } from "../cmps/land-page/LandPageHeader";
+import { useRef, useState } from "react";
 
 // === Imgs
 
 // === Child Components
+import { LandPageHeader } from "../cmps/land-page/LandPageHeader";
 
 // ====== Component ======
 // =======================
 
 export function LandPageLayout({ /* prop1, prop2 */ }) {
     // === Consts
+    const [isScrolled, setIsScrolled] = useState(false)
+    const topLineRef = useRef(null);
 
     // === Effects
 
@@ -28,6 +31,7 @@ export function LandPageLayout({ /* prop1, prop2 */ }) {
     return (
         <section className="LandPageLayout">
             <>
+            <div className="topLine" ref={topLineRef} />
                 <LandPageHeader />
                 <main>
                     <Outlet />

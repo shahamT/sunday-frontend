@@ -1,94 +1,190 @@
 .AppLayout {
-    display: grid;
-    grid-template-rows: 1fr;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-areas:
+    "header"
+    "main";
 
-    grid-template-areas:
-        "header"
-        "main"
-    ;
+  height: 100vh;
 
-    height: 100vh;
+  background-color: var(--primary-surface-color);
 
-    background-color: var(--primary-surface-color);
+  .app-main {
+    grid-area: main;
 
+    position: fixed;
+    bottom: 0;
+    z-index: 10;
 
-    .app-main {
-        grid-area: main;
-    
-        position: fixed;
-        bottom: 0;
-        z-index: 10;
-    
-        height: calc(100% - var(--app-header-size, 0px));
-        width: 100%;
-        
-        pointer-events: none;
-        
-        &.side-nav-opened {
-            .main-side-nav-panel {
-                transform: translateX(0%);
-            }
-        }
-        
-        // panel
-        .main-side-nav-panel {
-            margin-inline-start: 12px;
+    display: flex;
+
+    height: calc(100% - var(--app-header-size, 0px));
+    width: 100%;
+
+    &.side-nav-opened {
+      .side-nav-resize-handle {
+        display: block;
+      }
+    }
+
+    &.side-nav-closed {
+      .side-nav-resize-handle {
+        display: none;
+      }
+
+      .close-btn::before{
+        transform: rotate(-180deg);
+      }
+
+    }
+
+    .main-side-nav-panel {
+      position: relative;
+
+      height: 100%;
+      margin-inline-start: 12px;
+
+      background: linear-gradient(135deg, var(--primary-background-color) 5%, var(--primary-surface-color) 100%);
+      box-shadow: inset -5px -20px 20px 0 var(--primary-surface-color), var(--box-shadow-xs);
+      border-top-left-radius: 12px;
+
+      pointer-events: auto;
+      transition: none;
+
+      &.collapsing-transition {
+        transition: width var(--transition-lg, 250ms) ease-in-out;
+      }
+
+      &.closed {
+        cursor: pointer;
+        width: 30px;
+        transition: width 300ms ease-in-out;
+
+        &:hover {
+          width: 36px;
+
+          &::before {
+            content: "";
+            display: block;
+            width: 100%;
             height: 100%;
-            
-            border-top-left-radius: var(--border-radius-md);
-            background: linear-gradient(135deg, rgba(255, 255, 255, .7), rgba(255, 255, 255, 0));
-            box-shadow: var(--box-shadow-xs);
-
-            pointer-events: auto;
-            transform: translateX(-100%);
-            transition: transform var(--transition-lg, 250ms) ease-in-out;
-    
+            background-color: var(--primary-background-hover-color);
+            opacity: 0.2;
+          }
         }
-    
-        // handle
-        .resize-handle {
-            position: relative;
-            z-index: 11;
-            
-            
-            opacity: 0;
-
-            transition: var(--transition-lg);
-            transition-delay: 300ms;
+        .close-btn-wraper{
+          opacity: 1;
+          pointer-events: auto;
         }
-    
-        [data-resize-handle-state='hover'],
-        [data-resize-handle-state='drag'] {
-            position: relative;
+      }
+
+      &.opened{
+        &:hover {
+          .close-btn-wraper {
             opacity: 1;
-    
+            pointer-events: auto;
+          }
         }
-    
-        [data-resize-handle-state='hover']::after,
-        [data-resize-handle-state='drag']::after {
-            content: '';
-            position: absolute;
+      }
 
-            height: 100%;
-            width: 3px;
-
-            background-color: var(--primary-color, #0073ea);
-            box-shadow: var(--box-shadow-small, 0px 4px 8px rgba(0, 0, 0, 0.2));
+      &.dragging{
+        .close-btn-wraper {
+        opacity: 0 !important;
         }
-    }
+      }
 
-    .main-content-panel{
-        width: 100%;
+      .side-nav-resize-handle {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 8px;
         height: 100%;
+        cursor: ew-resize;
+        z-index: 11;
+        opacity: 0;
+        transition: opacity 0.3s ease-in-out;
 
-        background-color: #F1F4FA;
+        &:hover,
+        &.dragging {
+          opacity: 1;
 
-        .main-content-wraper{
-            background-color: var(--primary-background-color);
-            height: 100%;
-            border-top-left-radius: 12px;
+          &::after {
+            opacity: 1;
+          }
         }
+
+        &::after {
+          content: '';
+          position: absolute;
+          top: 0;
+          right: 0px;
+          width: 3px;
+          height: 100%;
+          background-color: var(--primary-color, #0073ea);
+          box-shadow: var(--box-shadow-small);
+          opacity: 0;
+          transition: opacity 0.2s ease-in-out;
+        }
+      }
+
+      .close-btn-wraper {
+        position: absolute;
+        z-index: 12;
+        top: 12px;
+        right: -14px;
+
+        opacity: 0;
+
+        transition: opacity var(--transition-sm);
+        
+        &:hover {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .close-btn {
+          width: 26px;
+          height: 26px;
+
+          background-color: var(--primary-surface-color);
+          border-radius: var(--border-radius-round);
+          cursor: pointer;
+
+          &::before {
+            display: flex;
+            height: 100%;
+            width: 100%;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-text-color);
+            transition: transform var(--transition-lg);
+          }
+
+        }
+      }
+      .side-nav-resize-handle:hover ~ .close-btn-wraper {
+        opacity: 0 ;
+        pointer-events: none;
+      }
+
+      &.closed:hover .close-btn-wraper .tooltip-inner {
+        opacity: 1;
+        transform: scale(1);
+        transition: opacity 0.1s ease 0.3s, transform 0.1s ease 0.3s;
+        pointer-events: none;
+      }
     }
 
-}
+    .main-content-panel {
+      flex: 1;
+      height: 100%;
+      background-color: #f1f4fa;
 
+      .main-content-wraper {
+        background-color: var(--primary-background-color);
+        height: 100%;
+        border-top-left-radius: 12px;
+      }
+    }
+  }
+}

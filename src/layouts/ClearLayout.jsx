@@ -17,7 +17,7 @@ import { AppHeader } from "../cmps/app/header/AppHeader";
 // ====== Component ======
 // =======================
 
-export function LandPageLayout({ /* prop1, prop2 */ }) {
+export function ClearLayout({ /* prop1, prop2 */ }) {
     // === Consts
 
     // === Effects

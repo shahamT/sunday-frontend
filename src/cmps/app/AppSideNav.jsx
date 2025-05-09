@@ -20,9 +20,9 @@ export function AppSideNav({ }) {
 
     return (
         <nav className="AppSideNav" >
-            <h1>side nav content </h1>
-            <NavLink to="/app/home" className="clickable clear size-32 full-width" >Home </NavLink>
-            <NavLink to="/app/board/randomid" className="clickable clear size-32 full-width" >BoardIndex </NavLink>
+            <NavLink to="/app/home" className="clickable select clear size-32 full-width" >Home </NavLink>
+            <NavLink to="/app/board/randomid" className="clickable select clear size-32 full-width" >BoardIndex </NavLink>
+            <NavLink to="/app/board/randomid/task/taskId" className="clickable select clear size-32 full-width" >TaskDetails </NavLink>
         </nav>
     )
 }

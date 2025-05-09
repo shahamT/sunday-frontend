@@ -8,7 +8,7 @@ import EmojiPicker from "@emoji-mart/react";
 // === Services
 
 // === Actions
-import { closeGlobalModal, closeSIdePanel, openGlobalModal, openSIdePanel } from "../../../store/actions/app.actions.js";
+import { closeGlobalModal, closeSidePanel, openGlobalModal, openSidePanel } from "../../../store/actions/app.actions.js";
 
 // === React
 import { useToggle } from "../../../hooks/useToggle.js";
@@ -19,7 +19,7 @@ import { useSelector } from "react-redux";
 // === Child Components
 import { PopUpMenu } from "../../../cmps/reusables/PopUpMenu/PopUpMenu.jsx";
 import { RichTextEditor } from "../../../cmps/reusables/RichTextEditor/RichTextEditor.jsx";
-import { ResizableSidePanel } from "../../../cmps/reusables/ResizableSidePanel/ResizableSidePanel.jsx";
+import { TaskPanel } from "../../../cmps/app/main/board/TaskPanel.jsx";
 
 // ====== Component ======
 // =======================
@@ -331,7 +331,7 @@ onCloseModal={onCloseModal} />
 
             <div
                 className="clickable filled size-40 icon-start i-Launch"
-                onClick={() => isSidePanelOpen ? closeSIdePanel() : openSIdePanel()}
+                onClick={() => isSidePanelOpen ? closeSidePanel() : openSidePanel()}
             >Open side panel</div>
 
 
@@ -341,9 +341,9 @@ onCloseModal={onCloseModal} />
 
             <RichTextEditor />
 
-            <ResizableSidePanel>
+            <TaskPanel>
                 <ModalContent/>
-            </ResizableSidePanel>
+            </TaskPanel>
         </section >
     )
 }

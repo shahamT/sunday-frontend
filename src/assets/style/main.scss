@@ -35,6 +35,7 @@
 
 
 // ===== Pages =====
+@import 'cmps/land-page/HomePage.scss';
 
 
 // === Land Page ===
@@ -51,4 +52,6 @@
 @import 'cmps/app/_AppSideNav.scss';
 
 @import 'cmps/app/_AppHome.scss';
-@import 'cmps/app/board/_AppBoardIndex.scss';
+@import 'cmps/app/board/_BoardIndex.scss';
+@import 'cmps/app/board/_TaskPanel.scss';
+@import 'cmps/app/board/_TaskDetails.scss';

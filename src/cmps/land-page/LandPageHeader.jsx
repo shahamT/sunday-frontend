@@ -10,10 +10,13 @@ export function LandPageHeader(props) {
         <header className="LandPageHeader">
                     <MondayMainLogo />
                 <nav className="land-page-nav">
+                    <a href="https://vibe.monday.com/?path=/docs/components-icon--docs#icons-list">icons</a>
                     <NavLink to="/reusables" >Reusables</NavLink>
                     <NavLink to="/about" >About</NavLink>
                     <NavLink to="/login" >Login</NavLink>
                     <NavLink to="/app" >App</NavLink>
+                    <div className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow">Get Started</div>
+
                 </nav>
         </header>
     )

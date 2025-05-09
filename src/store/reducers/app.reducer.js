@@ -4,9 +4,9 @@ export const OPEN_GLOBAL_MODAL = "OPEN_GLOBAL_MODAL"
 export const CLOSE_GLOBAL_MODAL = "CLOSE_GLOBAL_MODAL"
 export const SET_GLOBAL_MODAL_CLOSING = "SET_GLOBAL_MODAL_CLOSING" // allowing modal trnasition out
 
-//Side Panel
-export const OPEN_SIDE_PANEL = "OPEN_SIDE_PANEL"
-export const CLOSE_SIDE_PANEL = "CLOSE_SIDE_PANEL"
+//Side Nav
+export const OPEN_SIDE_NAV = "OPEN_SIDE_NAV"
+export const CLOSE_SIDE_NAV = "CLOSE_SIDE_NAV"
 
 
 const initialState = {
@@ -16,8 +16,8 @@ const initialState = {
     isModalClosing: false,
     modalContent: null,
 
-    //Side Panel
-    isSidePanelOpen: false,
+    //Side Nav
+    isSideNavOpen: true,
 
 }
 
@@ -42,17 +42,17 @@ export function appReducer(state = initialState, action = {}) {
                 isModalOpen: false, modalContent: null
             }
 
-        //Side Panel
-        
-        case 'OPEN_SIDE_PANEL':
+        //Side Nav
+
+        case 'OPEN_SIDE_NAV':
             return {
                 ...state,
-                isSidePanelOpen: true
+                isSideNavOpen: true
             }
-        case 'CLOSE_SIDE_PANEL':
+        case 'CLOSE_SIDE_NAV':
             return {
                 ...state,
-                isSidePanelOpen: false
+                isSideNavOpen: false
             }
 
 

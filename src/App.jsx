@@ -1,7 +1,6 @@
 //style
 import './assets/style/main.scss'
 
-
 //pages
 import { HomePage } from './pages/land-page/HomePage.jsx'
 import { AboutUs } from './pages/land-page/AboutUs.jsx'
@@ -20,16 +19,18 @@ import { useDocumentTitle } from './hooks/useDocumentTitle'
 import { store } from './store/store.js'
 import { Provider } from 'react-redux'
 
-//main cmps
-import { AppHeader } from './cmps/app/header/AppHeader.jsx'
-
-// === Child Components
-import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
-import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
+// === Layouts
 import { LandPageLayout } from './layouts/LandPageLayout'
 import { AppLayout } from './layouts/AppLayout'
+import { ClearLayout } from './layouts/ClearLayout'
+
+// === pages
 import { AppHome } from './cmps/app/main/home/AppHome'
 import { BoardIndex } from './cmps/app/main/board/BoardIndex'
+
+// === Global Components
+import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
+import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
 
 
 export default function App() {
@@ -55,10 +56,12 @@ export default function App() {
                             </Route>
 
 
+                            {/* clear layout routes */}
+                            <Route element={<ClearLayout />}>
+                                <Route path="/signup" element={<Signup />} />
+                                <Route path="/login" element={<Login />} />
+                            </Route>
 
-
-                            <Route path="/signup" element={<Signup />} />
-                            <Route path="/login" element={<Login />} />
 
                             {/* app routes */}
                             <Route element={<AppLayout />}>
@@ -68,9 +71,6 @@ export default function App() {
                                 <Route path="/app/board/:boardId/task/:taskId" element={<BoardIndex />} />
                             </Route>
 
-                            {/* <Route path="/template" element={<TemplateIndex />} />
-                            <Route path="/template/:templateId" element={<TemplateDetails />} />
-                            <Route path="/template/edit/:templateId" element={<TemplateEdit />} /> */}
 
                             {/* dev pages routes */}
                             <Route path="/reusables" element={<Reusables />} />

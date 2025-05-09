@@ -13,7 +13,51 @@
 
     .app-nav {
         display: flex;
-        gap: 15px;
+        align-items: center;
+        gap: var(--space-4);
+
+
+       .help-btn-wraper {
+        margin-inline-end: var(--space-4);
+
+       }
+
+        .divider {
+            height: 22px;
+            margin-inline: var(--space-4);
+            width: 1px;
+            background-color: var(--layout-border-color);
+        }
+
+        .switcher-btn-wraper {
+            margin-inline-end: 6px;
+            margin-inline-start: 1px;
+        }
+
+        .menu-btn {
+            gap: 0px;
+            padding-inline: 0px;
+            border-end-end-radius: var(--border-radius-round);
+            border-start-end-radius: var(--border-radius-round);
+
+            background-color: rgba(255, 255, 255, 0.5);
+            overflow: visible;
+
+            &:hover {
+                background-color: var(--primary-background-hover-color);
+            }
+
+            .monday-logo-icon {
+                height: 24px;
+                width: 24px;
+                margin-inline: 6px;
+            }
+
+            .user-avatar {
+                height: 32px;
+                width: 32px;
+            }
+        }
     }
 
 }
