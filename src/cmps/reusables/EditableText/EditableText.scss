@@ -1,0 +1,104 @@
+.EditableText {
+    position: relative;
+    width: 100%;
+    display: flex;
+
+    .text-input {
+        padding-inline: 4px;
+        outline: none;
+        border: 1px solid transparent;
+
+        letter-spacing: inherit;
+        color: var(--primary-text-color);
+        background-color: transparent;
+        border-radius: var(--border-radius-sm);
+
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+
+        &:hover {
+            border: 1px solid var(--ui-border-color);
+        }
+
+        &:focus {
+            border: 1px solid var(--primary-color);
+            background-color: var(--primary-background-color);
+            width: 100% !important;
+        }
+
+        &:focus:hover {
+            border: 1px solid var(--primary-text-color);
+        }
+
+        &.full {
+            width: 100%;
+        }
+
+        &.normal {
+            height: 26px;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: var(--font-family);
+
+        }
+
+        &.title {
+            height: 36px;
+            font-size: 24px;
+            font-weight: 500;
+            font-family: var(--title-font-family);
+        }
+
+        &.xl-padding-end:focus {
+            padding-inline-end: 26px;
+        }
+    }
+
+    .input-mirror {
+        font: inherit;
+        letter-spacing: inherit;
+
+        visibility: hidden;
+        white-space: pre;
+        position: absolute;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+
+        &.normal {
+            height: 26px;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: var(--font-family);
+
+        }
+
+        &.title {
+            height: 36px;
+            font-size: 24px;
+            font-weight: 500;
+            font-family: var(--title-font-family);
+        }
+    }
+
+    .text-input:focus+.emoji-picker {
+        opacity: 1;
+        // pointer-events: auto;
+
+    }
+
+    .emoji-picker {
+        opacity: 0;
+        // pointer-events: none;
+        position: absolute;
+        right: 4px;
+        top: 52%;
+        transform: translate(0, -50%);
+
+        .emoji-btn {
+            height: 18px;
+            width: 18px;
+        }
+    }
+}

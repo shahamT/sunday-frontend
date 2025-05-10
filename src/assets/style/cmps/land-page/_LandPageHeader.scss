@@ -1,21 +1,30 @@
 .LandPageHeader {
     position: sticky;
     top: 0px;
-    background-color: white;
-    
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    
-    padding-inline: 32px;
+
+    display: grid;
+    grid-template-columns: 1fr minmax(auto, 1440px) 1fr;
     height: 72px;
 
-.land-page-nav{
-    display: flex;
-    align-items: center;
+    background-color: white;
 
-    
-    gap: 16px;
-}
+    .header-content {
+        grid-column: 2;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        max-width: 1440px;
+        padding-inline: 32px;
+
+        .land-page-nav {
+            display: flex;
+            align-items: center;
+
+
+            gap: 16px;
+        }
+    }
 
 }

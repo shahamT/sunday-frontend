@@ -34,7 +34,7 @@ export function HomePage() {
                     <h2 className="title">Made for work, <br /> designed to love</h2>
                     <h3 className="leading-text">Streamline workflows, gain clear visibility across teams, and empower smarter decisions with AI seamlessly woven into your work.</h3>
 
-                    <div className="clickable land-page primary full size-48 icon-end i-MoveArrowRightNarrow">Get Started</div>
+                    <div className="clickable land-page primary full size-49 icon-end i-MoveArrowRightNarrow">Get Started</div>
 
                     <p className="reassurance-text">No credit card needed &nbsp; ✦ &nbsp; Unlimited time on Free plan</p>
 

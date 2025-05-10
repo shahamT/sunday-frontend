@@ -31,7 +31,7 @@ export function useDocumentTitle(customTitle) {
         break;
 
 
-      case path === '/app.home':
+      case path === '/app/home':
         title = 'sunday - Home';
         break;
 

@@ -215,11 +215,13 @@
     // ===========================
 
     &.land-page {
+        font-family: Poppins, Roboto, Helvetica, Arial, sans-serif !important;
 
         &.primary {
             border-radius: var(--border-radius-round);
             font-weight: 300;
             transition: var(--transition-lg);
+
 
             &.full {
                 background-color: #6161FF;
@@ -228,12 +230,13 @@
                 &:hover {
                     background-color: #5151d5;
 
-                    &.size-40{
+                    &.size-40 {
                         &::before {
                             transform: translateX(3px);
                         }
                     }
-                    &.size-48{
+
+                    &.size-48 {
                         &::before {
                             transform: translateX(6px);
                         }
@@ -246,22 +249,22 @@
                 padding-inline: 16px;
 
                 font-size: 13px;
-                
+
             }
-            
-            &.size-48 {
-                height: 48px;
-                padding-inline: 32px;
+
+            &.size-49 {
+                height: 49px;
+                padding-inline: 34px;
                 font-size: 16px;
             }
 
             &.icon-end {
                 flex-direction: row-reverse;
-                font-family: inherit !important;
-                padding-inline-end: 24px;
+                font-family: Poppins, Roboto, Helvetica, Arial, sans-serif !important;
+                padding-inline-end: 26px;
 
-                &.size-40{
-                padding-inline-end: 14px;
+                &.size-40 {
+                    padding-inline-end: 14px;
                 }
 
                 &::before {

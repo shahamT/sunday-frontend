@@ -3,6 +3,8 @@
     margin-block-start: var(--space-16);
     margin-block-end: var(--space-32);
 
+    color: #333;
+
     .hero {
         display: flex;
         flex-direction: column;
@@ -10,7 +12,7 @@
         gap: 64px;
 
         margin-inline: var(--space-16);
-        padding-block-start: var(--space-64);
+        padding-block-start: 56px;
         padding-block-end: var(--space-24);
 
         background-color: #f0f3ff;
@@ -23,7 +25,7 @@
             align-items: center;
 
             max-width: 620px;
-            padding-inline: 40px;
+            margin-inline: 40px;
 
             .sunday-work-platform-logo {
                 display: flex;
@@ -39,10 +41,11 @@
                 }
 
                 .logo-title {
-                    font-size: 18px;
+                        font-size: 1.15rem;
 
                     .bold {
-                        font-weight: 700;
+                        font-weight: 800;
+
                     }
 
                     .regular {
@@ -54,7 +57,7 @@
             .title {
                 font-size: 4.5rem;
                 font-weight: 200;
-                line-height: 4.95rem;
+                line-height: 5.225rem;
 
                 margin-block-end: 16px;
 
@@ -64,14 +67,16 @@
                 font-size: 1.125rem;
                 line-height: 2rem;
                 font-weight: 300;
-                margin-block-end: 38px;
+                margin-block-end: 34px;
             }
 
             .reassurance-text {
+                margin-block-start: 18px;
+
+                font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
                 font-size: 0.8125rem;
                 color: #676879;
 
-                margin-block-start: 21px;
             }
         }
 
@@ -83,7 +88,7 @@
             align-items: center;
 
             width: 100%;
-            max-width: 970px;
+            max-width: 1040px;
 
             .asset-selectors-container {
                 position: absolute;
@@ -94,17 +99,18 @@
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 14px;
+                gap: 18px;
 
-                padding: 16px;
+                padding: 24px;
                 border: 1px solid #DCDFEC;
 
+                font-family: Poppins, Roboto, Helvetica, Arial, sans-serif;
                 border-radius: 12px;
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 40%, rgba(240, 243, 255, 0.3) 80%);
                 box-shadow: 3.977px 3.977px 34.8px 0 rgba(0, 0, 0, 0.15);
 
                 .title {
-                    font-size: 13px;
+                    font-size: 15px;
                 }
 
                 .selectors-grid {
@@ -121,7 +127,7 @@
                         gap: var(--space-8);
 
                         background-color: white;
-                        border: 0.6px solid #e1e2e7;
+                        border: 0.6px solid #C3C6D4;
                         border-radius: 12px;
                         color: #333;
 
@@ -130,31 +136,40 @@
                         &:hover {
                             box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.08);
 
-                            &.projects .icon{
-                                color: #6161FF;;
+                            &.projects .icon {
+                                color: #6161FF;
+                                ;
                             }
-                            &.task .icon{
+
+                            &.task .icon {
                                 color: #0073EA;
                             }
-                            &.marketing .icon{
+
+                            &.marketing .icon {
                                 color: #ff5ac4;
                             }
-                            &.design .icon{
+
+                            &.design .icon {
                                 color: #faa1f1;
                             }
-                            &.crm .icon{
+
+                            &.crm .icon {
                                 color: #00D2D2;
                             }
-                            &.software .icon{
+
+                            &.software .icon {
                                 color: #00CA72;
                             }
-                            &.it .icon{
+
+                            &.it .icon {
                                 color: #FB275D;
                             }
-                            &.operations .icon{
+
+                            &.operations .icon {
                                 color: #E21277;
                             }
-                            &.product .icon{
+
+                            &.product .icon {
                                 color: #FF9900;
                                 ;
                             }
@@ -165,8 +180,8 @@
                             font-weight: 300;
                         }
 
-                        .icon{
-                            font-size: 16px; 
+                        .icon {
+                            font-size: 16px;
                         }
 
 
@@ -179,7 +194,7 @@
                 padding-inline-end: var(--space-32);
 
                 width: 100%;
-                max-width: 970px;
+                max-width: 1040px;
 
                 &.regular {
                     position: absolute;

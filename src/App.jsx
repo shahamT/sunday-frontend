@@ -9,7 +9,9 @@ import { Login } from './pages/auth/Login'
 
 //dev pages
 import { Reusables } from './pages/DevPages/Reusables/Reusables'
-import { XDevPage } from './pages/DevPages/TemplateDevPage/XDevPage'
+import { DevPage1 } from './pages/DevPages/DevPage1'
+import { DevPage2 } from './pages/DevPages/DevPage2'
+import { DevPage3 } from './pages/DevPages/DevPage3'
 
 //hooks / react
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
@@ -74,7 +76,9 @@ export default function App() {
 
                             {/* dev pages routes */}
                             <Route path="/reusables" element={<Reusables />} />
-                            <Route path="/x-dev-page" element={<XDevPage />} />
+                            <Route path="/dev-page-1" element={<DevPage1 />} />
+                            <Route path="/dev-page-2" element={<DevPage2 />} />
+                            <Route path="/dev-page-3" element={<DevPage3 />} />
 
                         </Routes>
                     </main>

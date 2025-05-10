@@ -3,7 +3,6 @@ import './reusables.scss'
 // === Style
 
 // === Libs
-import EmojiPicker from "@emoji-mart/react";
 
 // === Services
 
@@ -13,6 +12,7 @@ import { closeGlobalModal, closeSidePanel, openGlobalModal, openSidePanel } from
 // === React
 import { useToggle } from "../../../hooks/useToggle.js";
 import { useSelector } from "react-redux";
+import { useControlledInput } from '../../../hooks/useControlledInput';
 
 // === Imgs
 
@@ -20,6 +20,8 @@ import { useSelector } from "react-redux";
 import { PopUpMenu } from "../../../cmps/reusables/PopUpMenu/PopUpMenu.jsx";
 import { RichTextEditor } from "../../../cmps/reusables/RichTextEditor/RichTextEditor.jsx";
 import { TaskPanel } from "../../../cmps/app/main/board/TaskPanel.jsx";
+import { EditableText } from '../../../cmps/reusables/EditableText/EditableText';
+import { CustomEmojiPicker } from '../../../cmps/reusables/customEmojiPicker/customEmojiPicker';
 
 // ====== Component ======
 // =======================
@@ -28,7 +30,7 @@ export function Reusables() {
     const [isBtnActive, toggleBtn] = useToggle(false)
     const [isBtnLoading, toggleLoad] = useToggle(false)
     const isSidePanelOpen = useSelector(storeState => storeState.appModule.isSidePanelOpen)
-
+    const [value, handleChange, resetForm] = useControlledInput('Text')
 
     return (
         <section className="reusables">
@@ -310,7 +312,7 @@ onCloseModal={onCloseModal} />
             <PopUpMenu
                 position="bottom-end"
                 renderContent={({ onCloseModal }) => (
-                    <EmojiPicker onCloseModal={onCloseModal} />
+                    <CustomEmojiPicker onCloseModal={onCloseModal} />
                 )}>
                 <div className="clickable filled size-40">Emoji Picker</div>
             </PopUpMenu>
@@ -342,8 +344,20 @@ onCloseModal={onCloseModal} />
             <RichTextEditor />
 
             <TaskPanel>
-                <ModalContent/>
+                <ModalContent />
             </TaskPanel>
+
+
+            {/*  */}
+            <h3>Editable Text</h3>
+            {/*  */}
+
+
+            <div className="input-container">
+                <EditableText value={value} handleChange={handleChange} />
+            </div>
+
+
         </section >
     )
 }

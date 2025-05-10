@@ -1,5 +1,4 @@
 // === Style
-import './XDevPage.scss'
 
 // === Libs
 
@@ -16,7 +15,7 @@ import './XDevPage.scss'
 // ====== Component ======
 // =======================
 
-export function XDevPage({ /* prop1, prop2 */ }) {
+export function DevPage3({ /* prop1, prop2 */ }) {
     // === Consts
 
     // === Effects
@@ -25,8 +24,8 @@ export function XDevPage({ /* prop1, prop2 */ }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="XDevPage">
-            <h1>XDevPage</h1>
+        <section className="DevPage3">
+            <h1>DevPage3</h1>
         </section>
     )
 }
