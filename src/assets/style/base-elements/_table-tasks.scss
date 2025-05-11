@@ -1,0 +1,37 @@
+.t-row {
+    display: flex;
+    align-items: center;
+
+    height: 36px;
+    width: 100%;
+    border-block-start: 1px solid var(--ui-border-color);
+
+    &.footer{
+    border-block-end: 1px solid var(--ui-border-color);
+
+    }
+}
+
+.t-cell {
+    border-inline-start: 1px solid var(--ui-border-color);
+}
+
+.t-left-indicator {
+    background-color: aqua;
+    width: 6px;
+    height: 36px;
+
+    &.top {
+        border-start-start-radius: var(--border-radius-md);
+    }
+
+    &.bottom {
+        border-end-start-radius: var(--border-radius-md);
+    }
+}
+
+.menu-wraper{
+    position: absolute;
+    left: 0px;
+    transform: translateX(-100%);
+}

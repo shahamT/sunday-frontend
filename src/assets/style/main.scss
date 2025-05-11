@@ -12,6 +12,7 @@
 
 /* base elements */
 @import 'base-elements/clickable.scss';
+@import 'base-elements/table-tasks.scss';
 
 /* MEDIA QUERIES */
 @import 'setup/mq.scss';
@@ -51,6 +52,18 @@
 @import 'cmps/app/_AppSideNav.scss';
 
 @import 'cmps/app/_AppHome.scss';
-@import 'cmps/app/board/_BoardIndex.scss';
-@import 'cmps/app/board/_TaskPanel.scss';
-@import 'cmps/app/board/_TaskDetails.scss';
+@import 'cmps/app/board/BoardPreview.scss';
+@import 'cmps/app/board/TaskPanel.scss';
+@import 'cmps/app/board/TaskDetails.scss';
+
+
+// ====== Table View ======
+@import 'cmps/app/board/table-view/T_View.scss';
+@import 'cmps/app/board/table-view/T_TaskRow.scss';
+@import 'cmps/app/board/table-view/T_GroupTasksList.scss';
+@import 'cmps/app/board/table-view/T_GroupsList.scss';
+@import 'cmps/app/board/table-view/T_GroupHeadRow.scss';
+@import 'cmps/app/board/table-view/T_GroupHeader.scss';
+@import 'cmps/app/board/table-view/T_GroupFooter.scss';
+@import 'cmps/app/board/table-view/T_Group.scss';
+@import 'cmps/app/board/table-view/T_Filter.scss';

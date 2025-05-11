@@ -28,7 +28,7 @@ import { ClearLayout } from './layouts/ClearLayout'
 
 // === pages
 import { AppHome } from './cmps/app/main/home/AppHome'
-import { BoardIndex } from './cmps/app/main/board/BoardIndex'
+import {BoardPreview } from './cmps/app/main/board/BoardPreview'
 
 // === Global Components
 import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
@@ -69,8 +69,8 @@ export default function App() {
                             <Route element={<AppLayout />}>
                                 <Route path="/app" element={<Navigate to="/app/home" />} />
                                 <Route path="/app/home" element={<AppHome />} />
-                                <Route path="/app/board/:boardId" element={<BoardIndex />} />
-                                <Route path="/app/board/:boardId/task/:taskId" element={<BoardIndex />} />
+                                <Route path="/app/board/:boardId" element={<BoardPreview />} />
+                                <Route path="/app/board/:boardId/task/:taskId" element={<BoardPreview />} />
                             </Route>
 
 

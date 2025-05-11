@@ -14,6 +14,7 @@ export function EditableText({
     value = '',
     handleChange,
     type = 'text',
+    color = null
 }) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
@@ -21,7 +22,7 @@ export function EditableText({
 
     useEffect(() => {
         if (!full && spanRef.current) {
-            setInputWidth(spanRef.current.offsetWidth+12)
+            setInputWidth(spanRef.current.offsetWidth+13)
         }
     }, [value, placeholder, full]);
 
@@ -60,6 +61,7 @@ export function EditableText({
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
                     ...(full ? {} : { width: `${inputWidth}px` }),
+                    ...(color ? {color: `${color}`} : {})
                 }}
             />
 

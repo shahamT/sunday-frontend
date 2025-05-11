@@ -10,12 +10,12 @@
 // === Imgs
 
 // === Child Components
-import { T_View } from "./table-view/T_View";
+import { T_Group } from "./T_Group";
 
 // ====== Component ======
 // =======================
 
-export function BoardContent({ /* prop1, prop2 */ }) {
+export function T_GroupsList({ /* prop1, prop2 */ }) {
     // === Consts
 
     // === Effects
@@ -24,8 +24,11 @@ export function BoardContent({ /* prop1, prop2 */ }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="BoardContent">
-           <T_View/>
+        <section className="T_GroupsList">
+            <T_Group/>
+            <T_Group/>
+            <T_Group/>
+            <T_Group/>
         </section>
     )
 }

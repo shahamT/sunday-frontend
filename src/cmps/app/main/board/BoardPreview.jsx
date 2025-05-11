@@ -19,7 +19,7 @@ import { TaskDetails } from "./TaskDetails";
 // ====== Component ======
 // =======================
 
-export function BoardIndex({ /* prop1, prop2 */ }) {
+export function BoardPreview({ /* prop1, prop2 */ }) {
     // === Consts
    
 
@@ -30,8 +30,8 @@ export function BoardIndex({ /* prop1, prop2 */ }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="BoardIndex">
-            <h1>BoardIndex</h1>
+        <section className="BoardPreview">
+            <h1>BoardPreview</h1>
             <BoardHeader />
             <BoardContent />
 

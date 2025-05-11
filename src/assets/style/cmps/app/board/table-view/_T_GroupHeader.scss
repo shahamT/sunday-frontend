@@ -1,0 +1,86 @@
+.T_GroupHeader {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    height: 40px;
+
+
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        width: 60vw;
+        min-width: 500px;
+        cursor: grab;
+
+        .collapse-button-wraper {
+            margin-inline-start: 14px;
+            margin-inline-end: 2px;
+
+            .collapse-button {
+                display: flex;
+                align-items: center;
+
+                cursor: pointer;
+                height: 30px;
+                width: 22px;
+
+                font-size: 22px;
+
+            }
+        }
+
+
+        .title-wraper {
+            max-width: 50vw;
+        }
+
+
+        .items-count {
+            opacity: 0;
+            white-space: nowrap;
+
+            margin-inline-start: var(--space-4);
+
+            font-size: 14px;
+            color: var(--secondary-text-color);
+
+            transition: var(--transition-md);
+        }
+
+
+        &:focus-within {
+            .items-count {
+                display: none;
+            }
+
+            .title-wraper {
+                width: 50vw;
+            }
+
+        }
+
+        &:hover {
+            .items-count {
+                opacity: 1;
+            }
+
+        }
+    }
+
+    .group-menu-btn {
+        opacity: 0;
+        transition: var(--transition-md);
+
+    }
+
+    &:hover {
+        .group-menu-btn {
+            opacity: 1;
+        }
+
+    }
+
+}

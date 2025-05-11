@@ -50,6 +50,13 @@
             font-family: var(--title-font-family);
         }
 
+        &.g-title {
+            height: 27px;
+            font-size: 18px;
+            font-weight: 500;
+            font-family: var(--title-font-family);
+        }
+
         &.xl-padding-end:focus {
             padding-inline-end: 26px;
         }
@@ -77,6 +84,13 @@
         &.title {
             height: 36px;
             font-size: 24px;
+            font-weight: 500;
+            font-family: var(--title-font-family);
+        }
+
+        &.g-title {
+            height: 27px;
+            font-size: 18px;
             font-weight: 500;
             font-family: var(--title-font-family);
         }

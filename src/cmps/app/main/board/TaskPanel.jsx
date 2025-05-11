@@ -31,7 +31,7 @@ export function TaskPanel({
                     {side === 'right' ?
                         <>
                             <Panel defaultSize={invertedDefault} />
-                            <PanelResizeHandle className="side-panel-resize-handle" />
+                            {isOpen && <PanelResizeHandle className="side-panel-resize-handle" />}
                         </>
                         : ''}
 
@@ -46,7 +46,7 @@ export function TaskPanel({
 
                     {side === 'left' ?
                         <>
-                            <PanelResizeHandle className="side-panel-resize-handle" />
+                             {isOpen && <PanelResizeHandle className="side-panel-resize-handle" />}
                             <Panel defaultSize={invertedDefault} />
                         </>
                         : ''}
