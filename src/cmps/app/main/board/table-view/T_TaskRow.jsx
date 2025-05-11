@@ -13,7 +13,7 @@
 // ====== Component ======
 // =======================
 
-export function T_TaskRow({ /* prop1, prop2 */ }) {
+export function T_TaskRow({ task }) {
     // === Consts
 
     // === Effects
@@ -24,11 +24,15 @@ export function T_TaskRow({ /* prop1, prop2 */ }) {
     return (
         <article className="T_TaskRow">
             <div className="menu-wraper">
-gfg
+
             </div>
             <div className="t-left-indicator" />
             <div className="row-wraper t-row">
                 <input type="checkbox" name="" id="" />
+                {task.columnValues.filter(columnValue => {
+                    columnValue.id === 'name'
+                    console.log("columnValue: ", columnValue)
+                    }).value}
             </div>
         </article>
     )

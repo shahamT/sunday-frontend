@@ -16,15 +16,14 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 // ====== Component ======
 // =======================
 
-export function T_GroupHeader({ /* prop1, prop2 */ }) {
+export function T_GroupHeader({ group }) {
     // === Consts
-    const [value, handleChange, resetForm] = useControlledInput('Text')
+    const [value, handleChange, resetForm] = useControlledInput(group.name)
 
     // === Effects
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="T_GroupHeader">
             <div className="menu-wraper">
@@ -52,7 +51,7 @@ export function T_GroupHeader({ /* prop1, prop2 */ }) {
                         emojiPicker={false}
                     />
                 </div>
-                <p className="items-count">5 Tasks</p>
+                <p className="items-count">{group.tasks.length} Tasks</p>
             </div>
         </section>
     )

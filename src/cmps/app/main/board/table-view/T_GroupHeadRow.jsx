@@ -28,6 +28,7 @@ export function T_GroupHeadRow({ /* prop1, prop2 */ }) {
             <div className="t-left-indicator top" />
             <div className="row-wraper t-row">
                 <input type="checkbox" name="" id="" />
+                <p>group header</p>
             </div>
         </section>
     )

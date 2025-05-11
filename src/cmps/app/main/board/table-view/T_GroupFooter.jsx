@@ -28,6 +28,7 @@ export function T_GroupFooter({ /* prop1, prop2 */ }) {
             <div className="t-left-indicator bottom" />
             <div className="row-wraper t-row footer">
                 <input type="checkbox" name="" id="" />
+                <p>group footer</p>
             </div>
         </section>
     )

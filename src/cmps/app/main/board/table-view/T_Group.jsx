@@ -14,12 +14,12 @@
 import { T_GroupFooter } from "./T_GroupFooter";
 import { T_GroupHeader } from "./T_GroupHeader";
 import { T_GroupHeadRow } from "./T_GroupHeadRow";
-import { T_GroupTasksList } from "./T_GroupTasksList";
+import { T_TaskRow } from "./T_TaskRow";
 
 // ====== Component ======
 // =======================
 
-export function T_Group({ /* prop1, prop2 */ }) {
+export function T_Group({ group }) {
     // === Consts
 
     // === Effects
@@ -29,10 +29,16 @@ export function T_Group({ /* prop1, prop2 */ }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="T_Group">
-            <T_GroupHeader/>
-            <T_GroupHeadRow/>
-            <T_GroupTasksList/>
-            <T_GroupFooter/>
+
+            <T_GroupHeader group={group} />
+            
+            <T_GroupHeadRow group={group} />
+
+            {group.tasks.map(task => {
+                return <T_TaskRow key={task.id} task={task} />
+            })}
+
+            <T_GroupFooter group={group} />
         </section>
     )
 }
