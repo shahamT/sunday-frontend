@@ -1,61 +1,74 @@
 [
   {
-    "_id": "b_3e532fc2",
+    "_id": "b_a6f63aa6",
     "account": {
       "_id": "acc001"
     },
-    "createdAt": "2025-05-01T06:55:09.278601",
+    "createdAt": "2025-05-06T11:04:37.548971",
     "createdBy": {
-      "_id": "u001"
+      "_id": "u_768ef13c"
     },
-    "name": "Board 1 - Project A",
+    "name": "Product Roadmap",
     "pos": 1,
     "isStarred": true,
     "members": [
       {
-        "_id": "u001",
+        "_id": "u_768ef13c",
         "permission": "editor"
       },
       {
-        "_id": "u002",
+        "_id": "u_7b3b73f5",
         "permission": "editor"
       },
       {
-        "_id": "u003",
+        "_id": "u_e5c85b12",
         "permission": "editor"
       },
       {
-        "_id": "u004",
+        "_id": "u_757c91f7",
         "permission": "editor"
       },
       {
-        "_id": "u005",
+        "_id": "u_b3485920",
         "permission": "editor"
       }
     ],
     "activities": [],
     "columns": [
       {
+        "id": "name",
+        "name": "Task",
+        "createdAt": "2025-05-11T11:04:37.548992",
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "pos": 1,
+        "type": {
+          "variant": "name"
+        }
+      },
+      {
         "id": "status",
         "name": "Status",
-        "createdAt": "2025-05-01T06:55:09.278601",
+        "createdAt": "2025-05-11T11:04:37.549000",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 120,
-        "pos": 1,
+        "width": 100,
+        "pos": 2,
         "type": {
           "variant": "status",
           "labels": [
             {
-              "name": "Working on it",
+              "name": "To Do",
               "pos": 1,
-              "color": "#fdab3d"
+              "color": "#e2445c"
             },
             {
-              "name": "Stuck",
+              "name": "In Progress",
               "pos": 2,
-              "color": "#e2445c"
+              "color": "#fdab3d"
             },
             {
               "name": "Done",
@@ -68,12 +81,12 @@
       {
         "id": "owner",
         "name": "Owner",
-        "createdAt": "2025-05-01T06:55:09.278601",
+        "createdAt": "2025-05-11T11:04:37.549008",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 100,
-        "pos": 2,
+        "width": 120,
+        "pos": 3,
         "type": {
           "variant": "people"
         }
@@ -81,75 +94,402 @@
       {
         "id": "dueDate",
         "name": "Due Date",
-        "createdAt": "2025-05-01T06:55:09.278601",
+        "createdAt": "2025-05-11T11:04:37.549013",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 100,
-        "pos": 3,
+        "width": 120,
+        "pos": 4,
         "type": {
           "variant": "date"
         }
       }
+    ],
+    "groups": [
+      {
+        "id": "g_7cb82a1b",
+        "createdAt": "2025-05-11T11:04:37.549061",
+        "createdBy": "u_768ef13c",
+        "name": "Planning",
+        "color": "#579bfc",
+        "pos": 1,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_5cfd0259",
+            "createdAt": "2025-05-11T11:04:37.549181",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_7cb82a1b"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_757c91f7"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-23"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_e6afca43",
+                "createdAt": "2025-05-11T11:04:37.549276",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_ef23a436",
+            "createdAt": "2025-05-11T11:04:37.549315",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_7cb82a1b"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-15"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_7b1ed7fd",
+                "createdAt": "2025-05-11T11:04:37.549357",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_ee0de228",
+            "createdAt": "2025-05-11T11:04:37.549388",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 3 for g_7cb82a1b"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-19"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_fc4783b7",
+                "createdAt": "2025-05-11T11:04:37.549430",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 3</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_05f3f55a",
+            "createdAt": "2025-05-11T11:04:37.549453",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 4 for g_7cb82a1b"
+              },
+              {
+                "id": "status",
+                "value": "Done"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-24"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_35c98820",
+                "createdAt": "2025-05-11T11:04:37.549616",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 4</p>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g_28a691b9",
+        "createdAt": "2025-05-11T11:04:37.549747",
+        "createdBy": "u_768ef13c",
+        "name": "In Progress",
+        "color": "#579bfc",
+        "pos": 2,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_e2a991a5",
+            "createdAt": "2025-05-11T11:04:37.549792",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_28a691b9"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-22"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_57532b4f",
+                "createdAt": "2025-05-11T11:04:37.549843",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_c3ca39b6",
+            "createdAt": "2025-05-11T11:04:37.549880",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_28a691b9"
+              },
+              {
+                "id": "status",
+                "value": "Done"
+              },
+              {
+                "id": "owner",
+                "value": "u_b3485920"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-22"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_02ea1cd3",
+                "createdAt": "2025-05-11T11:04:37.549944",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g_d63c693d",
+        "createdAt": "2025-05-11T11:04:37.550048",
+        "createdBy": "u_768ef13c",
+        "name": "Review",
+        "color": "#579bfc",
+        "pos": 3,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_613fa95d",
+            "createdAt": "2025-05-11T11:04:37.550102",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_d63c693d"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_e5c85b12"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-24"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_1162437a",
+                "createdAt": "2025-05-11T11:04:37.550143",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_2682e28d",
+            "createdAt": "2025-05-11T11:04:37.550160",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_d63c693d"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_768ef13c"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-18"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_dc6c7306",
+                "createdAt": "2025-05-11T11:04:37.550198",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_cf0b38aa",
+            "createdAt": "2025-05-11T11:04:37.550210",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 3 for g_d63c693d"
+              },
+              {
+                "id": "status",
+                "value": "Done"
+              },
+              {
+                "id": "owner",
+                "value": "u_b3485920"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-21"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_0df3916e",
+                "createdAt": "2025-05-11T11:04:37.550236",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 3</p>"
+              }
+            ]
+          }
+        ]
+      }
     ]
   },
   {
-    "_id": "b_bbd3efd5",
+    "_id": "b_c027730d",
     "account": {
       "_id": "acc001"
     },
-    "createdAt": "2025-05-02T06:55:09.279646",
+    "createdAt": "2025-05-07T11:04:37.550274",
     "createdBy": {
-      "_id": "u001"
+      "_id": "u_768ef13c"
     },
-    "name": "Board 2 - Project B",
+    "name": "Design Pipeline",
     "pos": 2,
     "isStarred": false,
     "members": [
       {
-        "_id": "u001",
+        "_id": "u_768ef13c",
         "permission": "editor"
       },
       {
-        "_id": "u002",
+        "_id": "u_7b3b73f5",
         "permission": "editor"
       },
       {
-        "_id": "u003",
+        "_id": "u_e5c85b12",
         "permission": "editor"
       },
       {
-        "_id": "u004",
+        "_id": "u_757c91f7",
         "permission": "editor"
       },
       {
-        "_id": "u005",
+        "_id": "u_b3485920",
         "permission": "editor"
       }
     ],
     "activities": [],
     "columns": [
       {
+        "id": "name",
+        "name": "Task",
+        "createdAt": "2025-05-11T11:04:37.550286",
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "pos": 1,
+        "type": {
+          "variant": "name"
+        }
+      },
+      {
         "id": "status",
         "name": "Status",
-        "createdAt": "2025-05-02T06:55:09.279646",
+        "createdAt": "2025-05-11T11:04:37.550291",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 120,
-        "pos": 1,
+        "width": 100,
+        "pos": 2,
         "type": {
           "variant": "status",
           "labels": [
             {
-              "name": "Working on it",
+              "name": "To Do",
               "pos": 1,
-              "color": "#fdab3d"
+              "color": "#e2445c"
             },
             {
-              "name": "Stuck",
+              "name": "In Progress",
               "pos": 2,
-              "color": "#e2445c"
+              "color": "#fdab3d"
             },
             {
               "name": "Done",
@@ -162,12 +502,12 @@
       {
         "id": "owner",
         "name": "Owner",
-        "createdAt": "2025-05-02T06:55:09.279646",
+        "createdAt": "2025-05-11T11:04:37.550297",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 100,
-        "pos": 2,
+        "width": 120,
+        "pos": 3,
         "type": {
           "variant": "people"
         }
@@ -175,75 +515,371 @@
       {
         "id": "dueDate",
         "name": "Due Date",
-        "createdAt": "2025-05-02T06:55:09.279646",
+        "createdAt": "2025-05-11T11:04:37.550301",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 100,
-        "pos": 3,
+        "width": 120,
+        "pos": 4,
         "type": {
           "variant": "date"
         }
+      }
+    ],
+    "groups": [
+      {
+        "id": "g_4c6e7614",
+        "createdAt": "2025-05-11T11:04:37.550331",
+        "createdBy": "u_768ef13c",
+        "name": "Planning",
+        "color": "#579bfc",
+        "pos": 1,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_c9999573",
+            "createdAt": "2025-05-11T11:04:37.550346",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_4c6e7614"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_e5c85b12"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-13"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_2c43063b",
+                "createdAt": "2025-05-11T11:04:37.550370",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_9a22a4cb",
+            "createdAt": "2025-05-11T11:04:37.550382",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_4c6e7614"
+              },
+              {
+                "id": "status",
+                "value": "Done"
+              },
+              {
+                "id": "owner",
+                "value": "u_e5c85b12"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-24"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_fc54d0e4",
+                "createdAt": "2025-05-11T11:04:37.550424",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g_b04a89df",
+        "createdAt": "2025-05-11T11:04:37.550438",
+        "createdBy": "u_768ef13c",
+        "name": "In Progress",
+        "color": "#579bfc",
+        "pos": 2,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_6a33ce1d",
+            "createdAt": "2025-05-11T11:04:37.550451",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_b04a89df"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_b3485920"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-14"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_033ad968",
+                "createdAt": "2025-05-11T11:04:37.550495",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_12c1ffbb",
+            "createdAt": "2025-05-11T11:04:37.550509",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_b04a89df"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_768ef13c"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-13"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_91f73c4a",
+                "createdAt": "2025-05-11T11:04:37.550561",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_709fbd13",
+            "createdAt": "2025-05-11T11:04:37.550584",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 3 for g_b04a89df"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_757c91f7"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-17"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_310c04ce",
+                "createdAt": "2025-05-11T11:04:37.550629",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 3</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_d18627d4",
+            "createdAt": "2025-05-11T11:04:37.550643",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 4 for g_b04a89df"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_768ef13c"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-15"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_11f1fd97",
+                "createdAt": "2025-05-11T11:04:37.550665",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 4</p>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g_e8813f29",
+        "createdAt": "2025-05-11T11:04:37.550682",
+        "createdBy": "u_768ef13c",
+        "name": "Review",
+        "color": "#579bfc",
+        "pos": 3,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_65de672b",
+            "createdAt": "2025-05-11T11:04:37.550697",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_e8813f29"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_b3485920"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-23"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_32172859",
+                "createdAt": "2025-05-11T11:04:37.550729",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_3825d4d7",
+            "createdAt": "2025-05-11T11:04:37.550741",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_e8813f29"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_b3485920"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-12"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_bd552e9b",
+                "createdAt": "2025-05-11T11:04:37.550760",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          }
+        ]
       }
     ]
   },
   {
-    "_id": "b_0b588c43",
+    "_id": "b_6b0b289a",
     "account": {
       "_id": "acc001"
     },
-    "createdAt": "2025-05-03T06:55:09.280200",
+    "createdAt": "2025-05-08T11:04:37.550808",
     "createdBy": {
-      "_id": "u001"
+      "_id": "u_768ef13c"
     },
-    "name": "Board 3 - Project C",
+    "name": "Dev Sprint",
     "pos": 3,
-    "isStarred": true,
+    "isStarred": false,
     "members": [
       {
-        "_id": "u001",
+        "_id": "u_768ef13c",
         "permission": "editor"
       },
       {
-        "_id": "u002",
+        "_id": "u_7b3b73f5",
         "permission": "editor"
       },
       {
-        "_id": "u003",
+        "_id": "u_e5c85b12",
         "permission": "editor"
       },
       {
-        "_id": "u004",
+        "_id": "u_757c91f7",
         "permission": "editor"
       },
       {
-        "_id": "u005",
+        "_id": "u_b3485920",
         "permission": "editor"
       }
     ],
     "activities": [],
     "columns": [
       {
+        "id": "name",
+        "name": "Task",
+        "createdAt": "2025-05-11T11:04:37.550819",
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "pos": 1,
+        "type": {
+          "variant": "name"
+        }
+      },
+      {
         "id": "status",
         "name": "Status",
-        "createdAt": "2025-05-03T06:55:09.280200",
+        "createdAt": "2025-05-11T11:04:37.550825",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 120,
-        "pos": 1,
+        "width": 100,
+        "pos": 2,
         "type": {
           "variant": "status",
           "labels": [
             {
-              "name": "Working on it",
+              "name": "To Do",
               "pos": 1,
-              "color": "#fdab3d"
+              "color": "#e2445c"
             },
             {
-              "name": "Stuck",
+              "name": "In Progress",
               "pos": 2,
-              "color": "#e2445c"
+              "color": "#fdab3d"
             },
             {
               "name": "Done",
@@ -256,12 +892,12 @@
       {
         "id": "owner",
         "name": "Owner",
-        "createdAt": "2025-05-03T06:55:09.280200",
+        "createdAt": "2025-05-11T11:04:37.550831",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 100,
-        "pos": 2,
+        "width": 120,
+        "pos": 3,
         "type": {
           "variant": "people"
         }
@@ -269,15 +905,360 @@
       {
         "id": "dueDate",
         "name": "Due Date",
-        "createdAt": "2025-05-03T06:55:09.280200",
+        "createdAt": "2025-05-11T11:04:37.550836",
         "createdBy": {
-          "_id": "u001"
+          "_id": "u_768ef13c"
         },
-        "width": 100,
-        "pos": 3,
+        "width": 120,
+        "pos": 4,
         "type": {
           "variant": "date"
         }
+      }
+    ],
+    "groups": [
+      {
+        "id": "g_6c5c5713",
+        "createdAt": "2025-05-11T11:04:37.551026",
+        "createdBy": "u_768ef13c",
+        "name": "Planning",
+        "color": "#579bfc",
+        "pos": 1,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_7f6df9a2",
+            "createdAt": "2025-05-11T11:04:37.551069",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_6c5c5713"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_768ef13c"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-25"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_c5b13f96",
+                "createdAt": "2025-05-11T11:04:37.551086",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_2cadd8dc",
+            "createdAt": "2025-05-11T11:04:37.551095",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_6c5c5713"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_757c91f7"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-16"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_cfd96166",
+                "createdAt": "2025-05-11T11:04:37.551107",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_4e81316b",
+            "createdAt": "2025-05-11T11:04:37.551214",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 3 for g_6c5c5713"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_757c91f7"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-17"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_7b6680ad",
+                "createdAt": "2025-05-11T11:04:37.551241",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 3</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_6f4f845f",
+            "createdAt": "2025-05-11T11:04:37.551254",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 4 for g_6c5c5713"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-24"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_1bfb4216",
+                "createdAt": "2025-05-11T11:04:37.551267",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 4</p>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g_2e792081",
+        "createdAt": "2025-05-11T11:04:37.551276",
+        "createdBy": "u_768ef13c",
+        "name": "In Progress",
+        "color": "#579bfc",
+        "pos": 2,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_0c76dd34",
+            "createdAt": "2025-05-11T11:04:37.551285",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_2e792081"
+              },
+              {
+                "id": "status",
+                "value": "Done"
+              },
+              {
+                "id": "owner",
+                "value": "u_e5c85b12"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-23"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_f53664f1",
+                "createdAt": "2025-05-11T11:04:37.551301",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_272cff68",
+            "createdAt": "2025-05-11T11:04:37.551309",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_2e792081"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-14"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_e5830b60",
+                "createdAt": "2025-05-11T11:04:37.551321",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "g_0915b993",
+        "createdAt": "2025-05-11T11:04:37.551341",
+        "createdBy": "u_768ef13c",
+        "name": "Review",
+        "color": "#579bfc",
+        "pos": 3,
+        "isCollapsed": false,
+        "tasks": [
+          {
+            "id": "t_d170fc9d",
+            "createdAt": "2025-05-11T11:04:37.551369",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 1 for g_0915b993"
+              },
+              {
+                "id": "status",
+                "value": "Done"
+              },
+              {
+                "id": "owner",
+                "value": "u_757c91f7"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-23"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_4a51ba14",
+                "createdAt": "2025-05-11T11:04:37.551390",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 1</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_c9f97c79",
+            "createdAt": "2025-05-11T11:04:37.551406",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 2 for g_0915b993"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-17"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_da21de20",
+                "createdAt": "2025-05-11T11:04:37.551421",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 2</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_142d1356",
+            "createdAt": "2025-05-11T11:04:37.551434",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 3 for g_0915b993"
+              },
+              {
+                "id": "status",
+                "value": "To Do"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-20"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_51a3573c",
+                "createdAt": "2025-05-11T11:04:37.551447",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 3</p>"
+              }
+            ]
+          },
+          {
+            "id": "t_04e536c6",
+            "createdAt": "2025-05-11T11:04:37.551455",
+            "createdBy": "u_768ef13c",
+            "columnValues": [
+              {
+                "id": "name",
+                "value": "Task 4 for g_0915b993"
+              },
+              {
+                "id": "status",
+                "value": "In Progress"
+              },
+              {
+                "id": "owner",
+                "value": "u_7b3b73f5"
+              },
+              {
+                "id": "dueDate",
+                "value": "2025-05-15"
+              }
+            ],
+            "updates": [
+              {
+                "id": "up_927f2dd5",
+                "createdAt": "2025-05-11T11:04:37.551466",
+                "createdBy": "u_768ef13c",
+                "content": "<p>Started work on task 4</p>"
+              }
+            ]
+          }
+        ]
       }
     ]
   }

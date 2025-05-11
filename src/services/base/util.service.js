@@ -16,7 +16,6 @@ export function makeId(length = 5) {
     return txt
 }
 
-
 export function getRandomIntInclusive(min, max) {
     min = Math.ceil(min)
     max = Math.floor(max)

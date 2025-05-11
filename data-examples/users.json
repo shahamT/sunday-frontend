@@ -1,57 +1,62 @@
 [
   {
-    "_id": "u001",
+    "_id": "u_768ef13c",
     "account": "acc001",
     "firstName": "User1",
-    "lastName": "Last1",
-    "email": "user1@acme.com",
-    "password": "hashedpassword1",
-    "createdAt": "2025-04-11T07:00:37.958070",
+    "lastName": "Lastname1",
+    "email": "user1@company.com",
+    "password": "hashed_pw_1",
+    "createdAt": "2025-04-11T11:04:37.547481",
     "lastViewedBoards": [],
-    "profileImg": ""
+    "profileImg": "",
+    "role": "admin"
   },
   {
-    "_id": "u002",
+    "_id": "u_7b3b73f5",
     "account": "acc001",
     "firstName": "User2",
-    "lastName": "Last2",
-    "email": "user2@acme.com",
-    "password": "hashedpassword2",
-    "createdAt": "2025-04-12T07:00:37.958091",
+    "lastName": "Lastname2",
+    "email": "user2@company.com",
+    "password": "hashed_pw_2",
+    "createdAt": "2025-04-12T11:04:37.547535",
     "lastViewedBoards": [],
-    "profileImg": ""
+    "profileImg": "",
+    "role": "user"
   },
   {
-    "_id": "u003",
+    "_id": "u_e5c85b12",
     "account": "acc001",
     "firstName": "User3",
-    "lastName": "Last3",
-    "email": "user3@acme.com",
-    "password": "hashedpassword3",
-    "createdAt": "2025-04-13T07:00:37.958096",
+    "lastName": "Lastname3",
+    "email": "user3@company.com",
+    "password": "hashed_pw_3",
+    "createdAt": "2025-04-13T11:04:37.547571",
     "lastViewedBoards": [],
-    "profileImg": ""
+    "profileImg": "",
+    "role": "user"
   },
   {
-    "_id": "u004",
+    "_id": "u_757c91f7",
     "account": "acc001",
     "firstName": "User4",
-    "lastName": "Last4",
-    "email": "user4@acme.com",
-    "password": "hashedpassword4",
-    "createdAt": "2025-04-14T07:00:37.958100",
+    "lastName": "Lastname4",
+    "email": "user4@company.com",
+    "password": "hashed_pw_4",
+    "createdAt": "2025-04-14T11:04:37.547596",
     "lastViewedBoards": [],
-    "profileImg": ""
+    "profileImg": "",
+    "role": "user"
   },
   {
-    "_id": "u005",
+    "_id": "u_b3485920",
     "account": "acc001",
     "firstName": "User5",
-    "lastName": "Last5",
-    "email": "user5@acme.com",
-    "password": "hashedpassword5",
-    "createdAt": "2025-04-15T07:00:37.958106",
+    "lastName": "Lastname5",
+    "email": "user5@company.com",
+    "password": "hashed_pw_5",
+    "createdAt": "2025-04-15T11:04:37.547616",
     "lastViewedBoards": [],
-    "profileImg": ""
+    "profileImg": "",
+    "role": "user"
   }
 ]
