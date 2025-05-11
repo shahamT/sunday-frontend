@@ -44,7 +44,7 @@ export function boardReducer(state = initialState, action = {}) {
             return { ...state, boards: action.boards }
 
         case SET_BOARD:
-            return { ...state, car: action.car }
+            return { ...state, board: action.board }
 
         case REMOVE_BOARD:
             const lastBoards = [...state.boards]

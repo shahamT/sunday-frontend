@@ -6,7 +6,7 @@ import { userService } from '../user'
 
 const STORAGE_KEY = 'board'
 
-_createBoards()
+// _createBoards()
 
 export const boardService = {
     query,
