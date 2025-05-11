@@ -8,7 +8,6 @@ export const SET_GLOBAL_MODAL_CLOSING = "SET_GLOBAL_MODAL_CLOSING" // allowing m
 export const OPEN_SIDE_NAV = "OPEN_SIDE_NAV"
 export const CLOSE_SIDE_NAV = "CLOSE_SIDE_NAV"
 
-
 const initialState = {
 
     //Global Modal
@@ -26,17 +25,17 @@ export function appReducer(state = initialState, action = {}) {
 
         //Global Modal
 
-        case 'OPEN_GLOBAL_MODAL':
+        case OPEN_GLOBAL_MODAL:
             return {
                 ...state,
                 isModalOpen: true, modalContent: action.content
             }
-        case 'SET_GLOBAL_MODAL_CLOSING':
+        case SET_GLOBAL_MODAL_CLOSING:
             return {
                 ...state,
                 isModalClosing: action.isClosing,
             }
-        case 'CLOSE_GLOBAL_MODAL':
+        case CLOSE_GLOBAL_MODAL:
             return {
                 ...state,
                 isModalOpen: false, modalContent: null
@@ -44,17 +43,16 @@ export function appReducer(state = initialState, action = {}) {
 
         //Side Nav
 
-        case 'OPEN_SIDE_NAV':
+        case OPEN_SIDE_NAV:
             return {
                 ...state,
                 isSideNavOpen: true
             }
-        case 'CLOSE_SIDE_NAV':
+        case CLOSE_SIDE_NAV:
             return {
                 ...state,
                 isSideNavOpen: false
             }
-
 
         default: return state;
     }
