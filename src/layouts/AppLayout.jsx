@@ -18,7 +18,6 @@ export function AppLayout() {
     // =============================
 
     const isSideNavOpen = useSelector(storeState => storeState.appModule.isSideNavOpen)
-    // const isSideNavOpen = true; // Replace with useSelector if needed
     const [isDragging, setIsDragging] = useState(false);
     const [enableTransition, setEnableTransition] = useState(true);
     const [sideNavWidth, setSideNavWidth] = useState(() => {

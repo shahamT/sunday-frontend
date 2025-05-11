@@ -34,12 +34,11 @@
 @import 'layouts/LandPageLayout.scss';
 
 
-// ===== Pages =====
-@import 'cmps/land-page/HomePage.scss';
-
 
 // === Land Page ===
 // =================
+@import 'cmps/land-page/HomePage.scss';
+
 @import 'cmps/land-page/LandPageHeader.scss';
 @import 'cmps/land-page/MondayMainLogo.scss';
 
