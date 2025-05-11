@@ -1,0 +1,284 @@
+[
+  {
+    "_id": "b_3e532fc2",
+    "account": {
+      "_id": "acc001"
+    },
+    "createdAt": "2025-05-01T06:55:09.278601",
+    "createdBy": {
+      "_id": "u001"
+    },
+    "name": "Board 1 - Project A",
+    "pos": 1,
+    "isStarred": true,
+    "members": [
+      {
+        "_id": "u001",
+        "permission": "editor"
+      },
+      {
+        "_id": "u002",
+        "permission": "editor"
+      },
+      {
+        "_id": "u003",
+        "permission": "editor"
+      },
+      {
+        "_id": "u004",
+        "permission": "editor"
+      },
+      {
+        "_id": "u005",
+        "permission": "editor"
+      }
+    ],
+    "activities": [],
+    "columns": [
+      {
+        "id": "status",
+        "name": "Status",
+        "createdAt": "2025-05-01T06:55:09.278601",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 120,
+        "pos": 1,
+        "type": {
+          "variant": "status",
+          "labels": [
+            {
+              "name": "Working on it",
+              "pos": 1,
+              "color": "#fdab3d"
+            },
+            {
+              "name": "Stuck",
+              "pos": 2,
+              "color": "#e2445c"
+            },
+            {
+              "name": "Done",
+              "pos": 3,
+              "color": "#00c875"
+            }
+          ]
+        }
+      },
+      {
+        "id": "owner",
+        "name": "Owner",
+        "createdAt": "2025-05-01T06:55:09.278601",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 100,
+        "pos": 2,
+        "type": {
+          "variant": "people"
+        }
+      },
+      {
+        "id": "dueDate",
+        "name": "Due Date",
+        "createdAt": "2025-05-01T06:55:09.278601",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 100,
+        "pos": 3,
+        "type": {
+          "variant": "date"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "b_bbd3efd5",
+    "account": {
+      "_id": "acc001"
+    },
+    "createdAt": "2025-05-02T06:55:09.279646",
+    "createdBy": {
+      "_id": "u001"
+    },
+    "name": "Board 2 - Project B",
+    "pos": 2,
+    "isStarred": false,
+    "members": [
+      {
+        "_id": "u001",
+        "permission": "editor"
+      },
+      {
+        "_id": "u002",
+        "permission": "editor"
+      },
+      {
+        "_id": "u003",
+        "permission": "editor"
+      },
+      {
+        "_id": "u004",
+        "permission": "editor"
+      },
+      {
+        "_id": "u005",
+        "permission": "editor"
+      }
+    ],
+    "activities": [],
+    "columns": [
+      {
+        "id": "status",
+        "name": "Status",
+        "createdAt": "2025-05-02T06:55:09.279646",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 120,
+        "pos": 1,
+        "type": {
+          "variant": "status",
+          "labels": [
+            {
+              "name": "Working on it",
+              "pos": 1,
+              "color": "#fdab3d"
+            },
+            {
+              "name": "Stuck",
+              "pos": 2,
+              "color": "#e2445c"
+            },
+            {
+              "name": "Done",
+              "pos": 3,
+              "color": "#00c875"
+            }
+          ]
+        }
+      },
+      {
+        "id": "owner",
+        "name": "Owner",
+        "createdAt": "2025-05-02T06:55:09.279646",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 100,
+        "pos": 2,
+        "type": {
+          "variant": "people"
+        }
+      },
+      {
+        "id": "dueDate",
+        "name": "Due Date",
+        "createdAt": "2025-05-02T06:55:09.279646",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 100,
+        "pos": 3,
+        "type": {
+          "variant": "date"
+        }
+      }
+    ]
+  },
+  {
+    "_id": "b_0b588c43",
+    "account": {
+      "_id": "acc001"
+    },
+    "createdAt": "2025-05-03T06:55:09.280200",
+    "createdBy": {
+      "_id": "u001"
+    },
+    "name": "Board 3 - Project C",
+    "pos": 3,
+    "isStarred": true,
+    "members": [
+      {
+        "_id": "u001",
+        "permission": "editor"
+      },
+      {
+        "_id": "u002",
+        "permission": "editor"
+      },
+      {
+        "_id": "u003",
+        "permission": "editor"
+      },
+      {
+        "_id": "u004",
+        "permission": "editor"
+      },
+      {
+        "_id": "u005",
+        "permission": "editor"
+      }
+    ],
+    "activities": [],
+    "columns": [
+      {
+        "id": "status",
+        "name": "Status",
+        "createdAt": "2025-05-03T06:55:09.280200",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 120,
+        "pos": 1,
+        "type": {
+          "variant": "status",
+          "labels": [
+            {
+              "name": "Working on it",
+              "pos": 1,
+              "color": "#fdab3d"
+            },
+            {
+              "name": "Stuck",
+              "pos": 2,
+              "color": "#e2445c"
+            },
+            {
+              "name": "Done",
+              "pos": 3,
+              "color": "#00c875"
+            }
+          ]
+        }
+      },
+      {
+        "id": "owner",
+        "name": "Owner",
+        "createdAt": "2025-05-03T06:55:09.280200",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 100,
+        "pos": 2,
+        "type": {
+          "variant": "people"
+        }
+      },
+      {
+        "id": "dueDate",
+        "name": "Due Date",
+        "createdAt": "2025-05-03T06:55:09.280200",
+        "createdBy": {
+          "_id": "u001"
+        },
+        "width": 100,
+        "pos": 3,
+        "type": {
+          "variant": "date"
+        }
+      }
+    ]
+  }
+]

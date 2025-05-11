@@ -1,0 +1,57 @@
+[
+  {
+    "_id": "u001",
+    "account": "acc001",
+    "firstName": "User1",
+    "lastName": "Last1",
+    "email": "user1@acme.com",
+    "password": "hashedpassword1",
+    "createdAt": "2025-04-11T07:00:37.958070",
+    "lastViewedBoards": [],
+    "profileImg": ""
+  },
+  {
+    "_id": "u002",
+    "account": "acc001",
+    "firstName": "User2",
+    "lastName": "Last2",
+    "email": "user2@acme.com",
+    "password": "hashedpassword2",
+    "createdAt": "2025-04-12T07:00:37.958091",
+    "lastViewedBoards": [],
+    "profileImg": ""
+  },
+  {
+    "_id": "u003",
+    "account": "acc001",
+    "firstName": "User3",
+    "lastName": "Last3",
+    "email": "user3@acme.com",
+    "password": "hashedpassword3",
+    "createdAt": "2025-04-13T07:00:37.958096",
+    "lastViewedBoards": [],
+    "profileImg": ""
+  },
+  {
+    "_id": "u004",
+    "account": "acc001",
+    "firstName": "User4",
+    "lastName": "Last4",
+    "email": "user4@acme.com",
+    "password": "hashedpassword4",
+    "createdAt": "2025-04-14T07:00:37.958100",
+    "lastViewedBoards": [],
+    "profileImg": ""
+  },
+  {
+    "_id": "u005",
+    "account": "acc001",
+    "firstName": "User5",
+    "lastName": "Last5",
+    "email": "user5@acme.com",
+    "password": "hashedpassword5",
+    "createdAt": "2025-04-15T07:00:37.958106",
+    "lastViewedBoards": [],
+    "profileImg": ""
+  }
+]

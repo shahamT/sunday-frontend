@@ -1,6 +1,5 @@
 {
-    "_comment": "//TODO: change the name of the project",
-    "name": "frontend-starter",
+    "name": "sunday-frontend",
     "private": true,
     "version": "0.0.0",
     "type": "module",
