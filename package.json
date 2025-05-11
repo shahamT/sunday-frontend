@@ -4,7 +4,9 @@
     "version": "0.0.0",
     "type": "module",
     "scripts": {
-        "dev": "vite",
+        "dev:remote": "vite",
+        "dev:local": "set VITE_LOCAL=true&&vite",
+        
         "build": "vite build",
         "lint": "eslint .",
         "preview": "vite preview"

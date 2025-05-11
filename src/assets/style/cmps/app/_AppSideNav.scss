@@ -1,7 +1,67 @@
-.main-side-nav-panel.closed .AppSideNav{
-        display: none; 
-}
-.main-side-nav-panel.opened .AppSideNav{
-        display: auto; 
+.main-side-nav-panel.closed .AppSideNav {
+        display: none;
 }
 
+.main-side-nav-panel.opened .AppSideNav {
+        display: auto;
+}
+
+.AppSideNav {
+        padding-block-start: 6px;
+
+        color: var(--primary-text-color);
+
+        .nav-section {
+                display: flex;
+                flex-direction: column;
+                padding-inline: 12px;
+                padding-block: 4px;
+                gap: 2px;
+
+        }
+
+        .left-aligned {
+                justify-content: start;
+                white-space: nowrap;
+                margin-right: 0.5em;
+
+        }
+
+        .Favorite-btn {
+                display: flex;
+
+                .i-DropdownChevronDown {
+                        margin-left: auto;
+                }
+
+                &:hover {
+                        background-color: var(--primary-background-hover-color);
+                        width: 100%;
+                }
+
+        }
+
+        .workspaces-bar {
+                display: flex;
+                align-items: center;
+                .search-btn{
+                        margin-left: auto;
+                }
+          
+        }
+
+        .workspase-icon {
+                align-self: center;
+                padding: var(--space-8);
+
+        }
+
+
+
+
+        .Menu-btn {
+                margin-left: auto;
+        }
+
+
+}

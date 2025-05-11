@@ -1,4 +1,4 @@
-import { userService } from '../user.service.js'
+import { userService } from './user.service.js'
 
 export const authService = {
     login,
