@@ -14,16 +14,17 @@
 // ====== Component ======
 // =======================
 
-export function CellContentStatus({ }) {
+export function CellContentStatus({ column, columnValue }) {
     // === Consts
-
+    console.log("columnValue: ", columnValue)
     // === Effects
 
     // === Functions
 
+
     return (
         <div className="CellContentStatus">
-            <p>CellContentStatus</p>
+            {columnValue && <p>{columnValue.value}</p>}
         </div>
     )
 }

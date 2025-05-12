@@ -13,6 +13,8 @@ export function EditableText({
     emojiPicker = true,
     value = '',
     handleChange,
+    onBlur,
+    onPressEnter,
     type = 'text',
     color = null,
     centered = false,
@@ -23,7 +25,7 @@ export function EditableText({
 
     useEffect(() => {
         if (!full && spanRef.current) {
-            setInputWidth(spanRef.current.offsetWidth+13)
+            setInputWidth(spanRef.current.offsetWidth + 13)
         }
     }, [value, placeholder, full]);
 
@@ -59,10 +61,12 @@ export function EditableText({
                 placeholder={placeholder}
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''}`}
                 onChange={handleChange}
+                onBlur={onBlur}
+                onKeyDown={(e) => e.key === 'Enter' && onPressEnter()}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
                     ...(full ? {} : { width: `${inputWidth}px` }),
-                    ...(color ? {color: `${color}`} : {})
+                    ...(color ? { color: `${color}` } : {})
                 }}
             />
 

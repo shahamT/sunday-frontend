@@ -6,6 +6,7 @@
 
 // === Hooks / React
 import { useControlledInput } from "../../../../../hooks/useControlledInput";
+import { showErrorMsg } from "../../../../../services/base/event-bus.service";
 
 // === Imgs
 
@@ -18,11 +19,24 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 
 export function T_GroupHeader({ group }) {
     // === Consts
-    const [value, handleChange, resetForm] = useControlledInput(group.name)
+    const [value, handleChange, reset, set] = useControlledInput(group.name)
 
     // === Effects
 
     // === Functions
+    function handleRename() {
+        if (value === '') {
+            showErrorMsg(`Name can't be empty`)
+            set(group.name)
+            return
+        }
+        const updatedGroup = { ...group, name: editedTitle };
+
+        updateGroup(updatedGroup)
+            .catch(showErrorMsg(`Somthing went wrong`));
+    }
+
+
 
     return (
         <section className="T_GroupHeader">
@@ -49,6 +63,8 @@ export function T_GroupHeader({ group }) {
                         size='g-title'
                         color="#9d50dd"
                         emojiPicker={false}
+                        onBlur={handleRename}
+                        onPressEnter={handleRename}
                     />
                 </div>
                 <p className="items-count">{group.tasks.length} Tasks</p>
