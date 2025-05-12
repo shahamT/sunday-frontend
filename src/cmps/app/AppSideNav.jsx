@@ -1,28 +1,52 @@
 // === Style
 
 // === Libs
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 // === Services
 
 // === Actions
+import { loadBoard, loadBoards, updateBoard } from "../../store/actions/board.actions";
 
 // === Hooks / React
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { loadBoards } from "../../store/actions/board.actions";
 
-// === Imgs
 // === Child Components
+import { SideNavModal } from "./main/board/side-nave/SideNaveModal";
+import { PopUpMenu } from "../reusables/PopUpMenu/PopUpMenu";
+import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
 
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
-    useEffect(()=>{
+    const board = useSelector(storeState => storeState.boardModule.board)
+
+    const [editingBoardId, setEditingBoardId] = useState(null)
+    const [editedTitle, setEditedTitle] = useState('')
+    const [isFavoritesOpen, setIsFavoritesOpen] = useState(false)
+
+    useEffect(() => {
         loadBoards()
-    },[])
-    
+    }, [])
+
+    function handleRename(board) {
+        if (!editedTitle || editedTitle === board.name) {
+            setEditingBoardId(null);
+            return
+        }
+        const updatedBoard = { ...board, name: editedTitle };
+
+        updateBoard(updatedBoard)
+            .then(() => {
+                loadBoards();
+                setEditingBoardId(null);
+            })
+            .catch((err) => console.error("Rename failed", err));
+    }
+
+
     return (
         <nav className="AppSideNav" >
 
@@ -30,29 +54,74 @@ export function AppSideNav({ }) {
                 <NavLink to="/app/home" className="clickable select full-width clear size-32 icon-start i-Home left-aligned" >Home </NavLink>
             </section>
 
-            {/* <hr /> */}
+            <div className="divider1" />
 
             <section className="nav-section">
-                <a className="Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned">
+                <a
+                    className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''}`}
+                    onClick={() => setIsFavoritesOpen(prev => !prev)}
+                >
                     Favorites
-                    <span className="i-DropdownChevronDown"></span>
+                    {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
                 </a>
             </section>
+            <div className="divider1" />
+            {isFavoritesOpen ?
+                <FavoritesBoards boards={boards} /> :
+                <section className="nav-section">
+                    <div className="workspaces-bar">
+                        <div className="workspase-icon i-Workspace" />
+                        <p>Workspaces</p>
+                        <div className="search-btn clickable clear icon-btn size-24 i-Search"/>
 
-            <hr />
-            <section className="nav-section">
-                <div className="workspaces-bar">
-                    <div className="workspase-icon i-Workspace"/>
-                    <p>Workspaces</p>
-                        <div className="search-btn clickable clear icon-btn size-24 i-Search"></div>
-                </div>
-                {boards.map(board =>
 
-                            <NavLink key={board._id} to={`/app/board/${board._id}`} className="clickable select clear size-32 i-Board icon-start full-width left-aligned" >{board.name} </NavLink>
+
+
+
+                    </div>
+                    {boards.map(board =>
+                        <div key={board._id} className="board-item-nav">
+                            <NavLink
+                                to={`/app/board/${board._id}`}
+                                className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
+                            >
+                                {editingBoardId === board._id ? (
+                                    <input
+                                        type="text"
+                                        value={editedTitle}
+                                        autoFocus
+                                        valeu={board.name}
+                                        onChange={(e) => setEditedTitle(e.target.value)}
+                                        onBlur={() => handleRename(board)}
+                                        onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
+                                        className="edit-board-input"
+                                    />
+                                ) : (
+                                    board.name
+                                )}
+
+                                <PopUpMenu
+                                    position="start-end"
+                                    renderContent={({ onCloseModal }) => (
+                                        <SideNavModal
+                                            onCloseModal={onCloseModal}
+                                            board={board}
+                                            setEditingBoardId={setEditingBoardId}
+                                            setEditedTitle={setEditedTitle}
+                                        />
+                                    )}
+                                >
+                                    <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
+                                </PopUpMenu>
+                            </NavLink>
+                        </div>
                     )}
-            </section>
 
 
+                </section>}
+
+
+            {/* {openSideNaveModal && <SideNavModal board={board} setOpenSideNavModal={setOpenSideNavModal} />} */}
         </nav>
 
     )

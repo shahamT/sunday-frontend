@@ -171,3 +171,13 @@ export function elapsedTime(pastMs) {
     // earlier than this month
     return `${padNum(past.getDate())}/${padNum(past.getMonth() + 1)}/${past.getFullYear()}`;
 }
+
+export function getRandomTimestampInRange(range) {
+    const now = Date.now()
+    const daysDiff = range * 24 * 60 * 60 * 1000
+
+    const min = now - daysDiff
+    const max = now + daysDiff
+
+    return Math.floor(Math.random() * (max - min + 1)) + min
+}

@@ -1,8 +1,9 @@
 import { boardService } from "../../services/board";
-import { ADD_BOARD, REMOVE_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD } from "../reducers/board.reducer.js";
+import { ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, SET_BOARDS, SET_BOARD, UPDATE_BOARD } from "../reducers/board.reducer.js";
 import { CLOSE_TASK_PANEL, OPEN_TASK_PANEL } from "../reducers/board.reducer.js";
 import { BOARDS_LOADING_START, BOARDS_LOADING_DONE, BOARD_LOADING_START, BOARD_LOADING_DONE } from "../reducers/board.reducer.js";
 import { store } from "../store.js";
+import { useSelector } from 'react-redux'
 
 
 // ========= CRUDL =========
@@ -44,6 +45,7 @@ export async function removeBoard(boardId) {
         store.dispatch(getCmdRemoveBoard(boardId))
     } catch (err) {
         console.log('board action -> Cannot remove board', err)
+        store.dispatch({type: REVERT_BOARDS})
         throw err
     }
 }
@@ -60,6 +62,7 @@ export async function updateBoard(board) {
 }
 
 export async function addBoard(board) {
+    
     try {
         const savedBoard = await boardService.save(board)
         store.dispatch(getCmdAddBoard(savedBoard))
