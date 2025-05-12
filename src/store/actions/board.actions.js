@@ -3,10 +3,8 @@ import { ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, SET_BOARDS, SET_BOARD, UPDATE_B
 import { CLOSE_TASK_PANEL, OPEN_TASK_PANEL } from "../reducers/board.reducer.js";
 import { BOARDS_LOADING_START, BOARDS_LOADING_DONE, BOARD_LOADING_START, BOARD_LOADING_DONE } from "../reducers/board.reducer.js";
 import { ADD_GROUP, REMOVE_GROUP, REVERT_GROUPS, UPDATE_GROUP } from "../reducers/board.reducer.js";
-import { ADD_COLUMN, REMOVE_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN } from "../reducers/board.reducer.js";
+import { ADD_COLUMN, REMOVE_COLUMN, REVERT_COLUMNS, UPDATE_COLUMN } from "../reducers/board.reducer.js";
 import { store } from "../store.js";
-import { useSelector } from 'react-redux'
-
 
 // ========= CRUDL =========
 
@@ -91,7 +89,9 @@ export async function addBoard(board) {
 // }
 
 // ========= Group =========
-export async function addGroup(boardId) {
+export async function addGroup() {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
     const group = boardService.getEmptyGroup()
     try {
         const savedGroup = await boardService.saveGroup(group, boardId)
@@ -103,7 +103,9 @@ export async function addGroup(boardId) {
     }
 } 
 
-export async function updateGroup(group, boardId) {
+export async function updateGroup(group) {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
     try {
         const savedGroup = await boardService.saveGroup(group, boardId)
         store.dispatch(getCmdUpdateGroup(savedGroup))
@@ -114,7 +116,9 @@ export async function updateGroup(group, boardId) {
     }
 } 
 
-export async function removeGroup(groupId, boardId) {
+export async function removeGroup(groupId) {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
     try {
         await boardService.removeGroup(groupId, boardId)
         store.dispatch(getCmdRemoveGroup(groupId))
@@ -139,8 +143,10 @@ export async function removeTask() {
 } 
 
 // ========= Column =========
-export async function addColumn(type, boardId) {
-        const column = boardService.getEmptyColumn(type)
+export async function addColumn(type) {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
+    const column = boardService.getEmptyColumn(type)
     try {
         const savedColumn = await boardService.saveColumn(column, boardId)
         store.dispatch(getCmdAddColumn(savedColumn))
@@ -151,8 +157,10 @@ export async function addColumn(type, boardId) {
     }
 } 
 
-export async function updateColumn(column, boardId) {
-        try {
+export async function updateColumn(column) {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
+    try {
         const savedColumn = await boardService.saveColumn(column, boardId)
         store.dispatch(getCmdUpdateColumn(savedColumn))
         return savedColumn
@@ -162,7 +170,9 @@ export async function updateColumn(column, boardId) {
     }
 } 
 
-export async function removeColumn(columnId, boardId) {
+export async function removeColumn(columnId) {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
     try {
         await boardService.removeColumn(columnId, boardId)
         store.dispatch(getCmdRemoveColumn(columnId))
