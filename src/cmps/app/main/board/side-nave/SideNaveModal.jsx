@@ -18,7 +18,7 @@ import { loadBoard, loadBoards, removeBoard, updateBoard } from "../../../../../
 // ====== Component ======
 // =======================
 
-export function SideNavModal({ board, setEditingBoardId, setEditedTitle }) {
+export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onCloseModal }) {
 
     // === Consts
     const [boardToEdit, setBoardToEdit] = useState(null)
@@ -36,19 +36,22 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle }) {
 
     // === Functions
     function handleChange({ target }) {
-        const field = target.name;
-        let value = target.value;
+        const updatedBoard = {
+            ...boardToEdit,
+            isStarred: !boardToEdit.isStarred
 
-        if (target.type === "checkbox") value = target.checked;
-        setBoardToEdit(prev => ({ ...prev, [field]: value }))
-        updateBoard(boardToEdit)
-        .then(loadBoards())
+        }
+        setBoardToEdit(updatedBoard)
+        updateBoard(updatedBoard)
+            .then(()=>loadBoards())
+            .catch(err => console.error('Failed to update board', err));
+
     }
 
     function onSubmit(ev) {
         ev.preventDefault()
         console.log(boardToEdit)
-        updateBoard(boardToEdit)
+        updateBoard({ ...boardToEdit })
             .then(() => {
                 loadBoards()
                 setOpenBoardId(null)
@@ -57,27 +60,28 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle }) {
     }
 
 
-
+    console.log("ddd", boardToEdit)
 
     if (!boardToEdit) return <div>Loading...</div>
-    const {isStarred, _id } = boardToEdit
+    const { isStarred, _id } = boardToEdit
     return (
         <section className="board-popup-menu">
 
-            <a  href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+            <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
 
             <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
-                setEditingBoardId(board._id);
-                setEditedTitle(board.name);
+                setEditingBoardId(board._id)
+                setEditedTitle(board.name)
+                onCloseModal()
             }}>Rename</div>
 
             <div
                 className={`star-toggle clickable size-32 icon-start select left-aligned i-Favorite ${isStarred ? 'starred' : ''}`}
-                onClick={() => setBoardToEdit(prev => ({ ...prev, isStarred: !prev.isStarred }))} >
+                onClick={handleChange} >
                 {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
             </div>
 
-            <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={()=>removeBoard(_id)}>
+            <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeBoard(_id)}>
                 Delete
             </div>
         </section>

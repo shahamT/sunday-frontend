@@ -67,7 +67,7 @@ export function AppSideNav({ }) {
             </section>
             <div className="divider1" />
             {isFavoritesOpen ?
-                <FavoritesBoards boards={boards} /> :
+                <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
                 <section className="nav-section">
                     <div className="workspaces-bar">
                         <div className="workspase-icon i-Workspace" />
@@ -90,7 +90,7 @@ export function AppSideNav({ }) {
                                         type="text"
                                         value={editedTitle}
                                         autoFocus
-                                        valeu={board.name}
+                                        // valeu={board.name}
                                         onChange={(e) => setEditedTitle(e.target.value)}
                                         onBlur={() => handleRename(board)}
                                         onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
