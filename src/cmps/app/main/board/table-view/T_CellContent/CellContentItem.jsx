@@ -33,6 +33,8 @@ export function CellContentItem({ column, columnValue, taskId }) {
             className="CellContentItem cell-contnet"
             onClick={onOpenTaskDetails}
         >
+            <div className="offset-hiding-layer"/> {/* hiding the scrolled row content on the left */}
+
             <label htmlFor={`t${taskId}`} className="checkbox-container">
                 <input type="checkbox" name="" id={`t${taskId}`} />
             </label>

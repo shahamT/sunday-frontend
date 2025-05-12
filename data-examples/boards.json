@@ -61,19 +61,22 @@
           "variant": "status",
           "labels": [
             {
+              "id": "dfgds132",
               "name": "To Do",
               "pos": 1,
-              "color": "#e2445c"
+              "color": "lavender"
             },
             {
+              "id": "dfgd432",
               "name": "In Progress",
               "pos": 2,
-              "color": "#fdab3d"
+              "color": "working_orange"
             },
             {
+              "id": "dfgds532",
               "name": "Done",
               "pos": 3,
-              "color": "#00c875"
+              "color": "done-green"
             }
           ]
         }
@@ -150,7 +153,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds132"
               },
               {
                 "id": "person",
@@ -189,7 +192,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds132"
               },
               {
                 "id": "person",
@@ -220,7 +223,7 @@
               },
               {
                 "id": "status",
-                "value": "To Do"
+                "value": "dfgd432"
               },
               {
                 "id": "person",
@@ -251,7 +254,7 @@
               },
               {
                 "id": "status",
-                "value": "Done"
+                "value": "dfgds532"
               },
               {
                 "id": "person",
@@ -293,7 +296,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds532"
               },
               {
                 "id": "person",
@@ -324,7 +327,7 @@
               },
               {
                 "id": "status",
-                "value": "Done"
+                "value": "dfgd432"
               },
               {
                 "id": "person",
@@ -366,7 +369,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds132"
               },
               {
                 "id": "person",

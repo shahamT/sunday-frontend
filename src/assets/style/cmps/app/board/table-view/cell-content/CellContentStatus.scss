@@ -1,6 +1,9 @@
 .CellContentStatus {
-    background-color: #20b5bf;
     position: relative;
+
+    p {
+        color: var(--text-color-on-inverted);
+    }
 
     .fold {
         position: absolute;
@@ -8,7 +11,7 @@
         right: 0px;
         border-width: 0;
         border-style: solid;
-        background: #72cbd1;
+        background: var(--primary-background-hover-color);
         border-color: transparent #fff transparent #fff;
 
         -webkit-transition: border-width 0.2s ease-out;

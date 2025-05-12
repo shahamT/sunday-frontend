@@ -16,16 +16,19 @@
 
 export function CellContentStatus({ column, columnValue }) {
     // === Consts
-    
+
     // === Effects
 
     // === Functions
 
-const color = columnValue
+    const selectedLabel = column.type.labels.find(label => label.id === columnValue.value);
+    const labelName = selectedLabel?.name ?? '';
+    const labelColor = selectedLabel?.color ?? '';
+
     return (
-        <div className={`CellContentStatus cell-contnet centered`}>
+        <div className={`CellContentStatus cell-contnet centered ${labelColor}-bg`}>
             <div class="fold"></div>
-            {columnValue && <p>{columnValue.value}</p>}
+            {columnValue && <p>{labelName}</p>}
 
         </div>
     )

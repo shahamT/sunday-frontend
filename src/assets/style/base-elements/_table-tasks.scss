@@ -32,15 +32,11 @@
         position: sticky;
         left: 6px;
         z-index: 10;
+        
+        background-color: var(--primary-background-color);
 
-        &::before {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            background-color: var(--primary-background-color);
-            width: 100%;
-            height: 100%;
-        }
+
+
     }
 
     &.footer {
@@ -114,4 +110,13 @@
     &.centered {
         justify-content: center;
     }
+}
+
+.offset-hiding-layer {
+    position: absolute;
+    left: 0px;
+    transform: translateX(-47px);
+    background-color: var(--primary-background-color);
+    width: 41px;
+    height: 120%;
 }

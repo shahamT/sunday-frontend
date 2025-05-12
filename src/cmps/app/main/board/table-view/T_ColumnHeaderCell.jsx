@@ -42,6 +42,8 @@ export function T_ColumnHeaderCell({ column, groupId }) {
             className={`T_ColumnHeaderCell t-cell ${variant === 'item' ? 'no-divider sticky' : ''}`}
             style={{ width: column.width + 'px' }}
         >
+          
+            <div className="offset-hiding-layer" /> {/* hiding the scrolled row content on the left */}
 
             <div className="cell-contnet">
                 {variant === 'item' &&
