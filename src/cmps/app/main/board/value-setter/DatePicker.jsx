@@ -21,7 +21,7 @@ import { useState } from "react";
 // ====== Component ======
 // =======================
 
-export function DevPage2({ /* prop1, prop2 */ }) {
+export function DatePicker({ /* prop1, prop2 */ }) {
 
     // === Consts
     const [selectedDate, setSelectedDate] = useState(new Date())
@@ -45,7 +45,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
         "November",
         "December",
     ]
- 
+    // === Effects
 
 
     // === Functions
@@ -60,7 +60,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
     function handleSave(date) {
         console.log('Saving date:', date.toISOString());
       }
-      
+
     return (
         <section className='date-picker'>
 
@@ -81,10 +81,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                         {showTimePicker ?
                             (<DatePicker
                                 selected={startDate}
-                                onChange={(date) => {
-                                    setStartDate(date)
-                                    handleSave(date) 
-                                  }}
+                                onChange={(date) => setStartDate(date)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') handleSave(startDate);
                                   }}
@@ -92,10 +89,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                                 open={false}
                             />) : (<DatePicker
                                 selected={startDate}
-                                onChange={(date) => {
-                                    setStartDate(date)
-                                    handleSave(date) 
-                                  }}
+                                onChange={(date) => setStartDate(date)}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') handleSave(startDate);
                                   }}
