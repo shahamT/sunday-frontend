@@ -11,12 +11,13 @@
 // === Imgs
 
 // === Child Components
+import { CellContentItem } from "./T_CellContent/CellContentItem";
 import { CellContentStatus } from "./T_CellContent/CellContentStatus";
 
 // ====== Component ======
 // =======================
 
-export function T_Cell({ column, columnValue }) {
+export function T_Cell({ column, columnValue , taskId}) {
     // === Consts
 
     // === Effects
@@ -24,7 +25,7 @@ export function T_Cell({ column, columnValue }) {
     // === Functions
 
     const componentMap = {
-        item: CellContentStatus,
+        item: CellContentItem,
         status: CellContentStatus,
         date: CellContentStatus,
         person: CellContentStatus,
@@ -32,13 +33,12 @@ export function T_Cell({ column, columnValue }) {
 
     const variant = column.type.variant
     const DynamicComponent = componentMap[variant]
-
     return (
         <section
-            className="T_Cell t-cell"
+            className={`T_Cell t-cell ${variant === 'item' ? 'first' : ''}`}
             style={{ width: column.width + 'px' }}
         >
-            {DynamicComponent && <DynamicComponent />}
+            {DynamicComponent && <DynamicComponent column={column} columnValue={columnValue} taskId={taskId}/>}
 
         </section>
     )

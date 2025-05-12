@@ -1,5 +1,31 @@
 .T_GroupFooter {
     position: relative;
-    
     display: flex;
+
+ cursor: text;
+
+    &:hover{
+        .row-wraper{
+            background-color: #F5F6F8;
+            box-shadow: 4px 3px 6px -3px var(--ui-border-color);
+        }
+
+        .t-left-indicator{
+           opacity: 1; 
+        }
+    }
+
+    &:focus-within{
+       .row-wraper{
+            background-color: var( --primary-selected-color);
+        }  
+    }
+
+
+    .text-container{
+        padding-inline: 10px;
+    }
+    .empty-cell{
+        width: 100%;
+    }
 }

@@ -24,7 +24,11 @@ export function useControlledInput(defaultValue = '') {
     setValue(defaultValue)
   }
 
-  return [value, handleChange, reset]
+  function set(newValue) {
+    setValue(newValue)
+  }
+
+  return [value, handleChange, reset, set]
 }
 
 // // example usage
