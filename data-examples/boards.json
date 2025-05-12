@@ -135,7 +135,7 @@
         "createdAt": 1746961477549,
         "createdBy": "u_768ef13c",
         "name": "Planning",
-        "color": "#579bfc",
+        "color": "orchid",
         "pos": 1,
         "isCollapsed": false,
         "tasks": [
@@ -278,7 +278,7 @@
         "createdAt": 1746961477549,
         "createdBy": "u_768ef13c",
         "name": "In Progress",
-        "color": "#579bfc",
+        "color": "teal",
         "pos": 2,
         "isCollapsed": false,
         "tasks": [
@@ -351,7 +351,7 @@
         "createdAt": 1746961477550,
         "createdBy": "u_768ef13c",
         "name": "Review",
-        "color": "#579bfc",
+        "color": "grass_green",
         "pos": 3,
         "isCollapsed": false,
         "tasks": [

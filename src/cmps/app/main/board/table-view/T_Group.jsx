@@ -38,7 +38,7 @@ const itemColumnWidth = columns.reduce((acc, col) =>
             <T_GroupHeadRow group={group} columns={columns}/>
 
             {group.tasks.map(task => {
-                return <T_TaskRow key={task.id} task={task} columns={columns} />
+                return <T_TaskRow key={task.id} task={task} columns={columns} group={group}/>
             })}
 
             <T_GroupFooter group={group} itemColumnWidth={itemColumnWidth}/>

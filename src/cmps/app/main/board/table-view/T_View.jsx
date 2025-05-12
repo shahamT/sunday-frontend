@@ -25,7 +25,7 @@ export function T_View({ /* prop1, prop2 */ }) {
     const board = useSelector(storeState => storeState.boardModule.board)
     const { boardId } = useParams()
 
-    // console.log("board: ", board)
+    console.log("board: ", board)
 
     // === Effects
     useEffect(() => {

@@ -15,7 +15,7 @@ import { T_Cell } from "./T_Cell"
 // ====== Component ======
 // =======================
 
-export function T_TaskRow({ task, columns }) {
+export function T_TaskRow({ task, columns, group }) {
     // === Consts
 
     // === Effects
@@ -29,7 +29,7 @@ export function T_TaskRow({ task, columns }) {
 
             <div className="row-wraper t-row">
 
-                <div className="t-left-indicator" />
+                <div className={`t-left-indicator ${group.color}-bg`} />
 
 
                 {columns.map((column, idx) => {

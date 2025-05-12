@@ -15,7 +15,7 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText"
 // ====== Component ======
 // =======================
 
-export function T_GroupFooter({ itemColumnWidth }) {
+export function T_GroupFooter({ group, itemColumnWidth }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput('')
 
@@ -36,7 +36,7 @@ export function T_GroupFooter({ itemColumnWidth }) {
     return (
         <section className="T_GroupFooter">
             <div className="menu-wraper" />
-            <div className="t-left-indicator bottom disabled" />
+            <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
             <div className="row-wraper t-row sticky ">
                 <label className="checkbox-container t-cell no-divider footer disabled">
                     <input type="checkbox" className="disabled" />
