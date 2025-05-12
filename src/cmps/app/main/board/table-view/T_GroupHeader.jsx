@@ -3,6 +3,7 @@
 // === Services
 
 // === Actions
+import { updateGroup } from "../../../../../store/actions/board.actions";
 
 // === Hooks / React
 import { useControlledInput } from "../../../../../hooks/useControlledInput";
@@ -30,8 +31,7 @@ export function T_GroupHeader({ group }) {
             set(group.name)
             return
         }
-        const updatedGroup = { ...group, name: editedTitle };
-
+        const updatedGroup = { ...group, name: value };
         updateGroup(updatedGroup)
             .catch(showErrorMsg(`Somthing went wrong`));
     }

@@ -22,9 +22,18 @@ export function T_GroupFooter({ itemColumnWidth}) {
     // === Effects
 
     // === Functions
-    function onAddTask() {
 
-    }
+
+        function onAddTask() {
+            if (value === '') {
+                showErrorMsg(`Name can't be empty`)
+                set(group.name)
+                return
+            }
+            const updatedGroup = { ...group, name: value };
+            updateGroup(updatedGroup)
+                .catch(showErrorMsg(`Somthing went wrong`));
+        }
 
     // if (!data) return <div>Loading...</div>
     return (
