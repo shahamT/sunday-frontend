@@ -4,6 +4,8 @@
 
 import { useEffect } from "react"
 import { NavLink } from "react-router-dom"
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
+import { SideNavModal } from "./SideNaveModal"
 
 // === Services
 
@@ -11,35 +13,50 @@ import { NavLink } from "react-router-dom"
 
 // === Hooks / React
 
-// === Imgs
-// === Child Components
-// ====== Component ======
-// =======================
-
-export function FavoritesBoards({ boards }) {
-    const starredBoards = boards.filter(board => { board.isStarred })
-    console.log(starredBoards.length)
-    // === Consts
-
-    // === Effects
-   
-
-    // === Functions
+export function FavoritesBoards({ boards,setEditedTitle,editingBoardId ,handleRename,editedTitle,setEditingBoardId}) {
+    const starredBoards = boards.filter(board => board.isStarred )
 
 
     if (starredBoards.length===0) return <div className="favorites-boards ">No Favorits</div>
     return (
-        <section className="favorites-boards ">
+        <section className="favorites-boards">
         {starredBoards.map(board => (
           <div key={board._id} className="board-item-nav">
-            <NavLink
-              to={`/app/board/${board._id}`}
-              className="clickable select clear size-32 i-Board icon-start full-width left-aligned"
+      
+            {editingBoardId === board._id ? (
+              <input
+                type="text"
+                value={editedTitle}
+                autoFocus
+                onChange={(e) => setEditedTitle(e.target.value)}
+                onBlur={() => handleRename(board)}
+                onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
+                className="edit-board-input"
+              />
+            ) : (
+              <NavLink
+                to={`/app/board/${board._id}`}
+                className="clickable select clear size-32 icon-start full-width left-aligned i-Board"
+              >
+                {board.name}
+              </NavLink>
+            )}
+      
+            <PopUpMenu
+              position="start-end"
+              renderContent={({ onCloseModal }) => (
+                <SideNavModal
+                  onCloseModal={onCloseModal}
+                  board={board}
+                  setEditingBoardId={setEditingBoardId}
+                  setEditedTitle={setEditedTitle}
+                />
+              )}
             >
-              {board.name}
-            </NavLink>
+              <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
+            </PopUpMenu>
           </div>
         ))}
-      </section>
-    )
+      </section> )
+   
         }

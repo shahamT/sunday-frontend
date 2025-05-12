@@ -1,7 +1,7 @@
 
 import { boardService } from "../../services/board"
 
-// //* Boards
+// Boards
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
@@ -9,7 +9,19 @@ export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const REVERT_BOARDS = 'REVERT_BOARDS'
 
-//TODO CRUDL group, task, column
+// Groups
+export const REMOVE_GROUP = 'REMOVE_GROUP'
+export const ADD_GROUP = 'ADD_GROUP'
+export const UPDATE_GROUP = 'UPDATE_GROUP'
+export const REVERT_GROUPS = 'REVERT_GROUPS'
+
+// Groups
+export const REMOVE_COLUMN = 'REMOVE_COLUMN'
+export const ADD_COLUMN = 'ADD_COLUMN'
+export const UPDATE_COLUMN = 'UPDATE_COLUMN'
+export const REVERT_COLUMNS = 'REVERT_COLUMNS'
+
+//TODO CRUDL task
 
 //Loading
 export const BOARDS_LOADING_START = 'BOARDS_LOADING_START'
@@ -18,7 +30,6 @@ export const BOARD_LOADING_START = 'BOARD_LOADING_START'
 export const BOARD_LOADING_DONE = 'BOARD_LOADING_DONE'
 
 // export const SET_BOARDS_FILTER_BY = 'SET_BOARDS_FILTER_BY'
-// export const SET_BOARDS_IS_LOADING = 'SET_BOARDS_IS_LOADING'
 
 // Task Details Panel
 export const OPEN_TASK_PANEL = "OPEN_TASK_PANEL"
@@ -33,15 +44,20 @@ const initialState = {
     
     //Loading
     isBoardsLoading: false,
-    isBoardLoading: false
+    isBoardLoading: false,
 
-    // isLoading: false,
+    //Group
+    lastGroups: [],
+    
+    //Column
+    lastColumns: [],
+
     // filterBy: boardService.getDefaultFilter(),
 }
 
 export function boardReducer(state = initialState, action = {}) {
     switch (action.type) {
-        // //* Boards
+        // //* BOARD
         case SET_BOARDS:
             return { ...state, boards: action.boards }
 
@@ -77,8 +93,6 @@ export function boardReducer(state = initialState, action = {}) {
         //         filterBy: { ...state.filterBy, ...action.filterBy }
         //     }
 
-        //Loading
-
         case BOARDS_LOADING_START:
             return { ...state, isBoardsLoading: true }
     
@@ -91,7 +105,55 @@ export function boardReducer(state = initialState, action = {}) {
         case BOARD_LOADING_DONE:
             return { ...state, isBoardLoading: false }
 
-         //Side Nav
+         //GROUP
+         case REMOVE_GROUP:
+            const lastGroups = [...state.boards.groups]
+            return {
+                ...state,
+                boards: state.boards.groups.filter(group => group.id !== action.groupId),
+                lastGroups
+            }
+        
+        case REVERT_GROUPS:
+            return {...state, boards: {...state.boards, groups: state.lastGroups} }
+
+        case ADD_GROUP:
+            return {
+                ...state,
+                boards: {...state.boards, groups: [...state.boards.groups, action.group]}
+            }
+
+        case UPDATE_GROUP:
+            return {
+                ...state,
+                boards: state.boards.groups.map(group => group.id === action.group.id ? action.group : group)
+            }
+
+         //COLUMN
+         case REMOVE_COLUMN:
+            const lastColumns = [...state.boards.columns]
+            return {
+                ...state,
+                boards: state.boards.columns.filter(column => column.id !== action.columnId),
+                lastColumns
+            }
+        
+        case REVERT_COLUMNS:
+            return {...state, boards: {...state.boards, columns: state.lastColumns} }
+
+        case ADD_COLUMN:
+            return {
+                ...state,
+                boards: {...state.boards, groups: [...state.boards.groups, action.group]}
+            }
+
+        case UPDATE_COLUMN:
+            return {
+                ...state,
+                boards: state.boards.columns.map(column => column.id === action.column.id ? action.column : column)
+            }
+
+        //Side Nav
 
          case OPEN_TASK_PANEL:
             return {
