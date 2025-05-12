@@ -3,6 +3,10 @@
     width: 100%;
     display: flex;
 
+    &.centered{
+        justify-content: center;
+    }
+
     .text-input {
         padding-inline: 4px;
         outline: none;
@@ -33,6 +37,14 @@
 
         &.full {
             width: 100%;
+        }
+
+        &.small {
+            height: 22px;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: var(--font-family);
+
         }
 
         &.normal {
@@ -73,6 +85,14 @@
         left: 0;
         pointer-events: none;
 
+        &.small {
+            height: 22px;
+            font-size: 14px;
+            font-weight: 400;
+            font-family: var(--font-family);
+
+        }
+        
         &.normal {
             height: 26px;
             font-size: 14px;

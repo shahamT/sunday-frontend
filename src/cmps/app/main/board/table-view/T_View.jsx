@@ -25,10 +25,16 @@ export function T_View({ /* prop1, prop2 */ }) {
     const board = useSelector(storeState => storeState.boardModule.board)
     const { boardId } = useParams()
 
+    console.log("board: ", board)
+    
     // === Effects
     useEffect(() => {
         loadBoard(boardId)
     }, [boardId])
+
+    useEffect(() => {
+    }, [board])
+
     // === Functions
 
     // if (!data) return <div>Loading...</div>
@@ -38,9 +44,9 @@ export function T_View({ /* prop1, prop2 */ }) {
             <T_Filter />
 
             <section className="groups-list">
-                {board && 
+                {board &&
                     board.groups.map(group => {
-                        return <T_Group key={group.id} group={group} />
+                        return <T_Group key={group.id} group={group} columns={board.columns} />
                     })
                 }
             </section>

@@ -1,5 +1,7 @@
 // === Libs
 
+import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
+
 
 // === Services
 
@@ -14,22 +16,29 @@
 // ====== Component ======
 // =======================
 
-export function T_GroupHeadRow({ /* prop1, prop2 */ }) {
+export function T_GroupHeadRow({ columns, group }) {
     // === Consts
 
     // === Effects
 
     // === Functions
-
-    // if (!data) return <div>Loading...</div>
+    console.log('got here')
     return (
         <section className="T_GroupHeadRow">
             <div className="menu-wraper" />
-            <div className="t-left-indicator top" />
             <div className="row-wraper t-row">
-                <input type="checkbox" name="" id="" />
-                <p>group header</p>
+
+                <div className="t-left-indicator top" />
+                {columns.map(column => {
+                    return <T_ColumnHeaderCell column={column} groupId={group.id} />
+                })}
+
+                <div className="add-column-btn t-cell last">
+                </div>
+                
             </div>
+
+
         </section>
     )
 }

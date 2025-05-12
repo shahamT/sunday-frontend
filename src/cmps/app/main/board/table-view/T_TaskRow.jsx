@@ -1,5 +1,7 @@
 // === Libs
 
+import { T_Cell } from "./T_Cell"
+
 // === Services
 
 // === Actions
@@ -13,7 +15,7 @@
 // ====== Component ======
 // =======================
 
-export function T_TaskRow({ task }) {
+export function T_TaskRow({ task, columns }) {
     // === Consts
 
     // === Effects
@@ -23,16 +25,18 @@ export function T_TaskRow({ task }) {
     // if (!data) return <div>Loading...</div>
     return (
         <article className="T_TaskRow">
-            <div className="menu-wraper">
+            <div className="menu-wraper" />
 
-            </div>
-            <div className="t-left-indicator" />
             <div className="row-wraper t-row">
-                <input type="checkbox" name="" id="" />
-                {task.columnValues.filter(columnValue => {
-                    columnValue.id === 'name'
-                    console.log("columnValue: ", columnValue)
-                    }).value}
+
+                <div className="t-left-indicator" />
+                {columns.map(column => {
+                    const columnValue = task.columnValues.find(columnValue => columnValue.id === column.id)
+                    return <T_Cell column={column} columnValue={columnValue} />
+                })}
+
+                <div className="t-cell last" />
+
             </div>
         </article>
     )

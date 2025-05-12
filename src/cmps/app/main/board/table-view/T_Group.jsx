@@ -19,23 +19,23 @@ import { T_TaskRow } from "./T_TaskRow";
 // ====== Component ======
 // =======================
 
-export function T_Group({ group }) {
+export function T_Group({ group, columns}) {
     // === Consts
 
     // === Effects
 
     // === Functions
-
+console.log("columns: ", columns)
     // if (!data) return <div>Loading...</div>
     return (
         <section className="T_Group">
 
             <T_GroupHeader group={group} />
             
-            <T_GroupHeadRow group={group} />
+            <T_GroupHeadRow group={group} columns={columns}/>
 
             {group.tasks.map(task => {
-                return <T_TaskRow key={task.id} task={task} />
+                return <T_TaskRow key={task.id} task={task} columns={columns} />
             })}
 
             <T_GroupFooter group={group} />

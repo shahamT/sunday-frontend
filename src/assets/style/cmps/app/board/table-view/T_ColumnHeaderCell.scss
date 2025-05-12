@@ -1,0 +1,15 @@
+.T_ColumnHeaderCell {
+    justify-content: center;
+    padding-inline: 5px;
+
+    &.first {
+        padding-inline: 0px;
+    }
+    
+    .cell-contnet{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+}

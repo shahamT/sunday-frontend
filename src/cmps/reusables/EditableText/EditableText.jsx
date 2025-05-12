@@ -14,7 +14,8 @@ export function EditableText({
     value = '',
     handleChange,
     type = 'text',
-    color = null
+    color = null,
+    centered = false,
 }) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
@@ -49,7 +50,7 @@ export function EditableText({
     }
 
     return (
-        <div className="EditableText">
+        <div className={`EditableText ${centered ? 'centered' : ''}`}>
             <input
                 ref={inputRef}
                 id='activeInput'

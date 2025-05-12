@@ -1,9 +1,12 @@
 .T_View {
+
     .groups-list {
         display: flex;
         flex-direction: column;
         gap: 28px;
         padding-inline-start: 40px;
         padding-block-end: 40px;
+
+        overflow: scroll;
     }
 }
