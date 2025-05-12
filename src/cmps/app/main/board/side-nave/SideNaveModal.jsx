@@ -1,0 +1,85 @@
+// === Libs
+
+import { useEffect, useState } from "react"
+// import { debounce } from "../../../../../services/base/util.service"
+import { loadBoard, loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
+// import { h1 } from "remirror/dist/_tsup-dts-rollup"
+
+// === Services
+
+// === Actions
+
+// === Hooks / React
+
+// === Imgs
+
+// === Child Components
+
+// ====== Component ======
+// =======================
+
+export function SideNavModal({ board, setEditingBoardId, setEditedTitle }) {
+
+    // === Consts
+    const [boardToEdit, setBoardToEdit] = useState(null)
+    // const debounceOnSetTxtToEdit = useRef(debounce(setTxtToEdit, 200))
+
+    // === Effects
+    useEffect(() => {
+        setBoardToEdit(board)
+
+        return () => {
+            setBoardToEdit(null);
+        }
+    }, [board])
+
+
+    // === Functions
+    function handleChange({ target }) {
+        const field = target.name;
+        let value = target.value;
+
+        if (target.type === "checkbox") value = target.checked;
+        setBoardToEdit(prev => ({ ...prev, [field]: value }))
+        updateBoard(boardToEdit)
+        .then(loadBoards())
+    }
+
+    function onSubmit(ev) {
+        ev.preventDefault()
+        console.log(boardToEdit)
+        updateBoard(boardToEdit)
+            .then(() => {
+                loadBoards()
+                setOpenBoardId(null)
+            })
+            .catch(err => console.error('Save failed', err))
+    }
+
+
+
+
+    if (!boardToEdit) return <div>Loading...</div>
+    const {isStarred, _id } = boardToEdit
+    return (
+        <section className="board-popup-menu">
+
+            <a  href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+
+            <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
+                setEditingBoardId(board._id);
+                setEditedTitle(board.name);
+            }}>Rename</div>
+
+            <div
+                className={`star-toggle clickable size-32 icon-start select left-aligned i-Favorite ${isStarred ? 'starred' : ''}`}
+                onClick={() => setBoardToEdit(prev => ({ ...prev, isStarred: !prev.isStarred }))} >
+                {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
+            </div>
+
+            <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={()=>removeBoard(_id)}>
+                Delete
+            </div>
+        </section>
+    )
+}

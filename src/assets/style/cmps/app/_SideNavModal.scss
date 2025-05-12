@@ -1,0 +1,21 @@
+.board-popup-menu>*{
+    color: var(--gray3);
+    width:200px ;
+
+}
+
+
+.star-toggle,.i-Favorite{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 500;
+  
+    &::before {
+      transition: color 0.2s;
+    }
+  
+    &.starred::before {
+      color: gold;
+    }
+  }
