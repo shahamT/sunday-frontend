@@ -15,13 +15,16 @@ export const ADD_GROUP = 'ADD_GROUP'
 export const UPDATE_GROUP = 'UPDATE_GROUP'
 export const REVERT_GROUPS = 'REVERT_GROUPS'
 
-// Groups
+// Columns
 export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
 export const REVERT_COLUMNS = 'REVERT_COLUMNS'
 
-//TODO CRUDL task
+// Tasks
+export const REMOVE_TASK = 'REMOVE_TASK'
+export const ADD_TASK = 'ADD_TASK'
+export const REVERT_TASKS = 'REVERT_TASKS'
 
 //Loading
 export const BOARDS_LOADING_START = 'BOARDS_LOADING_START'
@@ -51,6 +54,9 @@ const initialState = {
     
     //Column
     lastColumns: [],
+    
+    //Tasks
+    lastTasks: [],
 
     // filterBy: boardService.getDefaultFilter(),
 }
@@ -107,50 +113,72 @@ export function boardReducer(state = initialState, action = {}) {
 
          //GROUP
          case REMOVE_GROUP:
-            const lastGroups = [...state.boards.groups]
+            const lastGroups = [...state.board.groups]
             return {
                 ...state,
-                boards: state.boards.groups.filter(group => group.id !== action.groupId),
-                lastGroups
+                board: state.board.groups.filter(group => group.id !== action.groupId),
+                lastGroups,
             }
         
         case REVERT_GROUPS:
-            return {...state, boards: {...state.boards, groups: state.lastGroups} }
+            return {...state, board: {...state.board, groups: state.lastGroups} }
 
         case ADD_GROUP:
             return {
                 ...state,
-                boards: {...state.boards, groups: [...state.boards.groups, action.group]}
+                board: {...state.board, groups: [...state.board.groups, action.group]}
             }
 
         case UPDATE_GROUP:
             return {
                 ...state,
-                boards: state.boards.groups.map(group => group.id === action.group.id ? action.group : group)
+                board: state.board.groups.map(group => group.id === action.group.id ? action.group : group)
             }
 
          //COLUMN
          case REMOVE_COLUMN:
-            const lastColumns = [...state.boards.columns]
+            const lastColumns = [...state.board.columns]
             return {
                 ...state,
-                boards: state.boards.columns.filter(column => column.id !== action.columnId),
+                board: state.board.columns.filter(column => column.id !== action.columnId),
                 lastColumns
             }
         
         case REVERT_COLUMNS:
-            return {...state, boards: {...state.boards, columns: state.lastColumns} }
+            return {...state, board: {...state.board, columns: state.lastColumns} }
 
         case ADD_COLUMN:
             return {
                 ...state,
-                boards: {...state.boards, groups: [...state.boards.groups, action.group]}
+                board: {...state.board, groups: [...state.board.groups, action.group]}
             }
 
         case UPDATE_COLUMN:
             return {
                 ...state,
-                boards: state.boards.columns.map(column => column.id === action.column.id ? action.column : column)
+                board: state.board.columns.map(column => column.id === action.column.id ? action.column : column)
+            }
+
+         //TASKS
+         case REMOVE_TASK:
+            const lastTasks = [...(state.board.groups.find(group => group.id === action.groupId)?.tasks || [])]
+            return {
+                ...state,
+                board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                ? {...group, tasks: group.tasks.filter(task => task.id !== action.taskId)} : group)},
+                lastTasks
+            }
+        
+        case REVERT_TASKS:
+            return {...state, board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                ? { ...group, tasks: lastTasks } : group)}
+}
+
+        case ADD_TASK:
+            return {
+                ...state,
+                board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                    ? {...group, tasks: [...group.tasks, action.task]} : group)}
             }
 
         //Side Nav

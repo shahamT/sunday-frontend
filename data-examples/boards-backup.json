@@ -103,6 +103,30 @@
         "type": {
           "variant": "date"
         }
+      },
+      {
+        "id": "col_2",
+        "name": "Description",
+        "createdAt": 1746961477548,
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "type": {
+          "variant": "text"
+        }
+      },
+      {
+        "id": "col_3",
+        "name": "Estimate (hrs)",
+        "createdAt": 1746961477548,
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "type": {
+          "variant": "number"
+        }
       }
     ],
     "groups": [
@@ -135,6 +159,14 @@
               {
                 "id": "dueDate",
                 "value": "2025-05-23"
+              },
+              {
+                "id": "col_2",
+                "value": "this is a description"
+              },
+              {
+                "id": "col_3",
+                "value": 100
               }
             ],
             "updates": [

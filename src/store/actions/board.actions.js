@@ -3,6 +3,7 @@ import { ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, SET_BOARDS, SET_BOARD, UPDATE_B
 import { CLOSE_TASK_PANEL, OPEN_TASK_PANEL } from "../reducers/board.reducer.js";
 import { BOARDS_LOADING_START, BOARDS_LOADING_DONE, BOARD_LOADING_START, BOARD_LOADING_DONE } from "../reducers/board.reducer.js";
 import { ADD_GROUP, REMOVE_GROUP, REVERT_GROUPS, UPDATE_GROUP } from "../reducers/board.reducer.js";
+import { ADD_TASK, REMOVE_TASK, REVERT_TASKS } from "../reducers/board.reducer.js";
 import { ADD_COLUMN, REMOVE_COLUMN, REVERT_COLUMNS, UPDATE_COLUMN } from "../reducers/board.reducer.js";
 import { store } from "../store.js";
 
@@ -130,17 +131,104 @@ export async function removeGroup(groupId) {
 } 
 
 // ========= Task =========
-export async function addTask() {
-    
+export async function addTask(groupId = null) {
+    const state = store.getState()
+    const board = structuredClone(state.boardModule.board)
+    const boardId = board._id
+    if (!groupId) {
+        groupId = board.groups[0].id
+    }
+
+    const task = boardService.getEmptyTask()
+
+    try {
+        const savedTask = await boardService.saveTask(task, groupId, boardId)
+        store.dispatch(getCmdAddTask(savedTask, groupId))
+        return savedTask
+    } catch (err) {
+        console.log('board action -> Cannot add task', err)
+        throw err
+    }
+
+}
+
+export async function removeTask(taskId, groupId) {
+    const state = store.getState()
+    const boardId = state.boardModule.board._id
+    try {
+        await boardService.removeTask(taskId, groupId, boardId)
+        store.dispatch(getCmdRemoveTask(taskId, groupId))
+    } catch (err) {
+        console.log('board action -> Cannot remove task', err)
+        store.dispatch({type: REVERT_TASKS, groupId})
+        throw err
+    }
 } 
 
-export async function updateTask() {
+export async function updateColumnValue(colId, taskId, value) {
+    const state = store.getState()
+    const board = structuredClone(state.boardModule.board)
 
-} 
+    board.groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
+      if (task.id !== taskId) return task
+      const updatedColumnValues = task.columnValues.map(columnValue =>
+        columnValue.colId === colId ? { ...columnValue, value } : columnValue)
+        return { ...task, columnValues: updatedColumnValues }
+        })
+    }))
 
-export async function removeTask() {
+    try {
+        const savedBoard = await boardService.save(board)
+        store.dispatch(getCmdSetBoard(savedBoard))
+    } catch (err) {
+        console.log('board action -> Cannot add column value', err)
+        throw err
+    }
+}
 
-} 
+export async function addColumnValue(colId, taskId, value) {
+  const state = store.getState()
+  const board = structuredClone(state.boardModule.board)
+
+  board.groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
+      if (task.id !== taskId) return task
+      const hasColumn = task.columnValues.some(cv => cv.colId === colId)
+      const updatedColumnValues = hasColumn ? task.columnValues : [...task.columnValues, { colId, value }]
+
+      return { ...task, columnValues: updatedColumnValues }
+    })
+  }))
+
+  try {
+    const savedBoard = await boardService.save(board)
+    store.dispatch(getCmdSetBoard(savedBoard))
+  } catch (err) {
+    console.log('board action -> Cannot add column value', err)
+    throw err
+  }
+}
+
+export async function removeColumnValue(colId, taskId) {
+  const state = store.getState()
+  const board = structuredClone(state.boardModule.board)
+
+  board.groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
+      if (task.id !== taskId) return task
+
+      const updatedColumnValues = task.columnValues.filter(columnValue => columnValue.colId !== colId)
+
+      return { ...task, columnValues: updatedColumnValues }
+    })
+  }))
+
+  try {
+    const savedBoard = await boardService.save(board)
+    store.dispatch(getCmdSetBoard(savedBoard))
+  } catch (err) {
+    console.log('board action -> Cannot remove column value', err)
+    throw err
+  }
+}
 
 // ========= Column =========
 export async function addColumn(type) {
@@ -200,48 +288,56 @@ function getCmdSetBoards(boards) {
         boards
     }
 }
+
 function getCmdSetBoard(board) {
     return {
         type: SET_BOARD,
         board
     }
 }
+
 function getCmdRemoveBoard(boardId) {
     return {
         type: REMOVE_BOARD,
         boardId
     }
 }
+
 function getCmdAddBoard(board) {
     return {
         type: ADD_BOARD,
         board
     }
 }
+
 function getCmdUpdateBoard(board) {
     return {
         type: UPDATE_BOARD,
         board
     }
 }
+
 // function getCmdAddBoardMsg(msg) {
 //     return {
 //         type: ADD_BOARD_MSG,
 //         msg
 //     }
 // }
+
 function getCmdRemoveGroup(groupId) {
     return {
         type: REMOVE_GROUP,
         groupId
     }
 }
+
 function getCmdAddGroup(group) {
     return {
         type: ADD_GROUP,
         group
     }
 }
+
 function getCmdUpdateGroup(group) {
     return {
         type: UPDATE_GROUP,
@@ -255,16 +351,34 @@ function getCmdRemoveColumn(columnId) {
         columnId
     }
 }
+
 function getCmdAddColumn(column) {
     return {
         type: ADD_COLUMN,
         column
     }
 }
+
 function getCmdUpdateColumn(column) {
     return {
         type: UPDATE_COLUMN,
         column
+    }
+}
+
+function getCmdAddTask(task, groupId) {
+    return {
+        type: ADD_TASK,
+        task,
+        groupId
+    }
+}
+
+function getCmdRemoveTask(taskId, groupId) {
+    return {
+        type: REMOVE_TASK,
+        taskId,
+        groupId
     }
 }
 

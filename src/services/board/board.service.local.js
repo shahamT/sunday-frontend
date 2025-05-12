@@ -60,6 +60,8 @@ export const boardService = {
     getColors,
     saveColumn,
     removeColumn,
+    saveTask,
+    removeTask,
 }
 window.cs = boardService
 
@@ -85,7 +87,7 @@ async function remove(boardId) {
     await storageService.remove(STORAGE_KEY, boardId)
 }
 
-async function save(board) { //TODO boardToSave in edit, actions depend on what i want to edit?
+async function save(board) {
     var savedBoard
     if (board._id) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
@@ -129,25 +131,26 @@ async function _createBoards() {
 
 //////GROUP//////
 async function saveGroup(groupToSave, boardId) { 
-    const board = getById(boardId)
+    const board = await getById(boardId)
     var savedBoard
     if (groupToSave.id) {
-        board = {...board, groups: board.groups.map(group =>
+        const boardToSave = {...board, groups: board.groups.map(group =>
             group.id === groupToSave.id ? groupToSave : group)
         }
-        savedBoard = await storageService.put(STORAGE_KEY, board)
+        savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
         groupToSave.id = makeId()
-        groupToSave.createdAt = Date.name()
-        board = {...board, groups: {...groups, groupToSave}}
-        savedBoard = await storageService.post(STORAGE_KEY, board)
+        groupToSave.createdAt = Date.now()
+        groupToSave.createdBy = userService.getLoggedinUser()?._id || null
+        const boardToSave = {...board, groups: {...groups, groupToSave}}
+        savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
     }
     return savedBoard
 }
 
 async function removeGroup(groupId, boardId) {
-    const board = getById(boardId)
-    board.groups.filter(group => group.id !== groupId)
+    const board = await getById(boardId)
+    board.groups = board.groups.filter(group => group.id !== groupId)
     await storageService.put(STORAGE_KEY, board)
 }
 
@@ -157,27 +160,46 @@ function getColors() {
 
 //////COLUMN//////
 async function saveColumn(columnToSave, boardId) { 
-    const board = getById(boardId)
+    const board = await getById(boardId)
     var savedBoard
     if (columnToSave.id) {
-        board = {...board, columns: board.columns.map(column =>
+        const boardToSave = {...board, columns: board.columns.map(column =>
             column.id === columnToSave.id ? columnToSave : column)
         }
-        savedBoard = await storageService.put(STORAGE_KEY, board)
+        savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
         columnToSave.id = makeId()
-        columnToSave.createdAt = Date.name()
-        board = {...board, columns: {...columns, columnToSave}}
-        savedBoard = await storageService.post(STORAGE_KEY, board)
+        columnToSave.createdAt = Date.now()
+        columnToSave.createdBy = userService.getLoggedinUser()?._id || null
+        const boardToSave = {...board, columns: {...columns, columnToSave}}
+        savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
     }
     return savedBoard
 }
 
 async function removeColumn(columnId, boardId) {
-    const board = getById(boardId)
-    board.columns.filter(column => column.id !== columnId)
+    const board = await getById(boardId)
+    board.columns = board.columns.filter(column => column.id !== columnId)
     await storageService.put(STORAGE_KEY, board)
 }
 
-
 //////TASK//////
+async function saveTask(taskToSave, groupId, boardId) {
+    const board = await getById(boardId)
+    taskToSave.id = makeId()
+    taskToSave.createdAt = Date.now()
+    taskToSave.createdBy = userService.getLoggedinUser()?._id || null
+
+    const boardToSave = {...board, groups: board.groups.map(group => group.id === groupId
+    ? {...group, tasks: [...group.tasks, taskToSave]} : group)}
+
+    const savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
+    return savedBoard
+}
+
+async function removeTask(taskId, groupId, boardId) {
+    const board = await getById(boardId)
+    const boardToSave = {...board, groups: board.groups.map(group => group.id === groupId
+        ? {...group, tasks: group.tasks.filter(task => task.id !== taskId)} : group)}
+    await storageService.put(STORAGE_KEY, boardToSave)
+}
