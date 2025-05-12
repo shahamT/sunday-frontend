@@ -60,7 +60,6 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
     }
 
 
-    console.log("ddd", boardToEdit)
 
     if (!boardToEdit) return <div>Loading...</div>
     const { isStarred, _id } = boardToEdit
@@ -68,7 +67,7 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
         <section className="board-popup-menu">
 
             <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
-
+            <div className="divider1" />
             <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
                 setEditingBoardId(board._id)
                 setEditedTitle(board.name)
@@ -76,7 +75,7 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
             }}>Rename</div>
 
             <div
-                className={`star-toggle clickable size-32 icon-start select left-aligned i-Favorite ${isStarred ? 'starred' : ''}`}
+                className={`star-toggle clickable size-32 icon-start clear select full-width left-aligned i-Favorite ${isStarred ? 'starred' : ''}`}
                 onClick={handleChange} >
                 {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
             </div>

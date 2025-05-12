@@ -16,6 +16,9 @@ import { loadBoard, loadBoards, updateBoard } from "../../store/actions/board.ac
 import { SideNavModal } from "./main/board/side-nave/SideNaveModal";
 import { PopUpMenu } from "../reusables/PopUpMenu/PopUpMenu";
 import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
+import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
+import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
+import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 
 // ====== Component ======
 // =======================
@@ -40,7 +43,6 @@ export function AppSideNav({ }) {
 
         updateBoard(updatedBoard)
             .then(() => {
-                loadBoards();
                 setEditingBoardId(null);
             })
             .catch((err) => console.error("Rename failed", err));
@@ -65,19 +67,23 @@ export function AppSideNav({ }) {
                     {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
                 </a>
             </section>
-            <div className="divider1" />
+            {!isFavoritesOpen ? <div className="divider1" /> : null}
+
             {isFavoritesOpen ?
                 <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
                 <section className="nav-section">
                     <div className="workspaces-bar">
-                        <div className="workspase-icon i-Workspace" />
+                        <div className="workspase-icon icon-start i-Workspace" />
                         <p>Workspaces</p>
-                        <div className="search-btn clickable clear icon-btn size-24 i-Search"/>
+                        <div className="search-btn clickable clear icon-btn size-24 i-Search" />
+                    </div>
 
-
-
-
-
+                    <div className="workspaces-curr-board">
+                        <div className="curr-wordspace-container">
+                            <div className="MoreBelowFilled-icon icon-start i-MoreBelowFilled " />
+                            <p>Main Workspaces</p>
+                        </div>
+                        <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </div>
                     {boards.map(board =>
                         <div key={board._id} className="board-item-nav">
@@ -90,7 +96,6 @@ export function AppSideNav({ }) {
                                         type="text"
                                         value={editedTitle}
                                         autoFocus
-                                        // valeu={board.name}
                                         onChange={(e) => setEditedTitle(e.target.value)}
                                         onBlur={() => handleRename(board)}
                                         onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
@@ -114,6 +119,7 @@ export function AppSideNav({ }) {
                                     <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
                                 </PopUpMenu>
                             </NavLink>
+                            <GlobalModal />
                         </div>
                     )}
 
