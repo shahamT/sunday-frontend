@@ -25,7 +25,7 @@ export function T_Group({ group, columns}) {
     // === Effects
 
     // === Functions
-console.log("columns: ", columns)
+// console.log("columns: ", columns)
     // if (!data) return <div>Loading...</div>
     return (
         <section className="T_Group">
