@@ -15,6 +15,11 @@
         min-width: 500px;
         cursor: grab;
 
+        position: sticky;
+        left: 0px;
+        z-index: 10;
+
+
         .collapse-button-wraper {
             margin-inline-start: 14px;
             margin-inline-end: 2px;

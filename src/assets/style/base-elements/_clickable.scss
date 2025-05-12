@@ -68,6 +68,10 @@
         }
     }
 
+    &.outlined{
+        border: 1px solid var(--ui-border-color);
+    }
+
     // ===========================
     // ====== size variants ======
     // ===========================

@@ -14,18 +14,16 @@
 // ====== Component ======
 // =======================
 
-export function CellContentStatus({ column, columnValue }) {
+export function CellContentPerson({ column, columnValue }) {
     // === Consts
-    
+
     // === Effects
 
     // === Functions
-
-const color = columnValue
+   
     return (
-        <div className={`CellContentStatus cell-contnet centered`}>
-            <div class="fold"></div>
-            {columnValue && <p>{columnValue.value}</p>}
+        <div className={`CellContentPerson cell-contnet centered`}>
+            {columnValue && <p></p>}
 
         </div>
     )

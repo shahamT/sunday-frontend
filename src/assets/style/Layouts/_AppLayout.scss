@@ -41,6 +41,8 @@
     .main-side-nav-panel {
       position: relative;
 
+      flex-shrink: 0;
+
       height: 100%;
       margin-inline-start: 12px;
 
@@ -179,11 +181,13 @@
       flex: 1;
       height: 100%;
       background-color: #f1f4fa;
+      overflow: hidden;
 
       .main-content-wraper {
         background-color: var(--primary-background-color);
         height: 100%;
         border-top-left-radius: 12px;
+
       }
     }
   }

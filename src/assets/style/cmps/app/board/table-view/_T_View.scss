@@ -1,4 +1,20 @@
 .T_View {
+    position: relative;
+    //   * {
+    //     border: 1px solid red !important;
+    //   }
+
+
+    &::before {
+        content: '';
+        position: absolute;
+        z-index: 10;
+        background-color: var(--primary-background-color);
+        width: 40px;
+        height: calc(100% - 40px);
+        left: 0px;
+        top: 40px;
+    }
 
     .groups-list {
         display: flex;
@@ -8,5 +24,13 @@
         padding-block-end: 40px;
 
         overflow: scroll;
+
+        .add-group-btn {
+            position: sticky;
+            left: 0px;
+            z-index: 10;
+
+        }
     }
+
 }

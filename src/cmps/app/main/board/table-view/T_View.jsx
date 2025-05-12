@@ -26,7 +26,7 @@ export function T_View({ /* prop1, prop2 */ }) {
     const { boardId } = useParams()
 
     // console.log("board: ", board)
-    
+
     // === Effects
     useEffect(() => {
         loadBoard(boardId)
@@ -49,7 +49,11 @@ export function T_View({ /* prop1, prop2 */ }) {
                         return <T_Group key={group.id} group={group} columns={board.columns} />
                     })
                 }
+
+                <div className="add-group-btn clickable clear outlined size-32 icon-start i-Add">Add group item</div>
             </section>
+
+
 
         </section>
     )

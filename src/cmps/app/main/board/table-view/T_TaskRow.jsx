@@ -30,9 +30,11 @@ export function T_TaskRow({ task, columns }) {
             <div className="row-wraper t-row">
 
                 <div className="t-left-indicator" />
-                {columns.map(column => {
+
+
+                {columns.map((column, idx) => {
                     const columnValue = task.columnValues.find(columnValue => columnValue.id === column.id)
-                    return <T_Cell column={column} columnValue={columnValue} taskId={task.id}/>
+                    return <T_Cell key={column.id + idx} column={column} columnValue={columnValue} taskId={task.id} />
                 })}
 
                 <div className="t-cell last" />

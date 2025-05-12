@@ -2,30 +2,37 @@
     position: relative;
     display: flex;
 
- cursor: text;
+    cursor: text;
 
-    &:hover{
-        .row-wraper{
+    &:hover {
+        .row-wraper {
             background-color: #F5F6F8;
             box-shadow: 4px 3px 6px -3px var(--ui-border-color);
         }
 
-        .t-left-indicator{
-           opacity: 1; 
+        .t-left-indicator {
+            opacity: 1;
         }
     }
 
-    &:focus-within{
-       .row-wraper{
-            background-color: var( --primary-selected-color);
-        }  
+    &:focus-within {
+        .row-wraper {
+            background-color: var(--primary-selected-color);
+        }
     }
 
+    .sticky {
+        position: sticky;
+        left: 6px;
+        z-index: 10;
+    }
 
-    .text-container{
+    .text-container {
         padding-inline: 10px;
     }
-    .empty-cell{
+
+    .empty-cell {
         width: 100%;
+        flex: 1;
     }
 }
