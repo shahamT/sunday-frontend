@@ -7,6 +7,7 @@ export const SET_BOARD = 'SET_BOARD'
 export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
+export const REVERT_BOARDS = 'REVERT_BOARDS'
 
 //TODO CRUDL group, task, column
 
@@ -26,6 +27,7 @@ export const CLOSE_TASK_PANEL = "CLOSE_TASK_PANEL"
 const initialState = {
     //board
     boards: [],
+    lastBoards: [],
     board: null,
     isTaskPanelOpen: false,
     
@@ -53,6 +55,9 @@ export function boardReducer(state = initialState, action = {}) {
                 boards: state.boards.filter(board => board._id !== action.boardId),
                 lastBoards
             }
+        
+        case REVERT_BOARDS:
+            return {...state, boards: state.lastBoards}
 
         case ADD_BOARD:
             return {
