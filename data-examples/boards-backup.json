@@ -45,7 +45,7 @@
         "width": 200,
         "pos": 1,
         "type": {
-          "variant": "name"
+          "variant": "item"
         }
       },
       {
@@ -79,8 +79,8 @@
         }
       },
       {
-        "id": "owner",
-        "name": "Owner",
+        "id": "person",
+        "name": "Person",
         "createdAt": 1746961477549,
         "createdBy": {
           "_id": "u_768ef13c"
@@ -129,7 +129,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_757c91f7"
               },
               {
@@ -160,7 +160,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -191,7 +191,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -222,7 +222,7 @@
                 "value": "Done"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -264,7 +264,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -295,7 +295,7 @@
                 "value": "Done"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_b3485920"
               },
               {
@@ -337,7 +337,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_e5c85b12"
               },
               {
@@ -368,7 +368,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_768ef13c"
               },
               {
@@ -399,7 +399,7 @@
                 "value": "Done"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_b3485920"
               },
               {
@@ -466,7 +466,7 @@
         "width": 200,
         "pos": 1,
         "type": {
-          "variant": "name"
+          "variant": "item"
         }
       },
       {
@@ -500,8 +500,8 @@
         }
       },
       {
-        "id": "owner",
-        "name": "Owner",
+        "id": "person",
+        "name": "Person",
         "createdAt": 1746961477550,
         "createdBy": {
           "_id": "u_768ef13c"
@@ -550,7 +550,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_e5c85b12"
               },
               {
@@ -581,7 +581,7 @@
                 "value": "Done"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_e5c85b12"
               },
               {
@@ -623,7 +623,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_b3485920"
               },
               {
@@ -654,7 +654,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_768ef13c"
               },
               {
@@ -685,7 +685,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_757c91f7"
               },
               {
@@ -716,7 +716,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_768ef13c"
               },
               {
@@ -758,7 +758,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_b3485920"
               },
               {
@@ -789,7 +789,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_b3485920"
               },
               {
@@ -856,7 +856,7 @@
         "width": 200,
         "pos": 1,
         "type": {
-          "variant": "name"
+          "variant": "item"
         }
       },
       {
@@ -890,8 +890,8 @@
         }
       },
       {
-        "id": "owner",
-        "name": "Owner",
+        "id": "person",
+        "name": "Person",
         "createdAt": 1746961477550,
         "createdBy": {
           "_id": "u_768ef13c"
@@ -940,7 +940,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_768ef13c"
               },
               {
@@ -971,7 +971,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_757c91f7"
               },
               {
@@ -1002,7 +1002,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_757c91f7"
               },
               {
@@ -1033,7 +1033,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -1075,7 +1075,7 @@
                 "value": "Done"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_e5c85b12"
               },
               {
@@ -1106,7 +1106,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -1148,7 +1148,7 @@
                 "value": "Done"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_757c91f7"
               },
               {
@@ -1179,7 +1179,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -1210,7 +1210,7 @@
                 "value": "To Do"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
@@ -1241,7 +1241,7 @@
                 "value": "In Progress"
               },
               {
-                "id": "owner",
+                "id": "person",
                 "value": "u_7b3b73f5"
               },
               {
