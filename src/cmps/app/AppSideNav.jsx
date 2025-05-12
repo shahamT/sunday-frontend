@@ -7,16 +7,22 @@
 // === Actions
 
 // === Hooks / React
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { loadBoards } from "../../store/actions/board.actions";
 
 // === Imgs
-
 // === Child Components
 
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
-
+    const boards = useSelector(storeState => storeState.boardModule.boards)
+    useEffect(()=>{
+        loadBoards()
+    },[])
+    
     return (
         <nav className="AppSideNav" >
 
@@ -40,13 +46,10 @@ export function AppSideNav({ }) {
                     <p>Workspaces</p>
                         <div className="search-btn clickable clear icon-btn size-24 i-Search"></div>
                 </div>
+                {boards.map(board =>
 
-                <NavLink to="#" className="clickable select clear size-32  icon-start i-Board full-width left-aligned" >example1
-                    <div className="Menu-btn clickable clear size-24 i-Menu icon-btn"/>
-                </NavLink>
-                {/* {boards.map(board =>
-                            <NavLink to="/app/board/${board._id}"`/app/board/${board._id}` className="clickable select clear size-32 i-Board full-width left-aligned icon-btn" >{board.name} </NavLink>
-                    )} */}
+                            <NavLink key={board._id} to={`/app/board/${board._id}`} className="clickable select clear size-32 i-Board icon-start full-width left-aligned" >{board.name} </NavLink>
+                    )}
             </section>
 
 
