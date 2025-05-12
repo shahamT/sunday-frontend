@@ -5,6 +5,47 @@ import { makeId } from '../base/util.service'
 import { userService } from '../user'
 
 const STORAGE_KEY = 'board'
+const colors = [  
+    'grass_green',
+    'done-green',
+    'bright-green',
+    'saladish',
+    'egg_yolk',
+    'working_orange',
+    'dark-orange',
+    'peach',
+    'sunset',
+    'stuck-red',
+    'dark-red',
+    'sofia_pink',
+    'lipstick',
+    'bubble',
+    'purple',
+    'dark_purple',
+    'berry',
+    'dark_indigo',
+    'indigo',
+    'navy',
+    'bright-blue',
+    'dark-blue',
+    'aquamarine',
+    'chili-blue',
+    'river',
+    'winter',
+    'explosive',
+    'american_gray',
+    'blackish',
+    'brown',
+    'orchid',
+    'tan',
+    'sky',
+    'coffee',
+    'royal',
+    'teal',
+    'lavender',
+    'steel',
+    'lilac',
+    'pecan']
 
 // _createBoards()
 
@@ -14,10 +55,15 @@ export const boardService = {
     save,
     remove,
     // addBoardMsg
+    removeGroup,
+    saveGroup,
+    getColors,
+    saveColumn,
+    removeColumn,
 }
 window.cs = boardService
 
-
+//////BOARD//////
 async function query(filterBy = { txt: '' }) {
     var boards = await storageService.query(STORAGE_KEY)
     const { txt, sortField, sortDir } = filterBy
@@ -36,7 +82,6 @@ function getById(boardId) {
 }
 
 async function remove(boardId) {
-    // throw new Error('Nope')
     await storageService.remove(STORAGE_KEY, boardId)
 }
 
@@ -77,8 +122,62 @@ async function save(board) { //TODO boardToSave in edit, actions depend on what 
 // }
 
 async function _createBoards() {
-  for (const item of testData) {
-    await storageService.post(STORAGE_KEY, item)
-  }
+    for (const item of testData) {
+        await storageService.post(STORAGE_KEY, item)
+    }
 }
- 
+
+//////GROUP//////
+async function saveGroup(groupToSave, boardId) { 
+    const board = getById(boardId)
+    var savedBoard
+    if (groupToSave.id) {
+        board = {...board, groups: board.groups.map(group =>
+            group.id === groupToSave.id ? groupToSave : group)
+        }
+        savedBoard = await storageService.put(STORAGE_KEY, board)
+    } else {
+        groupToSave.id = makeId()
+        groupToSave.createdAt = Date.name()
+        board = {...board, groups: {...groups, groupToSave}}
+        savedBoard = await storageService.post(STORAGE_KEY, board)
+    }
+    return savedBoard
+}
+
+async function removeGroup(groupId, boardId) {
+    const board = getById(boardId)
+    board.groups.filter(group => group.id !== groupId)
+    await storageService.put(STORAGE_KEY, board)
+}
+
+function getColors() {
+    return colors
+}
+
+//////COLUMN//////
+async function saveColumn(columnToSave, boardId) { 
+    const board = getById(boardId)
+    var savedBoard
+    if (columnToSave.id) {
+        board = {...board, columns: board.columns.map(column =>
+            column.id === columnToSave.id ? columnToSave : column)
+        }
+        savedBoard = await storageService.put(STORAGE_KEY, board)
+    } else {
+        columnToSave.id = makeId()
+        columnToSave.createdAt = Date.name()
+        board = {...board, columns: {...columns, columnToSave}}
+        savedBoard = await storageService.post(STORAGE_KEY, board)
+    }
+    return savedBoard
+}
+
+async function removeColumn(columnId, boardId) {
+    const board = getById(boardId)
+    board.columns.filter(column => column.id !== columnId)
+    await storageService.put(STORAGE_KEY, board)
+}
+
+
+//////TASK//////

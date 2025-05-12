@@ -45,7 +45,7 @@ function getEmptyBoard() {
                 createdBy: userService.getLoggedinUser()?._id || null,
                 width: 200,
                 name: 'Status',
-                type: {variant: 'Status', labels: [
+                type: {variant: 'status', labels: [
                         {name: 'Working On It', color: 'working_orange'},
                         {name: 'Stuck', color: 'stuck-red'},
                         {name: 'Done', color: 'done-green'},
@@ -175,23 +175,57 @@ function getEmptyBoard() {
 }
 
 function getEmptyGroup() {
-
+    const colorNames = boardService.getColors()
+    return {
+        // id: makeId(),
+        // createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
+        name: 'New Group',
+        isCollapse: false,
+        color: colorNames[Math.floor(Math.random() * colorNames.length)],
+        tasks: []
+    }
 }
 
-function getEmptyTask() {
-
+function getEmptyTask(boardId) {
+    const board = boardService.getById(boardId)
+    return {
+        id: makeId(),
+        createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
+        columnValues: [
+            {id: board.columns[0].id, value: 'New item'}
+        ]
+    }
 }
 
 function getEmptyColumn(type) {
+    const emptyCol = {
+        // id: makeId(),
+        // createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
+        name: type.charAt(0).toUpperCase() + type.slice(1),
+        width: 200,
+        type :  {variant: type}
+    }
 
+    if (type === 'status') {
+        emptyCol.type = {...emptyCol.type, labels: [
+                            {name: 'Working On It', color: 'working_orange'},
+                            {name: 'Stuck', color: 'stuck-red'},
+                            {name: 'Done', color: 'done-green'},
+                        ]}
+    } else if (type === 'dropdown') {
+        emptyCol.type = {...emptyCol.type, labels: []}
+    }
+
+    return emptyCol
 }
 
 //TODO edit this when filter is created
 function getDefaultFilter() { 
     return {
         txt: '',
-        sortField: 'pos',
-        sortDir: 1,
     }
 }
 

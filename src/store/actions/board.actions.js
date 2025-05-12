@@ -2,13 +2,15 @@ import { boardService } from "../../services/board";
 import { ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, SET_BOARDS, SET_BOARD, UPDATE_BOARD } from "../reducers/board.reducer.js";
 import { CLOSE_TASK_PANEL, OPEN_TASK_PANEL } from "../reducers/board.reducer.js";
 import { BOARDS_LOADING_START, BOARDS_LOADING_DONE, BOARD_LOADING_START, BOARD_LOADING_DONE } from "../reducers/board.reducer.js";
+import { ADD_GROUP, REMOVE_GROUP, REVERT_GROUPS, UPDATE_GROUP } from "../reducers/board.reducer.js";
+import { ADD_COLUMN, REMOVE_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN } from "../reducers/board.reducer.js";
 import { store } from "../store.js";
 import { useSelector } from 'react-redux'
 
 
 // ========= CRUDL =========
 
-// ===== Load Board ====
+// ===== Board ====
 export async function loadBoards() { //TODO add filterby as args
     // const filterBy = store.getState().boardModule.filterBy
     store.dispatch({ type: BOARDS_LOADING_START })
@@ -38,7 +40,6 @@ export async function loadBoard(boardId) {
     }
 }
 
-// ===== Remove Board ====
 export async function removeBoard(boardId) {
     try {
         await boardService.remove(boardId)
@@ -89,6 +90,89 @@ export async function addBoard(board) {
 //     store.dispatch({ type: SET_BOARDS_FILTER_BY, filterBy })
 // }
 
+// ========= Group =========
+export async function addGroup(boardId) {
+    const group = boardService.getEmptyGroup()
+    try {
+        const savedGroup = await boardService.saveGroup(group, boardId)
+        store.dispatch(getCmdAddGroup(savedGroup))
+        return savedGroup
+    } catch (err) {
+        console.log('board action -> Cannot add group', err)
+        throw err
+    }
+} 
+
+export async function updateGroup(group, boardId) {
+    try {
+        const savedGroup = await boardService.saveGroup(group, boardId)
+        store.dispatch(getCmdUpdateGroup(savedGroup))
+        return savedGroup
+    } catch (err) {
+        console.log('board action -> Cannot save group', err)
+        throw err
+    }
+} 
+
+export async function removeGroup(groupId, boardId) {
+    try {
+        await boardService.removeGroup(groupId, boardId)
+        store.dispatch(getCmdRemoveGroup(groupId))
+    } catch (err) {
+        console.log('board action -> Cannot remove group', err)
+        store.dispatch({type: REVERT_GROUPS})
+        throw err
+    }
+} 
+
+// ========= Task =========
+export async function addTask() {
+    
+} 
+
+export async function updateTask() {
+
+} 
+
+export async function removeTask() {
+
+} 
+
+// ========= Column =========
+export async function addColumn(type, boardId) {
+        const column = boardService.getEmptyColumn(type)
+    try {
+        const savedColumn = await boardService.saveColumn(column, boardId)
+        store.dispatch(getCmdAddColumn(savedColumn))
+        return savedColumn
+    } catch (err) {
+        console.log('board action -> Cannot add column', err)
+        throw err
+    }
+} 
+
+export async function updateColumn(column, boardId) {
+        try {
+        const savedColumn = await boardService.saveColumn(column, boardId)
+        store.dispatch(getCmdUpdateColumn(savedColumn))
+        return savedColumn
+    } catch (err) {
+        console.log('board action -> Cannot save column', err)
+        throw err
+    }
+} 
+
+export async function removeColumn(columnId, boardId) {
+    try {
+        await boardService.removeColumn(columnId, boardId)
+        store.dispatch(getCmdRemoveColumn(columnId))
+    } catch (err) {
+        console.log('board action -> Cannot remove column', err)
+        store.dispatch({type: REVERT_COLUMNS})
+        throw err
+    }
+} 
+
 
 // ========= Task Details Panel =========
 export function openTaskPanel() {
@@ -136,6 +220,43 @@ function getCmdUpdateBoard(board) {
 //         msg
 //     }
 // }
+function getCmdRemoveGroup(groupId) {
+    return {
+        type: REMOVE_GROUP,
+        groupId
+    }
+}
+function getCmdAddGroup(group) {
+    return {
+        type: ADD_GROUP,
+        group
+    }
+}
+function getCmdUpdateGroup(group) {
+    return {
+        type: UPDATE_GROUP,
+        group
+    }
+}
+
+function getCmdRemoveColumn(columnId) {
+    return {
+        type: REMOVE_COLUMN,
+        columnId
+    }
+}
+function getCmdAddColumn(column) {
+    return {
+        type: ADD_COLUMN,
+        column
+    }
+}
+function getCmdUpdateColumn(column) {
+    return {
+        type: UPDATE_COLUMN,
+        column
+    }
+}
 
 // unitTestActions()
 async function unitTestActions() {
