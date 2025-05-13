@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { boardService } from "../../../../../services/board"
 import { addBoard } from "../../../../../store/actions/board.actions"
+import { useNavigate } from "react-router-dom"
 
 // === Services
 
@@ -20,13 +21,15 @@ import { addBoard } from "../../../../../store/actions/board.actions"
 export function AddBoardModal({ closeGlobalModal }) {
     // === Consts
     const [newBoard, setNewBoard] = useState('')
-
+    const navigate = useNavigate()
+    
     // === Effects
     useEffect(() => {
         const board = boardService.getEmptyBoard()
         setNewBoard({ ...board, name: 'New Board' })
     }, [])
-
+    
+    // === Functions
     function hendleChange({target}){
         const field = target.name
         let value = target.value   
@@ -38,16 +41,15 @@ export function AddBoardModal({ closeGlobalModal }) {
      function onSubmit(ev) {
         ev.preventDefault()
         addBoard(newBoard)
-            .then(() => {
+            .then((savedBoard) => {
                 closeGlobalModal()
+                navigate(`/app/board/${savedBoard._id}`)
             })
             .catch(err => console.error('Save failed', err))
 
 
     }
 
-    // === Functions
-    // if (!data) return <div>Loading...</div>
     const { name } = newBoard
     return (
         <section className="ComponentName">

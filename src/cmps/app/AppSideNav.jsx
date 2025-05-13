@@ -1,5 +1,5 @@
 // === Style
-
+import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -59,10 +59,12 @@ export function AppSideNav({ }) {
             <div className="divider1" />
 
             <section className="nav-section">
-                <a
-                    className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''}`}
-                    onClick={() => setIsFavoritesOpen(prev => !prev)}
-                >
+            <a
+  className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${
+    isFavoritesOpen ? 'starred' : ''
+  }`}
+  onClick={() => setIsFavoritesOpen(prev => !prev)}
+>
                     Favorites
                     {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
                 </a>
@@ -78,13 +80,16 @@ export function AppSideNav({ }) {
                         <div className="search-btn clickable clear icon-btn size-24 i-Search" />
                     </div>
 
-                    <div className="workspaces-curr-board">
+                    <section className="workspaces-curr-board">
                         <div className="curr-wordspace-container">
-                            <div className="MoreBelowFilled-icon icon-start i-MoreBelowFilled " />
+                            {/* <div className="MoreBelowFilled-icon icon-start i-MoreBelowFilled " /> */}
+                            <img src={mainWSIcon} alt="" />
+
                             <p>Main Workspaces</p>
                         </div>
                         <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
-                    </div>
+                    </section>
+
                     {boards.map(board =>
                         <div key={board._id} className="board-item-nav">
                             <NavLink
