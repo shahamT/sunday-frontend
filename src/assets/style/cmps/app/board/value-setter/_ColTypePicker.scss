@@ -1,0 +1,14 @@
+.ColTypePicker {
+    padding: 16px;
+    display: grid;
+    grid-template-columns:  150px 150px;
+    
+    .clickable {
+        display: flex;
+        gap: 5px;
+        padding: 4px 8px;
+        margin-right: 8px;
+        width: 140px;
+        justify-content: start;
+    }
+}

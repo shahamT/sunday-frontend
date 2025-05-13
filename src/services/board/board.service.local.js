@@ -69,8 +69,13 @@ export const boardService = {
 window.cs = boardService
 
 //////BOARD//////
-async function saveBoards(boards) {
-    var savedBoards = await storageService.saveAll(STORAGE_KEY, boards)
+async function saveBoards(newBoards) {
+    const oldBoards = await storageService.query(STORAGE_KEY)
+
+    const reorderedOldBoards = newBoards.map(newBoard =>
+    oldBoards.find(oldBoard => oldBoard._id === newBoard._id))
+    
+    var savedBoards = await storageService.saveAll(STORAGE_KEY, reorderedOldBoards)
     return savedBoards
 }
 
