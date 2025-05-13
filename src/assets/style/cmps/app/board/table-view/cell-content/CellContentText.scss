@@ -1,0 +1,101 @@
+.CellContentText{
+    position: relative;
+    cursor: text;
+
+    &:hover {
+        
+        .input-outline,
+        .clear-btn,
+        .date-empty-state  {
+            opacity: 1;
+        }
+
+    }
+
+
+    .input-outline {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        height: 26px;
+        width: calc(100% - 10px);
+
+        border: 1px solid var(--layout-border-color);
+        border-radius: var(--border-radius-sm);
+        background-color: transparent;
+
+        opacity: 0;
+    }
+
+    .clear-btn {
+        position: absolute;
+        z-index: 40;
+        top: 50%;
+        right: 9px;
+        transform: translateY(-50%);
+        width: 18px !important;
+        height: 18px;
+        background-color: var(--primary-background-hover-color);
+        opacity: 0;
+
+    }
+
+    .text-label {
+
+        font-size: 14px;
+        font-weight: 300;
+        font-family: var(--font-family);
+
+        &:hover{
+            color: var(--primary-color);
+        }
+
+    }
+
+
+
+    .text-empty-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        height: 100%;
+        width: 100%;
+
+        opacity: 0;
+        transition: var(--transition-lg);
+
+        .plus-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            width: 13px;
+            height: 13px;
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius-round);
+
+            color: var(--text-color-on-primary);
+
+            transition: var();
+
+            .plus-icon {
+                line-height: 1;
+                font-size: 14px;
+            }
+        }
+
+        .text-icon {
+            font-size: 20px;
+            color: var(--icon-color);
+
+        }
+
+
+    }
+
+}

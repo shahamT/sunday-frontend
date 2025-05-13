@@ -2,25 +2,21 @@
     display: flex;
     align-items: center;
 
+    border-block-start: 1px solid var(--layout-border-color);
+
     height: 36px;
-    // min-width: 0px;
-    // width: 100%;
-    // flex-shrink: 1;
 }
 
 .t-cell {
     display: flex;
     align-items: center;
 
-    border-block-start: 1px solid var(--layout-border-color);
-
     border-inline-start: 1px solid var(--layout-border-color);
     height: 100%;
     flex-shrink: 0;
 
-
     &.last {
-        width: 100%;
+        width: 1000px;
         flex-shrink: 1;
     }
 

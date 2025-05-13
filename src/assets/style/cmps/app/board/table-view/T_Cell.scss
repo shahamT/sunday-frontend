@@ -1,0 +1,8 @@
+.T_Cell:focus {
+  outline: 1px solid var(--primary-color);
+  outline-offset: -1px;
+}
+.T_Cell:focus-within {
+  outline: 1px solid var(--primary-color);
+  outline-offset: -1px;
+}

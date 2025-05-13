@@ -59,18 +59,13 @@ export function CellContentDate({ taskId, column, columnValue }) {
 
 
     return (
-        <div className={`CellContentDate cell-contnet centered`}>
+        <div className={`CellContentDate cell-contnet`}>
 
-            <div className="input-outline" />
-
-            {columnValue &&
-                <div
-                    className="clear-btn clickable clear icon-btn size-24 i-CloseSmall"
-                    onClick={onClearDate}
-                />}
 
             <PopUpMenu
                 position="bottom"
+                gap={1}
+                stretchTrigger={true}
                 renderContent={({ onCloseModal }) => (
                     <DatePickerColumn
                         onCloseModal={onCloseModal}
@@ -79,23 +74,32 @@ export function CellContentDate({ taskId, column, columnValue }) {
                     />
                 )}
             >
+                <div className={`cell-contnet centered`}>
 
-                {columnValue
-                    ?
-                    <>
-                        <div className="date-label">
-                            {formatTimestamp(columnValue?.value)}
+                    <div className="input-outline" />
 
+                    {columnValue &&
+                        <div
+                            className="clear-btn clickable clear icon-btn size-24 i-CloseSmall"
+                            onClick={onClearDate}
+                        />}
+                    {columnValue
+                        ?
+                        <>
+                            <div className="date-label">
+                                {formatTimestamp(columnValue?.value)}
+
+                            </div>
+                        </>
+                        :
+                        <div className="date-empty-state">
+                            <div className="plus-btn">
+                                <div className="plus-icon i-AddSmall" />
+                            </div>
+                            <div className="calendar-icon i-Calendar" />
                         </div>
-                    </>
-                    :
-                    <div className="date-empty-state">
-                        <div className="plus-btn">
-                            <div className="plus-icon i-AddSmall" />
-                        </div>
-                        <div className="calendar-icon i-Calendar" />
-                    </div>
-                }
+                    }
+                </div>
             </PopUpMenu>
 
         </div>

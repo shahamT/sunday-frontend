@@ -19,8 +19,6 @@ import { StatusPicker } from "../../value-setter/StatusPicker";
 
 export function CellContentStatus({ taskId, column, columnValue }) {
     // === Consts
-    const popupRef = useRef();
-
     // === Effects
 
     // === Functions
@@ -49,16 +47,11 @@ export function CellContentStatus({ taskId, column, columnValue }) {
     const labelColor = selectedLabel?.color ?? '';
 
     return (
-        <div
-            className={`CellContentStatus cell-contnet centered ${labelColor}-bg`}
-            onClick={() => popupRef.current?.open()}
-        >
-
-            <div className="fold" />
-            {columnValue && <p>{labelName}</p>}
+        <div className={`CellContentStatus cell-contnet`}>
 
             <PopUpMenu
-                ref={popupRef}
+                stretchTrigger={true}
+                gap={4}
                 noArrow={false}
                 position="bottom"
                 renderContent={({ onCloseModal }) => (
@@ -70,12 +63,13 @@ export function CellContentStatus({ taskId, column, columnValue }) {
                     />
                 )}
             >
-
-
+                <div className={`cell-contnet centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'}`}>
+                    <div className="fold" />
+                    {columnValue && <p>{labelName}</p>}
+                </div>
             </PopUpMenu>
+
         </div>
-
-
 
 
 

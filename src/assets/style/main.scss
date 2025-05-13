@@ -73,6 +73,7 @@
 @import 'cmps/app/board/table-view/T_Group.scss';
 @import 'cmps/app/board/table-view/T_Filter.scss';
 @import 'cmps/app/board/table-view/T_ColumnHeaderCell.scss';
+@import 'cmps/app/board/table-view/T_Cell.scss';
 
 // ====== Value setter ======
 @import 'cmps/app/board/value-setter/_DatePicker.scss';
@@ -82,4 +83,5 @@
 @import 'cmps/app/board/table-view/cell-content/CellContentItem.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentStatus.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentDate.scss';
+@import 'cmps/app/board/table-view/cell-content/CellContentText.scss';
 
