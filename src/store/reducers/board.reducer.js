@@ -56,7 +56,7 @@ const initialState = {
     lastColumns: [],
     
     //Tasks
-    lastTasks: [],
+    lastTasks: {},
 
     // filterBy: boardService.getDefaultFilter(),
 }
@@ -79,7 +79,7 @@ export function boardReducer(state = initialState, action = {}) {
             }
         
         case REVERT_BOARDS:
-            return {...state, boards: state.lastBoards}
+            return {...state, boards: state.lastBoards, lastBoards: []}
 
         case ADD_BOARD:
             return {
@@ -116,12 +116,12 @@ export function boardReducer(state = initialState, action = {}) {
             const lastGroups = [...state.board.groups]
             return {
                 ...state,
-                board: state.board.groups.filter(group => group.id !== action.groupId),
+                board: {...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId)},
                 lastGroups,
             }
         
         case REVERT_GROUPS:
-            return {...state, board: {...state.board, groups: state.lastGroups} }
+            return {...state, board: {...state.board, groups: state.lastGroups}, lastGroups: []}
 
         case ADD_GROUP:
             return {
@@ -132,7 +132,7 @@ export function boardReducer(state = initialState, action = {}) {
         case UPDATE_GROUP:
             return {
                 ...state,
-                board: state.board.groups.map(group => group.id === action.group.id ? action.group : group)
+                board: {...state.board, groups: state.board.groups.map(group => group.id === action.group.id ? action.group : group)}
             }
 
          //COLUMN
@@ -140,28 +140,31 @@ export function boardReducer(state = initialState, action = {}) {
             const lastColumns = [...state.board.columns]
             return {
                 ...state,
-                board: state.board.columns.filter(column => column.id !== action.columnId),
+                board: {...state.board, columns: state.board.columns.filter(column => column.id !== action.columnId)},
                 lastColumns
             }
         
         case REVERT_COLUMNS:
-            return {...state, board: {...state.board, columns: state.lastColumns} }
+            return {...state, board: {...state.board, columns: state.lastColumns}, lastColumns:[]}
 
         case ADD_COLUMN:
             return {
                 ...state,
-                board: {...state.board, groups: [...state.board.groups, action.group]}
+                board: {...state.board, columns: [...state.board.columns, action.column]}
             }
 
         case UPDATE_COLUMN:
             return {
                 ...state,
-                board: state.board.columns.map(column => column.id === action.column.id ? action.column : column)
+                board: {...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column)}
             }
 
          //TASKS
          case REMOVE_TASK:
-            const lastTasks = [...(state.board.groups.find(group => group.id === action.groupId)?.tasks || [])]
+            const lastTasks = {
+                groupId: action.groupId,
+                tasks: [...(state.board.groups.find(group => group.id === action.groupId)?.tasks || [])]
+            }
             return {
                 ...state,
                 board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
@@ -170,9 +173,9 @@ export function boardReducer(state = initialState, action = {}) {
             }
         
         case REVERT_TASKS:
-            return {...state, board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
-                ? { ...group, tasks: lastTasks } : group)}
-}
+            return {...state, board: {...state.board, groups: state.board.groups.map(group => group.id === state.lastTasks.groupId
+                ? { ...group, tasks: state.lastTasks.tasks } : group)}, lastTasks:{}
+            }
 
         case ADD_TASK:
             return {
