@@ -4,12 +4,10 @@
 // === Services
 
 // === Actions
-import { loadBoard, loadBoards } from "../../../../../store/actions/board.actions.js";
 
 // === Hooks / React
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
+
 
 // === Imgs
 
@@ -23,12 +21,6 @@ import { T_Group } from "./T_Group";
 export function T_View({ /* prop1, prop2 */ }) {
     // === Consts
     const board = useSelector(storeState => storeState.boardModule.board)
-    const { boardId } = useParams()
-
-    // === Effects
-    useEffect(() => {
-        loadBoard(boardId)
-    }, [boardId])
 
     // === Functions
 

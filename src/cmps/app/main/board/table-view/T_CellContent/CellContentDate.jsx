@@ -40,13 +40,6 @@ export function CellContentDate({ taskId, column, columnValue }) {
     }
 
     function onSetDate(date) {
-        console.log("date: ", date)
-        // if (date === '') {
-        //     showErrorMsg(`Item name can't be empty`)
-        //     set(columnValue?.value)
-        //     return
-        // }
-
         try {
             setColumnValue(taskId, column.id, date)
         }
@@ -58,6 +51,9 @@ export function CellContentDate({ taskId, column, columnValue }) {
 
     return (
         <div className={`CellContentDate cell-contnet centered`}>
+            
+            <div className="input-outline" />
+
             <PopUpMenu
                 position="bottom"
                 renderContent={({ onCloseModal }) => (
@@ -69,13 +65,10 @@ export function CellContentDate({ taskId, column, columnValue }) {
                 )}
             >
 
-                <div className="input-outline">
-
-                </div>
-
                 {columnValue
                     ?
                     <div className="date-label">{formatTimestamp(columnValue?.value)}
+                    <div className="clicable"></div>
                     </div>
 
                     :
