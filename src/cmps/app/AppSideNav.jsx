@@ -3,7 +3,7 @@ import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
@@ -30,6 +30,8 @@ import { BoarNavBarLink } from './main/board/side-nave/BoarNavBarLink';
 export function AppSideNav({ }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const board = useSelector(storeState => storeState.boardModule.board)
+    const { boardId } = useParams()
+
 
 
     const [editingBoardId, setEditingBoardId] = useState(null)
@@ -79,7 +81,12 @@ export function AppSideNav({ }) {
     }
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                delay: 150,
+                tolerance: 5,
+            },
+        }),
         useSensor(TouchSensor),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
@@ -127,28 +134,30 @@ export function AppSideNav({ }) {
                         </div>
                         <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
-                    {/* <DndContext
+
+
+                    <DndContext
                         sensors={sensors}
                         collisionDetection={closestCenter}
-
                         onDragEnd={handleDragEnd}
                     >
                         <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                             {boards.map(board =>
                                 <BoarNavBarLink board={board}
                                     key={board._id}
+                                    boardId={boardId}
                                     editedTitle={editedTitle}
                                     editingBoardId={editingBoardId}
                                     setEditedTitle={setEditedTitle}
                                     setEditingBoardId={setEditingBoardId}
                                     handleRename={handleRename} />
-                                
+
                             )}
                         </SortableContext>
-                    </DndContext> */}
+                    </DndContext>
 
 
-                    {boards.map(board =>
+                    {/* {boards.map(board =>
                         <div key={board._id} className="board-item-nav">
                             <NavLink
                                 to={`/app/board/${board._id}`}
@@ -184,7 +193,7 @@ export function AppSideNav({ }) {
                             </NavLink>
                             <GlobalModal />
                         </div>
-                    )}
+                    )} */}
 
 
                 </section>}
