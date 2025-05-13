@@ -7,7 +7,6 @@
 
 // === Hooks / React
 
-
 // === Imgs
 
 // === Child Components
@@ -24,7 +23,6 @@ export function BoardPreview({ /* prop1, prop2 */ }) {
    
 
     // === Effects
-
 
     // === Functions
 
