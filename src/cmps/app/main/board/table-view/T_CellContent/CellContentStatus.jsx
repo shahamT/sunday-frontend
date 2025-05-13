@@ -22,7 +22,6 @@ export function CellContentStatus({ column, columnValue }) {
     // === Functions
 
     const selectedLabel = column.type.labels.find(label => label.id === columnValue?.value);
-    console.log("selectedLabel: ", selectedLabel)
     const labelName = selectedLabel?.name ?? '';
     const labelColor = selectedLabel?.color ?? '';
 

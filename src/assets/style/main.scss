@@ -60,6 +60,8 @@
 @import 'cmps/app/board/TaskPanel.scss';
 @import 'cmps/app/board/TaskDetails.scss';
 
+@import 'cmps/app/board/BoardHeader';
+
 
 // ====== Table View ======
 @import 'cmps/app/board/table-view/T_View.scss';
@@ -75,6 +77,7 @@
 // ====== Value setter ======
 @import 'cmps/app/board/value-setter/_DatePicker.scss';
 @import 'cmps/app/board/value-setter/_StatusPicker.scss';
+@import 'cmps/app/board/value-setter/ColTypePicker';
 
 // ====== Table View ======
 @import 'cmps/app/board/table-view/cell-content/CellContentItem.scss';
