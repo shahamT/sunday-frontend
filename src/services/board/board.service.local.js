@@ -48,7 +48,7 @@ const colors = [
     'pecan']
 
 
-_createBoards()
+// _createBoards()
 
 export const boardService = {
     query,
@@ -71,9 +71,7 @@ window.cs = boardService
 
 //////BOARD//////
 async function saveBoards(boards) {
-    console.log("local",boards)
     var savedBoards = await storageService.saveAll(STORAGE_KEY, boards)
-    console.log()
     return savedBoards
 }
 

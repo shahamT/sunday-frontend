@@ -48,13 +48,13 @@ export function AppSideNav({ }) {
             setEditingBoardId(null);
             return
         }
-        const updatedBoard = { ...board, name: editedTitle };
+        const updatedBoard = { ...board, name: editedTitle }
 
         updateBoard(updatedBoard)
             .then(() => {
                 setEditingBoardId(null);
             })
-            .catch((err) => console.error("Rename failed", err));
+            .catch(() => console.error("Rename failed"));
     }
 
 
