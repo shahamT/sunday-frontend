@@ -4,27 +4,28 @@
     font-family: var(--font-family);
     font-size: 1rem;
 
-    .react-datepicker__month-container{
+    .react-datepicker__month-container {
         height: 380px;
         width: 280px;
+        padding: 25px;
     }
-    
-    
-    
-    
+
+
+
+
     .date-picker-container {
         display: grid;
         grid-template-columns: 1fr 1fr 1fr;
-        gap: 8px;
+        gap: 4px;
         grid-template-areas:
-        "today . clock"
+            "today . clock"
             "date date date"
             "month year btns"
             "calender calender calender"
-            ;
-            
-            
-        }
+        ;
+
+
+    }
 
     .react-datepicker-wrapper {
         grid-area: date;
@@ -32,14 +33,16 @@
 
     .month-btn {
         grid-area: month;
-        width: 100px;
+        width: 70px;
         font-size: 14px;
         text-align: left;
         text-align-last: left;
         direction: ltr;
         padding-left: 0.5em;
+        margin: 0;
+        padding: 0;
 
-        .month-btn>* {}
+        
     }
 
     .year-btn {
@@ -50,6 +53,8 @@
         text-align-last: left;
         direction: ltr;
         padding-left: 0.5em;
+        margin: 0;
+        padding: 0;
     }
 
     .move-btns {
@@ -69,9 +74,7 @@
 
     .time-btn.active {
         background-color: #CFE8FF;
-        /* כחול monday */
         border-radius: 4px;
-        // color: white;
     }
 
     .today-btn {
@@ -121,13 +124,33 @@
 
     }
 
-    .react-datepicker__day-names>* {
+    .react-datepicker__day-names> * {
         color: #6E6E7A;
+        border-top: none !important;
 
+
+    }
+
+    .react-datepicker__day-names {
+        border-bottom: none;
+        // margin-bottom: 0;
+        // padding-bottom: 0;
+        margin: 0;
+        padding: 0;
+
+    }
+    .react-datepicker__day--outside-month {
+        color: #999;
+      }
+
+ .react-datepicker__header--custom {
+        border: none !important;
+        box-shadow: none !important;
     }
 
     .react-datepicker__header {
         display: flex;
+        padding-bottom: 0px;
         flex-direction: column;
         background-color: rgba(255, 255, 255, 0);
     }

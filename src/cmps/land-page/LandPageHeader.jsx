@@ -14,8 +14,8 @@ export function LandPageHeader(props) {
                     <a href="https://vibe.monday.com/?path=/docs/components-icon--docs#icons-list">icons</a>
                     <NavLink to="/reusables" >Reusables</NavLink>
                     <NavLink to="/dev-page-1" >dev1</NavLink>
-                    <NavLink to="/dev-page-1" >dev2</NavLink>
-                    <NavLink to="/dev-page-1" >dev3</NavLink>
+                    <NavLink to="/dev-page-2" >dev2</NavLink>
+                    <NavLink to="/dev-page-3" >dev3</NavLink>
                     <NavLink to="/about" >About</NavLink>
                     <NavLink to="/login" >Login</NavLink>
                     <NavLink to="/app" >App</NavLink>

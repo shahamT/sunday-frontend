@@ -1,33 +1,20 @@
 // === Style
-import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import range from 'lodash/range';
-import { getYear, getMonth } from 'date-fns';
-import { useState } from "react";
 
 // === Libs
-
-// === Services
-
-// === Actions
-
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
+import { useState } from "react";
+import DatePicker from 'react-datepicker';
+import range from 'lodash/range';
+import { getYear, getMonth } from 'date-fns';
 
 // ====== Component ======
 // =======================
 
-export function DatePicker({ /* prop1, prop2 */ }) {
-
+export function DatePickerColumn({ onCloseModal }) {
     // === Consts
     const [selectedDate, setSelectedDate] = useState(new Date())
     const [startDate, setStartDate] = useState(new Date())
     const [startTime, setStartTime] = useState(new Date())
-
     const [showTimePicker, setShowTimePicker] = useState(false);
 
     const years = range(1990, getYear(new Date()) + 1, 1);
@@ -45,7 +32,7 @@ export function DatePicker({ /* prop1, prop2 */ }) {
         "November",
         "December",
     ]
-    // === Effects
+ 
 
 
     // === Functions
@@ -58,13 +45,22 @@ export function DatePicker({ /* prop1, prop2 */ }) {
     }
 
     function handleSave(date) {
-        console.log('Saving date:', date.toISOString());
+        console.log('Saving date:', date.toISOString())
+        if (onCloseModal) onCloseModal()
       }
-
+      
     return (
         <section className='date-picker'>
 
             <DatePicker inline
+            selected={startDate}
+            onChange={(date) => {
+              setStartDate(date)
+              handleSave(date)
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') handleSave(startDate);
+            }}
                 renderCustomHeader={({
                     date,
                     changeYear,
@@ -81,7 +77,10 @@ export function DatePicker({ /* prop1, prop2 */ }) {
                         {showTimePicker ?
                             (<DatePicker
                                 selected={startDate}
-                                onChange={(date) => setStartDate(date)}
+                                onChange={(date) => {
+                                    setStartDate(date)
+                                    handleSave(date) 
+                                  }}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') handleSave(startDate);
                                   }}
@@ -89,11 +88,14 @@ export function DatePicker({ /* prop1, prop2 */ }) {
                                 open={false}
                             />) : (<DatePicker
                                 selected={startDate}
-                                onChange={(date) => setStartDate(date)}
+                                onChange={(date) => {
+                                    setStartDate(date)
+                                    handleSave(date) 
+                                  }}
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter') handleSave(startDate);
                                   }}
-                                dateFormat="dd/MM/yyyy"
+                                dateFormat="   dd/MM/yyyy"
                                 open={false}
 
                             />)}
@@ -128,9 +130,8 @@ export function DatePicker({ /* prop1, prop2 */ }) {
 
                     </div>
                 )}
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
+                
             />
         </section>
-    );
-};
+    )
+}
