@@ -241,7 +241,7 @@ async function removeTask(taskId, groupId, boardId) {
 
 function setColumnValue(board, taskId, colId, value) {
     if (!Array.isArray(board.groups)) return []
-    groups = board.groups.map(group => ({
+    const groups = board.groups.map(group => ({
     ...group,
     tasks: group.tasks.map(task => {
       if (task.id !== taskId) return task
@@ -259,7 +259,7 @@ function setColumnValue(board, taskId, colId, value) {
 
 function removeColumnValue(board, taskId, colId) {
     if (!Array.isArray(board.groups)) return []
-    groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
+    const groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
       if (task.id !== taskId) return task
 
       const updatedColumnValues = task.columnValues.filter(columnValue => columnValue.colId !== colId)
