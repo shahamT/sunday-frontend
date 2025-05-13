@@ -116,7 +116,8 @@ export function AppSideNav({ }) {
                                         />
                                     )}
                                 >
-                                    <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
+                                    <div
+                                    className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
                                 </PopUpMenu>
                             </NavLink>
                             <GlobalModal />

@@ -21,7 +21,7 @@ export function PopUpMenu({
 
   function close() {
     setIsVisible(false);
-  
+
     if (noAnimation) {
       setIsOpen(false);
     } else {
@@ -82,7 +82,13 @@ export function PopUpMenu({
 
   return (
     <div className="popup-wrapper" ref={wrapperRef}>
-      <div onClick={open}>
+      <div
+        onClick={(e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          open();
+        }}
+      >
         {children}
       </div>
 
@@ -93,11 +99,10 @@ export function PopUpMenu({
           style={getGapStyle(placement, gap)}
         >
           <div
-            className={`popup-menu-inner ${
-              noAnimation ? 'no-animation' : isVisible ? 'visible' : ''
-            }`}
+            className={`popup-menu-inner ${noAnimation ? 'no-animation' : isVisible ? 'visible' : ''
+              }`}
             data-placement={placement}
-            
+
           >
             {renderContent({ onCloseModal: close })}
             {!noArrow && <div className={`popup-arrow popup-arrow-${placement}`} />}

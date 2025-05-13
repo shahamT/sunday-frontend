@@ -3,6 +3,12 @@
 
     padding-inline: 5px;
 
+
+
+    .date-label {}
+
+
+
     .date-empty-state {
         display: flex;
         align-items: center;
@@ -14,6 +20,12 @@
         border: 1px solid var(--layout-border-color);
         border-radius: var(--border-radius-sm);
 
+        opacity: 0;
+        transition: var(--transition-md);
+
+        &:hover {
+            opacity: 1;
+        }
 
 
         .plus-btn {
@@ -28,6 +40,8 @@
 
             color: var(--text-color-on-primary);
 
+            transition: var();
+
             .plus-icon {
                 line-height: 1;
                 font-size: 14px;
@@ -37,6 +51,7 @@
         .calendar-icon {
             font-size: 20px;
             color: var(--icon-color);
+
         }
     }
 }

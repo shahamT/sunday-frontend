@@ -38,7 +38,12 @@ export function CellContentDate({ column, columnValue }) {
 
     return (
         <div className={`CellContentDate cell-contnet centered`}>
-            {columnValue && <p>{formatTimestamp(columnValue.value)}</p>}
+            
+            {columnValue &&
+            <div className="date-label">{formatTimestamp(columnValue.value)}
+            </div>}
+
+
              {!columnValue &&
              <div className="date-empty-state">
                 <div className="plus-btn">
