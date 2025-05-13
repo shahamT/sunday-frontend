@@ -27,7 +27,7 @@ export function CellContentStatus({ column, columnValue }) {
 
     return (
         <div className={`CellContentStatus cell-contnet centered ${labelColor}-bg`}>
-            <div class="fold"></div>
+            <div className="fold"></div>
             {columnValue && <p>{labelName}</p>}
 
         </div>

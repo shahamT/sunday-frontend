@@ -22,7 +22,7 @@ export function T_GroupHeadRow({ columns, group }) {
     // === Effects
 
     // === Functions
-    // console.log('got here')
+    
     return (
         <section className="T_GroupHeadRow">
             <div className="menu-wraper" />

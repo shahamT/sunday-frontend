@@ -6,6 +6,7 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText";
 // === Services
 
 // === Actions
+import { updateColumn } from "../../../../../store/actions/board.actions";
 
 // === Hooks / React
 import { useControlledInput } from "../../../../../hooks/useControlledInput";
@@ -19,7 +20,7 @@ import { useControlledInput } from "../../../../../hooks/useControlledInput";
 
 export function T_ColumnHeaderCell({ column, groupId }) {
     // === Consts
-    const [value, handleChange, reset, set] = useControlledInput('')
+    const [value, handleChange, reset, set] = useControlledInput(column.name)
 
     // === Effects
 
@@ -31,8 +32,14 @@ export function T_ColumnHeaderCell({ column, groupId }) {
             return
         }
         const updatedColumn = { ...column, name: value };
-        updateColumn(updatedColumn)
-            .catch(showErrorMsg(`Somthing went wrong`));
+        
+        try{
+             updateColumn(updatedColumn)
+        }
+        catch(err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+
     }
 
 
@@ -52,10 +59,11 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                     </label>
                 }
                 <EditableText
-                    value={column.name}
+                    value={value}
                     emojiPicker={false}
                     centered={true}
                     size="small"
+                    handleChange={handleChange}
                     onBlur={onUpdateColumnName}
                     onPressEnter={onUpdateColumnName}
                 />

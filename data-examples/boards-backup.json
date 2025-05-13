@@ -61,19 +61,22 @@
           "variant": "status",
           "labels": [
             {
+              "id": "dfgds132",
               "name": "To Do",
               "pos": 1,
-              "color": "#e2445c"
+              "color": "lavender"
             },
             {
+              "id": "dfgd432",
               "name": "In Progress",
               "pos": 2,
-              "color": "#fdab3d"
+              "color": "working_orange"
             },
             {
+              "id": "dfgds532",
               "name": "Done",
               "pos": 3,
-              "color": "#00c875"
+              "color": "done-green"
             }
           ]
         }
@@ -135,7 +138,7 @@
         "createdAt": 1746961477549,
         "createdBy": "u_768ef13c",
         "name": "Planning",
-        "color": "#579bfc",
+        "color": "orchid",
         "pos": 1,
         "isCollapsed": false,
         "tasks": [
@@ -145,27 +148,27 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_7cb82a1b"
               },
               {
-                "id": "status",
-                "value": "In Progress"
+                "colId": "status",
+                "value": "dfgds132"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_757c91f7"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-23"
               },
               {
-                "id": "col_2",
+                "colId": "col_2",
                 "value": "this is a description"
               },
               {
-                "id": "col_3",
+                "colId": "col_3",
                 "value": 100
               }
             ],
@@ -184,19 +187,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_7cb82a1b"
               },
               {
-                "id": "status",
-                "value": "In Progress"
+                "colId": "status",
+                "value": "dfgds132"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-15"
               }
             ],
@@ -215,19 +218,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 3 for g_7cb82a1b"
               },
               {
-                "id": "status",
-                "value": "To Do"
+                "colId": "status",
+                "value": "dfgd432"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-19"
               }
             ],
@@ -246,19 +249,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 4 for g_7cb82a1b"
               },
               {
-                "id": "status",
-                "value": "Done"
+                "colId": "status",
+                "value": "dfgds532"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-24"
               }
             ],
@@ -278,7 +281,7 @@
         "createdAt": 1746961477549,
         "createdBy": "u_768ef13c",
         "name": "In Progress",
-        "color": "#579bfc",
+        "color": "teal",
         "pos": 2,
         "isCollapsed": false,
         "tasks": [
@@ -288,20 +291,16 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_28a691b9"
               },
               {
-                "id": "status",
-                "value": "In Progress"
+                "colId": "status",
+                "value": "dfgds532"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
-              },
-              {
-                "id": "dueDate",
-                "value": "2025-05-22"
               }
             ],
             "updates": [
@@ -319,19 +318,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_28a691b9"
               },
               {
-                "id": "status",
-                "value": "Done"
+                "colId": "status",
+                "value": "dfgd432"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_b3485920"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-22"
               }
             ],
@@ -351,7 +350,7 @@
         "createdAt": 1746961477550,
         "createdBy": "u_768ef13c",
         "name": "Review",
-        "color": "#579bfc",
+        "color": "grass_green",
         "pos": 3,
         "isCollapsed": false,
         "tasks": [
@@ -361,19 +360,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_d63c693d"
               },
               {
-                "id": "status",
-                "value": "In Progress"
+                "colId": "status",
+                "value": "dfgds132"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_e5c85b12"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-24"
               }
             ],
@@ -392,19 +391,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_d63c693d"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_768ef13c"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-18"
               }
             ],
@@ -423,19 +422,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 3 for g_d63c693d"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "Done"
               },
               {
-                "id": "person",
+                "colIdid": "person",
                 "value": "u_b3485920"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-21"
               }
             ],
@@ -574,19 +573,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_4c6e7614"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "To Do"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_e5c85b12"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-13"
               }
             ],
@@ -605,19 +604,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_4c6e7614"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "Done"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_e5c85b12"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-24"
               }
             ],
@@ -647,19 +646,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_b04a89df"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_b3485920"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-14"
               }
             ],
@@ -678,19 +677,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_b04a89df"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "To Do"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_768ef13c"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-13"
               }
             ],
@@ -709,19 +708,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 3 for g_b04a89df"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_757c91f7"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-17"
               }
             ],
@@ -740,19 +739,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 4 for g_b04a89df"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "To Do"
               },
               {
-                "id": "person",
+                "icolIdd": "person",
                 "value": "u_768ef13c"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-15"
               }
             ],
@@ -782,19 +781,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_e8813f29"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_b3485920"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-23"
               }
             ],
@@ -813,19 +812,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_e8813f29"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_b3485920"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-12"
               }
             ],
@@ -964,19 +963,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_6c5c5713"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_768ef13c"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-25"
               }
             ],
@@ -995,19 +994,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_6c5c5713"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_757c91f7"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-16"
               }
             ],
@@ -1026,19 +1025,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 3 for g_6c5c5713"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "To Do"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_757c91f7"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-17"
               }
             ],
@@ -1057,19 +1056,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 4 for g_6c5c5713"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "To Do"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-24"
               }
             ],
@@ -1099,19 +1098,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_2e792081"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "Done"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_e5c85b12"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-23"
               }
             ],
@@ -1130,19 +1129,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_2e792081"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-14"
               }
             ],
@@ -1172,19 +1171,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 1 for g_0915b993"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "Done"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_757c91f7"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-23"
               }
             ],
@@ -1203,19 +1202,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 2 for g_0915b993"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-17"
               }
             ],
@@ -1234,19 +1233,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 3 for g_0915b993"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "To Do"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-20"
               }
             ],
@@ -1265,19 +1264,19 @@
             "createdBy": "u_768ef13c",
             "columnValues": [
               {
-                "id": "name",
+                "colId": "name",
                 "value": "Task 4 for g_0915b993"
               },
               {
-                "id": "status",
+                "colId": "status",
                 "value": "In Progress"
               },
               {
-                "id": "person",
+                "colId": "person",
                 "value": "u_7b3b73f5"
               },
               {
-                "id": "dueDate",
+                "colId": "dueDate",
                 "value": "2025-05-15"
               }
             ],

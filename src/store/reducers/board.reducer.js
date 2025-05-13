@@ -46,17 +46,17 @@ const initialState = {
     lastBoards: [],
     board: null,
     isTaskPanelOpen: false,
-    
+
     //Loading
     isBoardsLoading: false,
     isBoardLoading: false,
 
     //Group
     lastGroups: [],
-    
+
     //Column
     lastColumns: [],
-    
+
     //Tasks
     lastTasks: {},
 
@@ -79,7 +79,7 @@ export function boardReducer(state = initialState, action = {}) {
                 boards: state.boards.filter(board => board._id !== action.boardId),
                 lastBoards
             }
-        
+
         case REVERT_BOARDS:
             return {...state, boards: state.lastBoards, lastBoards: []}
 
@@ -103,32 +103,32 @@ export function boardReducer(state = initialState, action = {}) {
 
         case BOARDS_LOADING_START:
             return { ...state, isBoardsLoading: true }
-    
+
         case BOARDS_LOADING_DONE:
             return { ...state, isBoardsLoading: false }
 
         case BOARD_LOADING_START:
             return { ...state, isBoardLoading: true }
-    
+
         case BOARD_LOADING_DONE:
             return { ...state, isBoardLoading: false }
 
-         //GROUP
-         case REMOVE_GROUP:
+        //GROUP
+        case REMOVE_GROUP:
             const lastGroups = [...state.board.groups]
             return {
                 ...state,
                 board: {...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId)},
                 lastGroups,
             }
-        
+
         case REVERT_GROUPS:
             return {...state, board: {...state.board, groups: state.lastGroups}, lastGroups: []}
 
         case ADD_GROUP:
             return {
                 ...state,
-                board: {...state.board, groups: [...state.board.groups, action.group]}
+                board: { ...state.board, groups: [...state.board.groups, action.group] }
             }
 
         case UPDATE_GROUP:
@@ -137,15 +137,15 @@ export function boardReducer(state = initialState, action = {}) {
                 board: {...state.board, groups: state.board.groups.map(group => group.id === action.group.id ? action.group : group)}
             }
 
-         //COLUMN
-         case REMOVE_COLUMN:
+        //COLUMN
+        case REMOVE_COLUMN:
             const lastColumns = [...state.board.columns]
             return {
                 ...state,
                 board: {...state.board, columns: state.board.columns.filter(column => column.id !== action.columnId)},
                 lastColumns
             }
-        
+
         case REVERT_COLUMNS:
             return {...state, board: {...state.board, columns: state.lastColumns}, lastColumns:[]}
 
@@ -169,11 +169,13 @@ export function boardReducer(state = initialState, action = {}) {
             }
             return {
                 ...state,
-                board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
-                ? {...group, tasks: group.tasks.filter(task => task.id !== action.taskId)} : group)},
+                board: {
+                    ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                        ? { ...group, tasks: group.tasks.filter(task => task.id !== action.taskId) } : group)
+                },
                 lastTasks
             }
-        
+
         case REVERT_TASKS:
             return {...state, board: {...state.board, groups: state.board.groups.map(group => group.id === state.lastTasks.groupId
                 ? { ...group, tasks: state.lastTasks.tasks } : group)}, lastTasks:{}
@@ -182,13 +184,15 @@ export function boardReducer(state = initialState, action = {}) {
         case ADD_TASK:
             return {
                 ...state,
-                board: {...state.board, groups: state.board.groups.map(group => group.id === action.groupId
-                    ? {...group, tasks: [...group.tasks, action.task]} : group)}
+                board: {
+                    ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                        ? { ...group, tasks: [...group.tasks, action.task] } : group)
+                }
             }
 
         //Side Nav
 
-         case OPEN_TASK_PANEL:
+        case OPEN_TASK_PANEL:
             return {
                 ...state,
                 isTaskPanelOpen: true
