@@ -39,6 +39,7 @@ export function DevPage1({ /* prop1, prop2 */ }) {
     return (
         <section className="DevPage1">
             <h1>DevPage1</h1>
+            <div style={{padding:'200px', height:'100%', width:'100%'}}>
             <PopUpMenu
                 position="bottom-end"
                 renderContent={({ onCloseModal }) => (
@@ -46,6 +47,7 @@ export function DevPage1({ /* prop1, prop2 */ }) {
                 )}>
                 <div className="clickable btn-right filled icon-btn i-DropdownChevronDown"></div>
             </PopUpMenu>
+            </div>
         </section>
     )
 }
