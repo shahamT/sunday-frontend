@@ -3,7 +3,7 @@ import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
@@ -23,14 +23,13 @@ import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { store } from '../../store/store';
-import { BoarNavBarLink } from './main/board/side-nave/BoarNavBarLink';
+import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
-    const board = useSelector(storeState => storeState.boardModule.board)
-
+    const { boardId } = useParams()
 
     const [editingBoardId, setEditingBoardId] = useState(null)
     const [editedTitle, setEditedTitle] = useState('')
@@ -47,39 +46,45 @@ export function AppSideNav({ }) {
             setEditingBoardId(null);
             return
         }
-        const updatedBoard = { ...board, name: editedTitle };
+        const updatedBoard = { ...board, name: editedTitle }
 
         updateBoard(updatedBoard)
             .then(() => {
                 setEditingBoardId(null);
             })
-            .catch((err) => console.error("Rename failed", err));
+            .catch(() => console.error("Rename failed"));
     }
 
 
-    function getPos(id) {
-        return boards.findIndex(board => board._id === id)
-    }
+    function getPos(boardId) {
+        if (!Array.isArray(boards)) return -1
+        return boards.findIndex(board => board._id === boardId)
+      }
+
+
 
     function handleDragEnd(event) {
-        event.preventDefault()
         const { active, over } = event
         if (!over) return
         if (active.id === over.id) return
 
-
         const originalPos = getPos(active.id)
         const newPos = getPos(over.id)
+
+        if (originalPos === -1 || newPos === -1) return
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
         updateBoards(reorderedBoards)
 
-        //הכנה לשמירה בשרת
-        // saveBoardOrderToServer(reorderedBoards)
     }
 
     const sensors = useSensors(
-        useSensor(PointerSensor),
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                delay: 80,
+                tolerance: 1,
+            },
+        }),
         useSensor(TouchSensor),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,
@@ -127,28 +132,30 @@ export function AppSideNav({ }) {
                         </div>
                         <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
-                    {/* <DndContext
+
+
+                    <DndContext
                         sensors={sensors}
                         collisionDetection={closestCenter}
-
                         onDragEnd={handleDragEnd}
                     >
                         <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                             {boards.map(board =>
-                                <BoarNavBarLink board={board}
+                                <BoardNavBarLink board={board}
                                     key={board._id}
+                                    boardId={boardId}
                                     editedTitle={editedTitle}
                                     editingBoardId={editingBoardId}
                                     setEditedTitle={setEditedTitle}
                                     setEditingBoardId={setEditingBoardId}
                                     handleRename={handleRename} />
-                                
+
                             )}
                         </SortableContext>
-                    </DndContext> */}
+                    </DndContext>
 
 
-                    {boards.map(board =>
+                    {/* {boards.map(board =>
                         <div key={board._id} className="board-item-nav">
                             <NavLink
                                 to={`/app/board/${board._id}`}
@@ -184,7 +191,7 @@ export function AppSideNav({ }) {
                             </NavLink>
                             <GlobalModal />
                         </div>
-                    )}
+                    )} */}
 
 
                 </section>}

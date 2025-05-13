@@ -27,11 +27,11 @@ export async function loadBoards() { //TODO add filterby as args
     }
 }
 
-export function updateBoards(boards) {
+export async function updateBoards(boards) {
     try {
-        const savedBoards = boardService.saveBoards(boards)
-        store.dispatch(getCmdSetBoards(savedBoards))
-        return savedBoards
+        store.dispatch(getCmdSetBoards(boards))
+        const savedBoards = await boardService.saveBoards(boards)
+      return savedBoards
     } catch (err) {
         console.error('board action -> Cannot save boards', err)
         throw err

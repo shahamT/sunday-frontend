@@ -47,6 +47,7 @@ const colors = [
     'lilac',
     'pecan']
 
+
 // _createBoards()
 
 export const boardService = {
@@ -64,7 +65,7 @@ export const boardService = {
     removeTask,
     setColumnValue,
     removeColumnValue,
-    saveBoards
+    saveBoards,
 }
 window.cs = boardService
 
