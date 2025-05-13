@@ -29,9 +29,8 @@ import { BoarNavBarLink } from './main/board/side-nave/BoarNavBarLink';
 // =======================
 export function AppSideNav({ }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
-    const board = useSelector(storeState => storeState.boardModule.board)
     const { boardId } = useParams()
-
+    console.log("appSideNav", boards)
 
 
     const [editingBoardId, setEditingBoardId] = useState(null)
@@ -59,32 +58,33 @@ export function AppSideNav({ }) {
     }
 
 
-    function getPos(id) {
-        return boards.findIndex(board => board._id === id)
-    }
+    function getPos(boardId) {
+        if (!Array.isArray(boards)) return -1
+        return boards.findIndex(board => board._id === boardId)
+      }
+
+
 
     function handleDragEnd(event) {
-        event.preventDefault()
         const { active, over } = event
         if (!over) return
         if (active.id === over.id) return
 
-
         const originalPos = getPos(active.id)
         const newPos = getPos(over.id)
+
+        if (originalPos === -1 || newPos === -1) return
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
         updateBoards(reorderedBoards)
 
-        //הכנה לשמירה בשרת
-        // saveBoardOrderToServer(reorderedBoards)
     }
 
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
                 delay: 150,
-                tolerance: 5,
+                tolerance: 1,
             },
         }),
         useSensor(TouchSensor),

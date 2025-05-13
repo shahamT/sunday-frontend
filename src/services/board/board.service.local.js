@@ -47,7 +47,8 @@ const colors = [
     'lilac',
     'pecan']
 
-// _createBoards()
+
+_createBoards()
 
 export const boardService = {
     query,
@@ -64,13 +65,15 @@ export const boardService = {
     removeTask,
     setColumnValue,
     removeColumnValue,
-    saveBoards
+    saveBoards,
 }
 window.cs = boardService
 
 //////BOARD//////
 async function saveBoards(boards) {
+    console.log("local",boards)
     var savedBoards = await storageService.saveAll(STORAGE_KEY, boards)
+    console.log()
     return savedBoards
 }
 
