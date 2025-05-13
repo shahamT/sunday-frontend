@@ -30,7 +30,6 @@ import { store } from '../../store/store';
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
-    const dispatch = useDispatch()
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const board = useSelector(storeState => storeState.boardModule.board)
 
@@ -74,7 +73,7 @@ export function AppSideNav({ }) {
         const newPos = getPos(over.id)
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
-        store.dispatch(updateBoards(reorderedBoards))
+        updateBoards(reorderedBoards)
 
         //הכנה לשמירה בשרת
         // saveBoardOrderToServer(reorderedBoards)
@@ -134,7 +133,7 @@ export function AppSideNav({ }) {
                         collisionDetection={closestCenter}
                         onDragEnd={handleDragEnd}
                     >
-                        <SortableContext items={boards.map(b => b._id)} strategy={verticalListSortingStrategy}>
+                        <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                             {boards.map(board =>
                                 <Board board={board}
                                     key={board._id}
