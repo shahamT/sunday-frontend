@@ -1,6 +1,9 @@
-// === Style
+
 
 // === Libs
+
+import { DatePickerColumn } from "../../cmps/app/main/board/value-setter/DatePicker";
+import { PopUpMenu } from "../../cmps/reusables/PopUpMenu/PopUpMenu";
 
 // === Services
 
@@ -18,17 +21,20 @@
 
 export function DevPage2({ /* prop1, prop2 */ }) {
 
-    // === Consts
-
-    // === Effects
 
 
-    // === Functions
-
-    // if (!data) return <div>Loading...</div>
-    return (
-        <section className="DevPage2">
-            <h1>DevPage2</h1>
-        </section>
+return(
+        <section className='date-picker'>
+            <h1>dev3</h1>
+            <PopUpMenu
+                position="start-end"
+                renderContent={({ onCloseModal }) => (
+                    <DatePickerColumn
+                    onCloseModal={onCloseModal}
+                    />
+                )}
+            >
+                <div className="___-btn i-Night clickable filled negative size-40" />
+            </PopUpMenu></section>
     )
 }

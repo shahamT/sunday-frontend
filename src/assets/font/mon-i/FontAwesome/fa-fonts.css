@@ -1,0 +1,54 @@
+@font-face {
+    font-family: 'fa-regular';
+    src: url('./fa-regular-400.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'fa-solid';
+    src: url('./fa-solid-900.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  @font-face {
+    font-family: 'fa-brands';
+    src: url('./fa-brands-400.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  
+    /* size */
+  .icon-btn.big {
+      height: 40px;
+      width: 40px;
+      font-size: 1.3rem;
+  }
+  
+  .icon-btn.medium {
+      height: 40px;
+      width: 40px;
+      font-size: 1em;
+  }
+  
+  .icon-btn.small {
+      height: 32px;
+      width: 32px;
+  }
+
+  .icon-btn{
+
+        text-align: left;
+        display: block; 
+      
+  }
+  
+/* Icons */
+
+  .icon-btn.star::after {
+    content: "\f005";
+    font-family: 'fa-solid';
+  }
+ 
