@@ -23,15 +23,13 @@ import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { store } from '../../store/store';
-import { BoarNavBarLink } from './main/board/side-nave/BoarNavBarLink';
+import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const { boardId } = useParams()
-    console.log("appSideNav", boards)
-
 
     const [editingBoardId, setEditingBoardId] = useState(null)
     const [editedTitle, setEditedTitle] = useState('')
@@ -83,7 +81,7 @@ export function AppSideNav({ }) {
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
-                delay: 150,
+                delay: 70,
                 tolerance: 1,
             },
         }),
@@ -143,7 +141,7 @@ export function AppSideNav({ }) {
                     >
                         <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                             {boards.map(board =>
-                                <BoarNavBarLink board={board}
+                                <BoardNavBarLink board={board}
                                     key={board._id}
                                     boardId={boardId}
                                     editedTitle={editedTitle}

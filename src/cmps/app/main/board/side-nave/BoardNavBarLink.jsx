@@ -9,7 +9,7 @@ import { SideNavModal } from "./SideNaveModal";
 import { GlobalModal } from "../../../../reusables/GlobalModal/GlobalModal";
 
 
-export const BoarNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
+export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: board._id })
   const navigate = useNavigate()
   const clickTimeRef = useRef(null)
