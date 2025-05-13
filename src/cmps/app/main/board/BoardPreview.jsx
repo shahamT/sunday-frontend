@@ -31,7 +31,6 @@ export function BoardPreview({ /* prop1, prop2 */ }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardPreview">
-            <h1>BoardPreview</h1>
             <BoardHeader />
             <BoardContent />
 
