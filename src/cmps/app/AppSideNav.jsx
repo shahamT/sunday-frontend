@@ -63,16 +63,16 @@ export function AppSideNav({ }) {
 
     function handleDragEnd(event) {
         event.preventDefault()
-        // const { active, over } = event
-        // if (!over) return
-        // if (active.id === over.id) return
+        const { active, over } = event
+        if (!over) return
+        if (active.id === over.id) return
 
 
-        // const originalPos = getPos(active.id)
-        // const newPos = getPos(over.id)
-        // const reorderedBoards = arrayMove(boards, originalPos, newPos)
+        const originalPos = getPos(active.id)
+        const newPos = getPos(over.id)
+        const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
-        // updateBoards(reorderedBoards)
+        updateBoards(reorderedBoards)
 
         //הכנה לשמירה בשרת
         // saveBoardOrderToServer(reorderedBoards)
