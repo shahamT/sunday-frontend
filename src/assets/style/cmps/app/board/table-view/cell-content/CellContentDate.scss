@@ -1,11 +1,42 @@
 .CellContentDate {
+    position: relative;
     cursor: text;
 
-    padding-inline: 5px;
+    // padding-inline: 5px;
 
+    &:hover {
+        .input-outline{
+            opacity: 1;
+        }
 
+        .date-empty-state {
+            opacity: 1;
+        }
+    }
 
-    .date-label {}
+    .input-outline {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        height: 26px;
+        width: calc(100% - 10px);
+
+        border: 1px solid var(--layout-border-color);
+        border-radius: var(--border-radius-sm);
+        background-color: transparent;
+
+        opacity: 0;
+    }
+
+    .date-label {
+
+        font-size: 14px;
+        font-weight: 300;
+        font-family: var(--font-family);
+    }
 
 
 
@@ -15,18 +46,11 @@
         justify-content: center;
         gap: 3px;
 
-        height: 26px;
+        height: 100%;
         width: 100%;
-        border: 1px solid var(--layout-border-color);
-        border-radius: var(--border-radius-sm);
 
         opacity: 0;
-        transition: var(--transition-md);
-
-        &:hover {
-            opacity: 1;
-        }
-
+        transition: var(--transition-lg);
 
         .plus-btn {
             display: flex;

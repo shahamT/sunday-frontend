@@ -20,7 +20,9 @@ import { setColumnValue } from "../../../../../../store/actions/board.actions";
 
 export function CellContentItem({ column, columnValue, taskId }) {
     // === Consts
-    const [value, handleChange, reset, set] = useControlledInput(columnValue.value)
+
+
+    const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
 
     const navigate = useNavigate();
     const board = useSelector(storeState => storeState.boardModule.board)
@@ -39,10 +41,9 @@ export function CellContentItem({ column, columnValue, taskId }) {
             set(columnValue.value)
             return
         }
-        const updatedColumnValue = { ...columnValue, value: value }
 
         try {
-            setColumnValue(taskId, column.id, updatedColumnValue)
+            setColumnValue(taskId, column.id, value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
@@ -62,9 +63,9 @@ export function CellContentItem({ column, columnValue, taskId }) {
 
             <div className="text-container">
                 <EditableText
+                    size="small"
+                    full={true}
                     value={value}
-                    size="small" full={true}
-                    emojiPicker={false}
                     handleChange={handleChange}
                     onBlur={onSetName}
                     onPressEnter={onSetName}

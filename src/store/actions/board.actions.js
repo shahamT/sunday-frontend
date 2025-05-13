@@ -1,11 +1,11 @@
 import {
-  ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, SET_BOARDS, SET_BOARD, UPDATE_BOARD,
-  ADD_GROUP, REMOVE_GROUP, REVERT_GROUPS, UPDATE_GROUP,
-  ADD_COLUMN, REMOVE_COLUMN, REVERT_COLUMNS, UPDATE_COLUMN,
-  ADD_TASK, REMOVE_TASK, REVERT_TASKS,
-  BOARDS_LOADING_START, BOARDS_LOADING_DONE,
-  BOARD_LOADING_START, BOARD_LOADING_DONE,
-  OPEN_TASK_PANEL, CLOSE_TASK_PANEL
+    ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, SET_BOARDS, SET_BOARD, UPDATE_BOARD,
+    ADD_GROUP, REMOVE_GROUP, REVERT_GROUPS, UPDATE_GROUP,
+    ADD_COLUMN, REMOVE_COLUMN, REVERT_COLUMNS, UPDATE_COLUMN,
+    ADD_TASK, REMOVE_TASK, REVERT_TASKS,
+    BOARDS_LOADING_START, BOARDS_LOADING_DONE,
+    BOARD_LOADING_START, BOARD_LOADING_DONE,
+    OPEN_TASK_PANEL, CLOSE_TASK_PANEL
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
 import { store } from "../store.js";
@@ -16,21 +16,21 @@ import { store } from "../store.js";
 export async function loadBoards() { //TODO add filterby as args
     // const filterBy = store.getState().boardModule.filterBy
     store.dispatch({ type: BOARDS_LOADING_START })
-    
+
     try {
-      const boards = await boardService.query() //TODO add filterby as args
-      store.dispatch(getCmdSetBoards(boards))
+        const boards = await boardService.query() //TODO add filterby as args
+        store.dispatch(getCmdSetBoards(boards))
     } catch (err) {
-      console.log('board action -> Cannot load boards', err)
-      throw err
+        console.log('board action -> Cannot load boards', err)
+        throw err
     } finally {
-      store.dispatch({ type: BOARDS_LOADING_DONE })
+        store.dispatch({ type: BOARDS_LOADING_DONE })
     }
 
 }
 
 export async function loadBoard(boardId) {
-  store.dispatch({ type: BOARD_LOADING_START })
+    store.dispatch({ type: BOARD_LOADING_START })
     try {
         const board = await boardService.getById(boardId)
         store.dispatch(getCmdSetBoard(board))
@@ -38,7 +38,7 @@ export async function loadBoard(boardId) {
         console.log('board action -> Cannot load board', err)
         throw err
     } finally {
-      store.dispatch({ type: BOARD_LOADING_DONE })
+        store.dispatch({ type: BOARD_LOADING_DONE })
     }
 }
 
@@ -48,7 +48,7 @@ export async function removeBoard(boardId) {
         store.dispatch(getCmdRemoveBoard(boardId))
     } catch (err) {
         console.log('board action -> Cannot remove board', err)
-        store.dispatch({type: REVERT_BOARDS})
+        store.dispatch({ type: REVERT_BOARDS })
         throw err
     }
 }
@@ -65,7 +65,7 @@ export async function updateBoard(board) {
 }
 
 export async function addBoard(board) {
-    
+
     try {
         const savedBoard = await boardService.save(board)
         store.dispatch(getCmdAddBoard(savedBoard))
@@ -104,7 +104,7 @@ export async function addGroup() {
         console.log('board action -> Cannot add group', err)
         throw err
     }
-} 
+}
 
 export async function updateGroup(group) {
     const boardId = store.getState().boardModule.board._id
@@ -117,7 +117,7 @@ export async function updateGroup(group) {
         console.log('board action -> Cannot save group', err)
         throw err
     }
-} 
+}
 
 export async function removeGroup(groupId) {
     const boardId = store.getState().boardModule.board._id
@@ -127,10 +127,10 @@ export async function removeGroup(groupId) {
         return { removed: true }
     } catch (err) {
         console.log('board action -> Cannot remove group', err)
-        store.dispatch({type: REVERT_GROUPS})
+        store.dispatch({ type: REVERT_GROUPS })
         throw err
     }
-} 
+}
 
 // ========= Task =========
 export async function addTask(groupId = null) {
@@ -160,10 +160,10 @@ export async function removeTask(taskId, groupId) {
         store.dispatch(getCmdRemoveTask(taskId, groupId))
     } catch (err) {
         console.log('board action -> Cannot remove task', err)
-        store.dispatch({type: REVERT_TASKS})
+        store.dispatch({ type: REVERT_TASKS })
         throw err
     }
-} 
+}
 
 // export async function updateColumnValue(colId, taskId, value) {
 //     const state = store.getState()
@@ -209,29 +209,28 @@ export async function removeTask(taskId, groupId) {
 // }
 
 export async function setColumnValue(taskId, colId, value) {
-  const board = structuredClone(store.getState().boardModule.board)
-  board.groups = boardService.setColumnValue(board, taskId, colId, value)
-
-  try {
-    const savedBoard = await boardService.save(board)
-    store.dispatch(getCmdSetBoard(savedBoard))
-  } catch (err) {
-    console.log('board action -> Cannot set column value', err)
-    throw err
-  }
+    const board = structuredClone(store.getState().boardModule.board)
+    board.groups = boardService.setColumnValue(board, taskId, colId, value)
+    try {
+        const savedBoard = await boardService.save(board)
+        store.dispatch(getCmdSetBoard(savedBoard))
+    } catch (err) {
+        console.log('board action -> Cannot set column value', err)
+        throw err
+    }
 }
 
 export async function removeColumnValue(taskId, colId) {
-  const board = structuredClone(store.getState().boardModule.board)
-  board.groups = boardService.removeColumnValue(board, taskId, colId)
+    const board = structuredClone(store.getState().boardModule.board)
+    board.groups = boardService.removeColumnValue(board, taskId, colId)
 
-  try {
-    const savedBoard = await boardService.save(board)
-    store.dispatch(getCmdSetBoard(savedBoard))
-  } catch (err) {
-    console.log('board action -> Cannot remove column value', err)
-    throw err
-  }
+    try {
+        const savedBoard = await boardService.save(board)
+        store.dispatch(getCmdSetBoard(savedBoard))
+    } catch (err) {
+        console.log('board action -> Cannot remove column value', err)
+        throw err
+    }
 }
 
 // ========= Column =========
@@ -246,7 +245,7 @@ export async function addColumn(type) {
         console.log('board action -> Cannot add column', err)
         throw err
     }
-} 
+}
 
 export async function updateColumn(column) {
     const boardId = store.getState().boardModule.board._id
@@ -258,7 +257,7 @@ export async function updateColumn(column) {
         console.log('board action -> Cannot save column', err)
         throw err
     }
-} 
+}
 
 export async function removeColumn(columnId) {
     const boardId = store.getState().boardModule.board._id
@@ -268,18 +267,18 @@ export async function removeColumn(columnId) {
         return { removed: true }
     } catch (err) {
         console.log('board action -> Cannot remove column', err)
-        store.dispatch({type: REVERT_COLUMNS})
+        store.dispatch({ type: REVERT_COLUMNS })
         throw err
     }
-} 
+}
 
 // ========= Task Details Panel =========
 export function openTaskPanel() {
-  store.dispatch({ type: OPEN_TASK_PANEL})
+    store.dispatch({ type: OPEN_TASK_PANEL })
 }
 
 export function closeTaskPanel() {
-  store.dispatch({ type: CLOSE_TASK_PANEL})
+    store.dispatch({ type: CLOSE_TASK_PANEL })
 }
 
 // Command Creators:

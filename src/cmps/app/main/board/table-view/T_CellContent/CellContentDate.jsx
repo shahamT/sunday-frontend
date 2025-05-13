@@ -39,6 +39,10 @@ export function CellContentDate({ column, columnValue }) {
     return (
         <div className={`CellContentDate cell-contnet centered`}>
             
+            <div className="input-outline">
+                
+            </div>
+
             {columnValue &&
             <div className="date-label">{formatTimestamp(columnValue.value)}
             </div>}

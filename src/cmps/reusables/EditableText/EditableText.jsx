@@ -10,7 +10,7 @@ export function EditableText({
     size = 'normal',
     placeholder = '',
     paddingStart = null,
-    emojiPicker = true,
+    emojiPicker = false,
     value = '',
     handleChange,
     onBlur,
