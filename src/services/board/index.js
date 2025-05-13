@@ -179,9 +179,9 @@ function getEmptyBoard() {
 function getEmptyGroup() {
     const colorNames = boardService.getColors()
     return {
-        // id: makeId(),
-        // createdAt: Date.now(),
-        // createdBy: userService.getLoggedinUser()?._id || null,
+        id: makeId(),
+        createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
         name: 'New Group',
         isCollapse: false,
         color: colorNames[Math.floor(Math.random() * colorNames.length)],
@@ -192,9 +192,9 @@ function getEmptyGroup() {
 async function getEmptyTask(boardId, taskName = 'New item') {
     const board = await boardService.getById(boardId)
     return {
-        // id: makeId(),
-        // createdAt: Date.now(),
-        // createdBy: userService.getLoggedinUser()?._id || null,
+        id: makeId(),
+        createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
         columnValues: [
             {colId: board.columns[0].id, value: taskName}
         ]
@@ -203,9 +203,9 @@ async function getEmptyTask(boardId, taskName = 'New item') {
 
 function getEmptyColumn(type) {
     const emptyCol = {
-        // id: makeId(),
-        // createdAt: Date.now(),
-        // createdBy: userService.getLoggedinUser()?._id || null,
+        id: makeId(),
+        createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
         name: type.charAt(0).toUpperCase() + type.slice(1),
         width: 200,
         type :  {variant: type}

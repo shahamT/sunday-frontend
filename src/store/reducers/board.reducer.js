@@ -8,8 +8,7 @@ export const REMOVE_BOARD = 'REMOVE_BOARD'
 export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const REVERT_BOARDS = 'REVERT_BOARDS'
-
-
+export const REVERT_BOARD = 'REVERT_BOARD'
 
 // Groups
 export const REMOVE_GROUP = 'REMOVE_GROUP'
@@ -44,6 +43,7 @@ const initialState = {
     //board
     boards: [],
     lastBoards: [],
+    lastBoard: {},
     board: null,
     isTaskPanelOpen: false,
 
@@ -52,18 +52,19 @@ const initialState = {
     isBoardLoading: false,
 
     //Group
-    lastGroups: [],
+    // lastGroups: [],
 
     //Column
-    lastColumns: [],
+    // lastColumns: [],
 
     //Tasks
-    lastTasks: {},
+    // lastTasks: {},
 
     // filterBy: boardService.getDefaultFilter(),
 }
 
 export function boardReducer(state = initialState, action = {}) {
+    let lastBoard = {}
     switch (action.type) {
         // //* BOARD
         case SET_BOARDS:
@@ -82,6 +83,9 @@ export function boardReducer(state = initialState, action = {}) {
 
         case REVERT_BOARDS:
             return {...state, boards: state.lastBoards, lastBoards: []}
+
+        case REVERT_BOARD:
+            return {...state, board: state.lastBoard, lastBoard: {}}
 
         case ADD_BOARD:
             return {
@@ -115,20 +119,24 @@ export function boardReducer(state = initialState, action = {}) {
 
         //GROUP
         case REMOVE_GROUP:
-            const lastGroups = [...state.board.groups]
+            // lastGroups = [...state.board.groups]
+            lastBoard = {...state.board}
             return {
                 ...state,
                 board: {...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId)},
-                lastGroups,
+                lastBoard,
             }
 
-        case REVERT_GROUPS:
-            return {...state, board: {...state.board, groups: state.lastGroups}, lastGroups: []}
+        // case REVERT_GROUPS:
+        //     return {...state, board: {...state.board, groups: state.lastGroups}, lastGroups: []}
 
         case ADD_GROUP:
+            // lastGroups = [...state.board.groups]
+            lastBoard = {...state.board}
             return {
                 ...state,
-                board: { ...state.board, groups: [...state.board.groups, action.group] }
+                board: { ...state.board, groups: [...state.board.groups, action.group] },
+                lastBoard
             }
 
         case UPDATE_GROUP:
@@ -139,20 +147,24 @@ export function boardReducer(state = initialState, action = {}) {
 
         //COLUMN
         case REMOVE_COLUMN:
-            const lastColumns = [...state.board.columns]
+            // lastColumns = [...state.board.columns]
+            lastBoard = {...state.board}
             return {
                 ...state,
                 board: {...state.board, columns: state.board.columns.filter(column => column.id !== action.columnId)},
-                lastColumns
+                lastBoard
             }
 
-        case REVERT_COLUMNS:
-            return {...state, board: {...state.board, columns: state.lastColumns}, lastColumns:[]}
+        // case REVERT_COLUMNS:
+        //     return {...state, board: {...state.board, columns: state.lastColumns}, lastColumns:[]}
 
         case ADD_COLUMN:
+            // lastColumns = [...state.board.columns]
+            lastBoard = {...state.board}
             return {
                 ...state,
-                board: {...state.board, columns: [...state.board.columns, action.column]}
+                board: {...state.board, columns: [...state.board.columns, action.column]},
+                lastBoard
             }
 
         case UPDATE_COLUMN:
@@ -163,31 +175,37 @@ export function boardReducer(state = initialState, action = {}) {
 
          //TASKS
          case REMOVE_TASK:
-            const lastTasks = {
-                groupId: action.groupId,
-                tasks: [...(state.board.groups.find(group => group.id === action.groupId)?.tasks || [])]
-            }
+            // lastTasks = {
+            //     groupId: action.groupId,
+            //     tasks: [...(state.board.groups.find(group => group.id === action.groupId)?.tasks || [])]
+            // }
+            lastBoard = {...state.board}
             return {
                 ...state,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
                         ? { ...group, tasks: group.tasks.filter(task => task.id !== action.taskId) } : group)
                 },
-                lastTasks
+                lastBoard
             }
 
-        case REVERT_TASKS:
-            return {...state, board: {...state.board, groups: state.board.groups.map(group => group.id === state.lastTasks.groupId
-                ? { ...group, tasks: state.lastTasks.tasks } : group)}, lastTasks:{}
-            }
+        // case REVERT_TASKS:
+        //     return {...state, board: {...state.board, groups: state.board.groups.map(group => group.id === state.lastTasks.groupId
+        //         ? { ...group, tasks: state.lastTasks.tasks } : group)}, lastTasks:{}
+        //     }
 
         case ADD_TASK:
+            // lastTasks = {
+            //     groupId: action.groupId,
+            //     tasks: [...(state.board.groups.find(group => group.id === action.groupId)?.tasks || [])]
+            // }
+            lastBoard = {...state.board}
             return {
                 ...state,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
-                        ? { ...group, tasks: [...group.tasks, action.task] } : group)
-                }
+                        ? { ...group, tasks: [...group.tasks, action.task] } : group)},
+                lastBoard
             }
 
         //Side Nav
