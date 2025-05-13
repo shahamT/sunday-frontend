@@ -35,10 +35,18 @@ export function CellContentDate({ column, columnValue }) {
         return date.toLocaleDateString('en-US', options);
     }
 
-    const formattedDate = formatTimestamp(columnValue.value)
+
     return (
         <div className={`CellContentDate cell-contnet centered`}>
-            {columnValue && <p>{formattedDate}</p>}
+            {columnValue && <p>{formatTimestamp(columnValue.value)}</p>}
+             {!columnValue &&
+             <div className="date-empty-state">
+                <div className="plus-btn">
+                     <div className="plus-icon i-AddSmall"/>
+                </div>
+                <div className="calendar-icon i-Calendar"/>
+             </div>
+             }
 
         </div>
     )

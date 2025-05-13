@@ -4,7 +4,7 @@
 // === Services
 
 // === Actions
-import { loadBoard, loadBoards } from "../../../../../store/actions/board.actions";
+import { loadBoard, loadBoards } from "../../../../../store/actions/board.actions.js";
 
 // === Hooks / React
 import { useSelector } from "react-redux";

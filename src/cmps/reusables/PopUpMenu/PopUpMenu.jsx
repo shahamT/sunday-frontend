@@ -97,6 +97,7 @@ export function PopUpMenu({
               noAnimation ? 'no-animation' : isVisible ? 'visible' : ''
             }`}
             data-placement={placement}
+            
           >
             {renderContent({ onCloseModal: close })}
             {!noArrow && <div className={`popup-arrow popup-arrow-${placement}`} />}

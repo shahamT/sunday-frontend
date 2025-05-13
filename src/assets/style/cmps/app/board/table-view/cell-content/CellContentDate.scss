@@ -1,0 +1,42 @@
+.CellContentDate {
+    cursor: text;
+
+    padding-inline: 5px;
+
+    .date-empty-state {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 3px;
+
+        height: 26px;
+        width: 100%;
+        border: 1px solid var(--layout-border-color);
+        border-radius: var(--border-radius-sm);
+
+
+
+        .plus-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            width: 13px;
+            height: 13px;
+            background-color: var(--primary-color);
+            border-radius: var(--border-radius-round);
+
+            color: var(--text-color-on-primary);
+
+            .plus-icon {
+                line-height: 1;
+                font-size: 14px;
+            }
+        }
+
+        .calendar-icon {
+            font-size: 20px;
+            color: var(--icon-color);
+        }
+    }
+}
