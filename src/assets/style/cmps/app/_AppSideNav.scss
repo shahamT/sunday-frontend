@@ -78,7 +78,7 @@
                 justify-content: flex-start;
                 width: 100%;
                 align-items: center;
-                padding: var(--space-4);
+                // padding: var(--space-4);
                 margin: 4px;
                 border: 1px solid var(--primary-text-color);
                 border-radius: 5px;
@@ -91,7 +91,7 @@
                 p {
                         color: var(--primary-text-color);
                         text-overflow: ellipsis;
-
+                        font-weight:600;
                 }
         }
 

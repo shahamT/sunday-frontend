@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 // import { debounce } from "../../../../../services/base/util.service"
 import { loadBoard, loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
+import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
 // import { h1 } from "remirror/dist/_tsup-dts-rollup"
 
 // === Services
@@ -45,6 +46,12 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
         updateBoard(updatedBoard)
             .then(()=>loadBoards())
             .catch(err => console.error('Failed to update board', err));
+    }
+
+    function onRemoveBoard(boardId){
+        removeBoard(boardId)
+        .then(showSuccessMsg('We successfully deleted the board'))
+        .catch('Failed to remove board', err)
 
     }
 
@@ -80,7 +87,7 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
                 {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
             </div>
 
-            <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeBoard(_id)}>
+            <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => onRemoveBoard(_id)}>
                 Delete
             </div>
         </section>
