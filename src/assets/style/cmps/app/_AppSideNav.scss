@@ -107,12 +107,13 @@
 
         .board-item-nav {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
 
                 .Menu-btn {
                         margin-left: auto;
-                        margin-left: auto !important;
-                        justify-items: end !important;
+                        // margin-left: auto !important;
+                        // justify-items: end !important;
                 }
         }
 
