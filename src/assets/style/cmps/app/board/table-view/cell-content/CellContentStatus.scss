@@ -1,0 +1,30 @@
+.CellContentStatus {
+    position: relative;
+
+    p {
+        color: var(--text-color-on-inverted);
+    }
+
+    .fold {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        border-width: 0;
+        border-style: solid;
+        background: var(--primary-background-hover-color);
+        border-color: transparent #fff transparent #fff;
+
+        -webkit-transition: border-width 0.2s ease-out;
+        -moz-transition: border-width 0.2s ease-out;
+        -ms-transition: border-width 0.2s ease-out;
+        -o-transition: border-width 0.2s ease-out;
+        transition: border-width 0.2s ease-out;
+        transition: border-width 0.3s ease-out 0.3s;
+
+    }
+
+    &:hover .fold {
+        border-width: 0px 10px 10px 0px;
+    }
+
+}

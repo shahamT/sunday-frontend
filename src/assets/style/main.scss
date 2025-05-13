@@ -2,6 +2,7 @@
 @import 'setup/vars.scss';
 @import 'setup/typography.scss';
 @import 'setup/functions.scss';
+@import 'setup/bg-color.scss';
 
 @import '../font/mon-i/mon-i-font.css'; //monday icons font
 
@@ -54,6 +55,7 @@
 
 @import 'cmps/app/_AppHome.scss';
 @import 'cmps/app/board/BoardPreview.scss';
+@import 'cmps/app/board/BoardContent.scss';
 @import 'cmps/app/board/TaskPanel.scss';
 @import 'cmps/app/board/TaskDetails.scss';
 
@@ -71,4 +73,5 @@
 
 // ====== Table View ======
 @import 'cmps/app/board/table-view/cell-content/CellContentItem.scss';
+@import 'cmps/app/board/table-view/cell-content/CellContentStatus.scss';
 

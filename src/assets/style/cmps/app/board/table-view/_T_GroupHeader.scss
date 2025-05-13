@@ -1,11 +1,9 @@
 .T_GroupHeader {
-    position: relative;
 
     display: flex;
     align-items: center;
 
     height: 40px;
-
 
 
     .title-container {
@@ -14,6 +12,11 @@
         width: 60vw;
         min-width: 500px;
         cursor: grab;
+
+        position: sticky;
+        left: 0px;
+        z-index: 10;
+
 
         .collapse-button-wraper {
             margin-inline-start: 14px;

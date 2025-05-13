@@ -28,9 +28,9 @@ export function T_GroupHeadRow({ columns, group }) {
             <div className="menu-wraper" />
             <div className="row-wraper t-row">
 
-                <div className="t-left-indicator top" />
-                {columns.map(column => {
-                    return <T_ColumnHeaderCell column={column} groupId={group.id} />
+                <div className={`t-left-indicator top ${group.color}-bg`} />
+                {columns.map((column, idx) => {
+                    return <T_ColumnHeaderCell key={column.id + idx} column={column} groupId={group.id} />
                 })}
 
                 <div className="add-column-btn t-cell last">
