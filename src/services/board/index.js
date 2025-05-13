@@ -189,14 +189,14 @@ function getEmptyGroup() {
     }
 }
 
-function getEmptyTask(boardId) {
-    const board = boardService.getById(boardId)
+async function getEmptyTask(boardId, taskName = 'New item') {
+    const board = await boardService.getById(boardId)
     return {
         // id: makeId(),
         // createdAt: Date.now(),
         // createdBy: userService.getLoggedinUser()?._id || null,
         columnValues: [
-            {colId: board.columns[0].id, value: 'New item'}
+            {colId: board.columns[0].id, value: taskName}
         ]
     }
 }

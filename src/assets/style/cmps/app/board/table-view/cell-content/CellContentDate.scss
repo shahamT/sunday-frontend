@@ -5,14 +5,15 @@
     // padding-inline: 5px;
 
     &:hover {
-        .input-outline{
+        
+        .input-outline,
+        .clear-btn,
+        .date-empty-state  {
             opacity: 1;
         }
 
-        .date-empty-state {
-            opacity: 1;
-        }
     }
+
 
     .input-outline {
         position: absolute;
@@ -31,11 +32,29 @@
         opacity: 0;
     }
 
+    .clear-btn {
+        position: absolute;
+        z-index: 40;
+        top: 50%;
+        right: 9px;
+        transform: translateY(-50%);
+        width: 18px !important;
+        height: 18px;
+        background-color: var(--primary-background-hover-color);
+        opacity: 0;
+
+    }
+
     .date-label {
 
         font-size: 14px;
         font-weight: 300;
         font-family: var(--font-family);
+
+        &:hover{
+            color: var(--primary-color);
+        }
+
     }
 
 
@@ -77,5 +96,7 @@
             color: var(--icon-color);
 
         }
+
+
     }
 }

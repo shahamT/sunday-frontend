@@ -3,16 +3,18 @@
     align-items: center;
 
     height: 36px;
-
+    // min-width: 0px;
+    // width: 100%;
+    // flex-shrink: 1;
 }
 
 .t-cell {
     display: flex;
     align-items: center;
 
-    border-block-start: 1px solid var(--ui-border-color);
+    border-block-start: 1px solid var(--layout-border-color);
 
-    border-inline-start: 1px solid var(--ui-border-color);
+    border-inline-start: 1px solid var(--layout-border-color);
     height: 100%;
     flex-shrink: 0;
 
@@ -32,7 +34,7 @@
         position: sticky;
         left: 6px;
         z-index: 10;
-        
+
         background-color: var(--primary-background-color);
 
 
@@ -40,7 +42,7 @@
     }
 
     &.footer {
-        border-block-end: 1px solid var(--ui-border-color);
+        border-block-end: 1px solid var(--layout-border-color);
 
     }
 
@@ -82,7 +84,7 @@
     width: 33px;
     height: 100%;
     cursor: pointer;
-    border-inline-end: 1px solid var(--ui-border-color);
+    border-inline-end: 1px solid var(--layout-border-color);
     flex-shrink: 0;
 
     &.disabled {

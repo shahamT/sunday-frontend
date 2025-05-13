@@ -1,19 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import './PopUpMenu.scss';
+import { forwardRef, useImperativeHandle } from 'react';
 
-export function PopUpMenu({
+export const PopUpMenu = forwardRef(function PopUpMenu({
   children,
   renderContent,
   position = 'bottom',
   gap = 10,
   noArrow = true,
   noAnimation = false,
-}) {
-  const wrapperRef = useRef(null);
-  const popupRef = useRef(null);
-  const [isOpen, setIsOpen] = useState(false);
-  const [placement, setPlacement] = useState(position);
-  const [isVisible, setIsVisible] = useState(false);
+}, ref) {
+  const wrapperRef = useRef(null)
+  const popupRef = useRef(null)
+  const [isOpen, setIsOpen] = useState(false)
+  const [placement, setPlacement] = useState(position)
+  const [isVisible, setIsVisible] = useState(false)
+
+  useImperativeHandle(ref, () => ({
+    open,
+    close,
+  }))
 
   function open() {
     setIsOpen(true);
@@ -51,7 +57,7 @@ export function PopUpMenu({
   // Trigger animation after render
   useEffect(() => {
     if (isOpen) {
-      setTimeout(() => setIsVisible(true), 0);
+      setTimeout(() => setIsVisible(true), 0)
     }
   }, [isOpen]);
 
@@ -65,27 +71,27 @@ export function PopUpMenu({
     const spaceAbove = triggerRect.top;
     const spaceBelow = window.innerHeight - triggerRect.bottom;
 
-    const [rawDir, rawAlign] = position.split('-');
-    const vertical = rawDir || 'bottom';
-    const alignment = rawAlign || 'center';
+    const [rawDir, rawAlign] = position.split('-')
+    const vertical = rawDir || 'bottom'
+    const alignment = rawAlign || 'center'
 
     const shouldFlip = vertical === 'bottom'
       ? spaceBelow < popupRect.height + gap
-      : spaceAbove < popupRect.height + gap;
+      : spaceAbove < popupRect.height + gap
 
     const newVertical = shouldFlip
       ? vertical === 'bottom' ? 'top' : 'bottom'
       : vertical;
 
-    setPlacement(`${newVertical}${alignment !== 'center' ? `-${alignment}` : ''}`);
+    setPlacement(`${newVertical}${alignment !== 'center' ? `-${alignment}` : ''}`)
   }, [isOpen, position, gap]);
 
   return (
     <div className="popup-wrapper" ref={wrapperRef}>
       <div
         onClick={(e) => {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault()
+          e.stopPropagation()
           open();
         }}
       >
@@ -112,10 +118,11 @@ export function PopUpMenu({
     </div>
   );
 }
+)
 
 function getGapStyle(position, gap) {
   const px = `${gap}px`;
-  if (position.startsWith('top')) return { marginBottom: px };
-  if (position.startsWith('bottom')) return { marginTop: px };
+  if (position.startsWith('top')) return { marginBottom: px }
+  if (position.startsWith('bottom')) return { marginTop: px }
   return {};
 }

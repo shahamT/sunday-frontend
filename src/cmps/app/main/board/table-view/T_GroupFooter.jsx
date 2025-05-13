@@ -3,6 +3,7 @@
 // === Services
 
 // === Actions
+import { addTask } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
 import { useControlledInput } from "../../../../../hooks/useControlledInput"
@@ -15,29 +16,38 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText"
 // ====== Component ======
 // =======================
 
-export function T_GroupFooter({ group, itemColumnWidth }) {
+export function T_GroupFooter({ group, itemColumn }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput('')
-
+    const itemColumnWidth = itemColumn?.width ?? 0;
+    const itemColumnId = itemColumn?.id ?? null;
     // === Effects
 
     // === Functions
 
 
-    function onAddTask() {
+    async function onAddTask() {
+
         if (value === '') {
             return
         }
-        console.log("added")
-        addTask(value)
-            .catch(showErrorMsg(`Somthing went wrong`));
+
+        try {
+            await addTask(group.id, itemColumnId, value)
+            set('')
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+
+
     }
 
     return (
         <section className="T_GroupFooter">
             <div className="menu-wraper" />
             <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
-            <div className="row-wraper t-row sticky ">
+            <div className="footer-row row-wraper t-row sticky ">
                 <label className="checkbox-container t-cell no-divider footer disabled">
                     <input type="checkbox" className="disabled" />
                 </label>

@@ -47,25 +47,15 @@ export function DevPage2({ /* prop1, prop2 */ }) {
 
     return (
         <section className='status-picker-container'>
-            {/* <h1>dev3</h1>
-            {columns.map(status => (
-                <div
-                    key={status.id}
-                    className={`status-picker ${status.color}-bg`}
-                    onClick={() => setStatus(status)}
-                >
-                    {status.name}
-                </div>
-            ))}
-            <div className="default-status" onClick={onCloseModal}></div> */}
-
-            <PopUpMenu
+   
+            {/* <PopUpMenu
                 noArrow={false}
                 position="start-end"
                 renderContent={({ onCloseModal }) => (
                     <StatusPicker
                         onCloseModal={onCloseModal}
                         setStatus={setStatus}
+                        clearStatus={clearStatus}
                         defaultStatus={columns}
                     />
                 )}
@@ -74,7 +64,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                     {status?.name || ''}
                 </div>
 
-            </PopUpMenu>
+            </PopUpMenu> */}
         </section>
     )
 }

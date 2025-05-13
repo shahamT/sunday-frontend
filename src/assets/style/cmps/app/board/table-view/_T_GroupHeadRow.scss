@@ -1,3 +1,17 @@
 .T_GroupHeadRow {
-    display: flex; 
+    display: flex;
+
+
+    .add-column-btn-container {
+        min-width: 68px;
+
+        .add-column-btn {
+            margin-inline-start: 10px;
+
+            &::before {
+                font-size: 19px !important;
+            }
+
+        }
+    }
 }

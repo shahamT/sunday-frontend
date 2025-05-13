@@ -61,9 +61,16 @@ export function EditableText({
                 value={value}
                 placeholder={placeholder}
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${additionalClass}`}
+                onClick={(e) => e.stopPropagation()}
                 onChange={handleChange}
                 onBlur={onBlur}
-                onKeyDown={(e) => e.key === 'Enter' && onPressEnter()}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault()
+                        onPressEnter()
+                        inputRef.current?.blur()
+                    }
+                }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
                     ...(full ? {} : { width: `${inputWidth}px` })

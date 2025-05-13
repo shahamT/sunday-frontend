@@ -33,8 +33,10 @@ export function T_GroupHeadRow({ columns, group }) {
                     return <T_ColumnHeaderCell key={column.id + idx} column={column} groupId={group.id} />
                 })}
 
-                <div className="add-column-btn t-cell last">
+                <div className="add-column-btn-container t-cell last">
+                    <div className="add-column-btn clickable clear icon-btn size-24 i-Add"/>
                 </div>
+                {/* empty-cell t-cell no-divider footer */}
                 
             </div>
 

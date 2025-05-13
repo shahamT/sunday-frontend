@@ -5,7 +5,7 @@
 // === Services
 
 // === Actions
-import { setColumnValue } from "../../../../../../store/actions/board.actions";
+import { removeColumnValue, setColumnValue } from "../../../../../../store/actions/board.actions";
 
 // === Hooks / React
 
@@ -48,11 +48,26 @@ export function CellContentDate({ taskId, column, columnValue }) {
         }
     }
 
+    function onClearDate() {
+        try {
+            removeColumnValue(taskId, column.id)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
+
 
     return (
         <div className={`CellContentDate cell-contnet centered`}>
-            
+
             <div className="input-outline" />
+
+            {columnValue &&
+                <div
+                    className="clear-btn clickable clear icon-btn size-24 i-CloseSmall"
+                    onClick={onClearDate}
+                />}
 
             <PopUpMenu
                 position="bottom"
@@ -67,10 +82,12 @@ export function CellContentDate({ taskId, column, columnValue }) {
 
                 {columnValue
                     ?
-                    <div className="date-label">{formatTimestamp(columnValue?.value)}
-                    <div className="clicable"></div>
-                    </div>
+                    <>
+                        <div className="date-label">
+                            {formatTimestamp(columnValue?.value)}
 
+                        </div>
+                    </>
                     :
                     <div className="date-empty-state">
                         <div className="plus-btn">

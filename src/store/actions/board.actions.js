@@ -29,14 +29,14 @@ export async function loadBoards() { //TODO add filterby as args
 
 export function updateBoards(boards) {
     try {
-      const savedBoards = boardService.saveBoards(boards)
-      store.dispatch(getCmdSetBoards(savedBoards))
-      return savedBoards
+        const savedBoards = boardService.saveBoards(boards)
+        store.dispatch(getCmdSetBoards(savedBoards))
+        return savedBoards
     } catch (err) {
-      console.error('board action -> Cannot save boards', err)
-      throw err
+        console.error('board action -> Cannot save boards', err)
+        throw err
     }
-  }
+}
 
 export async function loadBoard(boardId) {
     store.dispatch({ type: BOARD_LOADING_START })
@@ -142,15 +142,15 @@ export async function removeGroup(groupId) {
 }
 
 // ========= Task =========
-export async function addTask(groupId = null) {
+export async function addTask(groupId = null, colId, taskName) {
+
     const board = structuredClone(store.getState().boardModule.board)
     const boardId = board._id
     if (!groupId) {
         groupId = board.groups[0].id
     }
 
-    const task = boardService.getEmptyTask()
-
+    const task = await boardService.getEmptyTask(boardId, taskName )
     try {
         const savedTask = await boardService.saveTask(task, groupId, boardId)
         store.dispatch(getCmdAddTask(savedTask, groupId))
