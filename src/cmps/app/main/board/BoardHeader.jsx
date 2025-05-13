@@ -8,7 +8,8 @@ import { updateBoard } from '../../../../store/actions/board.actions.js'
 // === Hooks / React
 import { EditableText } from '../../../../cmps/reusables/EditableText/EditableText.jsx'
 import { useControlledInput } from '../../../../hooks/useControlledInput.js'
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux";
 
 // === Imgs
 
@@ -17,9 +18,10 @@ import { useEffect } from "react"
 // ====== Component ======
 // =======================
 
-export function BoardHeader({ board }) {
+export function BoardHeader({ isSelected, select }) {
     // === Consts
-    const [value, handleChange, reset, set] = useControlledInput(null)
+    const board = useSelector(storeState => storeState.boardModule.board)
+    const [value, handleChange, reset, set] = useControlledInput(undefined)
 
     // === Effects
     useEffect(() => {
@@ -30,7 +32,7 @@ export function BoardHeader({ board }) {
         function onSetName() {
             if (value === '') {
                 showErrorMsg(`Board name can't be empty`)
-                set(boardName)
+                set(board?.name)
                 return
             }
     
@@ -45,15 +47,27 @@ export function BoardHeader({ board }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardHeader">
-            <EditableText
-                value={value}
-                full={false}
-                size="title"
-                handleChange={handleChange}
-                onBlur={onSetName}
-                onPressEnter={onSetName}
-            />
-            <p>hello</p>
+            <div className='main-section'>
+                <EditableText
+                    value={value}
+                    full={false}
+                    size="title"
+                    handleChange={handleChange}
+                    onBlur={onSetName}
+                    onPressEnter={onSetName}
+                />
+                <div className="___-btn clickable clear icon-btn size-32 i-Update"></div>
+            </div>
+
+            <div className="tab-bar">         
+                <div key="main-table" className={isSelected('main-table') ? 'tab-underline' : ''} onClick={() => select("main-table")}>
+                    <div className="___-btn clickable clear size-32 select">Main Table</div>
+                </div>
+                <div key="kanban" className={isSelected('kanban') ? 'tab-underline' : ''} onClick={() => select("kanban")}>
+                    <div className="___-btn clickable clear size-32 select">Kanban</div>
+                </div>
+            </div>            
         </section>
     )
 }
+

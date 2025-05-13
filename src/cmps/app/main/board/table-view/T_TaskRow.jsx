@@ -17,7 +17,6 @@ import { T_Cell } from "./T_Cell"
 
 export function T_TaskRow({ task, columns, group }) {
     // === Consts
-    console.log("task: ", task)
     // === Effects
 
     // === Functions
