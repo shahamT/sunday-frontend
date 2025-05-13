@@ -13,7 +13,7 @@ import { arrayMove } from '@dnd-kit/sortable'
 // === Services
 
 // === Actions
-import { loadBoard, loadBoards, updateBoard } from "../../store/actions/board.actions";
+import { loadBoard, loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
 
 // === Hooks / React
 
@@ -74,7 +74,7 @@ export function AppSideNav({ }) {
         const newPos = getPos(over.id)
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
-        // store.dispatch(updateBoards(reorderedBoards))
+        store.dispatch(updateBoards(reorderedBoards))
 
         //הכנה לשמירה בשרת
         // saveBoardOrderToServer(reorderedBoards)
@@ -88,6 +88,7 @@ export function AppSideNav({ }) {
         })
     )
 
+    if (!boards) return <div>Loading...</div>
 
     return (
         <nav className="AppSideNav" >
@@ -182,45 +183,6 @@ export function AppSideNav({ }) {
                     //         <GlobalModal />
                     //     </div>
                     // )} */}
-
-                    {boards.map(board =>
-                        <div key={board._id} className="board-item-nav">
-                            <NavLink
-                                to={`/app/board/${board._id}`}
-                                className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
-                            >
-                                {editingBoardId === board._id ? (
-                                    <input
-                                        type="text"
-                                        value={editedTitle}
-                                        autoFocus
-                                        onChange={(e) => setEditedTitle(e.target.value)}
-                                        onBlur={() => handleRename(board)}
-                                        onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
-                                        className="edit-board-input"
-                                    />
-                                ) : (
-                                    board.name
-                                )}
-
-                                <PopUpMenu
-                                    position="start-end"
-                                    renderContent={({ onCloseModal }) => (
-                                        <SideNavModal
-                                            onCloseModal={onCloseModal}
-                                            board={board}
-                                            setEditingBoardId={setEditingBoardId}
-                                            setEditedTitle={setEditedTitle}
-                                        />
-                                    )}
-                                >
-                                    <div
-                                    className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
-                                </PopUpMenu>
-                            </NavLink>
-                            <GlobalModal />
-                        </div>
-                    )}
 
 
                 </section>}
