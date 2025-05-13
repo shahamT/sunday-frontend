@@ -62,6 +62,8 @@ export const boardService = {
     removeColumn,
     saveTask,
     removeTask,
+    setColumnValue,
+    removeColumnValue,
 }
 window.cs = boardService
 
@@ -88,20 +90,22 @@ async function remove(boardId) {
 }
 
 async function save(board) {
+    const loggedinUser = userService.getLoggedinUser()?._id || null
     var savedBoard
     if (board._id) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
         const boardToSave = {
             _id: makeId(),
-            // isStarred: false,
-            // createdAt: Date.now(),
-            // members: [
-            //     {
-            //         _id: userService.getLoggedinUser()._id,
-            //         permission: 'editor'
-            //     }
-            // ]
+            isStarred: false,
+            createdAt: Date.now(),
+            createdBy: loggedinUser,
+            members: [
+                {
+                    _id: loggedinUser,
+                    permission: 'editor'
+                }
+            ]
         }
         savedBoard = await storageService.post(STORAGE_KEY, {...board, ...boardToSave})
     }
@@ -132,6 +136,8 @@ async function _createBoards() {
 //////GROUP//////
 async function saveGroup(groupToSave, boardId) { 
     const board = await getById(boardId)
+    if (!board) throw new Error(`Board ${boardId} not found`)
+    if (!Array.isArray(board.groups)) board.groups = []
     var savedBoard
     if (groupToSave.id) {
         const boardToSave = {...board, groups: board.groups.map(group =>
@@ -142,14 +148,16 @@ async function saveGroup(groupToSave, boardId) {
         groupToSave.id = makeId()
         groupToSave.createdAt = Date.now()
         groupToSave.createdBy = userService.getLoggedinUser()?._id || null
-        const boardToSave = {...board, groups: {...groups, groupToSave}}
-        savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
+        const boardToSave = {...board, groups: [...board.groups, groupToSave]}
+        savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     }
     return groupToSave
 }
 
 async function removeGroup(groupId, boardId) {
     const board = await getById(boardId)
+    if (!board) throw new Error(`Board ${boardId} not found`)
+    if (!Array.isArray(board.groups)) return
     board.groups = board.groups.filter(group => group.id !== groupId)
     await storageService.put(STORAGE_KEY, board)
 }
@@ -161,6 +169,8 @@ function getColors() {
 //////COLUMN//////
 async function saveColumn(columnToSave, boardId) { 
     const board = await getById(boardId)
+    if (!board) throw new Error(`Board ${boardId} not found`)
+    if (!Array.isArray(board.columns)) board.columns = []
     var savedBoard
     if (columnToSave.id) {
         const boardToSave = {...board, columns: board.columns.map(column =>
@@ -171,14 +181,17 @@ async function saveColumn(columnToSave, boardId) {
         columnToSave.id = makeId()
         columnToSave.createdAt = Date.now()
         columnToSave.createdBy = userService.getLoggedinUser()?._id || null
-        const boardToSave = {...board, columns: {...columns, columnToSave}}
-        savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
+        const boardToSave = {...board, columns: [...board.columns, columnToSave]}
+        savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     }
     return columnToSave
 }
 
 async function removeColumn(columnId, boardId) {
     const board = await getById(boardId)
+    if (!board) throw new Error(`Board ${boardId} not found`)
+    if (!Array.isArray(board.columns)) return
+
     board.columns = board.columns.filter(column => column.id !== columnId)
     await storageService.put(STORAGE_KEY, board)
 }
@@ -186,6 +199,14 @@ async function removeColumn(columnId, boardId) {
 //////TASK//////
 async function saveTask(taskToSave, groupId, boardId) {
     const board = await getById(boardId)
+    if (!board) throw new Error(`Board ${boardId} not found`)
+
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    if (groupIdx === -1) throw new Error(`Group ${groupId} not found in board ${boardId}`)
+
+    const group = board.groups[groupIdx]
+    if (!Array.isArray(group.tasks)) group.tasks = []
+
     taskToSave.id = makeId()
     taskToSave.createdAt = Date.now()
     taskToSave.createdBy = userService.getLoggedinUser()?._id || null
@@ -193,13 +214,52 @@ async function saveTask(taskToSave, groupId, boardId) {
     const boardToSave = {...board, groups: board.groups.map(group => group.id === groupId
     ? {...group, tasks: [...group.tasks, taskToSave]} : group)}
 
-    const savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
+    const savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     return taskToSave
 }
 
 async function removeTask(taskId, groupId, boardId) {
     const board = await getById(boardId)
+    if (!board) throw new Error(`Board ${boardId} not found`)
+
+    const groupIdx = board.groups.findIndex(group => group.id === groupId)
+    if (groupIdx === -1) throw new Error(`Group ${groupId} not found in board ${boardId}`)
+
+    const group = board.groups[groupIdx]
+    if (!Array.isArray(group.tasks)) group.tasks = []
+
     const boardToSave = {...board, groups: board.groups.map(group => group.id === groupId
         ? {...group, tasks: group.tasks.filter(task => task.id !== taskId)} : group)}
     await storageService.put(STORAGE_KEY, boardToSave)
 }
+
+function setColumnValue(board, taskId, colId, value) {
+    if (!Array.isArray(board.groups)) return []
+    groups = board.groups.map(group => ({
+    ...group,
+    tasks: group.tasks.map(task => {
+      if (task.id !== taskId) return task
+
+      const exists = task.columnValues.some(cv => cv.colId === colId)
+      const columnValues = exists
+        ? task.columnValues.map(cv => cv.colId === colId ? { ...cv, value } : cv)
+        : [...task.columnValues, { colId, value }]
+
+      return { ...task, columnValues }
+    })
+  }))
+  return groups
+} 
+
+function removeColumnValue(board, taskId, colId) {
+    if (!Array.isArray(board.groups)) return []
+    groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
+      if (task.id !== taskId) return task
+
+      const updatedColumnValues = task.columnValues.filter(columnValue => columnValue.colId !== colId)
+
+      return { ...task, columnValues: updatedColumnValues }
+    })
+  }))
+  return groups
+} 
