@@ -26,8 +26,18 @@ export async function loadBoards() { //TODO add filterby as args
     } finally {
         store.dispatch({ type: BOARDS_LOADING_DONE })
     }
-
 }
+
+export function updateBoards(boards) {
+    try {
+      const savedBoards = boardService.saveBoards(boards)
+      store.dispatch(getCmdSetBoards(savedBoards))
+      return savedBoards
+    } catch (err) {
+      console.error('board action -> Cannot save boards', err)
+      throw err
+    }
+  }
 
 export async function loadBoard(boardId) {
     store.dispatch({ type: BOARD_LOADING_START })

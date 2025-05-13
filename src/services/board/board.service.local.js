@@ -64,10 +64,16 @@ export const boardService = {
     removeTask,
     setColumnValue,
     removeColumnValue,
+    saveBoards
 }
 window.cs = boardService
 
 //////BOARD//////
+async function saveBoards(boards) {
+    var savedBoards = await storageService.saveAll(STORAGE_KEY, boards)
+    return savedBoards
+}
+
 async function query(filterBy = { txt: '' }) {
     var boards = await storageService.query(STORAGE_KEY)
     const { txt, sortField, sortDir } = filterBy
