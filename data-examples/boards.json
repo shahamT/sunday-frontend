@@ -61,19 +61,22 @@
           "variant": "status",
           "labels": [
             {
+              "id": "dfgds132",
               "name": "To Do",
               "pos": 1,
-              "color": "#e2445c"
+              "color": "lavender"
             },
             {
+              "id": "dfgd432",
               "name": "In Progress",
               "pos": 2,
-              "color": "#fdab3d"
+              "color": "working_orange"
             },
             {
+              "id": "dfgds532",
               "name": "Done",
               "pos": 3,
-              "color": "#00c875"
+              "color": "done-green"
             }
           ]
         }
@@ -103,6 +106,30 @@
         "type": {
           "variant": "date"
         }
+      },
+      {
+        "id": "col_2",
+        "name": "Description",
+        "createdAt": 1746961477548,
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "type": {
+          "variant": "text"
+        }
+      },
+      {
+        "id": "col_3",
+        "name": "Estimate (hrs)",
+        "createdAt": 1746961477548,
+        "createdBy": {
+          "_id": "u_768ef13c"
+        },
+        "width": 200,
+        "type": {
+          "variant": "number"
+        }
       }
     ],
     "groups": [
@@ -111,7 +138,7 @@
         "createdAt": 1746961477549,
         "createdBy": "u_768ef13c",
         "name": "Planning",
-        "color": "#579bfc",
+        "color": "orchid",
         "pos": 1,
         "isCollapsed": false,
         "tasks": [
@@ -126,7 +153,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds132"
               },
               {
                 "id": "person",
@@ -135,6 +162,14 @@
               {
                 "id": "dueDate",
                 "value": "2025-05-23"
+              },
+              {
+                "id": "col_2",
+                "value": "this is a description"
+              },
+              {
+                "id": "col_3",
+                "value": 100
               }
             ],
             "updates": [
@@ -157,7 +192,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds132"
               },
               {
                 "id": "person",
@@ -188,7 +223,7 @@
               },
               {
                 "id": "status",
-                "value": "To Do"
+                "value": "dfgd432"
               },
               {
                 "id": "person",
@@ -219,7 +254,7 @@
               },
               {
                 "id": "status",
-                "value": "Done"
+                "value": "dfgds532"
               },
               {
                 "id": "person",
@@ -246,7 +281,7 @@
         "createdAt": 1746961477549,
         "createdBy": "u_768ef13c",
         "name": "In Progress",
-        "color": "#579bfc",
+        "color": "teal",
         "pos": 2,
         "isCollapsed": false,
         "tasks": [
@@ -261,7 +296,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds532"
               },
               {
                 "id": "person",
@@ -292,7 +327,7 @@
               },
               {
                 "id": "status",
-                "value": "Done"
+                "value": "dfgd432"
               },
               {
                 "id": "person",
@@ -319,7 +354,7 @@
         "createdAt": 1746961477550,
         "createdBy": "u_768ef13c",
         "name": "Review",
-        "color": "#579bfc",
+        "color": "grass_green",
         "pos": 3,
         "isCollapsed": false,
         "tasks": [
@@ -334,7 +369,7 @@
               },
               {
                 "id": "status",
-                "value": "In Progress"
+                "value": "dfgds132"
               },
               {
                 "id": "person",

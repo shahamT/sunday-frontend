@@ -15,7 +15,7 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText"
 // ====== Component ======
 // =======================
 
-export function T_GroupFooter({ itemColumnWidth}) {
+export function T_GroupFooter({ group, itemColumnWidth }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput('')
 
@@ -24,30 +24,27 @@ export function T_GroupFooter({ itemColumnWidth}) {
     // === Functions
 
 
-        function onAddTask() {
-            if (value === '') {
-                showErrorMsg(`Name can't be empty`)
-                set(group.name)
-                return
-            }
-            const updatedGroup = { ...group, name: value };
-            updateGroup(updatedGroup)
-                .catch(showErrorMsg(`Somthing went wrong`));
+    function onAddTask() {
+        if (value === '') {
+            return
         }
+        console.log("added")
+        addTask(value)
+            .catch(showErrorMsg(`Somthing went wrong`));
+    }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="T_GroupFooter">
             <div className="menu-wraper" />
-            <div className="t-left-indicator bottom disabled" />
-            <div className="row-wraper t-row ">
-                <label className="checkbox-container t-cell first footer disabled">
+            <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
+            <div className="row-wraper t-row sticky ">
+                <label className="checkbox-container t-cell no-divider footer disabled">
                     <input type="checkbox" className="disabled" />
                 </label>
 
                 <div
-                className="text-container t-cell first footer"
-                 style={{ width: itemColumnWidth - 33 + 'px' }}
+                    className="text-container t-cell no-divider  footer"
+                    style={{ width: itemColumnWidth - 33 + 'px' }}
                 >
                     <EditableText
                         size="small"
@@ -62,7 +59,7 @@ export function T_GroupFooter({ itemColumnWidth}) {
 
                     />
                 </div>
-                      <div className="empty-cell t-cell first footer"></div>
+                <div className="empty-cell t-cell no-divider footer"></div>
             </div>
         </section>
     )

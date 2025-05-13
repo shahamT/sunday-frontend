@@ -1,2 +1,13 @@
-._T_Group{
+.T_Group {
+    width: max-content;
+    position: relative;
+
+    .sticky-header {
+        position: sticky;
+        top: 0px;
+        z-index: 11;
+
+        background-color: var(--primary-background-color);
+
+    }
 }

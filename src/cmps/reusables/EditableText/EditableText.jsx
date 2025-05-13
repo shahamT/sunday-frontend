@@ -18,6 +18,7 @@ export function EditableText({
     type = 'text',
     color = null,
     centered = false,
+    additionalClass = '',
 }) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
@@ -59,14 +60,14 @@ export function EditableText({
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''}`}
+                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${additionalClass}`}
                 onChange={handleChange}
                 onBlur={onBlur}
                 onKeyDown={(e) => e.key === 'Enter' && onPressEnter()}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
-                    ...(full ? {} : { width: `${inputWidth}px` }),
-                    ...(color ? { color: `${color}` } : {})
+                    ...(full ? {} : { width: `${inputWidth}px` })
+                    // ...(color ? { color: `${color}` } : {})
                 }}
             />
 

@@ -32,6 +32,7 @@ export function T_GroupHeader({ group }) {
             return
         }
         const updatedGroup = { ...group, name: value };
+        console.log('got here')
         updateGroup(updatedGroup)
             .catch(showErrorMsg(`Somthing went wrong`));
     }
@@ -49,8 +50,8 @@ export function T_GroupHeader({ group }) {
                 <div className="collapse-button-wraper">
                     <Tooltip title="Collapse group" position="top">
                         <div
-                            className="collapse-button i-DropdownChevronDown"
-                            style={{ color: "#9d50dd" }}
+                            className={`collapse-button i-DropdownChevronDown ${group.color}-text`}
+                            // style={{ color: "#9d50dd" }}
                         />
                     </Tooltip>
                 </div>
@@ -61,10 +62,10 @@ export function T_GroupHeader({ group }) {
                         value={value}
                         handleChange={handleChange}
                         size='g-title'
-                        color="#9d50dd"
                         emojiPicker={false}
                         onBlur={handleRename}
                         onPressEnter={handleRename}
+                        additionalClass={`${group.color}-text`}
                     />
                 </div>
                 <p className="items-count">{group.tasks.length} Tasks</p>

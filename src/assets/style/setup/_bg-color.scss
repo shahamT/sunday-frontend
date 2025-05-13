@@ -1,4 +1,3 @@
-
 $color-names: (
   grass_green,
   done-green,
@@ -43,7 +42,8 @@ $color-names: (
 );
 
 @each $name in $color-names {
-  .#{$name} {
+  // Background color class
+  .#{$name}-bg {
     background-color: var(--color-#{$name});
 
     &:hover {
@@ -53,5 +53,10 @@ $color-names: (
     &.selected {
       background-color: var(--color-#{$name}-selected);
     }
+  }
+
+  // Text color class
+  .#{$name}-text {
+    color: var(--color-#{$name}) !important;
   }
 }

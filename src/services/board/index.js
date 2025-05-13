@@ -11,6 +11,8 @@ function getEmptyBoard() {
     const colId2 = makeId()
     const colId3 = makeId()
     const colId4 = makeId()
+    const labelId1 = makeId()
+    const labelId2 = makeId()
 	const board = {
         _id: '',
         createdAt: Date.now(),
@@ -24,12 +26,12 @@ function getEmptyBoard() {
         activities: [],
         columns: [
             {
-            id: colId1,
-            createdAt: Date.now(),
-            createdBy: userService.getLoggedinUser()?._id || null,
-            width: 400,
-            name: 'Item',
-            type: {variant: 'item'}
+                id: colId1,
+                createdAt: Date.now(),
+                createdBy: userService.getLoggedinUser()?._id || null,
+                width: 400,
+                name: 'Item',
+                type: {variant: 'item'}
             },
             {
                 id: colId2,
@@ -46,9 +48,9 @@ function getEmptyBoard() {
                 width: 200,
                 name: 'Status',
                 type: {variant: 'status', labels: [
-                        {name: 'Working On It', color: 'working_orange'},
-                        {name: 'Stuck', color: 'stuck-red'},
-                        {name: 'Done', color: 'done-green'},
+                        {id: labelId1, name: 'Working On It', color: 'working_orange'},
+                        {id: labelId2, name: 'Stuck', color: 'stuck-red'},
+                        {id: makeId(), name: 'Done', color: 'done-green'},
                     ]}
             },
             {
@@ -75,19 +77,19 @@ function getEmptyBoard() {
                         createdBy: userService.getLoggedinUser()?._id || null,
                         columnValues: [
                             {
-                                id: colId1,
+                                colId: colId1,
                                 value: 'Item 1'
                             },
                             {
-                                id: colId2,
+                                colId: colId2,
                                 value: userService.getLoggedinUser()?._id || null
                             },
                             {
-                                id: colId3,
-                                value: 'Working On It'
+                                colId: colId3,
+                                value: labelId1
                             },
                             {
-                                id: colId4,
+                                colId: colId4,
                                 value: getRandomTimestampInRange(2)
                             }
                         ]
@@ -98,15 +100,15 @@ function getEmptyBoard() {
                         createdBy: userService.getLoggedinUser()?._id || null,
                         columnValues: [
                             {
-                                id: colId1,
+                                colId: colId1,
                                 value: 'Item 2'
                             },
                             {
-                                id: colId3,
-                                value: 'Done'
+                                colId: colId3,
+                                value: labelId2
                             },
                             {
-                                id: colId4,
+                                colId: colId4,
                                 value: getRandomTimestampInRange(2)
                             }
                         ]
@@ -117,11 +119,11 @@ function getEmptyBoard() {
                         createdBy: userService.getLoggedinUser()?._id || null,
                         columnValues: [
                             {
-                                id: colId1,
+                                colId: colId1,
                                 value: 'Item 3'
                             },
                             {
-                                id: colId4,
+                                colId: colId4,
                                 value: getRandomTimestampInRange(2)
                             }
                         ]
@@ -142,11 +144,11 @@ function getEmptyBoard() {
                         createdBy: userService.getLoggedinUser()?._id || null,
                         columnValues: [
                             {
-                                id: colId1,
+                                colId: colId1,
                                 value: 'Item 4'
                             },
                             {
-                                id: colId4,
+                                colId: colId4,
                                 value: getRandomTimestampInRange(2)
                             }
                         ]
@@ -157,11 +159,11 @@ function getEmptyBoard() {
                         createdBy: userService.getLoggedinUser()?._id || null,
                         columnValues: [
                             {
-                                id: colId1,
+                                colId: colId1,
                                 value: 'Item 5'
                             },
                             {
-                                id: colId4,
+                                colId: colId4,
                                 value: getRandomTimestampInRange(2)
                             }
                         ]
@@ -179,7 +181,7 @@ function getEmptyGroup() {
     return {
         // id: makeId(),
         // createdAt: Date.now(),
-        createdBy: userService.getLoggedinUser()?._id || null,
+        // createdBy: userService.getLoggedinUser()?._id || null,
         name: 'New Group',
         isCollapse: false,
         color: colorNames[Math.floor(Math.random() * colorNames.length)],
@@ -190,11 +192,11 @@ function getEmptyGroup() {
 function getEmptyTask(boardId) {
     const board = boardService.getById(boardId)
     return {
-        id: makeId(),
-        createdAt: Date.now(),
-        createdBy: userService.getLoggedinUser()?._id || null,
+        // id: makeId(),
+        // createdAt: Date.now(),
+        // createdBy: userService.getLoggedinUser()?._id || null,
         columnValues: [
-            {id: board.columns[0].id, value: 'New item'}
+            {colId: board.columns[0].id, value: 'New item'}
         ]
     }
 }
@@ -203,7 +205,7 @@ function getEmptyColumn(type) {
     const emptyCol = {
         // id: makeId(),
         // createdAt: Date.now(),
-        createdBy: userService.getLoggedinUser()?._id || null,
+        // createdBy: userService.getLoggedinUser()?._id || null,
         name: type.charAt(0).toUpperCase() + type.slice(1),
         width: 200,
         type :  {variant: type}
@@ -211,9 +213,9 @@ function getEmptyColumn(type) {
 
     if (type === 'status') {
         emptyCol.type = {...emptyCol.type, labels: [
-                            {name: 'Working On It', color: 'working_orange'},
-                            {name: 'Stuck', color: 'stuck-red'},
-                            {name: 'Done', color: 'done-green'},
+                            {id: makeId(), name: 'Working On It', color: 'working_orange'},
+                            {id: makeId(), name: 'Stuck', color: 'stuck-red'},
+                            {id: makeId(), name: 'Done', color: 'done-green'},
                         ]}
     } else if (type === 'dropdown') {
         emptyCol.type = {...emptyCol.type, labels: []}
