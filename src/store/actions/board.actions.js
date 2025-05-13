@@ -11,7 +11,6 @@ import { boardService } from "../../services/board";
 import { store } from "../store.js";
 
 // ========= CRUDL =========
-
 // ===== Board ====
 export async function loadBoards() { //TODO add filterby as args
     // const filterBy = store.getState().boardModule.filterBy
