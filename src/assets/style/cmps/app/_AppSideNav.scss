@@ -43,13 +43,24 @@
         }
 
         .i-Favorite.starred::before {
+                content: "\f005";
+                font-family: 'fa-solid';
                 color: gold;
+                font-size: 16px;
+
         }
+
 
         .workspaces-bar,
         .workspaces-curr-board {
                 display: flex;
                 align-items: center;
+
+                p {
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                }
 
                 .search-btn,
                 .add-btn {
@@ -65,14 +76,13 @@
         .curr-wordspace-container {
                 display: flex;
                 justify-content: flex-start;
-                
                 width: 100%;
                 align-items: center;
                 padding: var(--space-4);
                 margin: 4px;
                 border: 1px solid var(--primary-text-color);
                 border-radius: 5px;
-                
+
                 img {
                         width: 32px;
 
@@ -84,12 +94,6 @@
 
                 }
         }
-
-        // .MoreBelowFilled-icon {
-        //         color: rgb(163, 217, 0);
-        //         margin-right: 4px;
-
-        // }
 
 
         .workspase-icon {
@@ -106,8 +110,7 @@
                 .Menu-btn {
                         // margin-left: auto;
                         margin-left: auto !important;
-
-                        justify-items:end !important;
+                        justify-items: end !important;
                 }
         }
 

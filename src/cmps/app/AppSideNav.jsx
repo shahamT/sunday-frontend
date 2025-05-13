@@ -59,10 +59,12 @@ export function AppSideNav({ }) {
             <div className="divider1" />
 
             <section className="nav-section">
-                <a
-                    className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''}`}
-                    onClick={() => setIsFavoritesOpen(prev => !prev)}
-                >
+            <a
+  className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${
+    isFavoritesOpen ? 'starred' : ''
+  }`}
+  onClick={() => setIsFavoritesOpen(prev => !prev)}
+>
                     Favorites
                     {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
                 </a>
