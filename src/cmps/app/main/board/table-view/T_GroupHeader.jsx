@@ -14,6 +14,7 @@ import { showErrorMsg } from "../../../../../services/base/event-bus.service";
 // === Child Components
 import { EditableText } from "../../../../reusables/EditableText/EditableText";
 import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
+import { useSelector } from "react-redux";
 
 // ====== Component ======
 // =======================
@@ -21,20 +22,23 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 export function T_GroupHeader({ group }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(group.name)
-
+    const board = useSelector(storeState => storeState.boardModule.board)
     // === Effects
 
     // === Functions
-    function handleRename() {
+    async function handleRename() {
         if (value === '') {
             showErrorMsg(`Name can't be empty`)
             set(group.name)
             return
         }
-        const updatedGroup = { ...group, name: value };
-        console.log('got here')
-        updateGroup(updatedGroup)
-            .catch(showErrorMsg(`Somthing went wrong`));
+        const updatedGroup = { ...group, name: value }
+        try{
+            updateGroup(updatedGroup)
+        }
+        catch(err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
     }
 
 
@@ -51,7 +55,7 @@ export function T_GroupHeader({ group }) {
                     <Tooltip title="Collapse group" position="top">
                         <div
                             className={`collapse-button i-DropdownChevronDown ${group.color}-text`}
-                            // style={{ color: "#9d50dd" }}
+                        // style={{ color: "#9d50dd" }}
                         />
                     </Tooltip>
                 </div>

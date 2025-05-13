@@ -11,7 +11,6 @@ import { boardService } from "../../services/board";
 import { store } from "../store.js";
 
 const state = store.getState()
-
 // ========= CRUDL =========
 
 // ===== Board ====
@@ -109,10 +108,11 @@ export async function addGroup() {
 } 
 
 export async function updateGroup(group) {
-    const boardId = state.boardModule.board._id
+   const boardId = store.getState().boardModule.board._id
     try {
         const savedGroup = await boardService.saveGroup(group, boardId)
         store.dispatch(getCmdUpdateGroup(savedGroup))
+
         return savedGroup
     } catch (err) {
         console.log('board action -> Cannot save group', err)

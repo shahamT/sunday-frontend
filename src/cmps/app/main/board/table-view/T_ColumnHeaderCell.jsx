@@ -32,8 +32,14 @@ export function T_ColumnHeaderCell({ column, groupId }) {
             return
         }
         const updatedColumn = { ...column, name: value };
-        updateColumn(updatedColumn)
-            .catch(showErrorMsg(`Somthing went wrong`));
+        
+        try{
+             updateColumn(updatedColumn)
+        }
+        catch(err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+
     }
 
 

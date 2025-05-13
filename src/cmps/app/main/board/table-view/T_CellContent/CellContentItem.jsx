@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 // === Child Components
 import { EditableText } from "../../../../../reusables/EditableText/EditableText";
 import { useControlledInput } from "../../../../../../hooks/useControlledInput";
-import { updateColumnValue } from "../../../../../../store/actions/board.actions";
+import { setColumnValue } from "../../../../../../store/actions/board.actions";
 
 // ====== Component ======
 // =======================
@@ -29,7 +29,7 @@ export function CellContentItem({ column, columnValue, taskId }) {
 
     // === Functions
     function onOpenTaskDetails(ev) {
-        ev.stopPropagation();
+        ev.stopPropagation()
         navigate(`/app/board/${board._id}/task/${taskId}`)
     }
 
@@ -39,9 +39,14 @@ export function CellContentItem({ column, columnValue, taskId }) {
             set(columnValue.value)
             return
         }
-        const updatedColumnValue = { ...columnValue, value: value };
-        updateColumnValue(taskId, column.id ,updatedColumnValue)
-            .catch(showErrorMsg(`Somthing went wrong`));
+        const updatedColumnValue = { ...columnValue, value: value }
+
+        try {
+            setColumnValue(taskId, column.id, updatedColumnValue)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
     }
 
     return (

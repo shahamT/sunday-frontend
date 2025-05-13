@@ -25,19 +25,14 @@ export function T_View({ /* prop1, prop2 */ }) {
     const board = useSelector(storeState => storeState.boardModule.board)
     const { boardId } = useParams()
 
-    console.log("board: ", board)
-
     // === Effects
     useEffect(() => {
         loadBoard(boardId)
     }, [boardId])
 
-    useEffect(() => {
-    }, [board])
-
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
+    if (!board) return <div>Loading...</div>
     return (
         <section className="T_View">
 
