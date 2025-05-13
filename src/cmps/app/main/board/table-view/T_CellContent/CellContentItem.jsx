@@ -38,7 +38,7 @@ export function CellContentItem({ column, columnValue, taskId }) {
     function onSetName() {
         if (value === '') {
             showErrorMsg(`Item name can't be empty`)
-            set(columnValue.value)
+            set(columnValue?.value)
             return
         }
 

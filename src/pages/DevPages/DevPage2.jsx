@@ -23,18 +23,20 @@ export function DevPage2({ /* prop1, prop2 */ }) {
 
 
 
-return(
-        <section className='date-picker'>
-            <h1>dev3</h1>
-            <PopUpMenu
-                position="start-end"
-                renderContent={({ onCloseModal }) => (
-                    <DatePickerColumn
-                    onCloseModal={onCloseModal}
-                    />
-                )}
-            >
-                <div className="___-btn i-Night clickable filled negative size-40" />
-            </PopUpMenu></section>
-    )
+// return(
+//         <section className='date-picker'>
+//             <h1>dev3</h1>
+//             <PopUpMenu
+//                 position="start-end"
+//                 renderContent={({ onCloseModal }) => (
+//                     <DatePickerColumn
+//                     onCloseModal={onCloseModal}
+//                     setDate={onSetDate}
+//                     defaultDate={} 
+//                     />
+//                 )}
+//             >
+//                 <div className="___-btn i-Night clickable filled negative size-40" />
+//             </PopUpMenu></section>
+//     )
 }
