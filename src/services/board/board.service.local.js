@@ -158,9 +158,9 @@ async function saveGroup(groupToSave, boardId) {
         }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
-        groupToSave.id = makeId()
-        groupToSave.createdAt = Date.now()
-        groupToSave.createdBy = userService.getLoggedinUser()?._id || null
+        // groupToSave.id = makeId()
+        // groupToSave.createdAt = Date.now()
+        // groupToSave.createdBy = userService.getLoggedinUser()?._id || null
         const boardToSave = { ...board, groups: [...board.groups, groupToSave] }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     }
@@ -192,9 +192,9 @@ async function saveColumn(columnToSave, boardId) {
         }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
-        columnToSave.id = makeId()
-        columnToSave.createdAt = Date.now()
-        columnToSave.createdBy = userService.getLoggedinUser()?._id || null
+        // columnToSave.id = makeId()
+        // columnToSave.createdAt = Date.now()
+        // columnToSave.createdBy = userService.getLoggedinUser()?._id || null
         const boardToSave = { ...board, columns: [...board.columns, columnToSave] }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     }
@@ -221,9 +221,9 @@ async function saveTask(taskToSave, groupId, boardId) {
     const group = board.groups[groupIdx]
     if (!Array.isArray(group.tasks)) group.tasks = []
 
-    taskToSave.id = makeId()
-    taskToSave.createdAt = Date.now()
-    taskToSave.createdBy = userService.getLoggedinUser()?._id || null
+    // taskToSave.id = makeId()
+    // taskToSave.createdAt = Date.now()
+    // taskToSave.createdBy = userService.getLoggedinUser()?._id || null
 
     const boardToSave = {
         ...board, groups: board.groups.map(group => group.id === groupId
