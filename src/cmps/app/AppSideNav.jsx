@@ -6,10 +6,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 
 // Dnd kit
-import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { arrayMove } from '@dnd-kit/sortable'
-
 // === Services
 
 // === Actions
@@ -24,8 +22,8 @@ import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
 import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
-import { Board } from './main/board/side-nave/Board';
 import { store } from '../../store/store';
+import { BoarNavBarLink } from './main/board/side-nave/BoarNavBarLink';
 
 // ====== Component ======
 // =======================
@@ -64,16 +62,17 @@ export function AppSideNav({ }) {
     }
 
     function handleDragEnd(event) {
-        const { active, over } = event
-        if (!over) return
-        if (active.id === over.id) return
+        event.preventDefault()
+        // const { active, over } = event
+        // if (!over) return
+        // if (active.id === over.id) return
 
 
-        const originalPos = getPos(active.id)
-        const newPos = getPos(over.id)
-        const reorderedBoards = arrayMove(boards, originalPos, newPos)
+        // const originalPos = getPos(active.id)
+        // const newPos = getPos(over.id)
+        // const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
-        updateBoards(reorderedBoards)
+        // updateBoards(reorderedBoards)
 
         //הכנה לשמירה בשרת
         // saveBoardOrderToServer(reorderedBoards)
@@ -128,66 +127,70 @@ export function AppSideNav({ }) {
                         </div>
                         <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
-                    <DndContext
+                    {/* <DndContext
                         sensors={sensors}
                         collisionDetection={closestCenter}
+
                         onDragEnd={handleDragEnd}
                     >
                         <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                             {boards.map(board =>
-                                <Board board={board}
+                                <BoarNavBarLink board={board}
                                     key={board._id}
                                     editedTitle={editedTitle}
                                     editingBoardId={editingBoardId}
                                     setEditedTitle={setEditedTitle}
                                     setEditingBoardId={setEditingBoardId}
-                                    handleRename={handleRename} />)}
+                                    handleRename={handleRename} />
+                                
+                            )}
                         </SortableContext>
-                    </DndContext>
+                    </DndContext> */}
 
-                    {/* 
-                    //     <div key={board._id} className="board-item-nav">
-                    //         <NavLink
-                    //             to={`/app/board/${board._id}`}
-                    //             className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
-                    //         >
-                    //             {editingBoardId === board._id ? (
-                    //                 <input
-                    //                     type="text"
-                    //                     value={editedTitle}
-                    //                     autoFocus
-                    //                     onChange={(e) => setEditedTitle(e.target.value)}
-                    //                     onBlur={() => handleRename(board)}
-                    //                     onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
-                    //                     className="edit-board-input"
-                    //                 />
-                    //             ) : (
-                    //                 board.name
-                    //             )}
 
-                    //             <PopUpMenu
-                    //                 position="start-end"
-                    //                 renderContent={({ onCloseModal }) => (
-                    //                     <SideNavModal
-                    //                         onCloseModal={onCloseModal}
-                    //                         board={board}
-                    //                         setEditingBoardId={setEditingBoardId}
-                    //                         setEditedTitle={setEditedTitle}
-                    //                     />
-                    //                 )}
-                    //             >
-                    //                 <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
-                    //             </PopUpMenu>
-                    //         </NavLink>
-                    //         <GlobalModal />
-                    //     </div>
-                    // )} */}
+                    {boards.map(board =>
+                        <div key={board._id} className="board-item-nav">
+                            <NavLink
+                                to={`/app/board/${board._id}`}
+                                className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
+                            >
+                                {editingBoardId === board._id ? (
+                                    <input
+                                        type="text"
+                                        value={editedTitle}
+                                        autoFocus
+                                        onChange={(e) => setEditedTitle(e.target.value)}
+                                        onBlur={() => handleRename(board)}
+                                        onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
+                                        className="edit-board-input"
+                                    />
+                                ) : (
+                                    board.name
+                                )}
+
+                                <PopUpMenu
+                                    position="start-end"
+                                    renderContent={({ onCloseModal }) => (
+                                        <SideNavModal
+                                            onCloseModal={onCloseModal}
+                                            board={board}
+                                            setEditingBoardId={setEditingBoardId}
+                                            setEditedTitle={setEditedTitle}
+                                        />
+                                    )}
+                                >
+                                    <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
+                                </PopUpMenu>
+                            </NavLink>
+                            <GlobalModal />
+                        </div>
+                    )}
 
 
                 </section>}
 
 
-{/* {openSideNaveModal && <SideNavModal board={board} setOpenSideNavModal={setOpenSideNavModal} />} */ }
+            {/* {openSideNaveModal && <SideNavModal board={board} setOpenSideNavModal={setOpenSideNavModal} />} */}
         </nav >
 
     )

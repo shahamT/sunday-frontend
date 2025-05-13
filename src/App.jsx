@@ -18,15 +18,7 @@ import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-d
 import { useDocumentTitle } from './hooks/useDocumentTitle'
 
 // Dnd kit
-import {
-    DndContext,
-    closestCenter,
-    PointerSensor,
-    useSensor,
-    useSensors,
-    TouchSensor,
-    KeyboardSensor,
-} from '@dnd-kit/core'
+
 
 //services
 import { store } from './store/store.js'
@@ -44,41 +36,13 @@ import { BoardPreview } from './cmps/app/main/board/BoardPreview'
 // === Global Components
 import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
 import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
-import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
+
 
 
 export default function App() {
     // routes with no header:
     const noHeaders = ['/signup', '/login']
-    // const sensors = useSensors(useSensor(PointerSensor))
 
-    // function getPos(id) {
-    //     return boards.findIndex(board => board._id === id)
-    // }
-
-    // function handleDragEnd(event) {
-    //     const { active, over } = event
-    //     if (!over) return
-    //     if (active.id === over.id) return
-
-
-    //     const originalPos = getPos(active.id)
-    //     const newPos = getPos(over.id)
-    //     const reorderedBoards = arrayMove(boards, originalPos, newPos)
-
-    //     dispatch(updateBoards(reorderedBoards))
-
-    //     //הכנה לשמירה בשרת
-    //     // saveBoardOrderToServer(reorderedBoards)
-    // }
-
-    const sensors = useSensors(
-        useSensor(PointerSensor),
-        useSensor(TouchSensor),
-        useSensor(KeyboardSensor, {
-            coordinateGetter: sortableKeyboardCoordinates,
-        })
-    )
 
     return (
         <Provider store={store}>
@@ -107,15 +71,7 @@ export default function App() {
 
                             {/* app routes */}
 
-                            <Route element={
-                                <DndContext
-                                    sensors={sensors}
-                                    collisionDetection={closestCenter}
-                                    
-                                >
-                                    <AppLayout />
-                                </DndContext>
-                            }>
+                            <Route element={<AppLayout />}>
                                 <Route path="/app" element={<Navigate to="/app/home" />} />
                                 <Route path="/app/home" element={<AppHome />} />
                                 <Route path="/app/board/:boardId" element={<BoardPreview />} />
