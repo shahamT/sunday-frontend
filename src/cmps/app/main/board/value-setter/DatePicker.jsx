@@ -10,11 +10,9 @@ import { getYear, getMonth } from 'date-fns';
 // ====== Component ======
 // =======================
 
-export function DatePickerColumn({ onCloseModal }) {
+export function DatePickerColumn({ onCloseModal, setDate, defaultDate }) {
     // === Consts
-    const [selectedDate, setSelectedDate] = useState(new Date())
-    const [startDate, setStartDate] = useState(new Date())
-    const [startTime, setStartTime] = useState(new Date())
+    const [selectedDate, setSelectedDate] = useState(defaultDate || new Date())
     const [showTimePicker, setShowTimePicker] = useState(false);
 
     const years = range(1990, getYear(new Date()) + 1, 1);
@@ -32,35 +30,31 @@ export function DatePickerColumn({ onCloseModal }) {
         "November",
         "December",
     ]
- 
 
 
     // === Functions
-    function onToday() {
+    function onClickToday() {
         const now = new Date()
-        setStartDate(now)
         setSelectedDate(now)
-        setStartTime(now)
-
     }
 
     function handleSave(date) {
-        console.log('Saving date:', date.toISOString())
+       setDate(date.getTime())
         if (onCloseModal) onCloseModal()
-      }
-      
+    }
+
     return (
         <section className='date-picker'>
 
             <DatePicker inline
-            selected={startDate}
-            onChange={(date) => {
-              setStartDate(date)
-              handleSave(date)
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter') handleSave(startDate);
-            }}
+                selected={selectedDate}
+                onChange={(date) => {
+                    setSelectedDate(date)
+                    handleSave(date)
+                }}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') handleSave(selectedDate);
+                }}
                 renderCustomHeader={({
                     date,
                     changeYear,
@@ -73,28 +67,28 @@ export function DatePickerColumn({ onCloseModal }) {
                     <div className="date-picker-container" >
                         <div className={`time-btn clickable clear size-32 i-Time ${showTimePicker ? 'active' : ''}`}
                             onClick={() => { setShowTimePicker(prev => !prev) }} />
-                        <div className='today-btn clickable clear size-32' onClick={() => onToday()} >Today</div>
+                        <div className='today-btn clickable clear size-32' onClick={() => onClickToday()} >Today</div>
                         {showTimePicker ?
                             (<DatePicker
-                                selected={startDate}
+                                selected={selectedDate}
                                 onChange={(date) => {
-                                    setStartDate(date)
-                                    handleSave(date) 
-                                  }}
+                                    setSelectedDate(date)
+                                    handleSave(date)
+                                }}
                                 onKeyDown={(e) => {
-                                    if (e.key === 'Enter') handleSave(startDate);
-                                  }}
+                                    if (e.key === 'Enter') handleSave(selectedDate);
+                                }}
                                 dateFormat="   dd/MM/yyyy      |    h:mm aa"
                                 open={false}
                             />) : (<DatePicker
-                                selected={startDate}
+                                selected={selectedDate}
                                 onChange={(date) => {
-                                    setStartDate(date)
-                                    handleSave(date) 
-                                  }}
+                                    setSelectedDate(date)
+                                    handleSave(date)
+                                }}
                                 onKeyDown={(e) => {
-                                    if (e.key === 'Enter') handleSave(startDate);
-                                  }}
+                                    if (e.key === 'Enter') handleSave(selectedDate);
+                                }}
                                 dateFormat="   dd/MM/yyyy"
                                 open={false}
 
@@ -130,7 +124,7 @@ export function DatePickerColumn({ onCloseModal }) {
 
                     </div>
                 )}
-                
+
             />
         </section>
     )

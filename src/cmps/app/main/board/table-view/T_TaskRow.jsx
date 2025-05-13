@@ -17,7 +17,7 @@ import { T_Cell } from "./T_Cell"
 
 export function T_TaskRow({ task, columns, group }) {
     // === Consts
-
+    console.log("task: ", task)
     // === Effects
 
     // === Functions
@@ -33,7 +33,7 @@ export function T_TaskRow({ task, columns, group }) {
 
 
                 {columns.map((column, idx) => {
-                    const columnValue = task.columnValues.find(columnValue => columnValue.id === column.id)
+                    const columnValue = task.columnValues.find(columnValue => columnValue.colId === column.id)
                     return <T_Cell key={column.id + idx} column={column} columnValue={columnValue} taskId={task.id} />
                 })}
 
