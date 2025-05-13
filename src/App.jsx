@@ -17,6 +17,9 @@ import { DevPage3 } from './pages/DevPages/DevPage3'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { useDocumentTitle } from './hooks/useDocumentTitle'
 
+// Dnd kit
+
+
 //services
 import { store } from './store/store.js'
 import { Provider } from 'react-redux'
@@ -28,11 +31,12 @@ import { ClearLayout } from './layouts/ClearLayout'
 
 // === pages
 import { AppHome } from './cmps/app/main/home/AppHome'
-import {BoardPreview } from './cmps/app/main/board/BoardPreview'
+import { BoardPreview } from './cmps/app/main/board/BoardPreview'
 
 // === Global Components
 import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
 import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
+
 
 
 export default function App() {
@@ -66,13 +70,13 @@ export default function App() {
 
 
                             {/* app routes */}
+
                             <Route element={<AppLayout />}>
                                 <Route path="/app" element={<Navigate to="/app/home" />} />
                                 <Route path="/app/home" element={<AppHome />} />
                                 <Route path="/app/board/:boardId" element={<BoardPreview />} />
                                 <Route path="/app/board/:boardId/task/:taskId" element={<BoardPreview />} />
                             </Route>
-
 
                             {/* dev pages routes */}
                             <Route path="/reusables" element={<Reusables />} />

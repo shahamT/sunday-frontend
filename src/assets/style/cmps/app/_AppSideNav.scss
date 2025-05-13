@@ -6,6 +6,11 @@
         display: auto;
 }
 
+.board-item-nav{
+        touch-action: none;
+}
+
+
 .AppSideNav {
         padding-block-start: 6px;
 
@@ -78,10 +83,12 @@
                 justify-content: flex-start;
                 width: 100%;
                 align-items: center;
-                // padding: var(--space-4);
+                padding-left: 1px;
                 margin: 4px;
-                border: 1px solid var(--primary-text-color);
+                border: 1px solid #d0d0d0;
                 border-radius: 5px;
+                // background-color: #d0d0d0;
+
 
                 img {
                         width: 32px;
@@ -91,7 +98,7 @@
                 p {
                         color: var(--primary-text-color);
                         text-overflow: ellipsis;
-                        font-weight:600;
+                        font-weight: 600;
                 }
         }
 
@@ -105,12 +112,13 @@
 
         .board-item-nav {
                 display: flex;
+                justify-content: space-between;
                 align-items: center;
 
                 .Menu-btn {
-                        // margin-left: auto;
-                        margin-left: auto !important;
-                        justify-items: end !important;
+                        margin-left: auto;
+                        // margin-left: auto !important;
+                        // justify-items: end !important;
                 }
         }
 

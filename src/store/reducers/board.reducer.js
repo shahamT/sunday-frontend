@@ -9,6 +9,8 @@ export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const REVERT_BOARDS = 'REVERT_BOARDS'
 
+
+
 // Groups
 export const REMOVE_GROUP = 'REMOVE_GROUP'
 export const ADD_GROUP = 'ADD_GROUP'
