@@ -43,6 +43,7 @@ const initialState = {
     //board
     boards: [],
     lastBoards: [],
+    lastBoard: {},
     board: null,
     isTaskPanelOpen: false,
 
@@ -51,13 +52,13 @@ const initialState = {
     isBoardLoading: false,
 
     //Group
-    lastGroups: [],
+    // lastGroups: [],
 
     //Column
-    lastColumns: [],
+    // lastColumns: [],
 
     //Tasks
-    lastTasks: {},
+    // lastTasks: {},
 
     // filterBy: boardService.getDefaultFilter(),
 }
