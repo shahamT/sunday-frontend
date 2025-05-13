@@ -1,0 +1,21 @@
+.BoardHeader {
+    padding-left: var(--space-40);
+    padding-top: 18px;
+    padding-right: 30px;
+    
+    .main-section {
+        display: flex;
+        justify-content: space-between;
+    }
+    
+    .tab-bar {
+        display: flex;
+        padding-top: var(--space-8);
+        border-bottom: 1px var(--layout-border-color) solid;
+
+        .tab-underline {
+            border-bottom: 1.66667px solid var(--primary-color);
+            width: max-content;
+        }
+    }
+}

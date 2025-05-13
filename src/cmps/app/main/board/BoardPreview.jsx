@@ -9,6 +9,7 @@ import { loadBoard } from "../../../../store/actions/board.actions";
 // === Hooks / React
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useSelected } from '../../../../hooks/useSelected.js'
 
 
 // === Imgs
@@ -25,7 +26,7 @@ import { TaskDetails } from "./TaskDetails";
 export function BoardPreview({ /* prop1, prop2 */ }) {
     // === Consts
     const { boardId } = useParams()
-
+    const { selected, isSelected, select } = useSelected('main-table')
 
     // === Effects
     useEffect(() => {
@@ -37,7 +38,7 @@ export function BoardPreview({ /* prop1, prop2 */ }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardPreview">
-            <BoardHeader />
+            <BoardHeader isSelected={isSelected} select={select} />
             <BoardContent />
 
             <TaskPanel

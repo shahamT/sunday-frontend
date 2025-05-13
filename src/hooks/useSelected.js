@@ -32,22 +32,22 @@ export function useSelected(initial = null) {
 //   const { selected, isSelected, select } = useSelected('tab-1');
 
 //   return (
-//     <div className="tab-bar">
+    // <div className="tab-bar">
      
-//         <div key="tab-1"
-//           className={`tab ${isSelected("tab-1") ? 'active' : ''}`}
-//           onClick={() => select("tab-1")}>
-//         </div>
-//         <div key="tab-2"
-//           className={`tab ${isSelected("tab-1") ? 'active' : ''}`}
-//           onClick={() => select("tab-1")}>
-//         </div>
+    //     <div key="tab-1"
+    //       className={`tab ${isSelected("tab-1") ? 'active' : ''}`}
+    //       onClick={() => select("tab-1")}>
+    //     </div>
+    //     <div key="tab-2"
+    //       className={`tab ${isSelected("tab-1") ? 'active' : ''}`}
+    //       onClick={() => select("tab-1")}>
+    //     </div>
     
 
-//       <div className="tab-content">
-//         {isSelected('tab-1') && <p>This is the Info tab</p>}
-//         {isSelected('tab-2') && <p>Settings content goes here</p>}
-//       </div>
-//     </div>
+    //   <div className="tab-content">
+    //     {isSelected('tab-1') && <p>This is the Info tab</p>}
+    //     {isSelected('tab-2') && <p>Settings content goes here</p>}
+    //   </div>
+    // </div>
 //   );
 // }
