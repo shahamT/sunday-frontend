@@ -145,7 +145,7 @@ async function saveGroup(groupToSave, boardId) {
         const boardToSave = {...board, groups: {...groups, groupToSave}}
         savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
     }
-    return savedBoard
+    return groupToSave
 }
 
 async function removeGroup(groupId, boardId) {
@@ -174,7 +174,7 @@ async function saveColumn(columnToSave, boardId) {
         const boardToSave = {...board, columns: {...columns, columnToSave}}
         savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
     }
-    return savedBoard
+    return columnToSave
 }
 
 async function removeColumn(columnId, boardId) {
@@ -194,7 +194,7 @@ async function saveTask(taskToSave, groupId, boardId) {
     ? {...group, tasks: [...group.tasks, taskToSave]} : group)}
 
     const savedBoard = await storageService.post(STORAGE_KEY, boardToSave)
-    return savedBoard
+    return taskToSave
 }
 
 async function removeTask(taskId, groupId, boardId) {
