@@ -6,6 +6,11 @@
         display: auto;
 }
 
+.board-item-nav{
+        touch-action: none;
+}
+
+
 .AppSideNav {
         padding-block-start: 6px;
 
@@ -80,7 +85,7 @@
                 align-items: center;
                 padding-left: 1px;
                 margin: 4px;
-                border: 1px solid  #d0d0d0;
+                border: 1px solid #d0d0d0;
                 border-radius: 5px;
                 // background-color: #d0d0d0;
 
@@ -93,7 +98,7 @@
                 p {
                         color: var(--primary-text-color);
                         text-overflow: ellipsis;
-                        font-weight:600;
+                        font-weight: 600;
                 }
         }
 

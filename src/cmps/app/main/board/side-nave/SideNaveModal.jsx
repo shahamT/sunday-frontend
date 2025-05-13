@@ -44,14 +44,14 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
         }
         setBoardToEdit(updatedBoard)
         updateBoard(updatedBoard)
-            .then(()=>loadBoards())
+            .then(() => loadBoards())
             .catch(err => console.error('Failed to update board', err));
     }
 
-    function onRemoveBoard(boardId){
+    function onRemoveBoard(boardId) {
         removeBoard(boardId)
-        .then(showSuccessMsg('We successfully deleted the board'))
-        .catch('Failed to remove board', err)
+            .then(showSuccessMsg('We successfully deleted the board'))
+            .catch('Failed to remove board', err)
 
     }
 

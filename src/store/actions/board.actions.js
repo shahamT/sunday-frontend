@@ -5,7 +5,7 @@ import {
   ADD_TASK, REMOVE_TASK, REVERT_TASKS,
   BOARDS_LOADING_START, BOARDS_LOADING_DONE,
   BOARD_LOADING_START, BOARD_LOADING_DONE,
-  OPEN_TASK_PANEL, CLOSE_TASK_PANEL
+  OPEN_TASK_PANEL, CLOSE_TASK_PANEL,
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
 import { store } from "../store.js";
@@ -13,7 +13,6 @@ import { store } from "../store.js";
 const state = store.getState()
 
 // ========= CRUDL =========
-
 // ===== Board ====
 export async function loadBoards() { //TODO add filterby as args
     // const filterBy = store.getState().boardModule.filterBy

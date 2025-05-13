@@ -2,8 +2,13 @@
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
+
+// Dnd kit
+import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy } from '@dnd-kit/sortable';
+import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { arrayMove } from '@dnd-kit/sortable'
 
 // === Services
 
@@ -19,12 +24,16 @@ import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
 import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
+import { Board } from './main/board/side-nave/Board';
+import { store } from '../../store/store';
 
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
+    const dispatch = useDispatch()
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const board = useSelector(storeState => storeState.boardModule.board)
+
 
     const [editingBoardId, setEditingBoardId] = useState(null)
     const [editedTitle, setEditedTitle] = useState('')
@@ -33,6 +42,8 @@ export function AppSideNav({ }) {
     useEffect(() => {
         loadBoards()
     }, [])
+
+
 
     function handleRename(board) {
         if (!editedTitle || editedTitle === board.name) {
@@ -49,6 +60,35 @@ export function AppSideNav({ }) {
     }
 
 
+    function getPos(id) {
+        return boards.findIndex(board => board._id === id)
+    }
+
+    function handleDragEnd(event) {
+        const { active, over } = event
+        if (!over) return
+        if (active.id === over.id) return
+
+
+        const originalPos = getPos(active.id)
+        const newPos = getPos(over.id)
+        const reorderedBoards = arrayMove(boards, originalPos, newPos)
+
+        // store.dispatch(updateBoards(reorderedBoards))
+
+        //הכנה לשמירה בשרת
+        // saveBoardOrderToServer(reorderedBoards)
+    }
+
+    const sensors = useSensors(
+        useSensor(PointerSensor),
+        useSensor(TouchSensor),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    )
+
+
     return (
         <nav className="AppSideNav" >
 
@@ -59,12 +99,11 @@ export function AppSideNav({ }) {
             <div className="divider1" />
 
             <section className="nav-section">
-            <a
-  className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${
-    isFavoritesOpen ? 'starred' : ''
-  }`}
-  onClick={() => setIsFavoritesOpen(prev => !prev)}
->
+                <a
+                    className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''
+                        }`}
+                    onClick={() => setIsFavoritesOpen(prev => !prev)}
+                >
                     Favorites
                     {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
                 </a>
@@ -89,51 +128,67 @@ export function AppSideNav({ }) {
                         </div>
                         <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
+                    <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCenter}
+                        onDragEnd={handleDragEnd}
+                    >
+                        <SortableContext items={boards.map(b => b._id)} strategy={verticalListSortingStrategy}>
+                            {boards.map(board =>
+                                <Board board={board}
+                                    key={board._id}
+                                    editedTitle={editedTitle}
+                                    editingBoardId={editingBoardId}
+                                    setEditedTitle={setEditedTitle}
+                                    setEditingBoardId={setEditingBoardId}
+                                    handleRename={handleRename} />)}
+                        </SortableContext>
+                    </DndContext>
 
-                    {boards.map(board =>
-                        <div key={board._id} className="board-item-nav">
-                            <NavLink
-                                to={`/app/board/${board._id}`}
-                                className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
-                            >
-                                {editingBoardId === board._id ? (
-                                    <input
-                                        type="text"
-                                        value={editedTitle}
-                                        autoFocus
-                                        onChange={(e) => setEditedTitle(e.target.value)}
-                                        onBlur={() => handleRename(board)}
-                                        onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
-                                        className="edit-board-input"
-                                    />
-                                ) : (
-                                    board.name
-                                )}
+                    {/* 
+                    //     <div key={board._id} className="board-item-nav">
+                    //         <NavLink
+                    //             to={`/app/board/${board._id}`}
+                    //             className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
+                    //         >
+                    //             {editingBoardId === board._id ? (
+                    //                 <input
+                    //                     type="text"
+                    //                     value={editedTitle}
+                    //                     autoFocus
+                    //                     onChange={(e) => setEditedTitle(e.target.value)}
+                    //                     onBlur={() => handleRename(board)}
+                    //                     onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
+                    //                     className="edit-board-input"
+                    //                 />
+                    //             ) : (
+                    //                 board.name
+                    //             )}
 
-                                <PopUpMenu
-                                    position="start-end"
-                                    renderContent={({ onCloseModal }) => (
-                                        <SideNavModal
-                                            onCloseModal={onCloseModal}
-                                            board={board}
-                                            setEditingBoardId={setEditingBoardId}
-                                            setEditedTitle={setEditedTitle}
-                                        />
-                                    )}
-                                >
-                                    <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
-                                </PopUpMenu>
-                            </NavLink>
-                            <GlobalModal />
-                        </div>
-                    )}
+                    //             <PopUpMenu
+                    //                 position="start-end"
+                    //                 renderContent={({ onCloseModal }) => (
+                    //                     <SideNavModal
+                    //                         onCloseModal={onCloseModal}
+                    //                         board={board}
+                    //                         setEditingBoardId={setEditingBoardId}
+                    //                         setEditedTitle={setEditedTitle}
+                    //                     />
+                    //                 )}
+                    //             >
+                    //                 <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
+                    //             </PopUpMenu>
+                    //         </NavLink>
+                    //         <GlobalModal />
+                    //     </div>
+                    // )} */}
 
 
                 </section>}
 
 
-            {/* {openSideNaveModal && <SideNavModal board={board} setOpenSideNavModal={setOpenSideNavModal} />} */}
-        </nav>
+{/* {openSideNaveModal && <SideNavModal board={board} setOpenSideNavModal={setOpenSideNavModal} />} */ }
+        </nav >
 
     )
 }

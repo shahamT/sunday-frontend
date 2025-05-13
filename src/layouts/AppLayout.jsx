@@ -97,7 +97,7 @@ export function AppLayout() {
                     style={isSideNavOpen ? { width: `${sideNavWidth}px` } : undefined}
                     onClick={onSideNavExpand}
                 >
-                    {isSideNavOpen && <AppSideNav />}
+                    {isSideNavOpen && <AppSideNav  />}
                     <div
                         className={`side-nav-resize-handle ${isDragging ? 'dragging' : ''}`}
                         onMouseDown={onResize}
