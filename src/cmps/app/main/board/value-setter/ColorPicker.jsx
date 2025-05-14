@@ -16,7 +16,7 @@ import { getRandomIntInclusive } from '../../../../../services/base/util.service
 // ====== Component ======
 // =======================
 
-export function ColorPicker({ onCloseModal, setLableColor, lableColor }) {
+export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full' }) {
     const colors = [
         'color-1',
         'color-2',
@@ -38,7 +38,6 @@ export function ColorPicker({ onCloseModal, setLableColor, lableColor }) {
         'color-18',
     ]
 
-    console.log(colors)
     // === Consts
 
     // === Effects
@@ -48,12 +47,12 @@ export function ColorPicker({ onCloseModal, setLableColor, lableColor }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="color-picker-container">
-            {colors.map(color => ( color===lableColor ? null:
+            {colors.map(color => (color === selectedColor ? null :
                 <div
                     key={color}
                     className={`circle color-picker-item ${color}`}
                     onClick={() => {
-                        setLableColor(color)
+                        setColor(color)
                         onCloseModal()
                     }}
                 />
