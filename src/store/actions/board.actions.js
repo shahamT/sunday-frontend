@@ -104,7 +104,7 @@ export async function addBoard(board) {
 
 // ========= Group =========
 export async function addGroup(isTop = false) {
-    const boardId = await store.getState().boardModule.board._id
+    const boardId = store.getState().boardModule.board._id
     const group = boardService.getEmptyGroup()
     try {
         store.dispatch(getCmdAddGroup(group, isTop))
@@ -220,7 +220,7 @@ export async function removeTask(taskId, groupId) {
 // }
 
 export async function setColumnValue(taskId, colId, value) {
-    const board = await structuredClone(store.getState().boardModule.board)
+    const board = structuredClone(store.getState().boardModule.board)
     board.groups = boardService.setColumnValue(board, taskId, colId, value)
     try {
         store.dispatch(getCmdSetBoard(board))
