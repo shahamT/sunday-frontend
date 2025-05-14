@@ -1,0 +1,60 @@
+.PersonsPicker {
+    width: max-content;
+    padding: 16px;
+
+    .person-select-btn {
+        font-size: 0.875rem;
+        width: 320px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        padding-inline: 8px;
+
+        span {
+            padding-inline: 8px;
+        }
+
+        img{
+            height: 1.904em;
+            width: 1.904em;
+        }
+    }
+
+    .selected-persons {
+        display: flex;
+
+        .selected-person {
+            display: flex;
+            align-items: center;
+            margin: 4px;
+            // height: 1.375em;
+            height: max-content;
+            width: max-content;
+            border-radius: 999px;
+            font-size: 0.75rem;
+            background-color: #e5f4ff;
+
+            .remove-person-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 50%;
+                height: 16px;
+                width: 16px;
+                margin-inline-start: 4px;
+                margin-inline-end: 2px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: white;
+                }
+            }
+
+            img{
+                height: 1.833em;
+                width: 1.833em;
+                margin-inline-end: 4px;
+            }
+        }
+    }
+}

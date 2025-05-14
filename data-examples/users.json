@@ -20,7 +20,7 @@
     "password": "hashed_pw_2",
     "createdAt": "2025-04-12T11:04:37.547535",
     "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=User2+Lastname2&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+    "profileImg": "https://ui-avatars.com/api/?name=User2+Lastname2&background=FF5733&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   },
   {
@@ -32,7 +32,7 @@
     "password": "hashed_pw_3",
     "createdAt": "2025-04-13T11:04:37.547571",
     "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=Noga+Shaham&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+    "profileImg": "https://ui-avatars.com/api/?name=Noga+Shaham&background=28A745&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   },
   {
@@ -44,7 +44,7 @@
     "password": "hashed_pw_4",
     "createdAt": "2025-04-14T11:04:37.547596",
     "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=Dana+Tamir&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+    "profileImg": "https://ui-avatars.com/api/?name=Dana+Tamir&background=6F42C1&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   },
   {
@@ -56,7 +56,7 @@
     "password": "hashed_pw_5",
     "createdAt": "2025-04-15T11:04:37.547616",
     "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=Code+Cohen&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+    "profileImg": "https://ui-avatars.com/api/?name=Code+Cohen&background=E83E8C&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   }
 ]

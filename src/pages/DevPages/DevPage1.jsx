@@ -6,7 +6,7 @@
 // === Services
 import { useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
-import { loadBoards } from '../../store/actions/board.actions.js'
+import { loadBoard } from '../../store/actions/board.actions.js'
 import { boardService } from '../../services/board'
 import { PopUpMenu } from '../../cmps/reusables/PopUpMenu/PopUpMenu.jsx'
 import { ColTypePicker } from '../../cmps/app/main/board/value-setter/ColTypePicker.jsx'
@@ -25,14 +25,21 @@ import { PersonsPicker } from '../../cmps/app/main/board/value-setter/PersonsPic
 
 export function DevPage1({ /* prop1, prop2 */ }) {
     // === Consts
-    // const boards = useSelector(storeState => storeState.boardModule.boards)
+    const board = useSelector(storeState => storeState.boardModule.board)
     // let board = boardService.getEmptyBoard()
-    // console.log(board)
+    const selectedPersons = [{
+    _id: "cKdrA",
+    account: "acc001",
+    firstName: "John",
+    lastName: "Doe",
+    email: "user1@company.com",
+    profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true"
+}]
 
     // === Effects
-    // useEffect(() => {
-        // loadBoards()
-    // },[])
+    useEffect(() => {
+        loadBoard('RfYrL')
+    },[])
 
     // === Functions
 
@@ -41,16 +48,16 @@ export function DevPage1({ /* prop1, prop2 */ }) {
         <section className="DevPage1">
             <h1>DevPage1</h1>
 
-            <PersonsPicker />
-            {/* <div style={{padding:'200px', height:'100%', width:'100%'}}>
+            
+            <div style={{padding:'300px', height:'100%', width:'100%'}}>
             <PopUpMenu
-                position="bottom-end"
+                position="top"
                 renderContent={({ onCloseModal }) => (
-                    <ColTypePicker onCloseModal={onCloseModal} />
+                    <PersonsPicker onCloseModal={onCloseModal} currSelectedPersons={selectedPersons} />
                 )}>
                 <div className="clickable btn-right filled icon-btn i-DropdownChevronDown"></div>
             </PopUpMenu>
-            </div> */}
+            </div>
         </section>
     )
 }
