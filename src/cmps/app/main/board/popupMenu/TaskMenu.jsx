@@ -17,7 +17,7 @@ import { useNavigate, useParams } from "react-router-dom"
 // ====== Component ======
 // =======================
 
-export function TaskMenu({ taskId }) {
+export function TaskMenu({ taskId, groupId }) {
     const { boardId } = useParams()
     // === Consts
 const navigate = useNavigate()

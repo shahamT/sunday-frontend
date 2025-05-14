@@ -18,23 +18,29 @@ import { useSelector } from "react-redux"
 // ====== Component ======
 // =======================
 
-export function PersonsPicker({ onCloseModal, currSelectedPersons }) {
+export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons }) {
     // === Consts
     const users = useSelector(storeState => storeState.userModule.users)
     const boardAccountId = useSelector(storeState => storeState.boardModule.board.account._id)
-    const [ selectedPersons, setSelectedPersons ] = useState(currSelectedPersons || [])
+    const [selectedPersons, setSelectedPersons] = useState(currSelectedPersons || [])
 
     // === Effects
     useEffect(() => {
         loadUsers()
     }, [])
+
+    useEffect(() => {
+        setPersons(selectedPersons)
+    }, [selectedPersons])
+
+
     // === Functions
     function onSelectPerson(user) {
         setSelectedPersons(prevSelectedPersons => [...prevSelectedPersons, user])
         onCloseModal()
     }
 
-    function onRemovePerson (personId) {
+    function onRemovePerson(personId) {
         setSelectedPersons(prevSelectedPersons => {
             return prevSelectedPersons.filter(person => person._id !== personId)
         })
@@ -50,11 +56,11 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons }) {
                         <section>{person.firstName} {person.lastName}</section>
                         <button className="remove-person-btn icon-btn size-24 i-CloseMedium" onClick={() => onRemovePerson(person._id)}></button>
                     </div>
-                    ))}
+                ))}
             </div>
             <div className="divider"></div>
             {users.map(user => {
-                if(user.account === boardAccountId && !selectedPersons.some(person => person._id === user._id)) {
+                if (user.account === boardAccountId && !selectedPersons.some(person => person._id === user._id)) {
                     return (
                         <button key={user._id} className="person-select-btn clickable clear size-40 select" onClick={() => onSelectPerson(user)}>
                             <img src={user.profileImg} alt="https://cdn1.monday.com/dapulse_default_photo.png" />

@@ -14,7 +14,7 @@ import { useRef, useEffect } from "react";
 // === Child Components
 import { CellContentDate } from "./T_CellContent/CellContentDate";
 import { CellContentItem } from "./T_CellContent/CellContentItem";
-import { CellContentPerson } from "./T_CellContent/CellContentPerson";
+import { CellContentPeople } from "./T_CellContent/CellContentPeople";
 import { CellContentStatus } from "./T_CellContent/CellContentStatus";
 import { CellContentText } from "./T_CellContent/CellContentText";
 import { CellContentNumber } from "./T_CellContent/CellContentNumber";
@@ -41,7 +41,7 @@ export function T_Cell({ column, columnValue, taskId }) {
     item: CellContentItem,
     status: CellContentStatus,
     date: CellContentDate,
-    person: CellContentPerson,
+    people: CellContentPeople,
     text: CellContentText,
     number: CellContentNumber,
   };

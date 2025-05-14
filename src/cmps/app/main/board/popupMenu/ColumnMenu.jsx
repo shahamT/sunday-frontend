@@ -16,7 +16,7 @@ import { removeColumn, removeGroup } from "../../../../../store/actions/board.ac
 // ====== Component ======
 // =======================
 
-export function ColumnMenu({ onCloseModal, columnId }) {
+export function ColumnMenu({ onCloseModal, columnId, inputRef }) {
     // === Consts
 
     // === Effects

@@ -15,6 +15,8 @@ import { showErrorMsg } from "../../../../../services/base/event-bus.service";
 import { EditableText } from "../../../../reusables/EditableText/EditableText";
 import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 import { useSelector } from "react-redux";
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
+import { GroupMenu } from "../popupMenu/GroupMenu";
 
 // ====== Component ======
 // =======================
@@ -33,10 +35,10 @@ export function T_GroupHeader({ group }) {
             return
         }
         const updatedGroup = { ...group, name: value }
-        try{
+        try {
             updateGroup(updatedGroup)
         }
-        catch(err) {
+        catch (err) {
             showErrorMsg(`Somthing went wrong`)
         }
     }
@@ -46,7 +48,19 @@ export function T_GroupHeader({ group }) {
     return (
         <section className="T_GroupHeader">
             <div className="menu-wraper">
-                <div className="group-menu-btn clickable clear icon-btn size-24 i-Menu"></div>
+                <PopUpMenu
+                    position="start-end"
+                    renderContent={({ onCloseModal }) => (
+                        <GroupMenu
+                            onCloseModal={onCloseModal}
+                            groupId={group.id}
+
+                        />
+                    )}
+                >
+                    <div className="group-menu-btn clickable clear icon-btn size-24 i-Menu"></div>
+                </PopUpMenu>
+
             </div>
 
             <div className="title-container">
