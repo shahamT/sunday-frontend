@@ -12,8 +12,8 @@ import { useRef } from "react";
 
 // === Child Components
 import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu";
-import { StatusPicker } from "../../value-setter/StatusPicker";
 import { PersonsPicker } from "../../value-setter/PersonsPicker";
+import { PersonsPreview } from "./PersonsPreview";
 
 // ====== Component ======
 // =======================
@@ -56,10 +56,12 @@ export function CellContentPeople({ taskId, column, columnValue }) {
 
                 {columnValue?.value
                     ?
-                    <div>{columnValue?.value.map(person => {
-                        return <p key={person._id}>{person.firstName}</p>
-                    })}
-                    </div>
+                    <PersonsPreview selectedPersons={columnValue?.value} amount={2}/>
+
+                    // <div>{columnValue?.value.map(person => {
+                    //     return <p key={person._id}>{person.firstName}</p>
+                    // })}
+                    // </div>
 
                     :
                     <div>empty</div>
