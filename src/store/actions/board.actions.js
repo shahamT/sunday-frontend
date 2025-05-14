@@ -103,12 +103,12 @@ export async function addBoard(board) {
 // }
 
 // ========= Group =========
-export async function addGroup() {
+export async function addGroup(isTop = false) {
     const boardId = await store.getState().boardModule.board._id
     const group = boardService.getEmptyGroup()
     try {
-        store.dispatch(getCmdAddGroup(group))
-        const savedGroup = await boardService.saveGroup(group, boardId)
+        store.dispatch(getCmdAddGroup(group, isTop))
+        const savedGroup = await boardService.saveGroup(group, boardId, isTop)
         return savedGroup
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -144,17 +144,17 @@ export async function removeGroup(groupId) {
 }
 
 // ========= Task =========
-export async function addTask(groupId = null) {
-    const board = await structuredClone(store.getState().boardModule.board)
+export async function addTask({ value = 'New item', itemColId, isTop = false, groupId }) {
+    const board = structuredClone(store.getState().boardModule.board)
     const boardId = board._id
     if (!groupId) {
         groupId = board.groups[0].id
     }
 
-    const task = await boardService.getEmptyTask(boardId, taskName )
+    const task = await boardService.getEmptyTask(boardId, value, itemColId )
     try {
-        store.dispatch(getCmdAddTask(task, groupId))
-        const savedTask = await boardService.saveTask(task, groupId, boardId)
+        store.dispatch(getCmdAddTask(task, groupId, isTop))
+        const savedTask = await boardService.saveTask(task, groupId, boardId, isTop)
         return savedTask
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -345,10 +345,11 @@ function getCmdRemoveGroup(groupId) {
     }
 }
 
-function getCmdAddGroup(group) {
+function getCmdAddGroup(group, isTop) {
     return {
         type: ADD_GROUP,
-        group
+        group,
+        isTop
     }
 }
 
@@ -380,11 +381,12 @@ function getCmdUpdateColumn(column) {
     }
 }
 
-function getCmdAddTask(task, groupId) {
+function getCmdAddTask(task, groupId, isTop) {
     return {
         type: ADD_TASK,
         task,
-        groupId
+        groupId,
+        isTop
     }
 }
 

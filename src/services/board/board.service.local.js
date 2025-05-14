@@ -146,7 +146,7 @@ async function _createBoards() {
 }
 
 //////GROUP//////
-async function saveGroup(groupToSave, boardId) {
+async function saveGroup(groupToSave, boardId, isTop) {
     const board = await getById(boardId)
     if (!board) throw new Error(`Board ${boardId} not found`)
     if (!Array.isArray(board.groups)) board.groups = []
@@ -158,10 +158,8 @@ async function saveGroup(groupToSave, boardId) {
         }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
-        // groupToSave.id = makeId()
-        // groupToSave.createdAt = Date.now()
-        // groupToSave.createdBy = userService.getLoggedinUser()?._id || null
-        const boardToSave = { ...board, groups: [...board.groups, groupToSave] }
+        const newGroups = isTop ? [groupToSave, ...board.groups] : [...board.groups, groupToSave]
+        const boardToSave = { ...board, groups: newGroups }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     }
     return groupToSave
@@ -192,9 +190,6 @@ async function saveColumn(columnToSave, boardId) {
         }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
-        // columnToSave.id = makeId()
-        // columnToSave.createdAt = Date.now()
-        // columnToSave.createdBy = userService.getLoggedinUser()?._id || null
         const boardToSave = { ...board, columns: [...board.columns, columnToSave] }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     }
@@ -211,7 +206,7 @@ async function removeColumn(columnId, boardId) {
 }
 
 //////TASK//////
-async function saveTask(taskToSave, groupId, boardId) {
+async function saveTask(taskToSave, groupId, boardId, isTop = false) {
     const board = await getById(boardId)
     if (!board) throw new Error(`Board ${boardId} not found`)
 
@@ -221,10 +216,7 @@ async function saveTask(taskToSave, groupId, boardId) {
     const group = board.groups[groupIdx]
     if (!Array.isArray(group.tasks)) group.tasks = []
 
-    // taskToSave.id = makeId()
-    // taskToSave.createdAt = Date.now()
-    // taskToSave.createdBy = userService.getLoggedinUser()?._id || null
-
+    const newTasks = isTop ? [taskToSave, ...group.tasks] : [...group.tasks, taskToSave]
     const boardToSave = {
         ...board, groups: board.groups.map(group => group.id === groupId
             ? { ...group, tasks: [...group.tasks, taskToSave] } : group)

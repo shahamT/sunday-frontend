@@ -21,7 +21,8 @@ export function AddNewSelection({ onCloseModal }) {
 
     // === Functions
     function onAddGroup() {
-        addGroup()
+        addGroup(true)
+        onCloseModal()
     }
 
     // if (!data) return <div>Loading...</div>

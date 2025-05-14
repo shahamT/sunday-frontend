@@ -23,7 +23,7 @@ export function T_Filter({ /* prop1, prop2 */ }) {
 
     // === Functions
     function onAddTask() {
-        addTask()
+        addTask({ itemColId: 0, isTop: true})
     }
 
     // if (!data) return <div>Loading...</div>
