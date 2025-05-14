@@ -19,8 +19,8 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText"
 export function T_GroupFooter({ group, itemColumn }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput('')
-    const itemColumnWidth = itemColumn?.width ?? 0;
-    const itemColumnId = itemColumn?.id ?? null;
+    const itemColWidth = itemColumn?.width ?? 0;
+    const itemColId = itemColumn?.id ?? null;
     // === Effects
 
     // === Functions
@@ -33,7 +33,7 @@ export function T_GroupFooter({ group, itemColumn }) {
         }
 
         try {
-            await addTask(group.id, itemColumnId, value)
+            await addTask({ groupId: group.id, itemColId, value })
             set('')
         }
         catch (err) {
@@ -54,7 +54,7 @@ export function T_GroupFooter({ group, itemColumn }) {
 
                 <div
                     className="text-container t-cell no-divider  footer"
-                    style={{ width: itemColumnWidth - 33 + 'px' }}
+                    style={{ width: itemColWidth - 33 + 'px' }}
                 >
                     <EditableText
                         size="small"

@@ -81,8 +81,8 @@ export function AppSideNav({ }) {
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
-                delay: 80,
-                tolerance: 1,
+                delay: 150,
+                tolerance: 30,
             },
         }),
         useSensor(TouchSensor),
