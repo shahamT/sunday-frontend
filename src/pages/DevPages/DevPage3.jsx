@@ -1,11 +1,11 @@
 // === Style
 
-// import { BoardMenu } from "../../cmps/app/main/board/popupMenu/BoardMenu";
-// import {  TaskMenu } from "../../cmps/app/main/board/popupMenu/TaskMenu";
-// import { ColumnMenu } from "../../cmps/app/main/board/popupMenu/ColumnMenu";
-// import { GroupMenu } from "../../cmps/app/main/board/popupMenu/GroupMenu";
-// import { PopUpMenu } from "../../cmps/reusables/PopUpMenu/PopUpMenu";
-import { PersonsPreview } from "../../cmps/app/main/board/table-view/T_CellContent/PersonsPreview"
+import { BoardMenu } from "../../cmps/app/main/board/popupMenu/BoardMenu";
+import { TaskMenu } from "../../cmps/app/main/board/popupMenu/TaskMenu";
+import { ColumnMenu } from "../../cmps/app/main/board/popupMenu/ColumnMenu";
+import { GroupMenu } from "../../cmps/app/main/board/popupMenu/GroupMenu";
+import { PopUpMenu } from "../../cmps/reusables/PopUpMenu/PopUpMenu";
+import { ImgUploader } from "../../cmps/app/main/board/value-setter/ImgUploader";
 
 // === Libs
 
@@ -61,64 +61,22 @@ export function DevPage3({ /* prop1, prop2 */ }) {
     //     align-items: center;       
     //     min-height: 100vh;         
     //     text-align: center;      
-      
-    
+
+
     //     // padding: 2em;
     //     // box-sizing: border-box;
     //   }
     // if (!data) return <div>Loading...</div>
+
+
     return (
         <section className="DevPage3">
             <h1>DevPage3</h1>
-
-            <PersonsPreview selectedPersons={selectedPersons} amount={2}/>
-
-            {/* <div className="menu-btn-wraper">
-                      <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                          <TaskMenu
-                            onCloseModal={onCloseModal}
-                            // taskId={task.id}
-                           
-                          />
-                        )}
-                      >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                      </PopUpMenu>
-                    </div>
-
-                    
-            <div className="menu-btn-wraper">
-                      <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                          <ColumnMenu
-                            onCloseModal={onCloseModal}
-                            // columnId={column.id}
-                           
-                          />
-                        )}
-                      >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                      </PopUpMenu>
-                    </div>
-
-
-            <div className="menu-btn-wraper">
-                      <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                          <GroupMenu
-                            onCloseModal={onCloseModal}
-                            // groupId={group.id}
-                           
-                          />
-                        )}
-                      >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                      </PopUpMenu>
-                    </div> */}
+            <ImgUploader />
+            <div className="circle i-HighlightColorBucket color-picker-item icon-start" />
         </section>
+
+
+
     )
 }

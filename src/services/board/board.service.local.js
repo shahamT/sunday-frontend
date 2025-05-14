@@ -66,6 +66,7 @@ export const boardService = {
     setColumnValue,
     removeColumnValue,
     saveBoards,
+    
 }
 window.cs = boardService
 
