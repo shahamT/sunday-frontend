@@ -46,7 +46,7 @@ export function DevPage3({ /* prop1, prop2 */ }) {
         <section className="DevPage3">
             <h1>DevPage3</h1>
             <ImgUploader />
-            <div className="square squar i-HighlightColorBucket icon-start" />
+            <div className="circle i-HighlightColorBucket color-picker-item icon-start" />
         </section>
 
 

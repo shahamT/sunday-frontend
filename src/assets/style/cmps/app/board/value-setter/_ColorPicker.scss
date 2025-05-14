@@ -10,26 +10,24 @@
   border-radius: 8px;
 }
 
-.square{
+.color-picker-item{
   display: flex;
+  flex-shrink: 0;
   justify-content: center;
   align-items: center;
   width: 24px;
   height: 24px;
-  border-radius: 4px;
   cursor: pointer;
+  
+}
+
+.square{
+  border-radius: 4px;
   color: white;
-  background-color:rgb(3, 127, 76);;
 }
 
 .circle {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
   border-radius: 50%;
-  cursor: pointer;
 
 }
 

@@ -18,9 +18,8 @@ import { boardService } from '../../../../../services/board/board.service.local.
 // =======================
 
 export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full' }) {
-    // selectedSettings={selectedColor, shape, variant}
     const fullColors = boardService.getColors()
-    
+
     const limitColors = [
         'done-green',
         'bright-green',
@@ -42,8 +41,9 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
         'blackish'
     ]
 
+
     const colors = (variant === 'full') ? fullColors : limitColors
-    const shape =  (variant === 'full') ? 'squar i-HighlightColorBucket icon-start' : 'circle'
+    const shape =  (variant === 'full') ? 'square ' : 'circle'
     // === Consts
 
 
@@ -59,7 +59,7 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
                     key={color}
                     className={`${shape} color-picker-item ${color}`}
                     onClick={() => {
-                        setShape(shape)
+                        // setShape(shape)
                         setColor(color)
                         onCloseModal()
                     }}
