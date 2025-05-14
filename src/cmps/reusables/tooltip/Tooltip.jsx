@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import './Tooltip.scss'
 
 /**
@@ -11,58 +11,88 @@ import './Tooltip.scss'
  * - gap (number): Distance in pixels between the element and the tooltip. (default: 8)
  * - noArrow (boolean): If true, hides the tooltip arrow. (default: false)
  * - noAnimation (boolean): If true, disables fade + grow animation. (default: false)
- * 
  */
 export function Tooltip({
-    children,
-    title,
-    position = 'top',
-    gap = 10,
-    noArrow = false,
-    noAnimation = false,
-    delayIn = 300,
-    delayOut = 150,
-    additionalClass = ''
-  }) {
-    const [visible, setVisible] = useState(false)
-    const enterTimeout = useRef(null)
-    const exitTimeout = useRef(null)
-  
-    function show() {
-      clearTimeout(exitTimeout.current)
-      enterTimeout.current = setTimeout(() => {
-        setVisible(true)
-      }, delayIn)
+  children,
+  title,
+  position = 'top',
+  gap = 10,
+  noArrow = false,
+  noAnimation = false,
+  delayIn = 300,
+  delayOut = 150,
+  additionalClass = ''
+}) {
+  const [visible, setVisible] = useState(false)
+  const wrapperRef = useRef(null) 
+  const enterTimeout = useRef(null)
+  const exitTimeout = useRef(null)
+  const hasFocusWithin = useRef(false) 
+
+  function show() {
+    if (hasFocusWithin.current) return // prevent tooltip if a child is focused
+    clearTimeout(exitTimeout.current)
+    enterTimeout.current = setTimeout(() => {
+      setVisible(true)
+    }, delayIn)
+  }
+
+  function hide() {
+    clearTimeout(enterTimeout.current)
+    exitTimeout.current = setTimeout(() => {
+      setVisible(false)
+    }, delayOut)
+  }
+
+  // monitor focus events within children
+  useEffect(() => {
+    const el = wrapperRef.current
+    if (!el) return
+
+    function handleFocusIn() {
+      hasFocusWithin.current = true
+      setVisible(false)
     }
-  
-    function hide() {
-      clearTimeout(enterTimeout.current)
-      exitTimeout.current = setTimeout(() => {
-        setVisible(false)
-      }, delayOut)
+
+    function handleFocusOut() {
+      hasFocusWithin.current = false
     }
-  
-    return (
-      <div className={`tooltip-wrapper ${additionalClass}`} onMouseEnter={show} onMouseLeave={hide}>
-        {children}
-        <div className={`tooltip-box tooltip-${position}`}>
-          <div className="tooltip-gap" style={getGapStyle(position, gap)}>
-            <div className={`tooltip-inner ${visible ? 'visible' : ''} ${noAnimation ? 'no-animation' : ''}`}>
-              {title}
-              {!noArrow && <div className={`tooltip-arrow tooltip-arrow-${position}`}></div>}
-            </div>
+
+    el.addEventListener('focusin', handleFocusIn)
+    el.addEventListener('focusout', handleFocusOut)
+
+    return () => {
+      el.removeEventListener('focusin', handleFocusIn)
+      el.removeEventListener('focusout', handleFocusOut)
+    }
+  }, [])
+
+  return (
+    <div
+      className={`tooltip-wrapper ${additionalClass}`}
+      onMouseEnter={show}
+      onMouseLeave={hide}
+      ref={wrapperRef}
+    >
+      {children}
+      <div className={`tooltip-box tooltip-${position}`}>
+        <div className="tooltip-gap" style={getGapStyle(position, gap)}>
+          <div className={`tooltip-inner ${visible ? 'visible' : ''} ${noAnimation ? 'no-animation' : ''}`}>
+            {title}
+            {!noArrow && <div className={`tooltip-arrow tooltip-arrow-${position}`}></div>}
           </div>
         </div>
       </div>
-    )
-  }
-  
-  function getGapStyle(position, gap) {
-    const pxGap = `${gap}px`
-  
-    if (position.startsWith('top')) return { marginBottom: pxGap }
-    if (position.startsWith('bottom')) return { marginTop: pxGap }
-    if (position.startsWith('left')) return { marginRight: pxGap }
-    if (position.startsWith('right')) return { marginLeft: pxGap }
-    return {}
-  }
+    </div>
+  )
+}
+
+function getGapStyle(position, gap) {
+  const pxGap = `${gap}px`
+
+  if (position.startsWith('top')) return { marginBottom: pxGap }
+  if (position.startsWith('bottom')) return { marginTop: pxGap }
+  if (position.startsWith('left')) return { marginRight: pxGap }
+  if (position.startsWith('right')) return { marginLeft: pxGap }
+  return {}
+}

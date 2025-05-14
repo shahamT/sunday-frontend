@@ -88,10 +88,11 @@
 @import 'cmps/app/board/value-setter/_StatusPicker.scss';
 @import 'cmps/app/board/value-setter/_ColorPicker.scss';
 @import 'cmps/app/board/value-setter/ColTypePicker';
+@import 'cmps/app/board/value-setter/PersonsPicker';
 
 // ====== Table View ======
 @import 'cmps/app/board/table-view/cell-content/CellContentItem.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentStatus.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentDate.scss';
-@import 'cmps/app/board/table-view/cell-content/CellContentText.scss';
+@import 'cmps/app/board/table-view/cell-content/CellContentText.scss'; //apply to CellContentNumber as well...
 

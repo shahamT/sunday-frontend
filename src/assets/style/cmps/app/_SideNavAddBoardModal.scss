@@ -1,16 +1,17 @@
 .add-board-modal {
     font-family: var(--title-font-family);
-    color: #323338;;
+    color: #323338;
+    ;
 
     width: 500px;
     height: 300px;
-    padding:0px 8px 24px;
+    padding: 0px 8px 24px;
 
-.close-btn{
-    display: grid;
-    justify-self: end;
-    align-self: start;
-}
+    .close-btn {
+        display: grid;
+        justify-self: end;
+        align-self: start;
+    }
 
     form {
         display: flex;
@@ -21,53 +22,57 @@
     .title-add-modal {
         font-weight: normal;
         font-size: 32px;
-        margin-bottom:24px ;
-        
+        margin-bottom: 24px;
+
     }
-    .title{
+
+    .title {
         margin-bottom: 4px;
         font-size: 14px;
         font-weight: 400;
-}
-input{
-    border-radius: 4px;
-    border: 1px solid;
-    font-size: 16px;
-    padding: 8px 16px;
-    border-color: rgb(195, 198, 212);
-    font-family: var(--title-font-family);
-    color: rgb(50, 51, 56);
-    
-    &:focus {
-        outline: none;
-        border-color: #0073ea; 
-}
-}
-.add-board-btns{
-    display: grid;
-    grid-auto-flow: column;
-    justify-content: end;
-    gap: 8px; 
-}
+    }
 
-.new-board-encourage{
-    margin-top: auto; 
-    color:rgb(164, 165, 172) ;
-    font-size: 15px;
-    font-weight: 400;
-    justify-content: end;
-    align-self: center;
+    input {
+        border-radius: 4px;
+        border: 1px solid;
+        font-size: 16px;
+        padding: 8px 16px;
+        border-color: rgb(195, 198, 212);
+        font-family: var(--title-font-family);
+        color: rgb(50, 51, 56);
+
+        &:focus {
+            outline: none;
+            border-color: #0073ea;
+        }
+    }
+
+    .add-board-btns {
+        display: grid;
+        grid-auto-flow: column;
+        justify-content: end;
+        gap: 8px;
+    }
+
+    .new-board-encourage {
+        margin-top: auto;
+        color: rgb(164, 165, 172);
+        font-size: 15px;
+        font-weight: 400;
+        justify-content: end;
+        align-self: center;
 
 
-}
+    }
 
-.divider{
-    height: 1px;
-    margin-top: auto; 
-    margin-block-end: 16px;
-    background-color:rgb(230, 233, 239) ;
+    .divider {
+        height: 1px;
+        margin-top: auto;
+        margin-block-end: 16px;
+        background-color: var(--layout-border-color);
 
-}
+
+    }
 
 
 }

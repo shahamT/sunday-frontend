@@ -11,13 +11,14 @@ import { T_Cell } from "./T_Cell"
 // === Imgs
 
 // === Child Components
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 
 // ====== Component ======
 // =======================
 
 export function T_TaskRow({ task, columns, group }) {
     // === Consts
-    
+
     // === Effects
 
     // === Functions
@@ -25,7 +26,22 @@ export function T_TaskRow({ task, columns, group }) {
     // if (!data) return <div>Loading...</div>
     return (
         <article className="T_TaskRow">
-            <div className="menu-wraper" />
+            <div className="menu-wraper">
+                    <PopUpMenu
+                        position="start-end"
+                        renderContent={({ onCloseModal }) => (
+                            // <SideNavModal
+                            //     onCloseModal={onCloseModal}
+                            //     board={board}
+                            //     setEditingBoardId={setEditingBoardId}
+                            //     setEditedTitle={setEditedTitle}
+                            // />
+                            <p className="temp"></p>
+                        )}
+                    >
+                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                    </PopUpMenu>
+            </div>
 
             <div className="row-wraper t-row">
 

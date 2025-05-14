@@ -14,20 +14,22 @@ import { useNavigate } from "react-router-dom";
 import { EditableText } from "../../../../../reusables/EditableText/EditableText";
 import { useControlledInput } from "../../../../../../hooks/useControlledInput";
 import { setColumnValue } from "../../../../../../store/actions/board.actions";
+import { useEffect } from "react";
 
 // ====== Component ======
 // =======================
 
 export function CellContentItem({ column, columnValue, taskId }) {
     // === Consts
-
-
     const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
 
     const navigate = useNavigate();
     const board = useSelector(storeState => storeState.boardModule.board)
 
     // === Effects
+    useEffect(() => {
+        set(columnValue?.value)
+    }, [columnValue?.value])
 
     // === Functions
     function onOpenTaskDetails(ev) {

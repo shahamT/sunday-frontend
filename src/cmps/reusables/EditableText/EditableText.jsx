@@ -1,11 +1,11 @@
-import { useRef, useEffect, useState } from 'react';
+import { forwardRef, useRef, useEffect, useState, useImperativeHandle } from 'react';
 import './EditableText.scss'
 import { PopUpMenu } from '../PopUpMenu/PopUpMenu';
 import { Tooltip } from '../tooltip/Tooltip';
 import { CustomEmojiPicker } from '../customEmojiPicker/customEmojiPicker';
 
 
-export function EditableText({
+export const EditableText = forwardRef(function EditableText({
     full = false,
     size = 'normal',
     placeholder = '',
@@ -19,17 +19,23 @@ export function EditableText({
     color = null,
     centered = false,
     additionalClass = '',
-}) {
+    centerText = false,
+}, ref) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
     const inputRef = useRef(null)
     const skipBlurRef = useRef(false)
 
+    useImperativeHandle(ref, () => ({
+        focus: () => inputRef.current?.focus()
+    }), [])
+
+
     useEffect(() => {
         if (!full && spanRef.current) {
             setInputWidth(spanRef.current.offsetWidth + 13)
         }
-    }, [value, placeholder, full]);
+    }, [value, placeholder, full])
 
 
     function onSelectEmoji(emoji) {
@@ -61,7 +67,7 @@ export function EditableText({
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${additionalClass}`}
+                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}` }
                 onClick={(e) => e.stopPropagation()}
                 onChange={handleChange}
                 onBlur={(e) => {
@@ -83,7 +89,7 @@ export function EditableText({
                 }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
-                    ...(full ? {} : { width: `${inputWidth}px` })
+                    ...(full ? {} : { maxWidth: `${inputWidth}px` })
                     // ...(color ? { color: `${color}` } : {})
                 }}
             />
@@ -114,4 +120,4 @@ export function EditableText({
 
         </div>
     );
-}
+})

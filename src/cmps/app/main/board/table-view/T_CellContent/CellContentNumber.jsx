@@ -18,7 +18,7 @@ import { EditableText } from "../../../../../reusables/EditableText/EditableText
 // ====== Component ======
 // =======================
 
-export function CellContentText({ taskId, column, columnValue }) {
+export function CellContentNumber({ taskId, column, columnValue }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
     const [isEditing, setIsEditing] = useState(false)
@@ -28,9 +28,9 @@ export function CellContentText({ taskId, column, columnValue }) {
 
     // === Functions
 
-    function onSetText() {
+    function onSetNumber() {
         setIsEditing(false)
-        if (value.trim() === '') onClearText()
+        if (value.trim() === '') onClearNumber()
         try {
             setColumnValue(taskId, column.id, value)
         }
@@ -39,7 +39,7 @@ export function CellContentText({ taskId, column, columnValue }) {
         }
     }
 
-    function onClearText() {
+    function onClearNumber() {
         set('')
         try {
             removeColumnValue(taskId, column.id)
@@ -52,7 +52,7 @@ export function CellContentText({ taskId, column, columnValue }) {
 
     return (
         <div
-            className="CellContentText cell-contnet"
+            className="CellContentNumber cell-contnet"
             onClick={() => {
                 setIsEditing(true)
                 setTimeout(() => {
@@ -64,13 +64,13 @@ export function CellContentText({ taskId, column, columnValue }) {
             <div className="text-container">
                 <EditableText
                     ref={inputRef}
+                    type="number"
                     size="small"
                     full={true}
                     value={value}
-                    emojiPicker={true}
                     handleChange={handleChange}
-                    onBlur={onSetText}
-                    onPressEnter={onSetText}
+                    onBlur={onSetNumber}
+                    onPressEnter={onSetNumber}
                     centerText={true}
                 />
             </div>
@@ -80,7 +80,7 @@ export function CellContentText({ taskId, column, columnValue }) {
                     className="clear-btn clickable clear icon-btn size-24 i-CloseSmall"
                     onClick={(e) => {
                         e.stopPropagation();
-                        onClearText();
+                        onClearNumber();
                     }}
                 />
             }
@@ -93,7 +93,7 @@ export function CellContentText({ taskId, column, columnValue }) {
                         <div className="plus-btn">
                             <div className="plus-icon i-AddSmall" />
                         </div>
-                        <div className="text-icon i-TextCopy" />
+                        <div className="text-icon i-Counter" />
                     </div>
                 </>
 
