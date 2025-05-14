@@ -2,7 +2,7 @@
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
@@ -11,18 +11,14 @@ import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, 
 // === Services
 
 // === Actions
-import { loadBoard, loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
+import { loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
 
 // === Hooks / React
 
 // === Child Components
-import { SideNavModal } from "./main/board/side-nave/SideNaveModal";
-import { PopUpMenu } from "../reusables/PopUpMenu/PopUpMenu";
 import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
-import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
-import { store } from '../../store/store';
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 
 // ====== Component ======
@@ -59,7 +55,7 @@ export function AppSideNav({ }) {
     function getPos(boardId) {
         if (!Array.isArray(boards)) return -1
         return boards.findIndex(board => board._id === boardId)
-      }
+    }
 
 
 
@@ -81,7 +77,7 @@ export function AppSideNav({ }) {
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
-                delay: 120,
+                delay: 150,
                 tolerance: 1,
             },
         }),

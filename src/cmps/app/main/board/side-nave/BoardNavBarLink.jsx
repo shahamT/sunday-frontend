@@ -46,10 +46,10 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
     <div
       className="board-item-nav"
       ref={setNodeRef}
-      {...attributes}
-      {...listeners}
+      {...(editingBoardId !== board._id ? { ...attributes, ...listeners } : {})}
       style={style}
     >
+  
       <div
         className={`clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null}`}
         onMouseDown={handleMouseDown}
@@ -58,13 +58,17 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
       >
         {editingBoardId === board._id ? (
           <input
+          // {...attributes}
             ref={inputRef}
             type="text"
             value={editedTitle}
             autoFocus
             onChange={(e) => setEditedTitle(e.target.value)}
             onBlur={() => handleRename(board)}
-            onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
+            // onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") handleRename(board)
+            }}
             className="edit-board-input"
           />
         ) : (

@@ -117,8 +117,7 @@
 
                 .Menu-btn {
                         margin-left: auto;
-                        // margin-left: auto !important;
-                        // justify-items: end !important;
+                      
                 }
         }
 
@@ -130,14 +129,12 @@
                 border: 1px solid #c4c4c4;
                 border-radius: 6px;
                 font-size: 14px;
-                //   background-color: #fff;
                 color: #333;
                 transition: border-color 0.2s, box-shadow 0.2s;
                 
                 &:focus {
                         outline: none;
                         border-color: #0073ea; // כחול monday
-                        box-shadow: 0 0 0 2px rgba(0, 115, 234, 0.2);
                 }
                 
                 &::placeholder {
@@ -159,3 +156,13 @@
         margin: 0.5em 0;
         border: none;
 }
+
+.drag-handle {
+        width: 100%;        
+        height: 100%;      
+        position: absolute; 
+        top: 0;
+        left: 0;
+        // cursor: grab;
+        z-index: 10;
+      }
