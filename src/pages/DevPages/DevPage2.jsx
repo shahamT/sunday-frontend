@@ -24,6 +24,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
     const [lableColor, setLableColor] = useState(`color-1`)
 
 
+    
     return (
         <section className='color-picker-btn'>
             <h1>dev2</h1>
