@@ -5,6 +5,7 @@ import {  TaskMenu } from "../../cmps/app/main/board/popupMenu/TaskMenu";
 import { ColumnMenu } from "../../cmps/app/main/board/popupMenu/ColumnMenu";
 import { GroupMenu } from "../../cmps/app/main/board/popupMenu/GroupMenu";
 import { PopUpMenu } from "../../cmps/reusables/PopUpMenu/PopUpMenu";
+import { ImgUploader } from "../../cmps/app/main/board/value-setter/ImgUploader";
 
 // === Libs
 
@@ -42,6 +43,11 @@ export function DevPage3({ /* prop1, prop2 */ }) {
     return (
         <section className="DevPage3">
             <h1>DevPage3</h1>
+<section>
+<ImgUploader/>
+
+</section>
+
 
             <div className="menu-btn-wraper">
                       <PopUpMenu
