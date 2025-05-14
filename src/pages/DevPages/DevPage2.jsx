@@ -24,6 +24,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
     const [lableColor, setLableColor] = useState(`color-1`)
 
 
+    
     return (
         <section className='color-picker-btn'>
             <h1>dev2</h1>
@@ -32,12 +33,13 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                 renderContent={({ onCloseModal }) => (
                     <ColorPicker
                         onCloseModal={onCloseModal}
-                        setLableColor={setLableColor}
-                        lableColor={lableColor}
+                        selectedColor={selectedColor}
+                        setColor={setColor}
+                        variant={variant}
                     />
                 )}
             >
-                <div className={`circle color-picker-btn ${lableColor}`} />
+                <div className={`color-picker-btn ${selectedColor}-bg`} />
 
             </PopUpMenu> 
         </section>

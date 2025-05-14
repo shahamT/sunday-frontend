@@ -13,26 +13,27 @@ import { useRef } from "react";
 // === Child Components
 import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu";
 import { StatusPicker } from "../../value-setter/StatusPicker";
+import { PersonsPicker } from "../../value-setter/PersonsPicker";
 
 // ====== Component ======
 // =======================
 
-export function CellContentStatus({ taskId, column, columnValue }) {
+export function CellContentPeople({ taskId, column, columnValue }) {
     // === Consts
     // === Effects
 
     // === Functions
 
-    function setStatus(statusId) {
+    function setPersons(PersonsArray) {
         try {
-            setColumnValue(taskId, column.id, statusId)
+            setColumnValue(taskId, column.id, PersonsArray)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
         }
     }
 
-    function onClearStatus() {
+    function onClearPersons() {
         try {
             removeColumnValue(taskId, column.id)
         }
@@ -41,31 +42,34 @@ export function CellContentStatus({ taskId, column, columnValue }) {
         }
     }
 
-    const selectedLabel = column.type.labels.find(label => label.id === columnValue?.value);
-    const labelName = selectedLabel?.name ?? '';
-    const labelColor = selectedLabel?.color ?? '';
-
     return (
-        <div className={`CellContentStatus cell-contnet`}>
-
+        <div className={`CellContentPeople cell-contnet`}>
             <PopUpMenu
                 stretchTrigger={true}
                 gap={4}
                 noArrow={false}
                 position="bottom"
                 renderContent={({ onCloseModal }) => (
-                    <StatusPicker
-                        onCloseModal={onCloseModal}
-                        setStatus={setStatus}
-                        clearStatus={onClearStatus}
-                        StatusArray={column?.type?.labels || []}
-                    />
+                    <PersonsPicker onCloseModal={onCloseModal} currSelectedPersons={columnValue.value || []} setPersons={setPersons} />
                 )}
             >
-                <div className={`cell-contnet centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'}`}>
+
+                {columnValue?.value
+                    ?
+                    <div>{columnValue?.value.map(person => {
+                        return <p key={person._id}>{person.firstName}</p>
+                    })}
+                    </div>
+
+                    :
+                    <div>empty</div>
+                }
+
+
+                {/* <div className={`cell-contnet centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'}`}>
                     <div className="fold" />
                     {columnValue && <p>{labelName}</p>}
-                </div>
+                </div> */}
             </PopUpMenu>
 
         </div>

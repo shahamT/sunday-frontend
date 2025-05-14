@@ -20,6 +20,7 @@ export const EditableText = forwardRef(function EditableText({
     centered = false,
     additionalClass = '',
     centerText = false,
+    colorPicker= null
 }, ref) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)

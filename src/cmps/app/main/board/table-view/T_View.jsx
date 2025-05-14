@@ -22,7 +22,8 @@ import { T_Group } from "./T_Group";
 export function T_View({ /* prop1, prop2 */ }) {
     // === Consts
     const board = useSelector(storeState => storeState.boardModule.board)
-
+    console.log("board: ", board)
+    
     // === Functions
     function onAddGroup() {
         addGroup()
