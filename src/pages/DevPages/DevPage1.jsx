@@ -10,6 +10,7 @@ import { loadBoards } from '../../store/actions/board.actions.js'
 import { boardService } from '../../services/board'
 import { PopUpMenu } from '../../cmps/reusables/PopUpMenu/PopUpMenu.jsx'
 import { ColTypePicker } from '../../cmps/app/main/board/value-setter/ColTypePicker.jsx'
+import { PersonsPicker } from '../../cmps/app/main/board/value-setter/PersonsPicker.jsx'
 
 // === Actions
 
@@ -39,7 +40,9 @@ export function DevPage1({ /* prop1, prop2 */ }) {
     return (
         <section className="DevPage1">
             <h1>DevPage1</h1>
-            <div style={{padding:'200px', height:'100%', width:'100%'}}>
+
+            <PersonsPicker />
+            {/* <div style={{padding:'200px', height:'100%', width:'100%'}}>
             <PopUpMenu
                 position="bottom-end"
                 renderContent={({ onCloseModal }) => (
@@ -47,7 +50,7 @@ export function DevPage1({ /* prop1, prop2 */ }) {
                 )}>
                 <div className="clickable btn-right filled icon-btn i-DropdownChevronDown"></div>
             </PopUpMenu>
-            </div>
+            </div> */}
         </section>
     )
 }

@@ -41,6 +41,10 @@ export function TaskDetails() {
         }
     }, [board, taskId])
 
+    useEffect(() => {
+        set(task?.columnValues[0]?.value)
+    }, [task])
+
     // === Functions
     function onCloseTaskDetails() {
         navigate(`/app/board/${boardId}`)
