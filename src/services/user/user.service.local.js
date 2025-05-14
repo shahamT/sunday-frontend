@@ -1,7 +1,10 @@
-import { use } from 'react'
 import { storageService } from '../base/async-storage.service'
+import testUsers from '../../../data-examples/users.json'
 
 const STORAGE_KEY_LOGGEDIN_USER = 'loggedinUser'
+const STORAGE_KEY_USERS = 'UsersDB'
+
+_createUsers()
 
 export const userService = {
     login,
@@ -16,23 +19,21 @@ export const userService = {
 }
 
 async function getUsers() {
-    const users = await storageService.query('user')
-    return users.map(user => {
-        delete user.password
-        return user
-    })
+    const users = await storageService.query(STORAGE_KEY_USERS)
+    const miniUsers = users.map(({ _id, account, firstName, lastName, email, profileImg }) => ({ _id, account, firstName, lastName, email, profileImg }))
+    return miniUsers
 }
 
 async function getById(userId) {
-    return await storageService.get('user', userId)
+    return await storageService.get(STORAGE_KEY_USERS, userId)
 }
 
 function remove(userId) {
-    return storageService.remove('user', userId)
+    return storageService.remove(STORAGE_KEY_USERS, userId)
 }
 
 async function update({ _id, visitedBoardId }) {
-    const user = await storageService.get('user', _id)
+    const user = await storageService.get(STORAGE_KEY_USERS, _id)
     user.lastViewedBoards = user.lastViewedBoards.filter(boardId => boardId !== visitedBoardId)
     user.lastViewedBoards.unshift(boardId)
     await storageService.put('user', user)
@@ -45,14 +46,14 @@ async function update({ _id, visitedBoardId }) {
 }
 
 async function login(userCred) {
-    const users = await storageService.query('user')
+    const users = await storageService.query(STORAGE_KEY_USERS)
     const user = users.find(user => user.email === userCred.email)
 
     if (user) return saveLoggedinUser(user)
 }
 
 async function signup(userCred) {
-    if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    if (!userCred.profileImg) userCred.profileImg = `https://ui-avatars.com/api/?name=${userCred.firstName}+${userCred.lastName}&background=0D8ABC&color=fff&length=2&rounded=true&bold=true`
 
     const user = await storageService.post('user', userCred)
     return saveLoggedinUser(user)
@@ -83,15 +84,24 @@ function saveLoggedinUser(user) {
 // To quickly create an admin user, uncomment the next line
 //TODO if relevent, update
 // _createAdmin()
-async function _createAdmin() {
-    const user = {
-        username: 'admin',
-        password: 'admin',
-        fullname: 'Mustafa Adminsky',
-        imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
-        score: 10000,
-    }
+// async function _createAdmin() {
+//     const user = {
+//         username: 'admin',
+//         password: 'admin',
+//         fullname: 'Mustafa Adminsky',
+//         imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
+//         score: 10000,
+//     }
 
-    const newUser = await storageService.post('user', userCred)
-    console.log('newUser: ', newUser)
+//     const newUser = await storageService.post('user', userCred)
+//     console.log('newUser: ', newUser)
+// }
+
+async function _createUsers() {
+    const users = await storageService.query(STORAGE_KEY_USERS)
+    if (!users || !users.length) {
+        for (const item of testUsers) {
+            await storageService.post(STORAGE_KEY_USERS, item)
+        }
+    }
 }

@@ -2,13 +2,13 @@
   {
     "_id": "u_768ef13c",
     "account": "acc001",
-    "firstName": "User1",
-    "lastName": "Lastname1",
+    "firstName": "John",
+    "lastName": "Doe",
     "email": "user1@company.com",
     "password": "hashed_pw_1",
     "createdAt": "2025-04-11T11:04:37.547481",
     "lastViewedBoards": [],
-    "profileImg": "",
+    "profileImg": "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
     "role": "admin"
   },
   {
@@ -20,43 +20,43 @@
     "password": "hashed_pw_2",
     "createdAt": "2025-04-12T11:04:37.547535",
     "lastViewedBoards": [],
-    "profileImg": "",
+    "profileImg": "https://ui-avatars.com/api/?name=User2+Lastname2&background=FF5733&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   },
   {
     "_id": "u_e5c85b12",
     "account": "acc001",
-    "firstName": "User3",
-    "lastName": "Lastname3",
+    "firstName": "Noga",
+    "lastName": "Shaham",
     "email": "user3@company.com",
     "password": "hashed_pw_3",
     "createdAt": "2025-04-13T11:04:37.547571",
     "lastViewedBoards": [],
-    "profileImg": "",
+    "profileImg": "https://ui-avatars.com/api/?name=Noga+Shaham&background=28A745&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   },
   {
     "_id": "u_757c91f7",
     "account": "acc001",
-    "firstName": "User4",
-    "lastName": "Lastname4",
+    "firstName": "Dana",
+    "lastName": "Tamir",
     "email": "user4@company.com",
     "password": "hashed_pw_4",
     "createdAt": "2025-04-14T11:04:37.547596",
     "lastViewedBoards": [],
-    "profileImg": "",
+    "profileImg": "https://ui-avatars.com/api/?name=Dana+Tamir&background=6F42C1&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   },
   {
     "_id": "u_b3485920",
     "account": "acc001",
-    "firstName": "User5",
-    "lastName": "Lastname5",
+    "firstName": "Code",
+    "lastName": "Cohen",
     "email": "user5@company.com",
     "password": "hashed_pw_5",
     "createdAt": "2025-04-15T11:04:37.547616",
     "lastViewedBoards": [],
-    "profileImg": "",
+    "profileImg": "https://ui-avatars.com/api/?name=Code+Cohen&background=E83E8C&color=fff&length=2&rounded=true&bold=true",
     "role": "user"
   }
 ]
