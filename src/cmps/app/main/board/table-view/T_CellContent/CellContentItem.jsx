@@ -33,6 +33,7 @@ export function CellContentItem({ column, columnValue, taskId }) {
         set(columnValue?.value)
     }, [columnValue?.value])
 
+    
     // === Functions
     function onOpenTaskDetails(ev) {
         ev.stopPropagation()

@@ -1,8 +1,5 @@
 // === Libs
 
-import { EditableText } from "../../../../reusables/EditableText/EditableText";
-
-
 // === Services
 
 // === Actions
@@ -14,6 +11,10 @@ import { useControlledInput } from "../../../../../hooks/useControlledInput";
 // === Imgs
 
 // === Child Components
+import { EditableText } from "../../../../reusables/EditableText/EditableText";
+import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
+import { useEffect } from "react";
 
 // ====== Component ======
 // =======================
@@ -23,6 +24,9 @@ export function T_ColumnHeaderCell({ column, groupId }) {
     const [value, handleChange, reset, set] = useControlledInput(column.name)
 
     // === Effects
+    useEffect(() => {
+        set(column.name)
+    }, [column.name])
 
     // === Functions
     function onUpdateColumnName() {
@@ -32,11 +36,11 @@ export function T_ColumnHeaderCell({ column, groupId }) {
             return
         }
         const updatedColumn = { ...column, name: value };
-        
-        try{
-             updateColumn(updatedColumn)
+
+        try {
+            updateColumn(updatedColumn)
         }
-        catch(err) {
+        catch (err) {
             showErrorMsg(`Somthing went wrong`)
         }
 
@@ -49,24 +53,58 @@ export function T_ColumnHeaderCell({ column, groupId }) {
             className={`T_ColumnHeaderCell t-cell ${variant === 'item' ? 'no-divider sticky' : ''}`}
             style={{ width: column.width + 'px' }}
         >
-          
-            <div className="offset-hiding-layer" /> {/* hiding the scrolled row content on the left */}
+
 
             <div className="cell-contnet">
-                {variant === 'item' &&
-                    <label htmlFor={`g${groupId}`} className="checkbox-container">
-                        <input type="checkbox" name="" id={`g${groupId}`} />
-                    </label>
+                {variant === 'item'
+                    ?
+                    <>
+                        <div className="offset-hiding-layer" /> {/* hiding the scrolled row content on the left */}
+                        <label htmlFor={`g${groupId}`} className="checkbox-container">
+                            <input type="checkbox" name="" id={`g${groupId}`} />
+                        </label>
+
+                        <div className="title-wraper">
+                            <Tooltip position='top' title={`Task title can't be changed`}>
+                                <p>{value}</p>
+                            </Tooltip>
+                        </div>
+                    </>
+                    :
+                    <>
+                        <div className="menu-btn-wraper">
+                            <PopUpMenu
+                                position="start-end"
+                                renderContent={({ onCloseModal }) => (
+                                    // <SideNavModal
+                                    //     onCloseModal={onCloseModal}
+                                    //     board={board}
+                                    //     setEditingBoardId={setEditingBoardId}
+                                    //     setEditedTitle={setEditedTitle}
+                                    // />
+                                    <p className="temp"></p>
+                                )}
+                            >
+                                <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                            </PopUpMenu>
+                        </div>
+                        <div className="title-wraper">
+                            <Tooltip position='top' title={value}>
+                                <EditableText
+                                    value={value}
+                                    emojiPicker={false}
+                                    centered={true}
+                                    size="small"
+                                    handleChange={handleChange}
+                                    onBlur={onUpdateColumnName}
+                                    onPressEnter={onUpdateColumnName}
+                                    additionalClass="test"
+
+                                />
+                            </Tooltip>
+                        </div>
+                    </>
                 }
-                <EditableText
-                    value={value}
-                    emojiPicker={false}
-                    centered={true}
-                    size="small"
-                    handleChange={handleChange}
-                    onBlur={onUpdateColumnName}
-                    onPressEnter={onUpdateColumnName}
-                />
             </div>
         </div>
     )

@@ -1,23 +1,31 @@
 // import React from "react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { SideNavModal } from "./SideNaveModal";
-import { GlobalModal } from "../../../../reusables/GlobalModal/GlobalModal";
 
 
 export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: board._id })
   const navigate = useNavigate()
   const clickTimeRef = useRef(null)
+  const inputRef = useRef(null)
+
+
 
   const style = {
     transition,
     transform: transform ? CSS.Transform.toString(transform) : undefined,
   }
+
+  useEffect(() => {
+    if (editingBoardId === board._id && inputRef.current) {
+      inputRef.current.select()
+    }
+  }, [editingBoardId])
 
   function handleClick() {
     navigate(`/app/board/${board._id}`)
@@ -34,14 +42,16 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
 
 
 
+
+
   return (
     <div
       className="board-item-nav BoardNavBarLink"
       ref={setNodeRef}
-      {...attributes}
-      {...listeners}
+      {...(editingBoardId !== board._id ? { ...attributes, ...listeners } : {})}
       style={style}
     >
+  
       <div
         className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null}`}
         onMouseDown={handleMouseDown}
@@ -50,6 +60,7 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
       >
         {editingBoardId === board._id ? (
           <input
+            ref={inputRef}
             type="text"
             value={editedTitle}
             autoFocus
@@ -80,7 +91,6 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
           </PopUpMenu>
         </div>
       </div>
-      <GlobalModal />
     </div>
   )
 }

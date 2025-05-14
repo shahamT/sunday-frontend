@@ -27,7 +27,6 @@ export function T_GroupHeadRow({ columns, group }) {
 
     return (
         <section className="T_GroupHeadRow">
-            <div className="menu-wraper" />
             <div className="row-wraper t-row">
 
                 <div className={`t-left-indicator top ${group.color}-bg`} />

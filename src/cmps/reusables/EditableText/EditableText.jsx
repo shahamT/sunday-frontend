@@ -83,7 +83,7 @@ export function EditableText({
                 }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
-                    ...(full ? {} : { width: `${inputWidth}px` })
+                    ...(full ? {} : { maxWidth: `${inputWidth}px` })
                     // ...(color ? { color: `${color}` } : {})
                 }}
             />

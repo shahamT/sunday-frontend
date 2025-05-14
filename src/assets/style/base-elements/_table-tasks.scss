@@ -69,8 +69,14 @@
 
 .menu-wraper {
     position: absolute;
-    left: 0px;
-    transform: translateX(-100%);
+    z-index: 100;
+    left: -4px;
+    top: 50%;
+    transform: translate(-100% , -50%);
+    opacity: 0;
+    transition: var(--transition-md);
+
+
 }
 
 .checkbox-container {
@@ -117,4 +123,6 @@
     background-color: var(--primary-background-color);
     width: 41px;
     height: 120%;
+    cursor: default;
+    pointer-events: none;
 }
