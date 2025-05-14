@@ -28,7 +28,7 @@ export function T_GroupHeader({ group }) {
     // === Effects
 
     // === Functions
-    async function handleRename() {
+    function handleRename() {
         if (value === '') {
             showErrorMsg(`Name can't be empty`)
             set(group.name)
@@ -45,7 +45,13 @@ export function T_GroupHeader({ group }) {
 
 
     function setColor(color) {
-
+        const updatedGroup = { ...group, color: color }
+        try {
+            updateGroup(updatedGroup)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
     }
 
     return (
@@ -57,7 +63,6 @@ export function T_GroupHeader({ group }) {
                         <GroupMenu
                             onCloseModal={onCloseModal}
                             group={group}
-
                         />
                     )}
                 >
@@ -87,7 +92,7 @@ export function T_GroupHeader({ group }) {
                         onPressEnter={handleRename}
                         additionalClass={`${group.color}-text`}
                         colorPicker={{
-                            selectedColor: 'grass_green',
+                            selectedColor: group.color,
                             setColor: setColor,
                             variant: 'limited',
                         }}

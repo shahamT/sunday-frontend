@@ -43,7 +43,7 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
 
 
     const colors = (variant === 'full') ? fullColors : limitColors
-    const shape =  (variant === 'full') ? 'square ' : 'circle'
+    const shape = (variant === 'full') ? 'square ' : 'circle'
     // === Consts
 
 
@@ -57,11 +57,16 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
             {colors.map(color => (color === selectedColor ? null :
                 <div
                     key={color}
-                    className={`${shape} color-picker-item ${color}`}
-                    onClick={() => {
-                        // setShape(shape)
+                    className={`${shape} color-picker-item ${color}-bg`}
+                    onMouseDown={(e) => {
                         setColor(color)
                         onCloseModal()
+                    }}
+                    onClick={() => {
+                        console.log('got here')
+                        setColor(color)
+                        onCloseModal()
+
                     }}
                 />
             ))}

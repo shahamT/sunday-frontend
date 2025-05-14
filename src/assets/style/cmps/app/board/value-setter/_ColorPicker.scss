@@ -8,48 +8,26 @@
   width: 150px;
   margin: auto;
   border-radius: 8px;
+
+
+  .color-picker-item {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    align-items: center;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+
+  }
+
+  .square {
+    border-radius: 4px;
+    color: white;
+  }
+
+  .circle {
+    border-radius: var(--border-radius-round);
+
+  }
 }
-
-.color-picker-item{
-  display: flex;
-  flex-shrink: 0;
-  justify-content: center;
-  align-items: center;
-  width: 24px;
-  height: 24px;
-  cursor: pointer;
-  
-}
-
-.square{
-  border-radius: 4px;
-  color: white;
-}
-
-.circle {
-  border-radius: 50%;
-
-}
-
-
-
-//====color class:
-.done-green { background-color: rgb(3, 127, 76); }
-.bright-green { background-color: rgb(0, 200, 117); }
-.saladish { background-color: rgb(156, 211, 38); } 
-.egg_yolk { background-color: rgb(202, 182, 65); }
-.working_orange { background-color: rgb(255, 203, 0); }
-.purple { background-color: rgb(120, 75, 209); }
-.dark-blue { background-color: rgb(0, 126, 181); }
-.bright-blue { background-color: rgb(87, 155, 252); }
-.sky { background-color: rgb(102, 204, 255); }
-.stuck-red { background-color: rgb(187, 51, 84); }
-.dark-red { background-color: rgb(223, 47, 74); }
-.lipstick{ background-color: rgb(255, 0, 127); }
-.sofia_pink { background-color: rgb(255, 90, 196); }
-.dark-orange{ background-color: rgb(255, 100, 46); }
-.peach{ background-color: rgb(253, 171, 61); } 
-.pecan { background-color: rgb(127, 83, 71); }
-.american_gray{ background-color: rgb(196, 196, 196); }
-.blackish { background-color: rgb(117, 117, 117); }
-

@@ -29,6 +29,8 @@ export const EditableText = forwardRef(function EditableText({
     const skipBlurRef = useRef(false)
     const [isFocused, setIsFocused] = useState(false)
     
+
+    
     useImperativeHandle(ref, () => ({
         focus: () => inputRef.current?.focus()
     }), [])
@@ -80,7 +82,7 @@ export const EditableText = forwardRef(function EditableText({
                         )}
                     >
                         <div
-                            className={`color-picker-item ${colorPicker.selectedColor}-bg`}
+                            className={`color-picker-button ${colorPicker.selectedColor}-bg`}
                             onMouseDown={(e) => e.preventDefault()}
                         />
                     </PopUpMenu>
@@ -118,7 +120,7 @@ export const EditableText = forwardRef(function EditableText({
                 }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
-                    ...(full ? {} : { maxWidth: `${inputWidth}px` }),
+                    ...(full ? {} : { width: `${inputWidth}px` }),
                     ...(colorPicker && isFocused
                         ? { paddingInlineStart: (paddingStart || 0) + 32 + 'px' }
                         : paddingStart

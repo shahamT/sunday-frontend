@@ -39,7 +39,7 @@
         }
 
         &.full {
-            width: 100% ;
+            width: 100%;
         }
 
         &.small {
@@ -144,9 +144,16 @@
 
     .color-picker-wrap {
         position: absolute;
-        left: 4px;
+        left: 8px;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 2; // make sure it sits above background but below emoji
+        z-index: 2;
+
+        .color-picker-button {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border-radius: var(--border-radius-round);
+        }
     }
 }
