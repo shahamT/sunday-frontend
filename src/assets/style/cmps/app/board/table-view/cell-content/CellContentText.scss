@@ -1,12 +1,17 @@
-.CellContentText{
+.CellContentText,
+.CellContentNumber
+ {
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     cursor: text;
 
     &:hover {
-        
+
         .input-outline,
         .clear-btn,
-        .date-empty-state  {
+        .text-empty-state {
             opacity: 1;
         }
 
@@ -15,10 +20,8 @@
 
     .input-outline {
         position: absolute;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 3px;
+        left: 50%;
+        transform: translateX(-50%);
 
         height: 26px;
         width: calc(100% - 10px);
@@ -30,6 +33,10 @@
         opacity: 0;
     }
 
+    &:focus-within .clear-btn {
+        display: none;
+    }
+
     .clear-btn {
         position: absolute;
         z-index: 40;
@@ -38,26 +45,24 @@
         transform: translateY(-50%);
         width: 18px !important;
         height: 18px;
-        background-color: var(--primary-background-hover-color);
+        background-color: var(--ui-background-color);
         opacity: 0;
+
+        &:hover{
+           background-color:  var(--ui-border-color);
+        }
 
     }
 
-    .text-label {
-
-        font-size: 14px;
-        font-weight: 300;
-        font-family: var(--font-family);
-
-        &:hover{
-            color: var(--primary-color);
-        }
-
+    .text-container{
+        width: 100%;
+        margin-inline: 5px;
     }
 
 
 
     .text-empty-state {
+        position: absolute;
         display: flex;
         align-items: center;
         justify-content: center;

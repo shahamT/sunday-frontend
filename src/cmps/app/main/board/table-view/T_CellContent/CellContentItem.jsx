@@ -20,8 +20,6 @@ import { setColumnValue } from "../../../../../../store/actions/board.actions";
 
 export function CellContentItem({ column, columnValue, taskId }) {
     // === Consts
-
-
     const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
 
     const navigate = useNavigate();
@@ -29,7 +27,6 @@ export function CellContentItem({ column, columnValue, taskId }) {
 
     // === Effects
 
-    
     // === Functions
     function onOpenTaskDetails(ev) {
         ev.stopPropagation()

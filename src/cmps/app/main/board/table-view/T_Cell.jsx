@@ -17,36 +17,10 @@ import { CellContentItem } from "./T_CellContent/CellContentItem";
 import { CellContentPerson } from "./T_CellContent/CellContentPerson";
 import { CellContentStatus } from "./T_CellContent/CellContentStatus";
 import { CellContentText } from "./T_CellContent/CellContentText";
+import { CellContentNumber } from "./T_CellContent/CellContentNumber";
 
 // ====== Component ======
 // =======================
-
-// export function T_Cell({ column, columnValue , taskId}) {
-//     // === Consts
-
-//     // === Effects
-
-//     // === Functions
-
-//     const componentMap = {
-//         item: CellContentItem,
-//         status: CellContentStatus,
-//         date: CellContentDate,
-//         person: CellContentPerson,
-//     }
-
-//     const variant = column.type.variant
-//     const DynamicComponent = componentMap[variant]
-//     return (
-//         <section
-//             className={`T_Cell t-cell ${variant === 'item' ? 'no-divider sticky' : ''}`}
-//             style={{ width: column.width + 'px'}}
-//         >
-//             {DynamicComponent && <DynamicComponent column={column} columnValue={columnValue} taskId={taskId}/>}
-
-//         </section>
-//     )
-// }
 
 export function T_Cell({ column, columnValue, taskId }) {
   const cellRef = useRef(null);
@@ -69,6 +43,7 @@ export function T_Cell({ column, columnValue, taskId }) {
     date: CellContentDate,
     person: CellContentPerson,
     text: CellContentText,
+    number: CellContentNumber,
   };
 
   const variant = column.type.variant;

@@ -3,7 +3,7 @@
     width: 100%;
     display: flex;
 
-    &.centered{
+    &.centered {
         justify-content: center;
     }
 
@@ -36,11 +36,11 @@
         }
 
         &.full {
-            width: 100%;
+            width: 100% ;
         }
 
         &.small {
-            height: 22px;
+            height: 26px;
             font-size: 14px;
             font-weight: 400;
             font-family: var(--font-family);
@@ -72,6 +72,10 @@
         &.xl-padding-end:focus {
             padding-inline-end: 26px;
         }
+
+        &.text-centered {
+            text-align: center;
+        }
     }
 
     .input-mirror {
@@ -86,13 +90,13 @@
         pointer-events: none;
 
         &.small {
-            height: 22px;
+            height: 26px;
             font-size: 14px;
             font-weight: 400;
             font-family: var(--font-family);
 
         }
-        
+
         &.normal {
             height: 26px;
             font-size: 14px;
