@@ -27,17 +27,18 @@ export function T_GroupFooter({ group, itemColumn }) {
 
 
     async function onAddTask() {
-
         if (value === '') {
             return
         }
 
+        const valueToSave = value
+        set('')
         try {
-            await addTask({ groupId: group.id, itemColId, value })
-            set('')
+            addTask({ groupId: group.id, itemColId, valueToSave })
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
+            set(valueToSave)
         }
 
 

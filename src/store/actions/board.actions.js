@@ -144,14 +144,14 @@ export async function removeGroup(groupId) {
 }
 
 // ========= Task =========
-export async function addTask({ value = 'New item', itemColId, isTop = false, groupId }) {
+export async function addTask({ valueToSave = 'New item', itemColId, isTop = false, groupId }) {
     const board = structuredClone(store.getState().boardModule.board)
     const boardId = board._id
     if (!groupId) {
         groupId = board.groups[0].id
     }
 
-    const task = await boardService.getEmptyTask(boardId, value, itemColId )
+    const task = await boardService.getEmptyTask(boardId, valueToSave, itemColId )
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
         const savedTask = await boardService.saveTask(task, groupId, boardId, isTop)

@@ -5,6 +5,7 @@ import { makeId, getRandomTimestampInRange } from '../base/util.service'
 import { userService } from '../user'
 import { boardService as local } from './board.service.local'
 import { boardService as remote } from './board.service.remote'
+import { store } from '../../store/store'
 
 function getEmptyBoard() {
     const colId1 = makeId()
@@ -13,7 +14,7 @@ function getEmptyBoard() {
     const colId4 = makeId()
     const labelId1 = makeId()
     const labelId2 = makeId()
-	const board = {
+    const board = {
         _id: '',
         // createdAt: Date.now(),
         // createdBy: userService.getLoggedinUser()?._id || null,
@@ -31,7 +32,7 @@ function getEmptyBoard() {
                 createdBy: userService.getLoggedinUser()?._id || null,
                 width: 400,
                 name: 'Item',
-                type: {variant: 'item'}
+                type: { variant: 'item' }
             },
             {
                 id: colId2,
@@ -39,7 +40,7 @@ function getEmptyBoard() {
                 createdBy: userService.getLoggedinUser()?._id || null,
                 width: 200,
                 name: 'Person',
-                type: {variant: 'person'}
+                type: { variant: 'person' }
             },
             {
                 id: colId3,
@@ -47,11 +48,13 @@ function getEmptyBoard() {
                 createdBy: userService.getLoggedinUser()?._id || null,
                 width: 200,
                 name: 'Status',
-                type: {variant: 'status', labels: [
-                        {id: labelId1, name: 'Working On It', color: 'working_orange'},
-                        {id: labelId2, name: 'Stuck', color: 'stuck-red'},
-                        {id: makeId(), name: 'Done', color: 'done-green'},
-                    ]}
+                type: {
+                    variant: 'status', labels: [
+                        { id: labelId1, name: 'Working On It', color: 'working_orange' },
+                        { id: labelId2, name: 'Stuck', color: 'stuck-red' },
+                        { id: makeId(), name: 'Done', color: 'done-green' },
+                    ]
+                }
             },
             {
                 id: colId4,
@@ -59,7 +62,7 @@ function getEmptyBoard() {
                 createdBy: userService.getLoggedinUser()?._id || null,
                 width: 200,
                 name: 'Date',
-                type: {variant: 'date'}
+                type: { variant: 'date' }
             },
         ],
         groups: [
@@ -171,7 +174,7 @@ function getEmptyBoard() {
                 ]
             },
         ]
-	}
+    }
 
     return board
 }
@@ -190,13 +193,13 @@ function getEmptyGroup() {
 }
 
 async function getEmptyTask(boardId, taskName, colId) {
-    const board = await boardService.getById(boardId)
+    const board = structuredClone(store.getState().boardModule.board)
     return {
         id: makeId(),
         createdAt: Date.now(),
         createdBy: userService.getLoggedinUser()?._id || null,
         columnValues: [
-            {colId: colId || board.columns[0].id, value: taskName}
+            { colId: colId || board.columns[0].id, value: taskName }
         ]
     }
 }
@@ -208,24 +211,26 @@ function getEmptyColumn(type) {
         createdBy: userService.getLoggedinUser()?._id || null,
         name: type.charAt(0).toUpperCase() + type.slice(1),
         width: 200,
-        type :  {variant: type}
+        type: { variant: type }
     }
 
     if (type === 'status') {
-        emptyCol.type = {...emptyCol.type, labels: [
-                            {id: makeId(), name: 'Working On It', color: 'working_orange'},
-                            {id: makeId(), name: 'Stuck', color: 'stuck-red'},
-                            {id: makeId(), name: 'Done', color: 'done-green'},
-                        ]}
+        emptyCol.type = {
+            ...emptyCol.type, labels: [
+                { id: makeId(), name: 'Working On It', color: 'working_orange' },
+                { id: makeId(), name: 'Stuck', color: 'stuck-red' },
+                { id: makeId(), name: 'Done', color: 'done-green' },
+            ]
+        }
     } else if (type === 'dropdown') {
-        emptyCol.type = {...emptyCol.type, labels: []}
+        emptyCol.type = { ...emptyCol.type, labels: [] }
     }
 
     return emptyCol
 }
 
 //TODO edit this when filter is created
-function getDefaultFilter() { 
+function getDefaultFilter() {
     return {
         txt: '',
     }

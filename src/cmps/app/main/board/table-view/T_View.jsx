@@ -4,6 +4,7 @@
 // === Services
 
 // === Actions
+import { addGroup } from "../../../../../store/actions/board.actions";
 
 // === Hooks / React
 import { useSelector } from "react-redux";
@@ -23,6 +24,11 @@ export function T_View({ /* prop1, prop2 */ }) {
     const board = useSelector(storeState => storeState.boardModule.board)
 
     // === Functions
+    function onAddGroup() {
+        addGroup()
+    }
+
+
     if (!board) return <div>Loading...</div>
     return (
         <section className="T_View">
@@ -36,7 +42,10 @@ export function T_View({ /* prop1, prop2 */ }) {
                     })
                 }
 
-                <div className="add-group-btn clickable clear outlined size-32 icon-start i-Add">Add group item</div>
+                <div
+                    className="add-group-btn clickable clear outlined size-32 icon-start i-Add"
+                    onClick={onAddGroup}
+                >Add group item</div>
             </section>
 
 
