@@ -44,6 +44,9 @@ export function T_GroupHeader({ group }) {
     }
 
 
+    function setColor(color) {
+
+    }
 
     return (
         <section className="T_GroupHeader">
@@ -69,7 +72,6 @@ export function T_GroupHeader({ group }) {
                     <Tooltip title="Collapse group" position="top">
                         <div
                             className={`collapse-button i-DropdownChevronDown ${group.color}-text`}
-                        // style={{ color: "#9d50dd" }}
                         />
                     </Tooltip>
                 </div>
@@ -84,6 +86,12 @@ export function T_GroupHeader({ group }) {
                         onBlur={handleRename}
                         onPressEnter={handleRename}
                         additionalClass={`${group.color}-text`}
+                        colorPicker={{
+                            selectedColor: 'grass_green',
+                            setColor: setColor,
+                            variant: 'limited',
+                        }}
+
                     />
                 </div>
                 <p className="items-count">{group.tasks.length} Tasks</p>
