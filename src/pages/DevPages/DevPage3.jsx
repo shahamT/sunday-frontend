@@ -1,7 +1,7 @@
 // === Style
 
 import { BoardMenu } from "../../cmps/app/main/board/popupMenu/BoardMenu";
-import {  TaskMenu } from "../../cmps/app/main/board/popupMenu/TaskMenu";
+import { TaskMenu } from "../../cmps/app/main/board/popupMenu/TaskMenu";
 import { ColumnMenu } from "../../cmps/app/main/board/popupMenu/ColumnMenu";
 import { GroupMenu } from "../../cmps/app/main/board/popupMenu/GroupMenu";
 import { PopUpMenu } from "../../cmps/reusables/PopUpMenu/PopUpMenu";
@@ -34,17 +34,21 @@ export function DevPage3({ /* prop1, prop2 */ }) {
     //     align-items: center;       
     //     min-height: 100vh;         
     //     text-align: center;      
-      
-    
+
+
     //     // padding: 2em;
     //     // box-sizing: border-box;
     //   }
     // if (!data) return <div>Loading...</div>
+
+
     return (
         <section className="DevPage3">
             <h1>DevPage3</h1>
-<ImgUploader/>
-</section>
+            <ImgUploader />
+            <div className="square squar i-HighlightColorBucket icon-start" />
+        </section>
+
 
 
     )
