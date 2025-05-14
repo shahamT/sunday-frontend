@@ -1,5 +1,5 @@
 // import React from "react";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
@@ -13,26 +13,34 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
   const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: board._id })
   const navigate = useNavigate()
   const clickTimeRef = useRef(null)
+  const inputRef = useRef(null)
 
-const style = {
+
+  const style = {
     transition,
     transform: transform ? CSS.Transform.toString(transform) : undefined,
   }
 
+  useEffect(() => {
+    if (editingBoardId === board._id && inputRef.current) {
+      inputRef.current.select()
+    }
+  }, [editingBoardId])
+
   function handleClick() {
-      navigate(`/app/board/${board._id}`)
-    
+    navigate(`/app/board/${board._id}`)
+
     // const elapsed = Date.now() - clickTimeRef.current
     // if (elapsed < 200) {
     //   navigate(`/app/board/${board._id}`)
     // }
   }
-  
-function handleMouseDown() {
-  clickTimeRef.current = Date.now()
-}
 
-  
+  function handleMouseDown() {
+    clickTimeRef.current = Date.now()
+  }
+
+
 
   return (
     <div
@@ -50,6 +58,7 @@ function handleMouseDown() {
       >
         {editingBoardId === board._id ? (
           <input
+            ref={inputRef}
             type="text"
             value={editedTitle}
             autoFocus
