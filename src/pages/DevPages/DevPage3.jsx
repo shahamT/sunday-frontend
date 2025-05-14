@@ -27,6 +27,33 @@ export function DevPage3({ /* prop1, prop2 */ }) {
 
     // === Effects
 
+    const selectedPersons =[
+      {
+        _id: "cKdrA",
+        account: "acc001",
+        firstName: "John",
+        lastName: "Doe",
+        email: "user1@company.com",
+        profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+      },
+      {
+        _id: "ehy6w",
+        account: "acc001",
+        firstName: "User2",
+        lastName: "Lastname2",
+        email: "user2@company.com",
+        profileImg: "https://ui-avatars.com/api/?name=User2+Lastname2&background=FF5733&color=fff&length=2&rounded=true&bold=true",
+      },
+      {
+        _id: "yotQF",
+        account: "acc001",
+        firstName: "Noga",
+        lastName: "Shaham",
+        email: "user3@company.com",
+        profileImg: "https://ui-avatars.com/api/?name=Noga+Shaham&background=28A745&color=fff&length=2&rounded=true&bold=true",
+      }
+    ]
+
     // === Functions
     // .DevPage3 {
     //     display: flex;

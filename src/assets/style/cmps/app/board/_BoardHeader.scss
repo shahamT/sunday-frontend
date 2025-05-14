@@ -1,7 +1,7 @@
 .BoardHeader {
-    padding-left: var(--space-40);
-    padding-top: 18px;
-    padding-right: 30px;
+    padding-inline-start: var(--space-40);
+    padding-block-start: 18px;
+    padding-inline-end: 30px;
     
     .main-section {
         display: flex;
@@ -10,11 +10,11 @@
     
     .tab-bar {
         display: flex;
-        padding-top: var(--space-8);
-        border-bottom: 1px var(--layout-border-color) solid;
+        padding-block-start: var(--space-8);
+        border-block-end: 1px var(--layout-border-color) solid;
 
         .tab-underline {
-            border-bottom: 1.66667px solid var(--primary-color);
+            border-block-end: 1.66667px solid var(--primary-color);
             width: max-content;
         }
     }

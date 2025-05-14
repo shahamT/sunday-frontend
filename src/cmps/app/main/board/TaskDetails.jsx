@@ -18,6 +18,7 @@ import { useControlledInput } from '../../../../hooks/useControlledInput.js'
 // === Imgs
 
 // === Child Components
+import { PersonsPreview } from "./table-view/T_CellContent/PersonsPreview"
 
 // ====== Component ======
 // =======================
@@ -28,22 +29,36 @@ export function TaskDetails() {
     const {boardId, taskId} = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
     
+    const [columns, setColumns] = useState(null)
     const [task, setTask] = useState(null)
+    const [selectedPersons, setSelectedPersons] = useState([])
     const [value, handleChange, reset, set] = useControlledInput('')
     
     // === Effects
     useEffect(() => {
-        
         const foundTask = getTaskById(taskId)
         if (foundTask) {
             setTask(foundTask)
             set(foundTask.columnValues[0]?.value || '')
+        }
+
+        if (board) {
+            setColumns(board.columns)
+            // setSelectedPersons(getSelectedPersons())
         }
     }, [board, taskId])
 
     useEffect(() => {
         set(task?.columnValues[0]?.value)
     }, [task])
+
+    useEffect(() => {
+    if (task && columns) {
+        const peopleColId = columns.find(column => column.type.variant === 'people')?.id
+        const colValue = task.columnValues.find(cv => cv.colId === peopleColId)
+        setSelectedPersons(colValue?.value || [])
+    }
+}, [task, columns])
 
     // === Functions
     function onCloseTaskDetails() {
@@ -76,18 +91,29 @@ export function TaskDetails() {
         return null
     }
 
-    if (!task) return <div>Loading...</div>
+    // function getSelectedPersons() {
+    //     const peopleColId = columns.find(column => column.type.variant === 'people')?.id
+    //     const colValue = task.columnValues.find(cv => cv.colId === peopleColId)
+    //     setSelectedPersons(colValue?.value || [])
+    // }
+
+    if (!task || !board) return <div>Loading...</div>
     return (
         <section className="TaskDetails">
-            <EditableText
-                    value={value}
-                    full={true}
-                    size="title"
-                    handleChange={handleChange}
-                    onBlur={onSetName}
-                    onPressEnter={onSetName}
-                />
-            <button onClick={onCloseTaskDetails}>X</button>
+            <section className="task-details-header">
+                <section className="task-details-title">
+                    <button className="exit-btn clickable clear icon-btn size-24 i-Close" onClick={onCloseTaskDetails}></button>
+                    <EditableText
+                        value={value}
+                        full={true}
+                        size="title"
+                        handleChange={handleChange}
+                        onBlur={onSetName}
+                        onPressEnter={onSetName}
+                    />
+                    {/* <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length}/> */}
+                </section>
+            </section>
         </section>
     )
 }

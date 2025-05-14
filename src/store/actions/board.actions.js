@@ -264,10 +264,11 @@ export async function addColumn(type) {
 export async function updateColumn(column) {
     const boardId = store.getState().boardModule.board._id
     try {
+        store.dispatch(getCmdUpdateColumn(column))
         const savedColumn = await boardService.saveColumn(column, boardId)
-        store.dispatch(getCmdUpdateColumn(savedColumn))
         return savedColumn
     } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot save column', err)
         throw err
     }

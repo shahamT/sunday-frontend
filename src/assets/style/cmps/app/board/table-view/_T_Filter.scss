@@ -2,10 +2,10 @@
     display: flex;
     padding-left: var(--space-40);
     padding-block: var(--space-16);
-    padding-right: 30px;
+    padding-inline-end: 30px;
 
     .new-item-btn {
-        margin-right: 14px;
+        margin-inline-end: 14px;
         
         .clickable {
             font-size: 14px;
