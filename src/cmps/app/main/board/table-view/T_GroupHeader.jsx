@@ -53,7 +53,7 @@ export function T_GroupHeader({ group }) {
                     renderContent={({ onCloseModal }) => (
                         <GroupMenu
                             onCloseModal={onCloseModal}
-                            groupId={group.id}
+                            group={group}
 
                         />
                     )}
