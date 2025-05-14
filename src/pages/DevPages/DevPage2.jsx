@@ -21,12 +21,12 @@ import { ColorPicker } from "../../cmps/app/main/board/value-setter/ColorPicker"
 
 export function DevPage2({ /* prop1, prop2 */ }) {
 
-    const [lableColor, setLableColor] = useState(`grey`)
+    const [lableColor, setLableColor] = useState(`color-1`)
 
 
     return (
-        <section className='color-picker-container'>
-            <h1>ddd</h1>
+        <section className='color-picker-btn'>
+            <h1>devdevdev</h1>
             <PopUpMenu
                 position="start-end"
                 renderContent={({ onCloseModal }) => (
@@ -37,7 +37,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                     />
                 )}
             >
-                <div className={`circle color-picker-item ${lableColor}-bg`} />
+                <div className={`circle color-picker-btn ${lableColor}`} />
 
             </PopUpMenu>
         </section>

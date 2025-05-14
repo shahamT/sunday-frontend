@@ -33,7 +33,9 @@ export function ColorPicker({ onCloseModal, setLableColor, lableColor }) {
         'color-13',
         'color-14',
         'color-15',
-        'color-16'
+        'color-16',
+        'color-17',
+        'color-18',
     ]
 
     console.log(colors)
@@ -45,12 +47,11 @@ export function ColorPicker({ onCloseModal, setLableColor, lableColor }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="ComponentName">
-            <h1>ComponentName</h1>
-            {colors.map(color => (
+        <section className="color-picker-container">
+            {colors.map(color => ( color===lableColor ? null:
                 <div
                     key={color}
-                    className={`circle color-picker-item ${color}-bg`}
+                    className={`circle color-picker-item ${color}`}
                     onClick={() => {
                         setLableColor(color)
                         onCloseModal()
