@@ -56,15 +56,15 @@ export function BoardHeader({ isSelected, select }) {
                     onBlur={onSetName}
                     onPressEnter={onSetName}
                 />
-                <div className="___-btn clickable clear icon-btn size-32 i-Update"></div>
+                <div className="board-title-btn clickable clear icon-btn size-32 i-Update"></div>
             </div>
 
             <div className="tab-bar">         
                 <div key="main-table" className={isSelected('main-table') ? 'tab-underline' : ''} onClick={() => select("main-table")}>
-                    <div className="___-btn clickable clear size-32 select">Main Table</div>
+                    <div className="tab-btn clickable clear size-32 select">Main Table</div>
                 </div>
                 <div key="kanban" className={isSelected('kanban') ? 'tab-underline' : ''} onClick={() => select("kanban")}>
-                    <div className="___-btn clickable clear size-32 select">Kanban</div>
+                    <div className="tab-btn clickable clear size-32 select">Kanban</div>
                 </div>
             </div>            
         </section>
