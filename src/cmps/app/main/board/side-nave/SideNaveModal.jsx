@@ -74,7 +74,7 @@ export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onClose
         <section className="board-popup-menu">
 
             <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
-            <div className="divider1" />
+            <div className="divider" />
             <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
                 setEditingBoardId(board._id)
                 setEditedTitle(board.name)

@@ -23,6 +23,26 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
 
     return (
         <section className="status-picker-container">
+        <section className='status-picker-items'>
+            {defaultStatus.map(status => (
+                <div
+                    key={status.id}
+                    className={`status-picker ${status.color}-bg`}
+                    onClick={() => {
+                        setStatus(status)
+                        onCloseModal()
+                    }}
+                >
+                    {status.name}
+                </div>
+            ))}
+            <div className="default-status" onClick={() => {
+                setStatus(null)
+                onCloseModal()
+            }}/>
+            
+        </section>
+            <div className="divider" />
             <section className='status-picker-items'>
                 {StatusArray.map(status => (
                     <div
