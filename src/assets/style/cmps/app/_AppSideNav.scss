@@ -33,7 +33,7 @@
 
         }
 
-        .Favorite-btn {
+        .favorite-btn {
                 display: flex;
 
                 .i-DropdownChevronDown,
@@ -157,12 +157,12 @@
         border: none;
 }
 
-.drag-handle {
-        width: 100%;        
-        height: 100%;      
-        position: absolute; 
-        top: 0;
-        left: 0;
-        // cursor: grab;
-        z-index: 10;
-      }
+// .drag-handle {
+//         width: 100%;        
+//         height: 100%;      
+//         position: absolute; 
+//         top: 0;
+//         left: 0;
+//         // cursor: grab;
+//         z-index: 10;
+//       }
