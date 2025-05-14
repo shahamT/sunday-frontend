@@ -17,21 +17,28 @@ export function ImgUploader({ onUploaded = null }) {
     setIsUploading(false)
     onUploaded && onUploaded(secure_url)
     
-    console.log(imgData)
+    
   }
 
   function getUploadLabel() {
 
     if (imgData.imgUrl) return 'Upload Another?'
     return isUploading ? 'Uploading....' : 'Upload Image'
-  }
 
+  }
+{/* <img
+  src={imgUrl}
+  alt="preview"
+  width="17"
+  height="17"
+/> */}
   return (
     <div className="upload-preview">
       {imgData.imgUrl && <img src={imgData.imgUrl} style={{ maxWidth: '200px', float: 'right' }} />}
       <button className='i-File icon-start clickable'>
       <label htmlFor="imgUpload">{getUploadLabel()}</label></button>
       <input type="file" onChange={uploadImg} accept="img/*" id="imgUpload"  style={{ display: 'none' }}/>
+
     </div>
   )
 }

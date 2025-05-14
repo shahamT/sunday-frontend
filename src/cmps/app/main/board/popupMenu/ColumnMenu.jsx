@@ -1,6 +1,7 @@
 // === Libs
 
-import { addGroup, removeColumn, removeGroup } from "../../../../../store/actions/board.actions"
+import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
+import { removeColumn, removeGroup } from "../../../../../store/actions/board.actions"
 
 // === Services
 
@@ -30,7 +31,10 @@ export function ColumnMenu({ onCloseModal, columnId }) {
                 onCloseModal()
             }}>Rename</div>
             <div className="divider" />
-            <div className="delet-btn clickable clear size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeColumn(groupId)}>
+            <div className="delet-btn clickable clear size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => {
+                removeColumn(groupId)
+                showSuccessMsg('We successfully deleted 1 item')
+            }}>
                 Delete
             </div>
         </section>

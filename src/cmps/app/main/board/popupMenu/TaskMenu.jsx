@@ -1,9 +1,8 @@
 // === Libs
 
-import { useEffect, useState } from "react"
-import { loadBoards, removeBoard, removeTask, updateBoard } from "../../../../../store/actions/board.actions"
+import {  removeTask, updateBoard } from "../../../../../store/actions/board.actions"
 import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 
 // === Services
 
@@ -21,7 +20,7 @@ import { useParams } from "react-router-dom"
 export function TaskMenu({ taskId }) {
     const { boardId } = useParams()
     // === Consts
-
+const navigate = useNavigate()
     // === Effects
 
 
@@ -36,17 +35,16 @@ export function TaskMenu({ taskId }) {
 
     return (
         <section className="task-popup-menu">
-            <a href={`${window.location.origin}/app/board/${boardId}/task/${taskId}`}
-                className="clickable clear size-32 icon-start full-width left-aligned i-Open" target="_blank" rel="noopener noreferrer">Open item</a>
-                <div className="divider" />
+            <button className="clickable clear size-32 icon-start full-width left-aligned i-Open" onClick={()=> navigate(`${window.location.origin}/app/board/${boardId}/task/${taskId}`)}>Open item</button>
+                <div className="divider"/>
             <button className="clickable clear size-32 i-Link icon-start full-width left-aligned" onClick={() => handleCopy(`${window.location.origin}/app/board/${boardId}/task/${taskId}`)}>Copy item link</button >
                 <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
                     onCloseModal()
                 }}>Rename</div>
 
-
-
-                <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeTask(taskId)}>
+                <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => {
+                    removeTask(taskId)
+                    showSuccessMsg('We successfully deleted 1 item')}}>
                     Delete
                 </div>
         </section>
