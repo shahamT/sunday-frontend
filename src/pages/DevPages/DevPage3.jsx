@@ -43,58 +43,9 @@ export function DevPage3({ /* prop1, prop2 */ }) {
     return (
         <section className="DevPage3">
             <h1>DevPage3</h1>
-<section>
 <ImgUploader/>
-
 </section>
 
 
-            <div className="menu-btn-wraper">
-                      <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                          <TaskMenu
-                            onCloseModal={onCloseModal}
-                            // taskId={task.id}
-                           
-                          />
-                        )}
-                      >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                      </PopUpMenu>
-                    </div>
-
-                    
-            <div className="menu-btn-wraper">
-                      <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                          <ColumnMenu
-                            onCloseModal={onCloseModal}
-                            // columnId={column.id}
-                           
-                          />
-                        )}
-                      >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                      </PopUpMenu>
-                    </div>
-
-
-            <div className="menu-btn-wraper">
-                      <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                          <GroupMenu
-                            onCloseModal={onCloseModal}
-                            // groupId={group.id}
-                           
-                          />
-                        )}
-                      >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                      </PopUpMenu>
-                    </div>
-        </section>
     )
 }

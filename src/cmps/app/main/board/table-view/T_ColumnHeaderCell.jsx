@@ -93,7 +93,7 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                                 renderContent={({ onCloseModal }) => (
                                     <ColumnMenu
                                         onCloseModal={onCloseModal}
-                                        columnId={column.id}
+                                        column={column}
                                     />
                                 )}
                             >
