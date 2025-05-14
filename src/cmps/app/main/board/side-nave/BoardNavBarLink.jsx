@@ -5,7 +5,7 @@ import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
 import { useNavigate } from "react-router-dom";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
-import { SideNavModal } from "./SideNaveModal";
+import { BoardMenu } from "../popupMenu/BoardMenu";
 
 
 export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
@@ -79,7 +79,7 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
           <PopUpMenu
             position="start-end"
             renderContent={({ onCloseModal }) => (
-              <SideNavModal
+              <BoardMenu
                 onCloseModal={onCloseModal}
                 board={board}
                 setEditingBoardId={setEditingBoardId}

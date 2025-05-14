@@ -5,7 +5,7 @@
 import { useEffect } from "react"
 import { NavLink } from "react-router-dom"
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
-import { SideNavModal } from "./SideNaveModal"
+import { BoardMenu } from "../popupMenu/BoardMenu"
 
 // === Services
 
@@ -50,7 +50,7 @@ export function FavoritesBoards({ boards,setEditedTitle,editingBoardId ,handleRe
                <PopUpMenu
                  position="start-end"
                  renderContent={({ onCloseModal }) => (
-                   <SideNavModal
+                   <BoardMenu
                      onCloseModal={onCloseModal}
                      board={board}
                      setEditingBoardId={setEditingBoardId}

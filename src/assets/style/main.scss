@@ -51,10 +51,12 @@
 @import 'cmps/app/AppHeader.scss';
 @import 'cmps/app/_WMLogo.scss';
 
+// ====== Side Nav ======
 @import 'cmps/app/_AppSideNav.scss';
-@import 'cmps/app/_SideNavModal.scss';
 @import 'cmps/app/_SideNavAddBoardModal.scss';
 @import 'cmps/app/_SideNavDnd.scss';
+
+@import 'cmps/app/_BoardMenu.scss';
 
 @import 'cmps/app/_AppHome.scss';
 @import 'cmps/app/board/BoardPreview.scss';
@@ -76,6 +78,10 @@
 @import 'cmps/app/board/table-view/T_Filter.scss';
 @import 'cmps/app/board/table-view/T_ColumnHeaderCell.scss';
 @import 'cmps/app/board/table-view/T_Cell.scss';
+
+@import 'cmps/app/board/table-view/_GroupMenu.scss';
+
+
 
 // ====== Value setter ======
 @import 'cmps/app/board/value-setter/_DatePicker.scss';

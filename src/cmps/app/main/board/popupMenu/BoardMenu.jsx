@@ -1,10 +1,8 @@
 // === Libs
 
 import { useEffect, useState } from "react"
-// import { debounce } from "../../../../../services/base/util.service"
-import { loadBoard, loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
+import { loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
 import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
-// import { h1 } from "remirror/dist/_tsup-dts-rollup"
 
 // === Services
 
@@ -19,7 +17,7 @@ import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
 // ====== Component ======
 // =======================
 
-export function SideNavModal({ board, setEditingBoardId, setEditedTitle, onCloseModal }) {
+export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseModal }) {
 
     // === Consts
     const [boardToEdit, setBoardToEdit] = useState(null)
