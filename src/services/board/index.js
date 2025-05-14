@@ -40,7 +40,7 @@ function getEmptyBoard() {
                 createdBy: userService.getLoggedinUser()?._id || null,
                 width: 200,
                 name: 'Person',
-                type: { variant: 'person' }
+                type: { variant: 'people' }
             },
             {
                 id: colId3,

@@ -151,9 +151,13 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case UPDATE_COLUMN:
+
+            lastBoard = {...state.board}
+
             return {
                 ...state,
-                board: {...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column)}
+                board: {...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column)},
+                lastBoard
             }
 
          //TASKS

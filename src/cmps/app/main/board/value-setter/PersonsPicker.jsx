@@ -58,7 +58,7 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
                     </div>
                 ))}
             </div>
-            <div className="divider"></div>
+            {selectedPersons?.length && <div className="divider"></div>}
             {users.map(user => {
                 if (user.account === boardAccountId && !selectedPersons.some(person => person._id === user._id)) {
                     return (
