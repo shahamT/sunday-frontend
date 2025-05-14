@@ -26,7 +26,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
 
     return (
         <section className='color-picker-btn'>
-            <h1>devdevdev</h1>
+            <h1>dev2</h1>
             <PopUpMenu
                 position="start-end"
                 renderContent={({ onCloseModal }) => (
