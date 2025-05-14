@@ -1,6 +1,6 @@
 .board-popup-menu>*{
     color: var(--gray3);
-    // width:400px ;
+    width:190px ;
     font-family: var(--title-font-family);
   }
   
@@ -15,8 +15,14 @@
       transition: color 0.2s;
     }
   
+   
     &.starred::before {
+      content: "\f005";
+      font-family: 'fa-solid';
       color: gold;
-    }
+      font-size: 17px;
+      width: 20px;
+
+}
   }
 
