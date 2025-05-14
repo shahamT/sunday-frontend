@@ -15,7 +15,7 @@ import { addGroup, removeColumn, removeGroup } from "../../../../../store/action
 // ====== Component ======
 // =======================
 
-export function ColumnMenu({ onCloseModal, columnId }) {
+export function ColumnMenu({ onCloseModal, columnId, inputRef }) {
     // === Consts
 
     // === Effects
@@ -30,7 +30,7 @@ export function ColumnMenu({ onCloseModal, columnId }) {
                 onCloseModal()
             }}>Rename</div>
             <div className="divider" />
-            <div className="delet-btn clickable clear size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeColumn(groupId)}>
+            <div className="delet-btn clickable clear size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeColumn(columnId)}>
                 Delete
             </div>
         </section>

@@ -18,7 +18,7 @@ import { useParams } from "react-router-dom"
 // ====== Component ======
 // =======================
 
-export function TaskMenu({ taskId }) {
+export function TaskMenu({ taskId, groupId }) {
     const { boardId } = useParams()
     // === Consts
 
@@ -46,7 +46,7 @@ export function TaskMenu({ taskId }) {
 
 
 
-                <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeTask(taskId)}>
+                <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => removeTask(taskId, groupId)}>
                     Delete
                 </div>
         </section>

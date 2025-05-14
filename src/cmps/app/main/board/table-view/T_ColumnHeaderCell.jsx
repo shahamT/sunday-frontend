@@ -15,6 +15,7 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText";
 import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { useEffect } from "react";
+import { ColumnMenu } from "../popupMenu/ColumnMenu";
 
 // ====== Component ======
 // =======================
@@ -73,7 +74,7 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                     :
                     <>
                         <div className="menu-btn-wraper">
-                            <PopUpMenu
+                            {/* <PopUpMenu
                                 position="start-end"
                                 renderContent={({ onCloseModal }) => (
                                     // <SideNavModal
@@ -86,7 +87,20 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                                 )}
                             >
                                 <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                            </PopUpMenu> */}
+                            <PopUpMenu
+                                position="start-end"
+                                renderContent={({ onCloseModal }) => (
+                                    <ColumnMenu
+                                        onCloseModal={onCloseModal}
+                                        columnId={column.id}
+                                    />
+                                )}
+                            >
+                                <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
                             </PopUpMenu>
+
+
                         </div>
                         <div className="title-wraper">
                             <Tooltip position='top' title={value}>

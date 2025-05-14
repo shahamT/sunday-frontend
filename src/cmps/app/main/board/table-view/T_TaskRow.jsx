@@ -12,6 +12,7 @@ import { T_Cell } from "./T_Cell"
 
 // === Child Components
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
+import { TaskMenu } from "../popupMenu/TaskMenu"
 
 // ====== Component ======
 // =======================
@@ -27,20 +28,19 @@ export function T_TaskRow({ task, columns, group }) {
     return (
         <article className="T_TaskRow">
             <div className="menu-wraper">
-                    <PopUpMenu
-                        position="start-end"
-                        renderContent={({ onCloseModal }) => (
-                            // <SideNavModal
-                            //     onCloseModal={onCloseModal}
-                            //     board={board}
-                            //     setEditingBoardId={setEditingBoardId}
-                            //     setEditedTitle={setEditedTitle}
-                            // />
-                            <p className="temp"></p>
-                        )}
-                    >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-                    </PopUpMenu>
+                <PopUpMenu
+                    position="start-end"
+                    renderContent={({ onCloseModal }) => (
+                        <TaskMenu
+                            onCloseModal={onCloseModal}
+                            taskId={task.id}
+                            groupId={group.id}
+
+                        />
+                    )}
+                >
+                    <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                </PopUpMenu>
             </div>
 
             <div className="row-wraper t-row">
