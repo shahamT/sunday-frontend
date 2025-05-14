@@ -87,7 +87,6 @@
                 margin: 4px;
                 border: 1px solid #d0d0d0;
                 border-radius: 5px;
-                // background-color: #d0d0d0;
 
 
                 img {
@@ -134,28 +133,23 @@
                 
                 &:focus {
                         outline: none;
-                        border-color: #0073ea; // כחול monday
+                        border-color: #0073ea; 
                 }
                 
                 &::placeholder {
                         color: #b0b0b0;
                 }
         }
+        .divider {
+                height: 1px;
+                background-color: #d0d0d0;
+                margin: 8px 0;
+                border: none;
+                
+        }
 }
 
-.divider1 {
-        height: 1px;
-        background-color: #d0d0d0;
-        margin: 0.5em 0;
-        border: none;
-        
-}
-.divider2 {
-        height: 2px;
-        background-color: #d0d0d0;
-        margin: 0.5em 0;
-        border: none;
-}
+
 
 // .drag-handle {
 //         width: 100%;        

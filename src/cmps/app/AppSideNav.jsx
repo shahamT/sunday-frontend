@@ -96,7 +96,7 @@ export function AppSideNav({ }) {
                 <NavLink to="/app/home" className="clickable select full-width clear size-32 icon-start i-Home left-aligned" >Home </NavLink>
             </section>
 
-            <div className="divider1" />
+            <div className="divider" />
 
             <section className="nav-section">
                 <a
@@ -108,7 +108,7 @@ export function AppSideNav({ }) {
                     {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
                 </a>
             </section>
-            {!isFavoritesOpen ? <div className="divider1" /> : null}
+            {!isFavoritesOpen ? <div className="divider" /> : null}
 
             {isFavoritesOpen ?
                 <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
@@ -126,7 +126,10 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
-                        <div className="add-btn clickable i-Add filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
+                        <div className="add-btn clickable i-Add filled size-32"
+                         onClick={() =>{
+                            
+                            openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} } />
                     </section>
 
 

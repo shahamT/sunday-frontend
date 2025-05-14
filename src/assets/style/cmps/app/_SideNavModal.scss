@@ -1,11 +1,11 @@
 .board-popup-menu>*{
     color: var(--gray3);
-    width:200px ;
-
-}
-
-
-.star-toggle,.i-Favorite{
+    // width:400px ;
+    font-family: var(--title-font-family);
+  }
+  
+  
+  .star-toggle,.i-Favorite{
     display: flex;
     align-items: center;
     cursor: pointer;
@@ -19,3 +19,4 @@
       color: gold;
     }
   }
+

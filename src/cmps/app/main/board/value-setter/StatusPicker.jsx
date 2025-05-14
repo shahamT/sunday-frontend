@@ -43,7 +43,7 @@ export function StatusPicker({ onCloseModal, setStatus,defaultStatus }) {
             }}/>
             
         </section>
-            <div className="divider1" />
+            <div className="divider" />
             <div className="edit-btn clickable icon-start clear i-Edit size-32">Edit Labels</div>
         </section>
     )

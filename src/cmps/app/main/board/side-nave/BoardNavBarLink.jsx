@@ -58,17 +58,16 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
       >
         {editingBoardId === board._id ? (
           <input
-          // {...attributes}
             ref={inputRef}
             type="text"
             value={editedTitle}
             autoFocus
             onChange={(e) => setEditedTitle(e.target.value)}
             onBlur={() => handleRename(board)}
-            // onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") handleRename(board)
-            }}
+            onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
+            // onKeyDown={(e) => {
+            //   if (e.key === "Enter") handleRename(board)
+            // }}
             className="edit-board-input"
           />
         ) : (
@@ -90,7 +89,6 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
           <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
         </PopUpMenu>
       </div>
-      <GlobalModal />
     </div>
   )
 }
