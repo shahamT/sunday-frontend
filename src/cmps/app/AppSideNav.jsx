@@ -2,7 +2,7 @@
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
@@ -11,18 +11,14 @@ import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, 
 // === Services
 
 // === Actions
-import { loadBoard, loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
+import { loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
 
 // === Hooks / React
 
 // === Child Components
-import { SideNavModal } from "./main/board/side-nave/SideNaveModal";
-import { PopUpMenu } from "../reusables/PopUpMenu/PopUpMenu";
 import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
-import { GlobalModal } from "../reusables/GlobalModal/GlobalModal";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
-import { store } from '../../store/store';
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 
 // ====== Component ======
@@ -60,6 +56,7 @@ export function AppSideNav({ }) {
         if (!Array.isArray(boards)) return -1
         return boards.findIndex(board => board._id === boardId)
     }
+
 
 
 
@@ -101,12 +98,12 @@ export function AppSideNav({ }) {
                 <NavLink to="/app/home" className="clickable select full-width clear size-32 icon-start i-Home left-aligned" >Home </NavLink>
             </section>
 
-            <div className="divider1" />
+            <div className="divider" />
 
             {/* favorites section */}
             <section className="favorites-section nav-section">
                 <a
-                    className={`Favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''
+                    className={`favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''
                         }`}
                     onClick={() => setIsFavoritesOpen(prev => !prev)}
                 >
@@ -117,7 +114,7 @@ export function AppSideNav({ }) {
                 </a>
             </section>
 
-            {!isFavoritesOpen ? <div className="divider1" /> : null}
+            {!isFavoritesOpen ? <div className="divider" /> : null}
 
             {isFavoritesOpen ?
                 <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
@@ -137,6 +134,7 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
+                        
                         <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 
@@ -161,10 +159,6 @@ export function AppSideNav({ }) {
                             </SortableContext>
                         </DndContext>
                     </div>
-
-
-
-
 
                 </section>}
 

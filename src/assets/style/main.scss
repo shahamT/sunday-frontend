@@ -53,6 +53,8 @@
 
 @import 'cmps/app/_AppSideNav.scss';
 @import 'cmps/app/_SideNavModal.scss';
+@import 'cmps/app/_SideNavAddBoardModal.scss';
+@import 'cmps/app/_SideNavDnd.scss';
 
 @import 'cmps/app/_AppHome.scss';
 @import 'cmps/app/board/BoardPreview.scss';
@@ -78,6 +80,7 @@
 // ====== Value setter ======
 @import 'cmps/app/board/value-setter/_DatePicker.scss';
 @import 'cmps/app/board/value-setter/_StatusPicker.scss';
+@import 'cmps/app/board/value-setter/_ColorPicker.scss';
 @import 'cmps/app/board/value-setter/ColTypePicker';
 
 // ====== Table View ======

@@ -46,7 +46,6 @@ export function T_GroupFooter({ group, itemColumn }) {
 
     return (
         <section className="T_GroupFooter">
-            <div className="menu-wraper" />
             <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
             <div className="footer-row row-wraper t-row sticky ">
                 <label className="checkbox-container t-cell no-divider footer disabled">

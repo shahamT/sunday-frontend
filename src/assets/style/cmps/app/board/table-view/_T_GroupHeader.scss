@@ -1,5 +1,6 @@
 .T_GroupHeader {
-
+    position: relative;
+    
     display: flex;
     align-items: center;
 
@@ -73,14 +74,10 @@
         }
     }
 
-    .group-menu-btn {
-        opacity: 0;
-        transition: var(--transition-md);
 
-    }
 
     &:hover {
-        .group-menu-btn {
+        .menu-wraper {
             opacity: 1;
         }
 
