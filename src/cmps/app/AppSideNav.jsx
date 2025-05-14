@@ -115,9 +115,8 @@ export function AppSideNav({ }) {
                     </div>
                 </a>
             </section>
-            {!isFavoritesOpen ? <div className="divider" /> : null}
 
-            {!isFavoritesOpen ? <div className="divider1" /> : null}
+            {!isFavoritesOpen ? <div className="divider" /> : null}
 
             {isFavoritesOpen ?
                 <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
@@ -137,10 +136,7 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
-                        <div className="add-btn clickable i-Add filled size-32"
-                         onClick={() =>{
-                            
-                            openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} } />
+                        
                         <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 
@@ -165,10 +161,6 @@ export function AppSideNav({ }) {
                             </SortableContext>
                         </DndContext>
                     </div>
-
-
-
-
 
                 </section>}
 

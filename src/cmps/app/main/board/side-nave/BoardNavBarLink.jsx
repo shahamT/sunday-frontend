@@ -3,10 +3,9 @@ import React, { useEffect, useRef } from "react";
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { SideNavModal } from "./SideNaveModal";
-import { GlobalModal } from "../../../../reusables/GlobalModal/GlobalModal";
 
 
 export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
@@ -16,7 +15,7 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
   const inputRef = useRef(null)
 
 
-  const style = {
+
   const style = {
     transition,
     transform: transform ? CSS.Transform.toString(transform) : undefined,
@@ -31,8 +30,6 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
   function handleClick() {
     navigate(`/app/board/${board._id}`)
 
-    navigate(`/app/board/${board._id}`)
-
     // const elapsed = Date.now() - clickTimeRef.current
     // if (elapsed < 200) {
     //   navigate(`/app/board/${board._id}`)
@@ -43,9 +40,6 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
     clickTimeRef.current = Date.now()
   }
 
-  function handleMouseDown() {
-    clickTimeRef.current = Date.now()
-  }
 
 
 
@@ -73,9 +67,6 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
             onChange={(e) => setEditedTitle(e.target.value)}
             onBlur={() => handleRename(board)}
             onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
-            // onKeyDown={(e) => {
-            //   if (e.key === "Enter") handleRename(board)
-            // }}
             className="edit-board-input"
           />
         ) : (
