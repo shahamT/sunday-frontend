@@ -56,7 +56,7 @@ export function AppSideNav({ }) {
         if (!Array.isArray(boards)) return -1
         return boards.findIndex(board => board._id === boardId)
     }
-    
+
 
 
 
@@ -78,8 +78,6 @@ export function AppSideNav({ }) {
     const sensors = useSensors(
         useSensor(PointerSensor, {
             activationConstraint: {
-                delay: 150,
-                tolerance: 1,
                 delay: 150,
                 tolerance: 30,
             },
