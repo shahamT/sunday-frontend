@@ -55,6 +55,11 @@ $color-names: (
     }
   }
 
+  // === Static Background Variant (no hover/selected) ===
+  .#{$name}-bg-static {
+    background-color: var(--color-#{$name});
+  }
+
   // Text color class
   .#{$name}-text {
     color: var(--color-#{$name}) !important;

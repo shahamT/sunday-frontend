@@ -39,7 +39,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
             >
                 <div className={`circle color-picker-btn ${lableColor}`} />
 
-            </PopUpMenu>
+            </PopUpMenu> 
         </section>
     )
 }

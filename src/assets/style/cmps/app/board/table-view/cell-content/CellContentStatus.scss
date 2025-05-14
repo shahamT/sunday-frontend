@@ -11,7 +11,7 @@
         right: 0px;
         border-width: 0;
         border-style: solid;
-        background: var(--primary-background-hover-color);
+        background: rgba(0, 0, 0, 0.1);
         border-color: transparent #fff transparent #fff;
 
         -webkit-transition: border-width 0.2s ease-out;
@@ -27,4 +27,14 @@
         border-width: 0px 10px 10px 0px;
     }
 
+
+    .select-area {
+        width: 100%;
+        height: 100%;
+
+    }
+
+    .default-color {
+        background-color: var(--color-unselected-gray);
+    }
 }

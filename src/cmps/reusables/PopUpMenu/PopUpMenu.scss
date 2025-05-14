@@ -82,13 +82,13 @@
 .popup-arrow-bottom,
 .popup-arrow-bottom-start,
 .popup-arrow-bottom-end {
-  bottom: 95%;
+  bottom: 97%;
 }
 
 .popup-arrow-top,
 .popup-arrow-top-start,
 .popup-arrow-top-end {
-  top: 95%;
+  top: 97%;
 }
 
 .popup-arrow-bottom,
@@ -140,4 +140,14 @@
   &.visible {
     transform: translateY(0);
   }
+}
+
+.popup-wrapper.stretch {
+  width: 100%;
+  height: 100%;
+}
+
+.popup-trigger.stretch {
+  width: 100%;
+  height: 100%;
 }

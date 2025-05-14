@@ -23,6 +23,7 @@ export function EditableText({
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
     const inputRef = useRef(null)
+    const skipBlurRef = useRef(false)
 
     useEffect(() => {
         if (!full && spanRef.current) {
@@ -61,9 +62,25 @@ export function EditableText({
                 value={value}
                 placeholder={placeholder}
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${additionalClass}`}
+                onClick={(e) => e.stopPropagation()}
                 onChange={handleChange}
-                onBlur={onBlur}
-                onKeyDown={(e) => e.key === 'Enter' && onPressEnter()}
+                onBlur={(e) => {
+                    if (skipBlurRef.current) return
+                    onBlur?.(e)
+                }}
+                onKeyDown={(e) => {
+                    if (e.key === 'Enter') {
+                        e.preventDefault()
+                        skipBlurRef.current = true // set the flag
+                        onPressEnter()
+                        inputRef.current?.blur()
+
+                        // reset flag after event loop (ensures blur won't act)
+                        setTimeout(() => {
+                            skipBlurRef.current = false
+                        }, 0)
+                    }
+                }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
                     ...(full ? {} : { width: `${inputWidth}px` })

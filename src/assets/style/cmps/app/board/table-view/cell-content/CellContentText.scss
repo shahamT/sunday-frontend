@@ -1,8 +1,6 @@
-.CellContentDate {
+.CellContentText{
     position: relative;
     cursor: text;
-
-    // padding-inline: 5px;
 
     &:hover {
         
@@ -45,7 +43,7 @@
 
     }
 
-    .date-label {
+    .text-label {
 
         font-size: 14px;
         font-weight: 300;
@@ -59,7 +57,7 @@
 
 
 
-    .date-empty-state {
+    .text-empty-state {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -91,7 +89,7 @@
             }
         }
 
-        .calendar-icon {
+        .text-icon {
             font-size: 20px;
             color: var(--icon-color);
 
@@ -99,4 +97,5 @@
 
 
     }
+
 }

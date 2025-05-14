@@ -23,7 +23,7 @@ export function T_Filter({ /* prop1, prop2 */ }) {
 
     // === Functions
     function onAddTask() {
-        addTask()
+        addTask({ itemColId: 0, isTop: true})
     }
 
     // if (!data) return <div>Loading...</div>
@@ -41,7 +41,7 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                      </PopUpMenu>
 
             </div>
-            <div className="___-btn clickable clear size-32 icon-start i-Search txt-search">Search</div>
+            <div className="search-btn clickable clear size-32 icon-start i-Search txt-search">Search</div>
         </section>
     )
 }

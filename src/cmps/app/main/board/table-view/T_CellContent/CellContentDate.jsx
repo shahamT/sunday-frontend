@@ -5,7 +5,7 @@
 // === Services
 
 // === Actions
-import { setColumnValue } from "../../../../../../store/actions/board.actions";
+import { removeColumnValue, setColumnValue } from "../../../../../../store/actions/board.actions";
 
 // === Hooks / React
 
@@ -48,14 +48,24 @@ export function CellContentDate({ taskId, column, columnValue }) {
         }
     }
 
+    function onClearDate() {
+        try {
+            removeColumnValue(taskId, column.id)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
+
 
     return (
-        <div className={`CellContentDate cell-contnet centered`}>
-            
-            <div className="input-outline" />
+        <div className={`CellContentDate cell-contnet`}>
+
 
             <PopUpMenu
                 position="bottom"
+                gap={1}
+                stretchTrigger={true}
                 renderContent={({ onCloseModal }) => (
                     <DatePickerColumn
                         onCloseModal={onCloseModal}
@@ -64,21 +74,32 @@ export function CellContentDate({ taskId, column, columnValue }) {
                     />
                 )}
             >
+                <div className={`cell-contnet centered`}>
 
-                {columnValue
-                    ?
-                    <div className="date-label">{formatTimestamp(columnValue?.value)}
-                    <div className="clicable"></div>
-                    </div>
+                    <div className="input-outline" />
 
-                    :
-                    <div className="date-empty-state">
-                        <div className="plus-btn">
-                            <div className="plus-icon i-AddSmall" />
+                    {columnValue &&
+                        <div
+                            className="clear-btn clickable clear icon-btn size-24 i-CloseSmall"
+                            onClick={onClearDate}
+                        />}
+                    {columnValue
+                        ?
+                        <>
+                            <div className="date-label">
+                                {formatTimestamp(columnValue?.value)}
+
+                            </div>
+                        </>
+                        :
+                        <div className="date-empty-state">
+                            <div className="plus-btn">
+                                <div className="plus-icon i-AddSmall" />
+                            </div>
+                            <div className="calendar-icon i-Calendar" />
                         </div>
-                        <div className="calendar-icon i-Calendar" />
-                    </div>
-                }
+                    }
+                </div>
             </PopUpMenu>
 
         </div>

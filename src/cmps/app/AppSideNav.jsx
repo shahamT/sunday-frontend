@@ -56,6 +56,7 @@ export function AppSideNav({ }) {
         if (!Array.isArray(boards)) return -1
         return boards.findIndex(board => board._id === boardId)
     }
+    
 
 
 
@@ -79,6 +80,8 @@ export function AppSideNav({ }) {
             activationConstraint: {
                 delay: 150,
                 tolerance: 1,
+                delay: 150,
+                tolerance: 30,
             },
         }),
         useSensor(TouchSensor),
@@ -92,36 +95,44 @@ export function AppSideNav({ }) {
     return (
         <nav className="AppSideNav" >
 
-            <section className="nav-section">
+            {/* Home section */}
+            <section className="main-section nav-section">
                 <NavLink to="/app/home" className="clickable select full-width clear size-32 icon-start i-Home left-aligned" >Home </NavLink>
             </section>
 
             <div className="divider" />
 
-            <section className="nav-section">
+            {/* favorites section */}
+            <section className="favorites-section nav-section">
                 <a
                     className={`favorite-btn clickable select clear size-32 icon-start i-Favorite full-width left-aligned ${isFavoritesOpen ? 'starred' : ''
                         }`}
                     onClick={() => setIsFavoritesOpen(prev => !prev)}
                 >
                     Favorites
-                    {isFavoritesOpen ? (<span className="i-DropdownChevronUp" />) : (<span className="i-DropdownChevronDown" />)}
+                    <div className="dropdown-icon-wraper">
+                        {isFavoritesOpen ? (<span className="dropdown-icon i-DropdownChevronUp" />) : (<span className="dropdown-icon i-DropdownChevronDown" />)}
+                    </div>
                 </a>
             </section>
             {!isFavoritesOpen ? <div className="divider" /> : null}
 
+            {!isFavoritesOpen ? <div className="divider1" /> : null}
+
             {isFavoritesOpen ?
                 <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
-                <section className="nav-section">
+
+
+                <section className="workspaces-section nav-section">
+
                     <div className="workspaces-bar">
                         <div className="workspase-icon icon-start i-Workspace" />
                         <p>Workspaces</p>
                         <div className="search-btn clickable clear icon-btn size-24 i-Search" />
                     </div>
 
-                    <section className="workspaces-curr-board">
-                        <div className="curr-wordspace-container">
-                            {/* <div className="MoreBelowFilled-icon icon-start i-MoreBelowFilled " /> */}
+                    <section className="workspaces-container">
+                        <div className="curr-wordspace-input">
                             <img src={mainWSIcon} alt="" />
 
                             <p>Main Workspaces</p>
@@ -130,73 +141,37 @@ export function AppSideNav({ }) {
                          onClick={() =>{
                             
                             openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} } />
+                        <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 
+                    <div className="boards-list">
+                        <DndContext
+                            sensors={sensors}
+                            collisionDetection={closestCenter}
+                            onDragEnd={handleDragEnd}
+                        >
+                            <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
+                                {boards.map(board =>
+                                    <BoardNavBarLink board={board}
+                                        key={board._id}
+                                        boardId={boardId}
+                                        editedTitle={editedTitle}
+                                        editingBoardId={editingBoardId}
+                                        setEditedTitle={setEditedTitle}
+                                        setEditingBoardId={setEditingBoardId}
+                                        handleRename={handleRename} />
 
-                    <DndContext
-                        sensors={sensors}
-                        collisionDetection={closestCenter}
-                        onDragEnd={handleDragEnd}
-                    >
-                        <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
-                            {boards.map(board =>
-                                <BoardNavBarLink board={board}
-                                    key={board._id}
-                                    boardId={boardId}
-                                    editedTitle={editedTitle}
-                                    editingBoardId={editingBoardId}
-                                    setEditedTitle={setEditedTitle}
-                                    setEditingBoardId={setEditingBoardId}
-                                    handleRename={handleRename} />
-
-                            )}
-                        </SortableContext>
-                    </DndContext>
-
-
-                    {/* {boards.map(board =>
-                        <div key={board._id} className="board-item-nav">
-                            <NavLink
-                                to={`/app/board/${board._id}`}
-                                className="clickable select clear size-32  icon-start full-width left-aligned i-Board"
-                            >
-                                {editingBoardId === board._id ? (
-                                    <input
-                                        type="text"
-                                        value={editedTitle}
-                                        autoFocus
-                                        onChange={(e) => setEditedTitle(e.target.value)}
-                                        onBlur={() => handleRename(board)}
-                                        onKeyDown={(e) => e.key === 'Enter' && handleRename(board)}
-                                        className="edit-board-input"
-                                    />
-                                ) : (
-                                    board.name
                                 )}
+                            </SortableContext>
+                        </DndContext>
+                    </div>
 
-                                <PopUpMenu
-                                    position="start-end"
-                                    renderContent={({ onCloseModal }) => (
-                                        <SideNavModal
-                                            onCloseModal={onCloseModal}
-                                            board={board}
-                                            setEditingBoardId={setEditingBoardId}
-                                            setEditedTitle={setEditedTitle}
-                                        />
-                                    )}
-                                >
-                                    <div className="Menu-btn clickable clear size-24 icon-btn i-Menu" />
-                                </PopUpMenu>
-                            </NavLink>
-                            <GlobalModal />
-                        </div>
-                    )} */}
+
+
 
 
                 </section>}
 
-
-            {/* {openSideNaveModal && <SideNavModal board={board} setOpenSideNavModal={setOpenSideNavModal} />} */}
         </nav >
 
     )

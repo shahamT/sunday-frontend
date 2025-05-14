@@ -27,8 +27,8 @@ export function T_Group({ group, columns }) {
     // === Functions
     // console.log("columns: ", columns)
     // if (!data) return <div>Loading...</div>
-    const itemColumnWidth = columns.reduce((acc, col) =>
-        col.type?.variant === 'item' ? col.width : acc, 0)
+    const itemColumn = columns.find(col => col.type?.variant === 'item');
+
 
     return (
         <section className="T_Group">
@@ -42,7 +42,7 @@ export function T_Group({ group, columns }) {
                 return <T_TaskRow key={task.id} task={task} columns={columns} group={group} />
             })}
 
-            <T_GroupFooter group={group} itemColumnWidth={itemColumnWidth} />
+            <T_GroupFooter group={group} itemColumn={itemColumn}/>
         </section>
     )
 }

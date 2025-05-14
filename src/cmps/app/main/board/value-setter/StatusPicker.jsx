@@ -13,15 +13,14 @@
 // ====== Component ======
 // =======================
 
-export function StatusPicker({ onCloseModal, setStatus,defaultStatus }) {
-   
+export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray }) {
+
     // === Consts
 
     // === Effects
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="status-picker-container">
         <section className='status-picker-items'>
@@ -44,6 +43,26 @@ export function StatusPicker({ onCloseModal, setStatus,defaultStatus }) {
             
         </section>
             <div className="divider" />
+            <section className='status-picker-items'>
+                {StatusArray.map(status => (
+                    <div
+                        key={status.id}
+                        className={`status-picker ${status.color}-bg`}
+                        onClick={() => {
+                            setStatus(status.id)
+                            onCloseModal()
+                        }}
+                    >
+                        {status.name}
+                    </div>
+                ))}
+                <div className="default-status" onClick={() => {
+                    clearStatus()
+                    onCloseModal()
+                }} />
+
+            </section>
+            <div className="divider1" />
             <div className="edit-btn clickable icon-start clear i-Edit size-32">Edit Labels</div>
         </section>
     )
