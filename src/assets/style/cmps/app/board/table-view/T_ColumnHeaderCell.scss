@@ -1,6 +1,7 @@
 .T_ColumnHeaderCell {
     position: relative;
     padding-inline: 5px;
+    cursor: grab;
 
     &.item-column {
         padding-inline-start: 0px;
@@ -13,6 +14,7 @@
     .menu-btn-wraper {
         order: 2;
         position: absolute;
+        z-index: 10;
         right: 8px;
         display: none;
 
@@ -28,4 +30,47 @@
         justify-content: center;
         align-items: center;
     }
+
+    .column-resize-handle {
+        position: absolute;
+        top: 0;
+        right: -3px;
+        z-index: 20;
+
+        width: 6px;
+        height: 100%;
+
+        cursor: ew-resize;
+        border-radius: var(--border-radius-round);
+        background-color: var(--layout-border-color);
+
+        opacity: 0;
+        transition: opacity 0.15s ease-in;
+
+        &:hover {
+            background-color: var(--primary-color, #0073ea);
+            transition: opacity 0.3s ease-in;
+            transition: none;
+        }
+    }
+
+    &:hover {
+        .column-resize-handle {
+            opacity: 1;
+
+            transition: none;
+
+
+        }
+    }
+
+    .column-drag-overlay {
+        position: fixed;
+        inset: 0;
+        z-index: 9999;
+        background: transparent;
+        cursor: ew-resize;
+        user-select: none;
+    }
+
 }
