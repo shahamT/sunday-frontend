@@ -168,17 +168,6 @@
         }
 
 
-        .board-item-nav {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-
-                .Menu-btn {
-                        margin-left: auto;
-
-                }
-        }
-
         input[type="text"] {
                 width: 100%;
                 padding: 0.2em 0.5em;
@@ -217,10 +206,11 @@
         //       }
         .BoardNavBarLink {
                 touch-action: none;
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
                 padding-inline-start: 1px;
+
+                .board-btn {
+                        padding-inline-end: 4px;
+                }
 
                 .text-wraper {
                         width: 100%;
@@ -243,16 +233,8 @@
                         }
                 }
 
-                // .board-btn.active {
-                //                 .menu-btn::before {
-                //                         color: var(--primary-text-color);
-
-                //                 }
-
-                // }
 
                 .menu-btn-wraper {
-                        margin-inline-start: auto;
                         display: none;
 
                         .menu-btn::before {

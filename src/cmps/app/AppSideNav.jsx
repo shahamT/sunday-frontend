@@ -155,8 +155,7 @@ export function AppSideNav({ }) {
                             <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                                 {boards.map(board =>
                                     <BoardNavBarLink board={board}
-                                        key={board._id}
-                                        boardId={boardId}
+                                        key={board._id} 
                                         editedTitle={editedTitle}
                                         editingBoardId={editingBoardId}
                                         setEditedTitle={setEditedTitle}

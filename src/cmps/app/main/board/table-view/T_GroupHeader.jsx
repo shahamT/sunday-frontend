@@ -58,7 +58,7 @@ export function T_GroupHeader({ group }) {
         <section className="T_GroupHeader">
             <div className="menu-wraper">
                 <PopUpMenu
-                    position="start-end"
+                    position="bottom-start"
                     renderContent={({ onCloseModal }) => (
                         <GroupMenu
                             onCloseModal={onCloseModal}

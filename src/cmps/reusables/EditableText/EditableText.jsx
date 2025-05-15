@@ -28,9 +28,9 @@ export const EditableText = forwardRef(function EditableText({
     const inputRef = useRef(null)
     const skipBlurRef = useRef(false)
     const [isFocused, setIsFocused] = useState(false)
-    
+    const [isPickingColor, setIsPickingColor] = useState(false);
 
-    
+
     useImperativeHandle(ref, () => ({
         focus: () => inputRef.current?.focus()
     }), [])
@@ -71,19 +71,26 @@ export const EditableText = forwardRef(function EditableText({
             {colorPicker && isFocused && (
                 <div className="color-picker-wrap">
                     <PopUpMenu
-                        position="start-end"
+                        position="bottom-start"
                         renderContent={({ onCloseModal }) => (
                             <ColorPicker
-                                onCloseModal={onCloseModal}
+                                onCloseModal={() => {
+                                    setIsPickingColor(false); // 🛠️ <- Add this here
+                                    onCloseModal();
+                                }}
                                 selectedColor={colorPicker?.selectedColor}
                                 setColor={colorPicker?.setColor}
                                 variant={colorPicker?.variant}
+                                setIsPickingColor={setIsPickingColor}
                             />
                         )}
                     >
                         <div
                             className={`color-picker-button ${colorPicker.selectedColor}-bg`}
-                            onMouseDown={(e) => e.preventDefault()}
+                            onMouseDown={(e) => {
+                                e.preventDefault();
+                                setIsPickingColor(true);
+                            }}
                         />
                     </PopUpMenu>
                 </div>
@@ -101,9 +108,9 @@ export const EditableText = forwardRef(function EditableText({
                 onChange={handleChange}
                 onFocus={() => setIsFocused(true)}
                 onBlur={(e) => {
-                    setIsFocused(false)
-                    if (skipBlurRef.current) return
-                    onBlur?.(e)
+                    setIsFocused(false);
+                    if (skipBlurRef.current || isPickingColor) return;
+                    onBlur?.(e);
                 }}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {
