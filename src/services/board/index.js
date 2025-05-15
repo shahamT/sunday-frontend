@@ -192,7 +192,7 @@ function getEmptyGroup() {
     }
 }
 
-async function getEmptyTask(boardId, taskName, colId) {
+async function getEmptyTask(taskName, colId) {
     const board = structuredClone(store.getState().boardModule.board)
     return {
         id: makeId(),
@@ -201,6 +201,15 @@ async function getEmptyTask(boardId, taskName, colId) {
         columnValues: [
             { colId: colId || board.columns[0].id, value: taskName }
         ]
+    }
+}
+
+function getEmptyUpdate (txt) {
+    return {
+        id: makeId(),
+        createdAt: Date.now(),
+        createdBy: userService.getLoggedinUser()?._id || null,
+        txt 
     }
 }
 
@@ -237,7 +246,7 @@ function getDefaultFilter() {
 }
 
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, getEmptyColumn, getDefaultFilter, ...service }
+export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, getEmptyUpdate, getEmptyColumn, getDefaultFilter, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

@@ -4,6 +4,7 @@
 import { userService } from "../../../../../services/user"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 import { setColumnValue } from "../../../../../store/actions/board.actions.js"
+import { loadUsers } from "../../../../../store/actions/user.actions"
 
 // === Actions
 
@@ -83,7 +84,11 @@ export function TaskDetails() {
         enrich()
 
 
-}, [task, columns])
+    }, [task, columns])
+
+    useEffect(() => {
+        loadUsers()
+    }, [])
 
     // === Functions
     function onCloseTaskDetails() {
@@ -118,12 +123,6 @@ export function TaskDetails() {
         }
         return null
     }
-
-    // function getSelectedPersons() {
-    //     const peopleColId = columns.find(column => column.type.variant === 'people')?.id
-    //     const colValue = task.columnValues.find(cv => cv.colId === peopleColId)
-    //     setSelectedPersons(colValue?.value || [])
-    // }
 
     if (!task || !board) return <div>Loading...</div>
     return (
@@ -175,7 +174,7 @@ export function TaskDetails() {
                     </div> 
             </section>
 
-            {isSelected('updates') && <TaskDetailsUpdates />}
+            {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
             {isSelected('files') && <TaskDetailsFiles />}
             {isSelected('activity-log') && <TaskDetailsActivityLog />}
         </section>

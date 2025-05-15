@@ -14,18 +14,16 @@ export const REVERT_BOARD = 'REVERT_BOARD'
 export const REMOVE_GROUP = 'REMOVE_GROUP'
 export const ADD_GROUP = 'ADD_GROUP'
 export const UPDATE_GROUP = 'UPDATE_GROUP'
-export const REVERT_GROUPS = 'REVERT_GROUPS'
 
 // Columns
 export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
-export const REVERT_COLUMNS = 'REVERT_COLUMNS'
 
 // Tasks
 export const REMOVE_TASK = 'REMOVE_TASK'
 export const ADD_TASK = 'ADD_TASK'
-export const REVERT_TASKS = 'REVERT_TASKS'
+export const ADD_TASK_UPDATE = 'ADD_TASK_UPDATE'
 
 //Loading
 export const BOARDS_LOADING_START = 'BOARDS_LOADING_START'
@@ -187,6 +185,19 @@ export function boardReducer(state = initialState, action = {}) {
                 board: {
                     ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
                         ? { ...group, tasks: action.isTop ? [action.task, ...group.tasks] : [...group.tasks, action.task] } : group)},
+                lastBoard
+            }
+        
+        case ADD_TASK_UPDATE:
+
+            lastBoard = {...state.board}
+
+            return {
+                ...state,
+                board: {
+                    ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                        ? { ...group, tasks: group.tasks.map(task => task.id === action.taskId 
+                            ? {...task, updates: [action.update, ...task.updates]} : task)} : group)},
                 lastBoard
             }
 

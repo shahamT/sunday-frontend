@@ -1,0 +1,4 @@
+.TaskDetailsUpdates {
+    height: calc(100% - var(--app-header-size, 0px) - 120px);
+    overflow: auto; 
+}

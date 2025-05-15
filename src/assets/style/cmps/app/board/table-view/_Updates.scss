@@ -1,0 +1,32 @@
+.Updates {
+    
+    .update {
+        border-radius: var(--border-radius-md);
+        margin-inline: 16px;
+        margin-block-end: 16px;
+        border: 1px solid var(--layout-border-color);
+
+        .update-header {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 0.875rem;
+            margin: 1px 0 0 1px;
+            padding: 16px;
+
+            .name {
+                font-weight: 700;
+            }
+
+            img {
+                height: 40px;
+                width: 40px;
+            }
+        }
+
+        p {
+            padding: 0 16px 16px;
+        }
+
+    }
+}

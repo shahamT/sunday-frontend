@@ -181,3 +181,47 @@ export function getRandomTimestampInRange(range) {
 
     return Math.floor(Math.random() * (max - min + 1)) + min
 }
+
+export function getFormattedTime(dateInput) {
+  const date = new Date(dateInput)
+  const now = new Date()
+  const diffMs = now - date
+  const diffSeconds = Math.floor(diffMs / 1000)
+  const diffMinutes = Math.floor(diffSeconds / 60)
+  const diffHours = Math.floor(diffMinutes / 60)
+  const diffDays = Math.floor(diffHours / 24)
+
+  const pad = (n) => (n < 10 ? '0' + n : n)
+
+  // just now
+  if (diffSeconds < 60) {
+    return 'just now'
+  }
+
+  // minutes ago
+  if (diffMinutes < 60) {
+    return `${diffMinutes} minute${diffMinutes === 1 ? '' : 's'}`
+  }
+
+  // today
+  if (diffDays === 0) {
+    return `today at ${pad(date.getHours())}:${pad(date.getMinutes())}`
+  }
+
+  // yesterday
+  if (diffDays === 1) {
+    return `yesterday at ${pad(date.getHours())}:${pad(date.getMinutes())}`
+  }
+
+  // last week (within 7 days)
+  if (diffDays <= 7) {
+    return `${diffDays} day${diffDays === 1 ? '' : 's'}`
+  }
+
+  // else full date: "MMM DD, YYYY" (e.g. Apr 28, 2025)
+  return date.toLocaleDateString(undefined, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}

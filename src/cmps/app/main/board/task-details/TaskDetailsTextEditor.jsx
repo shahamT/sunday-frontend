@@ -32,7 +32,7 @@ import suggestion from '@tiptap/suggestion'
 // === Actions
 
 // === Hooks / React
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react'
 
 // === Imgs
 
@@ -41,7 +41,7 @@ import { useEffect, useState, useMemo, useCallback } from 'react';
 // ====== Component ======
 // =======================
 
-export function TaskDetailsTextEditor({ /* prop1, prop2 */ }) {
+export function TaskDetailsTextEditor({ saveUpdate }) {
     // === Consts
     const extensions = [StarterKit, Document, Paragraph, Text, Bold, Italic, Underline, Strike, TextStyle, Color,
         OrderedList, ListItem, BulletList, Gapcursor, Table.configure({ resizable: true, }), TableRow, TableHeader,
@@ -142,6 +142,11 @@ export function TaskDetailsTextEditor({ /* prop1, prop2 */ }) {
         }
     }, [editor])
 
+    function onSaveUpdate() {
+        const html = editor.getText()
+        saveUpdate(html)
+    }
+
     if (!editor) return null
     
     return (
@@ -198,7 +203,7 @@ export function TaskDetailsTextEditor({ /* prop1, prop2 */ }) {
 
                     <button className="mention-btn clickable clear size-32">@ Mention</button>
                     <div className="split-button size-32 filled">
-                        <div className="clickable btn-left filled ">Update</div>
+                        <div className="clickable btn-left filled " onClick={onSaveUpdate}>Update</div>
                         <div className="seperator"></div>
                         <div className="clickable btn-right filled icon-btn i-DropdownChevronDown"></div>
                     </div>
