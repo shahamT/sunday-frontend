@@ -1,5 +1,7 @@
 // === Libs
 
+import { TaskDetailsTextEditor } from "./TaskDetailsTextEditor";
+
 // === Services
 
 // === Actions
@@ -13,17 +15,22 @@
 // ====== Component ======
 // =======================
 
-export function TaskDetailsUpdates({ /* prop1, prop2 */ }) {
-    // === Consts
+export function TaskDetailsUpdates(
+  {
+    /* prop1, prop2 */
+  }
+) {
+  // === Consts
 
-    // === Effects
+  // === Effects
 
-    // === Functions
+  // === Functions
 
-    // if (!data) return <div>Loading...</div>
-    return (
-        <section className="TaskDetailsUpdates">
-            <h1>TaskDetailsUpdates</h1>
-        </section>
-    )
+  // if (!data) return <div>Loading...</div>
+  return (
+    <section className="TaskDetailsUpdates">
+      <TaskDetailsTextEditor />                     
+
+    </section>
+  );
 }

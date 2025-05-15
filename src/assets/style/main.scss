@@ -95,5 +95,7 @@
 @import 'cmps/app/board/table-view/cell-content/CellContentItem.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentStatus.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentDate.scss';
-@import 'cmps/app/board/table-view/cell-content/CellContentText.scss'; //apply to CellContentNumber as well...
 
+// ====== Taask Details ======
+
+@import 'cmps/app/board/TaskDetailsTextEditor.scss';
