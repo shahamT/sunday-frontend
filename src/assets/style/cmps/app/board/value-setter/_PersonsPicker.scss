@@ -1,5 +1,5 @@
 .PersonsPicker {
-    width: max-content;
+    width: 344px;
     padding: 16px;
 
     .person-select-btn {
@@ -22,6 +22,7 @@
 
     .selected-persons {
         display: flex;
+        flex-wrap: wrap;
 
         .selected-person {
             display: flex;
