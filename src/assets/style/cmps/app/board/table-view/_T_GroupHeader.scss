@@ -14,11 +14,13 @@
             align-items: center;
             width: 60vw;
             min-width: 500px;
+            padding-block-end: 6px;
             cursor: grab;
 
 
             .collapse-button-wraper {
-                margin-inline-start: 14px;
+                padding-block-start: 4px;
+                margin-inline-start: 10px;
                 margin-inline-end: 2px;
 
                 .collapse-button {

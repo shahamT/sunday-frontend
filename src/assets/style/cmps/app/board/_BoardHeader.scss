@@ -3,9 +3,11 @@
     top: 0;
     left: 0;
     z-index: 15;
-    padding-inline-start: var(--space-40);
-    padding-block-start: 18px;
+
+    border-radius: 12px;
+    padding-inline-start: 37px;
     padding-inline-end: 30px;
+    padding-block-start: 16px;
 
     background-color: var(--primary-background-color);
 
@@ -16,12 +18,26 @@
 
     .tab-bar {
         display: flex;
-        padding-block-start: var(--space-8);
+        align-items: end;
+        height: 40px;
+
         border-block-end: 1px var(--layout-border-color) solid;
 
-        .tab-underline {
-            border-block-end: 2px solid var(--primary-color);
-            width: max-content;
+        .clickable {
+            padding-bottom: 4px;
         }
+
+        .tab {
+            border-block-end: 2px solid transparent;
+            transform: translateY(1px);
+
+            &.tab-underline {
+
+                border-block-end: 2px solid var(--primary-color);
+                width: max-content;
+
+            }
+        }
+
     }
 }
