@@ -28,7 +28,7 @@ export function T_GroupHeader({ group }) {
     // === Effects
 
     // === Functions
-    async function handleRename() {
+    function handleRename() {
         if (value === '') {
             showErrorMsg(`Name can't be empty`)
             set(group.name)
@@ -44,6 +44,15 @@ export function T_GroupHeader({ group }) {
     }
 
 
+    function setColor(color) {
+        const updatedGroup = { ...group, color: color }
+        try {
+            updateGroup(updatedGroup)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
 
     return (
         <section className="T_GroupHeader">
@@ -54,7 +63,6 @@ export function T_GroupHeader({ group }) {
                         <GroupMenu
                             onCloseModal={onCloseModal}
                             group={group}
-
                         />
                     )}
                 >
@@ -69,7 +77,6 @@ export function T_GroupHeader({ group }) {
                     <Tooltip title="Collapse group" position="top">
                         <div
                             className={`collapse-button i-DropdownChevronDown ${group.color}-text`}
-                        // style={{ color: "#9d50dd" }}
                         />
                     </Tooltip>
                 </div>
@@ -84,6 +91,12 @@ export function T_GroupHeader({ group }) {
                         onBlur={handleRename}
                         onPressEnter={handleRename}
                         additionalClass={`${group.color}-text`}
+                        colorPicker={{
+                            selectedColor: group.color,
+                            setColor: setColor,
+                            variant: 'limited',
+                        }}
+
                     />
                 </div>
                 <p className="items-count">{group.tasks.length} Tasks</p>

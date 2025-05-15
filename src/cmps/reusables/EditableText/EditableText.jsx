@@ -3,6 +3,7 @@ import './EditableText.scss'
 import { PopUpMenu } from '../PopUpMenu/PopUpMenu';
 import { Tooltip } from '../tooltip/Tooltip';
 import { CustomEmojiPicker } from '../customEmojiPicker/customEmojiPicker';
+import { ColorPicker } from '../../app/main/board/value-setter/ColorPicker';
 
 
 export const EditableText = forwardRef(function EditableText({
@@ -20,13 +21,16 @@ export const EditableText = forwardRef(function EditableText({
     centered = false,
     additionalClass = '',
     centerText = false,
-    colorPicker= null
+    colorPicker = null,
 }, ref) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
     const inputRef = useRef(null)
     const skipBlurRef = useRef(false)
+    const [isFocused, setIsFocused] = useState(false)
+    
 
+    
     useImperativeHandle(ref, () => ({
         focus: () => inputRef.current?.focus()
     }), [])
@@ -62,16 +66,42 @@ export const EditableText = forwardRef(function EditableText({
 
     return (
         <div className={`EditableText ${centered ? 'centered' : ''}`}>
+
+            {/* colorpicker */}
+            {colorPicker && isFocused && (
+                <div className="color-picker-wrap">
+                    <PopUpMenu
+                        position="start-end"
+                        renderContent={({ onCloseModal }) => (
+                            <ColorPicker
+                                onCloseModal={onCloseModal}
+                                selectedColor={colorPicker?.selectedColor}
+                                setColor={colorPicker?.setColor}
+                                variant={colorPicker?.variant}
+                            />
+                        )}
+                    >
+                        <div
+                            className={`color-picker-button ${colorPicker.selectedColor}-bg`}
+                            onMouseDown={(e) => e.preventDefault()}
+                        />
+                    </PopUpMenu>
+                </div>
+            )}
+
+            {/* input */}
             <input
                 ref={inputRef}
                 id='activeInput'
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}` }
+                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}`}
                 onClick={(e) => e.stopPropagation()}
                 onChange={handleChange}
+                onFocus={() => setIsFocused(true)}
                 onBlur={(e) => {
+                    setIsFocused(false)
                     if (skipBlurRef.current) return
                     onBlur?.(e)
                 }}
@@ -90,11 +120,16 @@ export const EditableText = forwardRef(function EditableText({
                 }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
-                    ...(full ? {} : { maxWidth: `${inputWidth}px` })
-                    // ...(color ? { color: `${color}` } : {})
+                    ...(full ? {} : { width: `${inputWidth}px` }),
+                    ...(colorPicker && isFocused
+                        ? { paddingInlineStart: (paddingStart || 0) + 32 + 'px' }
+                        : paddingStart
+                            ? { paddingInlineStart: paddingStart + 'px' }
+                            : {}),
                 }}
             />
 
+            {/* emojiPicker */}
             {emojiPicker &&
                 <label htmlFor='activeInput' className="emoji-picker">
                     <PopUpMenu
@@ -110,6 +145,7 @@ export const EditableText = forwardRef(function EditableText({
                     </PopUpMenu>
                 </label>}
 
+            {/* input mirror */}
             {!full && (
                 <span
                     ref={spanRef}

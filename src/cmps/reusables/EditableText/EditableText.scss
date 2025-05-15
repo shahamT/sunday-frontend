@@ -12,6 +12,9 @@
         outline: none;
         border: 1px solid transparent;
 
+        flex: 1;
+        min-width: 0;
+
         letter-spacing: inherit;
         color: var(--primary-text-color);
         background-color: transparent;
@@ -36,7 +39,7 @@
         }
 
         &.full {
-            width: 100% ;
+            width: 100%;
         }
 
         &.small {
@@ -122,13 +125,11 @@
 
     .text-input:focus+.emoji-picker {
         opacity: 1;
-        // pointer-events: auto;
 
     }
 
     .emoji-picker {
         opacity: 0;
-        // pointer-events: none;
         position: absolute;
         right: 4px;
         top: 52%;
@@ -137,6 +138,22 @@
         .emoji-btn {
             height: 18px;
             width: 18px;
+        }
+    }
+
+
+    .color-picker-wrap {
+        position: absolute;
+        left: 8px;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+
+        .color-picker-button {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border-radius: var(--border-radius-round);
         }
     }
 }

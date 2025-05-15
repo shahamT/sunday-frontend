@@ -28,7 +28,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
     return (
         <section className='color-picker-btn'>
             <h1>dev2</h1>
-            <PopUpMenu
+            {/* <PopUpMenu
                 position="start-end"
                 renderContent={({ onCloseModal }) => (
                     <ColorPicker
@@ -41,7 +41,7 @@ export function DevPage2({ /* prop1, prop2 */ }) {
             >
                 <div className={`color-picker-btn ${selectedColor}-bg`} />
 
-            </PopUpMenu> 
+            </PopUpMenu>  */}
         </section>
     )
 }
