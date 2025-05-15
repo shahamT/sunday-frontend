@@ -120,11 +120,12 @@ export async function addGroup(isTop = false) {
 export async function updateGroup(group) {
     const boardId = store.getState().boardModule.board._id
     try {
+        store.dispatch(getCmdUpdateGroup(group))
         const savedGroup = await boardService.saveGroup(group, boardId)
-        store.dispatch(getCmdUpdateGroup(savedGroup))
 
         return savedGroup
     } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot save group', err)
         throw err
     }

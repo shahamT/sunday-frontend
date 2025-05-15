@@ -48,7 +48,7 @@ const colors = [
     'pecan']
 
 
-// _createBoards()
+_createBoards()
 
 export const boardService = {
     query,
@@ -141,9 +141,12 @@ async function save(board) {
 // }
 
 async function _createBoards() {
-    for (const item of testData) {
-        await storageService.post(STORAGE_KEY, item)
-    }
+    const boards = await storageService.query(STORAGE_KEY)
+        if (!boards || !boards.length) {
+            for (const item of testData) {
+                await storageService.post(STORAGE_KEY, item)
+            }
+        }
 }
 
 //////GROUP//////
