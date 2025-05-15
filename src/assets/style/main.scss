@@ -51,12 +51,13 @@
 @import 'cmps/app/AppHeader.scss';
 @import 'cmps/app/_WMLogo.scss';
 
+// ====== Devs Page ======
+@import 'cmps/app/_devspage.scss';
+
 // ====== Side Nav ======
 @import 'cmps/app/_AppSideNav.scss';
-@import 'cmps/app/_SideNavAddBoardModal.scss';
 @import 'cmps/app/_SideNavDnd.scss';
 
-@import 'cmps/app/_BoardMenu.scss';
 
 @import 'cmps/app/_AppHome.scss';
 @import 'cmps/app/board/BoardDetails.scss';
@@ -83,8 +84,15 @@
 
 
 @import 'cmps/app/board/table-view/_GroupMenu.scss';
+@import 'cmps/app/_BoardMenu.scss';
+@import 'cmps/app/_FileMenu.scss';
+@import 'cmps/app/_ColumnMenu.scss';
+@import 'cmps/app/_TaskMenu.scss';
 
+// ====== Modals ======
 
+@import 'cmps/app/_FileModal.scss';
+@import 'cmps/app/_SideNavAddBoardModal.scss';
 
 // ====== Value setter ======
 @import 'cmps/app/board/value-setter/_DatePicker.scss';

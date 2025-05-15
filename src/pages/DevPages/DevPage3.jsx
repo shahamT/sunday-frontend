@@ -64,7 +64,6 @@ export function DevPage3({ /* prop1, prop2 */ }) {
 
 
     //     // padding: 2em;
-    //     // box-sizing: border-box;
     //   }
     // if (!data) return <div>Loading...</div>
 

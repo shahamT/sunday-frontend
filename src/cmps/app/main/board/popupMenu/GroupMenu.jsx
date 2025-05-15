@@ -22,24 +22,23 @@ export function GroupMenu({ onCloseModal, group }) {
     // === Effects
 
     // === Functions
-async function onRemoveGroup(){
-    try {
-        await removeGroup(group.id)
-        showSuccessMsg(`${group.name} group was successfully deleted.`)
-    }
-    catch (err){ showErrorMsg('Something went wrong')
-    }
+    async function onRemoveGroup() {
+        try {
+            await removeGroup(group.id)
+            showSuccessMsg(`${group.name} group was successfully deleted.`)
+        }
+        catch (err) {
+            showErrorMsg('Something went wrong')
+        }
 
-   }
+    }
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="group-popup-menu">
+        <section className="group-menu">
 
-            <div className="add-group-container">
-                <div className="clickable clear size-32 icon-start full-width full-width left-aligned" onClick={() => addGroup()}>
-                <div className="icon-btn circle-plus  left-aligned " />
-                    Add group
-                </div>
+
+            <div className="clickable clear size-32 icon-start i-AddSmall full-width full-width left-aligned" onClick={() => addGroup()}>
+                Add group
             </div>
             <div className="divider" />
             <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {

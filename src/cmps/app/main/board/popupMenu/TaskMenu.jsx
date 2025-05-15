@@ -42,7 +42,7 @@ export function TaskMenu({ taskId, groupId, isTaskOpen }) {
     }
 
     return (
-        <section className="task-popup-menu">
+        <section className="task-menu">
             {isTaskOpen && <>
                 <button className="clickable clear size-32 icon-start full-width left-aligned i-Open" onClick={() => navigate(`/app/board/${boardId}/task/${taskId}`)}>Open item</button>
                 <div className="divider" />
