@@ -31,7 +31,6 @@ export function T_ColumnSumRow({ columns, group }) {
             <div className="sum-cells-wraper">
                 {columns.map((column, idx) => {
                     if (column.type.variant === 'item') return ''
-                    console.log("column.type.variant: ", column.type.variant)
                     return <T_ColumnSumCell key={column.id + idx} column={column} group={group} />
 
                 })}
