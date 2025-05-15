@@ -7,9 +7,8 @@ import { loadUsers } from "../../../../../store/actions/user.actions"
 
 // === Hooks / React
 import { useEffect, useState } from "react"
-import { useNavigate } from 'react-router'
-import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
+import { useEffectUpdate } from "../../../../../hooks/useEffectUpdate"
 
 // === Imgs
 
@@ -29,7 +28,7 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
         loadUsers()
     }, [])
 
-    useEffect(() => {
+    useEffectUpdate(() => {
         setPersons(selectedPersons)
     }, [selectedPersons])
 

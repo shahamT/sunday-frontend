@@ -55,7 +55,6 @@ export function T_Cell({ column, columnValue, taskId }) {
       tabIndex={-1}
       onClick={() => cellRef.current?.focus()} // 🔥 set focus on any inner click
       className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
-      style={{ width: column.width + "px" }}
     >
       {DynamicComponent && (
         <DynamicComponent column={column} columnValue={columnValue} taskId={taskId} />

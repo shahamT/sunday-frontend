@@ -11,6 +11,7 @@
 // === Imgs
 
 // === Child Components
+import { T_ColumnSumRow } from "./T_ColumnSumRow";
 import { T_GroupFooter } from "./T_GroupFooter";
 import { T_GroupHeader } from "./T_GroupHeader";
 import { T_GroupHeadRow } from "./T_GroupHeadRow";
@@ -42,6 +43,7 @@ export function T_Group({ group, columns }) {
             })}
 
             <T_GroupFooter group={group} itemColumn={itemColumn} />
+            <T_ColumnSumRow columns={columns} group={group}/>
         </section>
     )
 }
