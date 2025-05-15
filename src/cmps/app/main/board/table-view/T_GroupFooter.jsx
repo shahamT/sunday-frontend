@@ -46,14 +46,19 @@ export function T_GroupFooter({ group, itemColumn }) {
 
     return (
         <section className="T_GroupFooter">
+
+            <div className="menu-wraper" />
             <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
-            <div className="footer-row row-wraper t-row sticky ">
-                <label className="checkbox-container t-cell no-divider footer disabled">
+
+
+            <div className="add-item-container">
+
+                <label className="checkbox-container disabled">
                     <input type="checkbox" className="disabled" />
                 </label>
 
                 <div
-                    className="text-container t-cell no-divider  footer"
+                    className="text-container"
                     style={{ width: itemColWidth - 33 + 'px' }}
                 >
                     <EditableText
@@ -69,8 +74,10 @@ export function T_GroupFooter({ group, itemColumn }) {
 
                     />
                 </div>
-                <div className="empty-cell t-cell no-divider footer"></div>
             </div>
+
+            <div className="empty-last-cell"></div>
+
         </section>
     )
 }

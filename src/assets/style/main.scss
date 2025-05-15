@@ -60,8 +60,7 @@
 
 
 @import 'cmps/app/_AppHome.scss';
-@import 'cmps/app/board/BoardPreview.scss';
-@import 'cmps/app/board/BoardContent.scss';
+@import 'cmps/app/board/BoardDetails.scss';
 @import 'cmps/app/board/TaskPanel.scss';
 @import 'cmps/app/board/TaskDetails.scss';
 
@@ -69,9 +68,8 @@
 
 
 // ====== Table View ======
-@import 'cmps/app/board/table-view/T_View.scss';
-@import 'cmps/app/board/table-view/T_TaskRow.scss';
 @import 'cmps/app/board/table-view/T_GroupsList.scss';
+@import 'cmps/app/board/table-view/T_TaskRow.scss';
 @import 'cmps/app/board/table-view/T_GroupHeadRow.scss';
 @import 'cmps/app/board/table-view/T_GroupHeader.scss';
 @import 'cmps/app/board/table-view/T_GroupFooter.scss';

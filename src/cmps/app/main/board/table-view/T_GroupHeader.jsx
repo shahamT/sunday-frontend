@@ -56,50 +56,55 @@ export function T_GroupHeader({ group }) {
 
     return (
         <section className="T_GroupHeader">
-            <div className="menu-wraper">
-                <PopUpMenu
-                    position="bottom-start"
-                    renderContent={({ onCloseModal }) => (
-                        <GroupMenu
-                            onCloseModal={onCloseModal}
-                            group={group}
-                        />
-                    )}
-                >
-                    <div className="group-menu-btn clickable clear icon-btn size-24 i-Menu"></div>
-                </PopUpMenu>
-
+            <div className="menu-container">
+                <div className="menu-wraper">
+                    <PopUpMenu
+                        position="bottom-start"
+                        renderContent={({ onCloseModal }) => (
+                            <GroupMenu
+                                onCloseModal={onCloseModal}
+                                group={group}
+                            />
+                        )}
+                    >
+                        <div className="group-menu-btn clickable clear icon-btn size-24 i-Menu"></div>
+                    </PopUpMenu>
+                </div>
             </div>
 
             <div className="title-container">
 
-                <div className="collapse-button-wraper">
-                    <Tooltip title="Collapse group" position="top">
-                        <div
-                            className={`collapse-button i-DropdownChevronDown ${group.color}-text`}
+
+                <div className="title-container">
+
+                    <div className="collapse-button-wraper">
+                        <Tooltip title="Collapse group" position="top">
+                            <div
+                                className={`collapse-button i-DropdownChevronDown ${group.color}-text`}
+                            />
+                        </Tooltip>
+                    </div>
+
+                    <div className="title-wraper">
+                        <EditableText
+                            value={value}
+                            handleChange={handleChange}
+                            size='g-title'
+                            emojiPicker={false}
+                            onBlur={handleRename}
+                            onPressEnter={handleRename}
+                            additionalClass={`${group.color}-text`}
+                            colorPicker={{
+                                selectedColor: group.color,
+                                setColor: setColor,
+                                variant: 'limited',
+                            }}
+
                         />
-                    </Tooltip>
+                    </div>
+                    <p className="items-count">{group.tasks.length} Tasks</p>
                 </div>
 
-
-                <div className="title-wraper">
-                    <EditableText
-                        value={value}
-                        handleChange={handleChange}
-                        size='g-title'
-                        emojiPicker={false}
-                        onBlur={handleRename}
-                        onPressEnter={handleRename}
-                        additionalClass={`${group.color}-text`}
-                        colorPicker={{
-                            selectedColor: group.color,
-                            setColor: setColor,
-                            variant: 'limited',
-                        }}
-
-                    />
-                </div>
-                <p className="items-count">{group.tasks.length} Tasks</p>
             </div>
         </section>
     )

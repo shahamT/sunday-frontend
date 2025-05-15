@@ -25,7 +25,8 @@ async function getUsers() {
 }
 
 async function getById(userId) {
-    return await storageService.get(STORAGE_KEY_USERS, userId)
+    const {_id, account, firstName, lastName, email, profileImg} = await storageService.get(STORAGE_KEY_USERS, userId) 
+    return {_id, account, firstName, lastName, email, profileImg}
 }
 
 function remove(userId) {

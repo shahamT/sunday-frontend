@@ -1,7 +1,5 @@
 .T_GroupFooter {
     position: relative;
-    display: flex;
-
     cursor: text;
 
     &:hover {
@@ -21,22 +19,12 @@
         }
     }
 
-    .sticky {
-        position: sticky;
-        left: 6px;
-        z-index: 10;
+    .add-item-container {
+        display: flex;
+
+        .text-container {
+            padding-inline: 10px;
+        }
     }
 
-    .text-container {
-        padding-inline: 10px;
-    }
-
-    .empty-cell {
-        width: 100%;
-        flex: 1;
-    }
-
-    .footer-row{
-        width: 100%;
-    }
 }

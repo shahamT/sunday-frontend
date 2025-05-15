@@ -1,9 +1,85 @@
 .TaskDetails {
 
     .task-details-header {
+        padding: 20px 14px 0 20px;
+        border-block-end: 1px var(--layout-border-color) solid;
 
         .task-details-title {
-            margin: 20px 20px 6px 24px;
+            display: flex;
+            align-items: center;
+
+            img {
+                height: 24px;
+                width: 24px;
+
+                // &:last-child {
+                //     margin-inline-end: 7;
+                // }
+            }
+
+            .add-memeber-btn {
+                border-radius: 50%;
+                margin: 2px;
+                height: 13px;
+                width: 13px;
+            }
+
+            .in-task-persons {
+                position: relative;
+                display: flex;
+                align-items: center;
+                padding-inline-start: 10px;
+                // padding-inline-end: 28px;
+                margin-inline-end: 12px;
+                
+                &::after {
+                    content: "";
+                    position: absolute;
+                    height: 18px;
+                    width: 1px;
+                    // background-color: black;
+                    background-color: #efefef;
+                    top: 6px;
+                    right: 0;
+                }
+            }
+
+
+            .options-menu-wraper {
+
+                 .clickable.icon-btn.size-24::before {
+                    font-size: 24px;
+                    font-weight: 500;
+                 }
+            }
         }
+
+        .tab-bar {
+            display: flex;
+            padding-block-start: var(--space-8);
+            margin-inline-start: 6px;
+
+            .tab-underline {
+                border-block-end: 2px solid var(--primary-color);
+                width: max-content;
+            }
+
+            .clickable {
+                // padding-inline: 14px;
+                position: relative;
+
+                &::after {
+                    content: "";
+                    position: absolute;
+                    height: 16px;
+                    width: 1px;
+                    background-color: var(--layout-border-color);
+                    top: 6px;
+                    right: 0;
+                }
+            }
+
+        }
+
     }
 }

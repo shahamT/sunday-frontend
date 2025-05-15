@@ -1,14 +1,14 @@
 .PersonsPreview {
     display: flex;
     flex-shrink: 0;
+    min-width: 24px;
     
     img, .and-others {
         height: 30px;
         width: 30px;
-        border: 2px solid white;
-        // var(--pulse-background-color);
+        outline: 2px solid var(--pulse-background-color);
         border-radius: 50%;
-        margin-inline-start: -6px;
+        margin-inline-start: -7px;
         cursor: pointer;
     }
 

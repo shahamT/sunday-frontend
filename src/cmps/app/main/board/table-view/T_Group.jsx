@@ -33,16 +33,15 @@ export function T_Group({ group, columns }) {
     return (
         <section className="T_Group">
 
-            <div className="sticky-header">
-                <T_GroupHeader group={group} />
-                <T_GroupHeadRow group={group} columns={columns} />
-            </div>
+            <T_GroupHeader group={group} />
+            <T_GroupHeadRow group={group} columns={columns} />
+
 
             {group.tasks.map(task => {
                 return <T_TaskRow key={task.id} task={task} columns={columns} group={group} />
             })}
 
-            <T_GroupFooter group={group} itemColumn={itemColumn}/>
+            <T_GroupFooter group={group} itemColumn={itemColumn} />
         </section>
     )
 }

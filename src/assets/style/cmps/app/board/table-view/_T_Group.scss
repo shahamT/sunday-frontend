@@ -2,12 +2,183 @@
     width: 100%;
     position: relative;
 
-    .sticky-header {
-        position: sticky;
-        top: 0px;
-        z-index: 11;
+    display: grid;
+    grid-template-columns: 40px 6px repeat(999, auto) minmax(min-content, 1fr);
+    grid-auto-rows: auto;
 
+    &>* {
+        display: grid;
+        grid-column: 1 / -1;
+        grid-template-columns: subgrid;
+    }
+
+    // table lines
+
+    .T_GroupHeadRow> :nth-child(n + 5),
+    .T_TaskRow> :nth-child(n + 5),
+    .T_GroupFooter> :nth-child(n + 5) {
+        border-inline-start: 1px solid var(--layout-border-color);
+    }
+
+    .T_GroupHeader> :nth-child(3),
+    .T_GroupHeadRow> :nth-child(3),
+    .T_TaskRow> :nth-child(3),
+    .T_GroupFooter> :nth-child(3) {
+        border-inline-end: 1px solid var(--layout-border-color);
+    }
+
+    .T_GroupHeadRow> :nth-child(n + 3),
+    .T_TaskRow> :nth-child(n + 3),
+    .T_GroupFooter> :nth-child(n + 3) {
+        border-block-start: 1px solid var(--layout-border-color);
+    }
+
+
+    .T_TaskRow:last-of-type>*:nth-child(n + 4):not(:last-child) {
+        border-block-end: 1px solid var(--layout-border-color);
+    }
+
+
+    .T_GroupFooter> :nth-child(n + 3) {
+        border-block-end: 1px solid var(--layout-border-color);
+    }
+
+    // last cell expandable
+    .T_GroupHeadRow> :last-child,
+    .T_TaskRow> :last-child,
+    .T_GroupFooter> :last-child {
+        min-width: 68px;
+        grid-column: auto / -1;
+    }
+
+    // vertical stickyness
+    .T_GroupHeader {
+        position: sticky;
+        top: 160px;
+        z-index: 4;
         background-color: var(--primary-background-color);
+    }
+
+    .T_GroupHeadRow {
+        position: sticky;
+        top: 200px;
+        z-index: 3;
+        background-color: var(--primary-background-color);
+    }
+
+    // horizontal stickyness
+    .T_GroupHeader>:nth-child(1),
+    .T_GroupHeader>:nth-child(2) {
+        position: sticky;
+        z-index: 2;
+    }
+
+    .T_TaskRow> :nth-child(2),
+    .T_GroupHeadRow> :nth-child(2),
+    .T_GroupFooter> :nth-child(2) {
+        position: sticky;
+        z-index: 2;
+    }
+
+    .T_TaskRow> :nth-child(1),
+    .T_TaskRow> :nth-child(3),
+    .T_GroupHeadRow> :nth-child(1),
+    .T_GroupHeadRow> :nth-child(3),
+    .T_GroupFooter> :nth-child(1),
+    .T_GroupFooter> :nth-child(3) {
+        position: sticky;
+        z-index: 2;
+        background: var(--primary-background-color);
+    }
+
+    // Offsets )
+    .T_GroupHeader>:nth-child(1),
+    .T_TaskRow> :nth-child(1),
+    .T_GroupHeadRow> :nth-child(1),
+    .T_GroupFooter> :nth-child(1) {
+        left: 0;
+        z-index: 3;
+    }
+
+    .T_GroupHeader>:nth-child(2),
+    .T_TaskRow> :nth-child(2),
+    .T_GroupHeadRow> :nth-child(2),
+    .T_GroupFooter> :nth-child(2) {
+        left: 40px;
+    }
+
+    .T_TaskRow> :nth-child(3),
+    .T_GroupHeadRow> :nth-child(3),
+    .T_GroupFooter> :nth-child(3) {
+        left: 46px;
+    }
+
+    .menu-container {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .menu-wraper {
+        opacity: 0;
+        transition: var(--transition-md);
+    }
+
+    .t-left-indicator {
+        width: 6px;
+        height: 36px;
+        flex-shrink: 0;
+
+        &.top {
+            border-start-start-radius: var(--border-radius-md);
+        }
+
+        &.bottom {
+            border-end-start-radius: var(--border-radius-md);
+        }
+
+        &.disabled {
+            opacity: var(--disabled-component-opacity);
+        }
+    }
+
+
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 33px;
+        height: 100%;
+        cursor: pointer;
+        border-inline-end: 1px solid var(--layout-border-color);
+        flex-shrink: 0;
+
+        &.disabled {
+            pointer-events: none;
+
+            input {
+                opacity: var(--disabled-component-opacity);
+
+            }
+        }
 
     }
+
+    .cell-contnet {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+
+        p {
+            font-size: 14px;
+        }
+
+        &.centered {
+            justify-content: center;
+        }
+    }
+
 }
