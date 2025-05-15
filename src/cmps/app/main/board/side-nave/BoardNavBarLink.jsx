@@ -3,18 +3,18 @@ import React, { useEffect, useRef } from "react";
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { BoardMenu } from "../popupMenu/BoardMenu";
 
 
-export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: board._id })
+export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename }) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isOver, isDragging, } = useSortable({ id: board._id })
   const navigate = useNavigate()
   const clickTimeRef = useRef(null)
   const inputRef = useRef(null)
-
-// sss
+  const { boardId } = useParams()
+  // sss
 
   const style = {
     transition,
@@ -46,49 +46,55 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
 
   return (
     <div
-      className="board-item-nav BoardNavBarLink"
+      className={`
+    BoardNavBarLink 
+      ${isOver ? 'drag-over' : ''} 
+      ${isDragging ? 'dragging' : ''}
+    `}
       ref={setNodeRef}
       {...(editingBoardId !== board._id ? { ...attributes, ...listeners } : {})}
       style={style}
     >
-  
-      <div
-        className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null}`}
-        onMouseDown={handleMouseDown}
-        onClick={handleClick}
-        draggable={false}
-      >
-        {editingBoardId === board._id ? (
-          <input
-            ref={inputRef}
-            type="text"
-            value={editedTitle}
-            autoFocus
-            onChange={(e) => setEditedTitle(e.target.value)}
-            onBlur={() => handleRename(board)}
-            onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
-            className="edit-board-input"
-          />
-        ) : (
-          <div className="text-wraper">
-            <p>{board.name}</p>
-          </div>
-        )}
 
-        <div className="menu-btn-wraper">
-          <PopUpMenu
-            position="start-end"
-            renderContent={({ onCloseModal }) => (
-              <BoardMenu
-                onCloseModal={onCloseModal}
-                board={board}
-                setEditingBoardId={setEditingBoardId}
-                setEditedTitle={setEditedTitle}
-              />
-            )}
-          >
-            <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-          </PopUpMenu>
+      <div className="board-content">
+        <div
+          className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null}`}
+          onMouseDown={handleMouseDown}
+          onClick={handleClick}
+          draggable={false}
+        >
+          {editingBoardId === board._id ? (
+            <input
+              ref={inputRef}
+              type="text"
+              value={editedTitle}
+              autoFocus
+              onChange={(e) => setEditedTitle(e.target.value)}
+              onBlur={() => handleRename(board)}
+              onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
+              className="edit-board-input"
+            />
+          ) : (
+            <div className="text-wraper">
+              <p>{board.name}</p>
+            </div>
+          )}
+
+          <div className="menu-btn-wraper">
+            <PopUpMenu
+              position="bottom-start"
+              renderContent={({ onCloseModal }) => (
+                <BoardMenu
+                  onCloseModal={onCloseModal}
+                  board={board}
+                  setEditingBoardId={setEditingBoardId}
+                  setEditedTitle={setEditedTitle}
+                />
+              )}
+            >
+              <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+            </PopUpMenu>
+          </div>
         </div>
       </div>
     </div>

@@ -75,7 +75,7 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                     <>
                         <div className="menu-btn-wraper">
                             {/* <PopUpMenu
-                                position="start-end"
+                                position="bottom-start"
                                 renderContent={({ onCloseModal }) => (
                                     // <SideNavModal
                                     //     onCloseModal={onCloseModal}
@@ -89,7 +89,7 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                                 <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
                             </PopUpMenu> */}
                             <PopUpMenu
-                                position="start-end"
+                                position="bottom-start"
                                 renderContent={({ onCloseModal }) => (
                                     <ColumnMenu
                                         onCloseModal={onCloseModal}
