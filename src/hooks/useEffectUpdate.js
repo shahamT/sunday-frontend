@@ -1,4 +1,5 @@
-const { useEffect, useRef } = React
+import { useEffect, useRef } from "react"
+
 
 export function useEffectUpdate(callBack, dependencies) {
     const isFirstRender = useRef(true)

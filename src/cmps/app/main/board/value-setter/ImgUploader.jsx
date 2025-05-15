@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { uploadService } from '../../../../../services/board/upload.service'
+import { showSuccessMsg } from '../../../../../services/base/event-bus.service'
 
 export function ImgUploader({ onUploaded = null }) {
   const [imgData, setImgData] = useState({
@@ -16,7 +17,7 @@ export function ImgUploader({ onUploaded = null }) {
     setImgData({ imgUrl: secure_url, width, height })
     setIsUploading(false)
     onUploaded && onUploaded(secure_url)
-    
+    showSuccessMsg('Uploaded 1 file')
     
   }
 

@@ -51,7 +51,7 @@ export function T_ColumnHeaderCell({ column, groupId }) {
     const variant = column.type.variant
     return (
         <div
-            className={`T_ColumnHeaderCell t-cell ${variant === 'item' ? 'no-divider sticky' : ''}`}
+            className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''}`}
             style={{ width: column.width + 'px' }}
         >
 
@@ -60,7 +60,7 @@ export function T_ColumnHeaderCell({ column, groupId }) {
                 {variant === 'item'
                     ?
                     <>
-                        <div className="offset-hiding-layer" /> {/* hiding the scrolled row content on the left */}
+                       
                         <label htmlFor={`g${groupId}`} className="checkbox-container">
                             <input type="checkbox" name="" id={`g${groupId}`} />
                         </label>

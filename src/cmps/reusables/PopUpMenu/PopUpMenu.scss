@@ -143,11 +143,17 @@
 }
 
 .popup-wrapper.stretch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }
 
 .popup-trigger.stretch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   height: 100%;
 }

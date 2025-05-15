@@ -1,0 +1,16 @@
+.T_GroupsList {
+    display: flex;
+    flex-direction: column;
+
+        gap: 28px;
+        padding-block-end: 40px;
+
+        .add-group-btn {
+            position: sticky;
+            left: 40px;
+            flex-shrink: 0;
+
+        }
+    
+
+}

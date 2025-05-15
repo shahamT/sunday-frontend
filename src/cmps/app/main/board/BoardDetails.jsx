@@ -16,14 +16,15 @@ import { useSelected } from '../../../../hooks/useSelected.js'
 
 // === Child Components
 import { BoardHeader } from "./BoardHeader";
-import { BoardContent } from "./BoardContent";
 import { TaskPanel } from "./TaskPanel";
+import { T_Filter } from "./table-view/T_Filter";
 import { TaskDetails } from "./task-details/TaskDetails";
+import { T_GroupsList } from "./table-view/T_GroupsList";
 
 // ====== Component ======
 // =======================
 
-export function BoardPreview({ /* prop1, prop2 */ }) {
+export function BoardDetails({ /* prop1, prop2 */ }) {
     // === Consts
     const { boardId } = useParams()
     const { selected, isSelected, select } = useSelected('main-table')
@@ -37,9 +38,10 @@ export function BoardPreview({ /* prop1, prop2 */ }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="BoardPreview">
+        <section className="BoardDetails">
             <BoardHeader isSelected={isSelected} select={select} />
-            <BoardContent />
+            <T_Filter/>
+            <T_GroupsList/>
 
             <TaskPanel
                 side='right'

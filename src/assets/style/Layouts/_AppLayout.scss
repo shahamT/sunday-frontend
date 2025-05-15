@@ -11,11 +11,8 @@
 
   .app-main {
     grid-area: main;
-
     position: fixed;
     bottom: 0;
-    z-index: 10;
-
     display: flex;
 
     height: calc(100% - var(--app-header-size, 0px));
@@ -102,7 +99,7 @@
         width: 8px;
         height: 100%;
         cursor: ew-resize;
-        z-index: 11;
+        z-index: 35;
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
 
@@ -131,7 +128,7 @@
 
       .close-btn-wraper {
         position: absolute;
-        z-index: 12;
+        z-index: 40;
         top: 12px;
         right: -14px;
 

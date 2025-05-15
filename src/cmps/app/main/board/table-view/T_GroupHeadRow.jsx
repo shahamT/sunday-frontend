@@ -27,28 +27,24 @@ export function T_GroupHeadRow({ columns, group }) {
 
     return (
         <section className="T_GroupHeadRow">
-            <div className="row-wraper t-row">
+           <div className="menu-container"/>
+            <div className={`t-left-indicator top ${group.color}-bg`} />
+            
+            {columns.map((column, idx) => {
+                return <T_ColumnHeaderCell key={column.id + idx} column={column} groupId={group.id} />
+            })}
 
-                <div className={`t-left-indicator top ${group.color}-bg`} />
-                {columns.map((column, idx) => {
-                    return <T_ColumnHeaderCell key={column.id + idx} column={column} groupId={group.id} />
-                })}
+            <div className="add-column-btn-container">
+                <PopUpMenu
+                    position="bottom-end"
+                    renderContent={({ onCloseModal }) => (
+                        <ColTypePicker onCloseModal={onCloseModal} />
+                    )}>
+                    <div className="add-column-btn clickable clear icon-btn size-24 i-Add" />
+                </PopUpMenu>
 
-                <div className="add-column-btn-container t-cell last">
-                    <PopUpMenu
-                        position="bottom-end"
-                        renderContent={({ onCloseModal }) => (
-                            <ColTypePicker onCloseModal={onCloseModal} />
-                        )}>
-                        <div className="add-column-btn clickable clear icon-btn size-24 i-Add" />
-                    </PopUpMenu>
-
-
-                </div>
-                {/* empty-cell t-cell no-divider footer */}
 
             </div>
-
 
         </section>
     )

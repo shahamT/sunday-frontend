@@ -11,6 +11,7 @@
 // === Imgs
 
 // === Child Components
+import { T_ColumnSumRow } from "./T_ColumnSumRow";
 import { T_GroupFooter } from "./T_GroupFooter";
 import { T_GroupHeader } from "./T_GroupHeader";
 import { T_GroupHeadRow } from "./T_GroupHeadRow";
@@ -33,16 +34,16 @@ export function T_Group({ group, columns }) {
     return (
         <section className="T_Group">
 
-            <div className="sticky-header">
-                <T_GroupHeader group={group} />
-                <T_GroupHeadRow group={group} columns={columns} />
-            </div>
+            <T_GroupHeader group={group} />
+            <T_GroupHeadRow group={group} columns={columns} />
+
 
             {group.tasks.map(task => {
                 return <T_TaskRow key={task.id} task={task} columns={columns} group={group} />
             })}
 
-            <T_GroupFooter group={group} itemColumn={itemColumn}/>
+            <T_GroupFooter group={group} itemColumn={itemColumn} />
+            <T_ColumnSumRow columns={columns} group={group}/>
         </section>
     )
 }

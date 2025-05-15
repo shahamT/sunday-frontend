@@ -1,0 +1,44 @@
+.CellContentPeople {
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .empty-state-person {
+        width: 28px;
+        height: 28px;
+        border: 2px solid var(--pulse-background-color);
+        border-radius: var(--border-radius-round);
+    }
+
+    .plus-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-60%);
+        left: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+        width: 14px;
+        height: 14px;
+        background-color: var(--primary-color);
+        border-radius: var(--border-radius-round);
+
+        color: var(--text-color-on-primary);
+
+        opacity: 0;
+
+        .plus-icon {
+            line-height: 1;
+            font-size: 15px;
+        }
+    }
+
+    &:hover{
+       .plus-btn{
+        opacity: 1;
+       } 
+    }
+}

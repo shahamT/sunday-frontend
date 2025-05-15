@@ -1,12 +1,20 @@
 .T_Filter {
+    position: sticky;
+    top: 97px;
+    left: 0px;
+    z-index: 14;
+
     display: flex;
     padding-left: var(--space-40);
     padding-block: var(--space-16);
     padding-inline-end: 30px;
 
+    background-color: var(--primary-background-color);
+
+
     .new-item-btn {
         margin-inline-end: 14px;
-        
+
         .clickable {
             font-size: 14px;
         }

@@ -51,16 +51,16 @@
 @import 'cmps/app/AppHeader.scss';
 @import 'cmps/app/_WMLogo.scss';
 
+// ====== Devs Page ======
+@import 'cmps/app/_devspage.scss';
+
 // ====== Side Nav ======
 @import 'cmps/app/_AppSideNav.scss';
-@import 'cmps/app/_SideNavAddBoardModal.scss';
 @import 'cmps/app/_SideNavDnd.scss';
 
-@import 'cmps/app/_BoardMenu.scss';
 
 @import 'cmps/app/_AppHome.scss';
-@import 'cmps/app/board/BoardPreview.scss';
-@import 'cmps/app/board/BoardContent.scss';
+@import 'cmps/app/board/BoardDetails.scss';
 @import 'cmps/app/board/TaskPanel.scss';
 @import 'cmps/app/board/TaskDetails.scss';
 
@@ -68,9 +68,8 @@
 
 
 // ====== Table View ======
-@import 'cmps/app/board/table-view/T_View.scss';
-@import 'cmps/app/board/table-view/T_TaskRow.scss';
 @import 'cmps/app/board/table-view/T_GroupsList.scss';
+@import 'cmps/app/board/table-view/T_TaskRow.scss';
 @import 'cmps/app/board/table-view/T_GroupHeadRow.scss';
 @import 'cmps/app/board/table-view/T_GroupHeader.scss';
 @import 'cmps/app/board/table-view/T_GroupFooter.scss';
@@ -78,11 +77,22 @@
 @import 'cmps/app/board/table-view/T_Filter.scss';
 @import 'cmps/app/board/table-view/T_ColumnHeaderCell.scss';
 @import 'cmps/app/board/table-view/T_Cell.scss';
-@import 'cmps/app/board/table-view/cell-content/PersonsPreview';
+@import 'cmps/app/board/table-view/T_ColumnSumRow.scss';
+
+// ====== column summary ======
+@import 'cmps/app/board/table-view/column-sum/T_ColumnSumCell.scss';
+
 
 @import 'cmps/app/board/table-view/_GroupMenu.scss';
+@import 'cmps/app/_BoardMenu.scss';
+@import 'cmps/app/_FileMenu.scss';
+@import 'cmps/app/_ColumnMenu.scss';
+@import 'cmps/app/_TaskMenu.scss';
 
+// ====== Modals ======
 
+@import 'cmps/app/_FileModal.scss';
+@import 'cmps/app/_SideNavAddBoardModal.scss';
 
 // ====== Value setter ======
 @import 'cmps/app/board/value-setter/_DatePicker.scss';
@@ -91,11 +101,14 @@
 @import 'cmps/app/board/value-setter/ColTypePicker';
 @import 'cmps/app/board/value-setter/PersonsPicker';
 
-// ====== Table View ======
+// ====== cell content ======
 @import 'cmps/app/board/table-view/cell-content/CellContentItem.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentStatus.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentDate.scss';
+@import 'cmps/app/board/table-view/cell-content/CellContentPeople.scss';
+@import 'cmps/app/board/table-view/cell-content/CellContentText.scss'; //apply to CellContentNumber as well...
 
+@import 'cmps/app/board/table-view/cell-content/PersonsPreview';
 // ====== Taask Details ======
 
 @import 'cmps/app/board/TaskDetailsTextEditor.scss';
