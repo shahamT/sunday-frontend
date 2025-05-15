@@ -59,7 +59,12 @@
 @import 'cmps/app/_SideNavDnd.scss';
 
 
+// ====== App Home ======
 @import 'cmps/app/_AppHome.scss';
+@import 'cmps/app/_AppHomeNeader.scss';
+@import 'cmps/app/_AppHomeBoards.scss';
+
+
 @import 'cmps/app/board/BoardDetails.scss';
 @import 'cmps/app/board/TaskPanel.scss';
 @import 'cmps/app/board/TaskDetails.scss';

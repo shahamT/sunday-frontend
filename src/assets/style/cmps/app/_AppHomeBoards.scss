@@ -1,0 +1,55 @@
+.app-home-boards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-template-rows: auto;
+    grid-gap: 20px;
+    padding: 16px 16px 24px 16px;
+  
+    .board-preview {
+      border-radius: 4px;
+      background-color: #fff;
+      justify-content: center;
+
+      cursor: pointer;
+  
+      .board-prev {
+        font-family: var(--title-font-family) !important;
+        font-size: 16px;
+  
+        p {
+          font-weight: 700;
+        }
+  
+        .favorite-btn {
+          display: flex;
+          padding-inline-end: 0px;
+          font-weight: 400;
+  
+          &::before {
+            // font-size: 20px;
+            // color: var(--icon-color);
+          }
+  
+          &:hover {
+            // background-color: var(--primary-background-hover-color);
+            // width: 100%;
+          }
+  
+          &.starred::before {
+            content: "\f005";
+            font-family: 'fa-solid';
+            color: gold;
+            width: 20px;
+            font-size: 16px;
+          }
+        }
+  
+        .img-wrapper {
+          width: 262px;
+          height: 140px;
+          justify-self: center;
+        }
+      }
+    }
+  }
+  
