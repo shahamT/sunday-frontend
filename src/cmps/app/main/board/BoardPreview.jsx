@@ -18,7 +18,7 @@ import { useSelected } from '../../../../hooks/useSelected.js'
 import { BoardHeader } from "./BoardHeader";
 import { BoardContent } from "./BoardContent";
 import { TaskPanel } from "./TaskPanel";
-import { TaskDetails } from "./TaskDetails";
+import { TaskDetails } from "./task-details/TaskDetails";
 
 // ====== Component ======
 // =======================

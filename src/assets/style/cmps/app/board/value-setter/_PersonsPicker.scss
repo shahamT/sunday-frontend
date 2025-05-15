@@ -31,8 +31,8 @@
             height: max-content;
             width: max-content;
             border-radius: 999px;
-            font-size: 0.75rem;
-            background-color: #e5f4ff;
+            // font-size: 0.75rem;
+            background-color: var(--pulse-background-color);
 
             .remove-person-btn {
                 display: flex;
