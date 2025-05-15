@@ -168,8 +168,9 @@ export function AppSideNav({ }) {
                             <DragOverlay>
                                 {activeBoard ? (
                                    <div className="drag-overlay-board">
-                                     <div className="board-btn clickable size-32 icon-start left-aligned i-Board" />
+                                     <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
                                        <p>{activeBoard.name}</p>
+                                      </div>
                                  </div>
                                 ) : null}
 
