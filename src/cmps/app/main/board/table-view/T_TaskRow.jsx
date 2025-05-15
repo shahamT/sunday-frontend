@@ -29,7 +29,7 @@ export function T_TaskRow({ task, columns, group }) {
         <article className="T_TaskRow">
             <div className="menu-wraper">
                 <PopUpMenu
-                    position="start-end"
+                    position="bottom-start"
                     renderContent={({ onCloseModal }) => (
                         <TaskMenu
                             onCloseModal={onCloseModal}
