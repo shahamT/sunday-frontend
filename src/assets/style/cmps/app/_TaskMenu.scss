@@ -1,14 +1,11 @@
-.group-menu {
+
+.task-menu {
     display: flex;
     flex-direction: column;
     width: 200px;
-
+    
     .clickable{
         justify-content: start;
     }
-
-
-
-    
-
 }
+

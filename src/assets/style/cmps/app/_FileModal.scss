@@ -1,0 +1,44 @@
+.file-modal {
+    font-family: var(--title-font-family);
+    color: #323338;
+
+    width: calc(100vw - 10vw); 
+    // height: calc(100vh - 15vh); 
+    overflow: auto;
+
+
+    .header-container {
+        grid-area: header;
+        background-color: #F6F7FB;
+
+    }
+
+    .img-conteiner {
+        border-radius: 12px;
+        grid-area: img;
+        background-color: #F6F7FB;
+        display: flex;               
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;        
+      }
+      
+      .img-conteiner img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        display: block;
+        background-color: #F6F7FB;
+
+      }
+
+ 
+    .close-btn {
+        position: absolute;
+        top: 40px;
+        right: 40px;
+        justify-self: end;
+        background-color: white;
+        
+    }
+}

@@ -33,7 +33,7 @@ export function ColumnMenu({ onCloseModal, column, inputRef }) {
     
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="column-popup-menu">
+        <section className="column-menu">
 
             <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
                 onCloseModal()
