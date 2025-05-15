@@ -1,0 +1,44 @@
+.drag-overlay-board {
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+    font-weight: 500;
+    height: 32px;
+    width: 100%;
+    // font-size: 0.95rem;
+    opacity: 0.95;
+    cursor: grabbing;
+
+    transform: scale(0.95) rotate(2deg);
+    transition: transform 0.2s ease;
+
+
+    display: flex;
+    align-items: center ;
+    white-space: nowrap;
+    overflow: hidden;
+    justify-self: start;
+    padding-left: 0px;
+
+    // text-overflow: ellipsis;
+ 
+}
+
+
+
+
+.BoardNavBarLink.dragging {
+    background-color: #C4C7D0;
+    outline: 0.8px dashed #9EA3B0;
+    border-radius: 4px;
+    opacity: 1;
+    pointer-events: none;
+    user-select: none;
+    overflow: hidden;
+    transition: background-color 0.2s ease;
+}
+
+.BoardNavBarLink.dragging .board-content {
+    visibility: hidden;
+}

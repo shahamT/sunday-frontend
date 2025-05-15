@@ -8,6 +8,8 @@ import { NavLink, useParams } from "react-router-dom";
 // Dnd kit
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
 import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { DragOverlay } from '@dnd-kit/core'
+
 // === Services
 
 // === Actions
@@ -30,6 +32,7 @@ export function AppSideNav({ }) {
     const [editingBoardId, setEditingBoardId] = useState(null)
     const [editedTitle, setEditedTitle] = useState('')
     const [isFavoritesOpen, setIsFavoritesOpen] = useState(false)
+    const [activeBoard, setActiveBoard] = useState(null)
 
     useEffect(() => {
         loadBoards()
@@ -58,7 +61,11 @@ export function AppSideNav({ }) {
     }
 
 
-
+    function handleDragStart(event) {
+        const { active } = event
+        const dragged = boards.find(b => b._id === active.id)
+        setActiveBoard(dragged)
+    }
 
     function handleDragEnd(event) {
         const { active, over } = event
@@ -134,7 +141,7 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
-                        
+
                         <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 
@@ -143,6 +150,7 @@ export function AppSideNav({ }) {
                             sensors={sensors}
                             collisionDetection={closestCenter}
                             onDragEnd={handleDragEnd}
+                            onDragStart={handleDragStart}
                         >
                             <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                                 {boards.map(board =>
@@ -157,6 +165,16 @@ export function AppSideNav({ }) {
 
                                 )}
                             </SortableContext>
+                            <DragOverlay>
+                                {activeBoard ? (
+                                   <div className="drag-overlay-board">
+                                     <div className="board-btn clickable size-32 icon-start left-aligned i-Board" />
+                                       <p>{activeBoard.name}</p>
+                                 </div>
+                                ) : null}
+
+                            </DragOverlay>
+
                         </DndContext>
                     </div>
 

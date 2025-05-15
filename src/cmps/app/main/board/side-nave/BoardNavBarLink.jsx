@@ -8,8 +8,8 @@ import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { BoardMenu } from "../popupMenu/BoardMenu";
 
 
-export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename, isDragging }) => {
-  const { attributes, listeners, setNodeRef, transform, transition } = useSortable({ id: board._id })
+export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename }) => {
+  const { attributes, listeners, setNodeRef, transform, transition, isOver, isDragging, } = useSortable({ id: board._id })
   const navigate = useNavigate()
   const clickTimeRef = useRef(null)
   const inputRef = useRef(null)
@@ -46,12 +46,17 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
 
   return (
     <div
-      className="board-item-nav BoardNavBarLink"
-      ref={setNodeRef}
+    className={`
+      board-item-nav BoardNavBarLink 
+      ${isOver ? 'drag-over' : ''} 
+      ${isDragging ? 'dragging' : ''}
+    `}
+    ref={setNodeRef}
       {...(editingBoardId !== board._id ? { ...attributes, ...listeners } : {})}
       style={style}
     >
   
+      <div className="board-content">
       <div
         className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null}`}
         onMouseDown={handleMouseDown}
@@ -68,9 +73,9 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
             onBlur={() => handleRename(board)}
             onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
             className="edit-board-input"
-          />
-        ) : (
-          <div className="text-wraper">
+            />
+          ) : (
+            <div className="text-wraper">
             <p>{board.name}</p>
           </div>
         )}
@@ -80,16 +85,17 @@ export const BoardNavBarLink = ({ boardId, board, editedTitle, editingBoardId, s
             position="start-end"
             renderContent={({ onCloseModal }) => (
               <BoardMenu
-                onCloseModal={onCloseModal}
-                board={board}
-                setEditingBoardId={setEditingBoardId}
-                setEditedTitle={setEditedTitle}
+              onCloseModal={onCloseModal}
+              board={board}
+              setEditingBoardId={setEditingBoardId}
+              setEditedTitle={setEditedTitle}
               />
             )}
-          >
+            >
             <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
           </PopUpMenu>
         </div>
+            </div>
       </div>
     </div>
   )
