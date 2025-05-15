@@ -10,11 +10,11 @@
         width: 30px;
         border: 2px solid var(--pulse-background-color);
         border-radius: 50%;
-        margin-inline-start: -7px;
         cursor: pointer;
     }
-
+    
     .and-others {
+        margin-inline-start: -7px;
         display: flex;
         align-items: center;
         justify-content: center;
