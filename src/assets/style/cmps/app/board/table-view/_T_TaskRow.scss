@@ -1,7 +1,5 @@
 .T_TaskRow {
     position: relative;
-    display: flex;
-
     cursor: pointer;
 
     &:hover {
@@ -10,16 +8,6 @@
             background-color: #F5F6F8;
             box-shadow: 4px 3px 6px -8px var(--ui-border-color);
         }
-
-        .sticky {
-            z-index: 12;
-
-            background-color: #F5F6F8;
-            box-shadow: 4px 3px 6px -8px var(--ui-border-color);
-
-
-        }
-
 
         .menu-wraper {
             opacity: 1;
