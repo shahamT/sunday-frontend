@@ -111,7 +111,7 @@ export function TaskDetails() {
                         onBlur={onSetName}
                         onPressEnter={onSetName}
                     />
-                    {/* <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length}/> */}
+                    <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length}/>
                 </section>
             </section>
         </section>
