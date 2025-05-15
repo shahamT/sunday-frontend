@@ -124,9 +124,13 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case UPDATE_GROUP:
+
+            lastBoard = {...state.board}
+
             return {
                 ...state,
-                board: {...state.board, groups: state.board.groups.map(group => group.id === action.group.id ? action.group : group)}
+                board: {...state.board, groups: state.board.groups.map(group => group.id === action.group.id ? action.group : group)},
+                lastBoard
             }
 
         //COLUMN
