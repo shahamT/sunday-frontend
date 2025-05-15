@@ -107,8 +107,10 @@
 @import 'cmps/app/board/table-view/cell-content/CellContentDate.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentPeople.scss';
 @import 'cmps/app/board/table-view/cell-content/CellContentText.scss'; //apply to CellContentNumber as well...
+@import 'cmps/app/board/table-view/cell-content/CellContentFile.scss'; //apply to CellContentNumber as well...
 
-@import 'cmps/app/board/table-view/cell-content/PersonsPreview';
+@import 'cmps/app/board/table-view/cell-content/PersonsPreview.scss';
+
 // ====== Taask Details ======
 
 @import 'cmps/app/board/TaskDetailsTextEditor.scss';

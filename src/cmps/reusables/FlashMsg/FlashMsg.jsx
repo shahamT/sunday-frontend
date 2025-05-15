@@ -21,7 +21,7 @@ export function FlashMsg() {
         clearTimeout(timeoutRef.current)
         timeoutRef.current = setTimeout(() => {
           closeMsg()
-        }, 2000)
+        }, 3000)
       })
   
       return () => {
@@ -42,7 +42,7 @@ export function FlashMsg() {
   
     return (
       <section className={`flash-msg ${msg.type} ${visible ? 'show' : ''}`}>
-        <h4>{msg.txt}</h4>
+        <div className={`icon ${msg.type === 'success' ?'i-Check' : 'i-Alert' }`}></div><p>{msg.txt}</p>
       </section>
     )
   }

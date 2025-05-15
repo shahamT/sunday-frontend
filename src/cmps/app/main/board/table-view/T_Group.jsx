@@ -20,7 +20,7 @@ import { T_TaskRow } from "./T_TaskRow";
 // ====== Component ======
 // =======================
 
-export function T_Group({ group, columns }) {
+export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
     // === Consts
 
     // === Effects
@@ -35,7 +35,13 @@ export function T_Group({ group, columns }) {
         <section className="T_Group">
 
             <T_GroupHeader group={group} />
-            <T_GroupHeadRow group={group} columns={columns} />
+            <T_GroupHeadRow
+                group={group}
+                columns={columns}
+                liveColumnWidthsRef={liveColumnWidthsRef}
+                resizeVersion={resizeVersion}
+                 bumpResizeVersion={bumpResizeVersion}
+                />
 
 
             {group.tasks.map(task => {
@@ -43,7 +49,7 @@ export function T_Group({ group, columns }) {
             })}
 
             <T_GroupFooter group={group} itemColumn={itemColumn} />
-            <T_ColumnSumRow columns={columns} group={group}/>
+            <T_ColumnSumRow columns={columns} group={group} />
         </section>
     )
 }
