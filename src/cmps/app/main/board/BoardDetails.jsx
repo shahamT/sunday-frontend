@@ -17,9 +17,9 @@ import { useSelected } from '../../../../hooks/useSelected.js'
 // === Child Components
 import { BoardHeader } from "./BoardHeader";
 import { TaskPanel } from "./TaskPanel";
-import { TaskDetails } from "./TaskDetails";
-import { T_View } from "./table-view/T_GroupsList";
 import { T_Filter } from "./table-view/T_Filter";
+import { TaskDetails } from "./task-details/TaskDetails";
+import { T_GroupsList } from "./table-view/T_GroupsList";
 
 // ====== Component ======
 // =======================
@@ -41,7 +41,7 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
         <section className="BoardDetails">
             <BoardHeader isSelected={isSelected} select={select} />
             <T_Filter/>
-            <T_View />
+            <T_GroupsList/>
 
             <TaskPanel
                 side='right'
