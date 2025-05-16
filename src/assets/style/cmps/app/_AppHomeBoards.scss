@@ -13,7 +13,17 @@
     background-color: #fff;
     justify-content: center;
     border: 1px solid rgb(208, 212, 228);
+    // transition: box-shadow 0.2s ease;
+    cursor: pointer;
 
+
+
+    &:hover {
+      box-shadow:  0px 6px 20px rgba(0, 0, 0, 0.2);
+      border-color: rgba(255, 255, 255, 0); 
+
+      // transform: translateY(-1px); 
+    }
     .board-txt-container {
       display: flex;
       align-items: center;
@@ -35,9 +45,12 @@
         text-overflow: ellipsis;
 
       }
+
       .board-txt, .favorite-btn {
         line-height: 1;
+        padding-block-end: 4px;
       }
+
       .favorite-btn {
         display: flex;
         align-content: center; 
