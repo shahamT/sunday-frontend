@@ -15,11 +15,11 @@ export const userService = {
 }
 
 function getUsers() {
-	return httpService.get(`user`)
+	return httpService.get(`user`) //mini users
 }
 
 async function getById(userId) {
-	const user = await httpService.get(`user/${userId}`)
+	const user = await httpService.get(`user/${userId}`)//mini user 
 	return user
 }
 
@@ -27,8 +27,8 @@ function remove(userId) {
 	return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id, boardId }) {
-	const user = await httpService.put(`user/${_id}`, { _id, boardId })
+async function update({ _id, visitedBoardId }) {
+	const user = await httpService.put(`user/${_id}`, { _id, visitedBoardId })
 
 	// When admin updates other user's details, do not update loggedinUser
     const loggedinUser = getLoggedinUser() // Might not work because its defined in the main service???
@@ -43,7 +43,7 @@ async function login(userCred) {
 }
 
 async function signup(userCred) {
-	if (!userCred.imgUrl) userCred.imgUrl = 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png'
+    if (!userCred.profileImg) userCred.profileImg = `https://ui-avatars.com/api/?name=${userCred.firstName}+${userCred.lastName}&background=0D8ABC&color=fff&length=2&rounded=true&bold=true`
 
     const user = await httpService.post('auth/signup', userCred)
 	return saveLoggedinUser(user)
@@ -54,7 +54,16 @@ async function logout() {
 	return await httpService.post('auth/logout')
 }
 
-function getLoggedinUser() {
+function getLoggedinUser() { //TODO change this from hardcoded user back to service
+	    return {
+    _id: "rL2Yi",
+    account: "acc001",
+    firstName: "John",
+    lastName: "Doe",
+    email: "user1@company.com",
+    lastViewedBoards: [],
+    profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+  }
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
@@ -64,7 +73,7 @@ function saveLoggedinUser(user) {
         firstName: user.firstName, 
         lastName: user.lastName, 
         email: user.email, 
-        imgUrl: user.imgUrl, 
+        profileImg: user.imgUrl, 
         lastViewedBoards: user.lastViewedBoards,
         role: user.role 
     }

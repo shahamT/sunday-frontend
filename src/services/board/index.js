@@ -246,8 +246,12 @@ function getDefaultFilter() {
     }
 }
 
+function getColors() {
+    return colors
+}
+
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, getEmptyUpdate, getEmptyColumn, getDefaultFilter, ...service }
+export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, getEmptyUpdate, getEmptyColumn, getDefaultFilter, getColors, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

@@ -81,16 +81,10 @@ async function saveBoards(newBoards) {
     return savedBoards
 }
 
-async function query(filterBy = { txt: '' }) {
+async function query() {
     var boards = await storageService.query(STORAGE_KEY)
-    const { txt, sortField, sortDir } = filterBy
 
-    if (txt) {
-        const regex = new RegExp(filterBy.txt, 'i')
-        boards = boards.filter(board => regex.test(board.name))
-    }
-
-    boards = boards.map(({ _id, name, isStarred }) => ({ _id, name, isStarred }))
+    boards = boards.map(({ _id, name, isStarred }) => ({ _id, name, isStarred })) //BACKEND
     return boards
 }
 
@@ -103,21 +97,21 @@ async function remove(boardId) {
 }
 
 async function save(board) {
-    const loggedinUser = userService.getLoggedinUser()?._id || null
+    const loggedinUser = userService.getLoggedinUser()?._id || null //BACKEND
     var savedBoard
     if (board._id) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
-        const boardToSave = {
-            _id: makeId(),
-            isStarred: false,
-            createdAt: Date.now(),
-            createdBy: loggedinUser,
-            members: [
-                {
-                    _id: loggedinUser,
-                    permission: 'editor'
-                }
+        const boardToSave = { //BACKEND
+            _id: makeId(), //BACKEND
+            isStarred: false, //BACKEND
+            createdAt: Date.now(),  //BACKEND
+            createdBy: loggedinUser, //BACKEND
+            members: [//BACKEND 
+                { //BACKEND
+                    _id: loggedinUser, //BACKEND
+                    permission: 'editor'//BACKEND
+                }//BACKEND
             ]
         }
         savedBoard = await storageService.post(STORAGE_KEY, { ...board, ...boardToSave })
@@ -130,7 +124,7 @@ async function addTaskUpdate(boardId, groupId, taskId, update) {
 
     const boardToSave = {
         ...board, groups: board.groups.map(group => group.id === groupId
-            ? { ...group, tasks: group.tasks.map(task => task.id === taskId 
+            ? { ...group, tasks: group.tasks.map(task => task.id === taskId
                 ? {...task, updates: [update, ...task.updates]} : task )} : group)
     }    
 
@@ -155,9 +149,9 @@ async function saveGroup(groupToSave, boardId, isTop) {
     if (!Array.isArray(board.groups)) board.groups = []
     var savedBoard
     if (groupToSave.id) {
-        const boardToSave = {
+        const boardToSave = { 
             ...board, groups: board.groups.map(group =>
-                group.id === groupToSave.id ? groupToSave : group)
+                group.id === groupToSave.id ? groupToSave : group) 
         }
         savedBoard = await storageService.put(STORAGE_KEY, boardToSave)
     } else {
@@ -214,12 +208,12 @@ async function saveTask(taskToSave, groupId, boardId, isTop = false) {
     if (!board) throw new Error(`Board ${boardId} not found`)
 
     const groupIdx = board.groups.findIndex(group => group.id === groupId)
-    if (groupIdx === -1) throw new Error(`Group ${groupId} not found in board ${boardId}`)
+    if (groupIdx === -1) throw new Error(`Group ${groupId} not found in board ${boardId}`) 
 
     const group = board.groups[groupIdx]
-    if (!Array.isArray(group.tasks)) group.tasks = []
+    if (!Array.isArray(group.tasks)) group.tasks = [] 
 
-    const newTasks = isTop ? [taskToSave, ...group.tasks] : [...group.tasks, taskToSave]
+    const newTasks = isTop ? [taskToSave, ...group.tasks] : [...group.tasks, taskToSave] 
     const boardToSave = {
         ...board, groups: board.groups.map(group => group.id === groupId
             ? { ...group, tasks: [...group.tasks, taskToSave] } : group)
