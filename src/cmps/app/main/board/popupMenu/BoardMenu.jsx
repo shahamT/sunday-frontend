@@ -34,22 +34,30 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
 
 
     // === Functions
-    function handleChange({ target }) {
+    async function handleChange({ target }) {
         const updatedBoard = {
             ...boardToEdit,
             isStarred: !boardToEdit.isStarred
 
         }
         setBoardToEdit(updatedBoard)
-        updateBoard(updatedBoard)
-            .then(() => loadBoards())
-            .catch(err => console.error('Failed to update board', err));
+        try {
+            await updateBoard(updatedBoard)
+        }
+        catch (err) {
+            console.error('Failed to update board')
+
+        }
     }
 
-    function onRemoveBoard(boardId) {
-        removeBoard(boardId)
-            .then(showSuccessMsg('We successfully deleted the board'))
-            .catch('Failed to remove board', err)
+    async function onRemoveBoard(boardId) {
+        try {
+            await removeBoard(boardId)
+            showSuccessMsg('We successfully deleted the board')
+        }
+        catch (err) {
+            console.log('Failed to remove board')
+        }
 
     }
 

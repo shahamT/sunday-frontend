@@ -1,3 +1,44 @@
-.AppHome{
+.app-home {
 
+    display: grid;
+    grid-template-columns: 1fr 300px;
+    grid-template-areas:
+        'header header'
+        'main side';
+    gap: 24px;
+    // margin-inline-end: 24px;
+    // margin-block: 24px;
+    border-radius: 8px;
+    // background-color:pink;
+    
+    .header {
+        grid-area: header;
+        
+        font-family: var(--title-font-family);
+        height: 75px;
+        padding: 20px;
+        overflow: hidden;   
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+        color: #323338;
+        p{
+            font-size: 16px;
+
+            span{
+                font-size: 14px;
+            }
+        }
+    }
+    
+    .main {
+        grid-area: main;
+        margin-inline: 24px;
+        width: 100%;
+        
+    }
+    
+    .left-nav {
+        grid-area: side;
+        background-color: palevioletred;
+        margin-inline: 24px;
+    }
 }
