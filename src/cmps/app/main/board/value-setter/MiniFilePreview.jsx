@@ -33,6 +33,7 @@ export function MiniFilePreview({ onCloseModal, imgUrl, imgTitle }) {
                         position="start-end"
                         renderContent={({ onCloseModal }) => (
                             <FiledMenu
+                            imgUrl={imgUrl}
                                 onCloseModal={onCloseModal}
                             />
                         )}
@@ -48,11 +49,14 @@ export function MiniFilePreview({ onCloseModal, imgUrl, imgTitle }) {
                     />
                 </section>
             </section>
+            {imgTitle &&
             <div className="img-footer">
                 <Tooltip title={imgTitle}>
                     <p>{imgTitle}</p>
                 </Tooltip>
             </div>
+            
+            }
 
         </section>
     )
