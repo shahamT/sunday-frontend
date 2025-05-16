@@ -141,7 +141,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
         groupId = board.groups[0].id
     }
 
-    const task = await boardService.getEmptyTask(boardId, valueToSave, itemColId )
+    const task = await boardService.getEmptyTask(valueToSave, itemColId )
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
         const savedTask = await boardService.saveTask(task, groupId, boardId, isTop)

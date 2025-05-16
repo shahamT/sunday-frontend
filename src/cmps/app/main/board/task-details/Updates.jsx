@@ -4,6 +4,7 @@ import { useSelector } from "react-redux"
 
 // === Services
 import { getFormattedTime } from "../../../../../services/base/util.service"
+import { TaskComment } from "./TaskComment"
 
 // === Actions
 
@@ -40,7 +41,9 @@ export function Updates({ task }) {
                         )}
                         <span>{getFormattedTime(update.createdAt)}</span>
                     </div>
-                    <p>{update.txt}</p>
+                    <div className="task-comment">
+                        <TaskComment html={update.txt} />
+                    </div>
                 </div>
             )
             })}

@@ -200,7 +200,8 @@ async function getEmptyTask(taskName, colId) {
         createdBy: userService.getLoggedinUser()?._id || null,
         columnValues: [
             { colId: colId || board.columns[0].id, value: taskName }
-        ]
+        ],
+        updates: []
     }
 }
 

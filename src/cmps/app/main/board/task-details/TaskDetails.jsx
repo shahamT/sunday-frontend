@@ -3,7 +3,7 @@
 // === Services
 import { userService } from "../../../../../services/user"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
-import { setColumnValue } from "../../../../../store/actions/board.actions.js"
+import { removeColumnValue, setColumnValue } from "../../../../../store/actions/board.actions.js"
 import { loadUsers } from "../../../../../store/actions/user.actions"
 
 // === Actions
@@ -26,6 +26,7 @@ import { useSelected } from "../../../../../hooks/useSelected"
 import { TaskDetailsUpdates } from "./TaskDetailsUpdates"
 import { TaskDetailsFiles } from "./TaskDetailsFiles"
 import { TaskDetailsActivityLog } from "./TaskDetailsActivityLog"
+import { PersonsPicker } from "../value-setter/PersonsPicker"
 
 // ====== Component ======
 // =======================
@@ -38,9 +39,11 @@ export function TaskDetails() {
     const { selected, isSelected, select } = useSelected('updates')
     
     const [columns, setColumns] = useState(null)
+    const [personsColumn, setPersonsColumn] = useState(null)
     const [task, setTask] = useState(null)
     const [groupId, setGroupId] = useState(null)
     const [selectedPersons, setSelectedPersons] = useState([])
+    const [isOwnerSelected, setIsOwnerSelected] = useState(false)
     const [value, handleChange, reset, set] = useControlledInput('')
     
     // === Effects
@@ -66,6 +69,7 @@ export function TaskDetails() {
 
         const peopleColId = columns.find(column => column.type.variant === 'people')?.id
         if(!peopleColId) return
+        setPersonsColumn(peopleColId)
 
         const peopleColValue = task.columnValues.find(cv => cv.colId === peopleColId)
         let persons = Array.isArray(peopleColValue?.value) ? [...peopleColValue.value] : [];
@@ -74,9 +78,10 @@ export function TaskDetails() {
 
         const enrich = async () => {
             let owner = persons.find(person => person._id === ownerId);
-            if (!owner) {
-                owner = await userService.getById(ownerId);
-            }
+            if (owner) {
+                setIsOwnerSelected(true)
+                
+            } else owner = await userService.getById(ownerId)
             persons = [owner, ...persons.filter(p => p._id !== owner._id)]
             setSelectedPersons(persons)
         }
@@ -124,6 +129,24 @@ export function TaskDetails() {
         return null
     }
 
+    function setPersons(PersonsArray) {
+        try {
+            setColumnValue(taskId, personsColumn, PersonsArray)
+            if (PersonsArray.length === 0) onClearPersons()
+            setSelectedPersons(PersonsArray)
+        } catch (err) {
+            showErrorMsg(`Something went wrong`);
+        }
+    }
+
+    function onClearPersons() {
+        try {
+            removeColumnValue(taskId, personsColumn);
+        } catch (err) {
+            showErrorMsg(`Something went wrong`);
+        }
+    }
+
     if (!task || !board) return <div>Loading...</div>
     return (
         <section className="TaskDetails">
@@ -143,7 +166,22 @@ export function TaskDetails() {
                         ? '5px'
                         : `${19 + 7 * (selectedPersons.length - 1)}px`
                     }}> */}
-                        <button style={{marginInlineEnd: `${selectedPersons.length === 1 ? '-7px' : '-2px'}`}} className="add-memeber-btn clickable filled icon-btn size-24 i-AddSmall"></button>
+                    <div>
+                        <PopUpMenu
+                            stretchTrigger={true}
+                            gap={4}
+                            noArrow={false}
+                            position="bottom"
+                            renderContent={({ onCloseModal }) => (
+                                <PersonsPicker
+                                    onCloseModal={onCloseModal}
+                                    currSelectedPersons={isOwnerSelected ? selectedPersons : selectedPersons.slice(1)}
+                                    setPersons={setPersons}
+                                />
+                            )}>
+                            <button style={{marginInlineEnd: `${selectedPersons.length === 1 ? '-7px' : '-2px'}`}} className="add-memeber-btn clickable filled icon-btn size-24 i-AddSmall"></button>
+                        </PopUpMenu>
+                    </div>
                         <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length}/>
                     </div>
                     <div className="options-menu-wraper">
