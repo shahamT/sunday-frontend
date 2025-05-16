@@ -46,6 +46,7 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
     // === Consts
 
     const isOpen = useSelector(storeState => storeState.boardModule.isTaskPanelOpen)
+    const [destroy, setDestroy] = useState(false)
 
     const extensions = [StarterKit, Document, Paragraph, Text, Bold, Italic, Underline, Strike, TextStyle, Color,
         OrderedList, ListItem, BulletList, Gapcursor, Table.configure({ resizable: true, }), TableRow, TableHeader,
@@ -128,7 +129,7 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
     return () => {
         editor?.destroy()
     }
-    }, [isOpen])
+    }, [isOpen, destroy])
 
     const [hasContent, setHasContent] = useState(false)
 
@@ -150,12 +151,6 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
             editor.destroy()
         }
     }, [editor])
-
-    // useEffect(() => {
-    //     if (!editor || editor.isDestroyed) return
-    //     editor.commands.clearContent()
-    //     return () => editor.commands.clearContent()
-    // }, [editor])
 
     const setLink = useCallback(() => {
         const previousUrl = editor.getAttributes('link').href
@@ -186,6 +181,7 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
     function onSaveUpdate() {
         const html = editor.getHTML()
         saveUpdate(html)
+        setDestroy(true)
     }
 
     if (!editor) return null

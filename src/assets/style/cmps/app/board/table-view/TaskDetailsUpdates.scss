@@ -1,4 +1,18 @@
 .TaskDetailsUpdates {
     height: calc(100% - var(--app-header-size, 0px) - 120px);
     overflow: auto; 
+
+    .no-updates {
+        display: grid;
+        justify-content: center;
+        text-align: center;
+
+        img {
+            padding-block-end: 8px;
+        }
+
+        h3 {
+            padding-block: 8px;
+        }
+    }
 }
