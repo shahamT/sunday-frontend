@@ -20,7 +20,7 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
