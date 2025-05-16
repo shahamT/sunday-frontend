@@ -1,6 +1,7 @@
 // === Libs
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
+import { updateBoard } from "../../../../../store/actions/board.actions"
 
 // === Services
 
@@ -16,28 +17,44 @@ import { useState } from "react"
 // =======================
 
 export function IsStarred({ board }) {
-    const [isStarred, setIsStareed] = useState(board.isStarred)
+    const [isStarred, setIsStarred] = useState(board.isStarred)
+    const [boardToEdit, setBoardToEdit] = useState(null)
+
+    useEffect(() => {
+        setBoardToEdit(board)
+
+        return () => {
+            setBoardToEdit(null);
+        }
+    }, [board])
+
 
     // === Consts
 
     // === Effects
-
     // === Functions
-    function handleChange({ target }) {
+    async function handleChange({ target }) {
         const updatedBoard = {
-            ...board,
-            isStarred: !board.isStarred
+            ...boardToEdit,
+            isStarred: !boardToEdit.isStarred
 
         }
-        // if (!data) return <div>Loading...</div>
+        setBoardToEdit(updatedBoard)
+        try{
+            await updateBoard(updatedBoard)
+            setIsStarred(prev => !prev)
+        }
+        catch (err) {
+            console.error('Failed to update board')
+        }
+    }
         return (
-            <section className="ComponentName">
-                <div
-                    className={`star-toggle clickable size-32 icon-start clear select full-width left-aligned i-Favorite ${isStarred ? 'starred' : ''}`}
+            <section className="is-starred">
+              
+                <button
+                    className={`star-toggle clickable size-32 icon-start select full-width left-aligned i-Favorite ${isStarred ? 'starred' : ''}`}
                     onClick={handleChange} >
-                    {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
-                </div>
+                </button>
             </section>
         )
     }
-}

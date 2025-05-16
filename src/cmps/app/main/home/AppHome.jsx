@@ -28,7 +28,6 @@ const user='User'
             </p>
             </section>
             <section className="main">
-            <h1>main</h1>
             <AppHomeBoards />
             {/* <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747320341/kkvc6y2yzsy9taa4d7y2.png" alt="Monday board" /> */}
 

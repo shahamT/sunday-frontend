@@ -1,0 +1,13 @@
+.is-starred{
+
+    .favorite-btn {
+
+        .favorite-btn::before {
+          content: "\f005";
+          font-family: 'fa-solid';
+          color: gold;
+        }
+
+      }
+
+}
