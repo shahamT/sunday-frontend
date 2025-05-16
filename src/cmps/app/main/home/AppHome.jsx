@@ -1,7 +1,7 @@
 // === Libs
 
-import { AppHomeBoards } from "../board/appHeader/AppHomeBoards"
-
+import {BoardList } from "../board/appHeader/BoardList"
+import { LeftNav } from "../board/appHeader/LeftNav"
 // === Services
 
 // === Actions
@@ -28,13 +28,13 @@ const user='User'
             </p>
             </section>
             <section className="main">
-            <AppHomeBoards />
+            <BoardList />
             {/* <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747320341/kkvc6y2yzsy9taa4d7y2.png" alt="Monday board" /> */}
 
 
             </section>
 <section className="left-nav">
-<h1>left nav</h1>
+    <LeftNav/>
 </section>
 
         </section>

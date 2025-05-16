@@ -18,7 +18,7 @@ import { IsStarred } from "../value-setter/IsStarred"
 // ====== Component ======
 // =======================
 
-export function AppHomeBoards({ /* prop1, prop2 */ }) {
+export function BoardList({ /* prop1, prop2 */ }) {
     // === Consts
     const boards = useSelector(storeState => storeState.boardModule.boards)
     const navigate = useNavigate()
@@ -26,14 +26,13 @@ export function AppHomeBoards({ /* prop1, prop2 */ }) {
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
-        <section className="app-home-boards">
+        <section className="board-list">
 
             {boards.length > 0 ? boards.map(board =>
-                <div key={board._id} className="board-preview" onClick={() => navigate(`/app/board/${board._id}`)}>
+                <article key={board._id} className="board-preview" onClick={() => navigate(`/app/board/${board._id}`)}>
                     <div className="img-wrapper">
-                        <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747385287/dd8krocnjoffk6ioxbqb.png" alt="Monday board" />
+                        <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747320341/kkvc6y2yzsy9taa4d7y2.png" alt="Monday board" />
                         {/* <img src={mondayLogo} alt="Monday board" /> */}
                     </div>
                     <div className="board-txt-container clickable select size-32 icon-start full-width i-Board">
@@ -51,7 +50,7 @@ export function AppHomeBoards({ /* prop1, prop2 */ }) {
                     </div>
 
 
-                </div>
+                </article>
             )
 
                 : <p>No boards to show. lets create a new one! <button onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)}>Create new board</button></p>
