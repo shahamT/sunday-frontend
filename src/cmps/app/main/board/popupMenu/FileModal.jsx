@@ -2,11 +2,7 @@
 
 import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 
-
-
 export function FileModal({ imgUrl, imgTitle  }) {
-
-    //   const imgUrl = "https://img.freepik.com/premium-photo/playful-cute-fish-photo_960396-928043.jpg"
 
     // === Functions
     console.log(imgUrl)

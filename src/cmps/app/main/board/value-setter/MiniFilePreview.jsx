@@ -30,7 +30,7 @@ export function MiniFilePreview({ onCloseModal, imgUrl, imgTitle }) {
             <section className="img-container">
                 <div className="menu-btn">
                     <PopUpMenu
-                        position="start-end"
+                        position="bottom-end"
                         renderContent={({ onCloseModal }) => (
                             <FiledMenu
                             imgUrl={imgUrl}
@@ -38,14 +38,12 @@ export function MiniFilePreview({ onCloseModal, imgUrl, imgTitle }) {
                             />
                         )}
                     >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                        <div className="menu-btn clickable clear size-40 icon-big icon-btn i-Menu" />
                     </PopUpMenu>
                 </div>
                 <section className="img-wrapper">
                     <img
                         src={imgUrl}
-                        // alt="Playful cute fish"
-                        // className="fish-img"
                     />
                 </section>
             </section>

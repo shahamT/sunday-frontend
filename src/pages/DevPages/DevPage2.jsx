@@ -46,13 +46,11 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                     <MiniFilePreview
                         onCloseModal={onCloseModal}
                         imgUrl={imgUrl}
-                        // imgTitle={imgTitle}
                     />
                 )}
             >
                 <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
             </PopUpMenu>
-            {/* <GlobalModal/> */}
         </section>
     )
 }
