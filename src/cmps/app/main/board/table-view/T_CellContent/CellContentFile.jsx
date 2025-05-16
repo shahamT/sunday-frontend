@@ -1,0 +1,105 @@
+// === Libs
+
+// === Services
+import { uploadService } from "../../../../../../services/board/upload.service";
+
+// === Actions
+import { showSuccessMsg } from "../../../../../../services/base/event-bus.service";
+
+// === Hooks / React
+import { useState } from "react";
+
+// === Imgs
+
+// === Child Components
+import { removeColumnValue, setColumnValue } from "../../../../../../store/actions/board.actions";
+import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu";
+import { Loader } from "../../../../../reusables/Loader/Loader";
+
+// ====== Component ======
+// =======================
+
+export function CellContentFile({ taskId, column, columnValue }) {
+    // === Consts
+    const [isUploading, setIsUploading] = useState(false)
+
+    // === Effects
+
+    // === Functions
+
+    async function uploadImg(ev) {
+        setIsUploading(true)
+        const { secure_url } = await uploadService.uploadImg(ev)
+        setIsUploading(false)
+
+        onSetFile(secure_url)
+    }
+
+    async function onSetFile(fileUrl) {
+        console.log("fileUrl: ", fileUrl)
+        try {
+            await setColumnValue(taskId, column.id, fileUrl)
+            showSuccessMsg('Uploaded 1 file')
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
+
+    function onClearFile() {
+        try {
+            removeColumnValue(taskId, column.id)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
+
+
+    return (
+        <div className={`CellContentFile cell-contnet`}>
+
+
+            {columnValue
+                ?
+                <>
+                    <div
+                        className="clear-btn clickable clear icon-btn size-24 i-CloseSmall"
+                        onClick={onClearFile}
+                    />
+                    <>
+                        <div className="img-wraper">
+                            <img className="img-preview" src={columnValue?.value} />
+                        </div>
+                    </>
+                </>
+                :
+                <div className="file-empty-state">
+
+                    {isUploading
+                        ?
+                        <Loader color='#323338' size={1.5} />
+                        :
+                        <>
+                            <div className="img-uploader">
+                                <label htmlFor="imgUpload"></label>
+                                <input
+                                    className="hidden-input"
+                                    type="file"
+                                    onChange={uploadImg}
+                                    accept="image/*"
+                                    id="imgUpload"
+                                />
+                            </div>
+
+                            <div className="plus-btn">
+                                <div className="plus-icon i-AddSmall" />
+                            </div>
+                            <div className="file-icon i-File" />
+                        </>
+                    }
+                </div>
+            }
+        </div>
+    )
+}

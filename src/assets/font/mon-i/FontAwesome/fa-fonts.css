@@ -56,4 +56,57 @@
     content: "\f055";
     font-family: 'fa-solid';
   }
+
+  .icon-btn.italic::after {
+    content: "\f033";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.bold::after {
+    content: "\f032";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.paragraph::after {
+    content: "\f1dd";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.align-left::after {
+    content: "\f036";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.underline::after {
+    content: "\f0cd";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.strikethrough::after {
+    content: "\f0cc";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.list-ul::after {
+    content: "\f0ca";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.list-ol::after {
+    content: "\f0cb";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.link::after {
+    content: "\f0c1";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.table::after {
+    content: "\f0ce";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.grip-lines::after {
+    content: "\f7a4";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.paint-roller::after {
+    content: "\f5aa";
+    font-family: 'fa-solid';
+  }
+  .icon-btn.text-height::after {
+    content: "\f034";
+    font-family: 'fa-solid';
+  }
  

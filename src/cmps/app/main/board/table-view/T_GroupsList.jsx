@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 // === Child Components
 import { T_Filter } from "./T_Filter";
 import { T_Group } from "./T_Group";
+import { useRef, useState } from "react";
 
 // ====== Component ======
 // =======================
@@ -23,6 +24,13 @@ export function T_GroupsList({ /* prop1, prop2 */ }) {
     // === Consts
     const board = useSelector(storeState => storeState.boardModule.board)
     console.log("board: ", board)
+
+    const liveColumnWidthsRef = useRef({});
+    const [resizeVersion, setResizeVersion] = useState(0);
+
+    function bumpResizeVersion() {
+        setResizeVersion(v => v + 1);
+    }
 
     // === Functions
     function onAddGroup() {
@@ -36,7 +44,14 @@ export function T_GroupsList({ /* prop1, prop2 */ }) {
 
             {board &&
                 board.groups.map(group => {
-                    return <T_Group key={group.id} group={group} columns={board.columns} />
+                    return <T_Group
+                        key={group.id}
+                        group={group}
+                        columns={board.columns}
+                        liveColumnWidthsRef={liveColumnWidthsRef}
+                        resizeVersion={resizeVersion}
+                         bumpResizeVersion={bumpResizeVersion}
+                        />
                 })
             }
 

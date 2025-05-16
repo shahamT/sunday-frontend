@@ -2,7 +2,7 @@ import {
     ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD,
     ADD_GROUP, REMOVE_GROUP, UPDATE_GROUP,
     ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN,
-    ADD_TASK, REMOVE_TASK,
+    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE,
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     OPEN_TASK_PANEL, CLOSE_TASK_PANEL
@@ -86,17 +86,6 @@ export async function addBoard(board) {
     }
 }
 
-// export async function addBoardMsg(boardId, txt) {
-//     try {
-//         const msg = await boardService.addBoardMsg(boardId, txt)
-//         store.dispatch(getCmdAddBoardMsg(msg))
-//         return msg
-//     } catch (err) {
-//         console.log('Cannot add board msg', err)
-//         throw err
-//     }
-// }
-
 // // ========= FilterBy =========
 // export function setFilterBy(filterBy) {
 //     store.dispatch({ type: SET_BOARDS_FILTER_BY, filterBy })
@@ -177,48 +166,19 @@ export async function removeTask(taskId, groupId) {
     }
 }
 
-// export async function updateColumnValue(colId, taskId, value) {
-//     const state = store.getState()
-//     const board = structuredClone(store.getState().boardModule.board)
-
-//     board.groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
-//       if (task.id !== taskId) return task
-//       const updatedColumnValues = task.columnValues.map(columnValue =>
-//         columnValue.colId === colId ? { ...columnValue, value } : columnValue)
-//         return { ...task, columnValues: updatedColumnValues }
-//         })
-//     }))
-
-//     try {
-//         const savedBoard = await boardService.save(board)
-//         store.dispatch(getCmdSetBoard(savedBoard))
-//     } catch (err) {
-//         console.log('board action -> Cannot add column value', err)
-//         throw err
-//     }
-// }
-
-// export async function addColumnValue(taskId, colId, value) {
-//   const state = store.getState()
-//   const board = structuredClone(store.getState().boardModule.board)
-
-//   board.groups = board.groups.map(group => ({...group, tasks: group.tasks.map(task => {
-//       if (task.id !== taskId) return task
-//       const hasColumn = task.columnValues.some(cv => cv.colId === colId)
-//       const updatedColumnValues = hasColumn ? task.columnValues : [...task.columnValues, { colId, value }]
-
-//       return { ...task, columnValues: updatedColumnValues }
-//     })
-//   }))
-
-//   try {
-//     const savedBoard = await boardService.save(board)
-//     store.dispatch(getCmdSetBoard(savedBoard))
-//   } catch (err) {
-//     console.log('board action -> Cannot add column value', err)
-//     throw err
-//   }
-// }
+export async function addTaskUpdate(boardId, groupId, taskId, txt) {
+    const update = boardService.getEmptyUpdate(txt)
+    
+    try {
+        store.dispatch(getCmdAddTaskUpdate(groupId, taskId, update))
+        boardService.addTaskUpdate(boardId, groupId, taskId, update)
+        return update
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('Cannot add board msg', err)
+        throw err
+    }
+}
 
 export async function setColumnValue(taskId, colId, value) {
     const board = structuredClone(store.getState().boardModule.board)
@@ -333,12 +293,14 @@ function getCmdUpdateBoard(board) {
     }
 }
 
-// function getCmdAddBoardMsg(msg) {
-//     return {
-//         type: ADD_BOARD_MSG,
-//         msg
-//     }
-// }
+function getCmdAddTaskUpdate(groupId, taskId, update) {
+    return {
+        type: ADD_TASK_UPDATE,
+        groupId,
+        taskId,
+        update
+    }
+}
 
 function getCmdRemoveGroup(groupId) {
     return {

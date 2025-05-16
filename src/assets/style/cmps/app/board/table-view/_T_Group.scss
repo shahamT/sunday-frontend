@@ -16,7 +16,9 @@
 
     .T_GroupHeadRow> :nth-child(n + 5),
     .T_TaskRow> :nth-child(n + 5),
-    .T_GroupFooter> :nth-child(n + 5) {
+    .T_GroupFooter> :nth-child(n + 5),
+    .T_ColumnSumRow> :nth-child(4),
+    .T_ColumnSumRow> :nth-child(n + 5) {
         border-inline-start: 1px solid var(--layout-border-color);
     }
 
@@ -28,24 +30,27 @@
     }
 
     .T_GroupHeadRow> :nth-child(n + 3),
+    .T_ColumnSumRow> :nth-child(n + 4),
     .T_TaskRow> :nth-child(n + 3),
     .T_GroupFooter> :nth-child(n + 3) {
         border-block-start: 1px solid var(--layout-border-color);
     }
 
 
-    .T_TaskRow:last-of-type>*:nth-child(n + 4):not(:last-child) {
+    .T_TaskRow:last-of-type>*:nth-child(n + 4):not(:last-child),
+    .T_ColumnSumRow:last-of-type>*:nth-child(n + 4):not(:last-child) {
         border-block-end: 1px solid var(--layout-border-color);
     }
 
-
-    .T_GroupFooter> :nth-child(n + 3) {
+    .T_GroupFooter> :nth-child(n + 3),
+    .T_ColumnSumRow> :nth-child(n + 4) {
         border-block-end: 1px solid var(--layout-border-color);
     }
 
     // last cell expandable
     .T_GroupHeadRow> :last-child,
     .T_TaskRow> :last-child,
+    .T_ColumnSumRow> :last-child,
     .T_GroupFooter> :last-child {
         min-width: 68px;
         grid-column: auto / -1;
@@ -54,15 +59,15 @@
     // vertical stickyness
     .T_GroupHeader {
         position: sticky;
-        top: 160px;
-        z-index: 4;
+        top: 156px;
+        z-index: 10;
         background-color: var(--primary-background-color);
     }
 
     .T_GroupHeadRow {
         position: sticky;
-        top: 200px;
-        z-index: 3;
+        top: 196px;
+        z-index: 9;
         background-color: var(--primary-background-color);
     }
 
@@ -70,24 +75,27 @@
     .T_GroupHeader>:nth-child(1),
     .T_GroupHeader>:nth-child(2) {
         position: sticky;
-        z-index: 2;
+        z-index: 5;
     }
 
     .T_TaskRow> :nth-child(2),
     .T_GroupHeadRow> :nth-child(2),
+    .T_ColumnSumRow> :nth-child(2),
     .T_GroupFooter> :nth-child(2) {
         position: sticky;
-        z-index: 2;
+        z-index: 5;
     }
 
     .T_TaskRow> :nth-child(1),
     .T_TaskRow> :nth-child(3),
     .T_GroupHeadRow> :nth-child(1),
     .T_GroupHeadRow> :nth-child(3),
+    .T_ColumnSumRow> :nth-child(1),
+    .T_ColumnSumRow> :nth-child(3),
     .T_GroupFooter> :nth-child(1),
     .T_GroupFooter> :nth-child(3) {
         position: sticky;
-        z-index: 2;
+        z-index: 5;
         background: var(--primary-background-color);
     }
 
@@ -95,20 +103,23 @@
     .T_GroupHeader>:nth-child(1),
     .T_TaskRow> :nth-child(1),
     .T_GroupHeadRow> :nth-child(1),
+    .T_ColumnSumRow> :nth-child(1),
     .T_GroupFooter> :nth-child(1) {
         left: 0;
-        z-index: 3;
+        z-index: 6;
     }
 
     .T_GroupHeader>:nth-child(2),
     .T_TaskRow> :nth-child(2),
     .T_GroupHeadRow> :nth-child(2),
+    .T_ColumnSumRow> :nth-child(2),
     .T_GroupFooter> :nth-child(2) {
         left: 40px;
     }
 
     .T_TaskRow> :nth-child(3),
     .T_GroupHeadRow> :nth-child(3),
+    .T_ColumnSumRow> :nth-child(3),
     .T_GroupFooter> :nth-child(3) {
         left: 46px;
     }

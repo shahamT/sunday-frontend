@@ -1,6 +1,8 @@
 .T_GroupHeadRow {
 
     .add-column-btn-container {
+        display: flex;
+        align-items: center;
 
         .add-column-btn {
             margin-inline-start: 10px;

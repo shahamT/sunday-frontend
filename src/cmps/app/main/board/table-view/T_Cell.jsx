@@ -18,6 +18,7 @@ import { CellContentPeople } from "./T_CellContent/CellContentPeople";
 import { CellContentStatus } from "./T_CellContent/CellContentStatus";
 import { CellContentText } from "./T_CellContent/CellContentText";
 import { CellContentNumber } from "./T_CellContent/CellContentNumber";
+import { CellContentFile } from "./T_CellContent/CellContentFile";
 
 // ====== Component ======
 // =======================
@@ -44,6 +45,7 @@ export function T_Cell({ column, columnValue, taskId }) {
     people: CellContentPeople,
     text: CellContentText,
     number: CellContentNumber,
+    file: CellContentFile,
   };
 
   const variant = column.type.variant;
@@ -55,7 +57,6 @@ export function T_Cell({ column, columnValue, taskId }) {
       tabIndex={-1}
       onClick={() => cellRef.current?.focus()} // 🔥 set focus on any inner click
       className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
-      style={{ width: column.width + "px" }}
     >
       {DynamicComponent && (
         <DynamicComponent column={column} columnValue={columnValue} taskId={taskId} />

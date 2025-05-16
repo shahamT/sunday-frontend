@@ -18,7 +18,7 @@ import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
 // ====== Component ======
 // =======================
 
-export function T_GroupHeadRow({ columns, group }) {
+export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
     // === Consts
 
     // === Effects
@@ -27,11 +27,19 @@ export function T_GroupHeadRow({ columns, group }) {
 
     return (
         <section className="T_GroupHeadRow">
-           <div className="menu-container"/>
+            <div className="menu-container" />
             <div className={`t-left-indicator top ${group.color}-bg`} />
-            
+
             {columns.map((column, idx) => {
-                return <T_ColumnHeaderCell key={column.id + idx} column={column} groupId={group.id} />
+                return <T_ColumnHeaderCell
+                    key={column.id + idx}
+                    column={column}
+                    groupId={group.id}
+                    liveColumnWidthsRef={liveColumnWidthsRef}
+                    resizeVersion={resizeVersion}
+                    bumpResizeVersion={bumpResizeVersion}
+
+                />
             })}
 
             <div className="add-column-btn-container">

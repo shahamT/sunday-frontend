@@ -60,10 +60,10 @@ export function BoardHeader({ isSelected, select }) {
             </div>
 
             <div className="tab-bar">         
-                <div key="main-table" className={isSelected('main-table') ? 'tab-underline' : ''} onClick={() => select("main-table")}>
-                    <div className="tab-btn clickable clear size-32 select">Main Table</div>
+                <div key="main-table tab" className={`tab ${isSelected('main-table') ? 'tab-underline' : ''}`} onClick={() => select("main-table")}>
+                    <div className="tab-btn clickable clear size-32 select">Main table</div>
                 </div>
-                <div key="kanban" className={isSelected('kanban') ? 'tab-underline' : ''} onClick={() => select("kanban")}>
+                <div key="kanban" className={`tab ${isSelected('kanban') ? 'tab-underline' : ''}`} onClick={() => select("kanban")}>
                     <div className="tab-btn clickable clear size-32 select">Kanban</div>
                 </div>
             </div>            

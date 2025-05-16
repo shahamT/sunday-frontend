@@ -4,6 +4,7 @@
 import { userService } from "../../../../../services/user"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 import { setColumnValue } from "../../../../../store/actions/board.actions.js"
+import { loadUsers } from "../../../../../store/actions/user.actions"
 
 // === Actions
 
@@ -83,7 +84,11 @@ export function TaskDetails() {
         enrich()
 
 
-}, [task, columns])
+    }, [task, columns])
+
+    useEffect(() => {
+        loadUsers()
+    }, [])
 
     // === Functions
     function onCloseTaskDetails() {
@@ -119,12 +124,6 @@ export function TaskDetails() {
         return null
     }
 
-    // function getSelectedPersons() {
-    //     const peopleColId = columns.find(column => column.type.variant === 'people')?.id
-    //     const colValue = task.columnValues.find(cv => cv.colId === peopleColId)
-    //     setSelectedPersons(colValue?.value || [])
-    // }
-
     if (!task || !board) return <div>Loading...</div>
     return (
         <section className="TaskDetails">
@@ -139,11 +138,12 @@ export function TaskDetails() {
                         onBlur={onSetName}
                         onPressEnter={onSetName}
                     />
-                    <div className="in-task-persons" style={{ paddingInlineEnd: selectedPersons.length === 1
+                    <div className="in-task-persons" style={{ paddingInlineEnd: `${12 + 7 * (selectedPersons.length - 1)}px` }}>
+                    {/* <div className="in-task-persons" style={{ paddingInlineEnd: selectedPersons.length === 1
                         ? '5px'
                         : `${19 + 7 * (selectedPersons.length - 1)}px`
-                    }}>
-                        <button className="add-memeber-btn clickable filled icon-btn size-24 i-AddSmall"></button>
+                    }}> */}
+                        <button style={{marginInlineEnd: `${selectedPersons.length === 1 ? '-7px' : '-2px'}`}} className="add-memeber-btn clickable filled icon-btn size-24 i-AddSmall"></button>
                         <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length}/>
                     </div>
                     <div className="options-menu-wraper">
@@ -174,7 +174,7 @@ export function TaskDetails() {
                     </div> 
             </section>
 
-            {isSelected('updates') && <TaskDetailsUpdates />}
+            {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
             {isSelected('files') && <TaskDetailsFiles />}
             {isSelected('activity-log') && <TaskDetailsActivityLog />}
         </section>

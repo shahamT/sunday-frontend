@@ -55,7 +55,6 @@ export const boardService = {
     getById,
     save,
     remove,
-    // addBoardMsg
     removeGroup,
     saveGroup,
     getColors,
@@ -63,6 +62,7 @@ export const boardService = {
     removeColumn,
     saveTask,
     removeTask,
+    addTaskUpdate,
     setColumnValue,
     removeColumnValue,
     saveBoards,
@@ -125,20 +125,19 @@ async function save(board) {
     return savedBoard
 }
 
-// async function addBoardMsg(boardId, txt) {
-//     // Later, this is all done by the backend
-//     const board = await getById(boardId)
+async function addTaskUpdate(boardId, groupId, taskId, update) {
+    const board = await getById(boardId)
 
-//     const msg = {
-//         id: makeId(),
-//         by: userService.getLoggedinUser(),
-//         txt
-//     }
-//     board.msgs.push(msg)
-//     await storageService.put(STORAGE_KEY, board)
+    const boardToSave = {
+        ...board, groups: board.groups.map(group => group.id === groupId
+            ? { ...group, tasks: group.tasks.map(task => task.id === taskId 
+                ? {...task, updates: [update, ...task.updates]} : task )} : group)
+    }    
 
-//     return msg
-// }
+    await storageService.put(STORAGE_KEY, boardToSave)
+
+    return update
+}
 
 async function _createBoards() {
     const boards = await storageService.query(STORAGE_KEY)

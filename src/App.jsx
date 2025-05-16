@@ -1,5 +1,6 @@
 //style
 import './assets/style/main.scss'
+import 'animate.css';
 
 //pages
 import { HomePage } from './pages/land-page/HomePage.jsx'

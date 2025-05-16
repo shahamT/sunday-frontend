@@ -30,7 +30,7 @@ export function T_Filter({ /* prop1, prop2 */ }) {
     return (
         <section className="T_Filter">
             <div className="split-button size-32 filled new-item-btn">
-                <div className="clickable btn-left filled" onClick={onAddTask}>New Item</div>
+                <div className="clickable btn-left filled" onClick={onAddTask}>New item</div>
                 <div className="seperator"></div>
                     <PopUpMenu
                         position="bottom-start"
