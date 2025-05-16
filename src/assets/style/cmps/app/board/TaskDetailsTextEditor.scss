@@ -1,42 +1,61 @@
 .TaskDetailsTextEditor {
-    margin-block-start: 32px;
-    margin-block-end: 16px;
-    margin-inline: 16px;
-    width: calc(100% - 32px);
-    border-radius: var(--border-radius-md);
+  margin-block-start: 32px;
+  margin-block-end: 16px;
+  margin-inline: 16px;
+  width: calc(100% - 32px);
+  border-radius: var(--border-radius-md);
+  border: 1px solid var(--layout-border-color);
+
+  &.is-focused,
+  &.has-content {
     border: 1px solid var(--primary-color);
+  }
+
+  &.has-content .ProseMirror {
+    height: 100px;
+  }
+
+  .ProseMirror {
+    padding-inline: 18px;
+    outline: none;
     
-    .ProseMirror {
+    &:focus {
         height: 100px;
-        padding-inline: 18px;
-        
-        &:focus {
-            outline: none;
-        }
     }
 
-    .tool-bar {
-        height: 40px;
-        display: flex;
-        align-items: center;
-        // gap: 18px;
-        justify-content: start;
-        font-size: 14px;
-        margin-inline-start: 1px;
-        // width: 100%;
-
-        .icon-btn {
-            cursor: pointer;
-        }
+    & p.is-editor-empty {
+      padding: 16px 0 16px 8px;
+      font-size: 0.875rem;
     }
 
-    .text-editor-footer {
-        // height: 50px;
-        display: flex;
-        color: var(--icon-color);
-        justify-content: space-between;
-        padding-inline-start: 4px;
-        padding-inline-end: 8px;
-        padding-block: 8px;
+    & p.is-editor-empty::before {
+      content: attr(data-placeholder);
+      color: #888;
+      float: left;
+      height: 0;
+      pointer-events: none;
     }
+  }
+
+  .tool-bar {
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 14px;
+    margin-inline-start: 1px;
+
+    .icon-btn {
+      cursor: pointer;
+    }
+  }
+
+  .text-editor-footer {
+    display: flex;
+    color: var(--icon-color);
+    justify-content: space-between;
+    padding-inline-start: 4px;
+    padding-inline-end: 8px;
+    padding-block: 8px;
+  }
 }
