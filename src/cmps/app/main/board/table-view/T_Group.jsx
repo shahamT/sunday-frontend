@@ -1,7 +1,5 @@
 // === Libs
 
-
-
 // === Services
 
 // === Actions
@@ -40,13 +38,18 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
                 columns={columns}
                 liveColumnWidthsRef={liveColumnWidthsRef}
                 resizeVersion={resizeVersion}
-                 bumpResizeVersion={bumpResizeVersion}
+                bumpResizeVersion={bumpResizeVersion}
+            />
+
+
+            {group.tasks.map(task => (
+                <T_TaskRow
+                    key={task.id}
+                    task={task}
+                    columns={columns}
+                    group={group}
                 />
-
-
-            {group.tasks.map(task => {
-                return <T_TaskRow key={task.id} task={task} columns={columns} group={group} />
-            })}
+            ))}
 
             <T_GroupFooter group={group} itemColumn={itemColumn} />
             <T_ColumnSumRow columns={columns} group={group} />

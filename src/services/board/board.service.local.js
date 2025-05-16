@@ -62,6 +62,7 @@ export const boardService = {
     removeColumn,
     saveTask,
     removeTask,
+    moveTask,
     addTaskUpdate,
     setColumnValue,
     removeColumnValue,
@@ -244,6 +245,23 @@ async function removeTask(taskId, groupId, boardId) {
             ? { ...group, tasks: group.tasks.filter(task => task.id !== taskId) } : group)
     }
     await storageService.put(STORAGE_KEY, boardToSave)
+}
+
+async function moveTask(taskId, fromGroupId, toGroupId, toIndex, boardId) {
+  // Load current board from storage/server
+  const board = await getById(boardId); // or however you fetch the board
+
+  const fromGroup = board.groups.find(group => group.id === fromGroupId);
+  const toGroup = board.groups.find(group => group.id === toGroupId);
+  if (!fromGroup || !toGroup) throw new Error("Invalid group(s)");
+
+  const task = fromGroup.tasks.find(t => t.id === taskId);
+  if (!task) throw new Error("Task not found");
+
+  fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== taskId);
+  toGroup.tasks.splice(toIndex, 0, task);
+
+  return await save(board); // or your save method
 }
 
 function setColumnValue(board, taskId, colId, value) {

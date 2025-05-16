@@ -23,7 +23,7 @@ import { CellContentFile } from "./T_CellContent/CellContentFile";
 // ====== Component ======
 // =======================
 
-export function T_Cell({ column, columnValue, taskId }) {
+export function T_Cell({ column, columnValue, taskId, groupId, listeners }) {
   const cellRef = useRef(null);
 
   // Attach global listener to detect clicks outside
@@ -59,7 +59,13 @@ export function T_Cell({ column, columnValue, taskId }) {
       className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
     >
       {DynamicComponent && (
-        <DynamicComponent column={column} columnValue={columnValue} taskId={taskId} />
+        <DynamicComponent
+          column={column}
+          columnValue={columnValue}
+          taskId={taskId}
+          groupId={groupId}
+          {...(variant === 'item' ? { dragListeners: listeners } : {})}
+        />
       )}
     </section>
   );

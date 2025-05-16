@@ -19,7 +19,7 @@ import { useEffect } from "react";
 // ====== Component ======
 // =======================
 
-export function CellContentItem({ column, columnValue, taskId }) {
+export function CellContentItem({ column, columnValue, taskId, groupId, dragListeners = {} }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
 
@@ -55,7 +55,11 @@ export function CellContentItem({ column, columnValue, taskId }) {
     return (
         <div
             className="CellContentItem cell-contnet"
-            onClick={onOpenTaskDetails}
+            onClick={(e) => {
+                e.stopPropagation()
+                onOpenTaskDetails()
+            }}
+            {...dragListeners}
         >
 
             <label htmlFor={`t${taskId}`} className="checkbox-container">

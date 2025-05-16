@@ -23,6 +23,7 @@ export const UPDATE_COLUMN = 'UPDATE_COLUMN'
 // Tasks
 export const REMOVE_TASK = 'REMOVE_TASK'
 export const ADD_TASK = 'ADD_TASK'
+export const MOVE_TASK = 'MOVE_TASK'
 export const ADD_TASK_UPDATE = 'ADD_TASK_UPDATE'
 
 //Loading
@@ -71,10 +72,10 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case REVERT_BOARDS:
-            return {...state, boards: state.lastBoards, lastBoards: []}
+            return { ...state, boards: state.lastBoards, lastBoards: [] }
 
         case REVERT_BOARD:
-            return {...state, board: state.lastBoard, lastBoard: {}}
+            return { ...state, board: state.lastBoard, lastBoard: {} }
 
         case ADD_BOARD:
             return {
@@ -103,17 +104,17 @@ export function boardReducer(state = initialState, action = {}) {
         //GROUP
         case REMOVE_GROUP:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
-                board: {...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId)},
+                board: { ...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId) },
                 lastBoard,
             }
 
         case ADD_GROUP:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
@@ -123,49 +124,49 @@ export function boardReducer(state = initialState, action = {}) {
 
         case UPDATE_GROUP:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
-                board: {...state.board, groups: state.board.groups.map(group => group.id === action.group.id ? action.group : group)},
+                board: { ...state.board, groups: state.board.groups.map(group => group.id === action.group.id ? action.group : group) },
                 lastBoard
             }
 
         //COLUMN
         case REMOVE_COLUMN:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
-                board: {...state.board, columns: state.board.columns.filter(column => column.id !== action.columnId)},
+                board: { ...state.board, columns: state.board.columns.filter(column => column.id !== action.columnId) },
                 lastBoard
             }
 
         case ADD_COLUMN:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
-                board: {...state.board, columns: [...state.board.columns, action.column]},
+                board: { ...state.board, columns: [...state.board.columns, action.column] },
                 lastBoard
             }
 
         case UPDATE_COLUMN:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
-                board: {...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column)},
+                board: { ...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column) },
                 lastBoard
             }
 
-         //TASKS
-         case REMOVE_TASK:
+        //TASKS
+        case REMOVE_TASK:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
@@ -178,26 +179,50 @@ export function boardReducer(state = initialState, action = {}) {
 
         case ADD_TASK:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
-                        ? { ...group, tasks: action.isTop ? [action.task, ...group.tasks] : [...group.tasks, action.task] } : group)},
+                        ? { ...group, tasks: action.isTop ? [action.task, ...group.tasks] : [...group.tasks, action.task] } : group)
+                },
                 lastBoard
             }
-        
+
+        case MOVE_TASK: {
+            const { task, fromGroupId, toGroupId, toIndex } = action;
+            const groups = [...state.board.groups];
+
+            const fromGroup = groups.find(g => g.id === fromGroupId);
+            const toGroup = groups.find(g => g.id === toGroupId);
+            if (!fromGroup || !toGroup) return state;
+
+            fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== task.id);
+            toGroup.tasks.splice(toIndex, 0, task);
+
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    groups
+                }
+            };
+        }
+
         case ADD_TASK_UPDATE:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
-                        ? { ...group, tasks: group.tasks.map(task => task.id === action.taskId 
-                            ? {...task, updates: [action.update, ...task.updates]} : task)} : group)},
+                        ? {
+                            ...group, tasks: group.tasks.map(task => task.id === action.taskId
+                                ? { ...task, updates: [action.update, ...task.updates] } : task)
+                        } : group)
+                },
                 lastBoard
             }
 
