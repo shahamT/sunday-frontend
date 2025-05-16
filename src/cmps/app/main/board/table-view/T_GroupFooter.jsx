@@ -27,9 +27,7 @@ export function T_GroupFooter({ group, itemColumn }) {
 
 
     async function onAddTask() {
-        if (value === '') {
-            return
-        }
+        if (value.trim() === '') return
 
         const valueToSave = value
         set('')

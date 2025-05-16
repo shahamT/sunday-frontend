@@ -16,7 +16,11 @@
     .img-wraper {
 
         .img-preview {
-            height: 30px;
+            height: 26px;
+            transition: var(--transition-xs);
+            &:hover{
+              height: 30px;  
+            }
         }
 
     }
