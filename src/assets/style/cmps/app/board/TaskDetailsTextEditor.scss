@@ -6,9 +6,21 @@
   border-radius: var(--border-radius-md);
   border: 1px solid var(--layout-border-color);
 
+  &:hover {
+    background-color: var(--primary-background-hover-color);
+  }
+
   &.is-focused,
   &.has-content {
     border: 1px solid var(--primary-color);
+  }
+
+  &.is-focused {
+    .ProseMirror {
+      & p.is-editor-empty::before {
+      content: '';
+    }
+    }
   }
 
   &.has-content .ProseMirror {
