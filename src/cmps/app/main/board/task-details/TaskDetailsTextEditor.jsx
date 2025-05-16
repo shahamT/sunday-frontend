@@ -47,7 +47,6 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
 
     const isOpen = useSelector(storeState => storeState.boardModule.isTaskPanelOpen)
     const [destroy, setDestroy] = useState(false)
-    console.log(destroy)
 
     const extensions = [StarterKit, Document, Paragraph, Text, Bold, Italic, Underline, Strike, TextStyle, Color,
         OrderedList, ListItem, BulletList, Gapcursor, Table.configure({ resizable: true, }), TableRow, TableHeader,
