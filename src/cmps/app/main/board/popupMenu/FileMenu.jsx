@@ -33,7 +33,7 @@ export function FiledMenu({ imgUrl, imgTitle, onCloseModal }) {
 
     return (
         <section className="file-menu">
-            <button className="clickable clear size-32 icon-start full-width left-aligned i-Fullscreen" onClick={() => openGlobalModal(<FileModal onCloseModal={onCloseModal} />)} >Open file</button>
+            <button className="clickable clear size-32 icon-start full-width left-aligned i-Fullscreen" onClick={() => openGlobalModal(<FileModal imgUrl={imgUrl} onCloseModal={onCloseModal} />)} >Open file</button>
             <a href={downloadUrl} download>
                 <div className="download-btn clickable clear size-32 i-Download icon-start full-width left-aligned">Download file</div>
             </a>

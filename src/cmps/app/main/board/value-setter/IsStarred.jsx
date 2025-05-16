@@ -3,15 +3,7 @@
 import { useEffect, useState } from "react"
 import { updateBoard } from "../../../../../store/actions/board.actions"
 
-// === Services
 
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================

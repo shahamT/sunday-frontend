@@ -45,23 +45,24 @@
 
       }
 
-
     }
 
     .img-wrapper {
       width: 262px;
       height: 140px;
 
-      overflow: hidden;
       box-sizing: border-box;
       justify-self: center;
-
+      background-color: #cbddff;
+      overflow: hidden;
 
       img {
         width: 100%;
         height: 100%;
         object-fit: contain;
         display: block;
+        align-self: center;
+
 
       }
 
