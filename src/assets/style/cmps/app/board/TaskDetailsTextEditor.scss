@@ -13,6 +13,7 @@
   &.is-focused,
   &.has-content {
     border: 1px solid var(--primary-color);
+    background-color: var(--fixed-light-color);
   }
 
   &.is-focused {
