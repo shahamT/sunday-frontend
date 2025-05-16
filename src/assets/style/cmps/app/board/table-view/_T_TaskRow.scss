@@ -22,6 +22,13 @@
 
         }
 
+        
+        &.menu-in-focus {
+            .menu-wraper {
+                opacity: 1;
+            }
+        }
+
         &:focus-within {
             >*:nth-child(n + 3) {
                 background-color: var(--primary-selected-color);

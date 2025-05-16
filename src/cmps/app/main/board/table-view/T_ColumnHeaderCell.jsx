@@ -23,6 +23,7 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(column.name)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     const [width, setWidth] = useState(column.width)
     const [isDragging, setIsDragging] = useState(false)
@@ -121,7 +122,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resiz
     const variant = column.type.variant
     return (
         <div
-            className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''}`}
+            className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}`}
             style={{ width: (liveColumnWidthsRef?.current?.[column.id] ?? width) + 'px' }}
         >
 
@@ -147,6 +148,8 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resiz
 
                             <PopUpMenu
                                 position="bottom-start"
+                                onOpen={() => setIsMenuOpen(true)}
+                                onClose={() => setIsMenuOpen(false)}
                                 renderContent={({ onCloseModal }) => (
                                     <ColumnMenu
                                         onCloseModal={onCloseModal}
@@ -154,7 +157,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resiz
                                     />
                                 )}
                             >
-                                <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                                <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`} />
                             </PopUpMenu>
 
 

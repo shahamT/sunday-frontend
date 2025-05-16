@@ -76,7 +76,8 @@
     }
 
 
-    &:hover {
+    &:hover,
+    &.menu-in-focus {
         .menu-wraper {
             opacity: 1;
         }

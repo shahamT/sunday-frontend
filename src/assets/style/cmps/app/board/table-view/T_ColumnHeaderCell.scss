@@ -7,8 +7,11 @@
         padding-inline-start: 0px;
     }
 
-    &:hover:not(:focus-within) .menu-btn-wraper {
-        display: block;
+    &:hover:not(:focus-within),
+    &.menu-in-focus {
+        .menu-btn-wraper {
+            display: block;
+        }
     }
 
     .menu-btn-wraper {

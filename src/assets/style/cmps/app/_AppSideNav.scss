@@ -227,7 +227,8 @@
                 }
 
 
-                &:hover {
+                &:hover,
+                &.in-focus {
                         .menu-btn-wraper {
                                 display: block;
                         }

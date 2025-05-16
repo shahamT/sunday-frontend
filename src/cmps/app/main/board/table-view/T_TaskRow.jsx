@@ -7,6 +7,7 @@ import { T_Cell } from "./T_Cell"
 // === Actions
 
 // === Hooks / React
+import { useState } from "react"
 
 // === Imgs
 
@@ -19,6 +20,7 @@ import { TaskMenu } from "../popupMenu/TaskMenu"
 
 export function T_TaskRow({ task, columns, group }) {
     // === Consts
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
 
     // === Effects
 
@@ -26,12 +28,14 @@ export function T_TaskRow({ task, columns, group }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <article className="T_TaskRow">
-            
+        <article className={`T_TaskRow ${isMenuOpen ? 'menu-in-focus' : ''}`}>
+
             <div className="menu-container">
                 <div className="menu-wraper">
                     <PopUpMenu
                         position="bottom-start"
+                        onOpen={() => setIsMenuOpen(true)}
+                        onClose={() => setIsMenuOpen(false)}
                         renderContent={({ onCloseModal }) => (
                             <TaskMenu
                                 onCloseModal={onCloseModal}
@@ -41,7 +45,7 @@ export function T_TaskRow({ task, columns, group }) {
                             />
                         )}
                     >
-                        <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                        <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`} />
                     </PopUpMenu>
                 </div>
             </div>
