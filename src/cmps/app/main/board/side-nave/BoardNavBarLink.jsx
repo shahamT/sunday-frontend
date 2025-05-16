@@ -1,5 +1,5 @@
 // import React from "react";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
@@ -14,7 +14,8 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
   const clickTimeRef = useRef(null)
   const inputRef = useRef(null)
   const { boardId } = useParams()
-  // sss
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
 
   const style = {
     transition,
@@ -29,36 +30,21 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
 
   function handleClick() {
     navigate(`/app/board/${board._id}`)
-
-    // const elapsed = Date.now() - clickTimeRef.current
-    // if (elapsed < 200) {
-    //   navigate(`/app/board/${board._id}`)
-    // }
   }
 
   function handleMouseDown() {
     clickTimeRef.current = Date.now()
   }
 
-
-
-
-
   return (
     <div
-      className={`
-    BoardNavBarLink 
-      ${isOver ? 'drag-over' : ''} 
-      ${isDragging ? 'dragging' : ''}
-    `}
+      className={`BoardNavBarLink ${isOver ? 'drag-over' : ''} ${isDragging ? 'dragging' : ''} ${isMenuOpen ? 'in-focus' : ''}`}
       ref={setNodeRef}
       {...(editingBoardId !== board._id ? { ...attributes, ...listeners } : {})}
       style={style}
     >
-
-      <div className="board-content">
         <div
-          className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null}`}
+          className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null} ${isMenuOpen ? 'in-focus' : ''}`}
           onMouseDown={handleMouseDown}
           onClick={handleClick}
           draggable={false}
@@ -80,9 +66,11 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
             </div>
           )}
 
-          <div className="menu-btn-wraper">
+          <div className={`menu-btn-wraper ${isMenuOpen ? 'in-focus' : ''}`}>
             <PopUpMenu
               position="bottom-start"
+              onOpen={() => setIsMenuOpen(true)}
+              onClose={() => setIsMenuOpen(false)}
               renderContent={({ onCloseModal }) => (
                 <BoardMenu
                   onCloseModal={onCloseModal}
@@ -92,9 +80,9 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
                 />
               )}
             >
-              <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+              <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`} />
             </PopUpMenu>
-          </div>
+         
         </div>
       </div>
     </div>

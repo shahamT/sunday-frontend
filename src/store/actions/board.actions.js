@@ -168,7 +168,7 @@ export async function removeTask(taskId, groupId) {
 
 export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     const update = boardService.getEmptyUpdate(txt)
-    
+
     try {
         store.dispatch(getCmdAddTaskUpdate(groupId, taskId, update))
         boardService.addTaskUpdate(boardId, groupId, taskId, update)

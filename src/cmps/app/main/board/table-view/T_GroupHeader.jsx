@@ -17,6 +17,7 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 import { useSelector } from "react-redux";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { GroupMenu } from "../popupMenu/GroupMenu";
+import { useState } from "react";
 
 // ====== Component ======
 // =======================
@@ -25,6 +26,9 @@ export function T_GroupHeader({ group }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(group.name)
     const board = useSelector(storeState => storeState.boardModule.board)
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+
     // === Effects
 
     // === Functions
@@ -55,11 +59,13 @@ export function T_GroupHeader({ group }) {
     }
 
     return (
-        <section className="T_GroupHeader">
+        <section className={`T_GroupHeader ${isMenuOpen ? 'menu-in-focus' : ''}`}>
             <div className="menu-container">
-                <div className="menu-wraper">
+                <div className={`menu-wraper`}>
                     <PopUpMenu
                         position="bottom-start"
+                        onOpen={() => setIsMenuOpen(true)}
+                        onClose={() => setIsMenuOpen(false)}
                         renderContent={({ onCloseModal }) => (
                             <GroupMenu
                                 onCloseModal={onCloseModal}
@@ -67,7 +73,7 @@ export function T_GroupHeader({ group }) {
                             />
                         )}
                     >
-                        <div className="group-menu-btn clickable clear icon-btn size-24 i-Menu"></div>
+                        <div className={`group-menu-btn clickable clear icon-btn size-24 i-Menu ${isMenuOpen ? 'in-focus' : ''}`}></div>
                     </PopUpMenu>
                 </div>
             </div>
