@@ -29,7 +29,6 @@ export function ClearLayout({ /* prop1, prop2 */ }) {
         <section className="ClearLayout">
             <>
                 <main>
-                    <h1>ClearLayout main content</h1>
                     <Outlet />
                 </main>
             </>
