@@ -23,7 +23,7 @@ import { CellContentFile } from "./T_CellContent/CellContentFile";
 // ====== Component ======
 // =======================
 
-export function T_Cell({ column, columnValue, taskId, groupId, listeners }) {
+export function T_Cell({ column, columnValue, taskId, groupId, listeners, overlay }) {
   const cellRef = useRef(null);
 
   // Attach global listener to detect clicks outside
@@ -57,6 +57,12 @@ export function T_Cell({ column, columnValue, taskId, groupId, listeners }) {
       tabIndex={-1}
       onClick={() => cellRef.current?.focus()} // 🔥 set focus on any inner click
       className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
+      style={{
+        width: `${column.width}px`,
+        minWidth: `${column.width}px`,
+        maxWidth: `${column.width}px`,
+        flexShrink: 0
+      }}
     >
       {DynamicComponent && (
         <DynamicComponent

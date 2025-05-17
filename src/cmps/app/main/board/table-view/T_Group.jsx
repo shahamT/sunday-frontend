@@ -1,5 +1,5 @@
 // === Libs
-import { useDndContext } from '@dnd-kit/core'
+import { DragOverlay, useDndContext } from '@dnd-kit/core'
 
 // === Child Components
 import { T_ColumnSumRow } from './T_ColumnSumRow'
@@ -11,11 +11,13 @@ import { T_TaskRow } from './T_TaskRow'
 // ====== Component ======
 // =======================
 
-export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
+export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bumpResizeVersion, activeId }) {
   // === Consts
-  const { active } = useDndContext()
-  const [activeTaskId, activeGroupId] = active?.id?.split('|') || []
   const itemColumn = columns.find(col => col.type?.variant === 'item')
+
+  const [activeTaskId, activeGroupId] = activeId?.split('|') || []
+  const isActiveGroup = activeGroupId === group.id
+  const activeTask = group.tasks.find(t => t.id === activeTaskId)
 
   return (
     <section className="T_Group">
@@ -29,6 +31,15 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
         bumpResizeVersion={bumpResizeVersion}
       />
 
+
+      <T_TaskRow
+        key={`__start__|${group.id}`}
+        task={{ id: `__start__`, columnValues: [] }}
+        columns={columns}
+        group={group}
+        isBuffer
+      />
+
       {group.tasks.map(task => (
         <T_TaskRow
           key={task.id}
@@ -37,6 +48,28 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
           group={group}
         />
       ))}
+
+      <T_TaskRow
+        key={`__start__|${group.id}`}
+        task={{ id: `__start__`, columnValues: [] }}
+        columns={columns}
+        group={group}
+        isBuffer
+      />
+
+      {isActiveGroup && activeTask && (
+        <DragOverlay dropAnimation={null}>
+          <section className="T_Group T_Group--overlay">
+            <T_TaskRow
+              task={activeTask}
+              columns={columns}
+              group={group}
+              isOverlay={true}
+            />
+          </section>
+        </DragOverlay>
+      )}
+
 
       <T_GroupFooter group={group} itemColumn={itemColumn} />
       <T_ColumnSumRow columns={columns} group={group} />

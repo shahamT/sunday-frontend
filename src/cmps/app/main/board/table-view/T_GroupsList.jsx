@@ -47,7 +47,15 @@ export function T_GroupsList() {
     addGroup()
   }
 
+  const [activeId, setActiveId] = useState(null)
+
+  function handleDragStart({ active }) {
+    setActiveId(active.id)
+  }
+
   function handleDragEnd({ active, over }) {
+    setActiveId(null)
+
     if (!over || active.id === over.id) return
     if (!active.id.includes('|') || !over.id.includes('|')) return
 
@@ -63,7 +71,13 @@ export function T_GroupsList() {
     if (!task) return
 
     const overIndex = toGroup.tasks.findIndex(t => t.id === overTaskId)
-    const insertIndex = overIndex === -1 ? toGroup.tasks.length : overIndex
+    const isDifferentGroup = fromGroupId !== toGroupId
+
+    const insertIndex = overIndex === -1
+      ? toGroup.tasks.length
+      : isDifferentGroup
+        ? overIndex + 1
+        : overIndex
 
     const currentIndex = fromGroup.tasks.findIndex(t => t.id === activeTaskId)
     if (
@@ -87,13 +101,16 @@ export function T_GroupsList() {
       <DndContext
         sensors={sensors}
         collisionDetection={closestCorners}
+        onDragStart={handleDragStart}
         onDragEnd={handleDragEnd}
       >
         <SortableContext
           items={
-            board.groups.flatMap(group =>
-              group.tasks.map(task => `${task.id}|${group.id}`)
-            )
+            board.groups.flatMap(group => [
+              `__start__|${group.id}`,
+              ...group.tasks.map(task => `${task.id}|${group.id}`),
+              `__end__|${group.id}`
+            ])
           }
           strategy={rectSortingStrategy}
         >
@@ -105,6 +122,8 @@ export function T_GroupsList() {
               liveColumnWidthsRef={liveColumnWidthsRef}
               resizeVersion={resizeVersion}
               bumpResizeVersion={bumpResizeVersion}
+              activeId={activeId}
+
             />
           ))}
         </SortableContext>

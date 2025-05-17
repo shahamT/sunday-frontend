@@ -13,7 +13,7 @@ import { T_Cell } from './T_Cell'
 // ====== Component ======
 // =======================
 
-export function T_TaskRow({ task, columns, group }) {
+export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = false }) {
   // === Consts
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -29,13 +29,32 @@ export function T_TaskRow({ task, columns, group }) {
   const style = {
     transform: CSS.Transform.toString(transform),
     transition,
-    zIndex: isDragging ? 1000 : 'auto'
+    zIndex: isOverlay ? 1000 : 'auto',
+    pointerEvents: isOverlay ? 'none' : 'auto',
   }
+
+  if (isBuffer) {
+  return (
+    <article
+      ref={setNodeRef}
+      className="T_TaskRow buffer"
+      style={{
+        height: '0px',
+        padding: 0,
+        border: 'none',
+        pointerEvents: 'none',
+        opacity: 0,
+      }}
+      {...attributes}
+    />
+  )
+}
+
 
   return (
     <article
       ref={setNodeRef}
-      className={`T_TaskRow ${isMenuOpen ? 'menu-in-focus' : ''} ${isDragging ? 'dragging' : ''}`}
+      className={`T_TaskRow ${isMenuOpen ? 'menu-in-focus' : ''} ${isDragging ? 'dragging' : ''} ${isOverlay ? 'overlay' : ''}`}
       style={style}
       {...attributes}
     >
@@ -71,6 +90,7 @@ export function T_TaskRow({ task, columns, group }) {
             taskId={task.id}
             groupId={group.id}
             listeners={listeners}
+            isOverlay={isOverlay}
           />
         )
       })}

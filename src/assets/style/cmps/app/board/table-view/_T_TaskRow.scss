@@ -39,11 +39,19 @@
 }
 
 .T_TaskRow.dragging {
-  box-shadow: var(--box-shadow-md);
-  background-color: rgb(15, 239, 217) ;
-  opacity: 0.5;
-  z-index: 1000;
-  transform: scale(1.03);
-  border-radius: 6px;
-  pointer-events: none;
+    &>* {
+        opacity: 0 !important;
+    }
+
+    border: 2px dashed var(--layout-border-color);
+    border-radius: 6px;
+    pointer-events: none;
+}
+
+.T_TaskRow.overlay {
+    
+    transform: rotate(5deg) translateY(50px);
+    box-shadow: var(--box-shadow-md);
+    opacity: 0.9;
+    border-radius: 6px;
 }
