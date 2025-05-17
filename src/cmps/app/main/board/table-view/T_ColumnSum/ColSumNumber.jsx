@@ -19,13 +19,15 @@ export function ColSumNumber({ column,columnValues }) {
     // === Effects
 
     // === Functions
-const colId=column.colId
-console.log("pppppppp",columnValues)
+const sum= columnValues.reduce((acc,currNun)=>{
+    return acc+ currNun
+},0)
 
     // if (!data) return <div>Loading...</div>
     return (
         <section className="ComponentName">
-            <h1>ComponentName</h1>
+            <p>{sum}</p>
+            <p>sum</p>
         </section>
     )
 }

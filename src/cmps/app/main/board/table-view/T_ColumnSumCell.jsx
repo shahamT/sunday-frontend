@@ -19,13 +19,11 @@ import { ColSumNumber } from "./T_ColumnSum/ColSumNumber";
 // =======================
 
 export function T_ColumnSumCell({ group, column }) {
-console.log(column,"ddd")
   const columnValues = group.tasks.reduce((acc, task) => {
     const colValue = task.columnValues.find(col => col.colId === column.id)?.value
     if (colValue !== undefined) acc.push(colValue)
     return acc
   }, [])
-
   // group.tasks[i].columnValues.find(col => col.colId === column.id)?.value
   // Attach global listener to detect clicks outside
 
@@ -40,9 +38,6 @@ console.log(column,"ddd")
   // const columnValue= group.tasks.columnValue.colId[]
   const variant = column.type.variant
   const DynamicComponent = componentMap[variant]
-
-
-
 
 
 
