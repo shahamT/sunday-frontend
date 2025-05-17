@@ -40,9 +40,20 @@ import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
 
 
 
+import { login } from './store/actions/user.actions'; //TODO delete this!!!
+
+
+
 export default function App() {
     // routes with no header:
     const noHeaders = ['/signup', '/login']
+
+    const userCred = {//TODO delete this!!!
+        email: "user1@company.com", 
+        password: "hashed_pw_1"
+    } 
+    login(userCred)//TODO delete this!!!
+
 
 
     return (
