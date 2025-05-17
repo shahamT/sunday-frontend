@@ -8,6 +8,7 @@
 
 // === Hooks / React
 import { useRef, useEffect } from "react";
+import { ColSumNumber } from "./T_ColumnSum/ColSumNumber";
 
 // === Imgs
 
@@ -17,9 +18,15 @@ import { useRef, useEffect } from "react";
 // ====== Component ======
 // =======================
 
-export function T_ColumnSumCell({ column }) {
+export function T_ColumnSumCell({ group, column }) {
+console.log(column,"ddd")
+  const columnValues = group.tasks.reduce((acc, task) => {
+    const colValue = task.columnValues.find(col => col.colId === column.id)?.value
+    if (colValue !== undefined) acc.push(colValue)
+    return acc
+  }, [])
 
-
+  // group.tasks[i].columnValues.find(col => col.colId === column.id)?.value
   // Attach global listener to detect clicks outside
 
   const componentMap = {
@@ -28,20 +35,27 @@ export function T_ColumnSumCell({ column }) {
     date: '',
     people: '',
     text: '',
-    number: '',
+    number: ColSumNumber,
   };
+  // const columnValue= group.tasks.columnValue.colId[]
+  const variant = column.type.variant
+  const DynamicComponent = componentMap[variant]
 
-  const variant = column.type.variant;
-  const DynamicComponent = componentMap[variant];
+
+
+
+
+
+
 
   return (
     <section
-    className={`T_ColumnSumCell`}
-    style={{ width: column.width + "px" }}
+      className={`T_ColumnSumCell`}
+      style={{ width: column.width + "px" }}
     >
       {DynamicComponent && (
-        <DynamicComponent column={column} columnValue={columnValue} taskId={taskId} />
+        <DynamicComponent column={column} columnValues={columnValues} />
       )}
     </section>
-  );
+  )
 }
