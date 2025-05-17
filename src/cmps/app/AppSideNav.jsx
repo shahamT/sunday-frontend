@@ -145,7 +145,7 @@ export function AppSideNav({ }) {
                         <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 
-                    <div className="boards-list">
+                    <div className="board-list">
                         <DndContext
                             sensors={sensors}
                             collisionDetection={closestCenter}
