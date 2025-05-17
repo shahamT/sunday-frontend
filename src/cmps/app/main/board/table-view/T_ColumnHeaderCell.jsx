@@ -167,8 +167,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
                                 <EditableText
                                     value={value}
                                     emojiPicker={false}
-                                    // centered={true}
-                                    full={true}
+                                    centered={true}
                                     size="small"
                                     handleChange={handleChange}
                                     onBlur={onUpdateColumnName}
