@@ -27,25 +27,24 @@ function remove(userId) {
 	return httpService.delete(`user/${userId}`)
 }
 
-async function update({ _id, visitedBoardId }) {
-	const user = await httpService.put(`user/${_id}`, { _id, visitedBoardId })
+async function update({ boardId }) {
+    const loggedinUserId = getLoggedinUser()._id
+	const user = await httpService.put(`user/${loggedinUserId}`, { boardId })
 
 	// When admin updates other user's details, do not update loggedinUser
-    const loggedinUser = getLoggedinUser() // Might not work because its defined in the main service???
-    if (loggedinUser._id === user._id && loggedinUser.role !== 'admin') saveLoggedinUser(user)
+    // if (loggedinUser._id === user._id && loggedinUser.role !== 'admin') 
+    saveLoggedinUser(user)
 
 	return user
 }
 
 async function login(userCred) {
 	const user = await httpService.post('auth/login', userCred)
-	if (user) return saveLoggedinUser(user)
+	return user ? saveLoggedinUser(user) : null
 }
 
 async function signup(userCred) {
-    if (!userCred.profileImg) userCred.profileImg = `https://ui-avatars.com/api/?name=${userCred.firstName}+${userCred.lastName}&background=0D8ABC&color=fff&length=2&rounded=true&bold=true`
-
-    const user = await httpService.post('auth/signup', userCred)
+        const user = await httpService.post('auth/signup', userCred)
 	return saveLoggedinUser(user)
 }
 
@@ -75,7 +74,6 @@ function saveLoggedinUser(user) {
         email: user.email, 
         profileImg: user.imgUrl, 
         lastViewedBoards: user.lastViewedBoards,
-        role: user.role 
     }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user

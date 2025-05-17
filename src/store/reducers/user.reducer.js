@@ -38,7 +38,7 @@ export function userReducer(state = initialState, action = {}) {
         case UPDATE_LAST_VISITED:
             return {
                 ...state,
-                lastViewedBoards: state.lastViewedBoards.filter(boardId => boardId !== action.boardId).unshift(action.boardId)
+                lastViewedBoards: [{ boardId: action.boardId, viewedAt: Date.now() }, ...state.lastViewedBoards.filter(board => board.boardId !== action.boardId)]
             }
 
         //Loading

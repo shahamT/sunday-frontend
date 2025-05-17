@@ -38,7 +38,7 @@ async function save(board) {
 
 async function saveBoards(reorderedBoards) {
     
-    return httpService.put('board/reorder', reorderedBoards)
+    return httpService.put('board/boards/reorder', reorderedBoards)
 }
 
 async function remove(boardId) {

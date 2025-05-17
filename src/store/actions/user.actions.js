@@ -81,9 +81,11 @@ export async function loadUser(userId) {
     }
 }
 
-export async function updateUser( boardId) {
+export async function updateUser(boardId) {
     try {
         store.dispatch({ type: UPDATE_LAST_VISITED, boardId })
+        const user = await userService.update(boardId)
+        return user
     } catch (err) {
         showErrorMsg('Cannot update user')
         console.log('Cannot update user', err)
