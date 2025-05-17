@@ -30,7 +30,7 @@ export function CellContentNumber({ taskId, column, columnValue }) {
 
     function onSetNumber() {
         setIsEditing(false)
-        if (value.trim() === '') onClearNumber()
+        if (value === '') onClearNumber()
         try {
             setColumnValue(taskId, column.id, value)
         }
