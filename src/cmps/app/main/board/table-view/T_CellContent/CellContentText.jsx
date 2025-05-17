@@ -52,7 +52,7 @@ export function CellContentText({ taskId, column, columnValue }) {
 
     return (
         <div
-            className="CellContentText cell-contnet"
+            className="CellContentText cell-content"
             onClick={() => {
                 setIsEditing(true)
                 setTimeout(() => {

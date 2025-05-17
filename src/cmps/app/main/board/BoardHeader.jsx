@@ -29,44 +29,45 @@ export function BoardHeader({ isSelected, select }) {
     }, [board])
 
     // === Functions
-        function onSetName() {
-            if (value === '') {
-                showErrorMsg(`Board name can't be empty`)
-                set(board?.name)
-                return
-            }
-    
-            try {
-                updateBoard({...board, name: value})
-            }
-            catch (err) {
-                showErrorMsg(`Somthing went wrong`)
-            }
+    function onSetName() {
+        if (value === '') {
+            showErrorMsg(`Board name can't be empty`)
+            set(board?.name)
+            return
         }
+
+        try {
+            updateBoard({ ...board, name: value })
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
 
     // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardHeader">
             <div className='main-section'>
-                <EditableText
-                    value={value}
-                    full={false}
-                    size="title"
-                    handleChange={handleChange}
-                    onBlur={onSetName}
-                    onPressEnter={onSetName}
-                />
+                <div className="title-wraper">
+                    <EditableText
+                        value={value}
+                        size="title"
+                        handleChange={handleChange}
+                        onBlur={onSetName}
+                        onPressEnter={onSetName}
+                    />
+                </div>
                 <div className="board-title-btn clickable clear icon-btn size-32 i-Update"></div>
             </div>
 
-            <div className="tab-bar">         
+            <div className="tab-bar">
                 <div key="main-table tab" className={`tab ${isSelected('main-table') ? 'tab-underline' : ''}`} onClick={() => select("main-table")}>
                     <div className="tab-btn clickable clear size-32 select">Main table</div>
                 </div>
                 <div key="kanban" className={`tab ${isSelected('kanban') ? 'tab-underline' : ''}`} onClick={() => select("kanban")}>
                     <div className="tab-btn clickable clear size-32 select">Kanban</div>
                 </div>
-            </div>            
+            </div>
         </section>
     )
 }

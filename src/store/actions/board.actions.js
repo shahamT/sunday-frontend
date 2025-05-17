@@ -167,6 +167,23 @@ export async function removeTask(taskId, groupId) {
     }
 }
 
+
+export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const boardId = board._id
+
+  try {
+    store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
+    await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
+  } catch (err) {
+    store.dispatch({ type: REVERT_BOARD })
+    console.log('board action -> Cannot move task', err)
+    throw err
+  }
+}
+
+
+
 export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     const update = boardService.getEmptyUpdate(txt)
     try {
@@ -413,6 +430,17 @@ function getCmdRemoveColumnValue(board, taskId, colId) {
         colId,
     }
 }
+
+export function getCmdMoveTask(task, fromGroupId, toGroupId, toIndex) {
+  return {
+    type: 'MOVE_TASK',
+    task,
+    fromGroupId,
+    toGroupId,
+    toIndex,
+  }
+}
+
 
 // unitTestActions()
 async function unitTestActions() {

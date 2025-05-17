@@ -37,7 +37,7 @@ export function CellContentPeople({ taskId, column, columnValue }) {
     }
 
     return (
-        <div className="CellContentPeople cell-contnet">
+        <div className="CellContentPeople cell-content">
             <div className="plus-btn">
                 <div className="plus-icon i-AddSmall" />
             </div>

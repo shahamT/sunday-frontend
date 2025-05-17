@@ -41,6 +41,7 @@
 // === Land Page ===
 // =================
 @import 'cmps/land-page/HomePage.scss';
+@import 'cmps/land-page/Signup.scss';
 
 @import 'cmps/land-page/LandPageHeader.scss';
 @import 'cmps/land-page/MondayMainLogo.scss';
@@ -62,7 +63,8 @@
 // ====== App Home ======
 @import 'cmps/app/_AppHome.scss';
 @import 'cmps/app/_AppHomeNeader.scss';
-@import 'cmps/app/_AppHomeBoards.scss';
+@import 'cmps/app/_BoardList.scss';
+@import 'cmps/app/_RightNav.scss';
 
 
 @import 'cmps/app/board/BoardDetails.scss';
@@ -87,8 +89,10 @@
 // ====== column summary ======
 @import 'cmps/app/board/table-view/column-sum/T_ColumnSumCell.scss';
 
+// ====== Menu ======
 
 @import 'cmps/app/board/table-view/_GroupMenu.scss';
+@import 'cmps/app/board/value-setter/MiniFilePreview.scss';
 @import 'cmps/app/_BoardMenu.scss';
 @import 'cmps/app/_FileMenu.scss';
 @import 'cmps/app/_ColumnMenu.scss';
@@ -117,7 +121,7 @@
 
 @import 'cmps/app/board/table-view/cell-content/PersonsPreview.scss';
 
-// ====== Taask Details ======
+// ====== Task Details ======
 
 @import 'cmps/app/board/TaskDetailsTextEditor.scss';
 @import 'cmps/app/board/table-view/Updates';

@@ -59,7 +59,7 @@ export function CellContentDate({ taskId, column, columnValue }) {
 
 
     return (
-        <div className={`CellContentDate cell-contnet`}>
+        <div className={`CellContentDate cell-content`}>
 
 
             <PopUpMenu
@@ -74,7 +74,7 @@ export function CellContentDate({ taskId, column, columnValue }) {
                     />
                 )}
             >
-                <div className={`cell-contnet centered`}>
+                <div className={`cell-content centered`}>
 
                     <div className="input-outline" />
 

@@ -10,7 +10,6 @@ function getEmptyUser() {
         lastName: '', 
         email: '', 
         password: '', 
-        role: user,
         lastViewedBoards: [],
     }
 }

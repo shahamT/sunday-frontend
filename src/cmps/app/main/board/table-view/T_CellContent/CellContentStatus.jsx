@@ -46,7 +46,7 @@ export function CellContentStatus({ taskId, column, columnValue }) {
     const labelColor = selectedLabel?.color ?? '';
 
     return (
-        <div className={`CellContentStatus cell-contnet`}>
+        <div className={`CellContentStatus cell-content`}>
 
             <PopUpMenu
                 stretchTrigger={true}
@@ -62,7 +62,7 @@ export function CellContentStatus({ taskId, column, columnValue }) {
                     />
                 )}
             >
-                <div className={`cell-contnet centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'}`}>
+                <div className={`cell-content centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'}`}>
                     <div className="fold" />
                     {columnValue && <p>{labelName}</p>}
                 </div>

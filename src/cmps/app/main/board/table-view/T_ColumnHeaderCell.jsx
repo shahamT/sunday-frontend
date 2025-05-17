@@ -20,7 +20,7 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -127,7 +127,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resiz
         >
 
 
-            <div className="cell-contnet">
+            <div className="cell-content">
                 {variant === 'item'
                     ?
                     <>
@@ -163,7 +163,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resiz
 
                         </div>
                         <div className="title-wraper">
-                            <Tooltip position='top' title={value}>
+                            <Tooltip position='top' title={value} stretchWraper={true}>
                                 <EditableText
                                     value={value}
                                     emojiPicker={false}
@@ -172,7 +172,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, resiz
                                     handleChange={handleChange}
                                     onBlur={onUpdateColumnName}
                                     onPressEnter={onUpdateColumnName}
-                                    additionalClass="test"
+                                    additionalClass="centered"
 
                                 />
                             </Tooltip>

@@ -21,7 +21,9 @@ export function Tooltip({
   noAnimation = false,
   delayIn = 300,
   delayOut = 150,
-  additionalClass = ''
+  additionalClass = '',
+    stretchWraper = false
+
 }) {
   const [visible, setVisible] = useState(false)
   const wrapperRef = useRef(null) 
@@ -69,7 +71,7 @@ export function Tooltip({
 
   return (
     <div
-      className={`tooltip-wrapper ${additionalClass}`}
+      className={`tooltip-wrapper ${additionalClass} ${stretchWraper ? 'stretched' : ''}`}
       onMouseEnter={show}
       onMouseLeave={hide}
       ref={wrapperRef}
@@ -96,3 +98,5 @@ function getGapStyle(position, gap) {
   if (position.startsWith('right')) return { marginLeft: pxGap }
   return {}
 }
+
+
