@@ -25,10 +25,20 @@
   // }
 
   .recently-visited-wraper{
-    margin-left: 4px;
+    // margin-left: 4px;
     font-size: 18px;
     color: #323338;
     font-weight: 700;
+
+    .dropdown-icon{
+      padding-inline-end: 4px;
+    }
+    // .no-preview{
+    //   background-color: aquamarine;
+    //   height: 400px;
+    //   width: 100%;
+      
+    // }
   }
   
   .board-preview-container{
@@ -64,6 +74,7 @@
         color: #676879;
 
 
+
         .board-txt {
           font-family: var(--font-family);
           font-size: 16px;
@@ -75,11 +86,9 @@
           // white-space: nowrap;
           overflow: hidden;
           text-overflow: ellipsis;
-
-
           white-space: nowrap;
-          overflow: hidden;
-          text-overflow: ellipsis;
+
+
 
 
 
@@ -89,12 +98,13 @@
         .favorite-btn {
           line-height: 1;
           padding-block-end: 4px;
+// 
         }
 
         .favorite-btn {
           display: flex;
           align-content: center;
-          justify-content: center;
+          margin-left:auto ;
 
 
           width: 24px;
@@ -159,6 +169,3 @@
     }
   }
 }
-// .recently-visited-wraper{
-//   background-color: #323338;
-// }

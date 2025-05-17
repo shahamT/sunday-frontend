@@ -44,8 +44,8 @@ export function BoardList({ /* prop1, prop2 */ }) {
                         <div className="img-wrapper">
                             <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747320341/kkvc6y2yzsy9taa4d7y2.png" alt="Monday board" />
                         </div>
-                        <div className="board-txt-container clickable select size-32 icon-start full-width i-Board">
-                            <label className="board-txt">
+                        <div className="board-txt-container clickable select size-32 icon-start full-width left-aligned i-Board">
+                            <label className="board-txt ">
                                 {board.name}
 
                             </label>
@@ -56,22 +56,19 @@ export function BoardList({ /* prop1, prop2 */ }) {
                                 <IsStarred board={board} />
                             </button>
 
-
-
                         </div>
                         <div className="board-work-management">
                             <img className="monday-icon" src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747472186/pdaj4ymmpllwsrftlivp.png" alt="" />
                             <p>{workManagement}</p>
                         </div>
-
-
                     </article>
                 )
 
                     : <p>No boards to show. lets create a new one! <button onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)}>Create new board</button></p>
                 }
             </section >
-            : null}
+            :
+            <div className="no-preview" />}
         </section >
     )
 }
