@@ -13,7 +13,7 @@
 // ====== Component ======
 // =======================
 
-export function LeftNav({ /* prop1, prop2 */ }) {
+export function RightNav({ /* prop1, prop2 */ }) {
     // === Consts
 
     // === Effects
@@ -22,8 +22,8 @@ export function LeftNav({ /* prop1, prop2 */ }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="left-nav">
-            <h1>ComponentName</h1>
+        <section className="right-nav">
+            <p className="guids-p">Learn & get inspired</p>
             <article className="guid">
                 <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747392296/kbsu10mu7vuzlddlpwng.png" alt="Monday board" />
                 <div className="information-box">
