@@ -127,7 +127,7 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
         >
 
 
-            <div className="cell-contnet">
+            <div className="cell-content">
                 {variant === 'item'
                     ?
                     <>

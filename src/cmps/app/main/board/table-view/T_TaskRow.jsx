@@ -13,7 +13,7 @@ import { T_Cell } from './T_Cell'
 // ====== Component ======
 // =======================
 
-export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = false }) {
+export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = false, liveColumnWidthsRef }) {
   // === Consts
   const [isMenuOpen, setIsMenuOpen] = useState(false)
 
@@ -91,6 +91,7 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
             groupId={group.id}
             listeners={listeners}
             isOverlay={isOverlay}
+            liveColumnWidthsRef={liveColumnWidthsRef}
           />
         )
       })}

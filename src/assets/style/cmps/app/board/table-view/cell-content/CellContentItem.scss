@@ -2,9 +2,12 @@
     cursor: grab;
 
     .text-container {
-        width: 100%;
+        width: calc(100% - 33px);
+
         padding-inline-start: 24px;
         padding-inline-end: 8px;
 
     }
 }
+
+.T_Cell {}

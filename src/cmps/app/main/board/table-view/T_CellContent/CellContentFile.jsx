@@ -60,7 +60,7 @@ export function CellContentFile({ taskId, column, columnValue }) {
 
 
     return (
-        <div className={`CellContentFile cell-contnet`}>
+        <div className={`CellContentFile cell-content`}>
 
 
             {columnValue

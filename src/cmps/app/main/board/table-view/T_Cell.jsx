@@ -59,7 +59,7 @@ export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOver
       onClick={() => cellRef.current?.focus()} 
       className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
       style={
-        isOverlay
+        isOverlay 
           ? {
             width: `${column.width}px`,
             minWidth: `${column.width}px`,
