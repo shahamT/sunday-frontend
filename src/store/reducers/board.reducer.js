@@ -1,6 +1,3 @@
-
-import { boardService } from "../../services/board"
-
 // Boards
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
@@ -24,6 +21,8 @@ export const UPDATE_COLUMN = 'UPDATE_COLUMN'
 export const REMOVE_TASK = 'REMOVE_TASK'
 export const ADD_TASK = 'ADD_TASK'
 export const ADD_TASK_UPDATE = 'ADD_TASK_UPDATE'
+export const SET_COLUMN_VALUE = 'SET_COLUMN_VALUE'
+export const REMOVE_COLUMN_VALUE = 'REMOVE_COLUMN_VALUE'
 
 //Loading
 export const BOARDS_LOADING_START = 'BOARDS_LOADING_START'
@@ -198,6 +197,43 @@ export function boardReducer(state = initialState, action = {}) {
                     ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
                         ? { ...group, tasks: group.tasks.map(task => task.id === action.taskId 
                             ? {...task, updates: [action.update, ...task.updates]} : task)} : group)},
+                lastBoard
+            }
+
+        case SET_COLUMN_VALUE:
+            const lastBoard = { ...state.board };
+
+            return {
+                ...state,
+                lastBoard,
+                board: {
+                    ...state.board, groups: state.board.groups.map(group => {
+                        if (group.id !== action.groupId) return group;
+                        return { ...group, tasks: group.tasks.map(task => {
+                                if (task.id !== action.taskId) return task
+                                const colExists = task.columnValues.some(cv => cv.colId === action.colId)
+
+                                const newColumnValues = colExists
+                                    ? task.columnValues.map(cv => cv.colId === action.colId ? { ...cv, value: action.value } : cv)
+                                    : [...task.columnValues, {colId: action.colId, value: action.value}]
+                                     return {...task, columnValues: newColumnValues} }) } })
+                }
+            }
+
+        case REMOVE_COLUMN_VALUE:
+
+            lastBoard = {...state.board}
+
+            return {
+                ...state,
+                board: {
+                    ...state.board, groups: state.board.groups.map(group => {
+                        if (group.id !== action.groupId) return group;
+                        return { ...group, tasks: group.tasks.map(task => {
+                                if (task.id !== action.taskId) return task
+
+                                const newColumnValues = task.columnValues.filter(cv => cv.colId !== action.colId)
+                                     return {...task, columnValues: newColumnValues} }) } })},
                 lastBoard
             }
 

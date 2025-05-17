@@ -16,14 +16,7 @@ function getEmptyBoard() {
     const labelId2 = makeId()
     const board = {
         _id: '',
-        // createdAt: Date.now(),
-        // createdBy: userService.getLoggedinUser()?._id || null,
         name: '',
-        // isStarred: false,
-        // members: [{
-        //     id: userService.getLoggedinUser()?._id || null,
-        //     permission: 'editor'
-        // }],
         activities: [],
         columns: [
             {

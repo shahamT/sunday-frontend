@@ -84,7 +84,7 @@ async function saveBoards(newBoards) {
 async function query() {
     var boards = await storageService.query(STORAGE_KEY)
 
-    boards = boards.map(({ _id, name, isStarred }) => ({ _id, name, isStarred })) //BACKEND
+    boards = boards.map(({ _id, name, isStarred }) => ({ _id, name, isStarred }))
     return boards
 }
 
@@ -97,21 +97,21 @@ async function remove(boardId) {
 }
 
 async function save(board) {
-    const loggedinUser = userService.getLoggedinUser()?._id || null //BACKEND
+    const loggedinUser = userService.getLoggedinUser()?._id || null 
     var savedBoard
     if (board._id) {
         savedBoard = await storageService.put(STORAGE_KEY, board)
     } else {
-        const boardToSave = { //BACKEND
-            _id: makeId(), //BACKEND
-            isStarred: false, //BACKEND
-            createdAt: Date.now(),  //BACKEND
-            createdBy: loggedinUser, //BACKEND
-            members: [//BACKEND 
-                { //BACKEND
-                    _id: loggedinUser, //BACKEND
-                    permission: 'editor'//BACKEND
-                }//BACKEND
+        const boardToSave = { 
+            _id: makeId(), 
+            isStarred: false, 
+            createdAt: Date.now(), 
+            createdBy: loggedinUser, 
+            members: [
+                { 
+                    _id: loggedinUser,
+                    permission: 'editor'
+                }
             ]
         }
         savedBoard = await storageService.post(STORAGE_KEY, { ...board, ...boardToSave })
