@@ -50,8 +50,8 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
       ))}
 
       <T_TaskRow
-        key={`__start__|${group.id}`}
-        task={{ id: `__start__`, columnValues: [] }}
+        key={`__end__|${group.id}`}
+        task={{ id: `__end__`, columnValues: [] }}
         columns={columns}
         group={group}
         isBuffer

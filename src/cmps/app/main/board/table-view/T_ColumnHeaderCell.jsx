@@ -163,16 +163,17 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
 
                         </div>
                         <div className="title-wraper">
-                            <Tooltip position='top' title={value}>
+                            <Tooltip position='top' title={value} stretchWraper={true}>
                                 <EditableText
                                     value={value}
                                     emojiPicker={false}
-                                    centered={true}
+                                    // centered={true}
+                                    full={true}
                                     size="small"
                                     handleChange={handleChange}
                                     onBlur={onUpdateColumnName}
                                     onPressEnter={onUpdateColumnName}
-                                    additionalClass="test"
+                                    additionalClass="centered"
 
                                 />
                             </Tooltip>
