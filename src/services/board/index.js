@@ -7,6 +7,48 @@ import { boardService as local } from './board.service.local'
 import { boardService as remote } from './board.service.remote'
 import { store } from '../../store/store'
 
+const colors = [
+    'grass_green',
+    'done-green',
+    'bright-green',
+    'saladish',
+    'egg_yolk',
+    'working_orange',
+    'dark-orange',
+    'peach',
+    'sunset',
+    'stuck-red',
+    'dark-red',
+    'sofia_pink',
+    'lipstick',
+    'bubble',
+    'purple',
+    'dark_purple',
+    'berry',
+    'dark_indigo',
+    'indigo',
+    'navy',
+    'bright-blue',
+    'dark-blue',
+    'aquamarine',
+    'chili-blue',
+    'river',
+    'winter',
+    'explosive',
+    'american_gray',
+    'blackish',
+    'brown',
+    'orchid',
+    'tan',
+    'sky',
+    'coffee',
+    'royal',
+    'teal',
+    'lavender',
+    'steel',
+    'lilac',
+    'pecan']
+
 function getEmptyBoard() {
     const colId1 = makeId()
     const colId2 = makeId()
@@ -15,7 +57,6 @@ function getEmptyBoard() {
     const labelId1 = makeId()
     const labelId2 = makeId()
     const board = {
-        _id: '',
         name: '',
         activities: [],
         columns: [
@@ -78,7 +119,7 @@ function getEmptyBoard() {
                             },
                             {
                                 colId: colId2,
-                                value: userService.getLoggedinUser()?._id || null
+                                value: [userService.getLoggedinUser()?._id] || []
                             },
                             {
                                 colId: colId3,

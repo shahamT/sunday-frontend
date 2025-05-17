@@ -66,6 +66,7 @@ export async function removeBoard(boardId) {
 export async function updateBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
+        console.log(savedBoard)
         store.dispatch(getCmdUpdateBoard(savedBoard))
         return savedBoard
     } catch (err) {
@@ -144,7 +145,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
     const task = await boardService.getEmptyTask(valueToSave, itemColId )
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
-        const savedTask = await boardService.createTask(task, groupId, boardId, isTop)
+        const savedTask = await boardService.createTask(task, boardId, groupId, isTop)
         return savedTask
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -168,7 +169,6 @@ export async function removeTask(taskId, groupId) {
 
 export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     const update = boardService.getEmptyUpdate(txt)
-
     try {
         store.dispatch(getCmdAddTaskUpdate(groupId, taskId, update))
         await boardService.addTaskUpdate(boardId, groupId, taskId, update)

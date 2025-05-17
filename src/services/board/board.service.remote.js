@@ -38,7 +38,7 @@ async function save(board) {
 
 async function saveBoards(reorderedBoards) {
     
-    return httpService.put('board/boards/reorder', reorderedBoards)
+    return httpService.put('board/boards/reorder', { reorderedBoards })
 }
 
 async function remove(boardId) {
@@ -55,7 +55,7 @@ async function createGroup(group, boardId, isTop = false) {
 
 async function updateGroup(group, boardId) {
 
-    return httpService.put(`board/${boardId}/group/${group.id}`, group)
+    return httpService.put(`board/${boardId}/group/${group.id}`, { group })
 }
 
 async function removeGroup(groupId, boardId) {
@@ -67,13 +67,13 @@ async function removeGroup(groupId, boardId) {
 
 async function createColumn(column, boardId) {
 
-    return httpService.post(`board/${boardId}/column`, column)
+    return httpService.post(`board/${boardId}/column`, { column })
 
 }
 
 async function updateColumn(column, boardId) {
 
-    return httpService.put(`board/${boardId}/column/${column.id}`, column)
+    return httpService.put(`board/${boardId}/column/${column.id}`, { column })
 
 }
 
@@ -96,9 +96,9 @@ async function removeTask(taskId, groupId, boardId) {
     return httpService.delete(`board/${boardId}/group/${groupId}/task/${taskId}`)
 }
 
-async function addTaskUpdate(update, boardId, groupId, taskId) {
+async function addTaskUpdate(boardId, groupId, taskId, update) {
     
-    return httpService.post(`board/${boardId}/group/${groupId}/task/${taskId}/update`, update)
+    return httpService.post(`board/${boardId}/group/${groupId}/task/${taskId}/update`, { update })
 
 }
 

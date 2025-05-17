@@ -201,14 +201,13 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case SET_COLUMN_VALUE:
-            const lastBoard = { ...state.board };
+            lastBoard = { ...state.board };
 
             return {
                 ...state,
                 lastBoard,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => {
-                        if (group.id !== action.groupId) return group;
                         return { ...group, tasks: group.tasks.map(task => {
                                 if (task.id !== action.taskId) return task
                                 const colExists = task.columnValues.some(cv => cv.colId === action.colId)
