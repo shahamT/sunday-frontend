@@ -1,13 +1,13 @@
 // === Style
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
-import { closestCenter, DndContext, KeyboardSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
+import { closestCenter, DndContext, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 import { DragOverlay } from '@dnd-kit/core'
 
 // === Services
@@ -33,6 +33,7 @@ export function AppSideNav({ }) {
     const [editedTitle, setEditedTitle] = useState('')
     const [isFavoritesOpen, setIsFavoritesOpen] = useState(false)
     const [activeBoard, setActiveBoard] = useState(null)
+
 
     useEffect(() => {
         loadBoards()
@@ -88,7 +89,10 @@ export function AppSideNav({ }) {
                 delay: 150,
                 tolerance: 30,
             },
+            
         }),
+        // useSensor(PointerSensor),
+        useSensor(MouseSensor),
         useSensor(TouchSensor),
         useSensor(KeyboardSensor, {
             coordinateGetter: sortableKeyboardCoordinates,

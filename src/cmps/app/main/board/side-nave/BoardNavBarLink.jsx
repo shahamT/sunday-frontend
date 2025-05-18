@@ -15,7 +15,9 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
   const clickTimeRef = useRef(null)
   const inputRef = useRef(null)
   const { boardId } = useParams()
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  // try
+  const wasDragged = useRef(false)
 
 
   const style = {
@@ -30,12 +32,19 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
   }, [editingBoardId])
 
   function handleClick() {
-    navigate(`/app/board/${board._id}`)
-    updateUser(board._id)
+    if (!wasDragged.current) {
+      navigate(`/app/board/${board._id}`)
+      updateUser(board._id)
+    }
   }
 
   function handleMouseDown() {
     clickTimeRef.current = Date.now()
+    wasDragged.current = false
+  }
+
+  function handleDragStart() {
+    wasDragged.current = true
   }
 
   return (
@@ -44,6 +53,7 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
       ref={setNodeRef}
       {...(editingBoardId !== board._id ? { ...attributes, ...listeners } : {})}
       style={style}
+      onDragStart={handleDragStart}
     >
         <div
           className={`board-btn clickable select clear size-32 icon-start full-width left-aligned i-Board ${boardId === board._id ? `active` : null} ${isMenuOpen ? 'in-focus' : ''}`}
