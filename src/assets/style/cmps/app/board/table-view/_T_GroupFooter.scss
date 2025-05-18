@@ -1,7 +1,7 @@
 .T_GroupFooter {
     position: relative;
     cursor: text;
-
+    z-index:6;
 
     &:hover {
         .row-wraper {

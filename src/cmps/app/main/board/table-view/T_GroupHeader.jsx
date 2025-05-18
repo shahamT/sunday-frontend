@@ -60,21 +60,24 @@ export function T_GroupHeader({ group }) {
 
     return (
         <section className={`T_GroupHeader ${isMenuOpen ? 'menu-in-focus' : ''}`}>
-            <div className="menu-container">
-                <div className={`menu-wraper`}>
-                    <PopUpMenu
-                        position="bottom-start"
-                        onOpen={() => setIsMenuOpen(true)}
-                        onClose={() => setIsMenuOpen(false)}
-                        renderContent={({ onCloseModal }) => (
-                            <GroupMenu
-                                onCloseModal={onCloseModal}
-                                group={group}
-                            />
-                        )}
-                    >
-                        <div className={`group-menu-btn clickable clear icon-btn size-24 i-Menu ${isMenuOpen ? 'in-focus' : ''}`}></div>
-                    </PopUpMenu>
+
+            <div className="indicator-placeholder">
+                <div className="menu-container">
+                    <div className={`menu-wraper`}>
+                        <PopUpMenu
+                            position="bottom-start"
+                            onOpen={() => setIsMenuOpen(true)}
+                            onClose={() => setIsMenuOpen(false)}
+                            renderContent={({ onCloseModal }) => (
+                                <GroupMenu
+                                    onCloseModal={onCloseModal}
+                                    group={group}
+                                />
+                            )}
+                        >
+                            <div className={`group-menu-btn clickable clear icon-btn size-24 i-Menu ${isMenuOpen ? 'in-focus' : ''}`}></div>
+                        </PopUpMenu>
+                    </div>
                 </div>
             </div>
 

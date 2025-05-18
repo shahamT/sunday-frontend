@@ -3,8 +3,10 @@
     position: relative;
 
     display: grid;
-    grid-template-columns: 40px 6px repeat(999, auto) minmax(min-content, 1fr);
+    // grid-template-columns: js based - in T_Group
     grid-auto-rows: auto;
+    transition: width 0.1s ease;
+
 
     &>* {
         display: grid;
@@ -12,38 +14,31 @@
         grid-template-columns: subgrid;
     }
 
-    // table lines
+    // === table lines ===
 
-    .T_GroupHeadRow> :nth-child(n + 5),
-    .T_TaskRow> :nth-child(n + 5),
-    .T_GroupFooter> :nth-child(n + 5),
-    .T_ColumnSumRow> :nth-child(4),
-    .T_ColumnSumRow> :nth-child(n + 5) {
+    // vertical lines
+    .T_GroupHeadRow> :nth-child(n + 4),
+    .T_TaskRow> :nth-child(n + 4),
+    .T_ColumnSumRow> :nth-child(3) {
         border-inline-start: 1px solid var(--layout-border-color);
     }
 
-    .T_GroupHeader> :nth-child(3),
-    .T_GroupHeadRow> :nth-child(3),
-    .T_TaskRow> :nth-child(3),
-    .T_GroupFooter> :nth-child(3) {
+    .T_GroupHeadRow> :nth-child(2),
+    .T_TaskRow> :nth-child(2),
+    .T_GroupFooter> :nth-child(2),
+    .T_ColumnSumRow> :nth-child(n + 3) {
         border-inline-end: 1px solid var(--layout-border-color);
     }
 
-    .T_GroupHeadRow> :nth-child(n + 3),
-    .T_ColumnSumRow> :nth-child(n + 4),
-    .T_TaskRow> :nth-child(n + 3),
-    .T_GroupFooter> :nth-child(n + 3) {
+    // horizontal lines
+    .T_GroupHeadRow> :nth-child(n + 2),
+    .T_TaskRow> :nth-child(n + 2),
+    .T_GroupFooter> :nth-child(n + 2),
+    .T_ColumnSumRow> :nth-child(n + 2) {
         border-block-start: 1px solid var(--layout-border-color);
     }
 
-
-    .T_TaskRow:last-of-type>*:nth-child(n + 4):not(:last-child),
-    .T_ColumnSumRow:last-of-type>*:nth-child(n + 4):not(:last-child) {
-        border-block-end: 1px solid var(--layout-border-color);
-    }
-
-    .T_GroupFooter> :nth-child(n + 3),
-    .T_ColumnSumRow> :nth-child(n + 4) {
+    .T_ColumnSumRow> :nth-child(n + 3) {
         border-block-end: 1px solid var(--layout-border-color);
     }
 
@@ -78,35 +73,14 @@
         z-index: 5;
     }
 
-    .T_TaskRow> :nth-child(2),
-    .T_GroupHeadRow> :nth-child(2),
-    .T_ColumnSumRow> :nth-child(2),
-    .T_GroupFooter> :nth-child(2) {
-        position: sticky;
-        z-index: 5;
-    }
-
-    .T_TaskRow> :nth-child(1),
-    .T_TaskRow> :nth-child(3),
-    .T_GroupHeadRow> :nth-child(1),
-    .T_GroupHeadRow> :nth-child(3),
-    .T_ColumnSumRow> :nth-child(1),
-    .T_ColumnSumRow> :nth-child(3),
-    .T_GroupFooter> :nth-child(1),
-    .T_GroupFooter> :nth-child(3) {
-        position: sticky;
-        z-index: 5;
-        background: var(--primary-background-color);
-    }
-
-    // Offsets )
     .T_GroupHeader>:nth-child(1),
     .T_TaskRow> :nth-child(1),
     .T_GroupHeadRow> :nth-child(1),
     .T_ColumnSumRow> :nth-child(1),
     .T_GroupFooter> :nth-child(1) {
-        left: 0;
-        z-index: 6;
+        position: sticky;
+        left: 0px;
+        z-index: 5;
     }
 
     .T_GroupHeader>:nth-child(2),
@@ -114,18 +88,17 @@
     .T_GroupHeadRow> :nth-child(2),
     .T_ColumnSumRow> :nth-child(2),
     .T_GroupFooter> :nth-child(2) {
-        left: 40px;
-    }
-
-    .T_TaskRow> :nth-child(3),
-    .T_GroupHeadRow> :nth-child(3),
-    .T_ColumnSumRow> :nth-child(3),
-    .T_GroupFooter> :nth-child(3) {
-        left: 46px;
+        position: sticky;
+        left: 6px;
+        z-index: 5;
+        background: var(--primary-background-color);
     }
 
     .menu-container {
-        width: 100%;
+        position: absolute;
+        z-index: 20;
+        left: -40px;
+        width: 40px;
         height: 100%;
         display: flex;
         align-items: center;

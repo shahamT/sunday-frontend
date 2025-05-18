@@ -2,15 +2,32 @@
     display: flex;
     flex-direction: column;
 
-        gap: 28px;
-        padding-block-end: 40px;
+    gap: 28px;
+    padding-block-end: 40px;
 
-        .add-group-btn {
-            position: sticky;
-            left: 40px;
-            flex-shrink: 0;
+    .add-group-btn {
+        position: sticky;
+        left: 40px;
+        flex-shrink: 0;
 
-        }
-    
+    }
 
+
+
+}
+
+.main-loader-container {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-rows: 0.3fr auto 0.7fr;
+
+    width: 100%;
+    height: 100%;
+
+    .loader {
+        grid-column: 2;
+        grid-row: 2;
+
+        height: 100px;
+    }
 }

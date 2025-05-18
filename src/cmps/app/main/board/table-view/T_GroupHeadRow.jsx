@@ -27,7 +27,6 @@ export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVers
 
     return (
         <section className="T_GroupHeadRow">
-            <div className="menu-container" />
             <div className={`t-left-indicator top ${group.color}-bg`} />
 
             {columns.map((column, idx) => {

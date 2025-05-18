@@ -1,6 +1,9 @@
-.BoardDetails{
+.BoardDetails {
     height: 100%;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
+
+    border-inline-start: 40px solid white;
+
 }

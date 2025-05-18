@@ -19,8 +19,21 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
   const isActiveGroup = activeGroupId === group.id
   const activeTask = group.tasks.find(t => t.id === activeTaskId)
 
+  const templateCols = `6px ${columns
+    .map(col => {
+      const liveWidth = liveColumnWidthsRef?.current?.[col.id] ?? col.width
+      return `${liveWidth}px`
+    })
+    .join(" ")} minmax(min-content, 1fr)`
+
+
   return (
-    <section className="T_Group">
+    <section
+      className="T_Group"
+      style={{
+        gridTemplateColumns: templateCols,
+      }}
+    >
 
       <T_GroupHeader group={group} />
       <T_GroupHeadRow
@@ -71,7 +84,7 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
       )}
 
 
-      <T_GroupFooter group={group} itemColumn={itemColumn} />
+      <T_GroupFooter group={group} itemColumn={itemColumn} columns={columns} />
       <T_ColumnSumRow columns={columns} group={group} />
 
     </section>

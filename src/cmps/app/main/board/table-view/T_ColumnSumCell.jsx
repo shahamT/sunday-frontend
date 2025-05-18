@@ -37,7 +37,6 @@ export function T_ColumnSumCell({ column }) {
   return (
     <section
     className={`T_ColumnSumCell`}
-    style={{ width: column.width + "px" }}
     >
       {DynamicComponent && (
         <DynamicComponent column={column} columnValue={columnValue} taskId={taskId} />

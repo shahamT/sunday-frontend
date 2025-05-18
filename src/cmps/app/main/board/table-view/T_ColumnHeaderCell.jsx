@@ -123,7 +123,6 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
     return (
         <div
             className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}`}
-            style={{ width: (liveColumnWidthsRef?.current?.[column.id] ?? width) + 'px' }}
         >
 
 
