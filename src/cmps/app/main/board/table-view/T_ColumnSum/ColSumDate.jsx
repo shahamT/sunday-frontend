@@ -109,22 +109,23 @@ export function ColSumDate({ group, columnValues }) {
     const leftTime = (passedTime / totalRangeDates) * 100
 
     const snakeCaseColor = group.color.replace(/-/g, '_')
+    const shouldShowRange = !isNaN(minDate) && !isNaN(maxDate) && minDate < maxDate
 
     // === Consts
-    function formatTimestamp(timestamp) {
-        const date = new Date(timestamp);
-        const now = new Date();
+    // function formatTimestamp(timestamp) {
+    //     const date = new Date(timestamp);
+    //     const now = new Date();
 
-        const isSameYear = date.getFullYear() === now.getFullYear();
+    //     const isSameYear = date.getFullYear() === now.getFullYear();
 
-        const options = {
-            month: 'short',
-            day: 'numeric',
-            ...(isSameYear ? {} : { year: 'numeric' }),
-        };
+    //     const options = {
+    //         month: 'short',
+    //         day: 'numeric',
+    //         ...(isSameYear ? {} : { year: 'numeric' }),
+    //     };
 
-        return date.toLocaleDateString('en-US', options);
-    }
+    //     return date.toLocaleDateString('en-US', options);
+    // }
     // === Effects
 
     function formatDateRange(startDate, endDate) {
@@ -158,20 +159,27 @@ export function ColSumDate({ group, columnValues }) {
 
         return Math.round(diffInDays)
     }
-    
+
     // === Functions
     // if (!data) return <div>Loading...</div>
     return (
         <section className="col-som-date">
+            {shouldShowRange ?
+                <div className="date-range-wrapper"
+                    style={{
+                        background: `linear-gradient(to right, ${colorMap[snakeCaseColor]} ${leftTime}%, ${colorMap[`${snakeCaseColor}_selected`]} 0%)`
+                    }}>
+                    <p className="txt">{formatDateRange(minDate, maxDate)}</p>
+                    <p className="txt-hover">{getDaysDiff(minDate, maxDate)}d</p>
 
-            <div className="date-range-wrapper"
-                style={{
-                    background: `linear-gradient(to right, ${colorMap[snakeCaseColor]} ${leftTime}%, ${colorMap[`${snakeCaseColor}_selected`]} 0%)`
-                }}>
-                <p className="txt">{formatDateRange(minDate, maxDate)}</p>
-                <p className="txt-hover">{getDaysDiff(minDate, maxDate)}d</p>
+                </div>
 
-            </div>
+                : <div className="date-range-wrapper"
+                    style={{
+                        background: `linear-gradient(to right, #3333 100%, #3333 0%)`
+                    }}>
+
+                </div>}
         </section>
     )
 }

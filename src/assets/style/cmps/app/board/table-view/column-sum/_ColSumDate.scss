@@ -14,6 +14,7 @@
         min-width: 24px;
         color: white;
         border-radius: 25px;
+        cursor: pointer;
         // background: linear-gradient(to right, #579bfc 21%, #000000 21%);
 
     }
@@ -24,6 +25,7 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    font-size: 14px;
 }
 
 .date-range-wrapper:hover{
@@ -38,6 +40,7 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+        font-size: 14px;
     }
 
 }
