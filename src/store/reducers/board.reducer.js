@@ -252,7 +252,6 @@ export function boardReducer(state = initialState, action = {}) {
                 ...state,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => {
-                        if (group.id !== action.groupId) return group;
                         return { ...group, tasks: group.tasks.map(task => {
                                 if (task.id !== action.taskId) return task
 
