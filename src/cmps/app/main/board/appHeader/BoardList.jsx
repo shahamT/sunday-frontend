@@ -49,12 +49,12 @@ export function BoardList({ /* prop1, prop2 */ }) {
                                 {board.name}
 
                             </label>
-                            <button
+                            <div
                                 className={`favorite-btn clickable select size-32 ${board.isStarred ? 'starred' : ''}`}
                                 onClick={(e) => e.stopPropagation()}
                             >
                                 <IsStarred board={board} />
-                            </button>
+                            </div>
 
                         </div>
                         <div className="board-work-management">
