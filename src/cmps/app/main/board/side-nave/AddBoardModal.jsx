@@ -5,6 +5,7 @@ import { boardService } from "../../../../../services/board"
 import { addBoard } from "../../../../../store/actions/board.actions"
 import { useNavigate } from "react-router-dom"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
+import { updateUser } from "../../../../../store/actions/user.actions"
 
 // === Services
 
@@ -41,6 +42,7 @@ export function AddBoardModal({ closeGlobalModal }) {
         ev.preventDefault()
         try {
             const savedBoard = await addBoard(newBoard)
+            updateUser(savedBoard._id)
             closeGlobalModal()
             navigate(`/app/board/${savedBoard._id}`)
         }

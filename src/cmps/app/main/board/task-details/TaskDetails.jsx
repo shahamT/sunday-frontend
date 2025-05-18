@@ -45,8 +45,6 @@ export function TaskDetails() {
     const [selectedPersons, setSelectedPersons] = useState([])
     const [isOwnerSelected, setIsOwnerSelected] = useState(false)
     const [value, handleChange, reset, set] = useControlledInput('')
-
-    console.log(selectedPersons)
     
     // === Effects
     useEffect(() => {
