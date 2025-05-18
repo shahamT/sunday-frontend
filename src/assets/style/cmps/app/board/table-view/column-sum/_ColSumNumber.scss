@@ -1,0 +1,16 @@
+.col-sum-number {
+    text-align: center;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    p:first-child {
+        padding-block-start: 3px;
+    }
+
+    p {
+        font-size: 14px;
+        color: #676879;
+
+    }
+}

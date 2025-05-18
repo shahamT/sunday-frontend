@@ -1,0 +1,22 @@
+.col-sum-status {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    // background: #000;
+    
+
+    .label-status-item {
+        // display: inline-block;
+        height: 24px;
+        min-width: 5px;
+    }
+
+    .label-status-item:hover {
+        height: 30px;
+        border-radius: 2px;
+        // scale: 1.5;
+
+    }
+
+}

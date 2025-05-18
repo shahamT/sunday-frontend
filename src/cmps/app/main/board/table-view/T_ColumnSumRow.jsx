@@ -17,9 +17,7 @@ import { T_ColumnSumCell } from "./T_ColumnSumCell"
 export function T_ColumnSumRow({ columns, group }) {
     // === Consts
 
-    // === Effects
-
-    // === Functions
+ 
 
     return (
         <section className="T_ColumnSumRow">

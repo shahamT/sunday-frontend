@@ -93,7 +93,7 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
                 {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
             </div>
 
-            <div className="clickable clear  size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => onRemoveBoard(_id)}>
+            <div className="clickable clear size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => onRemoveBoard(_id)}>
                 Delete
             </div>
         </section>
