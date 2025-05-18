@@ -5,6 +5,7 @@ import {
     ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE,
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
+    SET_BOARD_FILTER_BY,
     OPEN_TASK_PANEL, CLOSE_TASK_PANEL
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
@@ -12,12 +13,12 @@ import { store } from "../store.js";
 
 // ========= CRUDL =========
 // ===== Board ====
-export async function loadBoards() { //TODO add filterby as args
+export async function loadBoards() {
     // const filterBy = store.getState().boardModule.filterBy
     store.dispatch({ type: BOARDS_LOADING_START })
 
     try {
-        const boards = await boardService.query() //TODO add filterby as args
+        const boards = await boardService.query()
         store.dispatch(getCmdSetBoards(boards))
     } catch (err) {
         console.log('board action -> Cannot load boards', err)
@@ -88,9 +89,9 @@ export async function addBoard(board) {
 }
 
 // // ========= FilterBy =========
-// export function setFilterBy(filterBy) {
-//     store.dispatch({ type: SET_BOARDS_FILTER_BY, filterBy })
-// }
+export function setFilterBy(filterBy) {
+    store.dispatch({ type: SET_BOARD_FILTER_BY, filterBy })
+}
 
 // ========= Group =========
 export async function addGroup(isTop = false) {

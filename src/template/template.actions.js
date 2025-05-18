@@ -1,7 +1,7 @@
 //TODO find and replace - Template , template , templates , TEMPLATE , TEMPLATES
 
 
-import { templateService } from "../../services/template.service.js";
+import { templateService } from "../services/not relevent/template.service";
 import { ADD_TEMPLATE, REMOVE_TEMPLATE, SET_TEMPLATES, SET_TEMPLATES_FILTER_BY, SET_TEMPLATES_IS_LOADING, UPDATE_TEMPLATE } from "../reducers/template.reducer.js";
 import { store } from "../store.js";
 
