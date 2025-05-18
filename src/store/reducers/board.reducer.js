@@ -192,15 +192,15 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case MOVE_TASK: {
-            const { task, fromGroupId, toGroupId, toIndex } = action;
-            const groups = [...state.board.groups];
+            const { task, fromGroupId, toGroupId, toIndex } = action
+            const groups = [...state.board.groups]
 
-            const fromGroup = groups.find(g => g.id === fromGroupId);
-            const toGroup = groups.find(g => g.id === toGroupId);
-            if (!fromGroup || !toGroup) return state;
+            const fromGroup = groups.find(g => g.id === fromGroupId)
+            const toGroup = groups.find(g => g.id === toGroupId)
+            if (!fromGroup || !toGroup) return state
 
-            fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== task.id);
-            toGroup.tasks.splice(toIndex, 0, task);
+            fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== task.id)
+            toGroup.tasks.splice(toIndex, 0, task)
 
             return {
                 ...state,
@@ -208,7 +208,7 @@ export function boardReducer(state = initialState, action = {}) {
                     ...state.board,
                     groups
                 }
-            };
+            }
         }
 
         case ADD_TASK_UPDATE:
