@@ -41,6 +41,7 @@
 // === Land Page ===
 // =================
 @import 'cmps/land-page/HomePage.scss';
+@import 'cmps/land-page/Signup.scss';
 
 @import 'cmps/land-page/LandPageHeader.scss';
 @import 'cmps/land-page/MondayMainLogo.scss';
@@ -91,8 +92,10 @@
 @import 'cmps/app/board/table-view/column-sum/_ColSumFile.scss';
 @import 'cmps/app/board/table-view/column-sum/_ColSumStatus.scss';
 
+// ====== Menu ======
 
 @import 'cmps/app/board/table-view/_GroupMenu.scss';
+@import 'cmps/app/board/value-setter/MiniFilePreview.scss';
 @import 'cmps/app/_BoardMenu.scss';
 @import 'cmps/app/_FileMenu.scss';
 @import 'cmps/app/_ColumnMenu.scss';

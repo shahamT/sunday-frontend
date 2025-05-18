@@ -13,7 +13,8 @@
 // ====== Component ======
 // =======================
 
-export function PersonsPreview({ selectedPersons = [], amount }) {
+export function PersonsPreview({ selectedPersons = [], amount = 0 }) {
+    console.log(selectedPersons)
     // === Consts
 
     // === Effects
@@ -25,7 +26,7 @@ export function PersonsPreview({ selectedPersons = [], amount }) {
         <section className="PersonsPreview" >
             {selectedPersons.slice(0, amount).map(person => {
                 return (
-                    <img style={{ marginInlineStart: selectedPersons.length === 1 ? '0' : '-7px'}} key={person._id} src={person.profileImg} alt="https://cdn1.monday.com/dapulse_default_photo.png" />
+                    <img key={person._id} style={{ marginInlineStart: selectedPersons.length === 1 ? '0' : '-7px'}} key={person._id} src={person.profileImg} alt="https://cdn1.monday.com/dapulse_default_photo.png" />
                 )
             })}
 

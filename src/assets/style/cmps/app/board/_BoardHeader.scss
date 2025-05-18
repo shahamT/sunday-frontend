@@ -14,6 +14,10 @@
     .main-section {
         display: flex;
         justify-content: space-between;
+        .title-wraper{
+             flex: 1 1 auto;
+        display: flex;
+        }
     }
 
     .tab-bar {

@@ -2,7 +2,7 @@ import {
     ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD,
     ADD_GROUP, REMOVE_GROUP, UPDATE_GROUP,
     ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN,
-    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE,
+    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE,
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     OPEN_TASK_PANEL, CLOSE_TASK_PANEL
@@ -66,6 +66,7 @@ export async function removeBoard(boardId) {
 export async function updateBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
+        console.log(savedBoard)
         store.dispatch(getCmdUpdateBoard(savedBoard))
         return savedBoard
     } catch (err) {
@@ -93,11 +94,11 @@ export async function addBoard(board) {
 
 // ========= Group =========
 export async function addGroup(isTop = false) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     const group = boardService.getEmptyGroup()
     try {
         store.dispatch(getCmdAddGroup(group, isTop))
-        const savedGroup = await boardService.saveGroup(group, boardId, isTop)
+        const savedGroup = await boardService.createGroup(group, boardId, isTop)
         return savedGroup
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -107,10 +108,10 @@ export async function addGroup(isTop = false) {
 }
 
 export async function updateGroup(group) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     try {
         store.dispatch(getCmdUpdateGroup(group))
-        const savedGroup = await boardService.saveGroup(group, boardId)
+        const savedGroup = await boardService.updateGroup(group, boardId)
 
         return savedGroup
     } catch (err) {
@@ -121,7 +122,7 @@ export async function updateGroup(group) {
 }
 
 export async function removeGroup(groupId) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     try {
         store.dispatch(getCmdRemoveGroup(groupId))
         await boardService.removeGroup(groupId, boardId)
@@ -135,7 +136,7 @@ export async function removeGroup(groupId) {
 
 // ========= Task =========
 export async function addTask({ valueToSave = 'New item', itemColId, isTop = false, groupId }) {
-    const board = structuredClone(store.getState().boardModule.board)
+    const board = structuredClone(getBoard())
     const boardId = board._id
     if (!groupId) {
         groupId = board.groups[0].id
@@ -144,7 +145,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
     const task = await boardService.getEmptyTask(valueToSave, itemColId )
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
-        const savedTask = await boardService.saveTask(task, groupId, boardId, isTop)
+        const savedTask = await boardService.createTask(task, boardId, groupId, isTop)
         return savedTask
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -155,7 +156,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
 }
 
 export async function removeTask(taskId, groupId) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     try {
         store.dispatch(getCmdRemoveTask(taskId, groupId))
         await boardService.removeTask(taskId, groupId, boardId)
@@ -166,12 +167,28 @@ export async function removeTask(taskId, groupId) {
     }
 }
 
+
+export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
+  const board = structuredClone(store.getState().boardModule.board)
+  const boardId = board._id
+
+  try {
+    store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
+    await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
+  } catch (err) {
+    store.dispatch({ type: REVERT_BOARD })
+    console.log('board action -> Cannot move task', err)
+    throw err
+  }
+}
+
+
+
 export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     const update = boardService.getEmptyUpdate(txt)
-
     try {
         store.dispatch(getCmdAddTaskUpdate(groupId, taskId, update))
-        boardService.addTaskUpdate(boardId, groupId, taskId, update)
+        await boardService.addTaskUpdate(boardId, groupId, taskId, update)
         return update
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -181,11 +198,11 @@ export async function addTaskUpdate(boardId, groupId, taskId, txt) {
 }
 
 export async function setColumnValue(taskId, colId, value) {
-    const board = structuredClone(store.getState().boardModule.board)
-    board.groups = boardService.setColumnValue(board, taskId, colId, value)
+    const board = structuredClone(getBoard())
+
     try {
-        store.dispatch(getCmdSetBoard(board))
-        await boardService.save(board)
+        store.dispatch(getCmdSetColumnValue(board, taskId, colId, value))
+        await boardService.setColumnValue(board, taskId, colId, value)
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot set column value', err)
@@ -194,26 +211,51 @@ export async function setColumnValue(taskId, colId, value) {
 }
 
 export async function removeColumnValue(taskId, colId) {
-    const board = structuredClone(store.getState().boardModule.board)
-    board.groups = boardService.removeColumnValue(board, taskId, colId)
+    const board = structuredClone(getBoard())
 
     try {
-        store.dispatch(getCmdSetBoard(board))
-        await boardService.save(board)
+        store.dispatch(getCmdRemoveColumnValue(board, taskId, colId))
+        await boardService.removeColumnValue(board, taskId, colId)
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot remove column value', err)
         throw err
     }
 }
+// export async function setColumnValue(taskId, colId, value) { OLD - LOCAL
+//     const board = structuredClone(store.getState().boardModule.board)
+//     board.groups = boardService.setColumnValue(board, taskId, colId, value)
+//     try {
+//         store.dispatch(getCmdSetBoard(board))
+//         await boardService.save(board)
+//     } catch (err) {
+//         store.dispatch({ type: REVERT_BOARD })
+//         console.log('board action -> Cannot set column value', err)
+//         throw err
+//     }
+// }
+
+// export async function removeColumnValue(taskId, colId) { OLD - LOCAL
+//     const board = structuredClone(store.getState().boardModule.board)
+//     board.groups = boardService.removeColumnValue(board, taskId, colId)
+
+//     try {
+//         store.dispatch(getCmdSetBoard(board))
+//         await boardService.save(board)
+//     } catch (err) {
+//         store.dispatch({ type: REVERT_BOARD })
+//         console.log('board action -> Cannot remove column value', err)
+//         throw err
+//     }
+// }
 
 // ========= Column =========
 export async function addColumn(type) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     const column = boardService.getEmptyColumn(type)
     try {
         store.dispatch(getCmdAddColumn(column))
-        const savedColumn = await boardService.saveColumn(column, boardId)
+        const savedColumn = await boardService.createColumn(column, boardId)
         return savedColumn
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -223,10 +265,10 @@ export async function addColumn(type) {
 }
 
 export async function updateColumn(column) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     try {
         store.dispatch(getCmdUpdateColumn(column))
-        const savedColumn = await boardService.saveColumn(column, boardId)
+        const savedColumn = await boardService.updateColumn(column, boardId)
         return savedColumn
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -236,7 +278,7 @@ export async function updateColumn(column) {
 }
 
 export async function removeColumn(columnId) {
-    const boardId = store.getState().boardModule.board._id
+    const boardId = getBoardId()
     try {
         store.dispatch(getCmdRemoveColumn(columnId))
         await boardService.removeColumn(columnId, boardId)
@@ -246,6 +288,14 @@ export async function removeColumn(columnId) {
         console.log('board action -> Cannot remove column', err)
         throw err
     }
+}
+
+function getBoardId() {
+    return store.getState().boardModule.board._id
+}
+
+function getBoard() {
+    return store.getState().boardModule.board
 }
 
 // ========= Task Details Panel =========
@@ -290,15 +340,6 @@ function getCmdUpdateBoard(board) {
     return {
         type: UPDATE_BOARD,
         board
-    }
-}
-
-function getCmdAddTaskUpdate(groupId, taskId, update) {
-    return {
-        type: ADD_TASK_UPDATE,
-        groupId,
-        taskId,
-        update
     }
 }
 
@@ -361,6 +402,45 @@ function getCmdRemoveTask(taskId, groupId) {
         groupId
     }
 }
+
+function getCmdAddTaskUpdate(groupId, taskId, update) {
+    return {
+        type: ADD_TASK_UPDATE,
+        groupId,
+        taskId,
+        update
+    }
+}
+
+function getCmdSetColumnValue(board, taskId, colId, value) {
+    return {
+        type: SET_COLUMN_VALUE,
+        board,
+        taskId,
+        colId,
+        value
+    }
+}
+
+function getCmdRemoveColumnValue(board, taskId, colId) {
+    return {
+        type: REMOVE_COLUMN_VALUE,
+        board,
+        taskId,
+        colId,
+    }
+}
+
+export function getCmdMoveTask(task, fromGroupId, toGroupId, toIndex) {
+  return {
+    type: 'MOVE_TASK',
+    task,
+    fromGroupId,
+    toGroupId,
+    toIndex,
+  }
+}
+
 
 // unitTestActions()
 async function unitTestActions() {

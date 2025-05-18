@@ -23,7 +23,7 @@ import { CellContentFile } from "./T_CellContent/CellContentFile";
 // ====== Component ======
 // =======================
 
-export function T_Cell({ column, columnValue, taskId }) {
+export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOverlay }) {
   const cellRef = useRef(null);
 
   // Attach global listener to detect clicks outside
@@ -51,15 +51,32 @@ export function T_Cell({ column, columnValue, taskId }) {
   const variant = column.type.variant;
   const DynamicComponent = componentMap[variant];
 
+
   return (
     <section
       ref={cellRef}
       tabIndex={-1}
-      onClick={() => cellRef.current?.focus()} // 🔥 set focus on any inner click
+      onClick={() => cellRef.current?.focus()} 
       className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
+      style={
+        isOverlay 
+          ? {
+            width: `${column.width}px`,
+            minWidth: `${column.width}px`,
+            maxWidth: `${column.width}px`,
+            flexShrink: 0,
+          }
+          : undefined
+      }
     >
       {DynamicComponent && (
-        <DynamicComponent column={column} columnValue={columnValue} taskId={taskId} />
+        <DynamicComponent
+          column={column}
+          columnValue={columnValue}
+          taskId={taskId}
+          groupId={groupId}
+          {...(variant === 'item' ? { dragListeners: listeners } : {})}
+        />
       )}
     </section>
   );

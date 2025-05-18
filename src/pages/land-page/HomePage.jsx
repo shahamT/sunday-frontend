@@ -1,14 +1,15 @@
 
 // === Style
 
-import { useState } from "react"
-import { useSelected } from "../../hooks/useSelected"
 
 // === Services
 
 // === Actions
 
 // === React
+import { useState } from "react"
+import { useSelected } from "../../hooks/useSelected"
+import { useNavigate } from "react-router-dom"
 
 // === Imgs
 
@@ -20,7 +21,7 @@ import { useSelected } from "../../hooks/useSelected"
 
 export function HomePage() {
     const { selected, isSelected, select, } = useSelected(null)
-
+    const navigate = useNavigate()
     return (
         <section className="HomePage">
 
@@ -34,7 +35,10 @@ export function HomePage() {
                     <h2 className="title">Made for work, <br /> designed to love</h2>
                     <h3 className="leading-text">Streamline workflows, gain clear visibility across teams, and empower smarter decisions with AI seamlessly woven into your work.</h3>
 
-                    <div className="clickable land-page primary full size-49 icon-end i-MoveArrowRightNarrow">Get Started</div>
+                    <div
+                        className="clickable land-page primary full size-49 icon-end i-MoveArrowRightNarrow"
+                        onClick={() => navigate('/signup')}
+                    >Get Started</div>
 
                     <p className="reassurance-text">No credit card needed &nbsp; ✦ &nbsp; Unlimited time on Free plan</p>
 
@@ -85,7 +89,10 @@ export function HomePage() {
                             </div>
 
                         </div>
-                        <div className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow">Get Started</div>
+                        <div
+                        className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"
+                         onClick={() => navigate('/signup')}
+                        >Get Started</div>
                     </div>
 
                     <img className="asset-img" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1746794821/default-blur_fcwgdv.avif" alt="" />

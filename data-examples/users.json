@@ -1,6 +1,8 @@
 [
   {
-    "_id": "cKdrA",
+      "_id": {
+    "$oid": "6828aff6d371e5b12cae4c49"
+  },
     "account": "acc001",
     "firstName": "John",
     "lastName": "Doe",
@@ -12,7 +14,9 @@
     "role": "admin"
   },
   {
-    "_id": "ehy6w",
+    "_id": {
+    "$oid": "6828b017d371e5b12cae4c4a"
+  },
     "account": "acc001",
     "firstName": "User2",
     "lastName": "Lastname2",
@@ -24,7 +28,9 @@
     "role": "user"
   },
   {
-    "_id": "yotQF",
+      "_id": {
+    "$oid": "6828b027d371e5b12cae4c4b"
+  },
     "account": "acc001",
     "firstName": "Noga",
     "lastName": "Shaham",
@@ -36,7 +42,9 @@
     "role": "user"
   },
   {
-    "_id": "9YVtq",
+    "_id": {
+    "$oid": "6828b040d371e5b12cae4c4c"
+  },
     "account": "acc001",
     "firstName": "Dana",
     "lastName": "Tamir",
@@ -48,7 +56,9 @@
     "role": "user"
   },
   {
-    "_id": "9EbO2",
+    "_id": {
+    "$oid": "6828b04ad371e5b12cae4c4d"
+  },
     "account": "acc001",
     "firstName": "Code",
     "lastName": "Cohen",

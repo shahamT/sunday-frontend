@@ -30,7 +30,7 @@ export function CellContentNumber({ taskId, column, columnValue }) {
 
     function onSetNumber() {
         setIsEditing(false)
-        if (value.trim() === '') onClearNumber()
+        if (value === '') onClearNumber()
         try {
             setColumnValue(taskId, column.id, value)
         }
@@ -52,7 +52,7 @@ export function CellContentNumber({ taskId, column, columnValue }) {
 
     return (
         <div
-            className="CellContentNumber cell-contnet"
+            className="CellContentNumber cell-content"
             onClick={() => {
                 setIsEditing(true)
                 setTimeout(() => {

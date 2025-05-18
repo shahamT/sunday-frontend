@@ -1,10 +1,10 @@
 import { useSelector } from 'react-redux'
-import { NavLink } from 'react-router-dom'
-import { MainLogo } from '../app/header/WMLogo'
+import { NavLink, useNavigate } from 'react-router-dom'
 import { MondayMainLogo } from './MondayMainLogo'
 
 export function LandPageHeader(props) {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
+const navigate = useNavigate()
 
     return (
         <header className="LandPageHeader">
@@ -19,7 +19,10 @@ export function LandPageHeader(props) {
                     <NavLink to="/about" >About</NavLink>
                     <NavLink to="/login" >Login</NavLink>
                     <NavLink to="/app" >App</NavLink>
-                    <div className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow">Get Started</div>
+                    <div
+                    className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"
+                     onClick={() => navigate('/signup')}
+                    >Get Started</div>
 
                 </nav>
             </div>

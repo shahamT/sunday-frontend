@@ -1,45 +1,38 @@
 [
   {
-    "_id": "b_346eeb71",
-    "account": {
-      "_id": "acc001"
+    "_id": {
+      "$oid": "6828af47d371e5b12cae4c44"
     },
+    "account": "acc001",
     "createdAt": 1747207429585,
     "createdBy": {
-      "_id": "rL2Yi"
+      "_id": "9f8e7d6c5b4a3210fedcba98"
     },
+    "pos": 1,
     "name": "Product Roadmap",
     "isStarred": false,
     "members": [
       {
-        "_id": "u_ef6393c7",
+        "_id": "9f8e7d6c5b4a3210fedcba98",
         "permission": "editor"
       },
       {
-        "_id": "u_8702f367",
+        "_id": "9876543210fedcba98765432",
         "permission": "editor"
       },
       {
-        "_id": "u_ee94dee7",
-        "permission": "editor"
-      },
-      {
-        "_id": "u_724039ea",
-        "permission": "editor"
-      },
-      {
-        "_id": "u_64745bb5",
+        "_id": "11223344556677889900aabb",
         "permission": "editor"
       }
     ],
     "activities": [],
     "columns": [
       {
-        "id": "name",
+        "id": "col-83bvn140",
         "name": "Task",
         "createdAt": 1747207429583,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 300,
         "type": {
@@ -47,11 +40,11 @@
         }
       },
       {
-        "id": "status",
+        "id": "col-85fjn340",
         "name": "Status",
         "createdAt": 1747207429583,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 120,
         "type": {
@@ -80,7 +73,7 @@
         "name": "Number",
         "createdAt": 1747207429584,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -92,7 +85,7 @@
         "name": "Dropdowns",
         "createdAt": 1747207429584,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -104,7 +97,7 @@
         "name": "Date",
         "createdAt": 1747207429584,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -116,7 +109,7 @@
         "name": "Text",
         "createdAt": 1747207429585,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -128,7 +121,7 @@
         "name": "Files",
         "createdAt": 1747207429585,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -140,7 +133,7 @@
         "name": "Peoples",
         "createdAt": 1747207429585,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -152,7 +145,7 @@
       {
         "id": "g_2945ab06",
         "createdAt": 1747207429585,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Planning",
         "color": "purple",
         "isCollapsed": false,
@@ -160,23 +153,19 @@
           {
             "id": "t_28e6a0ab",
             "createdAt": 1747207429585,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 17
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -185,14 +174,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -200,23 +181,19 @@
           {
             "id": "t_c6e6bcec",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Create user dashboard"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_f93f0623"
               },
               {
                 "colId": "col_87abd120",
                 "value": 10
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -225,14 +202,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -240,23 +209,19 @@
           {
             "id": "t_768f53ad",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_f93f0623"
               },
               {
                 "colId": "col_87abd120",
                 "value": 16
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -265,14 +230,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -280,23 +237,19 @@
           {
             "id": "t_df7fdbe3",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write unit tests"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 19
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -305,14 +258,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -320,23 +265,19 @@
           {
             "id": "t_e40846a6",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 9
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -345,14 +286,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -360,23 +293,19 @@
           {
             "id": "t_0614abd6",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 29
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -385,14 +314,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -402,7 +323,7 @@
       {
         "id": "g_18a34909",
         "createdAt": 1747207429586,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "QA",
         "color": "brown",
         "isCollapsed": false,
@@ -410,23 +331,19 @@
           {
             "id": "t_abae1fc4",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Implement authentication"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 36
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -435,14 +352,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -450,23 +359,19 @@
           {
             "id": "t_6553b020",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Review pull request"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 1
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -475,14 +380,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -490,23 +387,19 @@
           {
             "id": "t_b66fe54b",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_f93f0623"
               },
               {
                 "colId": "col_87abd120",
                 "value": 3
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -515,14 +408,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -530,23 +415,19 @@
           {
             "id": "t_d92b1bf0",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 25
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -555,14 +436,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -570,23 +443,19 @@
           {
             "id": "t_e6b6337b",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 5
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -595,14 +464,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -610,24 +471,21 @@
           {
             "id": "t_84655068",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Deploy to staging"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_f93f0623"
               },
               {
                 "colId": "col_87abd120",
                 "value": 13
               },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
-              },
+              
               {
                 "colId": "col_3b9af5cf",
                 "value": "2025-05-17"
@@ -635,14 +493,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -652,7 +502,7 @@
       {
         "id": "g_21d7d547",
         "createdAt": 1747207429586,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "In Progress",
         "color": "pecan",
         "isCollapsed": false,
@@ -660,23 +510,19 @@
           {
             "id": "t_27fa0bb7",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 29
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -685,14 +531,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -700,23 +538,19 @@
           {
             "id": "t_1671f747",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 16
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -725,14 +559,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -740,23 +566,19 @@
           {
             "id": "t_05c22f76",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 28
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -765,14 +587,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -780,23 +594,19 @@
           {
             "id": "t_5ed27dc7",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 19
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -805,14 +615,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -820,23 +622,19 @@
           {
             "id": "t_ed470412",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Design login page"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 8
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -845,14 +643,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -860,23 +650,19 @@
           {
             "id": "t_8625fae0",
             "createdAt": 1747207429586,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Implement authentication"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 5
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -885,14 +671,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -902,7 +680,7 @@
       {
         "id": "g_a3ee6712",
         "createdAt": 1747207429587,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Blocked",
         "color": "lipstick",
         "isCollapsed": false,
@@ -910,23 +688,19 @@
           {
             "id": "t_a3aac961",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write unit tests"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 6
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -935,14 +709,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -950,14 +716,14 @@
           {
             "id": "t_26519fe2",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write documentation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
@@ -965,24 +731,12 @@
                 "value": 4
               },
               {
-                "colId": "col_46bf8a8b",
-                "value": ""
-              },
-              {
                 "colId": "col_3b9af5cf",
                 "value": "2025-06-07"
               },
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -990,23 +744,19 @@
           {
             "id": "t_c83247e5",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_f93f0623"
               },
               {
                 "colId": "col_87abd120",
                 "value": 17
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1015,14 +765,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1030,23 +772,19 @@
           {
             "id": "t_f3a66b44",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 33
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1055,14 +793,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1070,23 +800,19 @@
           {
             "id": "t_969dbf72",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_007a3f3b"
               },
               {
                 "colId": "col_87abd120",
                 "value": 5
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1095,14 +821,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1112,7 +830,7 @@
       {
         "id": "g_5e819c51",
         "createdAt": 1747207429587,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Completed",
         "color": "tan",
         "isCollapsed": false,
@@ -1120,23 +838,19 @@
           {
             "id": "t_8bf53c9c",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Fix bug in form validation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_f93f0623"
               },
               {
                 "colId": "col_87abd120",
                 "value": 11
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1145,14 +859,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1160,23 +866,19 @@
           {
             "id": "t_b0770c73",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write unit tests"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 33
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1185,14 +887,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1200,23 +894,19 @@
           {
             "id": "t_600c71a7",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 8
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1225,14 +915,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1240,23 +922,19 @@
           {
             "id": "t_bc8ee878",
             "createdAt": 1747207429587,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_41c3ac2f"
               },
               {
                 "colId": "col_87abd120",
                 "value": 36
-              },
-              {
-                "colId": "col_46bf8a8b",
-                "value": ""
               },
               {
                 "colId": "col_3b9af5cf",
@@ -1265,14 +943,6 @@
               {
                 "colId": "col_739b133b",
                 "value": "Some notes about the task."
-              },
-              {
-                "colId": "col_3253a57e",
-                "value": ""
-              },
-              {
-                "colId": "col_950091a8",
-                "value": ""
               }
             ],
             "updates": []
@@ -1282,46 +952,39 @@
     ]
   },
   {
-    "_id": "b_cedf0692",
-    "account": {
-      "_id": "acc001"
-    },
+    "_id": {
+    "$oid": "6828af96d371e5b12cae4c45"
+  },
+    "account": "acc001",
     "createdAt": 1747207429587,
     "createdBy": {
-      "_id": "rL2Yi"
+      "_id": "9f8e7d6c5b4a3210fedcba98"
     },
+    "pos": 2,
     "name": "Design Pipeline",
     "isStarred": false,
     "members": [
       {
-        "_id": "u_12b8f488",
+        "_id": "9f8e7d6c5b4a3210fedcba98",
         "permission": "editor"
       },
       {
-        "_id": "u_1aa3512e",
+        "_id": "ehy6w",
         "permission": "editor"
       },
       {
-        "_id": "u_9f2fd68b",
-        "permission": "editor"
-      },
-      {
-        "_id": "u_f538c812",
-        "permission": "editor"
-      },
-      {
-        "_id": "u_4260b749",
+        "_id": "123abc456def7890abc123de",
         "permission": "editor"
       }
     ],
     "activities": [],
     "columns": [
       {
-        "id": "name",
+        "id": "col-83bvn140",
         "name": "Task",
         "createdAt": 1747207429587,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 300,
         "type": {
@@ -1329,11 +992,11 @@
         }
       },
       {
-        "id": "status",
+        "id": "col-85fjn340",
         "name": "Status",
         "createdAt": 1747207429587,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 120,
         "type": {
@@ -1362,7 +1025,7 @@
         "name": "Files",
         "createdAt": 1747207429587,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -1374,7 +1037,7 @@
         "name": "Number",
         "createdAt": 1747207429587,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -1386,7 +1049,7 @@
         "name": "Text",
         "createdAt": 1747207429587,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -1398,7 +1061,7 @@
         "name": "Date",
         "createdAt": 1747207429587,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -1410,7 +1073,7 @@
       {
         "id": "g_841ff458",
         "createdAt": 1747207429587,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Review",
         "color": "dark-orange",
         "isCollapsed": false,
@@ -1418,19 +1081,15 @@
           {
             "id": "t_b6c8f115",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1450,19 +1109,15 @@
           {
             "id": "t_103807b3",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Fix bug in form validation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1482,19 +1137,15 @@
           {
             "id": "t_4c6c20c6",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1514,19 +1165,15 @@
           {
             "id": "t_c77f8a05",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Deploy to staging"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1548,7 +1195,7 @@
       {
         "id": "g_22816d23",
         "createdAt": 1747207429588,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "QA",
         "color": "coffee",
         "isCollapsed": false,
@@ -1556,19 +1203,15 @@
           {
             "id": "t_739775ad",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1588,19 +1231,15 @@
           {
             "id": "t_c412cea9",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Create user dashboard"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1620,19 +1259,15 @@
           {
             "id": "t_7b0be6d0",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1654,7 +1289,7 @@
       {
         "id": "g_eca934d7",
         "createdAt": 1747207429588,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "In Progress",
         "color": "explosive",
         "isCollapsed": false,
@@ -1662,19 +1297,15 @@
           {
             "id": "t_ac88fc98",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1694,19 +1325,15 @@
           {
             "id": "t_603560f8",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Design login page"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1726,19 +1353,15 @@
           {
             "id": "t_d0db9a99",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Create user dashboard"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1758,19 +1381,15 @@
           {
             "id": "t_70172a61",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write documentation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1790,19 +1409,15 @@
           {
             "id": "t_776c653d",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write unit tests"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1822,19 +1437,15 @@
           {
             "id": "t_62acec35",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1856,7 +1467,7 @@
       {
         "id": "g_f500e691",
         "createdAt": 1747207429588,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Planning",
         "color": "bright-green",
         "isCollapsed": false,
@@ -1864,19 +1475,15 @@
           {
             "id": "t_9224a73b",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Fix bug in form validation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1896,19 +1503,15 @@
           {
             "id": "t_435dff96",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Design login page"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1928,19 +1531,15 @@
           {
             "id": "t_a41cee46",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write documentation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1960,19 +1559,15 @@
           {
             "id": "t_a7465de3",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -1992,19 +1587,15 @@
           {
             "id": "t_d04a8d20",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2026,7 +1617,7 @@
       {
         "id": "g_f90c3a01",
         "createdAt": 1747207429588,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Blocked",
         "color": "purple",
         "isCollapsed": false,
@@ -2034,19 +1625,15 @@
           {
             "id": "t_a66d08f0",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Test on mobile"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2066,19 +1653,15 @@
           {
             "id": "t_c4615bb8",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2098,19 +1681,15 @@
           {
             "id": "t_e5dcdcab",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Create user dashboard"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2130,19 +1709,15 @@
           {
             "id": "t_00821558",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_efbcf1d8"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2164,7 +1739,7 @@
       {
         "id": "g_f6ad4967",
         "createdAt": 1747207429588,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Completed",
         "color": "river",
         "isCollapsed": false,
@@ -2172,19 +1747,15 @@
           {
             "id": "t_94799acd",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Create user dashboard"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2204,19 +1775,15 @@
           {
             "id": "t_9402bf9a",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write unit tests"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2236,19 +1803,15 @@
           {
             "id": "t_99a23c61",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_9e4bc9b0"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2268,19 +1831,15 @@
           {
             "id": "t_1124f067",
             "createdAt": 1747207429588,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_bceb770f"
-              },
-              {
-                "colId": "col_b1486e40",
-                "value": ""
               },
               {
                 "colId": "col_2ec8de82",
@@ -2302,46 +1861,43 @@
     ]
   },
   {
-    "_id": "b_7f9f5026",
-    "account": {
-      "_id": "acc001"
-    },
+      "_id": {
+    "$oid": "6828afb1d371e5b12cae4c46"
+  },
+    "account": "acc001",
     "createdAt": 1747207429588,
     "createdBy": {
-      "_id": "rL2Yi"
+      "_id": "9f8e7d6c5b4a3210fedcba98"
     },
+    "pos": 3,
     "name": "Dev Sprint",
     "isStarred": true,
     "members": [
       {
-        "_id": "u_dee2a546",
+        "_id": "9f8e7d6c5b4a3210fedcba98",
         "permission": "editor"
       },
       {
-        "_id": "u_ec5749e0",
+        "_id": "123abc456def7890abc123de",
         "permission": "editor"
       },
       {
-        "_id": "u_4b4b5004",
+        "_id": "fedcba9876543210fedcba98",
         "permission": "editor"
       },
       {
-        "_id": "u_a2315a03",
-        "permission": "editor"
-      },
-      {
-        "_id": "u_84a5bfc7",
+        "_id": "11223344556677889900aabb",
         "permission": "editor"
       }
     ],
     "activities": [],
     "columns": [
       {
-        "id": "name",
+        "id": "col-83bvn140",
         "name": "Task",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 300,
         "type": {
@@ -2349,11 +1905,11 @@
         }
       },
       {
-        "id": "status",
+        "id": "col-85fjn340",
         "name": "Status",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 120,
         "type": {
@@ -2382,7 +1938,7 @@
         "name": "Peoples",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -2394,7 +1950,7 @@
         "name": "Number",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -2406,7 +1962,7 @@
         "name": "Text",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -2418,7 +1974,7 @@
         "name": "Date",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -2430,7 +1986,7 @@
         "name": "Files",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -2442,7 +1998,7 @@
         "name": "Dropdowns",
         "createdAt": 1747207429588,
         "createdBy": {
-          "_id": "rL2Yi"
+          "_id": "9f8e7d6c5b4a3210fedcba98"
         },
         "width": 200,
         "type": {
@@ -2454,7 +2010,7 @@
       {
         "id": "g_a72da215",
         "createdAt": 1747207429589,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "QA",
         "color": "teal",
         "isCollapsed": false,
@@ -2462,19 +2018,15 @@
           {
             "id": "t_750fce7b",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Deploy to staging"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2487,14 +2039,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-26"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2502,19 +2046,15 @@
           {
             "id": "t_97b3224f",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Review pull request"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_5fb8c319"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2527,14 +2067,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-12"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2542,19 +2074,15 @@
           {
             "id": "t_be3208b8",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_b0544b31"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2567,14 +2095,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-01"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2582,19 +2102,15 @@
           {
             "id": "t_3a051825",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_b0544b31"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2607,14 +2123,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-17"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2622,19 +2130,15 @@
           {
             "id": "t_a350fb90",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_5fb8c319"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2647,14 +2151,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-18"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2664,7 +2160,7 @@
       {
         "id": "g_081c4b0f",
         "createdAt": 1747207429589,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Planning",
         "color": "dark_indigo",
         "isCollapsed": false,
@@ -2672,19 +2168,15 @@
           {
             "id": "t_7e88ed85",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Design login page"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2697,14 +2189,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-09"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2712,19 +2196,15 @@
           {
             "id": "t_5362ea6f",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write documentation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2737,14 +2217,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-30"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2752,19 +2224,15 @@
           {
             "id": "t_40cb04f7",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Review pull request"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_b0544b31"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2777,14 +2245,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-13"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2792,19 +2252,15 @@
           {
             "id": "t_82df0773",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write documentation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_5fb8c319"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2817,14 +2273,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-26"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2834,7 +2282,7 @@
       {
         "id": "g_53ec1c51",
         "createdAt": 1747207429589,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Completed",
         "color": "dark-red",
         "isCollapsed": false,
@@ -2842,19 +2290,15 @@
           {
             "id": "t_69055353",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Create user dashboard"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_b0544b31"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2867,14 +2311,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-02"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2882,19 +2318,15 @@
           {
             "id": "t_fe65c537",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2907,14 +2339,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-16"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2922,19 +2346,15 @@
           {
             "id": "t_b4f8001a",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Improve accessibility"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2947,14 +2367,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-04"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -2962,19 +2374,15 @@
           {
             "id": "t_6f2d6654",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Write documentation"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -2987,14 +2395,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-18"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -3002,19 +2402,15 @@
           {
             "id": "t_222770db",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Implement authentication"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -3027,14 +2423,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-05"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -3042,19 +2430,15 @@
           {
             "id": "t_b292a7e8",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Update dependencies"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_4c167e69"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -3067,14 +2451,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-13"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -3084,7 +2460,7 @@
       {
         "id": "g_543024ff",
         "createdAt": 1747207429589,
-        "createdBy": "rL2Yi",
+        "createdBy": "9f8e7d6c5b4a3210fedcba98",
         "name": "Review",
         "color": "dark_purple",
         "isCollapsed": false,
@@ -3092,19 +2468,15 @@
           {
             "id": "t_d25babb9",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_b0544b31"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -3117,14 +2489,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-06-08"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -3132,19 +2496,15 @@
           {
             "id": "t_4ac5421b",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Review pull request"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_5fb8c319"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -3157,14 +2517,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-23"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []
@@ -3172,19 +2524,15 @@
           {
             "id": "t_f7daecc0",
             "createdAt": 1747207429589,
-            "createdBy": "rL2Yi",
+            "createdBy": "9f8e7d6c5b4a3210fedcba98",
             "columnValues": [
               {
-                "colId": "name",
+                "colId": "col-83bvn140",
                 "value": "Refactor navigation logic"
               },
               {
-                "colId": "status",
+                "colId": "col-85fjn340",
                 "value": "label_b0544b31"
-              },
-              {
-                "colId": "col_4f2da896",
-                "value": ""
               },
               {
                 "colId": "col_793cd4d0",
@@ -3197,14 +2545,6 @@
               {
                 "colId": "col_6f85a303",
                 "value": "2025-05-26"
-              },
-              {
-                "colId": "col_9b64618a",
-                "value": ""
-              },
-              {
-                "colId": "col_43cea21c",
-                "value": ""
               }
             ],
             "updates": []

@@ -15,6 +15,9 @@ import { useState } from "react";
 import { removeColumnValue, setColumnValue } from "../../../../../../store/actions/board.actions";
 import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu";
 import { Loader } from "../../../../../reusables/Loader/Loader";
+import { MiniFilePreview } from "../../value-setter/MiniFilePreview";
+import { FileModal } from "../../popupMenu/FileModal";
+import { openGlobalModal } from "../../../../../../store/actions/app.actions";
 
 // ====== Component ======
 // =======================
@@ -57,7 +60,7 @@ export function CellContentFile({ taskId, column, columnValue }) {
 
 
     return (
-        <div className={`CellContentFile cell-contnet`}>
+        <div className={`CellContentFile cell-content`}>
 
 
             {columnValue
@@ -68,8 +71,27 @@ export function CellContentFile({ taskId, column, columnValue }) {
                         onClick={onClearFile}
                     />
                     <>
-                        <div className="img-wraper">
-                            <img className="img-preview" src={columnValue?.value} />
+                        <div className="clickable-area"
+                            onClick={() => openGlobalModal(<FileModal imgUrl={columnValue.value} />)}>
+
+                            <div className="img-wraper">
+                                <PopUpMenu
+                                    position="bottom"
+                                    noArrow={false}
+                                    showOnHover={true}
+                                    mouseInDelay={300}
+                                    mouseOutDelay={300}
+                                    renderContent={({ onCloseModal }) => (
+                                        <MiniFilePreview
+                                            onCloseModal={onCloseModal}
+                                            imgUrl={columnValue.value}
+                                        />
+                                    )}
+                                >
+                                    <img className="img-preview" src={columnValue?.value} />
+                                </PopUpMenu>
+
+                            </div>
                         </div>
                     </>
                 </>
@@ -100,6 +122,6 @@ export function CellContentFile({ taskId, column, columnValue }) {
                     }
                 </div>
             }
-        </div>
+        </div >
     )
 }
