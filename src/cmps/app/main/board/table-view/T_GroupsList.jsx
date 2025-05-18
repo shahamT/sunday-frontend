@@ -58,18 +58,28 @@ export function T_GroupsList() {
 
     setBoard(prevBoard => ({
       ...prevBoard,
-      groups: storeBoard.groups.filter(group => {
+      groups: storeBoard.groups.map(group => {
         const groupNameMatches = regex.test(group.name)
 
-        const taskMatches = group.tasks?.some(task =>
+        if (groupNameMatches) return group
+
+        const matchingTasks = group.tasks?.filter(task =>
           // Object.values(task).some(val =>
           //   typeof val === 'string' && regex.test(val)
           // )
           regex.test(task.columnValues[0].value)
         )
 
-        return groupNameMatches || taskMatches
+        if (matchingTasks?.length) {
+          return {
+            ...group,
+            tasks: matchingTasks
+          }
+        }
+
+        return null 
       })
+      .filter(Boolean)
     }))
   },[filterBy, storeBoard])
 
