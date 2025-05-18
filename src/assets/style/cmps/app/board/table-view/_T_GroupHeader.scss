@@ -20,7 +20,7 @@
 
             .collapse-button-wraper {
                 padding-block-start: 4px;
-                margin-inline-start: 10px;
+                margin-inline-start: 4px;
                 margin-inline-end: 2px;
 
                 .collapse-button {
@@ -78,8 +78,10 @@
 
     &:hover,
     &.menu-in-focus {
-        .menu-wraper {
-            opacity: 1;
+        .menu-container{
+            .menu-wraper {
+                opacity: 1;
+            }
         }
 
     }

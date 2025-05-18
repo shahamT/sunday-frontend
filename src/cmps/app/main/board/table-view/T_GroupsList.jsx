@@ -17,7 +17,7 @@ import { store } from '../../../../../store/store'
 
 // === Hooks / React
 import { useSelector } from 'react-redux'
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // === Child Components
 import { T_Group } from './T_Group'
@@ -27,9 +27,11 @@ import { T_Group } from './T_Group'
 
 export function T_GroupsList() {
   // === Consts
-  const board = useSelector(storeState => storeState.boardModule.board)
+  const storeBoard = useSelector(storeState => storeState.boardModule.board)
+  const [board, setBoard] = useState(null)
   const liveColumnWidthsRef = useRef({})
   const [resizeVersion, setResizeVersion] = useState(0)
+  const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
 
   const sensors = useSensors(
     useSensor(PointerSensor, {
@@ -41,6 +43,45 @@ export function T_GroupsList() {
   function bumpResizeVersion() {
     setResizeVersion(v => v + 1)
   }
+
+  useEffect(() => {
+    if(storeBoard) setBoard(storeBoard)
+  },[storeBoard])
+
+  useEffect(() => {
+    if (!storeBoard) return
+    if (!filterBy.txt) {
+      setBoard(storeBoard)
+      return
+    }
+    const regex = new RegExp(filterBy.txt, 'i')
+
+    setBoard(prevBoard => ({
+      ...prevBoard,
+      groups: storeBoard.groups.map(group => {
+        const groupNameMatches = regex.test(group.name)
+
+        if (groupNameMatches) return group
+
+        const matchingTasks = group.tasks?.filter(task =>
+          // Object.values(task).some(val =>
+          //   typeof val === 'string' && regex.test(val)
+          // )
+          regex.test(task.columnValues[0].value)
+        )
+
+        if (matchingTasks?.length) {
+          return {
+            ...group,
+            tasks: matchingTasks
+          }
+        }
+
+        return null 
+      })
+      .filter(Boolean)
+    }))
+  },[filterBy, storeBoard])
 
   // === Functions
   function onAddGroup() {

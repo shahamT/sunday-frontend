@@ -1,3 +1,5 @@
+import { boardService } from "../../services/board"
+
 // Boards
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
@@ -31,7 +33,7 @@ export const BOARDS_LOADING_DONE = 'BOARDS_LOADING_DONE'
 export const BOARD_LOADING_START = 'BOARD_LOADING_START'
 export const BOARD_LOADING_DONE = 'BOARD_LOADING_DONE'
 
-// export const SET_BOARDS_FILTER_BY = 'SET_BOARDS_FILTER_BY'
+export const SET_BOARD_FILTER_BY = 'SET_BOARD_FILTER_BY'
 
 // Task Details Panel
 export const OPEN_TASK_PANEL = "OPEN_TASK_PANEL"
@@ -49,7 +51,7 @@ const initialState = {
     isBoardsLoading: false,
     isBoardLoading: false,
 
-    // filterBy: boardService.getDefaultFilter(),
+    filterBy: boardService.getDefaultFilter(),
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -190,15 +192,15 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case MOVE_TASK: {
-            const { task, fromGroupId, toGroupId, toIndex } = action;
-            const groups = [...state.board.groups];
+            const { task, fromGroupId, toGroupId, toIndex } = action
+            const groups = [...state.board.groups]
 
-            const fromGroup = groups.find(g => g.id === fromGroupId);
-            const toGroup = groups.find(g => g.id === toGroupId);
-            if (!fromGroup || !toGroup) return state;
+            const fromGroup = groups.find(g => g.id === fromGroupId)
+            const toGroup = groups.find(g => g.id === toGroupId)
+            if (!fromGroup || !toGroup) return state
 
-            fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== task.id);
-            toGroup.tasks.splice(toIndex, 0, task);
+            fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== task.id)
+            toGroup.tasks.splice(toIndex, 0, task)
 
             return {
                 ...state,
@@ -206,7 +208,7 @@ export function boardReducer(state = initialState, action = {}) {
                     ...state.board,
                     groups
                 }
-            };
+            }
         }
 
         case ADD_TASK_UPDATE:
@@ -259,6 +261,13 @@ export function boardReducer(state = initialState, action = {}) {
                                      return {...task, columnValues: newColumnValues} }) } })},
                 lastBoard
             }
+
+        case SET_BOARD_FILTER_BY:
+
+        return {
+            ...state,
+            filterBy: {txt: action.filterBy.txt}
+        }
 
         //Side Nav
 

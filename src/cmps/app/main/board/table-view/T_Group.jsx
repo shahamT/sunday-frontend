@@ -72,7 +72,12 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
 
       {isActiveGroup && activeTask && (
         <DragOverlay dropAnimation={null}>
-          <section className="T_Group T_Group--overlay">
+          <section
+            className="T_Group T_Group--overlay"
+            style={{
+              gridTemplateColumns: templateCols,
+            }}
+          >
             <T_TaskRow
               task={activeTask}
               columns={columns}

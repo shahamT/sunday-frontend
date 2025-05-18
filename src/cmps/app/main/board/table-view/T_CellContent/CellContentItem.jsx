@@ -11,8 +11,9 @@ import { setColumnValue } from '../../../../../../store/actions/board.actions'
 // ====== Component ======
 // =======================
 
-export function CellContentItem({ column, columnValue, taskId, groupId, dragListeners = {} }) {
+export function CellContentItem({ column, columnValue, task, groupId, dragListeners = {} }) {
   // === Consts
+  const taskId = task.id
   const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
   const navigate = useNavigate()
   const board = useSelector(storeState => storeState.boardModule.board)
@@ -43,6 +44,9 @@ export function CellContentItem({ column, columnValue, taskId, groupId, dragList
     }
   }
 
+
+  const updatesAmount = task?.updates?.length
+  
   return (
     <div
       className="CellContentItem cell-content"
@@ -92,6 +96,22 @@ export function CellContentItem({ column, columnValue, taskId, groupId, dragList
           onBlur={onSetName}
           onPressEnter={onSetName}
         />
+      </div>
+
+      <div className="expand-icon-wraper">
+        <div className="expand-icon i-Open"></div>
+      </div>
+
+      <div className="updates-indicator">
+        {updatesAmount > 0
+          ?
+          <div className="updates-counter i-Update">
+            <p className="counter">{updatesAmount}</p>
+          </div>
+          :
+          <div className="add-update i-AddUpdate"></div>
+        }
+
       </div>
 
     </div>

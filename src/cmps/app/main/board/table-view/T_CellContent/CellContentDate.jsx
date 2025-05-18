@@ -18,8 +18,9 @@ import { DatePickerColumn } from "../../value-setter/DatePicker";
 // ====== Component ======
 // =======================
 
-export function CellContentDate({ taskId, column, columnValue }) {
+export function CellContentDate({ task, column, columnValue }) {
     // === Consts
+  const taskId = task.id
 
     // === Effects
 

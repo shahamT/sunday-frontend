@@ -17,6 +17,7 @@ export const boardService = {
     addTaskUpdate,
     setColumnValue,
     removeColumnValue,
+    moveTask,
 }
 
 //////BOARD//////
@@ -129,3 +130,8 @@ function removeColumnValue(board, taskId, colId) {
 
     return httpService.delete(`board/${board._id}/group/${groupId}/task/${taskId}/columnValue/${colId}`)
 } 
+
+async function moveTask(taskId, fromGroupId, toGroupId, toIndex, boardId) {
+
+  return httpService.put(`board/${boardId}/task/${taskId}`, { fromGroupId, toGroupId, toIndex })
+}

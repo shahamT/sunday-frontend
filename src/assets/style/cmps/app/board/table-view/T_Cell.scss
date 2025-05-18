@@ -1,4 +1,5 @@
 .T_Cell {
+  position: relative;
 
   &:focus {
     outline: 1px solid var(--primary-color);
@@ -9,5 +10,5 @@
     outline: 1px solid var(--primary-color);
     outline-offset: -1px;
   }
- 
+
 }

@@ -22,8 +22,9 @@ import { openGlobalModal } from "../../../../../../store/actions/app.actions";
 // ====== Component ======
 // =======================
 
-export function CellContentFile({ taskId, column, columnValue }) {
+export function CellContentFile({ task, column, columnValue }) {
     // === Consts
+      const taskId = task.id
     const [isUploading, setIsUploading] = useState(false)
 
     // === Effects

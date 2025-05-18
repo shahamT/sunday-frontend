@@ -41,11 +41,10 @@ export function T_GroupFooter({ group, itemColumn, columns }) {
 
 
     }
-    console.log("columns: ", columns)
     return (
         <section className="T_GroupFooter">
 
-            <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
+            <div className={`t-left-indicator bottom disabled ${group.color}-bg-static`} />
 
 
             <div className="add-item-container">

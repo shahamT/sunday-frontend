@@ -21,6 +21,63 @@
     }
 
     .txt-search {
-        font-size: 15px;
+        font-size: 14px;
+    }
+
+    .search-btn::before {
+        margin-inline-end: 5px;
+    }
+
+    .filter-search-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        border: 1px solid var(--primary-color);
+        padding-inline: 4px;
+        border-radius: var(--border-radius-sm);
+
+        .filter-input {
+            padding-inline-start: 16px;
+
+            & input {
+                border: none;
+                outline: none;
+                border: 1px solid transparent;
+                padding-inline-start: 5px;
+                font-size: 14px;
+
+                min-width: 0;
+
+                letter-spacing: inherit;
+                color: var(--primary-text-color);
+                font-family: var(--font-family);
+                background-color: transparent;
+
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
+        }
+
+        .filter-input::before {
+            content: "\e9ce";
+            font-family: mon-i;
+            font-size: 20px;
+            color: var( --icon-color);
+            position: absolute;
+            left: 6px;
+            top: 45%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        &.has-text {
+            background-color: var(--primary-selected-color);
+        }
     }
 }

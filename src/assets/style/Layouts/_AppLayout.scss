@@ -7,7 +7,7 @@
 
   height: 100vh;
 
-  background-color: var(--primary-surface-color);
+  background-color: #f1f4fa;
 
   .app-main {
     grid-area: main;
@@ -29,7 +29,7 @@
         display: none;
       }
 
-      .close-btn::before{
+      .close-btn::before {
         transform: rotate(-180deg);
       }
 
@@ -71,13 +71,14 @@
             opacity: 0.2;
           }
         }
-        .close-btn-wraper{
+
+        .close-btn-wraper {
           opacity: 1;
           pointer-events: auto;
         }
       }
 
-      &.opened{
+      &.opened {
         &:hover {
           .close-btn-wraper {
             opacity: 1;
@@ -86,9 +87,9 @@
         }
       }
 
-      &.dragging{
+      &.dragging {
         .close-btn-wraper {
-        opacity: 0 !important;
+          opacity: 0 !important;
         }
       }
 
@@ -135,10 +136,10 @@
         opacity: 0;
 
         transition: opacity var(--transition-sm);
-        
+
         &:hover {
-            opacity: 1;
-            pointer-events: auto;
+          opacity: 1;
+          pointer-events: auto;
         }
 
         .close-btn {
@@ -161,8 +162,9 @@
 
         }
       }
-      .side-nav-resize-handle:hover ~ .close-btn-wraper {
-        opacity: 0 ;
+
+      .side-nav-resize-handle:hover~.close-btn-wraper {
+        opacity: 0;
         pointer-events: none;
       }
 
@@ -174,10 +176,16 @@
       }
     }
 
+    .main-divider {
+      width: 40px;
+      background-color: var(--primary-background-color);
+      border-top-left-radius: 12px;
+
+    }
+
     .main-content-panel {
       flex: 1;
       height: 100%;
-      background-color: #f1f4fa;
       overflow: hidden;
 
       .main-content-wraper {
