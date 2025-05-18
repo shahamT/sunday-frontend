@@ -13,7 +13,7 @@ export function ColSumStatus({ columnValues, column, group }) {
       const labelObj = column.type.labels.find(lbl => lbl.id === labelId)
 
       const labelName = labelObj?.name || 'Unlabeled'
-      const labelColor = labelObj?.color || 'american_gray'
+      const labelColor = labelObj?.color || 'default-status  '
 
       if (!lableSummary[labelName]) {
         lableSummary[labelName] = { count: 0, color: labelColor }
