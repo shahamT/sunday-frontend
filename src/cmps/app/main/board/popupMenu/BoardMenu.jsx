@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
 import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
+import { useNavigate } from "react-router-dom"
 
 // === Services
 
@@ -21,6 +22,7 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
 
     // === Consts
     const [boardToEdit, setBoardToEdit] = useState(null)
+    const navigate = useNavigate()
     // const debounceOnSetTxtToEdit = useRef(debounce(setTxtToEdit, 200))
 
     // === Effects
@@ -54,6 +56,8 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
         try {
             await removeBoard(boardId)
             showSuccessMsg('We successfully deleted the board')
+            navigate(`/app/home/`)
+
         }
         catch (err) {
             console.log('Failed to remove board')
