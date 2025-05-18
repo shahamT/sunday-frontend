@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
 import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
 import { useNavigate } from "react-router-dom"
+import { DeleteBoardModal } from "./DeleteBoardModal"
+import { openGlobalModal,closeGlobalModal } from "../../../../../store/actions/app.actions"
 
 // === Services
 
@@ -97,9 +99,21 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
                 {isStarred ? 'Remove from Favorites' : 'Add to Favorites'}
             </div>
 
-            <div className="clickable clear size-32 icon-start full-width i-Delete full-width left-aligned" onClick={() => onRemoveBoard(_id)}>
+            <div
+                className="clickable clear size-32 icon-start full-width i-Delete full-width left-aligned"
+                onClick={() =>
+                    openGlobalModal(
+                        <DeleteBoardModal
+                            boardId={_id}
+                            onRemoveBoard={onRemoveBoard}
+                            closeGlobalModal={closeGlobalModal}
+                        />
+                    )
+                }
+            >
                 Delete
             </div>
         </section>
+
     )
 }
