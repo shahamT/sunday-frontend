@@ -110,6 +110,14 @@
                         margin-right: 4px;
                 }
 
+                input {
+                        width: 100%;
+                        padding-left: 32px;
+                        height: 32px;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                }
+
                 .input-icon {
                         position: absolute;
                         left: 8px;
@@ -118,6 +126,9 @@
                         color: #d0d0d0;
 
                 }
+
+                // ========================== search-bar
+
 
         }
 

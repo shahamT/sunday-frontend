@@ -152,9 +152,9 @@ export function AppSideNav({ }) {
                                     <input
                                         type="text"
                                         value={boardFilterBy}
-                                        placeholder='     Search in Main workspace'
+                                        placeholder='Search in Main workspace'
                                         autoFocus
-                                        // onChange={(e) => setEditedTitle(e.target.value)}
+                                        onChange={(e) => setBoardFilterBy(e.target.value)}
                                         // onBlur={() => handleRename(board)}
                                         // onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
                                         className="search-board-input"
