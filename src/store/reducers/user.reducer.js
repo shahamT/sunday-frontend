@@ -12,7 +12,7 @@ export const USERS_LOADING_START = 'USERS_LOADING_START'
 export const USERS_LOADING_DONE = 'USERS_LOADING_DONE'
 
 const initialState = {
-    loggedInUser: userService.getLoggedinUser(),
+    loggedinUser: userService.getLoggedinUser(),
     lastViewedBoards: [],
     users: [],
     isUsersLoading: false
@@ -23,7 +23,7 @@ export function userReducer(state = initialState, action = {}) {
         case SET_USER:
             return {
                 ...state,
-                loggedInUser: action.user
+                loggedinUser: action.user
             }
 
         case REMOVE_USER:

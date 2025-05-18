@@ -58,6 +58,7 @@ function getEmptyBoard() {
     const labelId2 = makeId()
     const board = {
         name: '',
+        account: userService.getLoggedinUser()?.account,
         activities: [],
         columns: [
             {
@@ -112,6 +113,7 @@ function getEmptyBoard() {
                         id: makeId(),
                         createdAt: Date.now(),
                         createdBy: userService.getLoggedinUser()?._id || null,
+                        updates: [],
                         columnValues: [
                             {
                                 colId: colId1,
@@ -119,7 +121,7 @@ function getEmptyBoard() {
                             },
                             {
                                 colId: colId2,
-                                value: [userService.getLoggedinUser()?._id] || []
+                                value: [userService.getLoggedinUser()] || []
                             },
                             {
                                 colId: colId3,
@@ -135,6 +137,7 @@ function getEmptyBoard() {
                         id: makeId(),
                         createdAt: Date.now(),
                         createdBy: userService.getLoggedinUser()?._id || null,
+                        updates: [],
                         columnValues: [
                             {
                                 colId: colId1,
@@ -154,6 +157,7 @@ function getEmptyBoard() {
                         id: makeId(),
                         createdAt: Date.now(),
                         createdBy: userService.getLoggedinUser()?._id || null,
+                        updates: [],
                         columnValues: [
                             {
                                 colId: colId1,
@@ -179,6 +183,7 @@ function getEmptyBoard() {
                         id: makeId(),
                         createdAt: Date.now(),
                         createdBy: userService.getLoggedinUser()?._id || null,
+                        updates: [],
                         columnValues: [
                             {
                                 colId: colId1,
@@ -194,6 +199,7 @@ function getEmptyBoard() {
                         id: makeId(),
                         createdAt: Date.now(),
                         createdBy: userService.getLoggedinUser()?._id || null,
+                        updates: [],
                         columnValues: [
                             {
                                 colId: colId1,

@@ -65,15 +65,15 @@ async function logout() {
 }
 
 function getLoggedinUser() { //TODO change this from hardcoded user back to service
-    return {
-    _id: "rL2Yi",
-    account: "acc001",
-    firstName: "John",
-    lastName: "Doe",
-    email: "user1@company.com",
-    lastViewedBoards: [],
-    profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
-  }
+//     return {
+//     _id: "rL2Yi",
+//     account: "acc001",
+//     firstName: "John",
+//     lastName: "Doe",
+//     email: "user1@company.com",
+//     lastViewedBoards: [],
+//     profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+//   }
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
