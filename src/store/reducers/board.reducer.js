@@ -1,3 +1,5 @@
+import { boardService } from "../../services/board"
+
 // Boards
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
@@ -31,7 +33,7 @@ export const BOARDS_LOADING_DONE = 'BOARDS_LOADING_DONE'
 export const BOARD_LOADING_START = 'BOARD_LOADING_START'
 export const BOARD_LOADING_DONE = 'BOARD_LOADING_DONE'
 
-// export const SET_BOARDS_FILTER_BY = 'SET_BOARDS_FILTER_BY'
+export const SET_BOARD_FILTER_BY = 'SET_BOARD_FILTER_BY'
 
 // Task Details Panel
 export const OPEN_TASK_PANEL = "OPEN_TASK_PANEL"
@@ -49,7 +51,7 @@ const initialState = {
     isBoardsLoading: false,
     isBoardLoading: false,
 
-    // filterBy: boardService.getDefaultFilter(),
+    filterBy: boardService.getDefaultFilter(),
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -259,6 +261,13 @@ export function boardReducer(state = initialState, action = {}) {
                                      return {...task, columnValues: newColumnValues} }) } })},
                 lastBoard
             }
+
+        case SET_BOARD_FILTER_BY:
+
+        return {
+            ...state,
+            filterBy: {txt: action.filterBy.txt}
+        }
 
         //Side Nav
 

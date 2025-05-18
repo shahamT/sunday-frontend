@@ -1,6 +1,6 @@
 //TODO find and replace - Template , template , templates , TEMPLATE , TEMPLATES
 
-import { templateService } from "../../services/template.service.js"
+import { templateService } from "../../services/not relevent/template.service"
 
 //* Templates
 export const SET_TEMPLATES = 'SET_TEMPLATES'
