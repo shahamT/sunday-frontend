@@ -11,6 +11,7 @@ import { ColSumNumber } from "./T_ColumnSum/ColSumNumber";
 import { ColSumFile } from "./T_ColumnSum/ColSumFile";
 import { ColSumStatus } from "./T_ColumnSum/ColSumStatus";
 import { ColSumPeople } from "./T_ColumnSum/ColSumPeople";
+import { ColSumDate } from "./T_ColumnSum/ColSumDate";
 
 // === Imgs
 
@@ -32,7 +33,7 @@ export function T_ColumnSumCell({ group, column }) {
   const componentMap = {
     item: '',
     status: ColSumStatus,
-    date: '',
+    date: ColSumDate,
     people: ColSumPeople,
     text: '',
     file:ColSumFile,
@@ -41,7 +42,6 @@ export function T_ColumnSumCell({ group, column }) {
   // const columnValue= group.tasks.columnValue.colId[]
   const variant = column.type.variant
   const DynamicComponent = componentMap[variant]
-
 
 
 

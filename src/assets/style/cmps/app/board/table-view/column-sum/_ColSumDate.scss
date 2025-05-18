@@ -1,0 +1,51 @@
+.col-som-date {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 8px;
+
+    .date-range-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-grow: 1;
+        flex-shrink: 1;
+        height: 24px;
+        min-width: 24px;
+        color: white;
+        border-radius: 25px;
+        // background: linear-gradient(to right, #579bfc 21%, #000000 21%);
+
+    }
+.txt{
+    // display: flex;
+    text-align: center;
+    flex: 1;  
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.date-range-wrapper:hover{
+    .txt {
+        display: none;
+    }
+    
+    .txt-hover {
+        display: inline;
+        text-align: center;
+        flex: 1;  
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+}
+
+    .txt-hover {
+        display: none;
+    }
+
+
+  
+}
