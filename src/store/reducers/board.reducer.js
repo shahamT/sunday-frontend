@@ -8,6 +8,7 @@ export const ADD_BOARD = 'ADD_BOARD'
 export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const REVERT_BOARDS = 'REVERT_BOARDS'
 export const REVERT_BOARD = 'REVERT_BOARD'
+export const UPDATE_BOARD_FROM_SOCKET = 'UPDATE_BOARD_FROM_SOCKET'
 
 // Groups
 export const REMOVE_GROUP = 'REMOVE_GROUP'
@@ -85,9 +86,17 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case UPDATE_BOARD:
+
             return {
                 ...state,
                 boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
+            }
+
+        case UPDATE_BOARD_FROM_SOCKET:
+
+            return {
+                ...state,
+                board: action.board
             }
 
         case BOARDS_LOADING_START:

@@ -1,5 +1,5 @@
 import {
-    ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD,
+    ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, UPDATE_BOARD_FROM_SOCKET,
     ADD_GROUP, REMOVE_GROUP, UPDATE_GROUP,
     ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN,
     ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE,
@@ -340,6 +340,13 @@ function getCmdAddBoard(board) {
 function getCmdUpdateBoard(board) {
     return {
         type: UPDATE_BOARD,
+        board
+    }
+}
+
+export function getCmdUpdateBoardFromSocket(board) {
+    return {
+        type: UPDATE_BOARD_FROM_SOCKET,
         board
     }
 }
