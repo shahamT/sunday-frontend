@@ -1,6 +1,5 @@
 // === Libs
 
-import { reduce } from "lodash"
 import { PersonsPreview } from "../T_CellContent/PersonsPreview"
 import { PersonsPicker } from "../../value-setter/PersonsPicker"
 import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu"
