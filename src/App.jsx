@@ -15,6 +15,7 @@ import { DevPage2 } from './pages/DevPages/DevPage2'
 import { DevPage3 } from './pages/DevPages/DevPage3'
 
 //hooks / react
+import { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom'
 import { useDocumentTitle } from './hooks/useDocumentTitle'
 
@@ -24,6 +25,7 @@ import { useDocumentTitle } from './hooks/useDocumentTitle'
 //services
 import { store } from './store/store.js'
 import { Provider } from 'react-redux'
+import { socketService } from './services/base/socket.service';
 
 // === Layouts
 import { LandPageLayout } from './layouts/LandPageLayout'
@@ -54,7 +56,9 @@ export default function App() {
     } 
     login(userCred)//TODO delete this!!!
 
-
+    useEffect(() => {
+    socketService.setup()
+    }, [])
 
     return (
         <Provider store={store}>
