@@ -7,10 +7,10 @@
 // === Actions
 
 // === Hooks / React
-import { useRef, useEffect } from "react";
 import { ColSumNumber } from "./T_ColumnSum/ColSumNumber";
 import { ColSumFile } from "./T_ColumnSum/ColSumFile";
 import { ColSumStatus } from "./T_ColumnSum/ColSumStatus";
+import { ColSumPeople } from "./T_ColumnSum/ColSumPeople";
 
 // === Imgs
 
@@ -33,7 +33,7 @@ export function T_ColumnSumCell({ group, column }) {
     item: '',
     status: ColSumStatus,
     date: '',
-    people: '',
+    people: ColSumPeople,
     text: '',
     file:ColSumFile,
     number: ColSumNumber,

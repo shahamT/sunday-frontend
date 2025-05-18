@@ -62,13 +62,13 @@ export function BoardList({ /* prop1, prop2 */ }) {
                                 <label className="board-txt ">
                                     {board.name}
 
-                                </label>
-                                <button
-                                    className={`favorite-btn clickable select size-32 ${board.isStarred ? 'starred' : ''}`}
-                                    onClick={(e) => e.stopPropagation()}
-                                >
-                                    <IsStarred board={board} />
-                                </button>
+                            </label>
+                            <div
+                                className={`favorite-btn clickable select size-32 ${board.isStarred ? 'starred' : ''}`}
+                                onClick={(e) => e.stopPropagation()}
+                            >
+                                <IsStarred board={board} />
+                            </div>
 
                             </div>
                             <div className="board-work-management">
