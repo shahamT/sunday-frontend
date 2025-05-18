@@ -87,7 +87,7 @@ export function CellContentItem({ column, columnValue, taskId, groupId, dragList
         <EditableText
           size="small"
           value={value}
-          full={true}
+          // full={true}
           handleChange={handleChange}
           onBlur={onSetName}
           onPressEnter={onSetName}
