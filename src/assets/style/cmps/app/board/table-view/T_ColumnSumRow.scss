@@ -1,4 +1,41 @@
-.T_ColumnSumRow{
+.T_ColumnSumRow {
     height: 36px;
-   
+    position: relative;
+
+
+    .sum-row-round-edge {
+        position: absolute;
+        top: -1px;
+        right: -7px;
+
+        height: 36px;
+        width: 8px;
+
+        border-block-start: 1px solid var(--layout-border-color);
+        border-block-end: 1px solid var(--layout-border-color);
+        border-inline-start: 1px solid var(--layout-border-color);
+        border-bottom-left-radius: 6px;
+    }
+
+    .sum-row-round-edge-bottom-line-hider {
+        position: absolute;
+        top: -0px;
+        right: -7px;
+
+        height: 35px;
+        width: 8px;
+        box-sizing: content-box;
+
+        border-bottom-left-radius: 7px;
+        border-inline-start: 2px solid rgb(255, 255, 255);
+
+        border-block-end: 2px solid rgb(255, 255, 255);
+    }
+
+    .empty-placeholder,
+    .empty-indicator {
+        box-sizing: content-box;
+        background-color: white;
+        outline: 1px solid rgb(255, 255, 255);
+    }
 }

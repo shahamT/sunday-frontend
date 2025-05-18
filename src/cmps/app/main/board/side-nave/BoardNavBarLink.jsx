@@ -6,6 +6,7 @@ import { CSS } from "@dnd-kit/utilities"
 import { useNavigate, useParams } from "react-router-dom";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { BoardMenu } from "../popupMenu/BoardMenu";
+import { updateUser } from "../../../../../store/actions/user.actions";
 
 
 export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedTitle, setEditingBoardId, handleRename }) => {
@@ -30,6 +31,7 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
 
   function handleClick() {
     navigate(`/app/board/${board._id}`)
+    updateUser(board._id)
   }
 
   function handleMouseDown() {

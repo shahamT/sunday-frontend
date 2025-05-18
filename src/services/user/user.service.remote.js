@@ -27,9 +27,9 @@ function remove(userId) {
 	return httpService.delete(`user/${userId}`)
 }
 
-async function update({ boardId }) {
-    const loggedinUserId = getLoggedinUser()._id
-	const user = await httpService.put(`user/${loggedinUserId}`, { boardId })
+async function update(boardId) {
+    const loggedinUser = getLoggedinUser()
+	const user = await httpService.put(`user/${loggedinUser._id}`, { boardId })
 
 	// When admin updates other user's details, do not update loggedinUser
     // if (loggedinUser._id === user._id && loggedinUser.role !== 'admin') 
@@ -53,17 +53,9 @@ async function logout() {
 	return await httpService.post('auth/logout')
 }
 
-function getLoggedinUser() { //TODO change this from hardcoded user back to service
-	    return {
-    _id: "rL2Yi",
-    account: "acc001",
-    firstName: "John",
-    lastName: "Doe",
-    email: "user1@company.com",
-    lastViewedBoards: [],
-    profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
-  }
-    return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
+function getLoggedinUser() { 
+
+	return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
 function saveLoggedinUser(user) {
@@ -74,6 +66,8 @@ function saveLoggedinUser(user) {
         email: user.email, 
         profileImg: user.imgUrl, 
         lastViewedBoards: user.lastViewedBoards,
+		account: user.account,
+		profileImg: user.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`
     }
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user
