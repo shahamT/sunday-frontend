@@ -51,7 +51,7 @@ export function T_ColumnSumCell({ group, column }) {
     className={`T_ColumnSumCell`}
     >
       {DynamicComponent && (
-        <DynamicComponent column={column} columnValues={columnValues} />
+        <DynamicComponent column={column} columnValues={columnValues} group={group} />
       )}
     </section>
   )
