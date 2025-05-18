@@ -23,7 +23,6 @@ export function ColSumStatus({ columnValues, column }) {
   
       return lableSummary
     }
-    console.log("ssss",lableSummary)
   
     function precentCalculate(lableSummary) {
       const percentByLabel = {}
@@ -33,7 +32,6 @@ export function ColSumStatus({ columnValues, column }) {
       }
       return percentByLabel
     }
-  console.log(lableSummeryPrecent)
     return (
       <section className="col-sum-status">
         {Object.entries(lableSummeryPrecent).map(([labelName, percent]) => {
