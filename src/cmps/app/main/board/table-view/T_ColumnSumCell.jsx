@@ -9,6 +9,8 @@
 // === Hooks / React
 import { useRef, useEffect } from "react";
 import { ColSumNumber } from "./T_ColumnSum/ColSumNumber";
+import { ColSumFile } from "./T_ColumnSum/ColSumFile";
+import { ColSumStatus } from "./T_ColumnSum/ColSumStatus";
 
 // === Imgs
 
@@ -29,10 +31,11 @@ export function T_ColumnSumCell({ group, column }) {
 
   const componentMap = {
     item: '',
-    status: '',
+    status: ColSumStatus,
     date: '',
     people: '',
     text: '',
+    file:ColSumFile,
     number: ColSumNumber,
   };
   // const columnValue= group.tasks.columnValue.colId[]

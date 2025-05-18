@@ -17,29 +17,7 @@ import { T_ColumnSumCell } from "./T_ColumnSumCell"
 export function T_ColumnSumRow({ columns, group }) {
     // === Consts
 
-    // === Effects
-    // === Functions
-    // createArreyFromColId(group, columns)
-    // const columnValues = getArreyByType(group, columns)
-    // console.log("lslss", columnValues)
-    // function getArreyByType(group, columns) {
-    //     return columns.map(column => {
-    //         const columnValues = createArreyFromColId(group, column)
-    //         return columnValues
-    //     })
-    // }
-
-    // function createArreyFromColId(group, column) {
-    //     // const { type, id } = column
-    //     const columnValues = []
-    //     for (let i = 0; i < group.tasks.length; i++) {
-    //         const columnValue = group.tasks[i].columnValues.find(col => col.colId === column.id)?.value
-    //         columnValues.push(columnValue)
-    //     }
-    //     console.log('column',columnValues)
-    //     return columnValues
-    // }
-
+ console.log(columns)
  
 
     return (

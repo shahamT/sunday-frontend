@@ -1,22 +1,10 @@
-// === Libs
 
-// === Services
-
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================
 
 export function ColSumNumber({ column,columnValues }) {
-    // === Consts
 
-    // === Effects
 
     // === Functions
 const sum= columnValues.reduce((acc,currNun)=>{
@@ -25,7 +13,7 @@ const sum= columnValues.reduce((acc,currNun)=>{
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="ComponentName">
+        <section className="col-sum-number">
             <p>{sum}</p>
             <p>sum</p>
         </section>
