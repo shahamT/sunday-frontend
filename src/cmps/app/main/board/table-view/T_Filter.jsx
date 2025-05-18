@@ -13,24 +13,41 @@ import { addTask } from "../../../../../store/actions/board.actions.js"
 // === Child Components
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu.jsx"
 import { AddNewSelection } from "../value-setter/AddNewSelection.jsx"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useControlledInput } from "../../../../../hooks/useControlledInput.js"
 import { setFilterBy } from "../../../../../store/actions/board.actions.js"
+import { debounce } from "../../../../../services/base/util.service.js"
 
 // ====== Component ======
 // =======================
 
 export function T_Filter({ /* prop1, prop2 */ }) {
     const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
+
     const [isInput, setIsInput] = useState(false)
     const [isExitBtn, setIsExitBtn] = useState(false)
     const [hasText, setHasText] = useState(false)
     const [value, setValue] = useState('')
 
-    console.log(filterBy)
+    const debouncedSetFilterBy = useRef(
+        debounce((val) => {
+        try {
+            setFilterBy({ txt: val })
+        } catch (err) {
+            showErrorMsg('Something went wrong')
+        }
+        }, 300)
+    )
+
     // === Consts
 
     // === Effects
+    useEffect(() => {
+        return () => {
+            debouncedSetFilterBy.current.cancel()
+        }
+    }, [])
+
     useEffect(() => {
 
     },[isInput])
@@ -47,18 +64,19 @@ export function T_Filter({ /* prop1, prop2 */ }) {
         if (val === '') {
             setIsExitBtn(false)
             setHasText(false)
-            return
+        } else {
+            setIsExitBtn(true)
+            setHasText(true)
         }
 
-        setIsExitBtn(true)
-        setHasText(true)
+        debouncedSetFilterBy.current(val)
 
-        try {
-            setFilterBy({ txt: val })
-        }
-        catch (err) {
-            showErrorMsg(`Somthing went wrong`)
-        }
+        // try {
+        //     setFilterBy({ txt: val })
+        // }
+        // catch (err) {
+        //     showErrorMsg(`Somthing went wrong`)
+        // }
     }
 
     function onHandleOnBlur() {
