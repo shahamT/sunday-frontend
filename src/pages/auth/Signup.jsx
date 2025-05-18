@@ -71,12 +71,16 @@ export function Signup({ setLoggedinUser }) {
                         <div className="line" />
                     </div>
 
-<form action="">
+                    <form >
+                        <div className="input-group">
+                            <label htmlFor="email">email</label>
+                            <input id='email' name='email' type="text" placeholder='name@colmpany.com' />
+                            <p className='error-text'>error</p>
 
-    <input type="text" placeholder='name@colmpany.com'/>
-    <input type="text" />
+                        </div>
+                        <input type="text" />
 
-</form>
+                    </form>
 
                     <button className='clickable filled size-40 full-width '>Continue</button>
 
