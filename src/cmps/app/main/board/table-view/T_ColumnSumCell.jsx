@@ -7,7 +7,6 @@
 // === Actions
 
 // === Hooks / React
-import { useRef, useEffect } from "react";
 import { ColSumNumber } from "./T_ColumnSum/ColSumNumber";
 import { ColSumFile } from "./T_ColumnSum/ColSumFile";
 import { ColSumStatus } from "./T_ColumnSum/ColSumStatus";
