@@ -18,8 +18,9 @@ import { EditableText } from "../../../../../reusables/EditableText/EditableText
 // ====== Component ======
 // =======================
 
-export function CellContentNumber({ taskId, column, columnValue }) {
+export function CellContentNumber({ task, column, columnValue }) {
     // === Consts
+      const taskId = task.id
     const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
     const [isEditing, setIsEditing] = useState(false)
     const inputRef = useRef()

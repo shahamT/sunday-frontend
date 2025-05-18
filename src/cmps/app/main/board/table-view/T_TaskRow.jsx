@@ -120,7 +120,7 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
             key={column.id + idx}
             column={column}
             columnValue={columnValue}
-            taskId={task.id}
+            task={task}
             groupId={group.id}
             listeners={listeners}
             isOverlay={isOverlay}
