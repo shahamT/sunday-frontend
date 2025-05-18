@@ -17,7 +17,7 @@ import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu"
 // ====== Component ======
 // =======================
 
-export function ColSumPeople({column, group ,columnValues}) {
+export function ColSumPeople({columnValues}) {
 
     // === Consts
 
