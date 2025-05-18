@@ -17,7 +17,6 @@ import { T_ColumnSumCell } from "./T_ColumnSumCell"
 export function T_ColumnSumRow({ columns, group }) {
     // === Consts
 
- console.log(columns)
  
 
     return (
