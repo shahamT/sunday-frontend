@@ -187,6 +187,7 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
 
     function onSaveUpdate() {
         const html = editor.getHTML()
+        editor.commands.clearContent()
         saveUpdate(html)
         setDestroy(true)
     }

@@ -58,7 +58,6 @@ export function TaskDetails() {
 
         if (board) {
             setColumns(board.columns)
-            // setSelectedPersons(getSelectedPersons())
         }
     }, [board, taskId])
 
@@ -72,13 +71,12 @@ export function TaskDetails() {
         const peopleColId = columns.find(column => column.type.variant === 'people')?.id
         if(!peopleColId) return
         setPersonsColumn(peopleColId)
-
+        
         const peopleColValue = task.columnValues.find(cv => cv.colId === peopleColId)
         let persons = Array.isArray(peopleColValue?.value) ? [...peopleColValue.value] : [];
-
+        
         let ownerId = task.createdBy
-        console.log('ownerId: ', ownerId)
-
+        
         const enrich = async () => {
             let owner = persons.find(person => person._id === ownerId);
             if (owner) {
@@ -136,7 +134,6 @@ export function TaskDetails() {
         try {
             setColumnValue(taskId, personsColumn, PersonsArray)
             if (PersonsArray.length === 0) onClearPersons()
-            setSelectedPersons(PersonsArray)
         } catch (err) {
             showErrorMsg(`Something went wrong`);
         }
