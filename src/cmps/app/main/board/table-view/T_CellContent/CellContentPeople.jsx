@@ -7,9 +7,7 @@ import { PersonsPreview } from "./PersonsPreview";
 export function CellContentPeople({ taskId, column, columnValue }) {
     const [animationKey, setAnimationKey] = useState(0);
     const hasMounted = useRef(false); // 👈 Track if initial render has passed
-
     function setPersons(PersonsArray) {
-        console.log('set persons');
         try {
             setColumnValue(taskId, column.id, PersonsArray);
             if (PersonsArray.length === 0) onClearPersons();

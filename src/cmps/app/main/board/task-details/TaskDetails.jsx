@@ -45,6 +45,8 @@ export function TaskDetails() {
     const [selectedPersons, setSelectedPersons] = useState([])
     const [isOwnerSelected, setIsOwnerSelected] = useState(false)
     const [value, handleChange, reset, set] = useControlledInput('')
+
+    console.log(selectedPersons)
     
     // === Effects
     useEffect(() => {
@@ -75,6 +77,7 @@ export function TaskDetails() {
         let persons = Array.isArray(peopleColValue?.value) ? [...peopleColValue.value] : [];
 
         let ownerId = task.createdBy
+        console.log('ownerId: ', ownerId)
 
         const enrich = async () => {
             let owner = persons.find(person => person._id === ownerId);
