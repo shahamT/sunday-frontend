@@ -1,35 +1,75 @@
-import { useState } from 'react'
+import { useState } from 'react';
 
-export function useControlledForm(defaultValues = {}) {
-    const [dataToEdit, setDataToEdit] = useState(defaultValues)
+export function useControlledForm(defaultValues = {}, validators = {}) {
+  const [dataToEdit, setDataToEdit] = useState(defaultValues);
+  const [errors, setErrors] = useState({});
 
-    function handleChange(ev) {
-        const { name, type, value, checked } = ev.target
+  function handleChange(ev) {
+    const { name, type, value, checked } = ev.target;
 
-        let newValue
-
-        if (type === 'checkbox') {
-            newValue = checked
-        } else if (type === 'number' || type === 'range') {
-            newValue = value === '' ? '' : Number(value)
-        } else if (type === 'date') {
-            newValue = value ? new Date(value) : ''
-        } else {
-            newValue = value
-        }
-
-        setDataToEdit(prev => ({
-            ...prev,
-            [name]: newValue,
-        }))
+    let newValue;
+    if (type === 'checkbox') {
+      newValue = checked;
+    } else if (type === 'number' || type === 'range') {
+      newValue = value === '' ? '' : Number(value);
+    } else if (type === 'date') {
+      newValue = value ? new Date(value) : '';
+    } else {
+      newValue = value;
     }
 
-    function resetForm() {
-        setDataToEdit(defaultValues)
+    setDataToEdit(prev => ({
+      ...prev,
+      [name]: newValue,
+    }));
+
+    // Clear error on change
+    setErrors(prev => ({
+      ...prev,
+      [name]: '',
+    }));
+  }
+
+  function validateField(name) {
+    const validator = validators[name];
+    if (!validator) return true;
+
+    const value = dataToEdit[name];
+    const error = validator(value);
+
+    setErrors(prev => ({
+      ...prev,
+      [name]: error || '',
+    }));
+
+    return !error;
+  }
+
+  function validateAll() {
+    const newErrors = {};
+    let isValid = true;
+
+    for (const name in validators) {
+      const value = dataToEdit[name];
+      const error = validators[name](value);
+      if (error) {
+        isValid = false;
+        newErrors[name] = error;
+      }
     }
 
-    return [dataToEdit, handleChange, resetForm]
+    setErrors(newErrors);
+    return isValid;
+  }
+
+  function resetForm() {
+    setDataToEdit(defaultValues);
+    setErrors({});
+  }
+
+  return [dataToEdit, handleChange, resetForm, errors, validateField, validateAll];
 }
+
 
 
 // Example Usage:

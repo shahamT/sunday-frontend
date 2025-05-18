@@ -5,6 +5,7 @@
 
     a {
         color: var(--link-color);
+        font-weight: 500;
     }
 
     .signup-main-content {
@@ -36,6 +37,15 @@
             }
 
 
+            .google-auth-btn {
+                border: 1px solid var(--layout-border-color) ;
+
+                .google-icon{
+                  height: 18px;  
+                  margin-inline-end: 8px;
+                }
+            }
+
             .divider {
                 display: flex;
                 align-items: center;
@@ -56,43 +66,61 @@
 
             form {
                 width: 100%;
-                display: flex;
-                flex-direction: column;
-                gap: 24px;
+                display: grid;
+                grid-template-columns: 1fr;
+                gap: 16px;
+                margin-block-end: 16px;
+
 
                 .input-group {
                     display: flex;
                     flex-direction: column;
                     align-items: start;
-                }
 
-                label {
-                    font-size: 14px;
-                    font-weight: 400;
-                    color: var(--primary-text-color);
+                    label {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: var(--primary-text-color);
+                        padding-block-start: 2px;
+                        padding-block-end: 6px;
+                    }
 
-                }
+                    input {
+                        width: 100%;
+                        height: 48px;
+                        padding-inline: 16px;
+                        border: 1px solid;
 
-                input {
-                    width: 100%;
-                    height: 48px;
-                    padding-inline: 16px;
-                    border: 1px solid;
+                        font-family: var(--font-family);
+                        color: var(--primary-text-color);
+                        font-size: 16px;
+                        border-radius: 4px;
+                        border-color: rgb(195, 198, 212);
+                        color: rgb(50, 51, 56);
+                        transition: var(--transition-md);
 
-                    color: var(--primary-text-color);
-                    font-size: 16px;
-                    border-radius: 4px;
-                    border-color: rgb(195, 198, 212);
-                    color: rgb(50, 51, 56);
+                        &:hover {
+                            border-color: var(--primary-text-color);
+                        }
 
-                    &:focus {
-                        outline: none;
-                        border-color: #0073ea;
+                        &:focus:hover {
+                            border-color: var(--primary-text-color);
+                        }
+
+                        &:focus {
+                            outline: none;
+                            border-color: #0073ea;
+                        }
+                    }
+
+                    p {
+                        font-size: 14px;
+                        font-weight: 400;
+                        color: var(--negative-color);
+                        padding-block-start: 1px;
                     }
                 }
-                p{
-                    
-                }
+
             }
 
             .terms-and-cond-text {
