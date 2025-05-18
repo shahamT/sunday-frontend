@@ -78,8 +78,10 @@
 
     &:hover,
     &.menu-in-focus {
-        .menu-wraper {
-            opacity: 1;
+        .menu-container{
+            .menu-wraper {
+                opacity: 1;
+            }
         }
 
     }

@@ -1,5 +1,10 @@
 .T_GroupHeadRow {
 
+    &.sticked {
+        box-shadow: var(--box-shadow-small);
+        border-block-end: 2px solid var(--layout-border-color);
+    }
+
     .add-column-btn-container {
         display: flex;
         align-items: center;
@@ -13,4 +18,8 @@
 
         }
     }
+}
+
+.gorup-head-row-sentinal{
+    height: 0;
 }

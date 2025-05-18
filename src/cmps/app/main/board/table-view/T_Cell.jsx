@@ -69,6 +69,7 @@ export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOver
           : undefined
       }
     >
+
       {DynamicComponent && (
         <DynamicComponent
           column={column}

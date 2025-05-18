@@ -3,7 +3,7 @@ import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 
 // === Hooks / React
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // === Child Components
 import { PopUpMenu } from '../../../../reusables/PopUpMenu/PopUpMenu'
@@ -33,6 +33,7 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
     pointerEvents: isOverlay ? 'none' : 'auto',
   }
 
+  // ==== drag and drop buffers for beautifull transition between groups ====
   if (isBuffer) {
     return (
       <article
@@ -51,6 +52,32 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
   }
 
 
+  //  === task menu position on mount and while scrolling ===
+  const indicatorRef = useRef();
+  const [menuPos, setMenuPos] = useState(null);
+
+  useEffect(() => {
+    function updatePos() {
+      if (!indicatorRef.current) return;
+      const rect = indicatorRef.current.getBoundingClientRect();
+      setMenuPos({
+        top: rect.top,
+        left: rect.left - 40,
+      });
+    }
+
+    updatePos();
+
+    window.addEventListener('scroll', updatePos, true);
+    window.addEventListener('resize', updatePos);
+    return () => {
+      window.removeEventListener('scroll', updatePos, true);
+      window.removeEventListener('resize', updatePos);
+    };
+  }, []);
+
+
+
   return (
     <article
       ref={setNodeRef}
@@ -59,10 +86,14 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
       {...attributes}
     >
 
-
-
-      <div className={`t-left-indicator ${group.color}-bg`} >
-        <div className="menu-container">
+      <div className={`t-left-indicator ${group.color}-bg-static`} ref={indicatorRef} >
+        <div className="menu-container"
+          style={{
+            position: 'fixed',
+            top: menuPos?.top ?? 0,
+            left: menuPos?.left ?? 0,
+          }}
+        >
           <div className="menu-wraper">
             <PopUpMenu
               position="bottom-start"

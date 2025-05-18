@@ -18,7 +18,7 @@
 
     // vertical lines
     .T_GroupHeadRow> :nth-child(n + 4),
-    .T_TaskRow> :nth-child(n + 4){
+    .T_TaskRow> :nth-child(n + 4) {
         border-inline-start: 1px solid var(--layout-border-color);
     }
 
@@ -93,23 +93,10 @@
         background: var(--primary-background-color);
     }
 
-    .menu-container {
-        position: absolute;
-        z-index: 20;
-        left: -40px;
-        width: 40px;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
 
-    .menu-wraper {
-        opacity: 0;
-        transition: var(--transition-md);
-    }
 
-    .t-left-indicator {
+    .t-left-indicator,
+    .indicator-placeholder {
         width: 6px;
         height: 36px;
         flex-shrink: 0;
@@ -124,6 +111,19 @@
 
         &.disabled {
             opacity: var(--disabled-component-opacity);
+        }
+
+        .menu-container {
+            width: 40px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-wraper {
+            opacity: 0;
+            transition: var(--transition-md);
         }
     }
 
@@ -165,10 +165,3 @@
     }
 
 }
-
-// .T_Group--overlay {
-//   position: absolute;
-//   pointer-events: none;
-//   width: 100%;
-//   z-index: 1000;
-// }

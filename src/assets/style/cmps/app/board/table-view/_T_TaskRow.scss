@@ -57,12 +57,12 @@
 
     pointer-events: none;
 
-    > :nth-child(2) {
+    > :nth-child(1) {
         border-radius: 6px;
         border-inline-start: 2px dashed var(--layout-border-color) !important;
     }
 
-    > :nth-child(n + 2) {
+    > :nth-child(n + 1) {
         border-block-start: 2px dashed var(--layout-border-color) !important;
         border-block-end: 2px dashed var(--layout-border-color) !important;
     }
@@ -77,11 +77,8 @@
 
     box-shadow: 4px 3px 6px -3px var(--ui-border-color);
 
-    > :nth-child(n + 3) {
+    > :nth-child(n + 2) {
         background-color: #F5F6F8 !important;
     }
 
-    > :nth-child(1) {
-        opacity: 0 !important;
-    }
 }
