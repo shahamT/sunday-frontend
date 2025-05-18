@@ -17,7 +17,7 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 import { useSelector } from "react-redux";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { GroupMenu } from "../popupMenu/GroupMenu";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // ====== Component ======
 // =======================
@@ -29,7 +29,30 @@ export function T_GroupHeader({ group }) {
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
 
-    // === Effects
+    //  === task menu position on mount and while scrolling ===
+    const indicatorRef = useRef();
+    const [menuPos, setMenuPos] = useState(null);
+
+    useEffect(() => {
+        function updatePos() {
+            if (!indicatorRef.current) return;
+            const rect = indicatorRef.current.getBoundingClientRect();
+            setMenuPos({
+                top: rect.top,
+                left: rect.left - 40,
+            });
+        }
+
+        updatePos();
+
+        window.addEventListener('scroll', updatePos, true);
+        window.addEventListener('resize', updatePos);
+        return () => {
+            window.removeEventListener('scroll', updatePos, true);
+            window.removeEventListener('resize', updatePos);
+        };
+    }, []);
+
 
     // === Functions
     function handleRename() {
@@ -61,8 +84,14 @@ export function T_GroupHeader({ group }) {
     return (
         <section className={`T_GroupHeader ${isMenuOpen ? 'menu-in-focus' : ''}`}>
 
-            <div className="indicator-placeholder">
-                <div className="menu-container">
+            <div className="indicator-placeholder" ref={indicatorRef}>
+                <div className="menu-container"
+                    style={{
+                        position: 'fixed',
+                        top: menuPos?.top ?? 0,
+                        left: menuPos?.left ?? 0,
+                    }}
+                >
                     <div className={`menu-wraper`}>
                         <PopUpMenu
                             position="bottom-start"

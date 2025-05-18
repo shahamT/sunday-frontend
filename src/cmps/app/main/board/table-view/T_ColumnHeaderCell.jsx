@@ -91,7 +91,6 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
 
     function updateColumnWidth(updatedWidth) {
         const updatedColumn = { ...column, width: updatedWidth }
-        console.log("width: ", updatedWidth)
         try {
             updateColumn(updatedColumn)
         }

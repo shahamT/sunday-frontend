@@ -17,8 +17,10 @@ import { StatusPicker } from "../../value-setter/StatusPicker";
 // ====== Component ======
 // =======================
 
-export function CellContentStatus({ taskId, column, columnValue }) {
+export function CellContentStatus({ task, column, columnValue }) {
     // === Consts
+      const taskId = task.id
+
     // === Effects
 
     // === Functions

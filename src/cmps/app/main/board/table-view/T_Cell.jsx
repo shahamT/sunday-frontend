@@ -23,9 +23,9 @@ import { CellContentFile } from "./T_CellContent/CellContentFile";
 // ====== Component ======
 // =======================
 
-export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOverlay }) {
+export function T_Cell({ column, columnValue, task, groupId, listeners, isOverlay }) {
   const cellRef = useRef(null);
-
+  const taskId = task.id
   // Attach global listener to detect clicks outside
   useEffect(() => {
     function handleClickOutside(e) {
@@ -56,10 +56,10 @@ export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOver
     <section
       ref={cellRef}
       tabIndex={-1}
-      onClick={() => cellRef.current?.focus()} 
+      onClick={() => cellRef.current?.focus()}
       className={`T_Cell `}
       style={
-        isOverlay 
+        isOverlay
           ? {
             width: `${column.width}px`,
             minWidth: `${column.width}px`,
@@ -69,11 +69,12 @@ export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOver
           : undefined
       }
     >
+
       {DynamicComponent && (
         <DynamicComponent
           column={column}
           columnValue={columnValue}
-          taskId={taskId}
+          task={task}
           groupId={groupId}
           {...(variant === 'item' ? { dragListeners: listeners } : {})}
         />

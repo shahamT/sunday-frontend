@@ -4,7 +4,8 @@ import { PopUpMenu } from "../../../../../reusables/PopUpMenu/PopUpMenu";
 import { PersonsPicker } from "../../value-setter/PersonsPicker";
 import { PersonsPreview } from "./PersonsPreview";
 
-export function CellContentPeople({ taskId, column, columnValue }) {
+export function CellContentPeople({ task, column, columnValue }) {
+      const taskId = task.id
     const [animationKey, setAnimationKey] = useState(0);
     const hasMounted = useRef(false); // 👈 Track if initial render has passed
     function setPersons(PersonsArray) {

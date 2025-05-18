@@ -97,24 +97,26 @@ export function AppLayout() {
                     style={isSideNavOpen ? { width: `${sideNavWidth}px` } : undefined}
                     onClick={onSideNavExpand}
                 >
-                    {isSideNavOpen && <AppSideNav  />}
+                    {isSideNavOpen && <AppSideNav />}
                     <div
                         className={`side-nav-resize-handle ${isDragging ? 'dragging' : ''}`}
                         onMouseDown={onResize}
                     />
                     <Tooltip
-                    title={isSideNavOpen ? 'Close navigation' : 'Open navigation'}
-                    position="right"
-                    additionalClass='close-btn-wraper'
-                    gap={16}
+                        title={isSideNavOpen ? 'Close navigation' : 'Open navigation'}
+                        position="right"
+                        additionalClass='close-btn-wraper'
+                        gap={16}
                     >
                         <div
-                        className="close-btn i-DropdownChevronLeft"
-                        onClick={onSideNavCollapse}
+                            className="close-btn i-DropdownChevronLeft"
+                            onClick={onSideNavCollapse}
                         />
                     </Tooltip>
                 </aside>
 
+                <div className="main-divider" />
+                
                 <main className="main-content-panel">
 
                     <div className="main-content-wraper">
