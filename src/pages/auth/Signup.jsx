@@ -71,6 +71,13 @@ export function Signup({ setLoggedinUser }) {
                         <div className="line" />
                     </div>
 
+<form action="">
+
+    <input type="text" placeholder='name@colmpany.com'/>
+    <input type="text" />
+
+</form>
+
                     <button className='clickable filled size-40 full-width '>Continue</button>
 
                     <p className='terms-and-cond-text'>
