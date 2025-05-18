@@ -41,7 +41,6 @@ export function T_GroupFooter({ group, itemColumn, columns }) {
 
 
     }
-    console.log("columns: ", columns)
     return (
         <section className="T_GroupFooter">
 
