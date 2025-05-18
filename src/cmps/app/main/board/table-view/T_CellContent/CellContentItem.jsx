@@ -45,8 +45,8 @@ export function CellContentItem({ column, columnValue, task, groupId, dragListen
   }
 
 
-  const updatesAmount = task.updates.length
-  // console.log("updatesAmount: ", updatesAmount)
+  const updatesAmount = task?.updates?.length
+  
   return (
     <div
       className="CellContentItem cell-content"

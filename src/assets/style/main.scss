@@ -58,6 +58,7 @@
 // ====== Side Nav ======
 @import 'cmps/app/_AppSideNav.scss';
 @import 'cmps/app/_SideNavDnd.scss';
+@import 'cmps/app/_DeleteBoardModal.scss';
 
 
 // ====== App Home ======
@@ -92,6 +93,7 @@
 @import 'cmps/app/board/table-view/column-sum/_ColSumFile.scss';
 @import 'cmps/app/board/table-view/column-sum/_ColSumStatus.scss';
 @import 'cmps/app/board/table-view/column-sum/_ColSumPeople.scss';
+@import 'cmps/app/board/table-view/column-sum/_ColSumDate.scss';
 
 // ====== Menu ======
 
