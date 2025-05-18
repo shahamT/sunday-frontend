@@ -27,7 +27,9 @@ export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVers
 
     return (
         <section className="T_GroupHeadRow">
-            <div className={`t-left-indicator top ${group.color}-bg`} />
+            <div className={`t-left-indicator top ${group.color}-bg`}>
+                {/* <div className="top-line-hider"></div> */}
+            </div>
 
             {columns.map((column, idx) => {
                 return <T_ColumnHeaderCell

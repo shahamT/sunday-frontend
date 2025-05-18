@@ -75,7 +75,7 @@ export function T_GroupFooter({ group, itemColumn, columns }) {
 
             {columns.map(column => {
                 if (column.type.variant !== 'item') {
-                    return <div className="empty-cell"></div>
+                    return <div key={'e' + column.id} className="empty-cell"></div>
                 }
             })}
 

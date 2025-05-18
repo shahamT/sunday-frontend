@@ -18,8 +18,7 @@
 
     // vertical lines
     .T_GroupHeadRow> :nth-child(n + 4),
-    .T_TaskRow> :nth-child(n + 4),
-    .T_ColumnSumRow> :nth-child(3) {
+    .T_TaskRow> :nth-child(n + 4){
         border-inline-start: 1px solid var(--layout-border-color);
     }
 
