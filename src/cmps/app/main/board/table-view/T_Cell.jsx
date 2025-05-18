@@ -57,7 +57,7 @@ export function T_Cell({ column, columnValue, taskId, groupId, listeners, isOver
       ref={cellRef}
       tabIndex={-1}
       onClick={() => cellRef.current?.focus()} 
-      className={`T_Cell ${variant === "item" ? "no-divider sticky" : ""}`}
+      className={`T_Cell `}
       style={
         isOverlay 
           ? {

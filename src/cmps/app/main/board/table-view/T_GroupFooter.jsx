@@ -16,7 +16,7 @@ import { EditableText } from "../../../../reusables/EditableText/EditableText"
 // ====== Component ======
 // =======================
 
-export function T_GroupFooter({ group, itemColumn }) {
+export function T_GroupFooter({ group, itemColumn, columns }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput('')
     const itemColWidth = itemColumn?.width ?? 0;
@@ -32,7 +32,7 @@ export function T_GroupFooter({ group, itemColumn }) {
         const valueToSave = value
         set('')
         try {
-            addTask({ groupId: group.id, itemColId, valueToSave })
+            addTask({ groupId: group.id, itemColId, valueToSave, columns })
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
@@ -41,11 +41,10 @@ export function T_GroupFooter({ group, itemColumn }) {
 
 
     }
-
+    console.log("columns: ", columns)
     return (
         <section className="T_GroupFooter">
 
-            <div className="menu-wraper" />
             <div className={`t-left-indicator bottom disabled ${group.color}-bg`} />
 
 
@@ -73,6 +72,12 @@ export function T_GroupFooter({ group, itemColumn }) {
                     />
                 </div>
             </div>
+
+            {columns.map(column => {
+                if (column.type.variant !== 'item') {
+                    return <div className="empty-cell"></div>
+                }
+            })}
 
             <div className="empty-last-cell"></div>
 

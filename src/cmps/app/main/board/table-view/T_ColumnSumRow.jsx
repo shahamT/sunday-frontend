@@ -22,17 +22,13 @@ export function T_ColumnSumRow({ columns, group }) {
     return (
         <section className="T_ColumnSumRow">
 
-            <div className="menu-wraper" />
-            <div className="empty placeholder" />
-            <div className="empty placeholder" />
-
-            <div className="sum-cells-wraper">
+            <div className="menu-container" />
+            <div className="empty placeholder" />  
                 {columns.map((column, idx) => {
                     if (column.type.variant === 'item') return ''
                     return <T_ColumnSumCell key={column.id + idx} column={column} group={group} />
 
                 })}
-            </div>
 
             <div className="empty-last-cell"></div>
 

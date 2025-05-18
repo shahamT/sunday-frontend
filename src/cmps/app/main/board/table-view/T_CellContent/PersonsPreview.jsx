@@ -14,7 +14,6 @@
 // =======================
 
 export function PersonsPreview({ selectedPersons = [], amount = 0 }) {
-    console.log(selectedPersons)
     // === Consts
 
     // === Effects

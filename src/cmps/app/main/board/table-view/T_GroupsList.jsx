@@ -93,7 +93,9 @@ export function T_GroupsList() {
     })
   }
 
-  if (!board) return <div>Loading...</div>
+  if (!board) return <div className="main-loader-container" >
+    <img className="loader" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747552268/loader_cymybj.gif" alt="loader" />
+  </div>
 
   return (
     <section className="T_GroupsList">

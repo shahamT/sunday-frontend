@@ -1,7 +1,8 @@
 import { Tooltip } from "../../../../../reusables/tooltip/Tooltip"
 
-export function ColSumStatus({ columnValues, column }) {
-    const totalItems = columnValues.length
+export function ColSumStatus({ columnValues, column,group }) {
+    // console.log("ddddddd",group.tasks.length)
+    const totalItems = group.tasks.length
     const lableSummary = lableCounter(columnValues, column)
     const lableSummeryPrecent = precentCalculate(lableSummary)
   
@@ -33,16 +34,18 @@ export function ColSumStatus({ columnValues, column }) {
       return percentByLabel
     }
     return (
-      <section className="col-sum-status">
+      <section className="col-sum-status sum-cell-content">
         {Object.entries(lableSummeryPrecent).map(([labelName, percent]) => {
           const color = lableSummary[labelName].color
   
           return (
-            <Tooltip
-            key={labelName}
-            title={`${labelName} ${lableSummary[labelName].count}/${totalItems}   ${percent}%`}
-            position="top"
-          >
+        //     <Tooltip
+        //     key={labelName}
+        //     title={`${labelName} ${lableSummary[labelName].count}/${totalItems}   ${percent}%`}
+        //     position="top"
+        //     stretchWraper= {true}
+            
+        //   >
             <div
               key={labelName}
               className={`label-status-item ${color}-bg-static`}
@@ -50,7 +53,7 @@ export function ColSumStatus({ columnValues, column }) {
                 width: `${percent}%`,
               }}
             />
-             </Tooltip>
+            //  </Tooltip>
           )
         })}
       </section>

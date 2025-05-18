@@ -48,11 +48,10 @@ export function T_ColumnSumCell({ group, column }) {
 
   return (
     <section
-      className={`T_ColumnSumCell`}
-      style={{ width: column.width + "px" }}
+    className={`T_ColumnSumCell`}
     >
       {DynamicComponent && (
-        <DynamicComponent column={column} columnValues={columnValues} />
+        <DynamicComponent column={column} columnValues={columnValues} group={group} />
       )}
     </section>
   )

@@ -34,21 +34,21 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
   }
 
   if (isBuffer) {
-  return (
-    <article
-      ref={setNodeRef}
-      className="T_TaskRow buffer"
-      style={{
-        height: '0px',
-        padding: 0,
-        border: 'none',
-        pointerEvents: 'none',
-        opacity: 0,
-      }}
-      {...attributes}
-    />
-  )
-}
+    return (
+      <article
+        ref={setNodeRef}
+        className="T_TaskRow buffer"
+        style={{
+          height: '0px',
+          padding: 0,
+          border: 'none',
+          pointerEvents: 'none',
+          opacity: 0,
+        }}
+        {...attributes}
+      />
+    )
+  }
 
 
   return (
@@ -59,26 +59,28 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
       {...attributes}
     >
 
-      <div className="menu-container">
-        <div className="menu-wraper">
-          <PopUpMenu
-            position="bottom-start"
-            onOpen={() => setIsMenuOpen(true)}
-            onClose={() => setIsMenuOpen(false)}
-            renderContent={({ onCloseModal }) => (
-              <TaskMenu
-                onCloseModal={onCloseModal}
-                taskId={task.id}
-                groupId={group.id}
-              />
-            )}
-          >
-            <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`} />
-          </PopUpMenu>
+
+
+      <div className={`t-left-indicator ${group.color}-bg`} >
+        <div className="menu-container">
+          <div className="menu-wraper">
+            <PopUpMenu
+              position="bottom-start"
+              onOpen={() => setIsMenuOpen(true)}
+              onClose={() => setIsMenuOpen(false)}
+              renderContent={({ onCloseModal }) => (
+                <TaskMenu
+                  onCloseModal={onCloseModal}
+                  taskId={task.id}
+                  groupId={group.id}
+                />
+              )}
+            >
+              <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`} />
+            </PopUpMenu>
+          </div>
         </div>
       </div>
-
-      <div className={`t-left-indicator ${group.color}-bg`} />
 
       {columns.map((column, idx) => {
         const columnValue = task.columnValues.find(cv => cv.colId === column.id)
@@ -95,7 +97,7 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
           />
         )
       })}
-      
+
       <div className="empty-last-cell"></div>
 
     </article>
