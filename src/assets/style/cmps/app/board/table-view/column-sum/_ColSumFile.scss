@@ -5,11 +5,13 @@
     white-space: nowrap;
 
     p:first-child {
+        font-size: 14px;
         padding-block-start: 3px;
+        color: #323338;
     }
 
-    p {
-        font-size: 14px;
+    p:nth-child(2) {
+        font-size: 12px;
         color: #676879;
 
     }
