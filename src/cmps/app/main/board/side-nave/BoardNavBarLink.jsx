@@ -67,6 +67,7 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
               type="text"
               value={editedTitle}
               autoFocus
+              onClick={(e)=> e.stopPropagation()}
               onChange={(e) => setEditedTitle(e.target.value)}
               onBlur={() => handleRename(board)}
               onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
