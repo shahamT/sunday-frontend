@@ -1,0 +1,54 @@
+.ActivityLogRow {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 8px 25px;
+    
+    .activity-row {
+        border-bottom: 1px solid var(--layout-border-color);
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        height: 48px;
+        // padding-inline: 8px;
+
+        p {
+            font-size: 14px;
+        }
+
+        img {
+            height: 30px;
+            width: 30px;
+            margin-inline-end: 6px;
+        }
+
+        .time {
+            padding-inline-start: 16px;
+            margin-inline-end: 20px;
+            margin-inline-start: 18px;
+            position: relative;
+
+            &::before {
+            content: "\e9f2";
+            font-family: mon-i;
+            font-size: 16px;
+            color: var( --icon-color);
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+        }
+
+        .task-name {
+            margin-inline-end: 32px;
+        }
+
+        .action-name {
+            margin-inline: 16px;
+        }
+    }
+
+}

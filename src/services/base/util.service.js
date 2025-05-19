@@ -232,3 +232,23 @@ export function getFormattedTime(dateInput) {
     day: 'numeric',
   })
 }
+
+export function getShortRelativeTime(timestamp) {
+  const now = Date.now();
+  const diff = now - new Date(timestamp).getTime();
+
+  const MINUTE = 60 * 1000;
+  const HOUR = 60 * MINUTE;
+  const DAY = 24 * HOUR;
+  const WEEK = 7 * DAY;
+  const MONTH = 30 * DAY;
+  const YEAR = 365 * DAY;
+
+  if (diff < MINUTE) return 'now';
+  if (diff < HOUR) return `${Math.floor(diff / MINUTE)}m`;
+  if (diff < DAY) return `${Math.floor(diff / HOUR)}h`;
+  if (diff < WEEK) return `${Math.floor(diff / DAY)}d`;
+  if (diff < MONTH) return `${Math.floor(diff / WEEK)}w`;
+  if (diff < YEAR) return `${Math.floor(diff / MONTH)}mo`;
+  return `${Math.floor(diff / YEAR)}y`;
+}

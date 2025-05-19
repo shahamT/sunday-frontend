@@ -1,6 +1,6 @@
 // === Libs
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
 import { ActivityLogRow } from "./ActivityLogRow"
 
@@ -21,6 +21,9 @@ export function TaskDetailsActivityLog({ task, board }) {
     // === Consts
     const activities = useSelector(storeState => storeState.boardModule.board.activities)
     // === Effects
+    useEffect(() => {
+
+    },[activities])
 
     // === Functions
 
@@ -30,9 +33,9 @@ export function TaskDetailsActivityLog({ task, board }) {
             {/* <h1>
                 <pre>{JSON.stringify(activities, null, 2)}</pre>
             </h1> */}
-            {activities.map(activity => {
-                <ActivityLogRow activity={activity} task={task} board={board} />
-            })}
+            {activities.map(activity => (
+                <ActivityLogRow key={activity.id} activity={activity} task={task} board={board} />
+            ))}
 
         </section>
     )

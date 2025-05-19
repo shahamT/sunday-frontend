@@ -1,7 +1,7 @@
 // === Libs
 
 import { useEffect, useState } from "react"
-import { getFormattedTime } from "../../../../../services/base/util.service"
+import { getFormattedTime, getShortRelativeTime } from "../../../../../services/base/util.service"
 
 // === Services
 
@@ -20,7 +20,6 @@ export function ActivityLogRow({ activity, task, board }) {
     // === Consts
     const [activityType, setActivityType] = useState(false)
     const [group, setGroup] = useState({})
-    const [colName, setColName] = useState('')
 
     // === Effects
     useEffect(() =>{
@@ -66,49 +65,43 @@ export function ActivityLogRow({ activity, task, board }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="ComponentName">
+        <section className="ActivityLogRow">
+            <section className="activity-row">
+                <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
+                <img src={activity.createdBy} alt="" />
+                <p className="task-name" >{task.columnValues[0]?.value}</p>
+            </section>
             {activityType === 'move task' && 
             <section>
-                <section className="move-task">
-                    <p>{getFormattedTime(activity.createdAt)}</p>
-                    <img src={activity.profileImg} alt="" />
-                    <p>{task.columnValues[0]?.value}</p>
-                    <p>Moved</p>
+                <section className="activity-row move-task">
+                    <p className="action-name">Moved</p>
                     <p>Group: <span className={`${group.fromGroup.color}-text`}>{group.fromGroup.name}</span></p>
                 </section>
-                <section className="move-task">
-                    <p>{getFormattedTime(activity.createdAt)}</p>
-                    <img src={activity.profileImg} alt="" />
-                    <p>{task.columnValues[0]?.value}</p>
-                    <p>Moved</p>
+                <section className="activity-row move-task">
+                    <p className="action-name">Moved</p>
                     <p>To group: <span className={`${group.toGroup.color}-text`}>{group.toGroup.name}</span></p>
                 </section>
             </section>}
             {activityType === 'add task' && 
-                <section className="add-task">
-                    <p>{getFormattedTime(activity.createdAt)}</p>
-                    <img src={activity.profileImg} alt="" />
-                    <p>{task.columnValues[0]?.value}</p>
-                    <p>Created</p>
+                <section className="activity-row add-task">
+                    <p className="action-name">Created</p>
                     <p>Group: <span className={`${group.color}-text`}>{group.name}</span></p>
                 </section>}
             {activityType === 'set column value' && 
-                <section className="set column value">
-                    <p>{getFormattedTime(activity.createdAt)}</p>
-                    <img src={activity.profileImg} alt="" />
-                    <p>{task.columnValues[0]?.value}</p>
-                    <p>{activity.colName}</p>
+                <section className="activity-row set column value">
+                    <p className="action-name">{activity.colName}</p>
                     <div>{activity.prevValue || '-'}</div>
-                    <div>{activity.value}</div>
+                    <div className="i-NavigationChevronRight">
+                        <div>{activity.value}</div>
+                    </div>
                 </section>}
             {activityType === 'remove column value' && 
-                <section className="remove column value">
-                    <p>{getFormattedTime(activity.createdAt)}</p>
-                    <img src={activity.profileImg} alt="" />
-                    <p>{task.columnValues[0]?.value}</p>
-                    <p>{activity.colName}</p>
+                <section className="activity-row remove column value">
+                    <p className="action-name">{activity.colName}</p>
                     <div>{'-'}</div>
-                    <div>{activity.value}</div>
+                    <div className="i-NavigationChevronRight">
+                        <div>{activity.value}</div>
+                    </div>
                 </section>}
         </section>
     )
