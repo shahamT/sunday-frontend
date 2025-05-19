@@ -34,7 +34,7 @@ export function EditStatusPicker({ StatusArray, columnId }) {
 
     function handleRename() {
         if (!labelName.trim() || labelName === labelToEdit.name) {
-            setIsInputEditable(false)
+            // setIsInputEditable(false)
             return
         }
 
