@@ -22,6 +22,7 @@ import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
 import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
+import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
 
 // ====== Component ======
 // =======================
@@ -146,27 +147,8 @@ export function AppSideNav({ }) {
                                 />
                             </>
                         ) :
-                            (
-                                <>
-                                <span className="i-Search input-icon" />
-                                    <input
-                                        type="text"
-                                        value={boardFilterBy}
-                                        placeholder='Search in Main workspace'
-                                        autoFocus
-                                        onChange={(e) => setBoardFilterBy(e.target.value)}
-                                        // onBlur={() => handleRename(board)}
-                                        // onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
-                                        className="search-board-input"
-                                    />
-
-                                    <div
-                                        className="close-btn clickable clear icon-btn size-24 i-CloseSmall"
-                                        onClick={() => setSearchOpen(prev => !prev)}
-                                    />
-
-                                </>
-                            )}
+                                <SearchSideNav setSearchOpen={setSearchOpen} boardFilterBy={boardFilterBy} setBoardFilterBy={setBoardFilterBy}/>
+                            }
                     </div>
                     <section className="workspaces-container">
                         <div className="curr-wordspace-input">

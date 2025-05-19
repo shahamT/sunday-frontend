@@ -1,0 +1,36 @@
+.search-side-nav{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .search-board-input {
+        width: 100%;
+        padding-left: 32px; // ✅ הזזנו את זה לפה
+        height: 32px;
+        padding-block: 8px;
+        margin-right: 4px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: darkgoldenrod;
+      }
+
+// input {
+//         width: 100%;
+//         // padding-right: 32px;
+//         height: 32px;
+//         border: 1px solid #ccc;
+//         border-radius: 4px;
+//         background-color: darkgoldenrod;
+
+// }
+
+.input-icon {
+        position: absolute;
+        left: 8px;
+        font-size: 16px;
+        pointer-events: none;
+        color: #d0d0d0;
+}
+
+
+}
