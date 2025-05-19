@@ -19,7 +19,7 @@ import { getFormattedTime } from "../../../../../services/base/util.service"
 export function ActivityLogRow({ activity, task, board }) {
     // === Consts
     const [activityType, setActivityType] = useState(false)
-    // const [group, setGroup] = useState({})
+    const [group, setGroup] = useState({})
     const [colName, setColName] = useState('')
 
     // === Effects
@@ -49,7 +49,7 @@ export function ActivityLogRow({ activity, task, board }) {
                     // const currGroup = board.groups.find(group => {
                     //     return group.tasks.find(t => t.id === task.id)
                     // })
-                    // setGroup(currGroup)
+                    setGroup({fromGroup, toGroup})
                 }
                 return
 
@@ -74,14 +74,14 @@ export function ActivityLogRow({ activity, task, board }) {
                     <img src={activity.profileImg} alt="" />
                     <p>{task.columnValues[0]?.value}</p>
                     <p>Moved</p>
-                    <p>Group: <span className={`${fromGroup.color}-text`}>{fromGroup.name}</span></p>
+                    <p>Group: <span className={`${group.fromGroup.color}-text`}>{group.fromGroup.name}</span></p>
                 </section>
                 <section className="move-task">
                     <p>{getFormattedTime(activity.createdAt)}</p>
                     <img src={activity.profileImg} alt="" />
                     <p>{task.columnValues[0]?.value}</p>
                     <p>Moved</p>
-                    <p>To group: <span className={`${toGroup.color}-text`}>{toGroup.name}</span></p>
+                    <p>To group: <span className={`${group.toGroup.color}-text`}>{group.toGroup.name}</span></p>
                 </section>
             </section>}
             {activityType === 'add task' && 

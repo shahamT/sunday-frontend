@@ -27,9 +27,9 @@ export function TaskDetailsActivityLog({ task, board }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="TaskDetailsActivityLog">
-            <h1>
+            {/* <h1>
                 <pre>{JSON.stringify(activities, null, 2)}</pre>
-            </h1>
+            </h1> */}
             {activities.map(activity => {
                 <ActivityLogRow activity={activity} task={task} board={board} />
             })}
