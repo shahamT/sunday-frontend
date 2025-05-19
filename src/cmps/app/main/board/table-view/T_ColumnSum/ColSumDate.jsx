@@ -142,7 +142,7 @@ export function ColSumDate({ group, columnValues }) {
                         background: `linear-gradient(to right, ${colorMap[snakeCaseColor]} ${leftTime}%, ${colorMap[`${snakeCaseColor}_selected`]} 0%)`
                     }}>
                     <p className="txt">{formatDateRange(minDate, maxDate)}</p>
-                    <p className="txt-hover">{getDaysDiff(minDate, maxDate)}d</p>
+                    <p className="txt-hover">{getDaysDiff(minDate, maxDate).toLocaleString()}d</p>
 
                 </div>
 
