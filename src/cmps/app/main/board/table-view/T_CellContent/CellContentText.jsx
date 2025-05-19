@@ -25,12 +25,11 @@ export function CellContentText({ task, column, columnValue }) {
     const [isEditing, setIsEditing] = useState(false)
     const inputRef = useRef()
 
-    // === Effects
     useEffect(() => {
         // update input value dynamically if it's changed in the database
         set(columnValue?.value)
     }, [columnValue?.value])
-    // === Functions
+
 
     function onSetText() {
         setIsEditing(false)

@@ -85,6 +85,8 @@ export function AppLayout() {
 
     // // ====== Component ======
     // // =======================
+ const isBoardRoute = location.pathname.startsWith('/app/board/');
+
     return (
         <section className="AppLayout">
             <AppHeader />
@@ -115,7 +117,7 @@ export function AppLayout() {
                     </Tooltip>
                 </aside>
 
-                <div className="main-divider" />
+                {isBoardRoute && <div className="main-divider" />}
                 
                 <main className="main-content-panel">
 
