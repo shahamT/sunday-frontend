@@ -1,20 +1,16 @@
 // === Libs
 import validator from 'validator';
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-import { useGoogleLogin } from '@react-oauth/google';
+import { googleAuth, login } from '../../store/actions/user.actions.js';
 
 // === Services
 
 // === Actions
+import { showErrorMsg } from '../../services/base/event-bus.service.js';
 
 // === Hooks / React
 import { useLocation, useNavigate, useSearchParams } from 'react-router-dom'
-import { userService } from '../../services/user/index.js'
-import { useState } from 'react'
 import { useControlledForm } from '../../hooks/useControlledForm.js'
-import { showErrorMsg } from '../../services/base/event-bus.service.js';
-import { login } from '../../store/actions/user.actions.js';
+import { useSelector } from 'react-redux';
 
 // === Imgs
 
@@ -25,9 +21,11 @@ import { login } from '../../store/actions/user.actions.js';
 
 export function Login() {
     // === Consts
+
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
     const location = useLocation();
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
 
     const validators = {
         email: value => {
@@ -49,9 +47,12 @@ export function Login() {
         errors,
         validateField,
         validateAll
-    ] = useControlledForm({ email: '', password: '' })
+    ] = useControlledForm({ email: '', password: '' }, validators)
 
     // === Effects
+    useEffect(() => {
+        if (user) navigate('/app/home')
+    }, [user])
 
     // === Functions
 
@@ -73,13 +74,13 @@ export function Login() {
             const from = location.state?.from || '/app/home';
             navigate(from, { replace: true });
 
-        } catch (err) {
-            showErrorMsg(err)
+        } catch {
+            showErrorMsg('Could not login, try again or contact support')
         }
     }
 
 
-  const loginWithGoogle = () => {
+    const loginWithGoogle = () => {
         window.google.accounts.id.initialize({
             // client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
             client_id: '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com',
@@ -89,13 +90,14 @@ export function Login() {
                     showErrorMsg('Google authentication failed')
                     return
                 }
-                
+
                 try {
-                    const user = await googleAuth({idToken})
+                    const user = await googleAuth({ idToken })
+                    console.log("user: ", user)
                     navigate('/app/home')
                 }
-                catch (err) {
-                    showErrorMsg(err)
+                catch {
+                    showErrorMsg('Google authentication failed')
                 }
             },
         })
@@ -109,7 +111,7 @@ export function Login() {
             password: "hashed_pw_1"
         }
         try {
-            const user = await login(userCred) 
+            const user = await login(userCred)
             navigate('/app/home')
         }
         catch (err) {

@@ -42,7 +42,7 @@ export function CellContentFile({ task, column, columnValue }) {
     async function onSetFile(fileUrl, passedTaskId) {
 
         try {
-            await setColumnValue(passedTaskId, column.id, fileUrl)
+            await setColumnValue(passedTaskId, column.id, fileUrl, columnValue.value)
             showSuccessMsg('Uploaded 1 file')
         }
         catch (err) {

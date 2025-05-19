@@ -107,7 +107,7 @@ export function TaskDetails() {
         }
 
         try {
-            setColumnValue(taskId, task?.columnValues[0]?.colId, value)
+            setColumnValue(taskId, task?.columnValues[0]?.colId, value, task?.columnValues[0]?.value)
             //set task?
         }
         catch (err) {
@@ -130,7 +130,7 @@ export function TaskDetails() {
 
     function setPersons(PersonsArray) {
         try {
-            setColumnValue(taskId, personsColumn, PersonsArray)
+            setColumnValue(taskId, personsColumn, PersonsArray, selectedPersons)
             if (PersonsArray.length === 0) onClearPersons()
         } catch (err) {
             showErrorMsg(`Something went wrong`);
