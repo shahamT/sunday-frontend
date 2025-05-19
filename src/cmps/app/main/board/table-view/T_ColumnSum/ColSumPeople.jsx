@@ -22,7 +22,7 @@ export function ColSumPeople({columnValues}) {
     // === Consts
 
     const relevantValues = columnValues.flat().reduce((acc, people) => {
-        if (!acc.find(p => p.id === people._id)) acc.push(people)
+        if (!acc.find(p => p._id === people._id)) acc.push(people)
         return acc
       }, [])
 
@@ -34,20 +34,7 @@ export function ColSumPeople({columnValues}) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="col-sum-people">
-             <PopUpMenu
-                            stretchTrigger={true}
-                            gap={4}
-                            noArrow={false}
-                            position="bottom"
-                            renderContent={({ onCloseModal }) => (
-                                <PersonsPicker
-                                    onCloseModal={onCloseModal}
-                                    currSelectedPersons={relevantValues?.value || []}
-                                />
-                            )}
-                        >
            <PersonsPreview selectedPersons={relevantValues} amount={2} />
-           </PopUpMenu>
         </section>
     )
 }
