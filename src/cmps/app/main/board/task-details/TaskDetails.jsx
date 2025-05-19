@@ -212,7 +212,7 @@ export function TaskDetails() {
 
             {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
             {isSelected('files') && <TaskDetailsFiles />}
-            {isSelected('activity-log') && <TaskDetailsActivityLog />}
+            {isSelected('activity-log') && <TaskDetailsActivityLog task={task} board={board} />}
         </section>
     )
 }

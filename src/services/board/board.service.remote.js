@@ -18,6 +18,7 @@ export const boardService = {
     setColumnValue,
     removeColumnValue,
     moveTask,
+    createLog
 }
 
 //////BOARD//////
@@ -103,7 +104,7 @@ async function addTaskUpdate(boardId, groupId, taskId, update) {
 
 }
 
-function setColumnValue(board, taskId, colId, value) {
+function setColumnValue(board, taskId, colId, value) { //add the before value
 
     if (!Array.isArray(board.groups)) return
 
@@ -134,4 +135,10 @@ function removeColumnValue(board, taskId, colId) {
 async function moveTask(taskId, fromGroupId, toGroupId, toIndex, boardId) {
 
   return httpService.put(`board/${boardId}/task/${taskId}`, { fromGroupId, toGroupId, toIndex })
+}
+
+async function createLog(logObject, boardId) {
+
+    return httpService.put(`board/${boardId}/log`, {logObject})
+
 }

@@ -6,10 +6,14 @@ import {
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     SET_BOARD_FILTER_BY,
-    OPEN_TASK_PANEL, CLOSE_TASK_PANEL,SET_BOARDS_FILTER_BY
+    OPEN_TASK_PANEL, CLOSE_TASK_PANEL,SET_BOARDS_FILTER_BY,
+    CREATE_LOG
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
 import { store } from "../store.js";
+import { userReducer } from "../reducers/user.reducer.js";
+import { userService } from "../../services/user/user.service.remote.js";
+import { makeId } from "../../services/base/util.service.js";
 
 // ========= CRUDL =========
 // ===== Board ====
@@ -149,6 +153,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
     const task = await boardService.getEmptyTask(valueToSave, itemColId )
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
+        await createLog({type:'add task', taskId: task.id, valueToSave})
         const savedTask = await boardService.createTask(task, boardId, groupId, isTop)
         return savedTask
     } catch (err) {
@@ -163,6 +168,7 @@ export async function removeTask(taskId, groupId) {
     const boardId = getBoardId()
     try {
         store.dispatch(getCmdRemoveTask(taskId, groupId))
+        await createLog({type:'remove task', taskId})
         await boardService.removeTask(taskId, groupId, boardId)
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -178,6 +184,7 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
 
   try {
     store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
+    await createLog({type:'move task', taskId: task.id, fromGroupId, toGroupId})
     await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
   } catch (err) {
     store.dispatch({ type: REVERT_BOARD })
@@ -201,11 +208,12 @@ export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     }
 }
 
-export async function setColumnValue(taskId, colId, value) {
+export async function setColumnValue(taskId, colId, value, prevValue) {
     const board = structuredClone(getBoard())
 
     try {
         store.dispatch(getCmdSetColumnValue(board, taskId, colId, value))
+        await createLog({type:'set column value', taskId, colId, value, prevValue})
         await boardService.setColumnValue(board, taskId, colId, value)
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -214,11 +222,12 @@ export async function setColumnValue(taskId, colId, value) {
     }
 }
 
-export async function removeColumnValue(taskId, colId) {
+export async function removeColumnValue(taskId, colId, prevValue) {
     const board = structuredClone(getBoard())
 
     try {
         store.dispatch(getCmdRemoveColumnValue(board, taskId, colId))
+        await createLog({type:'remove column value', taskId, colId, prevValue})
         await boardService.removeColumnValue(board, taskId, colId)
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -290,6 +299,22 @@ export async function removeColumn(columnId) {
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot remove column', err)
+        throw err
+    }
+}
+
+export async function createLog(logObject) {
+    const boardId = getBoardId()
+    logObject.id = makeId()
+    logObject.createdAt = Date.now()
+    logObject.createdBy = userService.getLoggedinUser().profileImg
+    try {
+        store.dispatch(getCmdCreateLog(logObject))
+        await boardService.createLog(logObject, boardId)
+        return logObject
+    } catch (err) {
+        // store.dispatch({ type: REVERT_BOARD })
+        console.log('board action -> Cannot log action', err)
         throw err
     }
 }
@@ -456,6 +481,13 @@ export function getCmdMoveTask(task, fromGroupId, toGroupId, toIndex) {
     fromGroupId,
     toGroupId,
     toIndex,
+  }
+}
+
+export function getCmdCreateLog(logObject) {
+  return {
+    type: CREATE_LOG,
+    logObject
   }
 }
 

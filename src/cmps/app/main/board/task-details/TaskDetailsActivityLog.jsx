@@ -1,5 +1,9 @@
 // === Libs
 
+import { useState } from "react"
+import { useSelector } from "react-redux"
+import { ActivityLogRow } from "./ActivityLogRow"
+
 // === Services
 
 // === Actions
@@ -13,9 +17,9 @@
 // ====== Component ======
 // =======================
 
-export function TaskDetailsActivityLog({ /* prop1, prop2 */ }) {
+export function TaskDetailsActivityLog({ task, board }) {
     // === Consts
-
+    const activities = useSelector(storeState => storeState.boardModule.board.activities)
     // === Effects
 
     // === Functions
@@ -23,7 +27,13 @@ export function TaskDetailsActivityLog({ /* prop1, prop2 */ }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="TaskDetailsActivityLog">
-            <h1>TaskDetailsActivityLog</h1>
+            <h1>
+                <pre>{JSON.stringify(activities, null, 2)}</pre>
+            </h1>
+            {activities.map(activity => {
+                <ActivityLogRow activity={activity} task={task} board={board} />
+            })}
+
         </section>
     )
 }

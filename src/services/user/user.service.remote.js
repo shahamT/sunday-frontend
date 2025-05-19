@@ -63,8 +63,7 @@ function saveLoggedinUser(user) {
         _id: user._id, 
         firstName: user.firstName, 
         lastName: user.lastName, 
-        email: user.email, 
-        profileImg: user.imgUrl, 
+        email: user.email,  
         lastViewedBoards: user.lastViewedBoards,
 		account: user.account,
 		profileImg: user.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`

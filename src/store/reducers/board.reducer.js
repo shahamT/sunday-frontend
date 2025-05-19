@@ -1,5 +1,7 @@
 import { boardService } from "../../services/board"
 
+export const CREATE_LOG = 'CREATE_LOG'
+
 // Boards
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
@@ -109,6 +111,16 @@ export function boardReducer(state = initialState, action = {}) {
                 boards: action.boards
             }
 
+        case CREATE_LOG:
+
+            lastBoard = { ...state.board }
+
+            return {
+                ...state,
+                board: { ...state.board, activities: [action.logObject, ...state.board.activities] },
+                lastBoard
+            }
+
         case BOARDS_LOADING_START:
             return { ...state, isBoardsLoading: true }
 
@@ -120,7 +132,7 @@ export function boardReducer(state = initialState, action = {}) {
 
         case BOARD_LOADING_DONE:
             return { ...state, isBoardLoading: false }
-
+            
         //GROUP
         case REMOVE_GROUP:
 
@@ -131,16 +143,16 @@ export function boardReducer(state = initialState, action = {}) {
                 board: { ...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId) },
                 lastBoard,
             }
-
-        case ADD_GROUP:
-
-            lastBoard = { ...state.board }
-
-            return {
-                ...state,
-                board: { ...state.board, groups: action.isTop ? [action.group, ...state.board.groups] : [...state.board.groups, action.group] },
-                lastBoard
-            }
+            
+            case ADD_GROUP:
+    
+                lastBoard = { ...state.board }
+    
+                return {
+                    ...state,
+                    board: { ...state.board, groups: action.isTop ? [action.group, ...state.board.groups] : [...state.board.groups, action.group] },
+                    lastBoard
+                }
 
         case UPDATE_GROUP:
 
