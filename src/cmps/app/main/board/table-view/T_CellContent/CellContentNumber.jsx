@@ -38,7 +38,7 @@ export function CellContentNumber({ task, column, columnValue }) {
         if (value === '') onClearNumber()
 
         try {
-            setColumnValue(taskId, column.id, value)
+            setColumnValue(taskId, column.id, value, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

@@ -38,7 +38,7 @@ export function CellContentItem({ column, columnValue, task, groupId, dragListen
     }
 
     try {
-      setColumnValue(taskId, column.id, value)
+      setColumnValue(taskId, column.id, value, columnValue?.value)
     } catch (err) {
       showErrorMsg(`Somthing went wrong`)
     }

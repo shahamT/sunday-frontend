@@ -35,7 +35,7 @@ export function CellContentText({ task, column, columnValue }) {
         setIsEditing(false)
         if (value.trim() === '') onClearText()
         try {
-            setColumnValue(taskId, column.id, value)
+            setColumnValue(taskId, column.id, value, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
