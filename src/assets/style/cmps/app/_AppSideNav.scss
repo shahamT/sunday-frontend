@@ -9,7 +9,6 @@
 
 .AppSideNav {
         padding-block-start: 6px;
-
         color: var(--primary-text-color);
 
         .nav-section,
@@ -104,31 +103,6 @@
                         margin-left: auto;
                 }
 
-                // ========================== search-bar
-                .search-board-input {
-                        padding-block: 8px;
-                        margin-right: 4px;
-                }
-
-                input {
-                        width: 100%;
-                        padding-left: 32px;
-                        height: 32px;
-                        border: 1px solid #ccc;
-                        border-radius: 4px;
-                }
-
-                .input-icon {
-                        position: absolute;
-                        left: 8px;
-                        font-size: 16px;
-                        pointer-events: none;
-                        color: #d0d0d0;
-
-                }
-
-                // ========================== search-bar
-
 
         }
 
@@ -198,12 +172,14 @@
 
 
         input[type="text"] {
+                font-family: var(--font-family);
                 width: 100%;
                 padding: 0.2em 0.5em;
                 border: 1px solid #c4c4c4;
                 border-radius: 6px;
                 font-size: 14px;
                 color: #333;
+                background-color: #cce5ff;
                 transition: border-color 0.2s, box-shadow 0.2s;
 
                 &:focus {
@@ -276,6 +252,7 @@
 
 
         input[type="text"] {
+                background-color: #f0f0f000; 
                 width: 100%;
                 padding: 0.2em 0.5em;
                 border: 1px solid #c4c4c4;
@@ -288,10 +265,7 @@
                         outline: none;
                         border-color: #0073ea;
                 }
-
-                &::placeholder {
-                        color: #b0b0b0;
-                }
+            
         }
 
         .divider {

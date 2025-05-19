@@ -3,9 +3,9 @@
 import { useEffect, useState } from "react"
 import { loadBoards, removeBoard, updateBoard } from "../../../../../store/actions/board.actions"
 import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
-import { useNavigate } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import { DeleteBoardModal } from "./DeleteBoardModal"
-import { openGlobalModal,closeGlobalModal } from "../../../../../store/actions/app.actions"
+import { openGlobalModal, closeGlobalModal } from "../../../../../store/actions/app.actions"
 
 // === Services
 
@@ -21,7 +21,7 @@ import { openGlobalModal,closeGlobalModal } from "../../../../../store/actions/a
 // =======================
 
 export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseModal }) {
-
+const {boardId}=useParams()
     // === Consts
     const [boardToEdit, setBoardToEdit] = useState(null)
     const navigate = useNavigate()
@@ -54,11 +54,14 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
         }
     }
 
-    async function onRemoveBoard(boardId) {
+    async function onRemoveBoard(id) {
         try {
-            await removeBoard(boardId)
+            await removeBoard(id)
             showSuccessMsg('We successfully deleted the board')
+            if (boardId === id) {
             navigate(`/app/home/`)
+
+        }
 
         }
         catch (err) {
@@ -87,7 +90,8 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
 
             <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
             <div className="divider" />
-            <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
+            <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={(e) => {
+                e.stopPropagation()
                 setEditingBoardId(board._id)
                 setEditedTitle(board.name)
                 onCloseModal()
@@ -104,7 +108,7 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
                 onClick={() =>
                     openGlobalModal(
                         <DeleteBoardModal
-                            boardId={_id}
+                            id={_id}
                             onRemoveBoard={onRemoveBoard}
                             closeGlobalModal={closeGlobalModal}
                         />

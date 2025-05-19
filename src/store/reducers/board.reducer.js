@@ -36,6 +36,7 @@ export const BOARD_LOADING_START = 'BOARD_LOADING_START'
 export const BOARD_LOADING_DONE = 'BOARD_LOADING_DONE'
 
 export const SET_BOARD_FILTER_BY = 'SET_BOARD_FILTER_BY'
+export const SET_BOARDS_FILTER_BY = 'SET_BOARDS_FILTER_BY'
 
 // Task Details Panel
 export const OPEN_TASK_PANEL = "OPEN_TASK_PANEL"
@@ -54,6 +55,7 @@ const initialState = {
     isBoardLoading: false,
 
     filterBy: boardService.getDefaultFilter(),
+    boardsFilterBy:boardService.getDefaultFilter(),
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -285,8 +287,14 @@ export function boardReducer(state = initialState, action = {}) {
             ...state,
             filterBy: {txt: action.filterBy.txt}
         }
-
+        
         //Side Nav
+        case SET_BOARDS_FILTER_BY:
+
+        return {
+            ...state,
+            boardsFilterBy: {txt: action.boardsFilterBy.txt}
+        }
 
         case OPEN_TASK_PANEL:
             return {

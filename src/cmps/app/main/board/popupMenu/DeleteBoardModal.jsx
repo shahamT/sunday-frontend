@@ -13,7 +13,7 @@
 // ====== Component ======
 // =======================
 
-export function DeleteBoardModal({ onRemoveBoard, closeGlobalModal, boardId }) {
+export function DeleteBoardModal({ onRemoveBoard, closeGlobalModal, id }) {
     // === Consts
 
     // === Effects
@@ -28,7 +28,7 @@ export function DeleteBoardModal({ onRemoveBoard, closeGlobalModal, boardId }) {
             <div className="btns-container">
                 <button className="cancel-btn clickable clear size-40" onClick={() => closeGlobalModal()}>Cancel</button>
                 <button className="delete-btn clickable filled negative size-40" onClick={() => {
-                    onRemoveBoard(boardId)
+                    onRemoveBoard(id)
                 }}>Delete</button>
             </div>
         </section>
