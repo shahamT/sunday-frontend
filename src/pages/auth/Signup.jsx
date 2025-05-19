@@ -14,7 +14,7 @@ import { userService } from '../../services/user/index.js'
 import { useState } from 'react'
 import { useControlledForm } from '../../hooks/useControlledForm.js'
 import { showErrorMsg } from '../../services/base/event-bus.service.js';
-import { signup } from '../../store/actions/user.actions.js';
+import { googleAuth, signup } from '../../store/actions/user.actions.js';
 
 // === Imgs
 
@@ -97,17 +97,22 @@ export function Signup() {
         window.google.accounts.id.initialize({
             // client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
             client_id: '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com',
-            callback: (response) => {
+            callback: async (response) => {
                 const idToken = response.credential;
                 if (!idToken) {
                     showErrorMsg('Google authentication failed')
                     return
                 }
-
-                userService.googleAuth(idToken);
+                
+                try {
+                    const user = await googleAuth({idToken})
+                    navigate('/app/home')
+                }
+                catch (err) {
+                    showErrorMsg(err)
+                }
             },
         })
-
         window.google.accounts.id.prompt()
     }
 

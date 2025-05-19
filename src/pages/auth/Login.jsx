@@ -23,8 +23,6 @@ import { login } from '../../store/actions/user.actions.js';
 // ====== Component ======
 // =======================
 
-
-
 export function Login() {
     // === Consts
     const [searchParams] = useSearchParams()
@@ -80,6 +78,31 @@ export function Login() {
         }
     }
 
+
+  const loginWithGoogle = () => {
+        window.google.accounts.id.initialize({
+            // client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+            client_id: '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com',
+            callback: async (response) => {
+                const idToken = response.credential;
+                if (!idToken) {
+                    showErrorMsg('Google authentication failed')
+                    return
+                }
+                
+                try {
+                    const user = await googleAuth({idToken})
+                    navigate('/app/home')
+                }
+                catch (err) {
+                    showErrorMsg(err)
+                }
+            },
+        })
+        window.google.accounts.id.prompt()
+    }
+
+
     async function loginToDemoAccount() {
         const userCred = {
             email: "user1@company.com",
@@ -93,9 +116,6 @@ export function Login() {
             showErrorMsg(err)
         }
     }
-
-
-
 
     return (
         <div className="Login">
@@ -147,7 +167,7 @@ export function Login() {
 
                     <div
                         className='google-auth-btn clickable clear full-width size-40'
-                        onClick={() => signupWithGoogle()}
+                        onClick={() => loginWithGoogle()}
                     >
                         <img className='google-icon' src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747598560/Google__G__logo.svg_igbjrb.png" />
                         Continue with Google
