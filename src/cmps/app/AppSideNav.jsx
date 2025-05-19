@@ -33,6 +33,8 @@ export function AppSideNav({ }) {
     const [editedTitle, setEditedTitle] = useState('')
     const [isFavoritesOpen, setIsFavoritesOpen] = useState(false)
     const [activeBoard, setActiveBoard] = useState(null)
+    const [isSearchOpen, setSearchOpen] = useState(false)
+    const [boardFilterBy, setBoardFilterBy] = useState('')
 
 
     useEffect(() => {
@@ -89,7 +91,7 @@ export function AppSideNav({ }) {
                 delay: 150,
                 tolerance: 30,
             },
-            
+
         }),
         // useSensor(PointerSensor),
         useSensor(MouseSensor),
@@ -134,11 +136,38 @@ export function AppSideNav({ }) {
                 <section className="workspaces-section nav-section">
 
                     <div className="workspaces-bar">
-                        <div className="workspase-icon icon-start i-Workspace" />
-                        <p>Workspaces</p>
-                        <div className="search-btn clickable clear icon-btn size-24 i-Search" />
-                    </div>
+                        {!isSearchOpen ? (
+                            <>
+                                <div className="workspase-icon icon-start i-Workspace" />
+                                <p>Workspaces</p>
+                                <div
+                                    className="search-btn clickable clear icon-btn size-24 i-Search"
+                                    onClick={() => setSearchOpen(prev => !prev)}
+                                />
+                            </>
+                        ) :
+                            (
+                                <>
+                                <span className="i-Search input-icon" />
+                                    <input
+                                        type="text"
+                                        value={boardFilterBy}
+                                        placeholder='Search in Main workspace'
+                                        autoFocus
+                                        onChange={(e) => setBoardFilterBy(e.target.value)}
+                                        // onBlur={() => handleRename(board)}
+                                        // onKeyDown={(e) => e.key === "Enter" && handleRename(board)}
+                                        className="search-board-input"
+                                    />
 
+                                    <div
+                                        className="close-btn clickable clear icon-btn size-24 i-CloseSmall"
+                                        onClick={() => setSearchOpen(prev => !prev)}
+                                    />
+
+                                </>
+                            )}
+                    </div>
                     <section className="workspaces-container">
                         <div className="curr-wordspace-input">
                             <img src={mainWSIcon} alt="" />
@@ -159,7 +188,7 @@ export function AppSideNav({ }) {
                             <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                                 {boards.map(board =>
                                     <BoardNavBarLink board={board}
-                                        key={board._id} 
+                                        key={board._id}
                                         editedTitle={editedTitle}
                                         editingBoardId={editingBoardId}
                                         setEditedTitle={setEditedTitle}
@@ -170,11 +199,11 @@ export function AppSideNav({ }) {
                             </SortableContext>
                             <DragOverlay>
                                 {activeBoard ? (
-                                   <div className="drag-overlay-board">
-                                     <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
-                                       <p>{activeBoard.name}</p>
-                                      </div>
-                                 </div>
+                                    <div className="drag-overlay-board">
+                                        <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
+                                            <p>{activeBoard.name}</p>
+                                        </div>
+                                    </div>
                                 ) : null}
 
                             </DragOverlay>
