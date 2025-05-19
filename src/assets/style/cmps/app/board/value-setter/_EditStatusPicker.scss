@@ -1,0 +1,37 @@
+.edit-status-picker {
+
+
+    .edit-status-item {
+        
+    }
+    .input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        // gap:4px;
+        margin: 4px;
+    
+
+    input {
+        width: 100%;
+        padding-left: 32px;
+        height: 32px;
+        border-radius: 4px;
+    }
+    
+    .color-btn-icon{
+        position: absolute;
+        left: 6px;
+        // bottom: 1px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+        color: white;
+
+    }
+    }
+}
