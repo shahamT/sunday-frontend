@@ -8,7 +8,7 @@ import { removeColumnValue, setColumnValue } from "../../../../../../store/actio
 
 // === Hooks / React
 import { useControlledInput } from "../../../../../../hooks/useControlledInput";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EditableText } from "../../../../../reusables/EditableText/EditableText";
 
 // === Imgs
@@ -26,7 +26,10 @@ export function CellContentText({ task, column, columnValue }) {
     const inputRef = useRef()
 
     // === Effects
-
+    useEffect(() => {
+        // update input value dynamically if it's changed in the database
+        set(columnValue?.value)
+    }, [columnValue?.value])
     // === Functions
 
     function onSetText() {
