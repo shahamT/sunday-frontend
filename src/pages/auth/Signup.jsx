@@ -13,6 +13,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom'
 import { userService } from '../../services/user/index.js'
 import { useState } from 'react'
 import { useControlledForm } from '../../hooks/useControlledForm.js'
+import { showErrorMsg } from '../../services/base/event-bus.service.js';
+import { signup } from '../../store/actions/user.actions.js';
 
 // === Imgs
 
@@ -76,14 +78,14 @@ export function Signup() {
     function onSubmit(e) {
         e.preventDefault();
         if (!validateAll()) return;
-        signup()
+        onSignup()
     }
 
 
-    async function signup() {
+    async function onSignup() {
 
         try {
-            const user = await userService.signup(userToEdit)
+            const user = await signup(userToEdit)
             navigate('/app/home')
         } catch (err) {
             showErrorMsg(err)
@@ -91,32 +93,44 @@ export function Signup() {
 
     }
 
+    const signupWithGoogle = () => {
+        window.google.accounts.id.initialize({
+            // client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
+            client_id: '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com',
+            callback: (response) => {
+                const idToken = response.credential;
+                if (!idToken) {
+                    showErrorMsg('Google authentication failed')
+                    return
+                }
 
-    const signupWithGoogle = useGoogleLogin({
-        onSuccess: async (response) => {
-            const idToken = response.credential;
+                userService.googleAuth(idToken);
+            },
+        })
 
-            const decoded = jwtDecode(idToken);
+        window.google.accounts.id.prompt()
+    }
 
-            const email = decoded.email;
-            const firstName = decoded.given_name;
-            const lastName = decoded.family_name;
-            const picture = decoded.picture;
-
-            console.log('Google user:', { email, firstName, lastName, picture });
-
-            // You can now send this info or the token to your backend
-        },
-        flow: 'implicit',
-    });
-
+    async function loginToDemoAccount() {
+        const userCred = {
+            email: "user1@company.com",
+            password: "hashed_pw_1"
+        }
+        try {
+            const user = await login(userCred)
+            navigate('/app/home')
+        }
+        catch (err) {
+            showErrorMsg(err)
+        }
+    }
 
     return (
         <div className="Signup">
-            <div className="signup-main-content">
+            <div className="main-content">
                 <div className="content-wraper">
 
-                    <h1 className='title'>Welcome to sunday.com</h1>
+                    <h1 className='title signup-title'>Welcome to sunday.com</h1>
                     <h2 className='subtitle'>Get started - it's free. No credit card needed.</h2>
 
                     <div
@@ -133,7 +147,7 @@ export function Signup() {
                         <div className="line" />
                     </div>
 
-                    <form onSubmit={onSubmit}>
+                    <form onSubmit={onSubmit} className='signup-form'>
                         <div className="input-group">
                             <label htmlFor="firstName">First name</label>
                             <input
@@ -146,8 +160,8 @@ export function Signup() {
                                 onBlur={handleBlur}
                             />
                             {errors.email && <p className="error-text">{errors.firstName}</p>}
-
                         </div>
+
                         <div className="input-group">
                             <label htmlFor="lastName">Last name</label>
                             <input
@@ -161,6 +175,7 @@ export function Signup() {
                             />
                             {errors.email && <p className="error-text">{errors.lastName}</p>}
                         </div>
+
                         <div className="input-group">
                             <label htmlFor="email">Email</label>
                             <input
@@ -174,6 +189,7 @@ export function Signup() {
                             />
                             {errors.email && <p className="error-text">{errors.email}</p>}
                         </div>
+
                         <div className="input-group">
                             <label htmlFor="password">Password</label>
                             <input
@@ -198,16 +214,24 @@ export function Signup() {
                     <p className='terms-and-cond-text'>
                         By proceeding, you agree to the<br />
                         <a href="#">Terms of Service</a>
-                        &nbsp; and &nbsp;
+                        &nbsp;and&nbsp;
                         <a href="#">Privacy Policy</a>
                     </p>
+                </div>
+
+                <div className="demo-account-popup animate__animated animate__slideInDown animate__delay-1s">
+                    <p>In hurry? </p>
+
+                    <a href="#"
+                        onClick={loginToDemoAccount}
+                    >Login to our demo account</a>
                 </div>
 
             </div>
 
             <div className="footer-text">
                 Already have an account?
-                &nbsp; <a href="">Log in</a>
+                &nbsp;<a href="/login">Log in</a>
             </div>
 
             <div className='signup-side-img-container'>

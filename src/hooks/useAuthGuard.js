@@ -9,9 +9,14 @@ export function useAuthGuard() {
 
   useEffect(() => {
     if (!loggedinUser) {
-      navigate('/login', { state: { from: location.pathname } });
+      navigate('/login', {
+        replace: true, // replaces current entry in history
+        state: { from: location.pathname }, // still keeps info
+      });
     }
-  }, [loggedinUser, location, navigate]);
+  }, [loggedinUser, location.pathname, navigate]);
+
+  return loggedinUser
 }
 
 // useAuthGuard();

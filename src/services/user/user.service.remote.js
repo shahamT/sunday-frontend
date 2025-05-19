@@ -6,6 +6,7 @@ export const userService = {
 	login,
 	logout,
 	signup,
+	googleAuth,
 	getUsers,
 	getById,
 	remove,
@@ -40,12 +41,19 @@ async function update(boardId) {
 
 async function login(userCred) {
 	const user = await httpService.post('auth/login', userCred)
-	return user ? saveLoggedinUser(user) : null
+	if (user) saveLoggedinUser(user)
+	return user
 }
 
 async function signup(userCred) {
         const user = await httpService.post('auth/signup', userCred)
 	return saveLoggedinUser(user)
+}
+
+async function googleAuth(idToken) {
+	console.log("idToken: ", idToken)
+        // const user = await httpService.post('auth/google', userCred)
+	// return saveLoggedinUser(user)
 }
 
 async function logout() {

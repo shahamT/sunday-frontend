@@ -17,7 +17,7 @@ const navigate = useNavigate()
                     <NavLink to="/dev-page-2" >dev2</NavLink>
                     <NavLink to="/dev-page-3" >dev3</NavLink>
                     <NavLink to="/about" >About</NavLink>
-                    <NavLink to="/login" >Login</NavLink>
+                    <NavLink to="/app/home" >Login</NavLink>
                     <NavLink to="/app" >App</NavLink>
                     <div
                     className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"

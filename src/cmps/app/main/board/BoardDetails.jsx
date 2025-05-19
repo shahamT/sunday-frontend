@@ -52,7 +52,6 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardDetails">
             <BoardHeader isSelected={isSelected} select={select} />

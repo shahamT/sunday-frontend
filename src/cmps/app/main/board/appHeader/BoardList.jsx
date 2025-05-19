@@ -25,63 +25,62 @@ import { updateUser } from "../../../../../store/actions/user.actions"
 export function BoardList({ /* prop1, prop2 */ }) {
     // === Consts
     const boards = useSelector(storeState => storeState.boardModule.boards)
-    const lastViewedBoards = useSelector(storeState => storeState.userModule.loggedinUser.lastViewedBoards)
+    const lastViewedBoards = useSelector(storeState => storeState.userModule.loggedinUser?.lastViewedBoards)
     const [isRecentlyVisitedOpen, setIsRecentlyVisitedOpen] = useState(true)
 
     const workManagement = 'work management > Main workspace'
     const navigate = useNavigate()
 
     // === Effects
-    useEffect(() => {
 
-    }, [lastViewedBoards])
     // === Functions
     function onChoooseBoard(boardId) {
         navigate(`/app/board/${boardId}`)
         updateUser(boardId)
     }
 
+    if (!lastViewedBoards) return <></>
     return (
         <section className="board-list">
-            <div className="recently-visited-wraper" onClick={()=> setIsRecentlyVisitedOpen(prev => !prev)}>
+            <div className="recently-visited-wraper" onClick={() => setIsRecentlyVisitedOpen(prev => !prev)}>
                 {isRecentlyVisitedOpen ? (<span className="dropdown-icon left-aligned i-DropdownChevronDown " />) : (<span className="dropdown-icon left-aligned i-DropdownChevronUp" />)}
                 Recently visited
             </div>
-            {isRecentlyVisitedOpen && 
-            <section className="board-preview-container">
-                {!!boards.length && !!lastViewedBoards.length 
-                    ? (lastViewedBoards.map(viewedBoard => {
-                        const board = boards.find(board => board._id === viewedBoard.boardId) 
-                        if(!board) return null
-                        return (
-                        <article key={board._id} className="board-preview" onClick={() => onChoooseBoard(board._id)}>
-                            <div className="img-wrapper">
-                                <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747320341/kkvc6y2yzsy9taa4d7y2.png" alt="Monday board" />
-                            </div>
-                            <div className="board-txt-container clickable select size-32 icon-start full-width left-aligned i-Board">
-                                <label className="board-txt ">
-                                    {board.name}
+            {isRecentlyVisitedOpen &&
+                <section className="board-preview-container">
+                    {!!boards.length && !!lastViewedBoards.length
+                        ? (lastViewedBoards.map(viewedBoard => {
+                            const board = boards.find(board => board._id === viewedBoard.boardId)
+                            if (!board) return null
+                            return (
+                                <article key={board._id} className="board-preview" onClick={() => onChoooseBoard(board._id)}>
+                                    <div className="img-wrapper">
+                                        <img src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747320341/kkvc6y2yzsy9taa4d7y2.png" alt="Monday board" />
+                                    </div>
+                                    <div className="board-txt-container clickable select size-32 icon-start full-width left-aligned i-Board">
+                                        <label className="board-txt ">
+                                            {board.name}
 
-                            </label>
-                            <div
-                                className={`favorite-btn clickable select size-32 ${board.isStarred ? 'starred' : ''}`}
-                                onClick={(e) => e.stopPropagation()}
-                            >
-                                <IsStarred board={board} />
-                            </div>
+                                        </label>
+                                        <div
+                                            className={`favorite-btn clickable select size-32 ${board.isStarred ? 'starred' : ''}`}
+                                            onClick={(e) => e.stopPropagation()}
+                                        >
+                                            <IsStarred board={board} />
+                                        </div>
 
-                            </div>
-                            <div className="board-work-management">
-                                <img className="monday-icon" src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747472186/pdaj4ymmpllwsrftlivp.png" alt="" />
-                                <p>{workManagement}</p>
-                            </div>
-                        </article>)
-                    }))
+                                    </div>
+                                    <div className="board-work-management">
+                                        <img className="monday-icon" src="https://res.cloudinary.com/ditvgrfxq/image/upload/v1747472186/pdaj4ymmpllwsrftlivp.png" alt="" />
+                                        <p>{workManagement}</p>
+                                    </div>
+                                </article>)
+                        }))
 
                         : <p>No boards to show. lets create a new one! <button onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)}>Create new board</button></p>
-                        }
-            </section >
-        }
+                    }
+                </section >
+            }
         </section >
     )
 }

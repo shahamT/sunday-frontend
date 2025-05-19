@@ -6,7 +6,7 @@ import 'animate.css';
 import { HomePage } from './pages/land-page/HomePage.jsx'
 import { AboutUs } from './pages/land-page/AboutUs.jsx'
 import { Signup } from './pages/auth/Signup'
-import { Login } from './pages/auth/Login'
+import { Login } from './pages/auth/Login';
 
 //dev pages
 import { Reusables } from './pages/DevPages/Reusables/Reusables'
@@ -41,20 +41,7 @@ import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
 import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
 
 
-
-import { login } from './store/actions/user.actions'; //TODO delete this!!!
-
-
-
 export default function App() {
-    // routes with no header:
-    const noHeaders = ['/signup', '/login']
-
-    const userCred = {//TODO delete this!!!
-        email: "user1@company.com", 
-        password: "hashed_pw_1"
-    } 
-    login(userCred)//TODO delete this!!!
 
     useEffect(() => {
     socketService.setup()
