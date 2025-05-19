@@ -25,6 +25,21 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
+    // === Effects
+    useEffect(() => {
+        // update input value dynamically if it's changed in the database
+        set(column.name)
+    }, [column.name])
+
+    useEffect(() => {
+        // only set width if it’s different than local
+        if (column.width !== width) {
+            setWidth(column.width)
+        }
+    }, [column.width]);
+
+
+    // resize columns 
     const [width, setWidth] = useState(column.width)
     const [isDragging, setIsDragging] = useState(false)
     const [hasMouseDown, setHasMouseDown] = useState(false)
@@ -32,28 +47,14 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
     const startX = useRef(0)
     const startWidth = useRef(0)
 
-
-    // === Effects
-    useEffect(() => {
-        set(column.name);
-
-        // only set width if it’s different than local
-        if (column.width !== width) {
-            setWidth(column.width);
-        }
-    }, [column.name, column.width]);
-
-    // === Functions
-
-    // resize dragging 
     function onMouseDown(e) {
         e.stopPropagation()
-        setHasMouseDown(true)          // 🔹 start tracking immediately
+        setHasMouseDown(true)      // start tracking
         setIsDragging(true)
 
         startX.current = e.clientX
         startWidth.current = column.width
-        liveWidth.current = column.width;
+        liveWidth.current = column.width
 
         document.addEventListener('mousemove', onMouseMove)
         document.addEventListener('mouseup', onMouseUp)
@@ -61,17 +62,17 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
 
     function onMouseMove(e) {
         const deltaX = e.clientX - startX.current;
-        const newWidth = Math.max(100, startWidth.current + deltaX);
+        const newWidth = Math.max(100, startWidth.current + deltaX)
 
-        // 🔹 Write live width to shared ref
+        //  Write live width to shared ref
         if (liveColumnWidthsRef?.current) {
-            liveColumnWidthsRef.current[column.id] = newWidth;
+            liveColumnWidthsRef.current[column.id] = newWidth
         }
 
-        // 🔹 Trigger re-render in other columns
-        if (bumpResizeVersion) bumpResizeVersion();
+        // Trigger re-render in other columns
+        if (bumpResizeVersion) bumpResizeVersion()
 
-        liveWidth.current = newWidth;
+        liveWidth.current = newWidth
         setWidth(newWidth);
     }
 
@@ -100,13 +101,14 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
     }
 
 
+    // crud functions
     function onUpdateColumnName() {
         if (value === '') {
             showErrorMsg(`Column name can't be empty`)
             set(column.name)
             return
         }
-        const updatedColumn = { ...column, name: value };
+        const updatedColumn = { ...column, name: value }
 
         try {
             updateColumn(updatedColumn)
