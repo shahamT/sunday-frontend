@@ -309,11 +309,11 @@ export async function updateLabel(columnId, labelToUpdate) {
     }
 }
 
-export async function addLabel(columnId) {
+export async function addLabel(columnId,label) {
     const boardId = getBoardId()
-    const label = boardService.getEmptyLabel()
+    // const label = boardService.getEmptyLabel()
     try {
-        store.dispatch(getCmdAddLabel(label))
+        store.dispatch(getCmdAddLabel(label,columnId,boardId))
         const savedLabel = await boardService.createLabel(label, columnId, boardId)
         return savedLabel
     } catch (err) {
