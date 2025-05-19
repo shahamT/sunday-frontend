@@ -1,6 +1,6 @@
 .Signup {
     display: grid;
-    grid-template-columns: 0.6fr 0.4fr;
+    grid-template-columns: 6fr 4fr;
     grid-template-rows: 1fr 85px;
 
     a {
@@ -13,7 +13,7 @@
         grid-row: 1;
 
         display: grid;
-        grid-template-columns: 1fr max-content 1fr;
+        grid-template-columns: minmax(24px, 1fr) max-content minmax(24px, 1fr);
         align-content: center;
 
 
@@ -38,11 +38,11 @@
 
 
             .google-auth-btn {
-                border: 1px solid var(--layout-border-color) ;
+                border: 1px solid var(--layout-border-color);
 
-                .google-icon{
-                  height: 18px;  
-                  margin-inline-end: 8px;
+                .google-icon {
+                    height: 18px;
+                    margin-inline-end: 8px;
                 }
             }
 
@@ -67,10 +67,13 @@
             form {
                 width: 100%;
                 display: grid;
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
                 gap: 16px;
                 margin-block-end: 16px;
 
+                > :nth-child(n + 3) {
+                    grid-column: 1/3;
+                }
 
                 .input-group {
                     display: flex;
@@ -147,8 +150,7 @@
         overflow: hidden;
 
         .side-img {
-            height: 100%;
-            width: auto;
+            min-height: 100%;
             object-fit: cover;
         }
     }
