@@ -24,25 +24,25 @@ import { openGlobalModal } from "../../../../../../store/actions/app.actions";
 
 export function CellContentFile({ task, column, columnValue }) {
     // === Consts
-      const taskId = task.id
+    const taskId = task.id
+    const inputId = `imgUpload-${taskId}`
     const [isUploading, setIsUploading] = useState(false)
-
     // === Effects
-
     // === Functions
 
-    async function uploadImg(ev) {
+    async function uploadImg(ev, passedTaskId) {
+
         setIsUploading(true)
         const { secure_url } = await uploadService.uploadImg(ev)
         setIsUploading(false)
 
-        onSetFile(secure_url)
+        onSetFile(secure_url, passedTaskId)
     }
 
-    async function onSetFile(fileUrl) {
-        console.log("fileUrl: ", fileUrl)
+    async function onSetFile(fileUrl, passedTaskId) {
+
         try {
-            await setColumnValue(taskId, column.id, fileUrl)
+            await setColumnValue(passedTaskId, column.id, fileUrl)
             showSuccessMsg('Uploaded 1 file')
         }
         catch (err) {
@@ -105,13 +105,14 @@ export function CellContentFile({ task, column, columnValue }) {
                         :
                         <>
                             <div className="img-uploader">
-                                <label htmlFor="imgUpload"></label>
+                                <label  htmlFor={inputId}></label>
                                 <input
                                     className="hidden-input"
                                     type="file"
-                                    onChange={uploadImg}
+                                       onChange={(e) => uploadImg(e, taskId)}
                                     accept="image/*"
-                                    id="imgUpload"
+                                    id={inputId} 
+                                    onClick={(e) => e.stopPropagation()}
                                 />
                             </div>
 
