@@ -39,15 +39,16 @@ export function SearchSideNav({ setSearchOpen }) {
             debounceSetBoardFilterBy.current.cancel()
         }
     }, [])
+
+    
+    // === Functions
     function onSetBoardsFilterBy({ target }) {
         const val = target.value
         setValue(val)
         debounceSetBoardFilterBy.current(val)
     }
 
-    // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="search-side-nav">
 
