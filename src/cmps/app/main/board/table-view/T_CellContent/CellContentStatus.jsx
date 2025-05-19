@@ -27,7 +27,7 @@ export function CellContentStatus({ task, column, columnValue }) {
 
     function setStatus(statusId) {
         try {
-            setColumnValue(taskId, column.id, statusId, columnValue.value)
+            setColumnValue(taskId, column.id, statusId, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

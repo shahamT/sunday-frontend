@@ -42,7 +42,7 @@ export function CellContentDate({ task, column, columnValue }) {
 
     function onSetDate(date) {
         try {
-            setColumnValue(taskId, column.id, date, columnValue.value)
+            setColumnValue(taskId, column.id, date, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
