@@ -84,6 +84,7 @@ export function CellContentFile({ task, column, columnValue }) {
                                     mouseOutDelay={300}
                                     renderContent={({ onCloseModal }) => (
                                         <MiniFilePreview
+                                        onClearFile={onClearFile}
                                             onCloseModal={onCloseModal}
                                             imgUrl={columnValue.value}
                                         />

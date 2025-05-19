@@ -17,7 +17,7 @@ import { FiledMenu } from "../popupMenu/FileMenu";
 // ====== Component ======
 // =======================
 
-export function MiniFilePreview({ onCloseModal, imgUrl, imgTitle }) {
+export function MiniFilePreview({ onCloseModal,onClearFile, imgUrl, imgTitle }) {
     // === Consts
 
     // === Effects
@@ -33,6 +33,7 @@ export function MiniFilePreview({ onCloseModal, imgUrl, imgTitle }) {
                         position="bottom-end"
                         renderContent={({ onCloseModal }) => (
                             <FiledMenu
+                            onClearFile={onClearFile}
                             imgUrl={imgUrl}
                                 onCloseModal={onCloseModal}
                             />
