@@ -8,7 +8,7 @@ import { removeColumnValue, setColumnValue } from "../../../../../../store/actio
 
 // === Hooks / React
 import { useControlledInput } from "../../../../../../hooks/useControlledInput";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { EditableText } from "../../../../../reusables/EditableText/EditableText";
 
 // === Imgs
@@ -18,19 +18,25 @@ import { EditableText } from "../../../../../reusables/EditableText/EditableText
 // ====== Component ======
 // =======================
 
-export function CellContentNumber({ taskId, column, columnValue }) {
+export function CellContentNumber({ task, column, columnValue }) {
     // === Consts
+    const taskId = task.id
     const [value, handleChange, reset, set] = useControlledInput(columnValue?.value)
     const [isEditing, setIsEditing] = useState(false)
     const inputRef = useRef()
 
     // === Effects
-
+    useEffect(() => {
+        // update input value dynamically if it's changed in the database
+        set(columnValue?.value)
+    }, [columnValue?.value])
     // === Functions
 
     function onSetNumber() {
         setIsEditing(false)
+
         if (value === '') onClearNumber()
+
         try {
             setColumnValue(taskId, column.id, value)
         }
