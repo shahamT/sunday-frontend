@@ -21,25 +21,20 @@ export function FiledMenu({ imgUrl, imgTitle, onCloseModal }) {
 
 
 // const imgUrl = 'https://res.cloudinary.com/ditvgrfxq/image/upload/v1747392296/kbsu10mu7vuzlddlpwng.png'
-    const downloadUrl = `${imgUrl}?fl_attachment=${imgTitle}`
-    // const downloadUrl = imgUrl.replace('/upload/', `/upload/fl_attachment:${imgTitle}/`)
-    // const downloadUrl = `https://res.cloudinary.com/demo/image/upload/fl_attachment/sample.jpg`
+    const downloadUrl = imgUrl.replace('/upload/', `/upload/fl_attachment:${imgTitle}/`)
 
     // === Functions
-
-    // function onRemoveFile() {
-    //     console.log('onRemoveFile -in development')
-    // }
 
 
     return (
         <section className="file-menu">
             <button className="clickable clear size-32 icon-start full-width left-aligned i-Fullscreen" onClick={() => openGlobalModal(<FileModal imgUrl={imgUrl} onCloseModal={onCloseModal} />)} >Open file</button>
             <a href={downloadUrl} download>
-                <div className="download-btn clickable clear size-32 i-Download icon-start full-width left-aligned">Download file</div>
+                <div className="download-btn clickable clear size-32 i-Download icon-start full-width left-aligned"onClick={(e)=>e.stopPropagation()}>Download file</div>
             </a>
             <div className="divider" />
-            <button className="clickable clear size-32 i-CloseSmall icon-start full-width left-aligned" onClick={() => {
+            <button className="clickable clear size-32 i-CloseSmall icon-start full-width left-aligned" onClick={(e) => {
+                e.stopPropagation()
                 onCloseModal()
             }}>Close</button>
         </section>
