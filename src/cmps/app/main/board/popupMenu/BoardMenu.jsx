@@ -5,7 +5,7 @@ import { loadBoards, removeBoard, updateBoard } from "../../../../../store/actio
 import { showSuccessMsg } from "../../../../../services/base/event-bus.service"
 import { useNavigate } from "react-router-dom"
 import { DeleteBoardModal } from "./DeleteBoardModal"
-import { openGlobalModal,closeGlobalModal } from "../../../../../store/actions/app.actions"
+import { openGlobalModal, closeGlobalModal } from "../../../../../store/actions/app.actions"
 
 // === Services
 
@@ -87,7 +87,8 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
 
             <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
             <div className="divider" />
-            <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={() => {
+            <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={(e) => {
+                e.stopPropagation()
                 setEditingBoardId(board._id)
                 setEditedTitle(board.name)
                 onCloseModal()

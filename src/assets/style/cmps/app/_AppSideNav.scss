@@ -252,6 +252,7 @@
 
 
         input[type="text"] {
+                background-color: #f0f0f0; 
                 width: 100%;
                 padding: 0.2em 0.5em;
                 border: 1px solid #c4c4c4;
@@ -264,10 +265,7 @@
                         outline: none;
                         border-color: #0073ea;
                 }
-
-                &::placeholder {
-                        color: #b0b0b0;
-                }
+            
         }
 
         .divider {
