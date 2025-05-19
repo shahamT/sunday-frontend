@@ -1,8 +1,7 @@
 // === Libs
 import validator from 'validator';
-import { GoogleLogin } from '@react-oauth/google';
-import { jwtDecode } from 'jwt-decode';
-import { useGoogleLogin } from '@react-oauth/google';
+import { googleAuth, signup } from '../../store/actions/user.actions.js';
+
 
 // === Services
 
@@ -11,14 +10,14 @@ import { useGoogleLogin } from '@react-oauth/google';
 // === Hooks / React
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import { userService } from '../../services/user/index.js'
-import { useState } from 'react'
 import { useControlledForm } from '../../hooks/useControlledForm.js'
-import { showErrorMsg } from '../../services/base/event-bus.service.js';
-import { googleAuth, signup } from '../../store/actions/user.actions.js';
 
 // === Imgs
 
 // === Child Components
+import { showErrorMsg } from '../../services/base/event-bus.service.js';
+import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
 
 // ====== Component ======
 // =======================
@@ -29,6 +28,8 @@ export function Signup() {
     // === Consts
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+
 
     const validators = {
         email: value => {
@@ -69,6 +70,10 @@ export function Signup() {
 
     // === Effects
 
+    useEffect(() => {
+        if (user) navigate('/app/home')
+    }, [user])
+
     // === Functions
 
     function handleBlur(e) {
@@ -103,9 +108,9 @@ export function Signup() {
                     showErrorMsg('Google authentication failed')
                     return
                 }
-                
+
                 try {
-                    const user = await googleAuth({idToken})
+                    const user = await googleAuth({ idToken })
                     navigate('/app/home')
                 }
                 catch (err) {

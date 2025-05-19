@@ -68,15 +68,28 @@ export function AppHeader(props) {
 
 function UserAccountMenu() {
     const navigate = useNavigate()
-    
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+
     function onLogout() {
         logout()
         navigate('/home')
     }
     return (
-        <div className="clickable clear size-40"
-            onClick={onLogout}
+        <section className='UserAccountMenu'>
 
-        >Logout</div>
+            <div className="menu-header">
+                <img
+                    className="sunday-icon"
+                    src="https://res.cloudinary.com/dqaq55tup/image/upload/v1746718734/monday_logo_icon_dumn0r.png"
+                />
+                <p>Hi {user?.firstName}!</p>
+            </div>
+            <div className="h-divider"/>
+            <div className="logout-btn clickable clear size-32 full-width icon-start i-LogOut"
+                onClick={onLogout}
+
+            >Logout</div>
+
+        </section>
     )
 }

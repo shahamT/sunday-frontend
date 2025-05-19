@@ -17,10 +17,10 @@
         gap: var(--space-4);
 
 
-       .help-btn-wraper {
-        margin-inline-end: var(--space-4);
+        .help-btn-wraper {
+            margin-inline-end: var(--space-4);
 
-       }
+        }
 
         .divider {
             height: 22px;
@@ -56,8 +56,41 @@
             .user-avatar {
                 height: 32px;
                 width: 32px;
+                border-radius: var(--border-radius-round);
             }
         }
     }
 
+}
+
+.UserAccountMenu {
+    display: flex;
+    flex-direction: column;
+
+    .menu-header {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: 8px;
+        height: 32px;
+
+        p {
+            font-size: 14px;
+        }
+
+        .sunday-icon {
+            height: 26px;
+        }
+    }
+
+    .h-divider {
+        width: 100%;
+        height: 1px;
+        margin-block: 8px;
+        background-color: var(--layout-border-color);
+    }
+
+    .clickable{
+        justify-content: start;
+    }
 }

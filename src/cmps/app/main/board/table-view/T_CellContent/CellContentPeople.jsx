@@ -10,7 +10,7 @@ export function CellContentPeople({ task, column, columnValue }) {
     const hasMounted = useRef(false); // 👈 Track if initial render has passed
     function setPersons(PersonsArray) {
         try {
-            setColumnValue(taskId, column.id, PersonsArray);
+            setColumnValue(taskId, column.id, PersonsArray, columnValue.value);
             if (PersonsArray.length === 0) onClearPersons();
 
             // Prevent animation on first mount
