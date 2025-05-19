@@ -6,6 +6,7 @@ import { AppSideNav } from '../cmps/app/AppSideNav';
 import { useSelector } from 'react-redux';
 import { closeSidePanel, openSidePanel } from '../store/actions/app.actions';
 import { Tooltip } from '../cmps/reusables/tooltip/Tooltip';
+import { useAuthGuard } from '../hooks/useAuthGuard';
 
 const STORAGE_KEY = 'sideNavWidth';
 const MIN_SIDE_NAV_WIDTH = 200;
@@ -13,7 +14,7 @@ const MAX_SIDE_NAV_WIDTH = 575;
 const COLLAPSED_SIDE_NAV_WIDTH = 30;
 
 export function AppLayout() {
-
+    const loggedinUser = useAuthGuard()
     // ========= side nav ==========
     // =============================
 
@@ -85,8 +86,12 @@ export function AppLayout() {
 
     // // ====== Component ======
     // // =======================
- const isBoardRoute = location.pathname.startsWith('/app/board/');
+    const isBoardRoute = location.pathname.startsWith('/app/board/');
 
+    if (!loggedinUser) return <div className="main-loader-container" >
+        <img className="loader" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747552268/loader_cymybj.gif" alt="loader" />
+    </div>
+    
     return (
         <section className="AppLayout">
             <AppHeader />
@@ -118,7 +123,7 @@ export function AppLayout() {
                 </aside>
 
                 {isBoardRoute && <div className="main-divider" />}
-                
+
                 <main className="main-content-panel">
 
                     <div className="main-content-wraper">
