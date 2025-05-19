@@ -23,7 +23,7 @@ import { useControlledForm } from '../../hooks/useControlledForm.js'
 
 
 
-export function Signup({ setLoggedinUser }) {
+export function Signup() {
     // === Consts
     const [searchParams] = useSearchParams()
     const navigate = useNavigate()
@@ -83,8 +83,7 @@ export function Signup({ setLoggedinUser }) {
     async function signup() {
 
         try {
-            authService.signup(userToEdit)
-            setLoggedinUser(user)
+            const user = await userService.signup(userToEdit)
             navigate('/app/home')
         } catch (err) {
             showErrorMsg(err)
@@ -198,9 +197,9 @@ export function Signup({ setLoggedinUser }) {
 
                     <p className='terms-and-cond-text'>
                         By proceeding, you agree to the<br />
-                        <a href="">Terms of Service</a>
+                        <a href="#">Terms of Service</a>
                         &nbsp; and &nbsp;
-                        <a href="">Privacy Policy</a>
+                        <a href="#">Privacy Policy</a>
                     </p>
                 </div>
 

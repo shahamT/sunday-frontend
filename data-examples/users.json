@@ -1,72 +1,87 @@
-[
-  {
-      "_id": {
+[{
+  "_id": {
     "$oid": "6828aff6d371e5b12cae4c49"
   },
-    "account": "acc001",
-    "firstName": "John",
-    "lastName": "Doe",
-    "email": "user1@company.com",
-    "password": "hashed_pw_1",
-    "createdAt": "2025-04-11T11:04:37.547481",
-    "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
-    "role": "admin"
-  },
-  {
-    "_id": {
+  "account": "acc001",
+  "firstName": "Ziv",
+  "lastName": "Laufer",
+  "email": "user1@company.com",
+  "password": "hashed_pw_1",
+  "createdAt": "2025-04-11T11:04:37.547481",
+  "lastViewedBoards": [
+    {
+      "boardId": "6828af96d371e5b12cae4c45",
+      "viewedAt": 1747641014579
+    },
+    {
+      "boardId": "6828af47d371e5b12cae4c44",
+      "viewedAt": 1747640861240
+    },
+    {
+      "boardId": "6828afb1d371e5b12cae4c46",
+      "viewedAt": 1747640735403
+    },
+    {
+      "boardId": "6829cd5da999e379274578b8",
+      "viewedAt": 1747573396758
+    }
+  ],
+  "profileImg": "https://ui-avatars.com/api/?name=Ziv+Laufer&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
+  "role": "admin"
+},
+{
+  "_id": {
     "$oid": "6828b017d371e5b12cae4c4a"
   },
-    "account": "acc001",
-    "firstName": "User2",
-    "lastName": "Lastname2",
-    "email": "user2@company.com",
-    "password": "hashed_pw_2",
-    "createdAt": "2025-04-12T11:04:37.547535",
-    "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=User2+Lastname2&background=FF5733&color=fff&length=2&rounded=true&bold=true",
-    "role": "user"
-  },
-  {
-      "_id": {
+  "account": "acc001",
+  "firstName": "Java",
+  "lastName": "Biton",
+  "email": "user2@company.com",
+  "password": "hashed_pw_2",
+  "createdAt": "2025-04-12T11:04:37.547535",
+  "lastViewedBoards": [],
+  "profileImg": "https://ui-avatars.com/api/?name=Java+Biton&background=FF5733&color=fff&length=2&rounded=true&bold=true",
+  "role": "user"
+},
+{
+  "_id": {
     "$oid": "6828b027d371e5b12cae4c4b"
   },
-    "account": "acc001",
-    "firstName": "Noga",
-    "lastName": "Shaham",
-    "email": "user3@company.com",
-    "password": "hashed_pw_3",
-    "createdAt": "2025-04-13T11:04:37.547571",
-    "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=Noga+Shaham&background=28A745&color=fff&length=2&rounded=true&bold=true",
-    "role": "user"
-  },
-  {
-    "_id": {
+  "account": "acc001",
+  "firstName": "Noga",
+  "lastName": "Shaham",
+  "email": "user3@company.com",
+  "password": "hashed_pw_3",
+  "createdAt": "2025-04-13T11:04:37.547571",
+  "lastViewedBoards": [],
+  "profileImg": "https://ui-avatars.com/api/?name=Noga+Shaham&background=28A745&color=fff&length=2&rounded=true&bold=true",
+  "role": "user"
+},
+{
+  "_id": {
     "$oid": "6828b040d371e5b12cae4c4c"
   },
-    "account": "acc001",
-    "firstName": "Dana",
-    "lastName": "Tamir",
-    "email": "user4@company.com",
-    "password": "hashed_pw_4",
-    "createdAt": "2025-04-14T11:04:37.547596",
-    "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=Dana+Tamir&background=6F42C1&color=fff&length=2&rounded=true&bold=true",
-    "role": "user"
-  },
-  {
-    "_id": {
+  "account": "acc001",
+  "firstName": "Dana",
+  "lastName": "Tamir",
+  "email": "user4@company.com",
+  "password": "hashed_pw_4",
+  "createdAt": "2025-04-14T11:04:37.547596",
+  "lastViewedBoards": [],
+  "profileImg": "https://ui-avatars.com/api/?name=Dana+Tamir&background=6F42C1&color=fff&length=2&rounded=true&bold=true",
+  "role": "user"
+},
+{
+  "_id": {
     "$oid": "6828b04ad371e5b12cae4c4d"
   },
-    "account": "acc001",
-    "firstName": "Code",
-    "lastName": "Cohen",
-    "email": "user5@company.com",
-    "password": "hashed_pw_5",
-    "createdAt": "2025-04-15T11:04:37.547616",
-    "lastViewedBoards": [],
-    "profileImg": "https://ui-avatars.com/api/?name=Code+Cohen&background=E83E8C&color=fff&length=2&rounded=true&bold=true",
-    "role": "user"
-  }
-]
+  "account": "acc001",
+  "firstName": "Code",
+  "lastName": "Cohen",
+  "email": "user5@company.com",
+  "password": "hashed_pw_5",
+  "createdAt": "2025-04-15T11:04:37.547616",
+  "lastViewedBoards": [],
+  "profileImg": "https://ui-avatars.com/api/?name=Code+Cohen&background=E83E8C&color=fff&length=2&rounded=true&bold=true",
+  "role": "user"
+}]
