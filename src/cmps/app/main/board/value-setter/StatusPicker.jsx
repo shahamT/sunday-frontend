@@ -16,7 +16,7 @@ import { EditStatusPicker } from "./EditStatusPicker"
 // ====== Component ======
 // =======================
 
-export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray }) {
+export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray,column }) {
 
     // === Consts
 
@@ -48,15 +48,17 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
             <div className="divider" />
 
 
-<PopUpMenu
+            <PopUpMenu
                 position="start-end"
                 renderContent={({ onCloseModal }) => (
-                    <EditStatusPicker StatusArray={StatusArray}
+                    <EditStatusPicker
+                    columnId={column.id}
+                     StatusArray={StatusArray}
                         onCloseModal={onCloseModal}
                     />
                 )}
             >
-            <div className="edit-btn clickable icon-start clear i-Edit size-32">Edit Labels</div>
+                <div className="edit-btn clickable icon-start clear i-Edit size-32">Edit Labels</div>
             </PopUpMenu>
 
 

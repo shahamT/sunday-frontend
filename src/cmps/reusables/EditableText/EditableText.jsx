@@ -75,8 +75,8 @@ export const EditableText = forwardRef(function EditableText({
                         renderContent={({ onCloseModal }) => (
                             <ColorPicker
                                 onCloseModal={() => {
-                                    setIsPickingColor(false); // 🛠️ <- Add this here
-                                    onCloseModal();
+                                    setIsPickingColor(false)
+                                    onCloseModal()
                                 }}
                                 selectedColor={colorPicker?.selectedColor}
                                 setColor={colorPicker?.setColor}

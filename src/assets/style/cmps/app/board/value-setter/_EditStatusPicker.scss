@@ -1,11 +1,11 @@
 .edit-status-picker {
-
-
+    position: relative;
+    
+    
     .edit-status-item {
         
     }
     .input-wrapper {
-        position: relative;
         display: flex;
         align-items: center;
         // gap:4px;
@@ -22,7 +22,7 @@
     .color-btn-icon{
         position: absolute;
         left: 6px;
-        // bottom: 1px;
+        bottom: 3px;
         text-align: center;
         font-size: 16px;
         cursor: pointer;

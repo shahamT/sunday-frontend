@@ -3,6 +3,9 @@
 import Color from "@tiptap/extension-color"
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColorPicker } from "./ColorPicker"
+import { useState } from "react"
+import { EditLable } from "./EditLabel"
+import { useParams } from "react-router-dom"
 
 // === Services
 
@@ -17,9 +20,9 @@ import { ColorPicker } from "./ColorPicker"
 // ====== Component ======
 // =======================
 
-export function EditStatusPicker({ StatusArray }) {
+export function EditStatusPicker({ StatusArray, columnId }) {
     // === Consts
-
+    const [selectedColor, setSelectedColor] = useState()
     // === Effects
 
     // === Functions
@@ -32,22 +35,8 @@ export function EditStatusPicker({ StatusArray }) {
             {StatusArray.map(status => (
                 <div key={status.id} className="edit-status-item">
                     <div className="input-wrapper">
-
-                        <PopUpMenu
-                            position="bottom-start"
-                            renderContent={({ onCloseModal }) => (
-                                <ColorPicker
-                                    onCloseModal={onCloseModal}
-                                    status={status}
-                                />
-                            )}
-                        >
-                            <button type="button" className={`color-btn-icon icon-start i-HighlightColorBucket ${status.color}-bg `} />
-                        </PopUpMenu>
-                        <input
-                            value={status.name}
-                            readOnly
-                        />
+                        <EditLable status={status} columnId={columnId}  />
+                      
                     </div>
 
 
