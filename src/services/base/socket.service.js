@@ -11,6 +11,7 @@ const { VITE_LOCAL, DEV } = import.meta.env
 // export const SOCKET_EVENT_REVIEW_REMOVED = 'review-removed'
 // export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 export const SOCKET_EVENT_BOARD_UPDATE = 'board-update'
+export const SOCKET_EVENT_MINI_BOARDS_UPDATE = 'mini-boards-update'
 
 const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'

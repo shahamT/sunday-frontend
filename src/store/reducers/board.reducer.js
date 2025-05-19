@@ -9,6 +9,7 @@ export const UPDATE_BOARD = 'UPDATE_BOARD'
 export const REVERT_BOARDS = 'REVERT_BOARDS'
 export const REVERT_BOARD = 'REVERT_BOARD'
 export const UPDATE_BOARD_FROM_SOCKET = 'UPDATE_BOARD_FROM_SOCKET'
+export const UPDATE_MINI_BOARDS_FROM_SOCKET = 'UPDATE_MINI_BOARDS_FROM_SOCKET'
 
 // Groups
 export const REMOVE_GROUP = 'REMOVE_GROUP'
@@ -97,6 +98,13 @@ export function boardReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 board: action.board
+            }
+
+        case UPDATE_MINI_BOARDS_FROM_SOCKET:
+
+            return {
+                ...state,
+                boards: action.boards
             }
 
         case BOARDS_LOADING_START:
