@@ -97,12 +97,19 @@ export function getTruthyValues(obj) {
 
 export function debounce(func, delay = 300) {
     let timeoutId
-    return (...args) => {
+
+    const debouncedFn = (...args) => {
         clearTimeout(timeoutId)
         timeoutId = setTimeout(() => {
             func(...args)
         }, delay)
     }
+
+    debouncedFn.cancel = () => {
+        clearTimeout(timeoutId)
+    }
+
+    return debouncedFn
 }
 
 function throttle(func, wait) {
