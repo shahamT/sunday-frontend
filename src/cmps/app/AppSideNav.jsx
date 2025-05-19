@@ -2,7 +2,7 @@
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
@@ -11,9 +11,10 @@ import { closestCenter, DndContext, KeyboardSensor, MouseSensor, PointerSensor, 
 import { DragOverlay } from '@dnd-kit/core'
 
 // === Services
+import { SOCKET_EVENT_MINI_BOARDS_UPDATE } from '../../services/base/socket.service';
 
 // === Actions
-import { loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
+import { getCmdUpdateMiniBoardsFromSocket, loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
 
 // === Hooks / React
 
@@ -41,10 +42,22 @@ export function AppSideNav({ }) {
     const [isSearchOpen, setSearchOpen] = useState(false)
     const [boardFilterBy, setBoardFilterBy] = useState('')
 
+    const dispatch = useDispatch()
 
     useEffect(() => {
         loadBoards()
-    }, [])
+
+        const onBoardsUpdate = (boards) => {
+            // console.log('GOT from socket', boards)
+            dispatch(getCmdUpdateMiniBoardsFromSocket(boards))
+        }
+    
+        socketService.on(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
+    
+        return () => {
+            socketService.off(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
+        }
+    }, []) //NEED SOMETHING HERE??
 
 
 

@@ -111,7 +111,9 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                             setValue('')
                             setIsExitBtn(false)
                             setHasText(false)
-                            setFilterBy({ txt: '' }) }}></button>
+                            setFilterBy({ txt: '' }) 
+                            setTimeout(() => {document.querySelector('.filter-input input')?.focus()}, 0)
+                            }}></button>
                 </div>
             )
             : (<div className="search-btn clickable clear size-32 icon-start i-Search txt-search" onClick={() => setIsInput(true)}>Search</div> )}
