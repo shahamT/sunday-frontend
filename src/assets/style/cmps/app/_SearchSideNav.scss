@@ -1,36 +1,46 @@
-.search-side-nav{
+.search-side-nav {
     position: relative;
     display: flex;
     align-items: center;
     width: 100%;
+
     .search-board-input {
+        font-family: var(--font-family);
         width: 100%;
-        padding-left: 32px; // ✅ הזזנו את זה לפה
         height: 32px;
+        padding-left: 32px !important;
         padding-block: 8px;
         margin-right: 4px;
         border: 1px solid #ccc;
-        border-radius: 4px;
-        background-color: darkgoldenrod;
+        border-radius: var(--border-radius-sm) !important; 
+        color: white;
+        font-size: 14px;
+    }
+    input:placeholder-shown {
+        background-color: #f0f0f000; // צבע כשהשדה ריק
       }
 
-// input {
-//         width: 100%;
-//         // padding-right: 32px;
-//         height: 32px;
-//         border: 1px solid #ccc;
-//         border-radius: 4px;
-//         background-color: darkgoldenrod;
+    input:not(:placeholder-shown) {
+        background-color: #cce5ff;
+      }
 
-// }
+    // input {
+    //         width: 100%;
+    //         // padding-right: 32px;
+    //         height: 32px;
+    //         border: 1px solid #ccc;
+    //         border-radius: 4px;
+    //         background-color: darkgoldenrod;
 
-.input-icon {
+    // }
+
+    .input-icon {
         position: absolute;
         left: 8px;
         font-size: 16px;
         pointer-events: none;
         color: #d0d0d0;
-}
+    }
 
 
 }

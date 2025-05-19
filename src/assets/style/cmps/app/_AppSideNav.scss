@@ -9,7 +9,6 @@
 
 .AppSideNav {
         padding-block-start: 6px;
-
         color: var(--primary-text-color);
 
         .nav-section,
@@ -173,12 +172,14 @@
 
 
         input[type="text"] {
+                font-family: var(--font-family);
                 width: 100%;
                 padding: 0.2em 0.5em;
                 border: 1px solid #c4c4c4;
                 border-radius: 6px;
                 font-size: 14px;
                 color: #333;
+                background-color: #cce5ff;
                 transition: border-color 0.2s, box-shadow 0.2s;
 
                 &:focus {
