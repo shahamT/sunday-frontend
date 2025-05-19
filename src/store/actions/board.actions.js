@@ -6,7 +6,7 @@ import {
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     SET_BOARD_FILTER_BY,
-    OPEN_TASK_PANEL, CLOSE_TASK_PANEL
+    OPEN_TASK_PANEL, CLOSE_TASK_PANEL,SET_BOARDS_FILTER_BY
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
 import { store } from "../store.js";
@@ -91,6 +91,9 @@ export async function addBoard(board) {
 // // ========= FilterBy =========
 export function setFilterBy(filterBy) {
     store.dispatch({ type: SET_BOARD_FILTER_BY, filterBy })
+}
+export function setBoardsFilterBy(boardsFilterBy) {
+    store.dispatch({ type: SET_BOARDS_FILTER_BY, boardsFilterBy })
 }
 
 // ========= Group =========

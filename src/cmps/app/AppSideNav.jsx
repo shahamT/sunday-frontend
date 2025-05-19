@@ -27,7 +27,11 @@ import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
-    const boards = useSelector(storeState => storeState.boardModule.boards)
+    const {boards,boardsFilterBy} = useSelector(storeState => storeState.boardModule)
+    const filteredBoards = boards.filter(board =>
+        board.name.toLowerCase().includes(boardsFilterBy.txt.toLowerCase())
+    )
+
     const { boardId } = useParams()
 
     const [editingBoardId, setEditingBoardId] = useState(null)
@@ -167,8 +171,8 @@ export function AppSideNav({ }) {
                             onDragEnd={handleDragEnd}
                             onDragStart={handleDragStart}
                         >
-                            <SortableContext items={Array.isArray(boards) ? boards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
-                                {boards.map(board =>
+                            <SortableContext items={Array.isArray(filteredBoards) ? filteredBoards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
+                                {filteredBoards.map(board =>
                                     <BoardNavBarLink board={board}
                                         key={board._id}
                                         editedTitle={editedTitle}
