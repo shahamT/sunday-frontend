@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { EditLable } from "./EditLabel"
 import { boardService } from "../../../../../services/board"
-import { addLabel } from "../../../../../store/actions/board.actions"
+import { addLabel, updateLabel } from "../../../../../store/actions/board.actions"
 
 // === Services
 
@@ -33,12 +33,12 @@ export function EditStatusPicker({ StatusArray, columnId }) {
     // if (!data) return <div>Loading...</div>
 
     function handleRename() {
-        if (!labelName.trim() || labelName === status.name) {
+        if (!labelName.trim() || labelName === labelToEdit.name) {
             setIsInputEditable(false)
             return
         }
 
-        const updatedLabel = { ...status, name: labelName.trim() }
+        const updatedLabel = { ...labelToEdit, name: labelName.trim() }
         updateLabel(columnId, updatedLabel)
         setIsInputEditable(false)
     }

@@ -20,7 +20,6 @@ import { StatusPicker } from "../../value-setter/StatusPicker";
 export function CellContentStatus({ task, column, columnValue }) {
     // === Consts
       const taskId = task.id
-console.log(column)
     // === Effects
 
     // === Functions
