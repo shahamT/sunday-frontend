@@ -1,12 +1,13 @@
 import {
     ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, UPDATE_BOARD_FROM_SOCKET, UPDATE_MINI_BOARDS_FROM_SOCKET,
     ADD_GROUP, REMOVE_GROUP, UPDATE_GROUP,
-    ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN,
-    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE,
+    ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN, UPDATE_LABEL, ADD_LABEL, REMOVE_LABEL,
+    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE, MOVE_TASK,
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     SET_BOARD_FILTER_BY,
-    OPEN_TASK_PANEL, CLOSE_TASK_PANEL,SET_BOARDS_FILTER_BY
+    OPEN_TASK_PANEL, CLOSE_TASK_PANEL, SET_BOARDS_FILTER_BY,
+
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
 import { store } from "../store.js";
@@ -146,7 +147,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
         groupId = board.groups[0].id
     }
 
-    const task = await boardService.getEmptyTask(valueToSave, itemColId )
+    const task = await boardService.getEmptyTask(valueToSave, itemColId)
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
         const savedTask = await boardService.createTask(task, boardId, groupId, isTop)
@@ -173,17 +174,17 @@ export async function removeTask(taskId, groupId) {
 
 
 export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
-  const board = structuredClone(store.getState().boardModule.board)
-  const boardId = board._id
+    const board = structuredClone(store.getState().boardModule.board)
+    const boardId = board._id
 
-  try {
-    store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
-    await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
-  } catch (err) {
-    store.dispatch({ type: REVERT_BOARD })
-    console.log('board action -> Cannot move task', err)
-    throw err
-  }
+    try {
+        store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
+        await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('board action -> Cannot move task', err)
+        throw err
+    }
 }
 
 
@@ -293,7 +294,49 @@ export async function removeColumn(columnId) {
         throw err
     }
 }
+// ========= Status Lables =========
 
+export async function updateLabel(columnId, labelToUpdate) {
+    const boardId = getBoardId()
+    try {
+        store.dispatch(getCmdUpdateLabel(columnId, labelToUpdate))
+        const savedLabel = await boardService.updateLabel(boardId, columnId, labelToUpdate)
+        return savedLabel
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('board action -> Cannot save label', err)
+        throw err
+    }
+}
+
+export async function addLabel(columnId,label) {
+    const boardId = getBoardId()
+    // const label = boardService.getEmptyLabel()
+    try {
+        store.dispatch(getCmdAddLabel(label,columnId,boardId))
+        const savedLabel = await boardService.createLabel(label, columnId, boardId)
+        return savedLabel
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('board action -> Cannot add column', err)
+        throw err
+    }
+}
+
+export async function removeLabel(labelId, columnId) {
+    const boardId = getBoardId()
+    try {
+        store.dispatch(getCmdRemoveLabel(labelId, columnId))
+        await boardService.removeLabel(labelId, columnId, boardId)
+        return { removed: true }
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('board action -> Cannot remove column', err)
+        throw err
+    }
+}
+
+// ========= ================= =========
 function getBoardId() {
     return store.getState().boardModule.board._id
 }
@@ -450,15 +493,39 @@ function getCmdRemoveColumnValue(board, taskId, colId) {
 }
 
 export function getCmdMoveTask(task, fromGroupId, toGroupId, toIndex) {
-  return {
-    type: 'MOVE_TASK',
-    task,
-    fromGroupId,
-    toGroupId,
-    toIndex,
-  }
+    return {
+        type: MOVE_TASK,
+        task,
+        fromGroupId,
+        toGroupId,
+        toIndex,
+    }
 }
 
+export function getCmdUpdateLabel(columnId, labelToUpdate) {
+    return {
+        type: UPDATE_LABEL,
+        columnId,
+        labelToUpdate
+    }
+}
+
+export function getCmdAddLabel(label, columnId, boardId) {
+    return {
+        type: ADD_LABEL,
+        label,
+        columnId,
+        boardId
+    }
+}
+
+export function getCmdRemoveLabel() {
+    return {
+        type: REMOVE_LABEL,
+        labelId,
+        columnId
+    }
+}
 
 // unitTestActions()
 async function unitTestActions() {

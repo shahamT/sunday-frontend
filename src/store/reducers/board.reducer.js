@@ -20,6 +20,11 @@ export const UPDATE_GROUP = 'UPDATE_GROUP'
 export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
+// Labels
+export const UPDATE_LABEL = 'UPDATE_LABEL'
+export const ADD_LABEL = 'ADD_LABEL'
+export const REMOVE_LABEL = 'REMOVE_LABEL'
+
 
 // Tasks
 export const REMOVE_TASK = 'REMOVE_TASK'
@@ -55,7 +60,7 @@ const initialState = {
     isBoardLoading: false,
 
     filterBy: boardService.getDefaultFilter(),
-    boardsFilterBy:boardService.getDefaultFilter(),
+    boardsFilterBy: boardService.getDefaultFilter(),
 }
 
 export function boardReducer(state = initialState, action = {}) {
@@ -183,6 +188,82 @@ export function boardReducer(state = initialState, action = {}) {
                 lastBoard
             }
 
+        // LABELS
+        case UPDATE_LABEL: {
+            const { columnId, labelToUpdate } = action
+            const lastBoard = { ...state.board }
+        
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    columns: state.board.columns.map(column => {
+                        if (column.id !== columnId) return column;
+        
+                        const updatedLabels = column.type.labels?.map(label =>
+                            label.id === labelToUpdate.id ? labelToUpdate : label
+                        );
+        
+                        return {
+                            ...column,
+                            type: {
+                                ...column.type,
+                                labels: updatedLabels
+                            }
+                        }
+                    })
+                },
+                lastBoard
+            }
+        }
+        case ADD_LABEL: {
+            const { columnId, label } = action;
+            const lastBoard = { ...state.board }
+        
+            const updatedColumns = state.board.columns.map(column => {
+                if (column.id === columnId && column.type?.labels) {
+                    return {
+                        ...column,
+                        type: {
+                            ...column.type,
+                            labels: [...column.type.labels, label]
+                        }
+                    };
+                }
+                return column;
+            });
+        
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    columns: updatedColumns
+                },
+                lastBoard
+            }
+        }
+
+        case REMOVE_LABEL:
+            lastBoard = { ...state.board }
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    columns: state.board.columns.map(column => {
+                        if (column.id !== action.columnId) return column
+                        return {
+                            ...column,
+                            type: {
+                                ...column.type,
+                                labels: column.type.labels.filter(label => label.id !== action.labelId)
+                            }
+                        }
+                    })
+                },
+                lastBoard
+            }
+
+
         //TASKS
         case REMOVE_TASK:
 
@@ -254,47 +335,56 @@ export function boardReducer(state = initialState, action = {}) {
                 lastBoard,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => {
-                        return { ...group, tasks: group.tasks.map(task => {
+                        return {
+                            ...group, tasks: group.tasks.map(task => {
                                 if (task.id !== action.taskId) return task
                                 const colExists = task.columnValues.some(cv => cv.colId === action.colId)
 
                                 const newColumnValues = colExists
                                     ? task.columnValues.map(cv => cv.colId === action.colId ? { ...cv, value: action.value } : cv)
-                                    : [...task.columnValues, {colId: action.colId, value: action.value}]
-                                     return {...task, columnValues: newColumnValues} }) } })
+                                    : [...task.columnValues, { colId: action.colId, value: action.value }]
+                                return { ...task, columnValues: newColumnValues }
+                            })
+                        }
+                    })
                 }
             }
 
         case REMOVE_COLUMN_VALUE:
 
-            lastBoard = {...state.board}
+            lastBoard = { ...state.board }
 
             return {
                 ...state,
                 board: {
                     ...state.board, groups: state.board.groups.map(group => {
-                        return { ...group, tasks: group.tasks.map(task => {
+                        return {
+                            ...group, tasks: group.tasks.map(task => {
                                 if (task.id !== action.taskId) return task
 
                                 const newColumnValues = task.columnValues.filter(cv => cv.colId !== action.colId)
-                                     return {...task, columnValues: newColumnValues} }) } })},
+                                return { ...task, columnValues: newColumnValues }
+                            })
+                        }
+                    })
+                },
                 lastBoard
             }
 
         case SET_BOARD_FILTER_BY:
 
-        return {
-            ...state,
-            filterBy: {txt: action.filterBy.txt}
-        }
-        
+            return {
+                ...state,
+                filterBy: { txt: action.filterBy.txt }
+            }
+
         //Side Nav
         case SET_BOARDS_FILTER_BY:
 
-        return {
-            ...state,
-            boardsFilterBy: {txt: action.boardsFilterBy.txt}
-        }
+            return {
+                ...state,
+                boardsFilterBy: { txt: action.boardsFilterBy.txt }
+            }
 
         case OPEN_TASK_PANEL:
             return {

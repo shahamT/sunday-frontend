@@ -1,0 +1,71 @@
+.edit-status-picker {
+    position: relative;
+    display: grid;
+    grid-auto-flow: column;
+    grid-template-rows: repeat(6, auto);
+    max-height:400px;
+    gap: 8px;
+        justify-content: center;
+
+
+    .input-wrapper {
+        display: flex;
+        align-items: center;
+
+
+    }
+
+    .color-btn-icon {
+        position: absolute;
+        left: 6px;
+        top: 4px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+
+        height: 24px;
+        width: 24px;
+        border-radius: 4px;
+        color: white;
+
+    }
+
+    .add-btn {
+        border: 1px solid #c4c4c4;
+        height: 32px;
+        width: 152px;
+
+    }
+
+    .add-label,.status-picker-items,.edit-status-picker,.edit-status-item  {        
+        input[type="text"]  {
+            height: 32px;
+            width: 152px;
+        }
+        
+    }
+
+
+    input[type="text"] {
+        font-family: var(--font-family);
+        background-color: #f0f0f000; 
+        width: 100%;
+        height: 32px;
+        padding:6px;
+        border: 1px solid #c4c4c4;
+        border-radius: 6px;
+        font-size: 14px;
+        color: #333;
+        transition: border-color 0.2s, box-shadow 0.2s;
+        padding-left: 34px;
+        border-radius: 4px;
+
+        &:focus {
+            outline: none;
+            border-color: #0073ea;
+        }
+    }
+
+
+
+}

@@ -279,6 +279,17 @@ function getEmptyColumn(type) {
     return emptyCol
 }
 
+function getEmptyLabel(){
+    const colors = getColors()
+    const randomIndex = Math.floor(Math.random() * colors.length)
+    return {
+        id: `label_${makeId()}`,
+        name: '',
+        color: colors[randomIndex] 
+    }
+
+}
+
 //TODO edit this when filter is created
 function getDefaultFilter() {
     return {
@@ -291,7 +302,7 @@ function getColors() {
 }
 
 const service = (VITE_LOCAL === 'true') ? local : remote
-export const boardService = { getEmptyBoard, getEmptyGroup, getEmptyTask, getEmptyUpdate, getEmptyColumn, getDefaultFilter, getColors, ...service }
+export const boardService = { getEmptyLabel,getEmptyBoard, getEmptyGroup, getEmptyTask, getEmptyUpdate, getEmptyColumn, getDefaultFilter, getColors, ...service }
 
 // Easy access to this service from the dev tools console
 // when using script - dev / dev:local

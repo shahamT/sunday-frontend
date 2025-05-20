@@ -18,6 +18,9 @@ export const boardService = {
     setColumnValue,
     removeColumnValue,
     moveTask,
+    updateLabel,
+    createLabel,
+    removeLabel,
 }
 
 //////BOARD//////
@@ -79,10 +82,35 @@ async function updateColumn(column, boardId) {
 }
 
 async function removeColumn(columnId, boardId) {
-
+    
     return httpService.delete(`board/${boardId}/column/${columnId}`)
+    
+    
+    
+}
+//////LABEL//////
+async function updateLabel(boardId, columnId,labelToUpdate) {
+
+    return httpService.put(`board/${boardId}/column/${columnId}/label/${labelToUpdate.id}`, { labelToUpdate })
+
+    
+}
+
+async function createLabel(boardId,columnId, label) {
+
+    return httpService.post(`board/${boardId}/column/${columnId}/label`, { label })
 
 }
+
+async function removeLabel(labelId,columnId, boardId) {
+    
+    return httpService.delete(`board/${boardId}/column/${columnId}/label/${labelId}`)
+    
+    
+    
+}
+
+
 
 //////TASK//////
 

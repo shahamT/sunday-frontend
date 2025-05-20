@@ -20,7 +20,6 @@ import { StatusPicker } from "../../value-setter/StatusPicker";
 export function CellContentStatus({ task, column, columnValue }) {
     // === Consts
       const taskId = task.id
-
     // === Effects
 
     // === Functions
@@ -57,6 +56,7 @@ export function CellContentStatus({ task, column, columnValue }) {
                 position="bottom"
                 renderContent={({ onCloseModal }) => (
                     <StatusPicker
+                    column={column}
                         onCloseModal={onCloseModal}
                         setStatus={setStatus}
                         clearStatus={onClearStatus}

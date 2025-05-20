@@ -3,18 +3,19 @@
 // ====== Component ======
 // =======================
 
-export function ColSumNumber({ column,columnValues }) {
+export function ColSumNumber({ column, columnValues }) {
 
 
     // === Functions
-const sum= columnValues.reduce((acc,currNun)=>{
-    return acc+ currNun
-},0)
+    const sum = columnValues.reduce((acc, currNun) => {
+        const int = +currNun
+        return acc + int
+    }, 0)
 
-    // if (!data) return <div>Loading...</div>
+    const formattedSum = sum.toLocaleString()
     return (
         <section className="col-sum-number">
-            <p>{sum}</p>
+            <p>{formattedSum}</p>
             <p>sum</p>
         </section>
     )

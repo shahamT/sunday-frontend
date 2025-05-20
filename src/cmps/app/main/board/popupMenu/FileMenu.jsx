@@ -21,7 +21,7 @@ export function FiledMenu({ onClearFile, imgUrl, imgTitle, onCloseModal }) {
 
 
     // const imgUrl = 'https://res.cloudinary.com/ditvgrfxq/image/upload/v1747392296/kbsu10mu7vuzlddlpwng.png'
-    const downloadUrl = imgUrl.replace('/upload/', `/upload/fl_attachment:${imgTitle}/`)
+    const downloadUrl = imgUrl.replace('/upload/', `/upload/fl_attachment:${imgTitle || 'sunday-image'}/`)
 
     // === Functions
 
