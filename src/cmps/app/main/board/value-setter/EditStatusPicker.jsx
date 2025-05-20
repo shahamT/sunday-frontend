@@ -7,15 +7,7 @@ import { addLabel, updateLabel } from "../../../../../store/actions/board.action
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColorPicker } from "./ColorPicker"
 
-// === Services
 
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================
@@ -25,11 +17,11 @@ export function EditStatusPicker({ StatusArray, columnId,
     labelName, setLabelName }) {
 
     // === Consts
-  
-
     const [isNewLabelOpen, setIsNewLabelOpen] = useState(false)
-   
-
+    
+    
+    // === Functions
+    
     function handleRename() {
         if (!labelName.trim() || labelName === labelToEdit.name) {
             setIsInputEditable(false)

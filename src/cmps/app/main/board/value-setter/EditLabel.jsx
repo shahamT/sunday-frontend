@@ -5,15 +5,7 @@ import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColorPicker } from "./ColorPicker"
 import { useEffect, useState } from "react"
 
-// === Services
 
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================
@@ -25,6 +17,7 @@ export function EditLable({ status, columnId }) {
     const [selectedColor, setSelectedColor] = useState(status.color)
     const [isInputEditable, setIsInputEditable] = useState(false)
     const [labelName, setLabelName] = useState(labelToEdit.name)
+
     // === Effects
 
     useEffect(() => {
@@ -33,8 +26,6 @@ export function EditLable({ status, columnId }) {
             updateLabel(columnId, updatedLabel)
         }
     }, [selectedColor])
-
-
 
     // === Functions
 
@@ -74,7 +65,6 @@ export function EditLable({ status, columnId }) {
                 onChange={(e) => setLabelName(e.target.value)}
                 onBlur={handleRename}
                 onKeyDown={(e) => e.key === "Enter" && handleRename()}
-                // autoFocus
             />
             ) : (
                 <input
@@ -85,11 +75,7 @@ export function EditLable({ status, columnId }) {
                         setIsInputEditable(true)
                         setLabelName(status.name)
                     }} />
-                
             )}
-
-
-
 
         </section>
     )
