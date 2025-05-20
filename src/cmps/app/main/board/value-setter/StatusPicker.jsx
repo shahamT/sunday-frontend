@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { EditStatusPicker } from "./EditStatusPicker"
-import { addLabel } from "../../../../../store/actions/board.actions"
 import { boardService } from "../../../../../services/board"
 
 
@@ -11,7 +10,6 @@ import { boardService } from "../../../../../services/board"
 // =======================
 
 export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray, column }) {
-
     // === Consts
     const [isEditable, setIsEditable] = useState(false)
 
@@ -78,7 +76,7 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
                        
                         <button
                             className="apply-btn clickable clear size-32"
-                            onClick={() => handleApply}
+                            onClick={() => handleApply()}
                         >
                             Apply
                         </button>

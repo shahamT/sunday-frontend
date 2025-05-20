@@ -8,7 +8,7 @@
         display: grid;
         grid-auto-flow: column;
         grid-template-rows: repeat(6, auto);
-        grid-template-columns: 152px;
+        // grid-template-columns: 152px;
         gap: 8px;
         max-height: 400px;
         justify-content: center;
@@ -20,7 +20,7 @@
             align-items: center;
             justify-content: center;
             height: 32px;
-            width: 100%;
+            width: 180px;
             padding: 4px;
             color: rgb(255, 255, 255);
             font-weight: 400;
@@ -35,9 +35,23 @@
         .input-wrapper {
             display: flex;
             align-items: center;
+
+
+            .edit-label-menu {
+
+                .delete-btn {
+
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                }
+
+            }
         }
 
         .add-btn {
+            width: 152px;
+            align-self: start;
             &::before {
                 margin-inline-end: 2px;
             }

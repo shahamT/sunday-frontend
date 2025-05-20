@@ -97,7 +97,7 @@ async function updateLabel(boardId, columnId,labelToUpdate) {
     
 }
 
-async function createLabel(boardId,columnId, label) {
+async function createLabel(label, columnId, boardId) {
 
     return httpService.post(`board/${boardId}/column/${columnId}/label`, { label })
 
