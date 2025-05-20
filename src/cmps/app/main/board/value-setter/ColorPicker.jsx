@@ -59,8 +59,8 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
                     key={color}
                     className={`${shape} color-picker-item ${color}-bg`}
                     onMouseDown={(e) => {
-                        e.stopPropagation()
                         setColor(color)
+                        if (variant === 'full') onCloseModal()
                     }
                     }
                     onClick={() => {
