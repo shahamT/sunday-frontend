@@ -2,7 +2,6 @@
 
 import { useState } from "react"
 import { EditStatusPicker } from "./EditStatusPicker"
-import { addLabel } from "../../../../../store/actions/board.actions"
 import { boardService } from "../../../../../services/board"
 
 

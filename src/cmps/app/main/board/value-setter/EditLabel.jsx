@@ -48,17 +48,18 @@ export function EditLable({ status, columnId }) {
                     <button type="button" className={`color-btn-icon clickable size-24 icon-btn i-HighlightColorBucket ${status.color}-bg `} />
                 </PopUpMenu>
             </div>
-
-            <input
-                type="text"
-                value={value}
-                placeholder="Add Label"
-                onClick={e => e.stopPropagation()}
-                onChange={handleChange}
-                onBlur={handleRename}
-                onKeyDown={(e) => e.key === "Enter" && handleRename()}
-            />
-
+            <div className="input-wrapper">
+                <input
+                    type="text"
+                    value={value}
+                    placeholder="Add Label"
+                    onClick={e => e.stopPropagation()}
+                    onChange={handleChange}
+                    onBlur={handleRename}
+                    onKeyDown={(e) => e.key === "Enter" && handleRename()}
+                />
+                <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+            </div>
 
 
         </section>
