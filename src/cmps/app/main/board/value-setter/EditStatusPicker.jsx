@@ -20,11 +20,13 @@ import { ColorPicker } from "./ColorPicker"
 // ====== Component ======
 // =======================
 
-export function EditStatusPicker({ StatusArray, columnId}) {
+export function EditStatusPicker({ StatusArray, columnId,
+    labelToEdit, setLabelToEdit,
+    labelName, setLabelName }) {
 
     // === Consts
-    const [labelToEdit, setLabelToEdit] = useState(boardService.getEmptyLabel())
-    const [labelName, setLabelName] = useState(labelToEdit.name)
+    // const [labelToEdit, setLabelToEdit] = useState(setLabelToEdit(boardService.getEmptyLabel()))
+    // const [labelName, setLabelName] = useState(labelToEdit.name)
 
     const [isNewLabelOpen, setIsNewLabelOpen] = useState(false)
     // === Effects
@@ -36,6 +38,7 @@ export function EditStatusPicker({ StatusArray, columnId}) {
     function handleRename() {
         if (!labelName.trim() || labelName === labelToEdit.name) {
             setIsInputEditable(false)
+            addLabel(columnId, labelToEdit)
             return
         }
 
@@ -57,7 +60,7 @@ export function EditStatusPicker({ StatusArray, columnId}) {
                     </div>
                 </div>
             ))}
-            {isNewLabelOpen ? (
+            {isNewLabelOpen ? (<>
                 <section className="add-label">
                     <PopUpMenu
                         position="bottom-start"
@@ -67,7 +70,7 @@ export function EditStatusPicker({ StatusArray, columnId}) {
                                 status={labelToEdit}
                                 setColor={handleSetColor}
                                 selectedColor={labelToEdit.color}
-                           
+
                             />
                         )}
                     >
@@ -89,21 +92,27 @@ export function EditStatusPicker({ StatusArray, columnId}) {
                         }
 
                     />
-                    <div className="divider" />
-                    <button
-                        className="apply-btn clickable clear size-32"
-                        onClick={() => {
-                            const newLabel = { ...labelToEdit, name: labelName.trim() }
-                            addLabel(columnId, newLabel)
-                            setIsNewLabelOpen(false)  }}
-                    >
-                        Apply
-                    </button>
                 </section>
-            ) : (
-                <button className="add-btn clickable icon-start i-AddSmall full-width clear size-32" onClick={() => setIsNewLabelOpen(true)}>New label</button>
+            </>
+            ) : (null
             )}
 
+            <button
+                className="add-btn clickable icon-start i-AddSmall full-width clear size-32"
+                onClick={() => {
+                    if (labelName.trim()) {
+                        const newLabel = { ...labelToEdit, name: labelName.trim() }
+                        addLabel(columnId, newLabel)
+                    }
+
+                    const emptyLabel = boardService.getEmptyLabel()
+                    setLabelToEdit(emptyLabel)
+                    setLabelName(emptyLabel.name)
+                    setIsNewLabelOpen(true)
+                }}
+            >
+                New label
+            </button>
 
 
         </section>
