@@ -9,9 +9,10 @@ import { getCmdUpdateBoardFromSocket, loadBoard } from "../../../../store/action
 
 // === Hooks / React
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSelected } from '../../../../hooks/useSelected.js'
+import { useOutletContext } from 'react-router-dom';
 
 
 // === Imgs
@@ -25,6 +26,7 @@ import { T_GroupsList } from "./table-view/T_GroupsList";
 
 // ====== Component ======
 // =======================
+const SN_STORAGE_KEY = 'sideNavWidth';
 
 export function BoardDetails({ /* prop1, prop2 */ }) {
     // === Consts
@@ -32,37 +34,44 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
     const { selected, isSelected, select } = useSelected('main-table')
     const dispatch = useDispatch()
     const board = useSelector(storeState => storeState.boardModule.board)
+    const { sideNavWidth } = useOutletContext()
+    const [vpWidth, setVpWidth] = useState(() => window.innerWidth);
+
 
     // === Effects
+
+    //fetch board data
     useEffect(() => {
         loadBoard(boardId)
 
-    const onBoardUpdate = (board) => {
-        console.log('GOT from socket', board._id)
-        dispatch(getCmdUpdateBoardFromSocket(board))
-    }
+        const onBoardUpdate = (board) => {
+            console.log('GOT from socket', board._id)
+            dispatch(getCmdUpdateBoardFromSocket(board))
+        }
 
-    socketService.on(SOCKET_EVENT_BOARD_UPDATE, onBoardUpdate)
+        socketService.on(SOCKET_EVENT_BOARD_UPDATE, onBoardUpdate)
 
-    return () => {
-        socketService.off(SOCKET_EVENT_BOARD_UPDATE, onBoardUpdate)
-    }
+        return () => {
+            socketService.off(SOCKET_EVENT_BOARD_UPDATE, onBoardUpdate)
+        }
 
     }, [boardId])
+
 
     // === Functions
 
     return (
         <section className="BoardDetails">
             <BoardHeader isSelected={isSelected} select={select} />
-            <T_Filter/>
-            <T_GroupsList/>
+
+            <T_Filter />
+            <T_GroupsList />
 
             <TaskPanel
                 side='right'
                 defaultWidth={500}
-                minWidth={200}
-                maxWidth={700}
+                minWidth={570}
+                maxWidth={vpWidth - sideNavWidth}
             >
                 <TaskDetails />
             </TaskPanel>

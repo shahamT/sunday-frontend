@@ -25,7 +25,7 @@ import { T_Group } from './T_Group'
 // ====== Component ======
 // =======================
 
-export function T_GroupsList() {
+export function T_GroupsList({}) {
   // === Consts
   const storeBoard = useSelector(storeState => storeState.boardModule.board)
   const [board, setBoard] = useState(null)

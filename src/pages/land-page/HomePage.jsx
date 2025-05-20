@@ -136,7 +136,7 @@ export function HomePage() {
 
                             <div className="card-content">
                                 <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747736913/WM-icon_qadtdz.avif" alt="" className="card-logo" />
-                                <h3 className="card-title">monday work management</h3>
+                                <h3 className="card-title">sunday work management</h3>
                                 <p className="card-subtitle">Drive projects forward with AI-powered clarity</p>
                                 <div className="buttons-wraper">
                                     <button className="outlined">Get Started</button>
@@ -150,7 +150,7 @@ export function HomePage() {
 
                             <div className="card-content">
                                 <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747737470/CRM_icon_tsw4ct.avif" alt="" className="card-logo" />
-                                <h3 className="card-title">monday CRM</h3>
+                                <h3 className="card-title">sunday CRM</h3>
                                 <p className="card-subtitle">Free revenue teams to focus on selling</p>
                                 <div className="buttons-wraper">
                                     <button className="outlined">Get Started</button>
@@ -165,7 +165,7 @@ export function HomePage() {
 
                             <div className="card-content">
                                 <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747737467/Dev_icon_yquxho.avif" alt="" className="card-logo" />
-                                <h3 className="card-title">monday dev</h3>
+                                <h3 className="card-title">sunday dev</h3>
                                 <p className="card-subtitle">Accelerate sprints, release impactful products</p>
                                 <div className="buttons-wraper">
                                     <button className="outlined">Get Started</button>
@@ -186,7 +186,7 @@ export function HomePage() {
 
                             <div className="card-content">
                                 <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747737465/Servce-icon_z954mm.avif" alt="" className="card-logo" />
-                                <h3 className="card-title">monday service</h3>
+                                <h3 className="card-title">sunday service</h3>
                                 <p className="card-subtitle">Deliver exceptional service with AI ticket handling</p>
                                 <div className="buttons-wraper">
                                     <button className="outlined">Get Started</button>

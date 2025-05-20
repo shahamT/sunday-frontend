@@ -8,7 +8,7 @@ import { closeSidePanel, openSidePanel } from '../store/actions/app.actions';
 import { Tooltip } from '../cmps/reusables/tooltip/Tooltip';
 import { useAuthGuard } from '../hooks/useAuthGuard';
 
-const STORAGE_KEY = 'sideNavWidth';
+const SN_STORAGE_KEY = 'sideNavWidth';
 const MIN_SIDE_NAV_WIDTH = 200;
 const MAX_SIDE_NAV_WIDTH = 575;
 const COLLAPSED_SIDE_NAV_WIDTH = 30;
@@ -22,7 +22,7 @@ export function AppLayout() {
     const [isDragging, setIsDragging] = useState(false);
     const [enableTransition, setEnableTransition] = useState(true);
     const [sideNavWidth, setSideNavWidth] = useState(() => {
-        return parseInt(localStorage.getItem(STORAGE_KEY), 10) || 280;
+        return parseInt(localStorage.getItem(SN_STORAGE_KEY), 10) || 280;
     });
 
     // Enable sidenav transition only when collapsing or expanding
@@ -40,7 +40,7 @@ export function AppLayout() {
             e.preventDefault(); // prevent selection and other junk
             const newWidth = Math.min(Math.max(e.clientX, MIN_SIDE_NAV_WIDTH), MAX_SIDE_NAV_WIDTH);
             setSideNavWidth(newWidth);
-            localStorage.setItem(STORAGE_KEY, newWidth);
+            localStorage.setItem(SN_STORAGE_KEY, newWidth);
         };
 
 
@@ -83,7 +83,7 @@ export function AppLayout() {
     }, [location.pathname]);
 
 
-
+console.log("sideNavWidth: ", sideNavWidth)
     // // ====== Component ======
     // // =======================
     const isBoardRoute = location.pathname.startsWith('/app/board/');
@@ -127,7 +127,7 @@ export function AppLayout() {
                 <main className="main-content-panel">
 
                     <div className="main-content-wraper">
-                        <Outlet />
+                        <Outlet context={{ sideNavWidth }}/>
                     </div>
 
                 </main>

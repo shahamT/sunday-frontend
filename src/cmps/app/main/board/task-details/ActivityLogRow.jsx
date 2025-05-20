@@ -82,8 +82,8 @@ export function ActivityLogRow({ activity, task, board }) {
             : null;
           const prevValue = activity.prevValue
             ? currCol.type.labels.find(
-                (label) => label.id === activity.prevValue
-              )
+              (label) => label.id === activity.prevValue
+            )
             : null;
           setNewVal(currValue);
           setPrevVal(prevValue);
@@ -124,9 +124,11 @@ export function ActivityLogRow({ activity, task, board }) {
 
   // if (!data) return <div>Loading...</div>
   return (
+
+    // basic details section
     <section className="ActivityLogRow">
       {activityType !== "move task" && (
-        <section className="activity-row">
+        <section className="activity-row-section basic-details">
           <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
           <img src={activity.createdBy} alt="" />
           <p className="task-name">{task.columnValues[0]?.value}</p>
@@ -134,113 +136,170 @@ export function ActivityLogRow({ activity, task, board }) {
       )}
 
       {activityType === "move task" && (
-        <section>
-          <section className="activity-row move-task">
-            <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
-            <img src={activity.createdBy} alt="" />
-            <p className="task-name">{task.columnValues[0]?.value}</p>
-            <p className="action-name moved">Moved</p>
-            <p className="regular-action">
-              To group:{" "}
-              <span className={`${group.toGroup.color}-text`}>
-                {group.toGroup.name}
-              </span>
-            </p>
+        <section className="move-task-wraper">
+          <section className="move-task">
+
+            <section className="activity-row-section basic-details">
+              <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
+              <img src={activity.createdBy} alt="" />
+              <p className="task-name">{task.columnValues[0]?.value}</p>
+            </section>
+
+            <section className="activity-row-section action-title">
+              <p className="action-name moved">Moved</p>
+            </section>
+
+            <section className="activity-row-section change-details">
+              <p className="regular-action">
+                To group:{" "}
+                <span className={`${group.toGroup.color}-text`}>
+                  {group.toGroup.name}
+                </span>
+              </p>
+            </section>
+
           </section>
 
-          <section className="activity-row move-task">
-            <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
-            <img src={activity.createdBy} alt="" />
-            <p className="task-name">{task.columnValues[0]?.value}</p>
-            <p className="action-name moved">Moved</p>
+          <section className="move-task">
+
+            <section className="activity-row-section basic-details">
+              <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
+              <img src={activity.createdBy} alt="" />
+              <p className="task-name">{task.columnValues[0]?.value}</p>
+            </section>
+
+            <section className="activity-row-section action-title">
+              <p className="action-name moved">Moved</p>
+            </section>
+
+            <section className="activity-row-section change-details">
+
+              <p className="regular-action">
+                From group:{" "}
+                <span className={`${group.fromGroup.color}-text`}>
+                  {group.fromGroup.name}
+                </span>
+              </p>
+            </section>
+
+          </section>
+
+        </section>
+      )}
+
+
+      {/* action type section */}
+      {activityType === "add task" && (
+        <>
+          <section className="activity-row-section action-title">
+            <p className="action-name created">Created</p>
+          </section>
+          <section className="activity-row-section add-task">
             <p className="regular-action">
-              From group:{" "}
-              <span className={`${group.fromGroup.color}-text`}>
-                {group.fromGroup.name}
-              </span>
+              Group: <span className={`${group.color}-text`}>{group.name}</span>
             </p>
           </section>
-          
-        </section>
-      )}
-      {activityType === "add task" && (
-        <section className="activity-row add-task">
-          <p className="action-name created">Created</p>
-          <p className="regular-action">
-            Group: <span className={`${group.color}-text`}>{group.name}</span>
-          </p>
-        </section>
+        </>
+
       )}
       {activityType === "remove task" && (
-        <section className="activity-row remove-task">
+        <section className="activity-row-section action-title">
           <p className="action-name deleted">Deleted</p>
         </section>
       )}
       {activityType === "set column value" && (
-        <section className="activity-row set-column-value">
-          <p className={`action-name ${colName}`}>
-            {colName === "Task" ? "Name" : colName}
-          </p>
-          {cvType === "file" && (
-            <>
-              {activity.prevValue ? (
-                <img className="prev-value" src={activity.prevValue} alt="" />
-              ) : (
-                <div className="prev-value">-</div>
-              )}
-              {activity.value ? (
-                <img className="to-value" src={activity.value} alt="" />
-              ) : (
-                <div className="to-value">-</div>
-              )}
-            </>
-          )}
-          {cvType === "regular" && (
-            <>
-              <div className="prev-value">{activity.prevValue || "-"}</div>
-              <div className="to-value">{activity.value || "-"}</div>
-            </>
-          )}
-          {cvType === "date" && (
-            <>
-              <div className="prev-value">{prevVal || "-"}</div>
-              <div className="to-value">{newVal || "-"}</div>
-            </>
-          )}
-          {cvType === "status" && (
-            <div className="status-grid">
-              <div
-                className={`prev-value ${
-                  prevVal?.color
+        <>
+          <section className="activity-row-section action-title">
+            <p className={`action-name ${colName}`}>
+              {colName === "Task" ? "Name" : colName}
+            </p>
+          </section>
+
+
+          {/* change details section */}
+          <section className="activity-row-section change-details">
+
+            {cvType === "file" && (
+              <>
+                {activity.prevValue ? (
+                  <img className="prev-value" src={activity.prevValue} alt="" />
+                ) : (
+                  <div className="prev-value">-</div>
+                )}
+
+                <div className="change-arrow"></div>
+
+                {activity.value ? (
+                  <img className="to-value" src={activity.value} alt="" />
+                ) : (
+                  <div className="to-value">-</div>
+                )}
+              </>
+            )}
+
+
+            {cvType === "regular" && (
+              <>
+                <div className="prev-value">{activity.prevValue || "-"}</div>
+
+                <div className="change-arrow"></div>
+
+                <div className="to-value">{activity.value || "-"}</div>
+              </>
+            )}
+
+
+            {cvType === "date" && (
+              <>
+                <div className="prev-value">{prevVal || "-"}</div>
+
+                <div className="change-arrow"></div>
+
+                <div className="to-value">{newVal || "-"}</div>
+              </>
+            )}
+
+
+            {cvType === "status" && (
+              <>
+                <div
+                  className={`prev-value ${prevVal?.color
                     ? `${prevVal.color}-bg-static`
                     : "unselected-gray"
-                }`}
-                style={{ color: "white" }}
-              >
-                {prevVal?.name || ""}
-              </div>
-              <div
-                className={`to-value ${
-                  newVal?.color
+                    }`}
+                  style={{ color: "white" }}
+                >
+                  {prevVal?.name || ""}
+                </div>
+
+                <div className="change-arrow"></div>
+
+                <div
+                  className={`to-value ${newVal?.color
                     ? `${newVal.color}-bg-static`
                     : "unselected-gray"
-                }`}
-                style={{ color: "white" }}
-              >
-                {newVal?.name || ""}
-              </div>
-            </div>
-          )}
-          {cvType === "people" && (
-            <>
-              <div>{newVal ? "Added" : "Removed"} </div>
-              <Tooltip title={newVal?.name || prevVal?.name}>
-                <img src={newVal?.profileImg || prevVal.profileImg} alt="" />
-              </Tooltip>
-            </>
-          )}
-        </section>
-      )}
-    </section>
+                    }`}
+                  style={{ color: "white" }}
+                >
+                  {newVal?.name || ""}
+                </div>
+              </>
+            )}
+
+
+            {cvType === "people" && (
+              <section className="people-change-details regular-action">
+                <div>{newVal ? "Added" : "Removed"} </div>
+                <Tooltip title={newVal?.name || prevVal?.name}>
+                  <img src={newVal?.profileImg || prevVal.profileImg} alt="" />
+                </Tooltip>
+              </section>
+            )}
+
+          </section>
+        </>
+      )
+      }
+    </section >
   );
 }

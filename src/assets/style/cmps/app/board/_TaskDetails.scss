@@ -1,6 +1,9 @@
 .TaskDetails {
     height: 100%;
 
+    display: grid;
+    grid-template-rows: auto 1fr;
+
     .task-details-header {
         padding: 20px 14px 0 20px;
         border-block-end: 1px var(--layout-border-color) solid;
@@ -33,7 +36,7 @@
                 align-items: center;
                 padding-inline-start: 10px;
                 margin-inline-end: 12px;
-                
+
                 &::after {
                     content: "";
                     position: absolute;
@@ -55,10 +58,10 @@
 
             .options-menu-wraper {
 
-                 .clickable.icon-btn.size-24::before {
+                .clickable.icon-btn.size-24::before {
                     font-size: 24px;
                     font-weight: 500;
-                 }
+                }
             }
         }
 
@@ -89,5 +92,10 @@
 
         }
 
+    }
+
+    .task-details-tab-content {
+        overflow-y: auto;
+        height: 100%;
     }
 }

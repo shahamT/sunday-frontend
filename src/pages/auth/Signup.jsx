@@ -93,7 +93,7 @@ export function Signup() {
             const user = await signup(userToEdit)
             navigate('/app/home')
         } catch (err) {
-            showErrorMsg(err)
+            // showErrorMsg(err)
         }
 
     }
@@ -114,7 +114,7 @@ export function Signup() {
                     navigate('/app/home')
                 }
                 catch (err) {
-                    showErrorMsg(err)
+                    // showErrorMsg(err)
                 }
             },
         })
@@ -131,7 +131,7 @@ export function Signup() {
             navigate('/app/home')
         }
         catch (err) {
-            showErrorMsg(err)
+            // showErrorMsg(err)
         }
     }
 
