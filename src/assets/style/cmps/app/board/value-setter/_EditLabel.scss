@@ -1,24 +1,35 @@
-.edit-label{
+.edit-label {
+        position: relative;
 
+        input[type="text"] {
+                font-family: var(--font-family);
+                background-color: #f0f0f000;
+                width: 100%;
+                height: 32px;
+                padding: 6px;
+                border: 1px solid #c4c4c4;
+                border-radius: 6px;
+                font-size: 14px;
+                color: var(--primary-text-color);
+                transition: border-color 0.2s, box-shadow 0.2s;
+                padding-left: 38px;
+                border-radius: 4px;
 
-    input[type="text"] {
-        font-family: var(--font-family);
-        background-color: #f0f0f000; 
-        width: 100%;
-        height: 32px;
-        padding:6px;
-        border: 1px solid #c4c4c4;
-        border-radius: 6px;
-        font-size: 14px;
-        color: #333;
-        transition: border-color 0.2s, box-shadow 0.2s;
-        padding-left: 34px;
-        border-radius: 4px;
+                &:focus {
+                        outline: none;
+                        border-color: #0073ea;
+                }
 
-        &:focus {
-                outline: none;
-                border-color: #0073ea;
         }
-    
-}
+
+        .color-picker-wraper {
+                position: absolute;
+                left: 6px;
+                top: 50%;
+                transform: translateY(-50%);
+
+                .color-btn-icon {
+                        color: white;
+                }
+        }
 }

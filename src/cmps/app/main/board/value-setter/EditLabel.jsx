@@ -1,5 +1,6 @@
 // === Libs
 
+import { useControlledInput } from "../../../../../hooks/useControlledInput"
 import { updateLabel } from "../../../../../store/actions/board.actions"
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColorPicker } from "./ColorPicker"
@@ -12,70 +13,53 @@ import { useEffect, useState } from "react"
 
 export function EditLable({ status, columnId }) {
     // === Consts
-
-    const [labelToEdit, setLabelToEdit] = useState(status)
-    const [selectedColor, setSelectedColor] = useState(status.color)
-    const [isInputEditable, setIsInputEditable] = useState(false)
-    const [labelName, setLabelName] = useState(labelToEdit.name)
+    const [value, handleChange, reset, set] = useControlledInput(status.name)
 
     // === Effects
 
-    useEffect(() => {
-        if (selectedColor !== status.color) {
-            const updatedLabel = { ...status, color: selectedColor }
-            updateLabel(columnId, updatedLabel)
-        }
-    }, [selectedColor])
 
     // === Functions
 
     function handleRename() {
-        if (!labelName.trim() || labelName === status.name) {
-            setIsInputEditable(false)
-            return
-        }
-
-        const updatedLabel = { ...status, name: labelName.trim() }
+        const updatedLabel = { ...status, name: value }
         updateLabel(columnId, updatedLabel)
-        setIsInputEditable(false)
+        return
+    }
+
+    function handleColorChange(selectedColor) {
+        const updatedLabel = { ...status, color: selectedColor }
+        updateLabel(columnId, updatedLabel)
     }
 
     return (
         <section className="edit-label">
 
+            <div className="color-picker-wraper">
+                <PopUpMenu
+                    position="bottom-start"
+                    renderContent={({ onCloseModal }) => (
+                        <ColorPicker
+                            onCloseModal={onCloseModal}
+                            setColor={handleColorChange}
+                            selectedColor={status.color}
+                        />
+                    )}
+                >
+                    <button type="button" className={`color-btn-icon clickable size-24 icon-btn i-HighlightColorBucket ${status.color}-bg `} />
+                </PopUpMenu>
+            </div>
 
-            <PopUpMenu
-                position="bottom-start"
-                renderContent={({ onCloseModal }) => (
-                    <ColorPicker
-                        onCloseModal={onCloseModal}
-                        status={status}
-                        setColor={setSelectedColor}
-                        selectedColor={selectedColor}
-                    />
-                )}
-            >
-                <button type="button" className={`color-btn-icon icon-start i-HighlightColorBucket ${status.color}-bg `} />
-            </PopUpMenu>
-            {!isInputEditable ? (
-                <input
+            <input
                 type="text"
-                value={labelName}
-                onClick={e=>e.stopPropagation()}
-                onChange={(e) => setLabelName(e.target.value)}
+                value={value}
+                placeholder="Add Label"
+                onClick={e => e.stopPropagation()}
+                onChange={handleChange}
                 onBlur={handleRename}
                 onKeyDown={(e) => e.key === "Enter" && handleRename()}
             />
-            ) : (
-                <input
-                    type="text"
-                    value={labelToEdit.name}
-                    readOnly
-                    onClick={() => {
-                        setIsInputEditable(true)
-                        setLabelName(status.name)
-                    }} />
-            )}
+
+
 
         </section>
     )

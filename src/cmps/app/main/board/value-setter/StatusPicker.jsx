@@ -21,79 +21,80 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
     // === Effects
 
     // === Functions
+    function handleApply() {
+        setIsEditable(false)
+        StatusArray.forEach(status => {
+            if (status.name.trim()) remove(column.id, status.id)
+        })
+
+    }
+
 
     return (
         <section className="status-picker-container">
             <section className='status-picker-items'>
-                {!isEditable ? (
-                    <>
-                        {StatusArray.map(status => (
+                {!isEditable
+                    ?
+                    (
+                        <>
+                            {StatusArray.map(status => (
+                                <div
+                                    key={status.id}
+                                    className={`status-picker ${status.color}-bg`}
+                                    onClick={() => {
+                                        setStatus(status.id)
+                                        onCloseModal()
+                                    }}
+                                >
+                                    {status.name}
+                                </div>
+                            ))}
                             <div
-                                key={status.id}
-                                className={`status-picker ${status.color}-bg`}
+                                className="default-status"
                                 onClick={() => {
-                                    setStatus(status.id)
+                                    clearStatus()
                                     onCloseModal()
                                 }}
-                            >
-                                {status.name}
-                            </div>
-                        ))}
-                        <div
-                            className="default-status"
-                            onClick={() => {
-                                clearStatus()
-                                onCloseModal()
-                            }}
+                            />
+
+                        </>
+                    )
+                    :
+                    (
+
+                        <EditStatusPicker
+                            columnId={column.id}
+                            StatusArray={StatusArray}
                         />
-
-                    </>
-                ) : (
-
-                    <EditStatusPicker
-                        columnId={column.id}
-                        StatusArray={StatusArray}
-                        labelToEdit={labelToEdit}
-                        setLabelToEdit={setLabelToEdit}
-                        labelName={labelName}
-                        setLabelName={setLabelName}
-                    />
-                )}
+                    )}
 
             </section>
 
-            <section name="control-btns">
-                {isEditable ? (<section className="control-btns-items">
-                    <div className="divider" />
-                    <button
-                        className="apply-btn clickable clear size-32"
-                        onClick={() => {
-                            const trimmedName = labelName.trim()
-                            if (trimmedName) {
-                                const newLabel = { ...labelToEdit, name: trimmedName }
-                                const isAlreadyInColumn = column.labels?.some(label => label.id === newLabel.id)
-                                if (!isAlreadyInColumn) {
-                                    addLabel(column.id, newLabel)
-                                }
-                            }
-
-                            setLabelToEdit(boardService.getEmptyLabel())
-                            setLabelName('')
-                            setIsNewLabelOpen(false)
-                            setIsEditable(false)
-                        }}
-                    >
-                        Apply
-                    </button>
-                </section>) :
-                    (<section className="control-btns-items">
-                        <div className="divider" />
+            <section className="control-btns">
+                 <div className="divider" />
+                {isEditable
+                    ?
+                    (<>
+                       
+                        <button
+                            className="apply-btn clickable clear size-32"
+                            onClick={() => handleApply}
+                        >
+                            Apply
+                        </button>
+                    </>
+                    )
+                    :
+                    (
+                    <>
                         <div
                             className="edit-btn clickable icon-start clear i-Edit size-32"
                             onClick={() => setIsEditable(true)}
                         >
                             Edit Labels
-                        </div></section>)}
+                        </div>
+                    </>
+                    )}
 
 
             </section>
