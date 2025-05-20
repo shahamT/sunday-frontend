@@ -45,8 +45,8 @@ export function T_GroupsList() {
   }
 
   useEffect(() => {
-    if(storeBoard) setBoard(storeBoard)
-  },[storeBoard])
+    if (storeBoard) setBoard(storeBoard)
+  }, [storeBoard])
 
   useEffect(() => {
     if (!storeBoard) return
@@ -77,11 +77,11 @@ export function T_GroupsList() {
           }
         }
 
-        return null 
+        return null
       })
-      .filter(Boolean)
+        .filter(Boolean)
     }))
-  },[filterBy, storeBoard])
+  }, [filterBy, storeBoard])
 
   // === Functions
   function onAddGroup() {
@@ -138,45 +138,53 @@ export function T_GroupsList() {
     <img className="loader" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747552268/loader_cymybj.gif" alt="loader" />
   </div>
 
-  return (
-    <section className="T_GroupsList">
-
-      <DndContext
-        sensors={sensors}
-        collisionDetection={closestCorners}
-        onDragStart={handleDragStart}
-        onDragEnd={handleDragEnd}
-      >
-        <SortableContext
-          items={
-            board.groups.flatMap(group => [
-              `__start__|${group.id}`,
-              ...group.tasks.map(task => `${task.id}|${group.id}`),
-              `__end__|${group.id}`
-            ])
-          }
-          strategy={rectSortingStrategy}
-        >
-          {board.groups.map(group => (
-            <T_Group
-              key={group.id}
-              group={group}
-              columns={board.columns}
-              liveColumnWidthsRef={liveColumnWidthsRef}
-              resizeVersion={resizeVersion}
-              bumpResizeVersion={bumpResizeVersion}
-              activeId={activeId}
-
-            />
-          ))}
-        </SortableContext>
-      </DndContext>
-
-      <div
-        className="add-group-btn clickable clear outlined size-32 icon-start i-Add"
-        onClick={onAddGroup}
-      >Add group item</div>
-
-    </section>
+  if (board.groups.length === 0) return(
+    <div className='groups-list-search-empty-state'>
+      <img className="empty-state-img" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747683629/search_empty_state_asg7zu.svg" />
+      <p className='empty-state-title'>No results found</p>
+      <p className='empty-state-subtitle'>Try using different search term...</p>
+    </div>
   )
+
+    return (
+      <section className="T_GroupsList">
+
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCorners}
+          onDragStart={handleDragStart}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={
+              board.groups.flatMap(group => [
+                `__start__|${group.id}`,
+                ...group.tasks.map(task => `${task.id}|${group.id}`),
+                `__end__|${group.id}`
+              ])
+            }
+            strategy={rectSortingStrategy}
+          >
+            {board.groups.map(group => (
+              <T_Group
+                key={group.id}
+                group={group}
+                columns={board.columns}
+                liveColumnWidthsRef={liveColumnWidthsRef}
+                resizeVersion={resizeVersion}
+                bumpResizeVersion={bumpResizeVersion}
+                activeId={activeId}
+
+              />
+            ))}
+          </SortableContext>
+        </DndContext>
+
+        <div
+          className="add-group-btn clickable clear outlined size-32 icon-start i-Add"
+          onClick={onAddGroup}
+        >Add group item</div>
+
+      </section>
+    )
 }

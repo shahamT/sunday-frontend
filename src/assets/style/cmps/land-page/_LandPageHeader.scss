@@ -1,7 +1,7 @@
 .LandPageHeader {
     position: sticky;
     top: 0px;
-    z-index: 10;
+    z-index: 20;
 
 
     display: grid;
@@ -9,6 +9,12 @@
     height: 72px;
 
     background-color: white;
+
+    transition: 0.2s;
+
+    &.sticked {
+        box-shadow: 0px 4px 8px rgba(195, 198, 212, 0.5)
+    }
 
     .header-content {
         grid-column: 2;
@@ -24,8 +30,23 @@
             display: flex;
             align-items: center;
 
+            a {
+                padding: 8px 10px;
+                border-radius: var(--border-radius-md);
+                font-family: var(--title-font-family);
+                font-size: 14px;
+                font-weight: 300;
+                color: #535768;
 
-            gap: 16px;
+                &:hover {
+                    background-color: #F0F3FF;
+                    color: #5034FF;
+                }
+            }
+
+            .get-started-btn{
+                margin-inline-start: 16px;
+            }
         }
     }
 
