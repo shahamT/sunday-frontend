@@ -25,15 +25,10 @@ export function EditStatusPicker({ StatusArray, columnId,
     labelName, setLabelName }) {
 
     // === Consts
-    // const [labelToEdit, setLabelToEdit] = useState(setLabelToEdit(boardService.getEmptyLabel()))
-    // const [labelName, setLabelName] = useState(labelToEdit.name)
+  
 
     const [isNewLabelOpen, setIsNewLabelOpen] = useState(false)
-    // === Effects
-
-    // === Functions
-
-    // if (!data) return <div>Loading...</div>
+   
 
     function handleRename() {
         if (!labelName.trim() || labelName === labelToEdit.name) {
@@ -66,11 +61,10 @@ export function EditStatusPicker({ StatusArray, columnId,
                         position="bottom-start"
                         renderContent={({ onCloseModal }) => (
                             <ColorPicker
-                                // onCloseModal={isNewLabelOpen ? () => { } : onCloseModal}
+                                onCloseModal={onCloseModal}
                                 status={labelToEdit}
                                 setColor={handleSetColor}
                                 selectedColor={labelToEdit.color}
-
                             />
                         )}
                     >
@@ -84,7 +78,9 @@ export function EditStatusPicker({ StatusArray, columnId,
                         placeholder="Add Label"
                         autoFocus
                         onChange={(e) => setLabelName(e.target.value)}
-                        onBlur={handleRename}
+                        onBlur={()=>{
+                            handleRename()
+                        }}
                         onKeyDown={(e) => {
                             (e.key === "Enter") &&
                                 handleRename()
@@ -103,12 +99,14 @@ export function EditStatusPicker({ StatusArray, columnId,
                     if (labelName.trim()) {
                         const newLabel = { ...labelToEdit, name: labelName.trim() }
                         addLabel(columnId, newLabel)
+                        const emptyLabel = boardService.getEmptyLabel()
+                        setLabelToEdit(emptyLabel)
+                        setLabelName(emptyLabel.name)
+                    } else{
+                        setIsNewLabelOpen(true)
+                        
                     }
 
-                    const emptyLabel = boardService.getEmptyLabel()
-                    setLabelToEdit(emptyLabel)
-                    setLabelName(emptyLabel.name)
-                    setIsNewLabelOpen(true)
                 }}
             >
                 New label

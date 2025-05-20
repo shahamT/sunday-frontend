@@ -61,16 +61,24 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
                 )}
 
             </section>
-            
+
             <section name="control-btns">
                 {isEditable ? (<section className="control-btns-items">
                     <div className="divider" />
                     <button
                         className="apply-btn clickable clear size-32"
                         onClick={() => {
-                            const newLabel = { ...labelToEdit, name: labelName.trim() }
+                            const trimmedName = labelName.trim()
+                            if (trimmedName) {
+                                const newLabel = { ...labelToEdit, name: trimmedName }
+                                const isAlreadyInColumn = column.labels?.some(label => label.id === newLabel.id)
+                                if (!isAlreadyInColumn) {
+                                    addLabel(column.id, newLabel)
+                                }
+                            }
+
                             setLabelToEdit(boardService.getEmptyLabel())
-                            setLabelName(labelToEdit.name)
+                            setLabelName('')
                             setIsNewLabelOpen(false)
                             setIsEditable(false)
                         }}
@@ -78,14 +86,14 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
                         Apply
                     </button>
                 </section>) :
-                 (<section className="control-btns-items">
-                    <div className="divider" />
-                    <div
-                        className="edit-btn clickable icon-start clear i-Edit size-32"
-                        onClick={() => setIsEditable(true)}
-                    >
-                        Edit Labels
-                    </div></section>)}
+                    (<section className="control-btns-items">
+                        <div className="divider" />
+                        <div
+                            className="edit-btn clickable icon-start clear i-Edit size-32"
+                            onClick={() => setIsEditable(true)}
+                        >
+                            Edit Labels
+                        </div></section>)}
 
 
             </section>
