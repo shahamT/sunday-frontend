@@ -8,13 +8,17 @@
 
 // === Hooks / React
 
-// === Imgs
+// === D & D
+import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable'
 
 // === Child Components
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColTypePicker } from "../value-setter/ColTypePicker"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
+import { T_ColumnBody } from './T_ColumnBody'
+import { ColumnsDndContext } from './ColumnsDndContext'
+
 
 // ====== Component ======
 // =======================
@@ -53,19 +57,24 @@ export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVers
                 <div className={`t-left-indicator top ${group.color}-bg-static`}>
                     {/* <div className="top-line-hider"></div> */}
                 </div>
+                <ColumnsDndContext columns={columns} group={group} >
+                    <SortableContext
+                        items={columns.map(col => col.id)}
+                        strategy={horizontalListSortingStrategy}
+                    >
+                        {columns.map((column, idx) => {
+                            return <T_ColumnHeaderCell
+                                key={column.id + idx}
+                                column={column}
+                                groupId={group.id}
+                                liveColumnWidthsRef={liveColumnWidthsRef}
+                                resizeVersion={resizeVersion}
+                                bumpResizeVersion={bumpResizeVersion}
 
-                {columns.map((column, idx) => {
-                    return <T_ColumnHeaderCell
-                        key={column.id + idx}
-                        column={column}
-                        groupId={group.id}
-                        liveColumnWidthsRef={liveColumnWidthsRef}
-                        resizeVersion={resizeVersion}
-                        bumpResizeVersion={bumpResizeVersion}
-
-                    />
-                })}
-
+                            />
+                        })}
+                    </SortableContext>
+                </ColumnsDndContext>
                 <div className="add-column-btn-container">
                     <PopUpMenu
                         position="bottom-end"

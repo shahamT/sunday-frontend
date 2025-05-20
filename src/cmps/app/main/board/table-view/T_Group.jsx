@@ -36,14 +36,14 @@ export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bu
     >
 
       <T_GroupHeader group={group} />
-      <T_GroupHeadRow
+     
+      <T_GroupHeadRow 
         group={group}
         columns={columns}
         liveColumnWidthsRef={liveColumnWidthsRef}
         resizeVersion={resizeVersion}
         bumpResizeVersion={bumpResizeVersion}
       />
-
 
       <T_TaskRow
         key={`__start__|${group.id}`}
