@@ -10,7 +10,6 @@
 import { Navigate, useNavigate } from 'react-router-dom'
 
 // === Imgs
-import logo from '../../assets/img/logo/monday-logo.png';
 
 // === Child Components
 import { Tooltip } from '../reusables/tooltip/Tooltip';
@@ -30,7 +29,7 @@ export function MondayMainLogo() {
     return (
         <div className="MondayMainLogo">
 
-            <img className="logo-img" src={logo} alt="" onClick={() => navigate({ pathname: '/home' })} />
+            <img className="logo-img" src='https://res.cloudinary.com/dqaq55tup/image/upload/v1747732168/sunday-com-logo_ezd0ht.png' alt="" onClick={() => navigate({ pathname: '/home' })} />
 
         </div>
     )

@@ -90,8 +90,8 @@ export function HomePage() {
 
                         </div>
                         <div
-                        className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"
-                         onClick={() => navigate('/signup')}
+                            className="clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"
+                            onClick={() => navigate('/signup')}
                         >Get Started</div>
                     </div>
 
@@ -110,6 +110,108 @@ export function HomePage() {
             </section>
 
 
+            <section className="large-statment-section">
+
+                <div className="title-wraper">
+                    <p>Why customers love the</p>
+                    <img className="monday-platform-logo" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747734815/sunday-platform_jguk6v.png" />
+                </div>
+
+                <p className="statment-text">“...it’s going to do things you didn’t think were possible.”</p>
+            </section>
+
+
+            <section className="products-section">
+                <p className="section-title">Products built for <br />every business need</p>
+
+                <div className="subtitle-wraper">
+                    <p>Extend the power of the platform with tailored, AI-infused products that fit your exact needs.</p>
+                    <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747736256/products_1_pfgsmr.png" alt="" className="products-logos" />
+                </div>
+
+                <div className="products-grid-wraper">
+                    <div className="products-grid">
+
+                        <article className="card card-managment">
+
+                            <div className="card-content">
+                                <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747736913/WM-icon_qadtdz.avif" alt="" className="card-logo" />
+                                <h3 className="card-title">monday work management</h3>
+                                <p className="card-subtitle">Drive projects forward with AI-powered clarity</p>
+                                <div className="buttons-wraper">
+                                    <button className="outlined">Get Started</button>
+                                    <button className="underline">Learn more</button>
+                                </div>
+                            </div>
+
+                        </article>
+
+                        <article className="card card-crm">
+
+                            <div className="card-content">
+                                <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747737470/CRM_icon_tsw4ct.avif" alt="" className="card-logo" />
+                                <h3 className="card-title">monday CRM</h3>
+                                <p className="card-subtitle">Free revenue teams to focus on selling</p>
+                                <div className="buttons-wraper">
+                                    <button className="outlined">Get Started</button>
+                                    <button className="underline">Learn more</button>
+                                </div>
+                            </div>
+
+                        </article>
+
+
+                        <article className="card card-dev">
+
+                            <div className="card-content">
+                                <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747737467/Dev_icon_yquxho.avif" alt="" className="card-logo" />
+                                <h3 className="card-title">monday dev</h3>
+                                <p className="card-subtitle">Accelerate sprints, release impactful products</p>
+                                <div className="buttons-wraper">
+                                    <button className="outlined">Get Started</button>
+                                    <button className="underline">Learn more</button>
+                                </div>
+                            </div>
+
+                        </article>
+
+                        <article className="card card-service">
+                            <video autoPlay muted loop playsInline className="bg-video">
+                                <source
+                                    src="https://res.cloudinary.com/dqaq55tup/video/upload/v1747737464/card_4_SERVICE_ypdypx.mp4"
+                                    type="video/mp4"
+                                />
+                                Your browser does not support the video tag.
+                            </video>
+
+                            <div className="card-content">
+                                <img src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747737465/Servce-icon_z954mm.avif" alt="" className="card-logo" />
+                                <h3 className="card-title">monday service</h3>
+                                <p className="card-subtitle">Deliver exceptional service with AI ticket handling</p>
+                                <div className="buttons-wraper">
+                                    <button className="outlined">Get Started</button>
+                                    <button className="underline">Learn more</button>
+                                </div>
+                            </div>
+
+                        </article>
+
+                    </div>
+                </div>
+
+            </section>
+
+            <footer className="landpage-footer">
+
+                <img className="footer-logo" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747732168/sunday-com-logo_ezd0ht.png" />
+
+                <p className="credits">Created by <a href="https://www.linkedin.com/in/shaham-tamir-bb29431b9/">Shaham Tamir</a> | <a href="https://www.linkedin.com/in/noga-laufer-62850a237/">Noga Laufer</a> | <a href="https://www.linkedin.com/in/dana-ziv-26a2881aa/"> Dana Ziv</a></p>
+                <p>Based on <a href="https://monday.com/">monday.com</a></p>
+                <p>Final project of <a href="https://www.coding-academy.org/">Coding Academy</a> full stack development course, feb 2025</p>
+                <div className="footer-bottom-wraper">
+                    <small>All Rights Reserved © sunday.com</small>
+                </div>
+            </footer>
         </section >
     )
 }

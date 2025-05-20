@@ -1,20 +1,6 @@
-// === Libs
-
-import { toArray } from "lodash"
-
-// === Services
-
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================
-
 export function ColSumDate({ group, columnValues }) {
     const colorMap = {
         american_gray: "#757575",
@@ -110,45 +96,33 @@ export function ColSumDate({ group, columnValues }) {
 
     const snakeCaseColor = group.color.replace(/-/g, '_')
     const shouldShowRange = !isNaN(minDate) && !isNaN(maxDate) && minDate < maxDate
-
-    // === Consts
-    // function formatTimestamp(timestamp) {
-    //     const date = new Date(timestamp);
-    //     const now = new Date();
-
-    //     const isSameYear = date.getFullYear() === now.getFullYear();
-
-    //     const options = {
-    //         month: 'short',
-    //         day: 'numeric',
-    //         ...(isSameYear ? {} : { year: 'numeric' }),
-    //     };
-
-    //     return date.toLocaleDateString('en-US', options);
-    // }
-    // === Effects
-
+    
+    
+    
+    // === Functions
     function formatDateRange(startDate, endDate) {
-        const sameYear = startDate.getFullYear() === endDate.getFullYear();
-        const sameMonth = startDate.getMonth() === endDate.getMonth();
-
+        const sameDay = startDate.toDateString() === endDate.toDateString()
+        const sameYear = startDate.getFullYear() === endDate.getFullYear()
+        const sameMonth = startDate.getMonth() === endDate.getMonth()
+    
         const optionsStart = {
             month: 'short',
             day: 'numeric',
             ...(sameYear ? {} : { year: '2-digit' }),
-        };
-
+        }
+    
         const optionsEnd = {
             day: 'numeric',
             ...(sameYear ? {} : { year: '2-digit' }),
             ...(sameMonth ? {} : { month: 'short' }),
-        };
-
-        const formattedStart = startDate.toLocaleDateString('en-US', optionsStart);
-        const formattedEnd = endDate.toLocaleDateString('en-US', optionsEnd);
-
-        return `${formattedStart} - ${formattedEnd}`;
+        }
+    
+        const formattedStart = startDate.toLocaleDateString('en-US', optionsStart)
+        const formattedEnd = endDate.toLocaleDateString('en-US', optionsEnd)
+    
+        return sameDay ? formattedStart : `${formattedStart} - ${formattedEnd}`
     }
+    
 
     function getDaysDiff(startDate, endDate) {
         const start = new Date(startDate)
@@ -160,8 +134,6 @@ export function ColSumDate({ group, columnValues }) {
         return Math.round(diffInDays)
     }
 
-    // === Functions
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="col-som-date">
             {shouldShowRange ?
@@ -170,7 +142,7 @@ export function ColSumDate({ group, columnValues }) {
                         background: `linear-gradient(to right, ${colorMap[snakeCaseColor]} ${leftTime}%, ${colorMap[`${snakeCaseColor}_selected`]} 0%)`
                     }}>
                     <p className="txt">{formatDateRange(minDate, maxDate)}</p>
-                    <p className="txt-hover">{getDaysDiff(minDate, maxDate)}d</p>
+                    <p className="txt-hover">{getDaysDiff(minDate, maxDate).toLocaleString()}d</p>
 
                 </div>
 

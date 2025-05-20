@@ -17,7 +17,7 @@ import { boardService } from '../../../../../services/board/board.service.local.
 // ====== Component ======
 // =======================
 
-export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full', setIsPickingColor }) {
+export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full', setIsPickingColor, setIsNewLabelOpen }) {
     const fullColors = boardService.getColors()
 
     const limitColors = [
@@ -58,12 +58,14 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
                 <div
                     key={color}
                     className={`${shape} color-picker-item ${color}-bg`}
-                    onMouseDown={() => {
+                    onMouseDown={(e) => {
                         setColor(color)
+                        if (variant === 'full') onCloseModal()
                     }
                     }
                     onClick={() => {
-                        setIsPickingColor(false)
+                        if (setIsNewLabelOpen) setIsNewLabelOpen(true)
+                        if (setIsPickingColor) setIsPickingColor(false)
                         onCloseModal()
                     }}
                 />

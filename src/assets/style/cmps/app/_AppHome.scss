@@ -5,54 +5,47 @@
     grid-template-areas:
         'header header header'
         '. main .';
-    gap: 24px;
+    row-gap: 16px;
     border-radius: 8px;
     position: relative;
+    overflow: auto;
 
 
     .header {
         grid-area: header;
-
-        font-family: var(--title-font-family);
+        padding-inline-start: 20px;
         height: 75px;
         align-content: center;
         overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        box-shadow: 0px 3px 12px #e6e9ef;
         color: #323338;
 
-        p {
-            padding-inline: 20px;
-            font-size: 16px;
-            // margin-left: 12px;
-
-            span {
-                font-size: 14px;
-            }
+        .greeting {
+            font-size: 14px;
+            font-weight: 400;
+            margin-block-end: 4px;
         }
+
+        .subtitle {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
     }
 
     .main {
         grid-area: main;
-        margin-inline: 24px;
-        width: 100%;
         position: relative;
-
+        width: 100%;
         display: grid;
-        grid-template-columns: 1fr 360px;
+        grid-template-columns: 1fr 300px;
         grid-template-areas:
             'list nav'
         ;
-        gap: 20px;
-// .main>*{
-//     background-color:var(--secondary-background-color);
-//     border-radius: 8px;
-//     border: 1px solid rgb(208, 212, 228);
-//     box-shadow:  0px 3px 12px var(--application-border-color);
-//     // 0px 3px 12px var(--box-shadow-color)
-// }
+        gap: 24px;
+
         .right-nav {
             grid-area: nav;
-            // position: absolute;
 
         }
 
