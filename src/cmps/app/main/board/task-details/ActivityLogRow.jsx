@@ -1,13 +1,13 @@
 // === Libs
 
-import { useEffect, useState } from "react"
-import { getFormattedTime, getShortRelativeTime } from "../../../../../services/base/util.service"
-
 // === Services
+import { getShortRelativeTime } from "../../../../../services/base/util.service";
 
 // === Actions
 
 // === Hooks / React
+import { useEffect, useState } from "react";
+import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 
 // === Imgs
 
@@ -17,92 +17,230 @@ import { getFormattedTime, getShortRelativeTime } from "../../../../../services/
 // =======================
 
 export function ActivityLogRow({ activity, task, board }) {
-    // === Consts
-    const [activityType, setActivityType] = useState(false)
-    const [group, setGroup] = useState({})
+  // === Consts
+  const [activityType, setActivityType] = useState(false);
+  const [group, setGroup] = useState({});
+  const [cvType, setCvType] = useState({});
+  const [colName, setColName] = useState("");
+  const [prevVal, setPrevVal] = useState(null);
+  const [newVal, setNewVal] = useState(null);
 
-    // === Effects
-    useEffect(() =>{
-        handleActivityType(activity.type)
-    }, [board, task, activity])
+  // === Effects
+  useEffect(() => {
+    handleActivityType(activity.type);
+  }, []);
 
-    // === Functions
-        function handleActivityType(type) {
-        switch (type) {
-            case 'add task':
-                setActivityType('add task')
-                const currGroup = board.groups.find(group => {
-                    return group.tasks.find(t => t.id === task.id)
-                })
-                setGroup(currGroup)
-                return
+  // === Functions
+  function handleActivityType(type) {
+    switch (type) {
+      case "add task":
+        setActivityType("add task");
+        const currGroup = board.groups.find((group) => {
+          return group.tasks.find((t) => t.id === task.id);
+        });
+        setGroup(currGroup);
+        return;
 
-            case 'remove task':
-                return
+      case "remove task":
+        setActivityType("remove task");
+        const prevGroup = board.groups.find((group) => {
+          return group.tasks.find((t) => t.id === task.id);
+        });
+        setGroup(prevGroup);
+        return;
 
-            case 'move task':
-                if(activity.fromGroupId !== activity.toGroupId) {
-                    setActivityType('move task')
-                    const fromGroup = board.groups.find(g => g.id === activity.fromGroupId)
-                    const toGroup = board.groups.find(g => g.id === activity.toGroupId)
-                    // const currGroup = board.groups.find(group => {
-                    //     return group.tasks.find(t => t.id === task.id)
-                    // })
-                    setGroup({fromGroup, toGroup})
-                }
-                return
+      case "move task":
+        if (activity.fromGroupId !== activity.toGroupId) {
+          setActivityType("move task");
+          const fromGroup = board.groups.find(
+            (g) => g.id === activity.fromGroupId
+          );
+          const toGroup = board.groups.find((g) => g.id === activity.toGroupId);
 
-            case 'set column value':
-                const currColName = board.columns.find(col => col.id === activity.colId)?.name
-                activity.colName = currColName || ''
-                setActivityType('set column value')
-                return
-
-            case 'remove column value':
-                return
+          setGroup({ fromGroup, toGroup });
         }
-    }
+        return;
 
-    // if (!data) return <div>Loading...</div>
-    return (
-        <section className="ActivityLogRow">
-            <section className="activity-row">
-                <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
-                <img src={activity.createdBy} alt="" />
-                <p className="task-name" >{task.columnValues[0]?.value}</p>
-            </section>
-            {activityType === 'move task' && 
-            <section>
-                <section className="activity-row move-task">
-                    <p className="action-name">Moved</p>
-                    <p>Group: <span className={`${group.fromGroup.color}-text`}>{group.fromGroup.name}</span></p>
-                </section>
-                <section className="activity-row move-task">
-                    <p className="action-name">Moved</p>
-                    <p>To group: <span className={`${group.toGroup.color}-text`}>{group.toGroup.name}</span></p>
-                </section>
-            </section>}
-            {activityType === 'add task' && 
-                <section className="activity-row add-task">
-                    <p className="action-name">Created</p>
-                    <p>Group: <span className={`${group.color}-text`}>{group.name}</span></p>
-                </section>}
-            {activityType === 'set column value' && 
-                <section className="activity-row set column value">
-                    <p className="action-name">{activity.colName}</p>
-                    <div>{activity.prevValue || '-'}</div>
-                    <div className="i-NavigationChevronRight">
-                        <div>{activity.value}</div>
-                    </div>
-                </section>}
-            {activityType === 'remove column value' && 
-                <section className="activity-row remove column value">
-                    <p className="action-name">{activity.colName}</p>
-                    <div>{'-'}</div>
-                    <div className="i-NavigationChevronRight">
-                        <div>{activity.value}</div>
-                    </div>
-                </section>}
+      case "set column value":
+        const currCol = board.columns.find((col) => col.id === activity.colId);
+        setColName(currCol?.name || "");
+        setActivityType("set column value");
+        if (currCol.type.variant === "file") {
+          console.log(activity);
+          setCvType("file");
+        } else if (currCol.type.variant === "date") {
+          console.log(activity);
+          if (activity.value) setNewVal(formatSmartDate(activity.value));
+          if (activity.prevValue)
+            setPrevVal(formatSmartDate(activity.prevValue));
+          console.log("newVal: ", newVal);
+          console.log("prevVal: ", prevVal);
+          setCvType("date");
+        } else if (currCol.type.variant === "status") {
+          const currValue = activity.value
+            ? currCol.type.labels.find((label) => label.id === activity.value)
+            : null;
+          const prevValue = activity.prevValue
+            ? currCol.type.labels.find(
+                (label) => label.id === activity.prevValue
+              )
+            : null;
+          setNewVal(currValue);
+          setPrevVal(prevValue);
+          setCvType("status");
+        } else if (currCol.type.variant === "people") {
+          // console.log('hi')
+          const currValue = activity.value?.filter((user) => {
+            return !activity.prevValue?.some(
+              (prevUser) => prevUser._id === user._id
+            );
+          });
+          const prevValue = activity.prevValue?.filter((prevUser) => {
+            return !activity.value?.some((user) => user._id === prevUser._id);
+          });
+
+          // console.log('currValue: ', currValue)
+          // console.log('prevValue: ', prevValue)
+          if (currValue) setNewVal(currValue[0]);
+          if (prevValue) setPrevVal(prevValue[0]);
+          setCvType("people");
+        } else setCvType("regular");
+        return;
+    }
+  }
+
+  function formatSmartDate(timestamp) {
+    const date = new Date(timestamp);
+    const now = new Date();
+
+    const isThisYear = date.getFullYear() === now.getFullYear();
+
+    return new Intl.DateTimeFormat("en-US", {
+      month: "short",
+      day: "numeric",
+      ...(isThisYear ? {} : { year: "numeric" }),
+    }).format(date);
+  }
+
+  // if (!data) return <div>Loading...</div>
+  return (
+    <section className="ActivityLogRow">
+      {activityType !== "move task" && (
+        <section className="activity-row">
+          <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
+          <img src={activity.createdBy} alt="" />
+          <p className="task-name">{task.columnValues[0]?.value}</p>
         </section>
-    )
+      )}
+
+      {activityType === "move task" && (
+        <section>
+          <section className="activity-row move-task">
+            <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
+            <img src={activity.createdBy} alt="" />
+            <p className="task-name">{task.columnValues[0]?.value}</p>
+            <p className="action-name moved">Moved</p>
+            <p className="regular-action">
+              To group:{" "}
+              <span className={`${group.toGroup.color}-text`}>
+                {group.toGroup.name}
+              </span>
+            </p>
+          </section>
+
+          <section className="activity-row move-task">
+            <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
+            <img src={activity.createdBy} alt="" />
+            <p className="task-name">{task.columnValues[0]?.value}</p>
+            <p className="action-name moved">Moved</p>
+            <p className="regular-action">
+              From group:{" "}
+              <span className={`${group.fromGroup.color}-text`}>
+                {group.fromGroup.name}
+              </span>
+            </p>
+          </section>
+          
+        </section>
+      )}
+      {activityType === "add task" && (
+        <section className="activity-row add-task">
+          <p className="action-name created">Created</p>
+          <p className="regular-action">
+            Group: <span className={`${group.color}-text`}>{group.name}</span>
+          </p>
+        </section>
+      )}
+      {activityType === "remove task" && (
+        <section className="activity-row remove-task">
+          <p className="action-name deleted">Deleted</p>
+        </section>
+      )}
+      {activityType === "set column value" && (
+        <section className="activity-row set-column-value">
+          <p className={`action-name ${colName}`}>
+            {colName === "Task" ? "Name" : colName}
+          </p>
+          {cvType === "file" && (
+            <>
+              {activity.prevValue ? (
+                <img className="prev-value" src={activity.prevValue} alt="" />
+              ) : (
+                <div className="prev-value">-</div>
+              )}
+              {activity.value ? (
+                <img className="to-value" src={activity.value} alt="" />
+              ) : (
+                <div className="to-value">-</div>
+              )}
+            </>
+          )}
+          {cvType === "regular" && (
+            <>
+              <div className="prev-value">{activity.prevValue || "-"}</div>
+              <div className="to-value">{activity.value || "-"}</div>
+            </>
+          )}
+          {cvType === "date" && (
+            <>
+              <div className="prev-value">{prevVal || "-"}</div>
+              <div className="to-value">{newVal || "-"}</div>
+            </>
+          )}
+          {cvType === "status" && (
+            <div className="status-grid">
+              <div
+                className={`prev-value ${
+                  prevVal?.color
+                    ? `${prevVal.color}-bg-static`
+                    : "unselected-gray"
+                }`}
+                style={{ color: "white" }}
+              >
+                {prevVal?.name || ""}
+              </div>
+              <div
+                className={`to-value ${
+                  newVal?.color
+                    ? `${newVal.color}-bg-static`
+                    : "unselected-gray"
+                }`}
+                style={{ color: "white" }}
+              >
+                {newVal?.name || ""}
+              </div>
+            </div>
+          )}
+          {cvType === "people" && (
+            <>
+              <div>{newVal ? "Added" : "Removed"} </div>
+              <Tooltip title={newVal?.name || prevVal?.name}>
+                <img src={newVal?.profileImg || prevVal.profileImg} alt="" />
+              </Tooltip>
+            </>
+          )}
+        </section>
+      )}
+    </section>
+  );
 }

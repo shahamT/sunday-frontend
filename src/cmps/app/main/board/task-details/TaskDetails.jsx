@@ -139,7 +139,7 @@ export function TaskDetails() {
 
     function onClearPersons() {
         try {
-            removeColumnValue(taskId, personsColumn);
+            removeColumnValue(taskId, personsColumn, selectedPersons);
         } catch (err) {
             showErrorMsg(`Something went wrong`);
         }

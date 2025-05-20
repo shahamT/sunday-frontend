@@ -213,8 +213,8 @@ export async function setColumnValue(taskId, colId, value, prevValue) {
 
     try {
         store.dispatch(getCmdSetColumnValue(board, taskId, colId, value))
-        await createLog({type:'set column value', taskId, colId, value, prevValue})
         await boardService.setColumnValue(board, taskId, colId, value)
+        await createLog({type:'set column value', taskId, colId, value, prevValue})
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot set column value', err)
@@ -227,8 +227,8 @@ export async function removeColumnValue(taskId, colId, prevValue) {
 
     try {
         store.dispatch(getCmdRemoveColumnValue(board, taskId, colId))
-        await createLog({type:'remove column value', taskId, colId, prevValue})
         await boardService.removeColumnValue(board, taskId, colId)
+        await createLog({type:'set column value', taskId, colId, prevValue})
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot remove column value', err)

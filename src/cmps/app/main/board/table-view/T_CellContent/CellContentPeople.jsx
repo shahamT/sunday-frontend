@@ -11,8 +11,8 @@ export function CellContentPeople({ task, column, columnValue }) {
     function setPersons(PersonsArray) {
 
         try {
-            setColumnValue(taskId, column.id, PersonsArray, columnValue?.value);
             if (PersonsArray.length === 0) onClearPersons();
+            else setColumnValue(taskId, column.id, PersonsArray, columnValue?.value);
 
             // Prevent animation on first mount
             if (!hasMounted.current) {
@@ -30,7 +30,7 @@ export function CellContentPeople({ task, column, columnValue }) {
 
     function onClearPersons() {
         try {
-            removeColumnValue(taskId, column.id);
+            removeColumnValue(taskId, column.id, columnValue?.value);
         } catch (err) {
             showErrorMsg(`Something went wrong`);
         }

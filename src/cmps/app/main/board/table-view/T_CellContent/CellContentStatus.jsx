@@ -36,7 +36,7 @@ export function CellContentStatus({ task, column, columnValue }) {
 
     function onClearStatus() {
         try {
-            removeColumnValue(taskId, column.id)
+            removeColumnValue(taskId, column.id, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

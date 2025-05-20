@@ -47,7 +47,8 @@ const colors = [
     'lavender',
     'steel',
     'lilac',
-    'pecan']
+    'pecan',
+]
 
 function getEmptyBoard() {
     const colId1 = makeId()

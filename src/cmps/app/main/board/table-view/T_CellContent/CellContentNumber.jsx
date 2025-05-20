@@ -36,19 +36,20 @@ export function CellContentNumber({ task, column, columnValue }) {
         setIsEditing(false)
 
         if (value === '') onClearNumber()
-
-        try {
-            setColumnValue(taskId, column.id, value, columnValue?.value)
-        }
-        catch (err) {
-            showErrorMsg(`Somthing went wrong`)
+        else {
+            try {
+                setColumnValue(taskId, column.id, value, columnValue?.value)
+            }
+            catch (err) {
+                showErrorMsg(`Somthing went wrong`)
+            }
         }
     }
 
     function onClearNumber() {
         set('')
         try {
-            removeColumnValue(taskId, column.id)
+            removeColumnValue(taskId, column.id, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

@@ -52,7 +52,7 @@ export function CellContentFile({ task, column, columnValue }) {
 
     function onClearFile() {
         try {
-            removeColumnValue(taskId, column.id)
+            removeColumnValue(taskId, column.id, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

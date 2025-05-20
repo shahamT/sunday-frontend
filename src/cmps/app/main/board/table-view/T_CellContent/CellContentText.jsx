@@ -45,7 +45,7 @@ export function CellContentText({ task, column, columnValue }) {
     function onClearText() {
         set('')
         try {
-            removeColumnValue(taskId, column.id)
+            removeColumnValue(taskId, column.id, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

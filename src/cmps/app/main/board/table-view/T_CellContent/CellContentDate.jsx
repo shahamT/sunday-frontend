@@ -51,7 +51,7 @@ export function CellContentDate({ task, column, columnValue }) {
 
     function onClearDate() {
         try {
-            removeColumnValue(taskId, column.id)
+            removeColumnValue(taskId, column.id, columnValue?.value)
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)

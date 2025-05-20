@@ -1,54 +1,272 @@
-.ActivityLogRow {
-    font-size: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: start;
-    padding: 8px 25px;
+.TaskDetailsActivityLog {
+    height: calc(100% - var(--app-header-size, 0px) - 120px);
+    overflow: auto; 
+    padding-inline: 25px;
     
-    .activity-row {
-        border-bottom: 1px solid var(--layout-border-color);
+    .ActivityLogRow {
+        font-size: 14px;
         display: flex;
         align-items: center;
         justify-content: start;
-        height: 48px;
-        // padding-inline: 8px;
+        padding-block: 8px;
+        
+        .activity-row {
+            width: 100%;
+            border-bottom: 1px solid var(--layout-border-color);
+            display: flex;
+            align-items: center;
+            justify-content: start;
+            height: 48px;
+    
+            p {
+                font-size: 14px;
+            }
+    
+            img {
+                height: 30px;
+                width: 30px;
+                margin-inline: 0 6px;
+            }
+    
+            .time {
+                padding-inline-start: 16px;
+                margin-inline: 16px 10px ;
+                width: 44px;
+                position: relative;
+    
+                &::before {
+                content: "\e9f2";
+                font-family: mon-i;
+                font-size: 16px;
+                color: var( --icon-color);
+                position: absolute;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                pointer-events: none;
+            }
+            }
+    
+            .task-name {
+                min-width: 140px;
+                margin-inline-end: 16px;
+            }
+    
+            .action-name {
+                padding-inline: 20px 2px;
+                min-width: 76px;
 
-        p {
-            font-size: 14px;
-        }
+                &.moved {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e9a2";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.created {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e900";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.deleted {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e93e";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Files {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e95f";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Date {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e91e";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Status {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e9dd";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Peoples {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e9e6";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Task {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e9eb";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Number {
+                    position: relative;
+    
+                    &::before {
+                        content: "\e9b2";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+                &.Text {
+                    position: relative;
+                    
+                    &::before {
+                        content: "\e9eb";
+                        font-family: mon-i;
+                        font-size: 16px;
+                        color: var( --icon-color);
+                        position: absolute;
+                        left: 0;
+                        top: 45%;
+                        transform: translateY(-50%);
+                        pointer-events: none;                    
+                    }
+                }
+            }
 
-        img {
-            height: 30px;
-            width: 30px;
-            margin-inline-end: 6px;
-        }
 
-        .time {
-            padding-inline-start: 16px;
-            margin-inline-end: 20px;
-            margin-inline-start: 18px;
-            position: relative;
+            .to-value {
+                position: relative;
+            
+                &::before {
+                    content: "\e9a9";
+                    font-family: mon-i;
+                    font-size: 16px;
+                    color: var(--color-unselected-gray);
+                    position: absolute;
+                    left: -17px;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    pointer-events: none;
+                }
+            }
 
-            &::before {
-            content: "\e9f2";
-            font-family: mon-i;
-            font-size: 16px;
-            color: var( --icon-color);
-            position: absolute;
-            left: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            pointer-events: none;
-        }
-        }
+            .prev-value, .to-value {
+                height: 39px;
+                min-width: 61px;
+                padding-inline: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 2px;
+            }
 
-        .task-name {
-            margin-inline-end: 32px;
-        }
+            .prev-value {
+                margin-inline: 16px 19px;
+                // margin-inline-end: 20x;
+            }
 
-        .action-name {
-            margin-inline: 16px;
+            .to-value {
+                // padding-inline-start: 23px;
+                // padding-inline-start: 7px;
+                padding-inline: 8px;
+            }
+
+            &.i-NavigationChevronRight::before {
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+            }
+
+            .unselected-gray {
+                background-color: var(--color-unselected-gray);
+            }
+
+            .status-grid {
+                width: 70%;
+                display: grid;
+                grid-template-columns: minmax(61px 1fr) minmax(61px 1fr);
+                grid-auto-flow: column;
+            }
+
+            .regular-action {
+                margin-inline-start: 16px;
+            }
         }
+    
     }
-
 }
