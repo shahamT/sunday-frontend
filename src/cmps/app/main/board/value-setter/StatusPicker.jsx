@@ -76,7 +76,7 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
                        
                         <button
                             className="apply-btn clickable clear size-32"
-                            onClick={() => handleApply}
+                            onClick={() => handleApply()}
                         >
                             Apply
                         </button>

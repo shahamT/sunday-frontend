@@ -20,7 +20,7 @@
             align-items: center;
             justify-content: center;
             height: 32px;
-            width: 100%;
+            width: 180px;
             padding: 4px;
             color: rgb(255, 255, 255);
             font-weight: 400;
@@ -35,9 +35,23 @@
         .input-wrapper {
             display: flex;
             align-items: center;
+
+
+            .edit-label-menu {
+
+                .delete-btn {
+
+                    display: flex;
+                    justify-content: start;
+                    align-items: center;
+                }
+
+            }
         }
 
         .add-btn {
+            width: 152px;
+            align-self: start;
             &::before {
                 margin-inline-end: 2px;
             }

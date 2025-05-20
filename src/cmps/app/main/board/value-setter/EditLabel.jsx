@@ -4,7 +4,7 @@ import { useControlledInput } from "../../../../../hooks/useControlledInput"
 import { updateLabel } from "../../../../../store/actions/board.actions"
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColorPicker } from "./ColorPicker"
-import { useEffect, useState } from "react"
+import { EditLabelMenu } from "./EditLabelMenu"
 
 
 
@@ -58,7 +58,21 @@ export function EditLable({ status, columnId }) {
                     onBlur={handleRename}
                     onKeyDown={(e) => e.key === "Enter" && handleRename()}
                 />
-                <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+
+
+                <PopUpMenu
+                    position="bottom-start"
+                    renderContent={({ onCloseModal }) => (
+                        <EditLabelMenu
+                        labelId={status.id}
+                        columnId={columnId}
+                            onCloseModal={onCloseModal}
+                        />
+                    )}
+                >
+                    <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
+                </PopUpMenu>
+
             </div>
 
 
