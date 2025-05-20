@@ -11,7 +11,7 @@ import { boardService } from "../../../../../services/board"
 // =======================
 
 export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray, column }) {
-
+console.log(column)
     // === Consts
     const [isEditable, setIsEditable] = useState(false)
 

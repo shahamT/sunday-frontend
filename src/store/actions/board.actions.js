@@ -327,6 +327,10 @@ export async function updateLabel(columnId, labelToUpdate) {
 
 export async function addLabel(columnId,label) {
     const boardId = getBoardId()
+    if (!boardId) {
+        console.error('boardId is undefined. Cannot send request to backend.')
+        return
+    }
     // const label = boardService.getEmptyLabel()
     try {
         store.dispatch(getCmdAddLabel(label,columnId,boardId))
@@ -334,7 +338,7 @@ export async function addLabel(columnId,label) {
         return savedLabel
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
-        console.log('board action -> Cannot add column', err)
+        console.log('board action -> Cannot add label', err)
         throw err
     }
 }
@@ -540,6 +544,37 @@ export function getCmdCreateLog(logObject) {
     type: CREATE_LOG,
     logObject
   }
+}
+
+
+
+export function getCmdAddLabel(label,columnId,boardId){
+    return{
+        type:ADD_LABEL,
+        columnId,
+        label,
+        boardId
+    }
+
+    
+}
+
+export function getCmdRemoveLabel(labelId, columnId){
+    return {
+        type: REMOVE_LABEL,
+        labelId,
+         columnId
+    }
+
+
+}
+export function getCmdUpdateLabel(columnId,labelToUpdate){
+return {
+    type: UPDATE_LABEL,
+    columnId,
+     labelToUpdate
+}
+
 }
 
 
