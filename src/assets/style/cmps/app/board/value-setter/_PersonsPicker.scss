@@ -51,10 +51,13 @@
                 }
             }
 
-            img{
-                height: 1.833em;
-                width: 1.833em;
+            .profile-img-wrapper {
                 margin-inline-end: 4px;
+
+                img{
+                    height: 1.833em;
+                    width: 1.833em;
+                }
             }
         }
     }

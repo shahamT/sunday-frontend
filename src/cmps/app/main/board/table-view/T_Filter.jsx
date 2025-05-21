@@ -151,7 +151,7 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                             <section className="person-to-filterBy">
                                 {users.map(user => {
                                     return  <div key={user._id} className={`img-wrapper ${selectedPerson?._id === user._id ? 'select' : ''}`}  onClick={() => onHandlePersonFilterBy(user)} > 
-                                    <img src={user.profileImg} alt=""/></div>
+                                    <div className="profile-img-wrapper"><img src={user.profileImg} alt=""/></div></div>
                                 })}
                             </section>
                         </section>
@@ -160,7 +160,9 @@ export function T_Filter({ /* prop1, prop2 */ }) {
             >
                 {!selectedPerson && <div className={`people-filter-btn clickable clear select size-32 icon-start i-PersonRound ${isMenuOpen ? 'active' : ''}`} >Person</div>}
                 {selectedPerson && <div className={`people-filter-btn-active clickable clear select size-32 ${isMenuOpen ? 'active' : ''}`} >
-                    <img src={selectedPerson.profileImg} alt="" />
+                    <div className="profile-img-wrapper">
+                        <img src={selectedPerson.profileImg} alt="" />
+                    </div>
                     Person
                     <div onClick={onRemovePersonFilterBy} className="close-btn clickable clear select icon-btn size-24 i-CloseRound"></div></div>}
             </PopUpMenu>

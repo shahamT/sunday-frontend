@@ -35,7 +35,9 @@ export function Updates({ task }) {
                     <div className="update-header">
                         {user && (
                             <>
-                            <img src={user.profileImg} alt="" />
+                            <div className="profile-img-wrapper">
+                                <img src={user.profileImg} alt="" />
+                            </div>
                             <span className="name">{user.firstName} {user.lastName}</span>
                             </>
                         )}

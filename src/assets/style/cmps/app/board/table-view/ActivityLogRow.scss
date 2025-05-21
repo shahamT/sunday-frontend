@@ -49,12 +49,15 @@
                 display: grid;
                 grid-template-columns: 72px 36px minmax(140px, 1fr);
 
-                img {
-                    height: 30px;
-                    width: 30px;
-                    object-fit: cover;
+                .profile-img-wrapper {
                     margin-inline: 0 6px;
-
+                    
+                    img {
+                        height: 30px;
+                        width: 30px;
+                        object-fit: cover;
+    
+                    }
                 }
 
                 .time {
