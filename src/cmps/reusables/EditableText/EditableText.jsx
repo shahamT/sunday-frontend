@@ -105,11 +105,15 @@ export const EditableText = forwardRef(function EditableText({
                 value={value}
                 placeholder={placeholder}
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}`}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {e.stopPropagation()
+                    setIsInputFocused(true)
+
+                }}
                 onChange={handleChange}
                 onFocus={() => {
-                  if(setIsInputFocused) setIsInputFocused(true)
-                    setIsFocused(true)}
+                    setIsFocused(true)
+                    if(setIsInputFocused) setIsInputFocused(true)     
+                }
 
                 }
                 onBlur={(e) => {
@@ -123,6 +127,7 @@ export const EditableText = forwardRef(function EditableText({
                         e.preventDefault()
                         skipBlurRef.current = true // set the flag
                         onPressEnter()
+                        if(setIsInputFocused) setIsInputFocused(false)
                         inputRef.current?.blur()
 
                         // reset flag after event loop (ensures blur won't act)
