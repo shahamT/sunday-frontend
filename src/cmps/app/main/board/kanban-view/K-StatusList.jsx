@@ -24,8 +24,6 @@ export function K_StatusList({ /* prop1, prop2 */ }) {
     const [statusCol, setStatusCol] = useState(null)
     const [tasksByStatus, setTasksByStatus] = useState(null)
 
-    console.log(tasksByStatus)
-
     // === Effects
     useEffect(() => {
         if(!board) return
