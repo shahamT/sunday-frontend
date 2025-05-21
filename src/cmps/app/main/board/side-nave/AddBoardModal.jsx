@@ -1,5 +1,4 @@
 // === Libs
-
 import { useEffect, useState } from "react"
 import { boardService } from "../../../../../services/board"
 import { addBoard } from "../../../../../store/actions/board.actions"
@@ -14,6 +13,7 @@ import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 
 // === Hooks / React
 
+
 // === Imgs
 
 // === Child Components
@@ -22,6 +22,7 @@ import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 // =======================
 
 export function AddBoardModal() {
+
     // === Consts
     const [newBoard, setNewBoard] = useState('')
     const navigate = useNavigate()

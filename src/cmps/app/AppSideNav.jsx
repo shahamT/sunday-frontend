@@ -2,7 +2,7 @@
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
@@ -11,10 +11,9 @@ import { closestCenter, DndContext, KeyboardSensor, MouseSensor, PointerSensor, 
 import { DragOverlay } from '@dnd-kit/core'
 
 // === Services
-import { SOCKET_EVENT_MINI_BOARDS_UPDATE } from '../../services/base/socket.service';
 
 // === Actions
-import { getCmdUpdateMiniBoardsFromSocket, loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
+import { loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
 
 // === Hooks / React
 
@@ -25,14 +24,15 @@ import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
 import { Loader } from '../reusables/Loader/Loader';
+import { SOCKET_EVENT_MINI_BOARDS_UPDATE } from '../../services/base/socket.service';
 
 // ====== Component ======
 // =======================
 export function AppSideNav({ }) {
     const { boards, boardsFilterBy } = useSelector(storeState => storeState.boardModule)
     const filteredBoards = Array.isArray(boards) ? boards.filter(board =>
-            (board?.name || '').toLowerCase().includes((boardsFilterBy?.txt || '').toLowerCase())
-        ) : []
+        (board?.name || '').toLowerCase().includes((boardsFilterBy?.txt || '').toLowerCase())
+    ) : []
 
     const { boardId } = useParams()
 
@@ -43,13 +43,11 @@ export function AppSideNav({ }) {
     const [isSearchOpen, setSearchOpen] = useState(false)
     const [boardFilterBy, setBoardFilterBy] = useState('')
 
-    const dispatch = useDispatch()
 
     useEffect(() => {
         loadBoards()
 
         const onBoardsUpdate = (boards) => {
-            // console.log('GOT from socket', boards)
             dispatch(getCmdUpdateMiniBoardsFromSocket(boards))
         }
 
@@ -58,7 +56,7 @@ export function AppSideNav({ }) {
         return () => {
             socketService.off(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
         }
-    }, []) //NEED SOMETHING HERE??
+    }, []) 
 
 
 

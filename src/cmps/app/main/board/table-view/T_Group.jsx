@@ -1,5 +1,5 @@
 // === Libs
-import { DragOverlay, useDndContext } from '@dnd-kit/core'
+import { DragOverlay } from '@dnd-kit/core'
 
 // === Child Components
 import { T_ColumnSumRow } from './T_ColumnSumRow'
@@ -43,14 +43,13 @@ export function T_Group({
     >
 
       <T_GroupHeader group={group} />
-      <T_GroupHeadRow
+     
+      <T_GroupHeadRow 
         group={group}
-        columns={columns}
         liveColumnWidthsRef={liveColumnWidthsRef}
         resizeVersion={resizeVersion}
         bumpResizeVersion={bumpResizeVersion}
       />
-
 
       <T_TaskRow
         key={`__start__|${group.id}`}
