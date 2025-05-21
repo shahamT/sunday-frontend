@@ -4,7 +4,7 @@
     
 
     width: 500px;
-    height: 300px;
+    height: auto;
     padding: 0px 8px 24px;
 
     .close-btn {
@@ -73,6 +73,12 @@
 
 
     }
-
+    .ai-textarea {
+        width: 100%;
+        // height: 100px;
+        resize: none; /* כדי שלא יוכלו לשנות את הגודל עם העכבר */
+        padding: 8px;
+        font-size: 14px;
+      }
 
 }

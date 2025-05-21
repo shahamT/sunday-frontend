@@ -26,7 +26,7 @@ export function AddBoardModal() {
     // === Consts
     const [newBoard, setNewBoard] = useState('')
     const navigate = useNavigate()
-
+    const [isAi, setAi] = useState(false)
     // === Effects
     useEffect(() => {
         const board = boardService.getEmptyBoard()
@@ -63,6 +63,19 @@ export function AddBoardModal() {
                 <p className="title">Board name</p>
                 <input type="text" name="name" value={name} autoFocus onChange={hendleChange}
                 />
+                <section>
+                <button type="button" className="ai-btn clickable i-Robot icon-start clear size-48" onClick={() => setAi(true)}> Create board with ai</button>
+                {isAi &&
+                
+                <textarea className="ai-textarea"
+                name="aiBoardPrompt"
+                // value={prompt}
+                // onChange={handleChange}
+                // onClick={getFakeAiBoard}
+                placeholder="Describe the board you need. For example: 'Plan a marketing campaign for a new product"
+                rows={4}
+              />}
+                                          </section> 
                 <p className="new-board-encourage">Let’s get you started with a fresh new board!</p>
                 <div className="divider" />
                 <div className="add-board-btns">
