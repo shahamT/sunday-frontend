@@ -68,7 +68,7 @@ export function ColumnsDndContext({ setOverId, children, columns, group, board }
         {activeColumn && (
           <div className="drag-column-overlay">
             <T_ColumnHeaderCell column={activeColumn} groupId={group.id} />
-            <T_ColumnBody column={activeColumn} group={group} />
+            <T_ColumnBody column={activeColumn} group={group}  />
           </div>
         )}
       </DragOverlay>

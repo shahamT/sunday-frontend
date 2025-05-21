@@ -1,18 +1,23 @@
+import { T_Cell } from "./T_Cell"
+
 export function T_ColumnBody({ column, group }) {
-  const columnValues = group.tasks.reduce((acc, task) => {
-    const colValue = task.columnValues.find(col => col.colId === column.id)?.value
-    acc.push(colValue !== undefined ? colValue : "")
-    return acc
-  }, [])
-
-
   return (
     <div className="T_ColumnBody">
-      {columnValues.map((value, idx)  => (
-        <div key={idx} className="cell-value">
-          <p>{JSON.stringify(value)}</p>
-        </div>
-      ))}
+      {group.tasks.map((task, idx) => {
+        const value = task.columnValues.find(col => col.colId === column.id)?.value || ""
+        return (
+          <div key={idx} className="cell-value">
+            <T_Cell
+              column={column}
+              columnValue={value}
+              task={task}
+              groupId={group.id}
+              listeners={null}
+              isOverlay={true}
+            />
+          </div>
+        )
+      })}
     </div>
   )
 }

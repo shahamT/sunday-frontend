@@ -22,21 +22,23 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column, isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
     // D & D
     const variant = column.type.variant
     const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
     const [canDrag, setCanDrag] = useState(false)
     const [isInputFocused, setIsInputFocused] = useState(false)
-const dragTimeoutRef = useRef(null)
+    const dragTimeoutRef = useRef(null)
+    const pressStartTimeRef = useRef(null)
 
-const style = sortable
-  ? { transform: CSS.Transform.toString(sortable.transform), transition: sortable.transition }
-  : {}
 
-const setNodeRef = sortable?.setNodeRef || undefined
-const listeners = sortable?.listeners || {}
-const attributes = sortable?.attributes || {}
+    const style = sortable
+        ? { transform: CSS.Transform.toString(sortable.transform), transition: sortable.transition }
+        : {}
+
+    const setNodeRef = sortable?.setNodeRef || undefined
+    const listeners = sortable?.listeners || {}
+    const attributes = sortable?.attributes || {}
 
 
     // === Consts
@@ -55,7 +57,15 @@ const attributes = sortable?.attributes || {}
         if (column.width !== width) {
             setWidth(column.width)
         }
-    }, [column.width]);
+    }, [column.width])
+
+    useEffect(() => {
+        if (canDrag) {
+          document.body.classList.add('drag-mode')
+        } else {
+          document.body.classList.remove('drag-mode')
+        }
+      }, [canDrag])
 
 
     // resize columns 
@@ -140,28 +150,33 @@ const attributes = sortable?.attributes || {}
 
     }
 
+
     function handleMouseUp() {
         clearTimeout(dragTimeoutRef.current)
-        // setCanDrag(false)
+        const pressDuration = Date.now() - pressStartTimeRef.current
+      
+        if (pressDuration < 100) {
+          setCanDrag(false)
+        }
       }
-
     function handleMouseDown() {
-        if (isInputFocused) setCanDrag(false)
-
+        if (isInputFocused) return
+        pressStartTimeRef.current = Date.now()
+      
         dragTimeoutRef.current = setTimeout(() => {
           setCanDrag(true)
-        }, 300) 
+        }, 90)
       }
 
     return (
         <div
-        className={`T_ColumnHeaderCell ${isOver ? 'is-drag-over':''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
-        ref={setNodeRef}
-        style={style} 
-        onMouseUp={handleMouseUp}
-        onMouseDown={handleMouseDown}
-        onMouseLeave={handleMouseUp}
-        {...(canDrag ? { ...listeners, ...attributes } : {})}
+            className={`T_ColumnHeaderCell ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
+            ref={setNodeRef}
+            style={style}
+            onMouseUp={handleMouseUp}
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseUp}
+            {...(canDrag ? { ...listeners, ...attributes } : {})}
         >
 
 
@@ -201,24 +216,25 @@ const attributes = sortable?.attributes || {}
 
                         </div>
                         <div className="title-wraper">
-                            <Tooltip position='top' title={value} stretchWraper={true}>
+                            {/* <Tooltip position='top' title={value} stretchWraper={true}> */}
                                 <EditableText
-                                setIsInputFocused={setIsInputFocused}
-                                isInputFocused={isInputFocused}
+                                    setIsInputFocused={setIsInputFocused}
+                                    isInputFocused={isInputFocused}
                                     value={value}
                                     emojiPicker={false}
                                     centered={true}
                                     size="small"
                                     handleChange={handleChange}
-                                    onClick={()=>setIsInputFocused(true)}
-                                    onBlur={()=>{onUpdateColumnName()
+                                    onClick={() => setIsInputFocused(true)}
+                                    onBlur={() => {
+                                        onUpdateColumnName()
                                         setIsInputFocused(false)
                                     }}
                                     onPressEnter={onUpdateColumnName}
                                     additionalClass="centered"
 
                                 />
-                            </Tooltip>
+                            {/* </Tooltip> */}
                         </div>
                     </>
                 }

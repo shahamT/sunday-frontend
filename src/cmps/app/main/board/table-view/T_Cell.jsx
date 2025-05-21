@@ -30,7 +30,7 @@ export function T_Cell({ column, columnValue, task, groupId, listeners, isOverla
   useEffect(() => {
     function handleClickOutside(e) {
       if (cellRef.current && !cellRef.current.contains(e.target)) {
-        cellRef.current.blur(); // 🔥 remove focus
+        cellRef.current.blur()
       }
     }
 
