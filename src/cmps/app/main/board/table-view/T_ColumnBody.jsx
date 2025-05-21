@@ -6,12 +6,11 @@ export function T_ColumnBody({ column, group }) {
   }, [])
 
 
-  console.log(columnValues)
   return (
     <div className="T_ColumnBody">
-      {columnValues.map(value => (
-        <div key={value.id} className="cell-value">
-          <p>{value}</p>
+      {columnValues.map((value, idx)  => (
+        <div key={idx} className="cell-value">
+          <p>{JSON.stringify(value)}</p>
         </div>
       ))}
     </div>

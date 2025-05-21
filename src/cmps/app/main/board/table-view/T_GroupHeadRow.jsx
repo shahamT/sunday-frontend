@@ -48,7 +48,6 @@ export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bump
         return () => observer.disconnect();
     }, []);
     
-    console.log("store", board)
     // === Functions
     
     return (

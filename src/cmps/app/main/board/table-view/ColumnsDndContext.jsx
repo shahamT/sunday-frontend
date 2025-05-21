@@ -4,18 +4,29 @@ import { useState } from "react"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
 import { T_ColumnBody } from "./T_ColumnBody"
 import { moveColumns } from "../../../../../store/actions/board.actions"
-import { useSelector } from "react-redux"
+
 
 export function ColumnsDndContext({ children, columns, group, board }) {
   const [activeId, setActiveId] = useState(null)
   const activeColumn = columns.find(col => col.id === activeId)
 
 
-  function handleReorderColumns(newColumns, board) {
-    // console.log("ssssss",newColumns)
+
+  // async function handleReorderColumns(newColumns, board) {
+  //   const updatedBoard = { ...board, columns: newColumns }
+  //   try {
+  //     await moveColumns(updatedBoard)
+  //   }
+  //   catch (err) {
+  //     console.error('Failed to reorder columns', err)
+  //   }
+  // }
+   function handleReorderColumns(newColumns, board) {
     const updatedBoard = { ...board, columns: newColumns }
-    moveColumns(updatedBoard)
-  }
+   
+     moveColumns(updatedBoard)
+   
+   }
 
   function handleDragStart(event) {
     setActiveId(event.active.id)
