@@ -23,7 +23,6 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // =======================
 
 export function T_ColumnHeaderCell({ column,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
-const variant = column.type.variant
 // D & D
 const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
 
