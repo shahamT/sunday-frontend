@@ -49,7 +49,8 @@ export function CellContentDate({ task, column, columnValue }) {
         }
     }
 
-    function onClearDate() {
+    function onClearDate(ev) {
+        ev.stopPropagation()
         try {
             removeColumnValue(taskId, column.id, columnValue?.value)
         }

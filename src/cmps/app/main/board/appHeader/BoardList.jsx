@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"
 import { IsStarred } from "../value-setter/IsStarred"
 import { useEffect, useState } from "react"
 import { updateUser } from "../../../../../store/actions/user.actions"
+import { openGlobalModal } from "../../../../../store/actions/app.actions"
+import { Loader } from "../../../../reusables/Loader/Loader"
 
 // === Services
 
@@ -39,7 +41,18 @@ export function BoardList({ /* prop1, prop2 */ }) {
         updateUser(boardId)
     }
 
-    if (!lastViewedBoards) return <></>
+    if (boards.length === 0) return (
+        <div className="global-loader-container" >
+            <Loader
+                size={4}
+                width={6}
+                color="#0073ea"
+                textSize={1.2}
+            />
+        </div>
+    )
+
+
     return (
         <section className="board-list">
             <div className="recently-visited-wraper" onClick={() => setIsRecentlyVisitedOpen(prev => !prev)}>
@@ -77,7 +90,18 @@ export function BoardList({ /* prop1, prop2 */ }) {
                                 </article>)
                         }))
 
-                        : <p>No boards to show. lets create a new one! <button onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)}>Create new board</button></p>
+                        :
+                        <div className="board-list-empty-state-wraper">
+                            <img className="empty-state-img" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747752854/boards-empty-state.png" />
+                            <p className="empty-state-title" >No boards to show.</p>
+                            <p className="empty-state-subtitle">Lets create a new one!</p>
+
+                            <div
+                                className="add-board-btn clickable filled icon-start i-Add size-40"
+                                onClick={() => openGlobalModal(<AddBoardModal />)}>
+                                Add new board
+                            </div>
+                        </div>
                     }
                 </section >
             }

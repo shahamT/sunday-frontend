@@ -1,0 +1,140 @@
+[{
+  "_id": {
+    "$oid": "682d9bdb00f2a05b9a68d06b"
+  },
+  "account": "acc001",
+  "email": "yair.cohen@gmail.com",
+  "password": "$2b$10$xPjkplTCR6WcJ0QevnNOM.I2.RvwIYL8XSLjlsTCNDrb..DhCfwd6",
+  "firstName": "Yair",
+  "lastName": "Cohen",
+  "profileImg": "https://untitledui.com/images/avatars/orlando-diggs",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdb00f2a05b9a68d06c"
+  },
+  "account": "acc001",
+  "email": "itay.peretz@yahoo.com",
+  "password": "$2b$10$z/jGhr6QG0JmLum1Gml1h.GvfTaQVyoiW7S.MO5U1Y4BNejcSRlR2",
+  "firstName": "Itay",
+  "lastName": "Peretz",
+  "profileImg": "https://untitledui.com/images/avatars/drew-cano",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdc00f2a05b9a68d06d"
+  },
+  "account": "acc001",
+  "email": "michael.smith@gmail.com",
+  "password": "$2b$10$2gbB1aQ1ZqUPsy9TU0IFIOuE0/bKG9lF8t/38LPc2zcETmnMwr.RC",
+  "firstName": "Michael",
+  "lastName": "Smith",
+  "profileImg": "https://untitledui.com/images/avatars/joshua-wilson",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdc00f2a05b9a68d06e"
+  },
+  "account": "acc001",
+  "email": "sophie.dubois@outlook.com",
+  "password": "$2b$10$ovHlOivpmi4PItzkaB79/OPd9El1phEWSuKwJOnd0aW4SMKW0yWcy",
+  "firstName": "Sophie",
+  "lastName": "Dubois",
+  "profileImg": "https://untitledui.com/images/avatars/natali-craig",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdd00f2a05b9a68d06f"
+  },
+  "account": "acc001",
+  "email": "tamar.avraham@hotmail.com",
+  "password": "$2b$10$PXL1hPnIc.sY7l.B0jlmFebjjESM2c1hZLibdYFitBqB3YkwN4bL2",
+  "firstName": "Tamar",
+  "lastName": "Avraham",
+  "profileImg": "https://untitledui.com/images/avatars/sophia-perez",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdd00f2a05b9a68d070"
+  },
+  "account": "acc001",
+  "email": "emily.johnson@hotmail.com",
+  "password": "$2b$10$Vh/AX8VHgJ3inQ8dIAKZi.VLXiIn52Y6QbGFPCj8/4P7WMm4lJmti",
+  "firstName": "Emily",
+  "lastName": "Johnson",
+  "profileImg": "https://untitledui.com/images/avatars/nala-goins",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bde00f2a05b9a68d071"
+  },
+  "account": "acc001",
+  "email": "lukas.müller@gmail.com",
+  "password": "$2b$10$abYdGt1y6EODnHUIU/IrueEZ.ue4K90M47j27B.0a/t3jVSdex0em",
+  "firstName": "Lukas",
+  "lastName": "Müller",
+  "profileImg": "https://untitledui.com/images/avatars/ammar-foley",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bde00f2a05b9a68d072"
+  },
+  "account": "acc001",
+  "email": "ashley.brown@yahoo.com",
+  "password": "$2b$10$4EXC5giWrPfbSAaEbEuhEu6ajeQwUPjVKCoSzQFhySBSGnRpB5Oxy",
+  "firstName": "Ashley",
+  "lastName": "Brown",
+  "profileImg": "https://untitledui.com/images/avatars/zaid-schwartz",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdf00f2a05b9a68d073"
+  },
+  "account": "acc001",
+  "email": "noa.levi@gmail.com",
+  "password": "$2b$10$26BZsbVHa6HLKfLdrQ0fSeUzdB6OB4PyFgpeuB/.jlegmGTWCrytO",
+  "firstName": "Noa",
+  "lastName": "Levi",
+  "profileImg": "https://untitledui.com/images/avatars/florence-shaw",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+},
+{
+  "_id": {
+    "$oid": "682d9bdf00f2a05b9a68d074"
+  },
+  "account": "acc001",
+  "email": "giovanni.rossi@hotmail.com",
+  "password": "$2b$10$//g/I25kcgcpZWCwlwBPjelREwmMnmBkMGPpapXZrIv2n85xxTdUm",
+  "firstName": "Giovanni",
+  "lastName": "Rossi",
+  "profileImg": "https://untitledui.com/images/avatars/ali-mahdi",
+  "role": "user",
+  "isGoogleUser": false,
+  "lastViewedBoards": []
+}]

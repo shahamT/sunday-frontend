@@ -3,6 +3,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-inline: 8px;
 
     &:hover {
 
@@ -13,16 +14,27 @@
 
     }
 
-    .img-wraper {
+    .clickable-area {
+        width: 100%;
+        display: flex;
+        justify-content: center;
 
-        .img-preview {
-            height: 26px;
-            transition: var(--transition-xs);
-            &:hover{
-              height: 30px;  
+        .img-wraper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+
+            .img-preview {
+                height: 26px;
+                object-fit: contain;
+                transition: var(--transition-xs);
+
+                &:hover {
+                    transform: scale(1.1);
+                }
             }
-        }
 
+        }
     }
 
     .clear-btn {
@@ -34,7 +46,7 @@
         width: 18px !important;
         height: 18px;
 
-        background-color: var(--primary-background-hover-color);
+        background-color: var(--ui-background-color);
         opacity: 0;
 
         &:hover {

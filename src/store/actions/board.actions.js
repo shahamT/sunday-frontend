@@ -600,3 +600,4 @@ async function unitTestActions() {
     await removeBoard('m1oC7')
     // TODO unit test addBoardMsg
 }
+

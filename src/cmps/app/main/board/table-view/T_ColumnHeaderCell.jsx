@@ -39,7 +39,9 @@ const attributes = sortable?.attributes || {}
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const variant = column.type.variant
 
+    
     // === Effects
     useEffect(() => {
         // update input value dynamically if it's changed in the database
@@ -77,7 +79,8 @@ const attributes = sortable?.attributes || {}
 
     function onMouseMove(e) {
         const deltaX = e.clientX - startX.current;
-        const newWidth = Math.max(100, startWidth.current + deltaX)
+        const minWidth = variant === 'item' ? 250 : 100;
+        const newWidth = Math.max(minWidth, startWidth.current + deltaX);
 
         //  Write live width to shared ref
         if (liveColumnWidthsRef?.current) {
@@ -100,7 +103,8 @@ const attributes = sortable?.attributes || {}
         document.removeEventListener('mouseup', onMouseUp)
 
         const deltaX = e.clientX - startX.current
-        const finalWidth = Math.max(100, startWidth.current + deltaX)
+        const minWidth = variant === 'item' ? 250 : 100;
+        const finalWidth = Math.max(minWidth, startWidth.current + deltaX)
         setWidth(finalWidth)
         updateColumnWidth(finalWidth)
     }

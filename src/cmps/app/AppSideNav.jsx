@@ -23,6 +23,7 @@ import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actio
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
+import { Loader } from '../reusables/Loader/Loader';
 
 // ====== Component ======
 // =======================
@@ -44,7 +45,17 @@ export function AppSideNav({ }) {
 
     useEffect(() => {
         loadBoards()
-    }, [])
+
+        const onBoardsUpdate = (boards) => {
+            dispatch(getCmdUpdateMiniBoardsFromSocket(boards))
+        }
+
+        socketService.on(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
+
+        return () => {
+            socketService.off(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
+        }
+    }, []) 
 
 
 
@@ -106,7 +117,6 @@ export function AppSideNav({ }) {
         })
     )
 
-    if (!boards) return <div>Loading...</div>
 
     return (
         <nav className="AppSideNav" >
@@ -164,38 +174,63 @@ export function AppSideNav({ }) {
                         <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 
-                    <div className="board-list">
-                        <DndContext
-                            sensors={sensors}
-                            collisionDetection={closestCenter}
-                            onDragEnd={handleDragEnd}
-                            onDragStart={handleDragStart}
-                        >
-                            <SortableContext items={Array.isArray(filteredBoards) ? filteredBoards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
-                                {filteredBoards.map(board =>
-                                    <BoardNavBarLink board={board}
-                                        key={board._id}
-                                        editedTitle={editedTitle}
-                                        editingBoardId={editingBoardId}
-                                        setEditedTitle={setEditedTitle}
-                                        setEditingBoardId={setEditingBoardId}
-                                        handleRename={handleRename} />
 
-                                )}
-                            </SortableContext>
-                            <DragOverlay>
-                                {activeBoard ? (
-                                    <div className="drag-overlay-board">
-                                        <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
-                                            <p>{activeBoard.name}</p>
+                    {boards.length === 0 &&
+                        (<div className="global-loader-container" >
+                            <Loader
+                                size={4}
+                                width={6}
+                                color="#0073ea"
+                                textSize={1.2}
+                            />
+                        </div>)
+                    }
+
+                    {boards.length !== 0 && filteredBoards.length === 0 ?
+                        <div className="board-list-empty-state-wraper">
+                            <img className="empty-state-img" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747752854/boards-empty-state.png" />
+                            <p className="empty-state-title" >No boards to show.</p>
+                        </div>
+
+                        :
+                        <div className="board-list">
+                            <DndContext
+                                sensors={sensors}
+                                collisionDetection={closestCenter}
+                                onDragEnd={handleDragEnd}
+                                onDragStart={handleDragStart}
+                            >
+                                <SortableContext items={Array.isArray(filteredBoards) ? filteredBoards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
+                                    {filteredBoards.map(board =>
+                                        <BoardNavBarLink board={board}
+                                            key={board._id}
+                                            editedTitle={editedTitle}
+                                            editingBoardId={editingBoardId}
+                                            setEditedTitle={setEditedTitle}
+                                            setEditingBoardId={setEditingBoardId}
+                                            handleRename={handleRename} />
+
+                                    )}
+                                </SortableContext>
+                                <DragOverlay>
+                                    {activeBoard ? (
+                                        <div className="drag-overlay-board">
+                                            <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
+                                                <p>{activeBoard.name}</p>
+                                            </div>
                                         </div>
-                                    </div>
-                                ) : null}
+                                    ) : null}
 
-                            </DragOverlay>
+                                </DragOverlay>
 
-                        </DndContext>
-                    </div>
+                            </DndContext>
+                        </div>
+
+
+                    }
+
+
+
 
                 </section>}
 

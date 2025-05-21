@@ -11,7 +11,14 @@ import { T_TaskRow } from './T_TaskRow'
 // ====== Component ======
 // =======================
 
-export function T_Group({ group, columns, liveColumnWidthsRef, resizeVersion, bumpResizeVersion, activeId }) {
+export function T_Group({
+  group,
+  columns,
+  liveColumnWidthsRef,
+  resizeVersion,
+  bumpResizeVersion,
+  activeId,
+}) {
   // === Consts
   const itemColumn = columns.find(col => col.type?.variant === 'item')
 
