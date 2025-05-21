@@ -30,9 +30,9 @@ import { Loader } from '../reusables/Loader/Loader';
 // =======================
 export function AppSideNav({ }) {
     const { boards, boardsFilterBy } = useSelector(storeState => storeState.boardModule)
-    const filteredBoards = boards.filter(board =>
-        board.name.toLowerCase().includes(boardsFilterBy.txt.toLowerCase())
-    )
+    const filteredBoards = Array.isArray(boards) ? boards.filter(board =>
+        (board?.name || '').toLowerCase().includes((boardsFilterBy?.txt || '').toLowerCase())
+    ) : []
 
     const { boardId } = useParams()
 

@@ -6,7 +6,7 @@ import {
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     SET_BOARD_FILTER_BY,
-    OPEN_TASK_PANEL, CLOSE_TASK_PANEL,SET_BOARDS_FILTER_BY,
+    OPEN_TASK_PANEL, CLOSE_TASK_PANEL, SET_BOARDS_FILTER_BY,
     CREATE_LOG
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
@@ -153,7 +153,7 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
     const task = await boardService.getEmptyTask(valueToSave, itemColId)
     try {
         store.dispatch(getCmdAddTask(task, groupId, isTop))
-        await createLog({type:'add task', taskId: task.id, valueToSave})
+        await createLog({ type: 'add task', taskId: task.id, valueToSave })
         const savedTask = await boardService.createTask(task, boardId, groupId, isTop)
         return savedTask
     } catch (err) {
@@ -168,7 +168,7 @@ export async function removeTask(taskId, groupId) {
     const boardId = getBoardId()
     try {
         store.dispatch(getCmdRemoveTask(taskId, groupId))
-        await createLog({type:'remove task', taskId})
+        await createLog({ type: 'remove task', taskId })
         await boardService.removeTask(taskId, groupId, boardId)
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -190,15 +190,15 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
         console.log('board action -> Cannot move task', err)
         throw err
     }
-  try {
-    store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
-    await createLog({type:'move task', taskId: task.id, fromGroupId, toGroupId})
-    await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
-  } catch (err) {
-    store.dispatch({ type: REVERT_BOARD })
-    console.log('board action -> Cannot move task', err)
-    throw err
-  }
+    try {
+        store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
+        await createLog({ type: 'move task', taskId: task.id, fromGroupId, toGroupId })
+        await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('board action -> Cannot move task', err)
+        throw err
+    }
 }
 
 
@@ -222,7 +222,7 @@ export async function setColumnValue(taskId, colId, value, prevValue) {
     try {
         store.dispatch(getCmdSetColumnValue(board, taskId, colId, value))
         await boardService.setColumnValue(board, taskId, colId, value)
-        await createLog({type:'set column value', taskId, colId, value, prevValue})
+        await createLog({ type: 'set column value', taskId, colId, value, prevValue })
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot set column value', err)
@@ -236,7 +236,7 @@ export async function removeColumnValue(taskId, colId, prevValue) {
     try {
         store.dispatch(getCmdRemoveColumnValue(board, taskId, colId))
         await boardService.removeColumnValue(board, taskId, colId)
-        await createLog({type:'set column value', taskId, colId, prevValue})
+        await createLog({ type: 'set column value', taskId, colId, prevValue })
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot remove column value', err)
@@ -325,7 +325,7 @@ export async function updateLabel(columnId, labelToUpdate) {
     }
 }
 
-export async function addLabel(columnId,label) {
+export async function addLabel(columnId, label) {
     const boardId = getBoardId()
     if (!boardId) {
         console.error('boardId is undefined. Cannot send request to backend.')
@@ -333,7 +333,7 @@ export async function addLabel(columnId,label) {
     }
     // const label = boardService.getEmptyLabel()
     try {
-        store.dispatch(getCmdAddLabel(label,columnId,boardId))
+        store.dispatch(getCmdAddLabel(label, columnId, boardId))
         const savedLabel = await boardService.createLabel(label, columnId, boardId)
         return savedLabel
     } catch (err) {
@@ -540,40 +540,40 @@ export function getCmdMoveTask(task, fromGroupId, toGroupId, toIndex) {
 }
 
 export function getCmdCreateLog(logObject) {
-  return {
-    type: CREATE_LOG,
-    logObject
-  }
+    return {
+        type: CREATE_LOG,
+        logObject
+    }
 }
 
 
 
-export function getCmdAddLabel(label,columnId,boardId){
-    return{
-        type:ADD_LABEL,
+export function getCmdAddLabel(label, columnId, boardId) {
+    return {
+        type: ADD_LABEL,
         columnId,
         label,
         boardId
     }
 
-    
+
 }
 
-export function getCmdRemoveLabel(labelId, columnId){
+export function getCmdRemoveLabel(labelId, columnId) {
     return {
         type: REMOVE_LABEL,
         labelId,
-         columnId
+        columnId
     }
 
 
 }
-export function getCmdUpdateLabel(columnId,labelToUpdate){
-return {
-    type: UPDATE_LABEL,
-    columnId,
-     labelToUpdate
-}
+export function getCmdUpdateLabel(columnId, labelToUpdate) {
+    return {
+        type: UPDATE_LABEL,
+        columnId,
+        labelToUpdate
+    }
 
 }
 
@@ -589,3 +589,4 @@ async function unitTestActions() {
     await removeBoard('m1oC7')
     // TODO unit test addBoardMsg
 }
+

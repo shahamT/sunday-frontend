@@ -123,8 +123,8 @@ export function Signup() {
 
     async function loginToDemoAccount() {
         const userCred = {
-            email: "user1@company.com",
-            password: "hashed_pw_1"
+            email: "yair.cohen@gmail.com",
+            password: "yair1234!"
         }
         try {
             const user = await login(userCred)
