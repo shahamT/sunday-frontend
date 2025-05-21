@@ -7,6 +7,19 @@
         border-top-right-radius: var(--border-radius-md);
         height: 40px;
         width: inherit;
+        padding-inline: 8px;
+        display: flex;
+        align-items: center;
+        color: white;
+
+        .name {
+            font-weight: 600;
+        }
+
+        .amount {
+            font-weight: 400;
+            font-size: 14px;
+        }
     }
 
     .status-body {

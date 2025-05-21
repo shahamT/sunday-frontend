@@ -28,8 +28,8 @@ export function K_StatusPreview({ label }) {
 
             {/* **************label header*************** */}
             <div className={`status-header ${label.color}-bg`}>
-                <span>{label.name}</span>
-                <span>{label.tasks.length}</span>
+                <span className="name">{label.name}</span>
+                <span className="amount">{label.tasks.length}</span>
             </div>
 
             {/* **************tasks*************** */}
