@@ -24,6 +24,7 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 
 export function T_ColumnHeaderCell({ column,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
 // D & D
+const variant = column.type.variant
 const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
 
 const style = sortable
@@ -38,7 +39,6 @@ const attributes = sortable?.attributes || {}
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
-    const variant = column.type.variant
 
     
     // === Effects
