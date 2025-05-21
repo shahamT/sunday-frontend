@@ -1,14 +1,11 @@
-
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { T_Cell } from './Demo-T_Cell'
-
 
 // ====== T_TaskRow Component ======
 // =================================
 
 export function T_TaskRow({ task, columns, group, }) {
-
 
     // ==== drag and drop ====
     const {
@@ -42,7 +39,6 @@ export function T_TaskRow({ task, columns, group, }) {
             />
         )
     }
-
 
     return (
         <article className={`T_TaskRow ${isDragging ? 'dragging' : ''}`}>

@@ -1,4 +1,3 @@
-
 import { CellContentDate } from "./T_CellContent/CellContentDate"
 import { CellContentItem } from "./T_CellContent/CellContentItem"
 import { CellContentPeople } from "./T_CellContent/CellContentPeople"
@@ -24,7 +23,6 @@ export function T_Cell({ column, columnValue, task, groupId }) {
 
   const variant = column.type.variant
   const DynamicComponent = componentMap[variant]
-
 
   return (
     <section className="T_Cell">

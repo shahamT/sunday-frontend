@@ -1,6 +1,6 @@
 // === Libs
 import validator from 'validator';
-import { googleAuth, login } from '../../store/actions/user.actions.js';
+import { googleAuth, loginUser } from '../../store/actions/user.actions.js';
 
 // === Services
 
@@ -16,6 +16,9 @@ import { useEffect } from 'react';
 // === Imgs
 
 // === Child Components
+
+const GOOGLE_CLIENT_ID = '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com'
+
 
 // ====== Component ======
 // =======================
@@ -69,7 +72,7 @@ export function Login() {
 
     async function onLogin() {
         try {
-            const user = await login(userCredentials)
+            const user = await loginUser(userCredentials)
 
             //redirecting the user to where they tried to get in the app.
             const from = location.state?.from || '/app/home';
@@ -81,29 +84,44 @@ export function Login() {
     }
 
 
-    const loginWithGoogle = () => {
+    // ======== google auth =======
+
+    useEffect(() => {
+        if (!window.google?.accounts?.id) {
+            console.error('Google script not loaded')
+            return
+        }
+
         window.google.accounts.id.initialize({
-            // client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-            client_id: '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com',
+            client_id: GOOGLE_CLIENT_ID,
             callback: async (response) => {
-                const idToken = response.credential;
+                const idToken = response.credential
                 if (!idToken) {
-                    showErrorMsg('Google authentication failed')
+                    showErrorMsg?.('Google authentication failed')
                     return
                 }
 
                 try {
-                    const user = await googleAuth({ idToken })
-                    console.log("user: ", user)
+                    console.log('Received ID token:', idToken)
+                    await googleAuth({ idToken }) // Send token to backend
                     navigate('/app/home')
-                }
-                catch {
-                    showErrorMsg('Google authentication failed')
+                } catch (err) {
+                    console.error('Google login error:', err)
+                    showErrorMsg?.(err.message || 'Login failed')
                 }
             },
         })
-        window.google.accounts.id.prompt()
-    }
+
+        window.google.accounts.id.renderButton(
+            document.getElementById('googleSignInDiv'),
+            {
+                theme: 'outline',
+                size: 'large',
+                text: 'signin_with',
+                shape: 'rectangular',
+            }
+        )
+    }, [])
 
 
     async function loginToDemoAccount() {
@@ -112,7 +130,7 @@ export function Login() {
             password: "12345678"
         }
         try {
-            const user = await login(userCred)
+            const user = await loginUser(userCred)
             navigate('/app/home')
         }
         catch (err) {
@@ -168,13 +186,14 @@ export function Login() {
                         <div className="line" />
                     </div>
 
-                    <div
+                    <div id="googleSignInDiv"></div>
+                    {/* <div
                         className='google-auth-btn clickable clear full-width size-40'
                         onClick={() => loginWithGoogle()}
                     >
                         <img className='google-icon' src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747598560/Google__G__logo.svg_igbjrb.png" />
                         Continue with Google
-                    </div>
+                    </div> */}
 
 
                     <p className='terms-and-cond-text'>
