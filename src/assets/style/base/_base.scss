@@ -8,12 +8,15 @@ html {
 	font-family: var(--font-family);
 	font-weight: 400;
 	color: var(--clr-black);
+	overflow-x: hidden;
 }
 
 body {
 	margin: 0;
 	padding: 0;
 	color: var(--gray3);
+		height: 100vh;
+
 }
 
 p,
