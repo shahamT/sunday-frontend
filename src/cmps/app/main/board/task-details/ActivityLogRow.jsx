@@ -71,8 +71,7 @@ export function ActivityLogRow({ activity, task, board }) {
         } else if (currCol.type.variant === "date") {
           console.log(activity);
           if (activity.value) setNewVal(formatSmartDate(activity.value));
-          if (activity.prevValue)
-            setPrevVal(formatSmartDate(activity.prevValue));
+          if (activity.prevValue) setPrevVal(formatSmartDate(activity.prevValue));
           console.log("newVal: ", newVal);
           console.log("prevVal: ", prevVal);
           setCvType("date");
@@ -89,7 +88,6 @@ export function ActivityLogRow({ activity, task, board }) {
           setPrevVal(prevValue);
           setCvType("status");
         } else if (currCol.type.variant === "people") {
-          // console.log('hi')
           const currValue = activity.value?.filter((user) => {
             return !activity.prevValue?.some(
               (prevUser) => prevUser._id === user._id
@@ -99,8 +97,8 @@ export function ActivityLogRow({ activity, task, board }) {
             return !activity.value?.some((user) => user._id === prevUser._id);
           });
 
-          // console.log('currValue: ', currValue)
-          // console.log('prevValue: ', prevValue)
+          console.log('currValue: ', currValue)
+          console.log('prevValue: ', prevValue)
           if (currValue) setNewVal(currValue[0]);
           if (prevValue) setPrevVal(prevValue[0]);
           setCvType("people");
@@ -130,7 +128,9 @@ export function ActivityLogRow({ activity, task, board }) {
       {activityType !== "move task" && (
         <section className="activity-row-section basic-details">
           <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
-          <img src={activity.createdBy} alt="" />
+          <div className="profile-img-wrapper">
+            <img src={activity.createdBy} alt="" />
+          </div>
           <p className="task-name">{task.columnValues[0]?.value}</p>
         </section>
       )}
@@ -141,7 +141,9 @@ export function ActivityLogRow({ activity, task, board }) {
 
             <section className="activity-row-section basic-details">
               <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
-              <img src={activity.createdBy} alt="" />
+              <div className="profile-img-wrapper">
+                <img src={activity.createdBy} alt="" />
+              </div>
               <p className="task-name">{task.columnValues[0]?.value}</p>
             </section>
 
@@ -164,7 +166,9 @@ export function ActivityLogRow({ activity, task, board }) {
 
             <section className="activity-row-section basic-details">
               <p className="time">{getShortRelativeTime(activity.createdAt)}</p>
-              <img src={activity.createdBy} alt="" />
+              <div className="profile-img-wrapper">
+                <img src={activity.createdBy} alt="" />
+              </div>
               <p className="task-name">{task.columnValues[0]?.value}</p>
             </section>
 
@@ -222,7 +226,9 @@ export function ActivityLogRow({ activity, task, board }) {
             {cvType === "file" && (
               <>
                 {activity.prevValue ? (
-                  <img className="prev-value" src={activity.prevValue} alt="" />
+                  <div className="profile-img-wrapper">
+                    <img className="prev-value" src={activity.prevValue} alt="" />
+                  </div>
                 ) : (
                   <div className="prev-value">-</div>
                 )}
@@ -230,7 +236,9 @@ export function ActivityLogRow({ activity, task, board }) {
                 <div className="change-arrow"></div>
 
                 {activity.value ? (
-                  <img className="to-value" src={activity.value} alt="" />
+                  <div className="profile-img-wrapper">
+                    <img className="to-value" src={activity.value} alt="" />
+                  </div>
                 ) : (
                   <div className="to-value">-</div>
                 )}
@@ -291,7 +299,9 @@ export function ActivityLogRow({ activity, task, board }) {
               <section className="people-change-details regular-action">
                 <div>{newVal ? "Added" : "Removed"} </div>
                 <Tooltip title={newVal?.name || prevVal?.name}>
-                  <img src={newVal?.profileImg || prevVal.profileImg} alt="" />
+                  <div className="profile-img-wrapper">
+                    <img src={newVal?.profileImg || prevVal.profileImg} alt="" />
+                  </div>
                 </Tooltip>
               </section>
             )}

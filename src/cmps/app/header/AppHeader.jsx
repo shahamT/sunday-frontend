@@ -54,7 +54,9 @@ export function AppHeader(props) {
                     )}>
                     <div className="menu-btn clickable select size-32 clear">
                         <img className="monday-logo-icon" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1746718734/monday_logo_icon_dumn0r.png" alt="" />
-                        <img className="user-avatar" src={profileImg} alt="" />
+                        <div className='profile-img-wrapper'>
+                            <img className="user-avatar" src={profileImg} alt="" />
+                        </div>
                     </div>
                 </PopUpMenu>
 

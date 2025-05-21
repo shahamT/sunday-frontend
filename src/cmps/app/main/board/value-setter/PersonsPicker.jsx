@@ -50,7 +50,9 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
             <div className="selected-persons">
                 {selectedPersons?.map(person => (
                     <div key={person._id} className="selected-person">
-                        <img src={person.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`} alt="" />
+                        <div className="profile-img-wrapper">
+                            <img src={person.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`} alt="" />
+                        </div>
                         <section>{person.firstName} {person.lastName}</section>
                         <button className="remove-person-btn icon-btn size-24 i-CloseMedium" onClick={() => onRemovePerson(person._id)}></button>
                     </div>
@@ -61,7 +63,9 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
                 if (user.account === boardAccountId && !selectedPersons.some(person => person._id === user._id)) {
                     return (
                         <button key={user._id} className="person-select-btn clickable clear size-40 select" onClick={() => onSelectPerson(user)}>
-                            <img src={user.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`} alt="" />
+                            <div className="profile-img-wrapper">
+                                <img src={user.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`} alt="" />
+                            </div>
                             <span>{user.firstName} {user.lastName}</span>
                         </button>
                     )

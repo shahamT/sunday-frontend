@@ -41,7 +41,9 @@ export function TaskDetailsUpdates({ boardId, groupId, taskId, task}) {
       <TaskDetailsTextEditor saveUpdate={saveUpdate} /> 
       {!task.updates.length ?
       <div className="no-updates">
-        <img src="https://microfrontends.monday.com/mf-feed/latest/static/media/empty-state.8bf98d52.svg" alt="No updates yet"></img>
+        <div className="profile-img-wrapper">
+          <img src="https://microfrontends.monday.com/mf-feed/latest/static/media/empty-state.8bf98d52.svg" alt="No updates yet"></img>
+        </div>
         <h3>No updates yet</h3>
         <p>Share progress here!</p>
       </div>

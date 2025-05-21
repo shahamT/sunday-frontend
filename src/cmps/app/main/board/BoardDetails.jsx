@@ -23,6 +23,7 @@ import { TaskPanel } from "./TaskPanel";
 import { T_Filter } from "./table-view/T_Filter";
 import { TaskDetails } from "./task-details/TaskDetails";
 import { T_GroupsList } from "./table-view/T_GroupsList";
+import { K_StatusList } from "./kanban-view/K-StatusList";
 
 // ====== Component ======
 // =======================
@@ -65,7 +66,8 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
             <BoardHeader isSelected={isSelected} select={select} />
 
             <T_Filter />
-            <T_GroupsList />
+            {isSelected('main-table') &&  <T_GroupsList />}
+            {isSelected('kanban') &&  <K_StatusList />}
 
             <TaskPanel
                 side='right'
