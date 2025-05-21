@@ -15,8 +15,7 @@ export function DatePickerColumn({ onCloseModal, setDate, defaultDate }) {
     const [selectedDate, setSelectedDate] = useState(defaultDate || new Date())
     const [showTimePicker, setShowTimePicker] = useState(false);
 
-    const years = range(1990, getYear(new Date()) + 1, 1);
-    const months = [
+    const years = range(1990, new Date().getFullYear() + 10);        const months = [
         "January",
         "February",
         "March",
@@ -94,6 +93,7 @@ export function DatePickerColumn({ onCloseModal, setDate, defaultDate }) {
 
                             />)}
                         <select className="year-btn clickable clear size-40"
+                         onMouseDown={(e) => e.preventDefault()} 
                             value={getYear(date)}
                             onChange={({ target: { value } }) => changeYear(value)}
                         >
@@ -105,6 +105,7 @@ export function DatePickerColumn({ onCloseModal, setDate, defaultDate }) {
                         </select>
 
                         <select className="month-btn clickable clear size-40"
+                         onMouseDown={(e) => e.preventDefault()} 
                             value={months[getMonth(date)]}
                             onChange={({ target: { value } }) =>
                                 changeMonth(months.indexOf(value))
