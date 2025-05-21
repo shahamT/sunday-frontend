@@ -242,8 +242,8 @@ export function boardReducer(state = initialState, action = {}) {
                         }
                     };
                 }
-                return column;
-            });
+                return column
+            })
         
             return {
                 ...state,

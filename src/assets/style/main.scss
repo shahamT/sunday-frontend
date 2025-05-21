@@ -15,6 +15,7 @@
 /* base elements */
 @import 'base-elements/clickable.scss';
 @import 'base-elements/table-tasks.scss';
+@import 'base-elements/global-loader-container.scss';
 
 /* MEDIA QUERIES */
 @import 'setup/mq.scss';
@@ -104,6 +105,7 @@
 @import 'cmps/app/_FileMenu.scss';
 @import 'cmps/app/_ColumnMenu.scss';
 @import 'cmps/app/_TaskMenu.scss';
+@import 'cmps/app/_EditLabelMenu.scss';
 
 // ====== Modals ======
 

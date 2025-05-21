@@ -6,6 +6,7 @@ import { addBoard } from "../../../../../store/actions/board.actions"
 import { useNavigate } from "react-router-dom"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 import { updateUser } from "../../../../../store/actions/user.actions"
+import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 
 // === Services
 
@@ -20,7 +21,7 @@ import { updateUser } from "../../../../../store/actions/user.actions"
 // ====== Component ======
 // =======================
 
-export function AddBoardModal({ closeGlobalModal }) {
+export function AddBoardModal() {
     // === Consts
     const [newBoard, setNewBoard] = useState('')
     const navigate = useNavigate()

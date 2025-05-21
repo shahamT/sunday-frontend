@@ -24,7 +24,6 @@
 
     .T_GroupHeadRow> :nth-child(2),
     .T_TaskRow> :nth-child(2),
-    .T_GroupFooter> :nth-child(2),
     .T_ColumnSumRow> :nth-child(n + 3) {
         border-inline-end: 1px solid var(--layout-border-color);
     }

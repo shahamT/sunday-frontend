@@ -1,11 +1,9 @@
 // === Libs
 
-import { useState } from "react"
 import { EditLable } from "./EditLabel"
 import { boardService } from "../../../../../services/board"
 import { addLabel, updateLabel } from "../../../../../store/actions/board.actions"
-import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
-import { ColorPicker } from "./ColorPicker"
+
 
 
 

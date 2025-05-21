@@ -34,11 +34,11 @@ import { PersonsPicker } from "../value-setter/PersonsPicker"
 export function TaskDetails() {
     // === Consts
     const navigate = useNavigate()
-    const {boardId, taskId} = useParams()
+    const { boardId, taskId } = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
     const panel = useSelector(storeState => storeState.boardModule.isTaskPanelOpen)
     const { selected, isSelected, select } = useSelected('updates')
-    
+
     const [columns, setColumns] = useState(null)
     const [personsColumn, setPersonsColumn] = useState(null)
     const [task, setTask] = useState(null)
@@ -46,7 +46,7 @@ export function TaskDetails() {
     const [selectedPersons, setSelectedPersons] = useState([])
     const [isOwnerSelected, setIsOwnerSelected] = useState(false)
     const [value, handleChange, reset, set] = useControlledInput('')
-    
+
     // === Effects
     useEffect(() => {
         const foundTask = getTaskById(taskId)
@@ -68,19 +68,19 @@ export function TaskDetails() {
         if (!task || !columns) return;
 
         const peopleColId = columns.find(column => column.type.variant === 'people')?.id
-        if(!peopleColId) return
+        if (!peopleColId) return
         setPersonsColumn(peopleColId)
-        
+
         const peopleColValue = task.columnValues.find(cv => cv.colId === peopleColId)
         let persons = Array.isArray(peopleColValue?.value) ? [...peopleColValue.value] : [];
-        
+
         let ownerId = task.createdBy
-        
+
         const enrich = async () => {
             let owner = persons.find(person => person._id === ownerId);
             if (owner) {
                 setIsOwnerSelected(true)
-                
+
             } else owner = await userService.getById(ownerId)
             persons = [owner, ...persons.filter(p => p._id !== owner._id)]
             setSelectedPersons(persons)
@@ -122,7 +122,7 @@ export function TaskDetails() {
     }
 
     function getTaskById(taskId) {
-        
+
         for (const group of board?.groups || []) {
             for (const task of group.tasks) {
                 if (task.id === taskId) {
@@ -155,7 +155,7 @@ export function TaskDetails() {
     return (
         <section className="TaskDetails">
             <section className="task-details-header">
-                    <button className="exit-btn clickable clear icon-btn size-24 i-Close" onClick={onCloseTaskDetails}></button>
+                <button className="exit-btn clickable clear icon-btn size-24 i-Close" onClick={onCloseTaskDetails}></button>
                 <section className="task-details-title">
                     <EditableText
                         value={value}
@@ -166,27 +166,27 @@ export function TaskDetails() {
                         onPressEnter={onSetName}
                     />
                     <div className="in-task-persons" style={{ paddingInlineEnd: `${12 + 7 * (selectedPersons.length - 1)}px` }}>
-                    {/* <div className="in-task-persons" style={{ paddingInlineEnd: selectedPersons.length === 1
+                        {/* <div className="in-task-persons" style={{ paddingInlineEnd: selectedPersons.length === 1
                         ? '5px'
                         : `${19 + 7 * (selectedPersons.length - 1)}px`
                     }}> */}
-                    <div>
-                        <PopUpMenu
-                            stretchTrigger={true}
-                            gap={4}
-                            noArrow={false}
-                            position="bottom"
-                            renderContent={({ onCloseModal }) => (
-                                <PersonsPicker
-                                    onCloseModal={onCloseModal}
-                                    currSelectedPersons={isOwnerSelected ? selectedPersons : selectedPersons.slice(1)}
-                                    setPersons={setPersons}
-                                />
-                            )}>
-                            <button style={{marginInlineEnd: `${selectedPersons.length === 1 ? '-7px' : '-2px'}`}} className="add-memeber-btn clickable filled icon-btn size-24 i-AddSmall"></button>
-                        </PopUpMenu>
-                    </div>
-                        <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length}/>
+                        <div>
+                            <PopUpMenu
+                                stretchTrigger={true}
+                                gap={4}
+                                noArrow={false}
+                                position="bottom"
+                                renderContent={({ onCloseModal }) => (
+                                    <PersonsPicker
+                                        onCloseModal={onCloseModal}
+                                        currSelectedPersons={isOwnerSelected ? selectedPersons : selectedPersons.slice(1)}
+                                        setPersons={setPersons}
+                                    />
+                                )}>
+                                <button style={{ marginInlineEnd: `${selectedPersons.length === 1 ? '-7px' : '-2px'}` }} className="add-memeber-btn clickable filled icon-btn size-24 i-AddSmall"></button>
+                            </PopUpMenu>
+                        </div>
+                        <PersonsPreview selectedPersons={selectedPersons} amount={selectedPersons.length} />
                     </div>
                     <div className="options-menu-wraper">
                         <PopUpMenu
@@ -200,25 +200,27 @@ export function TaskDetails() {
                             )}
                         >
                             <div className="task-menu-btn clickable clear icon-btn size-24 i-Menu"></div>
-                        </PopUpMenu>   
+                        </PopUpMenu>
                     </div>
                 </section>
-                    <div className="tab-bar">         
-                        <div key="updates" className={isSelected('updates') ? 'tab-underline' : ''} onClick={() => select("updates")}>
-                            <div className="tab-btn clickable clear size-32 select icon-start i-Home">Updates</div>
-                        </div>
-                        <div key="files" className={isSelected('files') ? 'tab-underline' : ''} onClick={() => select("files")}>
-                            <div className="tab-btn clickable clear size-32 select">Files</div>
-                        </div>
-                        <div key="activity-log" className={isSelected('activity-log') ? 'tab-underline' : ''} onClick={() => select("activity-log")}>
-                            <div className="tab-btn clickable clear size-32 select">Activity Log</div>
-                        </div>
-                    </div> 
+                <div className="tab-bar">
+                    <div key="updates" className={isSelected('updates') ? 'tab-underline' : ''} onClick={() => select("updates")}>
+                        <div className="tab-btn clickable clear size-32 select icon-start i-Home">Updates</div>
+                    </div>
+                    <div key="files" className={isSelected('files') ? 'tab-underline' : ''} onClick={() => select("files")}>
+                        <div className="tab-btn clickable clear size-32 select">Files</div>
+                    </div>
+                    <div key="activity-log" className={isSelected('activity-log') ? 'tab-underline' : ''} onClick={() => select("activity-log")}>
+                        <div className="tab-btn clickable clear size-32 select">Activity Log</div>
+                    </div>
+                </div>
             </section>
 
-            {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
-            {isSelected('files') && <TaskDetailsFiles />}
-            {isSelected('activity-log') && <TaskDetailsActivityLog task={task} board={board} />}
+            <section className="task-details-tab-content">
+                {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
+                {isSelected('files') && <TaskDetailsFiles />}
+                {isSelected('activity-log') && <TaskDetailsActivityLog task={task} board={board} />}
+            </section>
         </section>
     )
 }

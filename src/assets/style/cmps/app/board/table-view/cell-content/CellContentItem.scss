@@ -1,5 +1,7 @@
 .CellContentItem {
     cursor: grab;
+    display: grid !important;
+    grid-template-columns: auto 1fr auto auto;
 
     &:hover {
 
@@ -9,8 +11,8 @@
     }
 
     .text-container {
-        width: calc(100% - 130px);
-
+        display: flex;
+        min-width: 0;
         padding-inline-start: 24px;
         padding-inline-end: 8px;
 
@@ -22,7 +24,7 @@
         align-items: center;
         justify-content: center;
 
-        width: 65px;
+        width: 65px !important;
         height: 100%;
         border-inline-start: 1px solid var(--layout-border-color);
         cursor: pointer;
