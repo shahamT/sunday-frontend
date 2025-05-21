@@ -36,6 +36,7 @@ export function TaskDetails() {
     const navigate = useNavigate()
     const {boardId, taskId} = useParams()
     const board = useSelector(storeState => storeState.boardModule.board)
+    const panel = useSelector(storeState => storeState.boardModule.isTaskPanelOpen)
     const { selected, isSelected, select } = useSelected('updates')
     
     const [columns, setColumns] = useState(null)
@@ -93,6 +94,11 @@ export function TaskDetails() {
     useEffect(() => {
         loadUsers()
     }, [])
+
+    useEffect(() => {
+        return () => {
+            select('updates')}
+    }, [panel])
 
     // === Functions
     function onCloseTaskDetails() {

@@ -50,37 +50,50 @@ export function T_GroupsList() {
 
   useEffect(() => {
     if (!storeBoard) return
-    if (!filterBy.txt) {
+    
+    const regex = filterBy.txt ? new RegExp(filterBy.txt, 'i') : null
+    const peopleCol = storeBoard.columns.find(col => col.type?.variant === 'people')
+    const personId = filterBy.person
+    
+    if (!regex && !personId) {
       setBoard(storeBoard)
       return
     }
-    const regex = new RegExp(filterBy.txt, 'i')
 
-    setBoard(prevBoard => ({
-      ...prevBoard,
-      groups: storeBoard.groups.map(group => {
-        const groupNameMatches = regex.test(group.name)
+    const filteredGroups = storeBoard.groups.map(group => {
+    const groupNameMatches = regex?.test(group.name)
+    const matchingTasks = group.tasks.filter(task => {
+      let matchesText = true
+      let matchesPerson = true
 
-        if (groupNameMatches) return group
+    if (regex) {
+      const taskName = task.columnValues[0]?.value || ''
+      const taskMatches = regex.test(taskName)
+      matchesText = groupNameMatches || taskMatches
+    }
 
-        const matchingTasks = group.tasks?.filter(task =>
-          // Object.values(task).some(val =>
-          //   typeof val === 'string' && regex.test(val)
-          // )
-          regex.test(task.columnValues[0].value)
-        )
+    if (personId && peopleCol) {
+      matchesPerson = task.columnValues.some(cv =>
+          cv.colId === peopleCol.id &&
+          Array.isArray(cv.value) &&
+          cv.value.some(user => user._id === personId)
+      )
+    }
+    return matchesText && matchesPerson
+    })
 
-        if (matchingTasks?.length) {
-          return {
-            ...group,
-            tasks: matchingTasks
-          }
-        }
+    if (matchingTasks?.length) {
+      return {
+        ...group,
+        tasks: matchingTasks
+      }
+    }
 
-        return null
-      })
-        .filter(Boolean)
-    }))
+    return null
+  }).filter(Boolean)
+
+  setBoard({...storeBoard, groups: filteredGroups})
+
   }, [filterBy, storeBoard])
 
   // === Functions

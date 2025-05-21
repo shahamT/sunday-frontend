@@ -17,25 +17,33 @@ import { useEffect, useRef, useState } from "react"
 import { useControlledInput } from "../../../../../hooks/useControlledInput.js"
 import { setFilterBy } from "../../../../../store/actions/board.actions.js"
 import { debounce } from "../../../../../services/base/util.service.js"
+import { store } from "../../../../../store/store.js"
 
 // ====== Component ======
 // =======================
 
 export function T_Filter({ /* prop1, prop2 */ }) {
     const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
+    const users = useSelector(storeState => storeState.userModule.users)
+    const modalCloseRef = useRef(null)
 
     const [isInput, setIsInput] = useState(false)
     const [isExitBtn, setIsExitBtn] = useState(false)
     const [hasText, setHasText] = useState(false)
     const [value, setValue] = useState('')
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const [selectedPerson, setSelectedPerson] = useState(null)
 
+    
     const debouncedSetFilterBy = useRef(
         debounce((val) => {
-        try {
-            setFilterBy({ txt: val })
-        } catch (err) {
+            try {
+                
+            setFilterBy({ ...store.getState().boardModule.filterBy, txt: val })
+            // setFilterBy({ ...filterBy, txt: val })
+            } catch (err) {
             showErrorMsg('Something went wrong')
-        }
+            }
         }, 300)
     )
 
@@ -71,12 +79,24 @@ export function T_Filter({ /* prop1, prop2 */ }) {
 
         debouncedSetFilterBy.current(val)
 
-        // try {
-        //     setFilterBy({ txt: val })
-        // }
-        // catch (err) {
-        //     showErrorMsg(`Somthing went wrong`)
-        // }
+    }
+
+    function onHandlePersonFilterBy(user) {
+
+        setFilterBy({ ...filterBy, person: user._id })
+        setSelectedPerson(user)
+
+    }
+
+    function onRemovePersonFilterBy (ev) {
+        ev.stopPropagation()
+        setIsMenuOpen(false)
+        setSelectedPerson(null)
+        setFilterBy(prevFilter => ({...prevFilter, person: '' }))
+
+        if (modalCloseRef.current) {
+            modalCloseRef.current()
+        }
     }
 
     function onHandleOnBlur() {
@@ -111,12 +131,39 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                             setValue('')
                             setIsExitBtn(false)
                             setHasText(false)
-                            setFilterBy({ txt: '' }) 
+                            setFilterBy({...filterBy, txt:''})
                             setTimeout(() => {document.querySelector('.filter-input input')?.focus()}, 0)
                             }}></button>
                 </div>
             )
             : (<div className="search-btn clickable clear size-32 icon-start i-Search txt-search" onClick={() => setIsInput(true)}>Search</div> )}
+
+            <PopUpMenu
+                position="bottom-start"
+                onOpen={() => setIsMenuOpen(true)}
+                onClose={() => setIsMenuOpen(false)}
+                renderContent={({ onCloseModal }) => {
+                    modalCloseRef.current = onCloseModal
+                    return (
+                        <section className="person-filter-popup-content">
+                            <div className="title">Filter this board by person</div>
+                            <div className="subtitle">And find items they're working on.</div>
+                            <section className="person-to-filterBy">
+                                {users.map(user => {
+                                    return  <div key={user._id} className={`img-wrapper ${selectedPerson?._id === user._id ? 'select' : ''}`}  onClick={() => onHandlePersonFilterBy(user)} > 
+                                    <img src={user.profileImg} alt=""/></div>
+                                })}
+                            </section>
+                        </section>
+                    )
+                }}
+            >
+                {!selectedPerson && <div className={`people-filter-btn clickable clear select size-32 icon-start i-PersonRound ${isMenuOpen ? 'active' : ''}`} >Person</div>}
+                {selectedPerson && <div className={`people-filter-btn-active clickable clear select size-32 ${isMenuOpen ? 'active' : ''}`} >
+                    <img src={selectedPerson.profileImg} alt="" />
+                    Person
+                    <div onClick={onRemovePersonFilterBy} className="close-btn clickable clear select icon-btn size-24 i-CloseRound"></div></div>}
+            </PopUpMenu>
         </section>
     )
 }
