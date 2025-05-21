@@ -1310,13 +1310,14 @@ export function AddBoardModal() {
         <section className="add-board-modal">
             <button className="close-btn clickable clear size-32 i-Close" onClick={() => closeGlobalModal()} />
             <form onSubmit={onSubmit}>
-                <h1 className="title-add-modal">Create board</h1>
+                <h1 className="title-add-modal">Create Board</h1>
 
-                {!isAi && <>
+                {!isAi ? <>
                     <p className="title">Board name</p>
                     <input type="text" name="name" value={name || ''} autoFocus onChange={hendleChange}
                     />
                 </>
+               : <p className="title">Use AI to Create Board</p>
                 }
                     {isAi &&
                         <textarea className="ai-textarea"
@@ -1335,6 +1336,7 @@ export function AddBoardModal() {
 
                 </section>
                 <p className="new-board-encourage">Let’s get you started with a fresh new board!</p>
+                <section className="closer">
                 <div className="divider" />
                 <div className="add-board-btns">
                     <div className="cancel-btn clickable clear size-40" onClick={(ev) => {
@@ -1343,6 +1345,7 @@ export function AddBoardModal() {
                     }}>Cancel</div>
                     <div className="create-btn clickable filled size-40" onClick={isAi ? handleAiBoardCreation : onSubmit} >Create Board</div>
                 </div>
+               </section>
             </form>
         </section>
     )

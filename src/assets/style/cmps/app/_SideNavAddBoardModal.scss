@@ -1,10 +1,10 @@
 .add-board-modal {
     font-family: var(--title-font-family);
     color: #323338;
-    
 
+    // height: 100%;
     width: 500px;
-    height: auto;
+    // min-height: 405px;
     padding: 0px 8px 24px;
 
     .close-btn {
@@ -28,7 +28,7 @@
 
     .title {
         margin-bottom: 4px;
-        font-size: 14px;
+        font-size: 16px;
         font-weight: 400;
     }
 
@@ -73,20 +73,31 @@
 
 
     }
-    .ai-btn{
-        font-size: 20px;
-        margin-top: 8px;
+
+    .ai-btn {
+        font-size: 19px;
+        margin-top: 16px;
         margin-bottom: 8px;
     }
+
     .ai-textarea {
         width: 100%;
         // height: 100px;
-        resize: none; 
+        resize: none;
         padding: 8px;
         font-size: 14px;
-      }
+        transform: scale(0.98);
+        transition: max-height 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 
-      .ai-textarea {
+    }
+
+    .ai-textarea.appear {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+
+    .ai-textarea {
         width: 100%;
         min-height: 80px;
         padding: 10px 14px;
@@ -99,11 +110,16 @@
         resize: vertical;
         transition: border 0.2s ease;
         outline: none;
-      }
-      
-      .ai-textarea:focus {
+    }
+
+    .ai-textarea:focus {
         border-color: #0073ea;
         box-shadow: 0 0 0 1px #0073ea;
-      }
+    }
+
+    .closer{
+       
+        // margin-top: auto;
+    }
 
 }
