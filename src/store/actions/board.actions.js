@@ -18,7 +18,7 @@ import { makeId } from "../../services/base/util.service.js";
 // ========= CRUDL =========
 // ===== Board ====
 export async function loadBoards() {
-    // const filterBy = store.getState().boardModule.filterBy
+    const filterBy = store.getState().boardModule.filterBy
     store.dispatch({ type: BOARDS_LOADING_START })
 
     try {
@@ -71,7 +71,6 @@ export async function removeBoard(boardId) {
 export async function updateBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
-        console.log(savedBoard)
         store.dispatch(getCmdUpdateBoard(savedBoard))
         return savedBoard
     } catch (err) {
@@ -310,6 +309,18 @@ export async function removeColumn(columnId) {
         throw err
     }
 }
+
+export async function moveColumns(board) {
+    try {
+        store.dispatch(getCmdSetBoard(board))
+        const savedBoard = await boardService.save(board)
+        return savedBoard
+    } catch (err) {
+        console.error('board action -> Cannot update board columns', err)
+        throw err
+    }
+
+}
 // ========= Status Lables =========
 
 export async function updateLabel(columnId, labelToUpdate) {
@@ -331,7 +342,6 @@ export async function addLabel(columnId, label) {
         console.error('boardId is undefined. Cannot send request to backend.')
         return
     }
-    // const label = boardService.getEmptyLabel()
     try {
         store.dispatch(getCmdAddLabel(label, columnId, boardId))
         const savedLabel = await boardService.createLabel(label, columnId, boardId)
@@ -483,6 +493,7 @@ function getCmdUpdateColumn(column) {
         column
     }
 }
+
 
 function getCmdAddTask(task, groupId, isTop) {
     return {

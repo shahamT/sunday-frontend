@@ -8,7 +8,9 @@ import { updateColumn } from "../../../../../store/actions/board.actions";
 // === Hooks / React
 import { useControlledInput } from "../../../../../hooks/useControlledInput";
 
-// === Imgs
+// === D & D
+import { useSortable } from '@dnd-kit/sortable'
+import { CSS } from '@dnd-kit/utilities'
 
 // === Child Components
 import { EditableText } from "../../../../reusables/EditableText/EditableText";
@@ -20,7 +22,19 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
+// D & D
+const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
+
+const style = sortable
+  ? { transform: CSS.Transform.toString(sortable.transform), transition: sortable.transition }
+  : {}
+
+const setNodeRef = sortable?.setNodeRef || undefined
+const listeners = sortable?.listeners || {}
+const attributes = sortable?.attributes || {}
+
+
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -126,11 +140,14 @@ export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpR
 
     return (
         <div
-            className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}`}
+        className={`T_ColumnHeaderCell ${isOver ? 'is-drag-over':''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
+        ref={setNodeRef}
+        style={style} 
+        {...listeners} {...attributes}
         >
 
 
-            <div className="cell-content">
+            <div className="cell-content" >
                 {variant === 'item'
                     ?
                     <>
