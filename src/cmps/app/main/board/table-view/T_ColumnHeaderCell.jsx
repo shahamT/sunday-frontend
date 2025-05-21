@@ -26,6 +26,8 @@ export function T_ColumnHeaderCell({ column,isOver, groupId, liveColumnWidthsRef
 // D & D
 const variant = column.type.variant
 const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
+const [canDrag, setCanDrag] = useState(false)
+const dragTimeoutRef = useRef(null)
 
 const style = sortable
   ? { transform: CSS.Transform.toString(sortable.transform), transition: sortable.transition }
@@ -40,7 +42,8 @@ const attributes = sortable?.attributes || {}
     const [value, handleChange, reset, set] = useControlledInput(column.name)
     const [isMenuOpen, setIsMenuOpen] = useState(false)
 
-    
+    const [isInputFocused, setIsInputFocused] = useState(false)
+
     // === Effects
     useEffect(() => {
         // update input value dynamically if it's changed in the database
@@ -137,13 +140,28 @@ const attributes = sortable?.attributes || {}
 
     }
 
+    function handleMouseUp() {
+        clearTimeout(dragTimeoutRef.current)
+        // setCanDrag(false)
+      }
+
+    function handleMouseDown() {
+        if (isInputFocused) setCanDrag(false)
+
+        dragTimeoutRef.current = setTimeout(() => {
+          setCanDrag(true)
+        }, 300) 
+      }
 
     return (
         <div
         className={`T_ColumnHeaderCell ${isOver ? 'is-drag-over':''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
         ref={setNodeRef}
         style={style} 
-        {...listeners} {...attributes}
+        onMouseUp={handleMouseUp}
+        onMouseDown={handleMouseDown}
+        onMouseLeave={handleMouseUp}
+        {...(canDrag ? { ...listeners, ...attributes } : {})}
         >
 
 
@@ -185,12 +203,17 @@ const attributes = sortable?.attributes || {}
                         <div className="title-wraper">
                             <Tooltip position='top' title={value} stretchWraper={true}>
                                 <EditableText
+                                setIsInputFocused={setIsInputFocused}
+                                isInputFocused={isInputFocused}
                                     value={value}
                                     emojiPicker={false}
                                     centered={true}
                                     size="small"
                                     handleChange={handleChange}
-                                    onBlur={onUpdateColumnName}
+                                    onClick={()=>setIsInputFocused(true)}
+                                    onBlur={()=>{onUpdateColumnName()
+                                        setIsInputFocused(false)
+                                    }}
                                     onPressEnter={onUpdateColumnName}
                                     additionalClass="centered"
 

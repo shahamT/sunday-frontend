@@ -22,6 +22,7 @@ export const EditableText = forwardRef(function EditableText({
     additionalClass = '',
     centerText = false,
     colorPicker = null,
+    setIsInputFocused
 }, ref) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
@@ -76,7 +77,7 @@ export const EditableText = forwardRef(function EditableText({
                             <ColorPicker
                                 onCloseModal={() => {
                                     setIsPickingColor(false)
-                                    onCloseModal()
+                                    onCloseModal();
                                 }}
                                 selectedColor={colorPicker?.selectedColor}
                                 setColor={colorPicker?.setColor}
@@ -106,9 +107,14 @@ export const EditableText = forwardRef(function EditableText({
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}`}
                 onClick={(e) => e.stopPropagation()}
                 onChange={handleChange}
-                onFocus={() => setIsFocused(true)}
+                onFocus={() => {
+                  if(setIsInputFocused) setIsInputFocused(true)
+                    setIsFocused(true)}
+
+                }
                 onBlur={(e) => {
                     setIsFocused(false);
+                    if(setIsInputFocused) setIsInputFocused(false)
                     if (skipBlurRef.current || isPickingColor) return;
                     onBlur?.(e);
                 }}
