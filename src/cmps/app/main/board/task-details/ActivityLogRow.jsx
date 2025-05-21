@@ -71,8 +71,7 @@ export function ActivityLogRow({ activity, task, board }) {
         } else if (currCol.type.variant === "date") {
           console.log(activity);
           if (activity.value) setNewVal(formatSmartDate(activity.value));
-          if (activity.prevValue)
-            setPrevVal(formatSmartDate(activity.prevValue));
+          if (activity.prevValue) setPrevVal(formatSmartDate(activity.prevValue));
           console.log("newVal: ", newVal);
           console.log("prevVal: ", prevVal);
           setCvType("date");

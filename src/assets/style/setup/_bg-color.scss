@@ -20,6 +20,7 @@ $color-names: (
   indigo,
   navy,
   bright-blue,
+  blue,
   dark-blue,
   aquamarine,
   chili-blue,
@@ -38,7 +39,8 @@ $color-names: (
   lavender,
   steel,
   lilac,
-  pecan
+  pecan,
+  unselected-gray
 );
 
 @each $name in $color-names {

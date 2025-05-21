@@ -34,7 +34,7 @@ export function K_ContentPreview({ colId, value }) {
       }
     const columns = useSelector(storeState => storeState.boardModule.board.columns)
     const column = columns.find(col => col.id === colId)
-    const variant = column.type.variant
+    const variant = column?.type?.variant
     const DynamicComponent = componentMap[variant]
     // === Effects
 

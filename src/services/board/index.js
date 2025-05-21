@@ -273,9 +273,19 @@ function getEmptyColumn(type) {
                 { id: makeId(), name: 'Done', color: 'done-green' },
             ]
         }
-    } else if (type === 'dropdown') {
-        emptyCol.type = { ...emptyCol.type, labels: [] }
+    } else if (type === 'priority') {
+        emptyCol.type = {
+            variant: 'status', 
+            labels: [
+                { id: makeId(), name: 'Critical ⚠️', color: 'blackish' },
+                { id: makeId(), name: 'High', color: 'dark_indigo' },
+                { id: makeId(), name: 'Medium', color: 'indigo' },
+                { id: makeId(), name: 'Low', color: 'bright-blue' },
+            ]
+        }
     }
+
+    console.log(emptyCol)
 
     return emptyCol
 }

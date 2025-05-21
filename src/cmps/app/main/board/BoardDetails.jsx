@@ -67,7 +67,7 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
 
             <T_Filter />
             {isSelected('main-table') &&  <T_GroupsList />}
-            {/* {isSelected('kanban') &&  <K_StatusList />} */}
+            {isSelected('kanban') &&  <K_StatusList />}
 
             <TaskPanel
                 side='right'

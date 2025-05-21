@@ -1,0 +1,20 @@
+.K_StatusPreview {
+    width: 260px;
+    background-color: var(--grey-background-color);
+    
+    .status-header {
+        border-top-left-radius: var(--border-radius-md);
+        border-top-right-radius: var(--border-radius-md);
+        height: 40px;
+        width: inherit;
+    }
+
+    .status-body {
+        height: 100%;
+        width: inherit;
+        display: flex;
+        display: grid;
+        align-items: start;
+        justify-content: center;
+    }
+}

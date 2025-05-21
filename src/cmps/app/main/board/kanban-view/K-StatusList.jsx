@@ -13,6 +13,7 @@ import { useSelector } from "react-redux"
 
 // === Child Components
 import { K_StatusPreview } from "./K_StatusPreview"
+import { makeId } from "../../../../../services/base/util.service"
 
 // ====== Component ======
 // =======================
@@ -31,7 +32,12 @@ export function K_StatusList({ /* prop1, prop2 */ }) {
         const col = board.columns.find(col => col.type?.variant === 'status')
         setStatusCol(col)
 
-        if(!col) return
+    },[board])
+
+
+    useEffect(() => {
+
+        if(!statusCol) return
         const tasksByStatusArray = statusCol.type.labels.map(label => {
         const tasks = board.groups.flatMap(group =>
             group.tasks.filter(task => {
@@ -46,16 +52,32 @@ export function K_StatusList({ /* prop1, prop2 */ }) {
         }
     })
 
+    const blankTasks = board.groups.flatMap(group =>
+        group.tasks.filter(task => {
+            const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
+            return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
+        })
+    )
+
+    if (blankTasks.length) {
+        tasksByStatusArray.push({
+            id: makeId(),
+            name: 'Blank',
+            color: 'unselected-gray',
+            tasks: blankTasks
+        })
+    }
+
         setTasksByStatus(tasksByStatusArray)
-    },[board])
+    },[statusCol])
 
     // === Functions
     
 
-    // if (!data) return <div>Loading...</div>
+    if (!tasksByStatus) return <div>Loading...</div>
     return (
         <section className="K_StatusList">
-            {tasksByStatus.labels.map(label => {
+            {tasksByStatus?.map(label => {
                 return <K_StatusPreview key={label.id} label={label} />
             })}
         </section>
