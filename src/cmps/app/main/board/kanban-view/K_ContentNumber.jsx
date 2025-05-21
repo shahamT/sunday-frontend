@@ -13,7 +13,7 @@
 // ====== Component ======
 // =======================
 
-export function K_View({ /* prop1, prop2 */ }) {
+export function K_ContentNumber({ column, value }) {
     // === Consts
 
     // === Effects
@@ -22,8 +22,8 @@ export function K_View({ /* prop1, prop2 */ }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="K_View">
-            <h1>K_View</h1>
+        <section className="K_ContentNumber">
+            <div className="status">{value} (Numbers)</div>
         </section>
     )
 }
