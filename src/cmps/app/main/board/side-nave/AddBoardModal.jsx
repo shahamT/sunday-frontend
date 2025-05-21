@@ -39,7 +39,10 @@ export function AddBoardModal() {
         let value = target.value
         setNewBoard(prevNewBoard => ({ ...prevNewBoard, [field]: value }))
     }
+function handleAiBoardCreation(){
+console.log('ai board')
 
+}
     async function onSubmit(ev) {
         ev.preventDefault()
         try {
@@ -60,13 +63,17 @@ export function AddBoardModal() {
             <button className="close-btn clickable clear size-32 i-Close" onClick={() => closeGlobalModal()} />
             <form onSubmit={onSubmit}>
                 <h1 className="title-add-modal">Create board</h1>
+               
+               {!isAi && <>
                 <p className="title">Board name</p>
-                <input type="text" name="name" value={name} autoFocus onChange={hendleChange}
+               <input type="text" name="name" value={name} autoFocus onChange={hendleChange}
                 />
+                </>
+               } 
                 <section>
                 <button type="button" className="ai-btn clickable i-Robot icon-start clear size-48" onClick={() => setAi(true)}> Create board with ai</button>
+               
                 {isAi &&
-                
                 <textarea className="ai-textarea"
                 name="aiBoardPrompt"
                 // value={prompt}
@@ -83,7 +90,7 @@ export function AddBoardModal() {
                         ev.stopPropagation()
                         closeGlobalModal()
                     }}>Cancel</div>
-                    <div className="create-btn clickable filled size-40" onClick={onSubmit} >Create Board</div>
+                    <div className="create-btn clickable filled size-40"  onClick={isAi ? handleAiBoardCreation : onSubmit} >Create Board</div>
                 </div>
             </form>
         </section>

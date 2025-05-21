@@ -150,6 +150,7 @@ export function T_ColumnHeaderCell({ column, isOver, groupId, liveColumnWidthsRe
 
     }
 
+
     function handleMouseUp() {
         clearTimeout(dragTimeoutRef.current)
         const pressDuration = Date.now() - pressStartTimeRef.current
