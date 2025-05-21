@@ -24,14 +24,13 @@ import { useSelector } from 'react-redux';
 // ====== Component ======
 // =======================
 
-export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
-
-    const board  = useSelector(storeState => storeState.boardModule.board)
+export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
+    const board = useSelector(storeState => storeState.boardModule.board)
 
     // === Consts
     const headerRef = useRef();
     const sentinelRef = useRef();
-
+    
 
     // === Effects
     useEffect(() => {
@@ -44,29 +43,30 @@ export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVers
                 rootMargin: `-${244}px 0px 0px 0px`,
             }
         );
-
+        
         if (sentinelRef.current) observer.observe(sentinelRef.current);
         return () => observer.disconnect();
     }, []);
-
+    
+    console.log("store", board)
     // === Functions
-
+    
     return (
         <>
             <div className="gorup-head-row-sentinal" ref={sentinelRef} />
             <section
                 className="T_GroupHeadRow"
                 ref={headerRef}
-            >
+                >
                 <div className={`t-left-indicator top ${group.color}-bg-static`}>
                     {/* <div className="top-line-hider"></div> */}
                 </div>
                 <ColumnsDndContext columns={board.columns} group={group} board={board}>
                     <SortableContext
-                        items={columns.map(col => col.id)}
+                        items={board.columns.map(col => col.id)}
                         strategy={horizontalListSortingStrategy}
                     >
-                        {columns.map((column, idx) => {
+                        {board.columns.map((column, idx) => {
                             return <T_ColumnHeaderCell
                                 key={column.id + idx}
                                 column={column}

@@ -3,18 +3,18 @@ import { arrayMove } from '@dnd-kit/sortable'
 import { useState } from "react"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
 import { T_ColumnBody } from "./T_ColumnBody"
-import { updateBoard, updateBoards } from "../../../../../store/actions/board.actions"
+import { moveColumns } from "../../../../../store/actions/board.actions"
 import { useSelector } from "react-redux"
 
-export function ColumnsDndContext({ children, columns, group,board }) {
+export function ColumnsDndContext({ children, columns, group, board }) {
   const [activeId, setActiveId] = useState(null)
   const activeColumn = columns.find(col => col.id === activeId)
 
 
-  function handleReorderColumns(newColumns,board) {
+  function handleReorderColumns(newColumns, board) {
     // console.log("ssssss",newColumns)
     const updatedBoard = { ...board, columns: newColumns }
-    updateBoard(updatedBoard)
+    moveColumns(updatedBoard)
   }
 
   function handleDragStart(event) {
@@ -39,7 +39,7 @@ export function ColumnsDndContext({ children, columns, group,board }) {
 
     const newColumns = arrayMove(columns, oldIndex, newIndex)
 
-    handleReorderColumns(newColumns)
+    handleReorderColumns(newColumns, board)
 
     setActiveId(null)
   }

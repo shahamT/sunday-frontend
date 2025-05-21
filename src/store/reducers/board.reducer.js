@@ -22,7 +22,7 @@ export const UPDATE_GROUP = 'UPDATE_GROUP'
 export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
-export const UPDATE_BOARD_COLUMNS = 'UPDATE_BOARD_COLUMNS'
+export const MOVE_COLUMNS = 'UPDATE_BOARD_COLUMNS'
 
 
 // Labels
@@ -202,15 +202,27 @@ export function boardReducer(state = initialState, action = {}) {
                 board: { ...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column) },
                 lastBoard
             }
+            // case REMOVE_TASK:
 
-        case UPDATE_BOARD_COLUMNS:
-            return {
-                ...state,
-                board: {
+            // lastBoard = { ...state.board }
+
+            // return {
+            //     ...state,
+            //     board: {
+            //         ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+            //             ? { ...group, tasks: group.tasks.filter(task => task.id !== action.taskId) } : group)
+            //     },
+            //     lastBoard
+            // }
+
+            case MOVE_COLUMNS:
+                return {
+                  ...state,
+                  board: {
                     ...state.board,
-                    columns: action.columns,
+                    columns: action.columns
+                  }
                 }
-            }
 
         // LABELS
         case UPDATE_LABEL: {

@@ -1,7 +1,7 @@
 import {
     ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, UPDATE_BOARD_FROM_SOCKET, UPDATE_MINI_BOARDS_FROM_SOCKET,
     ADD_GROUP, REMOVE_GROUP, UPDATE_GROUP,
-    ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN, UPDATE_LABEL, ADD_LABEL, REMOVE_LABEL,
+    ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN, MOVE_COLUMNS ,UPDATE_LABEL, ADD_LABEL, REMOVE_LABEL,
     ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE, MOVE_TASK,
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
@@ -309,6 +309,20 @@ export async function removeColumn(columnId) {
         throw err
     }
 }
+
+export function moveColumns(board) {
+    console.log("llala",board)
+    return async dispatch => {
+      try {
+        const savedBoard = await boardService.save(board)
+        dispatch(getCmdMoveColumns(savedBoard.columns))
+        return savedBoard
+      } catch (err) {
+        console.error('board action -> Cannot update board columns', err)
+        throw err
+      }
+    }
+  }
 // ========= Status Lables =========
 
 export async function updateLabel(columnId, labelToUpdate) {
@@ -330,7 +344,6 @@ export async function addLabel(columnId,label) {
         console.error('boardId is undefined. Cannot send request to backend.')
         return
     }
-    // const label = boardService.getEmptyLabel()
     try {
         store.dispatch(getCmdAddLabel(label,columnId,boardId))
         const savedLabel = await boardService.createLabel(label, columnId, boardId)
@@ -481,6 +494,14 @@ function getCmdUpdateColumn(column) {
         type: UPDATE_COLUMN,
         column
     }
+}
+
+function getCmdMoveColumns(columns){
+return {
+    type: MOVE_COLUMNS,
+    columns
+}
+
 }
 
 function getCmdAddTask(task, groupId, isTop) {
