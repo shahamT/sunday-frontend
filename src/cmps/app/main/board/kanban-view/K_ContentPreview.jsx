@@ -27,10 +27,10 @@ export function K_ContentPreview({ colId, value }) {
         // item: K_ContentItem,
         status: K_ContentStatus,
         date: K_ContentDate,
-        people: K_ContentPeople,
+        // people: K_ContentPeople,
         text: K_ContentText,
         number: K_ContentNumber,
-        file: K_ContentFile,
+        // file: K_ContentFile,
       }
     const columns = useSelector(storeState => storeState.boardModule.board.columns)
     const column = columns.find(col => col.id === colId)
@@ -43,7 +43,6 @@ export function K_ContentPreview({ colId, value }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentPreview">
-            <h1>K_ContentPreview</h1>
 
         {DynamicComponent && (
             <DynamicComponent

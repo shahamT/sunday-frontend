@@ -38,7 +38,7 @@ export function K_ContentDate({ column, value }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentDate">
-            <div className="status">{formattedValue}</div>
+            <button className="content date clickable clear size-24 icon-start i-Calendar">{formattedValue}</button>
         </section>
     )
 }
