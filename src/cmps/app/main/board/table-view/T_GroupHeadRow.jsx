@@ -16,14 +16,18 @@ import { useEffect, useRef, useState } from "react";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColTypePicker } from "../value-setter/ColTypePicker"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
-import { T_ColumnBody } from './T_ColumnBody'
 import { ColumnsDndContext } from './ColumnsDndContext'
+import { updateBoard } from '../../../../../store/actions/board.actions';
+import { useSelector } from 'react-redux';
 
 
 // ====== Component ======
 // =======================
 
 export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
+
+    const board  = useSelector(storeState => storeState.boardModule.board)
+
     // === Consts
     const headerRef = useRef();
     const sentinelRef = useRef();
@@ -57,7 +61,7 @@ export function T_GroupHeadRow({ columns, group, liveColumnWidthsRef, resizeVers
                 <div className={`t-left-indicator top ${group.color}-bg-static`}>
                     {/* <div className="top-line-hider"></div> */}
                 </div>
-                <ColumnsDndContext columns={columns} group={group} >
+                <ColumnsDndContext columns={board.columns} group={group} board={board}>
                     <SortableContext
                         items={columns.map(col => col.id)}
                         strategy={horizontalListSortingStrategy}

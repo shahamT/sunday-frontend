@@ -18,7 +18,7 @@ import { makeId } from "../../services/base/util.service.js";
 // ========= CRUDL =========
 // ===== Board ====
 export async function loadBoards() {
-    // const filterBy = store.getState().boardModule.filterBy
+    const filterBy = store.getState().boardModule.filterBy
     store.dispatch({ type: BOARDS_LOADING_START })
 
     try {
@@ -71,7 +71,6 @@ export async function removeBoard(boardId) {
 export async function updateBoard(board) {
     try {
         const savedBoard = await boardService.save(board)
-        console.log(savedBoard)
         store.dispatch(getCmdUpdateBoard(savedBoard))
         return savedBoard
     } catch (err) {

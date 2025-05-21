@@ -22,6 +22,9 @@ export const UPDATE_GROUP = 'UPDATE_GROUP'
 export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
+export const UPDATE_BOARD_COLUMNS = 'UPDATE_BOARD_COLUMNS'
+
+
 // Labels
 export const UPDATE_LABEL = 'UPDATE_LABEL'
 export const ADD_LABEL = 'ADD_LABEL'
@@ -137,7 +140,7 @@ export function boardReducer(state = initialState, action = {}) {
 
         case BOARD_LOADING_DONE:
             return { ...state, isBoardLoading: false }
-            
+
         //GROUP
         case REMOVE_GROUP:
 
@@ -148,16 +151,16 @@ export function boardReducer(state = initialState, action = {}) {
                 board: { ...state.board, groups: state.board.groups.filter(group => group.id !== action.groupId) },
                 lastBoard,
             }
-            
-            case ADD_GROUP:
-    
-                lastBoard = { ...state.board }
-    
-                return {
-                    ...state,
-                    board: { ...state.board, groups: action.isTop ? [action.group, ...state.board.groups] : [...state.board.groups, action.group] },
-                    lastBoard
-                }
+
+        case ADD_GROUP:
+
+            lastBoard = { ...state.board }
+
+            return {
+                ...state,
+                board: { ...state.board, groups: action.isTop ? [action.group, ...state.board.groups] : [...state.board.groups, action.group] },
+                lastBoard
+            }
 
         case UPDATE_GROUP:
 
@@ -200,22 +203,31 @@ export function boardReducer(state = initialState, action = {}) {
                 lastBoard
             }
 
+        case UPDATE_BOARD_COLUMNS:
+            return {
+                ...state,
+                board: {
+                    ...state.board,
+                    columns: action.columns,
+                }
+            }
+
         // LABELS
         case UPDATE_LABEL: {
             const { columnId, labelToUpdate } = action
             const lastBoard = { ...state.board }
-        
+
             return {
                 ...state,
                 board: {
                     ...state.board,
                     columns: state.board.columns.map(column => {
                         if (column.id !== columnId) return column;
-        
+
                         const updatedLabels = column.type.labels?.map(label =>
                             label.id === labelToUpdate.id ? labelToUpdate : label
                         );
-        
+
                         return {
                             ...column,
                             type: {
@@ -231,7 +243,7 @@ export function boardReducer(state = initialState, action = {}) {
         case ADD_LABEL: {
             const { columnId, label } = action;
             const lastBoard = { ...state.board }
-        
+
             const updatedColumns = state.board.columns.map(column => {
                 if (column.id === columnId && column.type?.labels) {
                     return {
@@ -244,7 +256,7 @@ export function boardReducer(state = initialState, action = {}) {
                 }
                 return column
             })
-        
+
             return {
                 ...state,
                 board: {
