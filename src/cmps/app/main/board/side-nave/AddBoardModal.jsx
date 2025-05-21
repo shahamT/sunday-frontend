@@ -1324,7 +1324,8 @@ export function AddBoardModal() {
                             // value={prompt}
                             // onChange={handleChange}
                             // onClick={getFakeAiBoard}
-                            placeholder="Describe the board you need. For example: 'Plan a marketing campaign for a new product"
+                            placeholder="Describe the board you need. For example: 
+                            'Plan a marketing campaign for a new product'"
                             rows={4}
                         />}
                 <section>
