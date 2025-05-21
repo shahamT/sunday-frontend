@@ -7,12 +7,13 @@
     border-radius: var(--border-radius-md);
     background-color: var(--primary-background-color);
 
+    
     .CVs {
         display: flex;
-        gap: 8px;
+        // gap: 8px;
         flex-wrap: wrap;
         margin-block-start: 8px;
-        
+
         .content {
             font-size: 14px;
             padding-inline: 4px;
