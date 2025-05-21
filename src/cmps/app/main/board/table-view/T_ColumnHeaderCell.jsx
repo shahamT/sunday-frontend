@@ -22,7 +22,7 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
 const variant = column.type.variant
 // D & D
 const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
@@ -135,10 +135,9 @@ const attributes = sortable?.attributes || {}
     }
 
 
-    // const variant = column.type.variant
     return (
         <div
-        className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}`}
+        className={`T_ColumnHeaderCell ${isOver ? 'is-drag-over':''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
         ref={setNodeRef}
         style={style} 
         {...listeners} {...attributes}

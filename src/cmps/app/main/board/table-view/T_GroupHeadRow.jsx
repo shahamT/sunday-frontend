@@ -9,7 +9,7 @@
 // === Hooks / React
 
 // === D & D
-import { SortableContext, horizontalListSortingStrategy } from '@dnd-kit/sortable'
+import { SortableContext } from '@dnd-kit/sortable'
 
 // === Child Components
 import { useEffect, useRef, useState } from "react";
@@ -17,7 +17,6 @@ import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColTypePicker } from "../value-setter/ColTypePicker"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
 import { ColumnsDndContext } from './ColumnsDndContext'
-import { updateBoard } from '../../../../../store/actions/board.actions';
 import { useSelector } from 'react-redux';
 
 
@@ -26,10 +25,11 @@ import { useSelector } from 'react-redux';
 
 export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bumpResizeVersion }) {
     const board = useSelector(storeState => storeState.boardModule.board)
-
+    
     // === Consts
-    const headerRef = useRef();
-    const sentinelRef = useRef();
+    const [overId, setOverId] = useState(null)
+    const headerRef = useRef()
+    const sentinelRef = useRef()
     
 
     // === Effects
@@ -60,10 +60,10 @@ export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bump
                 <div className={`t-left-indicator top ${group.color}-bg-static`}>
                     {/* <div className="top-line-hider"></div> */}
                 </div>
-                <ColumnsDndContext columns={board.columns} group={group} board={board}>
+                <ColumnsDndContext setOverId={setOverId} columns={board.columns} group={group} board={board}>
                     <SortableContext
                         items={board.columns.map(col => col.id)}
-                        strategy={horizontalListSortingStrategy}
+                        strategy={()=>null}
                     >
                         {board.columns.map((column, idx) => {
                             return <T_ColumnHeaderCell
@@ -73,6 +73,8 @@ export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bump
                                 liveColumnWidthsRef={liveColumnWidthsRef}
                                 resizeVersion={resizeVersion}
                                 bumpResizeVersion={bumpResizeVersion}
+                                isOver={column.id === overId}
+                                
 
                             />
                         })}

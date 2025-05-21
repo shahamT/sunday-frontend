@@ -4,29 +4,22 @@ import { useState } from "react"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
 import { T_ColumnBody } from "./T_ColumnBody"
 import { moveColumns } from "../../../../../store/actions/board.actions"
+import { closestCenter } from '@dnd-kit/core'
 
 
-export function ColumnsDndContext({ children, columns, group, board }) {
+export function ColumnsDndContext({ setOverId, children, columns, group, board }) {
   const [activeId, setActiveId] = useState(null)
+
   const activeColumn = columns.find(col => col.id === activeId)
 
 
 
-  // async function handleReorderColumns(newColumns, board) {
-  //   const updatedBoard = { ...board, columns: newColumns }
-  //   try {
-  //     await moveColumns(updatedBoard)
-  //   }
-  //   catch (err) {
-  //     console.error('Failed to reorder columns', err)
-  //   }
-  // }
-   function handleReorderColumns(newColumns, board) {
+  function handleReorderColumns(newColumns, board) {
     const updatedBoard = { ...board, columns: newColumns }
-   
-     moveColumns(updatedBoard)
-   
-   }
+
+    moveColumns(updatedBoard)
+
+  }
 
   function handleDragStart(event) {
     setActiveId(event.active.id)
@@ -37,6 +30,7 @@ export function ColumnsDndContext({ children, columns, group, board }) {
 
     if (!over || active.id === over.id) {
       setActiveId(null)
+      setOverId(null)
       return
     }
 
@@ -45,6 +39,8 @@ export function ColumnsDndContext({ children, columns, group, board }) {
 
     if (oldIndex === -1 || newIndex === -1) {
       setActiveId(null)
+      setOverId(null)
+
       return
     }
 
@@ -57,7 +53,15 @@ export function ColumnsDndContext({ children, columns, group, board }) {
 
 
   return (
-    <DndContext onDragStart={handleDragStart} onDragEnd={(event) => handleDragEnd(event, columns, handleReorderColumns)}>
+    <DndContext
+      collisionDetection={closestCenter}
+      onDragStart={handleDragStart}
+      onDragEnd={(event) => handleDragEnd(event, columns, handleReorderColumns)}
+      onDragOver={(event) => {
+        const { over } = event
+        setOverId(over?.id || null)
+      }}
+    >
       {children}
 
       <DragOverlay dropAnimation={null}>
