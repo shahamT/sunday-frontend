@@ -22,6 +22,7 @@ export const EditableText = forwardRef(function EditableText({
     additionalClass = '',
     centerText = false,
     colorPicker = null,
+    setIsInputFocused
 }, ref) {
     const spanRef = useRef(null);
     const [inputWidth, setInputWidth] = useState(1)
@@ -76,7 +77,7 @@ export const EditableText = forwardRef(function EditableText({
                             <ColorPicker
                                 onCloseModal={() => {
                                     setIsPickingColor(false)
-                                    onCloseModal()
+                                    onCloseModal();
                                 }}
                                 selectedColor={colorPicker?.selectedColor}
                                 setColor={colorPicker?.setColor}
@@ -104,11 +105,20 @@ export const EditableText = forwardRef(function EditableText({
                 value={value}
                 placeholder={placeholder}
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}`}
-                onClick={(e) => e.stopPropagation()}
+                onClick={(e) => {e.stopPropagation()
+                    setIsInputFocused(true)
+
+                }}
                 onChange={handleChange}
-                onFocus={() => setIsFocused(true)}
+                onFocus={() => {
+                    setIsFocused(true)
+                    if(setIsInputFocused) setIsInputFocused(true)     
+                }
+
+                }
                 onBlur={(e) => {
                     setIsFocused(false);
+                    if(setIsInputFocused) setIsInputFocused(false)
                     if (skipBlurRef.current || isPickingColor) return;
                     onBlur?.(e);
                 }}
@@ -117,6 +127,7 @@ export const EditableText = forwardRef(function EditableText({
                         e.preventDefault()
                         skipBlurRef.current = true // set the flag
                         onPressEnter()
+                        if(setIsInputFocused) setIsInputFocused(false)
                         inputRef.current?.blur()
 
                         // reset flag after event loop (ensures blur won't act)

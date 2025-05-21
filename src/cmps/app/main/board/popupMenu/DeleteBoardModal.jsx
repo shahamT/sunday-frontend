@@ -29,6 +29,7 @@ export function DeleteBoardModal({ onRemoveBoard, closeGlobalModal, id }) {
                 <button className="cancel-btn clickable clear size-40" onClick={() => closeGlobalModal()}>Cancel</button>
                 <button className="delete-btn clickable filled negative size-40" onClick={() => {
                     onRemoveBoard(id)
+                    closeGlobalModal()
                 }}>Delete</button>
             </div>
         </section>

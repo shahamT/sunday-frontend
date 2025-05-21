@@ -189,15 +189,7 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
         console.log('board action -> Cannot move task', err)
         throw err
     }
-    try {
-        store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
-        await createLog({ type: 'move task', taskId: task.id, fromGroupId, toGroupId })
-        await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
-    } catch (err) {
-        store.dispatch({ type: REVERT_BOARD })
-        console.log('board action -> Cannot move task', err)
-        throw err
-    }
+    
 }
 
 
