@@ -106,7 +106,7 @@ export const EditableText = forwardRef(function EditableText({
                 placeholder={placeholder}
                 className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}`}
                 onClick={(e) => {e.stopPropagation()
-                    setIsInputFocused(true)
+                    // if(setIsInputFocused) setIsInputFocused(true)     
 
                 }}
                 onChange={handleChange}
@@ -117,10 +117,10 @@ export const EditableText = forwardRef(function EditableText({
 
                 }
                 onBlur={(e) => {
-                    setIsFocused(false);
+                    setIsFocused(false)
                     if(setIsInputFocused) setIsInputFocused(false)
                     if (skipBlurRef.current || isPickingColor) return;
-                    onBlur?.(e);
+                    onBlur?.(e)
                 }}
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {
