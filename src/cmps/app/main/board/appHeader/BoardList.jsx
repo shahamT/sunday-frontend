@@ -41,7 +41,18 @@ export function BoardList({ /* prop1, prop2 */ }) {
         updateUser(boardId)
     }
 
-    if (boards.length === 0) return (
+    // if (boards.length === 0) return (
+    //     <div className="global-loader-container" >
+    //         <Loader
+    //             size={4}
+    //             width={6}
+    //             color="#0073ea"
+    //             textSize={1.2}
+    //         />
+    //     </div>
+    // )
+
+    if (!boards) return (
         <div className="global-loader-container" >
             <Loader
                 size={4}

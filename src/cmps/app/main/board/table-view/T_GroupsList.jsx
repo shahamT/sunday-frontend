@@ -28,6 +28,7 @@ import { T_Group } from './T_Group'
 export function T_GroupsList({}) {
   // === Consts
   const storeBoard = useSelector(storeState => storeState.boardModule.board)
+  const boards = useSelector(storeState => storeState.boardModule.boards)
   const [board, setBoard] = useState(null)
   const liveColumnWidthsRef = useRef({})
   const [resizeVersion, setResizeVersion] = useState(0)

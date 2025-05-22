@@ -54,7 +54,7 @@ export const CLOSE_TASK_PANEL = "CLOSE_TASK_PANEL"
 
 const initialState = {
     //board
-    boards: [],
+    boards: '',
     lastBoards: [],
     lastBoard: {},
     board: null,
