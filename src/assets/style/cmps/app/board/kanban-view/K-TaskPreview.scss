@@ -6,23 +6,38 @@
     border: 1px solid var(--layout-border-color);
     border-radius: var(--border-radius-md);
     background-color: var(--primary-background-color);
+    
+    .divider {
+        height: 1px;
+        width: 100%;
+        margin-block-end: 8px;
+        background-color: var(--layout-border-color);
+    }
 
+    .task-name {
+        margin-block-end: 8px;
+    }
+    
     .CVs {
         display: flex;
-        gap: 8px;
         flex-wrap: wrap;
+        justify-content: flex-start;
         margin-block-start: 8px;
-        
+
         .content {
             font-size: 14px;
             padding-inline: 4px;
             background-color: var(--primary-background-hover-color);
+            margin-inline-end: 8px;
+            margin-block-end: 8px;
         }
         
         .status {
             font-size: 14px;
             padding-inline: 4px;
             color: white;
+            margin-inline-end: 8px;
+            margin-block-end: 8px;
         }
     
     }
@@ -33,6 +48,8 @@
         margin-block-start: 8px;
 
         .file {
+        margin-inline-end: 8px;
+
             img {
                 height: 30px;
                 box-shadow: var(--box-shadow-large);

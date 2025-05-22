@@ -19,98 +19,102 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 export function ActivityLogRow({ activity = {}, task, board }) {
 
   // === Consts
-  const [activityType, setActivityType] = useState(false);
-  const [group, setGroup] = useState({});
-  const [cvType, setCvType] = useState({});
-  const [colName, setColName] = useState("");
-  const [prevVal, setPrevVal] = useState(null);
-  const [newVal, setNewVal] = useState(null);
+  const [activityType, setActivityType] = useState(false)
+  const [group, setGroup] = useState({})
+  const [cvType, setCvType] = useState({})
+  const [colName, setColName] = useState("")
+  const [prevVal, setPrevVal] = useState(null)
+  const [newVal, setNewVal] = useState(null)
 
   // === Effects
   useEffect(() => {
-    if (!activity || !activity.type) return;
-    handleActivityType(activity.type);
-  }, []);
+    if (!activity || !activity.type) return
+    handleActivityType(activity.type)
+  }, [])
+
 
   // === Functions
   function handleActivityType(type) {
 
     switch (type) {
       case "add task":
-        setActivityType("add task");
+        setActivityType("add task")
         const currGroup = board.groups.find((group) => {
-          return group.tasks.find((t) => t.id === task.id);
-        });
-        setGroup(currGroup);
-        return;
+          return group.tasks.find((t) => t.id === task.id)
+        })
+        setGroup(currGroup)
+        return
 
       case "remove task":
-        setActivityType("remove task");
+        setActivityType("remove task")
         const prevGroup = board.groups.find((group) => {
-          return group.tasks.find((t) => t.id === task.id);
-        });
-        setGroup(prevGroup);
-        return;
+          return group.tasks.find((t) => t.id === task.id)
+        })
+        setGroup(prevGroup)
+        return
 
       case "move task":
         if (activity.fromGroupId !== activity.toGroupId) {
-          setActivityType("move task");
-          const fromGroup = board.groups.find(
-            (g) => g.id === activity.fromGroupId
-          );
-          const toGroup = board.groups.find((g) => g.id === activity.toGroupId);
+          setActivityType("move task")
+          const fromGroup = board.groups.find( g => g.id === activity.fromGroupId)
+          const toGroup = board.groups.find(g => g.id === activity.toGroupId)
 
-          setGroup({ fromGroup, toGroup });
+          setGroup({ fromGroup, toGroup })
         }
-        return;
+        return
 
       case "set column value":
-        const currCol = board.columns.find((col) => col.id === activity.colId);
-        if (!currCol) return
-        setColName(currCol.name || "");
-        setActivityType("set column value");
+        const currCol = activity.column
+
+        setColName(currCol?.name || "")
+        setActivityType("set column value")
+
         if (currCol?.type?.variant === "file") {
-          setCvType("file");
+          setCvType("file")
+
         } else if (currCol?.type?.variant === "date") {
-          if (activity.value) setNewVal(formatSmartDate(activity.value));
+          if (activity.value) setNewVal(formatSmartDate(activity.value))
           if (activity.prevValue)
-            setPrevVal(formatSmartDate(activity.prevValue));
-          setCvType("date");
+            setPrevVal(formatSmartDate(activity.prevValue))
+          setCvType("date")
+
         } else if (currCol?.type?.variant === "status") {
           const currValue = activity.value
             ? currCol?.type?.labels.find((label) => label.id === activity.value)
-            : null;
+            : null
           const prevValue = activity.prevValue
             ? currCol?.type?.labels.find(
               (label) => label.id === activity.prevValue
             )
-            : null;
-          setNewVal(currValue);
-          setPrevVal(prevValue);
-          setCvType("status");
-        } else if (currCol.type.variant === "people") {
+            : null
+          setNewVal(currValue)
+          setPrevVal(prevValue)
+          setCvType("status")
+
+        } else if (currCol?.type.variant === "people") {
           const currValue = activity.value?.filter((user) => {
             return !activity.prevValue?.some(
               (prevUser) => prevUser._id === user._id
-            );
-          });
+            )
+          })
           const prevValue = activity.prevValue?.filter((prevUser) => {
-            return !activity.value?.some((user) => user._id === prevUser._id);
-          });
+            return !activity.value?.some((user) => user._id === prevUser._id)
+          })
 
-          if (currValue) setNewVal(currValue[0]);
-          if (prevValue) setPrevVal(prevValue[0]);
-          setCvType("people");
-        } else setCvType("regular");
-        return;
+          if (currValue) setNewVal(currValue[0])
+          if (prevValue) setPrevVal(prevValue[0])
+          setCvType("people")
+
+        } else setCvType("regular")
+        return
     }
   }
 
   function formatSmartDate(timestamp) {
-    const date = new Date(timestamp);
+    const date = new Date(timestamp)
     const now = new Date();
 
-    const isThisYear = date.getFullYear() === now.getFullYear();
+    const isThisYear = date.getFullYear() === now.getFullYear()
 
     return new Intl.DateTimeFormat("en-US", {
       month: "short",
@@ -213,10 +217,11 @@ export function ActivityLogRow({ activity = {}, task, board }) {
           <p className="action-name deleted">Deleted</p>
         </section>
       )}
+      
       {activityType === "set column value" && (
         <>
           <section className="activity-row-section action-title">
-            <p className={`action-name ${colName}`}>
+            <p className={`action-name ${activity.column.type.variant}`}>
               {colName === "Task" ? "Name" : colName}
             </p>
           </section>
@@ -228,8 +233,8 @@ export function ActivityLogRow({ activity = {}, task, board }) {
             {cvType === "file" && (
               <>
                 {activity.prevValue ? (
-                  <div className="profile-img-wrapper">
-                    <img className="prev-value" src={activity.prevValue} alt="" />
+                  <div className="prev-value">
+                    <img  src={activity.prevValue} alt="" />
                   </div>
                 ) : (
                   <div className="prev-value">-</div>
@@ -238,8 +243,8 @@ export function ActivityLogRow({ activity = {}, task, board }) {
                 <div className="change-arrow"></div>
 
                 {activity.value ? (
-                  <div className="profile-img-wrapper">
-                    <img className="to-value" src={activity.value} alt="" />
+                  <div className="prev-value">
+                    <img src={activity.value} alt="" />
                   </div>
                 ) : (
                   <div className="to-value">-</div>
@@ -300,7 +305,7 @@ export function ActivityLogRow({ activity = {}, task, board }) {
             {cvType === "people" && (
               <section className="people-change-details regular-action">
                 <div>{newVal ? "Added" : "Removed"} </div>
-                <Tooltip title={newVal?.name || prevVal?.name}>
+                <Tooltip title={`${newVal?.firstName} ${newVal?.lastName}` || `${prevVal?.firstName} ${prevVal?.lastName}`}>
                   <div className="profile-img-wrapper">
                     <img src={newVal?.profileImg || prevVal.profileImg} alt="" />
                   </div>
@@ -313,5 +318,5 @@ export function ActivityLogRow({ activity = {}, task, board }) {
       )
       }
     </section >
-  );
+  )
 }

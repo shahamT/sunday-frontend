@@ -40,7 +40,7 @@ export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bump
             },
             {
                 threshold: 0,
-                rootMargin: `-${244}px 0px 0px 0px`,
+                rootMargin: `-${243}px 0px 0px 0px`,
             }
         );
         

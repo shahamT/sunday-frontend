@@ -47,7 +47,7 @@ export function TaskDetailsUpdates({ boardId, groupId, taskId, task}) {
         <h3>No updates yet</h3>
         <p>Share progress here!</p>
       </div>
-      : <Updates task={task} />                    
+      : <Updates task={task} boardId={boardId} groupId={groupId} taskId={taskId}/>                    
       }
 
     </section>

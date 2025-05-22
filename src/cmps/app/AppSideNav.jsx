@@ -2,7 +2,7 @@
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
 import { useEffect, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
 // Dnd kit
@@ -13,7 +13,7 @@ import { DragOverlay } from '@dnd-kit/core'
 // === Services
 
 // === Actions
-import { loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
+import { getCmdUpdateMiniBoardsFromSocket, loadBoards, updateBoard, updateBoards } from "../../store/actions/board.actions";
 
 // === Hooks / React
 
@@ -35,6 +35,7 @@ export function AppSideNav({ }) {
     ) : []
 
     const { boardId } = useParams()
+    const dispatch = useDispatch()
 
     const [editingBoardId, setEditingBoardId] = useState(null)
     const [editedTitle, setEditedTitle] = useState('')
@@ -176,7 +177,7 @@ export function AppSideNav({ }) {
                     </section>
 
 
-                    {boards.length === 0 &&
+                    {!boards &&
                         (<div className="global-loader-container" >
                             <Loader
                                 size={4}
@@ -186,6 +187,17 @@ export function AppSideNav({ }) {
                             />
                         </div>)
                     }
+
+                    {/* {boards.length === 0 &&
+                        (<div className="global-loader-container" >
+                            <Loader
+                                size={4}
+                                width={6}
+                                color="#0073ea"
+                                textSize={1.2}
+                            />
+                        </div>)
+                    } */}
 
                     {boards.length !== 0 && filteredBoards.length === 0 ?
                         <div className="board-list-empty-state-wraper">

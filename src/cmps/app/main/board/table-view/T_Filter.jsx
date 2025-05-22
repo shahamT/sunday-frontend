@@ -18,6 +18,7 @@ import { useControlledInput } from "../../../../../hooks/useControlledInput.js"
 import { setFilterBy } from "../../../../../store/actions/board.actions.js"
 import { debounce } from "../../../../../services/base/util.service.js"
 import { store } from "../../../../../store/store.js"
+import { Tooltip } from "../../../../reusables/tooltip/Tooltip.jsx"
 
 // ====== Component ======
 // =======================
@@ -156,7 +157,8 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                             <section className="person-to-filterBy">
                                 {users.map(user => {
                                     return  <div key={user._id} className={`img-wrapper ${selectedPerson?._id === user._id ? 'select' : ''}`}  onClick={() => onHandlePersonFilterBy(user)} > 
-                                    <div className="profile-img-wrapper"><img src={user.profileImg} alt=""/></div></div>
+                                    <Tooltip title={`${user.firstName} ${user.lastName}`}><div className="profile-img-wrapper"><img src={user.profileImg} alt=""/></div></Tooltip>
+                                    </div>
                                 })}
                             </section>
                         </section>

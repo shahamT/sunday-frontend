@@ -129,43 +129,43 @@
                         }
                     }
 
-                    &.Files {
+                    &.file {
                         &::before {
                             content: "\e95f";
                         }
                     }
 
-                    &.Date {
+                    &.date {
                         &::before {
                             content: "\e91e";
                         }
                     }
 
-                    &.Status {
+                    &.status {
                         &::before {
                             content: "\e9dd";
                         }
                     }
 
-                    &.Peoples {
+                    &.people {
                         &::before {
                             content: "\e9e6";
                         }
                     }
 
-                    &.Task {
+                    &.item {
                         &::before {
                             content: "\e9eb";
                         }
                     }
 
-                    &.Number {
+                    &.number {
                         &::before {
                             content: "\e9b2";
                         }
                     }
 
-                    &.Text {
+                    &.text {
                         &::before {
                             content: "\e9eb";
                         }
@@ -196,6 +196,13 @@
 
 
                 img.to-value {
+                    height: 24px;
+                    width: auto;
+                    object-fit: contain;
+
+                }
+
+                img.prev-value {
                     height: 24px;
                     width: auto;
                     object-fit: contain;
