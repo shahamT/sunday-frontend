@@ -100,6 +100,7 @@ export function AppSideNav({ }) {
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
         updateBoards(reorderedBoards)
+        
 
     }
 
