@@ -11,7 +11,7 @@ import { EditLabelMenu } from "./EditLabelMenu"
 // ====== Component ======
 // =======================
 
-export function EditLable({ status, columnId }) {
+export function EditLable({ status, columnId,relevantColors }) {
     // === Consts
     const [value, handleChange, reset, set] = useControlledInput(status.name)
 
@@ -39,6 +39,7 @@ export function EditLable({ status, columnId }) {
                     position="bottom-start"
                     renderContent={({ onCloseModal }) => (
                         <ColorPicker
+                        relevantColors={relevantColors}
                             onCloseModal={onCloseModal}
                             setColor={handleColorChange}
                             selectedColor={status.color}

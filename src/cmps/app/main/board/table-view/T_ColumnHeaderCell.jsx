@@ -69,21 +69,6 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupI
         }
       }, [canDrag])
 
-    //   useEffect(() => {
-    //     if (sortable?.isDragging) {
-    //       document.body.classList.add('is-dragging')
-    //     } else {
-    //       document.body.classList.remove('is-dragging')
-    //     }
-    //   }, [sortable?.isDragging])
-
-    //   useEffect(() => {
-    //     if (sortable?.isDragging && isDraggingOverlay) {
-    //       document.body.classList.add('column-drag-overlay')
-    //     } else {
-    //       document.body.classList.remove('column-drag-overlay')
-    //     }
-    //   }, [sortable?.isDragging, isDraggingOverlay])
 
     // resize columns 
     const [width, setWidth] = useState(column.width)

@@ -17,9 +17,12 @@ import { boardService } from '../../../../../services/board/board.service.local.
 // ====== Component ======
 // =======================
 
-export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full', setIsPickingColor, setIsNewLabelOpen }) {
+export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full', setIsPickingColor, setIsNewLabelOpen, relevantColors }) {
     
-    const fullColors = boardService.getColors().filter(color => color !== 'explosive')
+    const fullColors = boardService.getColors()
+    const availableColors = fullColors.filter(
+        color => color !== 'explosive' && !relevantColors?.includes(color)
+      )
 
     const limitColors = [
         'done-green',
@@ -43,7 +46,7 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
     ]
 
 
-    const colors = (variant === 'full') ? fullColors : limitColors
+    const colors = (variant === 'full') ? availableColors : limitColors
     const shape = (variant === 'full') ? 'square ' : 'circle'
     // === Consts
 

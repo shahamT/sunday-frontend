@@ -13,7 +13,8 @@ import { addLabel, updateLabel } from "../../../../../store/actions/board.action
 export function EditStatusPicker({ StatusArray, columnId }) {
 
     // === Consts
-
+const relevantColors= StatusArray.map(status => status.color)
+//  = boardService.getColors().filter(color => color !== 'explosive')
     // === Functions
 
     return (
@@ -21,7 +22,7 @@ export function EditStatusPicker({ StatusArray, columnId }) {
             {StatusArray.map(status => (
                 <div key={status.id} className="edit-status-item">
                     <div className="input-wrapper">
-                        <EditLable status={status} columnId={columnId} />
+                        <EditLable status={status} columnId={columnId} relevantColors={relevantColors} />
                     </div>
                 </div>
             ))}
