@@ -184,7 +184,7 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
     try {
         store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
         await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
-        await createLog({ type: 'move task', task, fromGroupId, toGroupId })
+        await createLog({ type: 'move task', task, taskId: task.id, fromGroupId, toGroupId })
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot move task', err)
@@ -362,14 +362,17 @@ export async function removeLabel(labelId, columnId) {
 // ========= ================= =========
 
 export async function createLog(logObject) {
-    const boardId = getBoardId()
+    const board = getBoard()
     logObject.id = makeId()
     logObject.createdAt = Date.now()
     logObject.createdBy = userService.getLoggedinUser().profileImg
-    console.log(`createLog: `, logObject)
+    if (logObject.colId) {
+        const {id, name, type} = board.columns.find(col => col.id === logObject.colId)
+        logObject.column = {id, name, type}
+    }
     try {
         store.dispatch(getCmdCreateLog(logObject))
-        await boardService.createLog(logObject, boardId)
+        await boardService.createLog(logObject, board._id)
         return logObject
     } catch (err) {
         // store.dispatch({ type: REVERT_BOARD })

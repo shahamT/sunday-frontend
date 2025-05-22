@@ -207,9 +207,9 @@ export function TaskDetails() {
                     <div key="updates" className={isSelected('updates') ? 'tab-underline' : ''} onClick={() => select("updates")}>
                         <div className="tab-btn clickable clear size-32 select icon-start i-Home">Updates</div>
                     </div>
-                    <div key="files" className={isSelected('files') ? 'tab-underline' : ''} onClick={() => select("files")}>
+                    {/* <div key="files" className={isSelected('files') ? 'tab-underline' : ''} onClick={() => select("files")}>
                         <div className="tab-btn clickable clear size-32 select">Files</div>
-                    </div>
+                    </div> */}
                     <div key="activity-log" className={isSelected('activity-log') ? 'tab-underline' : ''} onClick={() => select("activity-log")}>
                         <div className="tab-btn clickable clear size-32 select">Activity Log</div>
                     </div>
@@ -218,7 +218,7 @@ export function TaskDetails() {
 
             <section className="task-details-tab-content">
                 {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
-                {isSelected('files') && <TaskDetailsFiles />}
+                {/* {isSelected('files') && <TaskDetailsFiles />} */}
                 {isSelected('activity-log') && <TaskDetailsActivityLog task={task} board={board} />}
             </section>
         </section>

@@ -33,7 +33,7 @@ export function TaskDetailsActivityLog({ task, board }) {
             {/* <h1>
                 <pre>{JSON.stringify(activities, null, 2)}</pre>
             </h1> */}
-            {activities.map(activity => {
+            {activities?.map(activity => {
                 if(activity.taskId === task.id) {
                    return <ActivityLogRow key={activity.id} activity={activity} task={task} board={board} />
                 }
