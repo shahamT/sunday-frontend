@@ -113,12 +113,6 @@ export function K_StatusList({ setForSum }) {
                 return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
             })
         )
-        const blankTasks = board.groups.flatMap(group =>
-            group.tasks.filter(task => {
-                const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
-                return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
-            })
-        )
 
         if (blankTasks.length) {
             tasksByStatusArray.push({
@@ -147,10 +141,8 @@ export function K_StatusList({ setForSum }) {
         const onlyColumnValues = tasksBy.map(label => label.id)
 
         setForSum(onlyColumnValues, statusCol, totalTasks)
-
     }
     
-
     function handleDragEnd(event) {
         const { active, over } = event
         if (!over || active.id === over.id) return
