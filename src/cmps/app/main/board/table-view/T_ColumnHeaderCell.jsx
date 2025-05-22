@@ -22,7 +22,7 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column,  isDraggingOverlay=false ,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
     // D & D
     const variant = column.type.variant
     const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
@@ -40,6 +40,7 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay=false ,isOver, g
     const listeners = sortable?.listeners || {}
     const attributes = sortable?.attributes || {}
     const isDraggingClass = sortable?.isDragging ? 'is-dragging' : ''
+    // const isDragging = sortable?.isDragging
 
 
     // === Consts
@@ -172,7 +173,7 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay=false ,isOver, g
 
     return (
         <div
-            className={`T_ColumnHeaderCell ${isDraggingOverlay ? 'drag-overlay' : ''}  ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
+            className={`T_ColumnHeaderCell ${isDraggingOverlay ? 'drag-overlay' : ''} ${isDraggingClass} ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
             // className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
             ref={setNodeRef}
             style={style}

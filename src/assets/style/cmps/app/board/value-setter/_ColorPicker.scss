@@ -18,7 +18,13 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
+   
+ 
+    
+    .color-picker-item::after{
+  z-index: 0;
 
+}
   }
 
   .square {

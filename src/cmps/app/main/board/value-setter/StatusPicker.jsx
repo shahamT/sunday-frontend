@@ -2,9 +2,6 @@
 
 import { useState } from "react"
 import { EditStatusPicker } from "./EditStatusPicker"
-import { boardService } from "../../../../../services/board"
-
-
 
 // ====== Component ======
 // =======================
@@ -13,17 +10,11 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
     // === Consts
     const [isEditable, setIsEditable] = useState(false)
 
-    const [labelToEdit, setLabelToEdit] = useState(boardService.getEmptyLabel())
-    const [labelName, setLabelName] = useState(labelToEdit.name)
-    const [isNewLabelOpen, setIsNewLabelOpen] = useState(false)
     // === Effects
 
     // === Functions
     function handleApply() {
         setIsEditable(false)
-        StatusArray.forEach(status => {
-            if (status.name.trim()) remove(column.id, status.id)
-        })
 
     }
 
@@ -69,11 +60,11 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
             </section>
 
             <section className="control-btns">
-                 <div className="divider" />
+                <div className="divider" />
                 {isEditable
                     ?
                     (<>
-                       
+
                         <button
                             className="apply-btn clickable clear size-32"
                             onClick={() => handleApply()}
@@ -84,14 +75,14 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
                     )
                     :
                     (
-                    <>
-                        <div
-                            className="edit-btn clickable icon-start clear i-Edit size-32"
-                            onClick={() => setIsEditable(true)}
-                        >
-                            Edit Labels
-                        </div>
-                    </>
+                        <>
+                            <div
+                                className="edit-btn clickable icon-start clear i-Edit size-32"
+                                onClick={() => setIsEditable(true)}
+                            >
+                                Edit Labels
+                            </div>
+                        </>
                     )}
 
 

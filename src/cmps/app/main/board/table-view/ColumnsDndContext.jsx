@@ -66,7 +66,8 @@ export function ColumnsDndContext({ setOverId, children, columns, group, board }
 
       <DragOverlay dropAnimation={null}>
         {activeColumn && (
-          <div className="drag-column-overlay">
+          <div className="drag-column-overlay"
+          >
             <T_ColumnHeaderCell column={activeColumn} groupId={group.id}  isDraggingOverlay={true} />
             {/* <T_ColumnBody column={activeColumn} group={group}  /> */}
           </div>
