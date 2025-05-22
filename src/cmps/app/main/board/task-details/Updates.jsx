@@ -21,6 +21,7 @@ import { removeTaskUpdate } from "../../../../../store/actions/board.actions"
 export function Updates({ task, boardId, groupId, taskId }) {
     // === Consts
     const users = useSelector(storeState => storeState.userModule.users)
+    const loggedinUser = useSelector(storeState => storeState.userModule.loggedinUser)
 
     // === Effects
 
@@ -48,7 +49,9 @@ export function Updates({ task, boardId, groupId, taskId }) {
                             )}
                             <span>{getFormattedTime(update.createdAt)}</span>
                         </div>
-                        <button className="remove-update-btn clickable clear size-32  icon-end i-Delete" onClick={() => onRemoveUpdate(update.id)}>Delete</button>
+
+                        {loggedinUser._id === update.createdBy &&
+                            <button className="remove-update-btn clickable clear size-32  icon-end i-Delete" onClick={() => onRemoveUpdate(update.id)}>Delete</button>}
                     </div>
                     <div className="task-comment">
                         <TaskComment html={update.txt} />
