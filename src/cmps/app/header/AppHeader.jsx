@@ -46,19 +46,21 @@ export function AppHeader(props) {
                     <div className="switcher-btn clickable clear icon-btn select size-40 icon-big i-Switcher" />
                 </Tooltip>
 
-                <PopUpMenu
-                    position="bottom-end"
-                    renderContent={({ onCloseModal }) => (
-                        <UserAccountMenu
-                            onCloseModal={onCloseModal} />
-                    )}>
-                    <div className="menu-btn clickable select size-32 clear">
-                        <img className="monday-logo-icon" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1746718734/monday_logo_icon_dumn0r.png" alt="" />
-                        <div className='profile-img-wrapper'>
-                            <img className="user-avatar" src={profileImg} alt="" />
+                <div className='UserAccountMenu-wrapper'>
+                    <PopUpMenu
+                        position="bottom-end"
+                        renderContent={({ onCloseModal }) => (
+                            <UserAccountMenu
+                                onCloseModal={onCloseModal} />
+                        )}>
+                        <div className="menu-btn clickable select size-32 clear">
+                            <img className="monday-logo-icon" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1746718734/monday_logo_icon_dumn0r.png" alt="" />
+                            <div className='profile-img-wrapper'>
+                                <img className="user-avatar" src={profileImg} alt="" />
+                            </div>
                         </div>
-                    </div>
-                </PopUpMenu>
+                    </PopUpMenu>
+                </div>
 
 
 

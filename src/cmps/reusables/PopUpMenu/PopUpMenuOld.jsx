@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
-import { createPortal } from 'react-dom'
-import './PopUpMenu.scss'
+import { useEffect, useRef, useState } from 'react';
+
+import './PopUpMenu.scss';
 
 export function PopUpMenu({
   children,
@@ -13,8 +13,8 @@ export function PopUpMenu({
   showOnHover = false,
   mouseInDelay = 0,
   mouseOutDelay = 0,
-  onOpen = () => {},
-  onClose = () => {},
+  onOpen = () => { },
+  onClose = () => { },
 }) {
   const wrapperRef = useRef(null)
   const popupRef = useRef(null)
@@ -24,7 +24,6 @@ export function PopUpMenu({
   const [isOpen, setIsOpen] = useState(false)
   const [placement, setPlacement] = useState(position)
   const [isVisible, setIsVisible] = useState(false)
-  const [popupStyle, setPopupStyle] = useState({})
 
   function open() {
     clearTimeout(mouseOutTimeoutRef.current)
@@ -40,10 +39,11 @@ export function PopUpMenu({
     if (noAnimation) {
       setIsOpen(false)
     } else {
-      setTimeout(() => setIsOpen(false), 120)
+      setTimeout(() => setIsOpen(false), 120) // match animation duration
     }
   }
 
+  // Handle outside click
   useEffect(() => {
     if (!showOnHover) {
       function handleClickOutside(e) {
@@ -64,12 +64,14 @@ export function PopUpMenu({
     }
   }, [isOpen, showOnHover])
 
+  // Trigger animation after render
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => setIsVisible(true), 0)
     }
-  }, [isOpen])
+  }, [isOpen]);
 
+  // Determine flip direction
   useEffect(() => {
     if (!isOpen || !popupRef.current || !wrapperRef.current) return
 
@@ -83,21 +85,17 @@ export function PopUpMenu({
     const vertical = rawDir || 'bottom'
     const alignment = rawAlign || 'center'
 
-    const shouldFlip =
-      vertical === 'bottom'
-        ? spaceBelow < popupRect.height + gap
-        : spaceAbove < popupRect.height + gap
+    const shouldFlip = vertical === 'bottom'
+      ? spaceBelow < popupRect.height + gap
+      : spaceAbove < popupRect.height + gap
 
     const newVertical = shouldFlip
       ? vertical === 'bottom' ? 'top' : 'bottom'
       : vertical
 
-    const newPlacement = `${newVertical}${alignment !== 'center' ? `-${alignment}` : ''}`
-    setPlacement(newPlacement)
-
-    const style = calculatePopupPosition(triggerRect, popupRect, newPlacement, gap)
-    setPopupStyle(style)
+    setPlacement(`${newVertical}${alignment !== 'center' ? `-${alignment}` : ''}`)
   }, [isOpen, position, gap])
+
 
   function handleMouseEnter() {
     if (!showOnHover) return
@@ -111,6 +109,7 @@ export function PopUpMenu({
     mouseOutTimeoutRef.current = setTimeout(close, mouseOutDelay)
   }
 
+
   return (
     <div
       className={`popup-wrapper ${stretchTrigger ? 'stretch' : ''}`}
@@ -122,56 +121,34 @@ export function PopUpMenu({
         className={`popup-trigger ${stretchTrigger ? 'stretch' : ''}`}
         onClick={(e) => {
           if (showOnHover) return
-          e.preventDefault()
-          e.stopPropagation()
-          open()
+          e.preventDefault();
+          e.stopPropagation();
+          open();
         }}
       >
         {children}
       </div>
 
-      {isOpen &&
-        createPortal(
+      {isOpen && (
+        <div
+          ref={popupRef}
+          className={`popup-container ${placement}`}
+          style={getGapStyle(placement, gap)}
+
+        >
           <div
-            ref={popupRef}
-            className={`popup-container ${placement}`}
-            style={{ ...popupStyle, ...getGapStyle(placement, gap), position: 'absolute', zIndex: 1000 }}
+            className={`popup-menu-inner ${noAnimation ? 'no-animation' : isVisible ? 'visible' : ''
+              }`}
+            data-placement={placement}
+
           >
-            <div
-              className={`popup-menu-inner ${noAnimation ? 'no-animation' : isVisible ? 'visible' : ''}`}
-              data-placement={placement}
-            >
-              {renderContent({ onCloseModal: close })}
-              {!noArrow && <div className={`popup-arrow popup-arrow-${placement}`} />}
-            </div>
-          </div>,
-          document.body
-        )}
+            {renderContent({ onCloseModal: close })}
+            {!noArrow && <div className={`popup-arrow popup-arrow-${placement}`} />}
+          </div>
+        </div>
+      )}
     </div>
-  )
-}
-
-function calculatePopupPosition(triggerRect, popupRect, placement, gap) {
-  const [dir, align = 'center'] = placement.split('-')
-  let top = 0
-  let left = 0
-
-  if (dir === 'bottom') {
-    top = triggerRect.bottom + gap
-  } else if (dir === 'top') {
-    top = triggerRect.top - popupRect.height - gap
-  }
-
-  if (align === 'start') {
-    left = triggerRect.left
-  } else if (align === 'end') {
-    left = triggerRect.right - popupRect.width
-  } else {
-    // center
-    left = triggerRect.left + (triggerRect.width - popupRect.width) / 2
-  }
-
-  return { top: Math.round(top), left: Math.round(left) }
+  );
 }
 
 function getGapStyle(position, gap) {

@@ -86,6 +86,27 @@
             background-color: var(--primary-selected-color);
         }
     }
+    
+    .people-filter-btn-active {
+        padding-inline-start: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        .profile-img-wrapper {
+            margin: 3px;
+            
+            img {
+                height: 29px;
+                width: 29px;
+            }
+        }
+        
+        .close-btn {
+            background-color: transparent;
+        }
+    }
+}
 
     .person-filter-popup-content {
         padding: 16px;
@@ -101,13 +122,13 @@
             font-size: 15px;
         }
 
-        .person-to-filterBy {
+        .specific-person-to-filterBy {
             margin-block-start: 16px;
             padding-block-end: 8px;
             display: flex;
             flex-wrap: wrap;
-
-            .img-wrapper {
+            
+            .specific-img-wrapper {
                 height: 40px;
                 width: 40px;
                 display: flex;
@@ -118,38 +139,14 @@
                 &.select {
                     background-color: var(--card-selected-background-color);
                 }
-
-                .profile-img-wrapper {
-
-                    img {
-                        height: 30px;
-                        width: 30px;
-                        cursor: pointer;
-        
-                    }
-                }
-            }
-            
-        }
-    }
-
-    .people-filter-btn-active {
-        padding-inline-start: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        .profile-img-wrapper {
-            margin: 3px;
-
-            img {
-                height: 29px;
-                width: 29px;
+                
+                .specific-img {
+                    height: 30px;
+                    width: 30px;
+                    cursor: pointer;    
+                    border-radius: 50%;
+                    // object-fit: cover;
+                }   
             }
         }
-
-        .close-btn {
-            background-color: transparent;
-        }
     }
-}

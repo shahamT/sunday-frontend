@@ -154,13 +154,13 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                         <section className="person-filter-popup-content">
                             <div className="title">Filter this board by person</div>
                             <div className="subtitle">And find items they're working on.</div>
-                            <section className="person-to-filterBy">
+                            <section className="specific-person-to-filterBy">
                                 {users.map(user => {
-                                    return <div key={user._id} className={`img-wrapper ${selectedPerson?._id === user._id ? 'select' : ''}`}  onClick={() => onHandlePersonFilterBy(user)} > 
+                                    return <div key={user._id} className={`specific-img-wrapper ${selectedPerson?._id === user._id ? 'select' : ''}`}  onClick={() => onHandlePersonFilterBy(user)} > 
                                             <Tooltip title={`${user.firstName} ${user.lastName}`}>
-                                                    <div className="profile-img-wrapper">
-                                                        <img src={user.profileImg} alt=""/>
-                                                    </div>
+                                                    {/* <div className="profile-img-wrapper"> */}
+                                                    <img className="specific-img" src={user.profileImg} alt=""/>
+                                                    {/* </div> */}
                                             </Tooltip>
                                         </div>
                                 })}
