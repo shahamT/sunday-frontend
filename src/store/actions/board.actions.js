@@ -2,7 +2,7 @@ import {
     ADD_BOARD, REMOVE_BOARD, REVERT_BOARDS, REVERT_BOARD, SET_BOARDS, SET_BOARD, UPDATE_BOARD, UPDATE_BOARD_FROM_SOCKET, UPDATE_MINI_BOARDS_FROM_SOCKET,
     ADD_GROUP, REMOVE_GROUP, UPDATE_GROUP,
     ADD_COLUMN, REMOVE_COLUMN, UPDATE_COLUMN, UPDATE_LABEL, ADD_LABEL, REMOVE_LABEL,
-    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE, MOVE_TASK,
+    ADD_TASK, REMOVE_TASK, ADD_TASK_UPDATE, REMOVE_TASK_UPDATE, SET_COLUMN_VALUE, REMOVE_COLUMN_VALUE, MOVE_TASK,
     BOARDS_LOADING_START, BOARDS_LOADING_DONE,
     BOARD_LOADING_START, BOARD_LOADING_DONE,
     SET_BOARD_FILTER_BY,
@@ -193,8 +193,6 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
     
 }
 
-
-
 export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     const update = boardService.getEmptyUpdate(txt)
     try {
@@ -204,6 +202,18 @@ export async function addTaskUpdate(boardId, groupId, taskId, txt) {
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('Cannot add board msg', err)
+        throw err
+    }
+}
+
+export async function removeTaskUpdate(boardId, groupId, taskId, updateId) {
+    
+    try {
+        store.dispatch(getCmdRemoveTaskUpdate(groupId, taskId, updateId))
+        await boardService.removeTaskUpdate(boardId, groupId, taskId, updateId)
+    } catch (err) {
+        store.dispatch({ type: REVERT_BOARD })
+        console.log('Cannot remove board msg', err)
         throw err
     }
 }
@@ -515,6 +525,15 @@ function getCmdAddTaskUpdate(groupId, taskId, update) {
         groupId,
         taskId,
         update
+    }
+}
+
+function getCmdRemoveTaskUpdate(groupId, taskId, updateId) {
+    return {
+        type: REMOVE_TASK_UPDATE,
+        groupId,
+        taskId,
+        updateId
     }
 }
 

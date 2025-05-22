@@ -1,5 +1,7 @@
 // === Libs
 
+import { Tooltip } from "../../../../../reusables/tooltip/Tooltip"
+
 // === Services
 
 // === Actions
@@ -26,9 +28,9 @@ export function PersonsPreview({ selectedPersons = [], amount = 0 }) {
         <section className="PersonsPreview" >
             {selectedPersons.slice(0, amount).map(person => {
                 return (
-                    <div className="profile-img-wrapper" key={person._id} style={{ marginInlineStart: selectedPersons.length === 1 ? '0' : '-7px'}}>
+                    <Tooltip key={person._id} title={`${person.firstName} ${person.lastName}`}><div className="profile-img-wrapper" style={{ marginInlineStart: selectedPersons.length === 1 ? '0' : '-7px'}}>
                         <img src={person.profileImg || `https://cdn1.monday.com/dapulse_default_photo.png`} alt="" />
-                    </div>
+                    </div></Tooltip>
                 )
             })}
 
@@ -38,3 +40,5 @@ export function PersonsPreview({ selectedPersons = [], amount = 0 }) {
         </section>
     )
 }
+
+ 

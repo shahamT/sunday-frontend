@@ -15,6 +15,7 @@ export const boardService = {
     createTask,
     removeTask,
     addTaskUpdate,
+    removeTaskUpdate,
     setColumnValue,
     removeColumnValue,
     moveTask,
@@ -129,6 +130,12 @@ async function removeTask(taskId, groupId, boardId) {
 async function addTaskUpdate(boardId, groupId, taskId, update) {
     
     return httpService.post(`board/${boardId}/group/${groupId}/task/${taskId}/update`, { update })
+
+}
+
+async function removeTaskUpdate(boardId, groupId, taskId, updateId) {
+    
+    return httpService.post(`board/${boardId}/group/${groupId}/task/${taskId}/update/${updateId}`)
 
 }
 

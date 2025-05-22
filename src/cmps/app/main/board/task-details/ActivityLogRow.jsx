@@ -233,8 +233,8 @@ export function ActivityLogRow({ activity = {}, task, board }) {
             {cvType === "file" && (
               <>
                 {activity.prevValue ? (
-                  <div className="profile-img-wrapper">
-                    <img className="prev-value" src={activity.prevValue} alt="" />
+                  <div className="prev-value">
+                    <img  src={activity.prevValue} alt="" />
                   </div>
                 ) : (
                   <div className="prev-value">-</div>
@@ -243,8 +243,8 @@ export function ActivityLogRow({ activity = {}, task, board }) {
                 <div className="change-arrow"></div>
 
                 {activity.value ? (
-                  <div className="profile-img-wrapper">
-                    <img className="to-value" src={activity.value} alt="" />
+                  <div className="prev-value">
+                    <img src={activity.value} alt="" />
                   </div>
                 ) : (
                   <div className="to-value">-</div>

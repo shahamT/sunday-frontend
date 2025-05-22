@@ -35,6 +35,7 @@ export const REMOVE_TASK = 'REMOVE_TASK'
 export const ADD_TASK = 'ADD_TASK'
 export const MOVE_TASK = 'MOVE_TASK'
 export const ADD_TASK_UPDATE = 'ADD_TASK_UPDATE'
+export const REMOVE_TASK_UPDATE = 'REMOVE_TASK_UPDATE'
 export const SET_COLUMN_VALUE = 'SET_COLUMN_VALUE'
 export const REMOVE_COLUMN_VALUE = 'REMOVE_COLUMN_VALUE'
 
@@ -337,6 +338,22 @@ export function boardReducer(state = initialState, action = {}) {
                         ? {
                             ...group, tasks: group.tasks.map(task => task.id === action.taskId
                                 ? { ...task, updates: [action.update, ...task.updates] } : task)
+                        } : group)
+                },
+                lastBoard
+            }
+
+        case REMOVE_TASK_UPDATE:
+
+            lastBoard = { ...state.board }
+
+            return {
+                ...state,
+                board: {
+                    ...state.board, groups: state.board.groups.map(group => group.id === action.groupId
+                        ? {
+                            ...group, tasks: group.tasks.map(task => task.id === action.taskId
+                                ? { ...task, updates: task.updates.filter(update => update.id !== action.updateId) } : task)
                         } : group)
                 },
                 lastBoard
