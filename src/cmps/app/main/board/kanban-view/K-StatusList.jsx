@@ -18,22 +18,73 @@ import { makeId } from "../../../../../services/base/util.service"
 // ====== Component ======
 // =======================
 
-export function K_StatusList({ /* prop1, prop2 */ }) {
+export function K_StatusList({ setForSum }) {
     // === Consts
-    const board = useSelector(storeState => storeState.boardModule.board)
+    // const board = useSelector(storeState => storeState.boardModule.board)
+    const storeBoard = useSelector(storeState => storeState.boardModule.board)
     const [statusCol, setStatusCol] = useState(null)
+    const [board, setBoard] = useState(null)
     const [tasksByStatus, setTasksByStatus] = useState(null)
+    const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
 
     // === Effects
     useEffect(() => {
-        if(!board) return
-        const col = board.columns.find(col => col.type?.variant === 'status')
+        if(!storeBoard) return
+        const col = storeBoard.columns.find(col => col.type?.variant === 'status')
         setStatusCol(col)
 
-    },[board])
-
+    },[storeBoard])
 
     useEffect(() => {
+        if (!storeBoard) return
+        
+        const regex = filterBy.txt ? new RegExp(filterBy.txt, 'i') : null
+        const peopleCol = storeBoard.columns.find(col => col.type?.variant === 'people')
+        const personId = filterBy.person
+        
+        if (!regex && !personId) {
+            setBoard(storeBoard)
+            return
+        }
+        
+        const filteredGroups = storeBoard.groups.map(group => {
+            // const groupNameMatches = regex?.test(group.name)
+            const matchingTasks = group.tasks.filter(task => {
+                let matchesTasks = true
+                let matchesPerson = true
+                
+                if (regex) {
+                    const taskName = task.columnValues[0]?.value || ''
+                    matchesTasks = regex.test(taskName) ? true : false
+                    // matchesText = groupNameMatches || taskMatches
+                }
+                
+                if (personId && peopleCol) {
+                    matchesPerson = task.columnValues.some(cv =>
+                        cv.colId === peopleCol.id &&
+                        Array.isArray(cv.value) &&
+                        cv.value.some(user => user._id === personId)
+                    )
+                }
+                return matchesTasks && matchesPerson
+            })
+            
+            if (matchingTasks?.length) {
+                return {
+                    ...group,
+                    tasks: matchingTasks
+                }
+            }
+            
+            return null
+        }).filter(Boolean)
+        
+        setBoard({...storeBoard, groups: filteredGroups})
+        
+    }, [filterBy, storeBoard])
+    
+    useEffect(() => {
+        if(!board) return
 
         if(!statusCol) return
         const tasksByStatusArray = statusCol.type.labels.map(label => {
@@ -47,29 +98,36 @@ export function K_StatusList({ /* prop1, prop2 */ }) {
         return {
             ...label,
             tasks
+        }})
+
+        const blankTasks = board.groups.flatMap(group =>
+            group.tasks.filter(task => {
+                const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
+                return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
+            })
+        )
+
+        if (blankTasks.length) {
+            tasksByStatusArray.push({
+                id: makeId(),
+                name: 'Blank',
+                color: 'unselected-gray',
+                tasks: blankTasks
+            })
         }
-    })
 
-    const blankTasks = board.groups.flatMap(group =>
-        group.tasks.filter(task => {
-            const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
-            return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
-        })
-    )
-
-    if (blankTasks.length) {
-        tasksByStatusArray.push({
-            id: makeId(),
-            name: 'Blank',
-            color: 'unselected-gray',
-            tasks: blankTasks
-        })
-    }
-
+        const totalTasks = board.groups.reduce((acc, group) => acc + group.tasks.length, 0)
         setTasksByStatus(tasksByStatusArray)
-    },[statusCol])
-
+        sendLabelIds(tasksByStatusArray, totalTasks)
+    },[statusCol, board])
+    
     // === Functions
+    function sendLabelIds(tasksBy, totalTasks) {
+        const onlyColumnValues = tasksBy.map(label => label.id)
+
+        setForSum(onlyColumnValues, statusCol, totalTasks)
+
+    }
     
 
     if (!tasksByStatus) return <div>Loading...</div>

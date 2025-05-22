@@ -25,6 +25,7 @@ import { TaskDetails } from "./task-details/TaskDetails";
 import { T_GroupsList } from "./table-view/T_GroupsList";
 import { K_StatusList } from "./kanban-view/K-StatusList";
 import { updateUser } from "../../../../store/actions/user.actions";
+import { ColSumStatus } from "./table-view/T_ColumnSum/ColSumStatus";
 
 // ====== Component ======
 // =======================
@@ -39,6 +40,7 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
     const { sideNavWidth } = useOutletContext()
     const [vpWidth, setVpWidth] = useState(() => window.innerWidth);
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
+    const [sumValues, setSumValues] = useState(null);
 
     // === Effects
 
@@ -62,14 +64,22 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
 
 
     // === Functions
+    function setForSum(cv, col, totalTasks) {
+        setSumValues({cv, col, totalTasks})
+    }
 
     return (
         <section className="BoardDetails">
             <BoardHeader isSelected={isSelected} select={select} />
 
             <T_Filter />
+            <div className="col-sum">
+            {isSelected('kanban') && sumValues && 
+                <ColSumStatus columnValues={sumValues.cv} column={sumValues.col} totalTasks={sumValues.totalTasks} />}
+            </div>
+            
             {isSelected('main-table') &&  <T_GroupsList />}
-            {isSelected('kanban') &&  <K_StatusList />}
+            {isSelected('kanban') &&  <K_StatusList setForSum={setForSum}/>}
 
             <TaskPanel
                 side='right'
