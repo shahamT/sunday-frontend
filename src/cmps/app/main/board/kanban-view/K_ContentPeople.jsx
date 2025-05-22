@@ -35,7 +35,9 @@ export function K_ContentPeople({ column, value }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentPeople">
-            <PersonsPreview selectedPersons={personsArray} amount={1} />
+            <div className="people" style={{ paddingInlineStart: personsArray.length === 1 ? '0' : '7px'}}>
+                <PersonsPreview selectedPersons={personsArray} amount={1} />
+            </div>
         </section>
     )
 }

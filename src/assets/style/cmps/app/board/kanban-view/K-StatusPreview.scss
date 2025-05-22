@@ -4,6 +4,7 @@
     border-bottom-left-radius: var(--border-radius-md);
     border-bottom-right-radius: var(--border-radius-md);
     height: 100%;
+    position: relative;
     
     .status-header {
         border-top-left-radius: var(--border-radius-md);
@@ -23,47 +24,53 @@
         
         .amount {
             font-weight: 400;
-            // font-size: 14px;
             padding-inline-start: 4px;
             line-height: 21px;
         }
     }
 
     .status-body {
-        width: inherit;
-        position: relative;
+        width: max-content;
+        padding-inline: 12px;
         height: calc(100% - 40px);
+        overflow-y: auto;
 
-        &:hover .add-btn-container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        } 
+        &::-webkit-scrollbar {
+            display: none;
+        }
+
         
         .tasks {
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-        }
-        
-        .add-btn-container {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            display: none;
-            background-color: var(--grey-background-color);
-            border-bottom-left-radius: var(--border-radius-md);
-            border-bottom-right-radius: var(--border-radius-md);
+        } 
+    }
+    
+    &:hover .add-btn-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
-            .add-task-btn {
-                width: 236px;
-                margin-block: 6px;
-                justify-content: start;
-                z-index: 3;
-            }
-        }
+    .add-btn-container {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: none;
+        background-color: var(--grey-background-color);
+        border-bottom-left-radius: var(--border-radius-md);
+        border-bottom-right-radius: var(--border-radius-md);
 
+        .add-task-btn {
+            width: 236px;
+            height: 40px;
+            font-size: 1rem;
+            margin-block: 12px;
+            justify-content: start;
+            z-index: 3;
+        }
     }
 }

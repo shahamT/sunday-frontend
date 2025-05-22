@@ -40,12 +40,19 @@ export function K_TaskPreview({ task }) {
     return (
         <section className="K_TaskPreview">
 
-            <div>{task.columnValues[0].value}</div> {/** needs to be editable text */}
+            <div className="task-name">{task.columnValues[0].value}</div> {/** needs to be editable text */}
+
+            <div className="divider" />
+            
             <div className="CVs">
                 {task.columnValues.map(cv => {
                     return <K_ContentPreview key={cv.colId} colId={cv.colId} value={cv.value}/>
                 })}
             </div>
+
+            {(peopleCol || fileCol) &&
+                <div className="divider" />
+            }
 
             <div className="special-content">
                 {peopleCol &&

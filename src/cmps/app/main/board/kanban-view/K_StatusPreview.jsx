@@ -39,10 +39,10 @@ export function K_StatusPreview({ label }) {
                         return <K_TaskPreview key={task.id} task={task}/>
                     })}
                 </div>
-            
-                <div className="add-btn-container">
-                    <button className="add-task-btn clickable clear size-32 icon-start i-AddSmall">Add item</button>
-                </div>
+            </div>
+        
+            <div className="add-btn-container">
+                <button className="add-task-btn clickable clear size-32 icon-start i-AddSmall">Add item</button>
             </div>
 
         </section>
