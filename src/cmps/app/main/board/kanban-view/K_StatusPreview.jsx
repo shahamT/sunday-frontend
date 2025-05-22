@@ -27,18 +27,22 @@ export function K_StatusPreview({ label }) {
         <section className="K_StatusPreview">
 
             {/* **************label header*************** */}
-            <div className={`status-header ${label.color}-bg`}>
-                <span className="name">{label.name}</span>
+            <div className={`status-header ${label.color}-bg-static`}>
+                <span className="name">{label.name || 'Blank'}</span>
                 <span className="amount">{label.tasks.length}</span>
             </div>
 
             {/* **************tasks*************** */}
             <div className="status-body">
-                {label.tasks.map(task => {
-                    return <K_TaskPreview key={task.id} task={task}/>
-                })}
+                <div className="tasks">
+                    {label.tasks.map(task => {
+                        return <K_TaskPreview key={task.id} task={task}/>
+                    })}
+                </div>
             
-                <button className="add-task-btn clickable clear size-32 icon-start i-AddSmall">Add item</button>
+                <div className="add-btn-container">
+                    <button className="add-task-btn clickable clear size-32 icon-start i-AddSmall">Add item</button>
+                </div>
             </div>
 
         </section>

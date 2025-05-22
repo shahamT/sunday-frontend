@@ -7,4 +7,39 @@
     border-radius: var(--border-radius-md);
     background-color: var(--primary-background-color);
 
+    .CVs {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-block-start: 8px;
+        
+        .content {
+            font-size: 14px;
+            padding-inline: 4px;
+            background-color: var(--primary-background-hover-color);
+        }
+        
+        .status {
+            font-size: 14px;
+            padding-inline: 4px;
+            color: white;
+        }
+    
+    }
+    
+    .special-content {
+        display: flex;
+        align-items: center;
+        margin-block-start: 8px;
+
+        .file {
+            img {
+                height: 30px;
+                box-shadow: var(--box-shadow-large);
+                margin: 4px;
+            }
+        }
+    }
+
+
 }

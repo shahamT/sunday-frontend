@@ -86,6 +86,11 @@ export function T_Filter({ /* prop1, prop2 */ }) {
         setFilterBy({ ...filterBy, person: user._id })
         setSelectedPerson(user)
 
+        setIsMenuOpen(false)
+        if (modalCloseRef.current) {
+            modalCloseRef.current()
+        }
+
     }
 
     function onRemovePersonFilterBy (ev) {

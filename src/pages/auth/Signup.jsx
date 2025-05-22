@@ -1,6 +1,6 @@
 // === Libs
 import validator from 'validator';
-import { googleAuth, signup } from '../../store/actions/user.actions.js';
+import { googleAuth, loginUser, signupUser } from '../../store/actions/user.actions.js';
 
 
 // === Services
@@ -19,10 +19,12 @@ import { showErrorMsg } from '../../services/base/event-bus.service.js';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
+
+
+const GOOGLE_CLIENT_ID = '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com'
+
 // ====== Component ======
 // =======================
-
-
 
 export function Signup() {
     // === Consts
@@ -90,7 +92,7 @@ export function Signup() {
     async function onSignup() {
 
         try {
-            const user = await signup(userToEdit)
+            const user = await signupUser(userToEdit)
             navigate('/app/home')
         } catch (err) {
             // showErrorMsg(err)
@@ -98,42 +100,62 @@ export function Signup() {
 
     }
 
-    const signupWithGoogle = () => {
+        // ======== google auth =======
+
+        
+    async function loginToDemoAccount() {
+        const userCred = {
+            email: "shahamt@gmail.com",
+            password: "12345678"
+        }
+        try {
+            const user = await loginUser(userCred)
+            navigate('/app/home')
+                    console.log('got here')
+
+        }
+        catch (err) {
+            // showErrorMsg(err)
+console.log("err: ", err)
+        }
+    }
+
+    useEffect(() => {
+        if (!window.google?.accounts?.id) {
+            console.error('Google script not loaded')
+            return
+        }
+
         window.google.accounts.id.initialize({
-            // client_id: import.meta.env.VITE_GOOGLE_CLIENT_ID,
-            client_id: '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com',
+            client_id: GOOGLE_CLIENT_ID,
             callback: async (response) => {
-                const idToken = response.credential;
+                const idToken = response.credential
                 if (!idToken) {
-                    showErrorMsg('Google authentication failed')
+                    showErrorMsg?.('Google authentication failed')
                     return
                 }
 
                 try {
-                    const user = await googleAuth({ idToken })
+                    console.log('Received ID token:', idToken)
+                    await googleAuth({ idToken }) // Send token to backend
                     navigate('/app/home')
-                }
-                catch (err) {
-                    // showErrorMsg(err)
+                } catch (err) {
+                    console.error('Google login error:', err)
+                    showErrorMsg?.(err.message || 'Login failed')
                 }
             },
         })
-        window.google.accounts.id.prompt()
-    }
 
-    async function loginToDemoAccount() {
-        const userCred = {
-            email: "yair.cohen@gmail.com",
-            password: "yair1234!"
-        }
-        try {
-            const user = await login(userCred)
-            navigate('/app/home')
-        }
-        catch (err) {
-            // showErrorMsg(err)
-        }
-    }
+        window.google.accounts.id.renderButton(
+            document.getElementById('googleSignInDiv'),
+            {
+                theme: 'outline',
+                size: 'large',
+                text: 'signin_with',
+                shape: 'rectangular',
+            }
+        )
+    }, [])
 
     return (
         <div className="Signup">
@@ -143,13 +165,16 @@ export function Signup() {
                     <h1 className='title signup-title'>Welcome to sunday.com</h1>
                     <h2 className='subtitle'>Get started - it's free. No credit card needed.</h2>
 
-                    <div
+                    <div id="googleSignInDiv"></div>
+                    
+                    
+                    {/* <div
                         className='google-auth-btn clickable clear full-width size-40'
                         onClick={() => signupWithGoogle()}
                     >
                         <img className='google-icon' src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747598560/Google__G__logo.svg_igbjrb.png" />
                         Continue with Google
-                    </div>
+                    </div> */}
 
                     <div className="divider">
                         <div className="line" />
