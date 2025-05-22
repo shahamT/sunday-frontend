@@ -16,7 +16,8 @@ import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 // ====== Component ======
 // =======================
 
-export function ActivityLogRow({ activity, task, board }) {
+export function ActivityLogRow({ activity = {}, task, board }) {
+
   // === Consts
   const [activityType, setActivityType] = useState(false);
   const [group, setGroup] = useState({});
@@ -27,11 +28,13 @@ export function ActivityLogRow({ activity, task, board }) {
 console.log(activity)
   // === Effects
   useEffect(() => {
+    if (!activity || !activity.type) return;
     handleActivityType(activity.type);
   }, []);
 
   // === Functions
   function handleActivityType(type) {
+
     switch (type) {
       case "add task":
         setActivityType("add task");
@@ -63,20 +66,22 @@ console.log(activity)
 
       case "set column value":
         const currCol = board.columns.find((col) => col.id === activity.colId);
-        setColName(currCol?.name || "");
+        // if (!currCol) return
+        setColName(currCol.name || "");
         setActivityType("set column value");
-        if (currCol.type.variant === "file") {
+        if (currCol?.type?.variant === "file") {
           setCvType("file");
-        } else if (currCol.type.variant === "date") {
+        } else if (currCol?.type?.variant === "date") {
           if (activity.value) setNewVal(formatSmartDate(activity.value));
-          if (activity.prevValue) setPrevVal(formatSmartDate(activity.prevValue));
+          if (activity.prevValue)
+            setPrevVal(formatSmartDate(activity.prevValue));
           setCvType("date");
-        } else if (currCol.type.variant === "status") {
+        } else if (currCol?.type?.variant === "status") {
           const currValue = activity.value
-            ? currCol.type.labels.find((label) => label.id === activity.value)
+            ? currCol?.type?.labels.find((label) => label.id === activity.value)
             : null;
           const prevValue = activity.prevValue
-            ? currCol.type.labels.find(
+            ? currCol?.type?.labels.find(
               (label) => label.id === activity.prevValue
             )
             : null;
@@ -114,7 +119,10 @@ console.log(activity)
     }).format(date);
   }
 
-  // if (!data) return <div>Loading...</div>
+  if (!activity || typeof activity !== 'object' || !activity.type) {
+    return null
+  }
+
   return (
 
     // basic details section

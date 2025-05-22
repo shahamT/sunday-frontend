@@ -27,7 +27,7 @@ export async function removeUser(userId) {
     }
 }
 
-export async function login(credentials) {
+export async function loginUser(credentials) {
     try {
         const user = await userService.login(credentials)
         store.dispatch({
@@ -58,7 +58,7 @@ export async function googleAuth(idToken){
     }
 }
 
-export async function signup(credentials) {
+export async function signupUser(credentials) {
     try {
         const user = await userService.signup(credentials)
         store.dispatch({
