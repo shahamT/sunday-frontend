@@ -1,25 +1,16 @@
 .T_ColumnHeaderCell.is-drag-over {
-    outline: 1px dashed var(--layout-border-color) ;
-    outline-offset: -1.3px;
-    background-color: #f5f5f5;
-    transition: 0.2s ease;
-    border:#f5f5f500;
-  }
-  .column-header-cell {
+  outline: 1px dashed var(--layout-border-color) ;
+  outline-offset: -1.3px;
+  background-color: #f5f5f5;
+  transition: 0.2s ease;
+}
+.column-header-cell {
+    border:#f5f5f5; 
     padding: 150px; // פה זה הטווח שהוא קולט את האחד מתחתיו, ככל שיותר גדול ככה הוא יעביר את הקוקו יותר ברגישות
     transition: background-color 0.1s ease;
   }
 
-  // .T_ColumnHeaderCell.is-dragging {
-  //   background-color: #f0f4fa; 
-  //   border: 1px dashed #0073ea; // גבול מדגיש
-  //   box-shadow: 0 0 10px rgba(0, 115, 234, 0.3); // צל עדין
-  //   opacity: 0.85;
-  //   z-index: 999;
-  //   cursor: grabbing;
-  //   transition: none; // כדי שלא תהיה קפיצה
-  // }
-
+  
   .T_ColumnHeaderCell.drag-overlay {
     z-index: 1000;
     background-color: white;
@@ -30,4 +21,38 @@
     pointer-events: none;
     cursor: grabbing;
     transform: rotate(2deg) scale(1.03);
+
+
+  }
+
+  .drag-column-overlay {
+    .T_GroupHeadRow > :nth-child(2),
+    .T_GroupHeadRow > :nth-child(n + 2),
+    .T_TaskRow > :nth-child(2),
+    .T_TaskRow > :nth-child(n + 2),
+    .T_ColumnSumRow > :nth-child(n + 2),
+    .T_ColumnSumRow > :nth-child(n + 3) {
+      border: none !important;
+    }
+  }
+
+
+  :global(body.column-drag-overlay) {
+    .T_GroupHeadRow > :nth-child(2),
+    .T_GroupHeadRow > :nth-child(n + 2),
+    .T_GroupHeadRow > :nth-child(n + 4) {
+      border: none !important;
+    }
+  }
+
+  :global(.drag-overlay) .T_GroupHeadRow > * {
+    border: none !important;
+  }
+  // .T_TaskRow > *,
+  // .T_ColumnSumRow > * {
+  //   border: none !important;
+  // }
+  .drag-column-overlay {
+    pointer-events: all !important;
+    z-index: 99999; // תוודאי שהוא למעלה
   }

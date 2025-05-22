@@ -1,7 +1,6 @@
 
 export function getBoardAI(){
 
-
   return {  
         // "_id": {
         //   "$oid": "682dacd2feddf89f7843ddf3"

@@ -18,7 +18,8 @@ import { boardService } from '../../../../../services/board/board.service.local.
 // =======================
 
 export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full', setIsPickingColor, setIsNewLabelOpen }) {
-    const fullColors = boardService.getColors()
+    
+    const fullColors = boardService.getColors().filter(color => color !== 'explosive')
 
     const limitColors = [
         'done-green',

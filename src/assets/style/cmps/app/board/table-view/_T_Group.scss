@@ -39,7 +39,14 @@
     .T_ColumnSumRow> :nth-child(n + 3) {
         border-block-end: 1px solid var(--layout-border-color);
     }
+// =================================DND
 
+// .T_GroupHeadRow> :nth-child(n + 4),
+// .T_GroupHeadRow> :nth-child(2),
+    // .T_GroupHeadRow> :nth-child(n + 2),
+// אלה הקווים שרואים וצריך להסיר בזמן גרירת טורים
+
+// =================================DND
     // last cell expandable
     .T_GroupHeadRow> :last-child,
     .T_TaskRow> :last-child,
@@ -148,6 +155,7 @@
 
     }
 
+    
     .cell-content {
         display: flex;
         align-items: center;
@@ -157,10 +165,10 @@
         p {
             font-size: 14px;
         }
-
+        
         &.centered {
             justify-content: center;
         }
     }
-
+    
 }
