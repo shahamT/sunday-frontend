@@ -13,7 +13,7 @@ export const USERS_LOADING_DONE = 'USERS_LOADING_DONE'
 
 const initialState = {
     loggedinUser: userService.getLoggedinUser(),
-    lastViewedBoards: [],
+    // lastViewedBoards: [],
     users: [],
     isUsersLoading: false
 }
@@ -38,7 +38,7 @@ export function userReducer(state = initialState, action = {}) {
         case UPDATE_LAST_VISITED:
             return {
                 ...state,
-                lastViewedBoards: [{ boardId: action.boardId, viewedAt: Date.now() }, ...state.lastViewedBoards.filter(board => board.boardId !== action.boardId)]
+                loggedinUser: {...state.loggedinUser, lastViewedBoards: [{ boardId: action.boardId, viewedAt: Date.now() }, ...state.loggedinUser.lastViewedBoards.filter(b => b.boardId !== action.boardId)]}
             }
 
         //Loading

@@ -34,7 +34,7 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
   function handleClick() {
     if (!wasDragged.current) {
       navigate(`/app/board/${board._id}`)
-      updateUser(board._id)
+      // updateUser(board._id)
     }
   }
 

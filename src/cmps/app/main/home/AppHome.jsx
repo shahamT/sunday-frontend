@@ -3,6 +3,7 @@
 import { useSelector } from "react-redux"
 import { BoardList } from "../board/appHeader/BoardList"
 import { RightNav } from "../board/appHeader/RightNav"
+import { useEffect } from "react"
 
 // ====== Component ======
 // =======================
@@ -10,6 +11,7 @@ import { RightNav } from "../board/appHeader/RightNav"
 export function AppHome({ /* prop1, prop2 */ }) {
     // === Consts
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
+
     // === Effects
 
     // === Functions

@@ -17,7 +17,7 @@ const SOCKET_EMIT_LOGIN = 'set-user-socket'
 const SOCKET_EMIT_LOGOUT = 'unset-user-socket'
 
 
-const baseUrl = (process.env.NODE_ENV === 'production') ? '//sunday-jjn6.onrender.com' : '//localhost:3030'
+const baseUrl = (process.env.NODE_ENV === 'production') ? '' : '//localhost:3030'
 
 export const socketService = (VITE_LOCAL === 'true')? createDummySocketService() : createSocketService()
 

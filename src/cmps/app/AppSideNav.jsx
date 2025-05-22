@@ -24,7 +24,7 @@ import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
 import { Loader } from '../reusables/Loader/Loader';
-import { SOCKET_EVENT_MINI_BOARDS_UPDATE } from '../../services/base/socket.service';
+import { SOCKET_EVENT_MINI_BOARDS_UPDATE, socketService } from '../../services/base/socket.service';
 
 // ====== Component ======
 // =======================

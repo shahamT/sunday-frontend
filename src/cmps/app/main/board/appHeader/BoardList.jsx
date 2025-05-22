@@ -10,6 +10,7 @@ import { openGlobalModal } from "../../../../../store/actions/app.actions"
 import { Loader } from "../../../../reusables/Loader/Loader"
 
 // === Services
+import { loadBoards } from "../../../../../store/actions/board.actions"
 
 // === Actions
 
@@ -34,11 +35,14 @@ export function BoardList({ /* prop1, prop2 */ }) {
     const navigate = useNavigate()
 
     // === Effects
+        useEffect(() => {
+            // loadBoards()
+    }, [lastViewedBoards])
 
     // === Functions
     function onChoooseBoard(boardId) {
         navigate(`/app/board/${boardId}`)
-        updateUser(boardId)
+        // updateUser(boardId)
     }
 
     // if (boards.length === 0) return (

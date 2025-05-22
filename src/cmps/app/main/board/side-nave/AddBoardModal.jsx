@@ -51,7 +51,7 @@ export function AddBoardModal() {
         const boardToCreate = isAi ? aiBoard : newBoard
         try {
             const savedBoard = await addBoard(boardToCreate)
-            updateUser(savedBoard._id)
+            // updateUser(savedBoard._id)
             closeGlobalModal()
             navigate(`/app/board/${savedBoard._id}`)
         }

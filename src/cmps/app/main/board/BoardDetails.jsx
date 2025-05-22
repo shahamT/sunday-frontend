@@ -24,6 +24,7 @@ import { T_Filter } from "./table-view/T_Filter";
 import { TaskDetails } from "./task-details/TaskDetails";
 import { T_GroupsList } from "./table-view/T_GroupsList";
 import { K_StatusList } from "./kanban-view/K-StatusList";
+import { updateUser } from "../../../../store/actions/user.actions";
 
 // ====== Component ======
 // =======================
@@ -37,13 +38,14 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
     const board = useSelector(storeState => storeState.boardModule.board)
     const { sideNavWidth } = useOutletContext()
     const [vpWidth, setVpWidth] = useState(() => window.innerWidth);
-
+    const user = useSelector(storeState => storeState.userModule.loggedinUser)
 
     // === Effects
 
     //fetch board data
     useEffect(() => {
         loadBoard(boardId)
+        updateUser(boardId)
 
         const onBoardUpdate = (board) => {
             // console.log('GOT from socket', board._id)
