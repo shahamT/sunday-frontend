@@ -9,11 +9,16 @@
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 
+//  === DND
+import { DndContext } from "@dnd-kit/core"
+import { SortableContext, arrayMove, rectSortingStrategy } from "@dnd-kit/sortable"
+
 // === Imgs
 
 // === Child Components
 import { K_StatusPreview } from "./K_StatusPreview"
 import { makeId } from "../../../../../services/base/util.service"
+import { updateBoard } from "../../../../../store/actions/board.actions"
 
 // ====== Component ======
 // =======================
@@ -27,6 +32,8 @@ export function K_StatusList({ setForSum }) {
     const [tasksByStatus, setTasksByStatus] = useState(null)
     const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
 
+    // === DND
+    const [activeId, setActiveId] = useState(null)
     // === Effects
     useEffect(() => {
         if(!storeBoard) return
@@ -86,14 +93,14 @@ export function K_StatusList({ setForSum }) {
     useEffect(() => {
         if(!board) return
 
-        if(!statusCol) return
+        if (!statusCol) return
         const tasksByStatusArray = statusCol.type.labels.map(label => {
-        const tasks = board.groups.flatMap(group =>
-            group.tasks.filter(task => {
-                const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
-                return statusCv?.value === label.id
-            })
-        )
+            const tasks = board.groups.flatMap(group =>
+                group.tasks.filter(task => {
+                    const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
+                    return statusCv?.value === label.id
+                })
+            )
 
         return {
             ...label,
@@ -106,7 +113,21 @@ export function K_StatusList({ setForSum }) {
                 return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
             })
         )
+        const blankTasks = board.groups.flatMap(group =>
+            group.tasks.filter(task => {
+                const statusCv = task.columnValues.find(cv => cv.colId === statusCol.id)
+                return !statusCv?.value || !statusCol.type.labels.some(label => label.id === statusCv.value)
+            })
+        )
 
+        if (blankTasks.length) {
+            tasksByStatusArray.push({
+                id: makeId(),
+                name: 'Blank',
+                color: 'unselected-gray',
+                tasks: blankTasks
+            })
+        }
         if (blankTasks.length) {
             tasksByStatusArray.push({
                 id: makeId(),
@@ -130,12 +151,53 @@ export function K_StatusList({ setForSum }) {
     }
     
 
+    function handleDragEnd(event) {
+        const { active, over } = event
+        if (!over || active.id === over.id) return
+
+        const oldIndex = tasksByStatus.findIndex(label => label.id === active.id)
+        const newIndex = tasksByStatus.findIndex(label => label.id === over.id)
+
+        const newOrder = arrayMove(tasksByStatus, oldIndex, newIndex)
+        setTasksByStatus(newOrder)
+
+        const newLabels = newOrder.map(({ id, name, color }) => ({ id, name, color }))
+        const updatedBoard = {
+            ...board,
+            columns: board.columns.map(col =>
+                col.id === statusCol.id
+                    ? {
+                        ...col,
+                        type: {
+                            ...col.type,
+                            labels: newLabels,
+                        },
+                    }
+                    : col
+            ),
+        }
+        updateBoard(updatedBoard)
+    }
+
+
     if (!tasksByStatus) return <div>Loading...</div>
     return (
-        <section className="K_StatusList">
-            {tasksByStatus?.map(label => {
-                return <K_StatusPreview key={label.id} label={label} />
-            })}
-        </section>
+        <DndContext
+             onDragEnd={handleDragEnd }
+            onDragStart={({ active }) => setActiveId(active.id)}
+        >
+            <SortableContext
+
+                items={tasksByStatus.map(label => label.id)}
+                strategy={rectSortingStrategy}
+            >
+                <section className="K_StatusList">
+                    {tasksByStatus?.map(label => {
+                        return <K_StatusPreview key={label.id} activeId={activeId} label={label} />
+                    })}
+                        
+                </section>
+            </SortableContext>
+        </DndContext>
     )
 }

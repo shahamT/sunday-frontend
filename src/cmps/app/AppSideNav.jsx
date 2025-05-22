@@ -100,6 +100,7 @@ export function AppSideNav({ }) {
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
         updateBoards(reorderedBoards)
+        
 
     }
 
@@ -172,7 +173,7 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
-
+            {/* create new board */}
                         <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
                     </section>
 

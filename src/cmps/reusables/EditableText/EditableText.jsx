@@ -143,7 +143,7 @@ export const EditableText = forwardRef(function EditableText({
                         ? { paddingInlineStart: (paddingStart || 0) + 32 + 'px' }
                         : paddingStart
                             ? { paddingInlineStart: paddingStart + 'px' }
-                            : {}),
+                            : {}),  
                 }}
             />
 

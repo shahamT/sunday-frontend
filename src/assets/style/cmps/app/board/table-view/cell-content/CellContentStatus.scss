@@ -37,4 +37,9 @@
     .default-color {
         background-color: var(--color-unselected-gray);
     }
+
+    .cell-focused {
+        outline: 1px solid #007AFF;
+        border-bottom: 1px solid #007AFF;
+    }
 }

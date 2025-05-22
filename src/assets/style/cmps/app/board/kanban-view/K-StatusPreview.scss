@@ -6,6 +6,26 @@
     height: 100%;
     position: relative;
     border-radius: var(--border-radius-md);
+
+    .K_StatusPreview.dragging {
+        // === DND
+        z-index: 9999;
+        position: fixed;
+        pointer-events: none;
+        transform: scale(0.95) rotate(2deg);
+    
+    }
+
+    // .dragging-overlay {
+    //     transform: rotate(1.5deg) scale(1.02);
+    //     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+    //     opacity: 0.97;
+    //     pointer-events: none;
+    //     transition: transform 0.2s ease;
+    //   }
+            // === DND
+
+    border-radius: var(--border-radius-md);
     
     .status-header {
         border-top-left-radius: var(--border-radius-md);
@@ -64,7 +84,6 @@
         background-color: var(--grey-background-color);
         border-bottom-left-radius: var(--border-radius-md);
         border-bottom-right-radius: var(--border-radius-md);
-
         .add-task-btn {
             width: 236px;
             height: 40px;

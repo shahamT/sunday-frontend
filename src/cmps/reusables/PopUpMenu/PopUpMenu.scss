@@ -7,30 +7,30 @@
 
 .popup-container {
   position: absolute;
-  z-index: 9999;
-
+  z-index:9000;
+  
   &.bottom-start,
   &.top-start {
     left: 0;
   }
-
+  
   &.bottom,
   &.top {
     left: 50%;
     transform: translateX(-50%);
   }
-
+  
   &.bottom-end,
   &.top-end {
     right: 0;
   }
-
+  
   &.bottom,
   &.bottom-start,
   &.bottom-end {
     top: 100%;
   }
-
+  
   &.top,
   &.top-start,
   &.top-end {
@@ -54,13 +54,13 @@
   transform: translateY(0px);
   transform-origin: center center;
   transition: none;
-
+  
   &.visible {
     transition: opacity 0.12s ease, transform 0.16s ease-out;
     opacity: 1;
     transform: translateY(0);
   }
-
+  
   &.no-animation {
     transition: none !important;
     opacity: 1;
@@ -127,7 +127,7 @@
 .popup-menu-inner[data-placement^="bottom"] {
   transform: translateY(-16px); // slide in from above
   transform-origin: top center;
-
+  
   &.visible {
     transform: translateY(0);
   }
@@ -136,11 +136,15 @@
 .popup-menu-inner[data-placement^="top"] {
   transform: translateY(16px); // slide in from below
   transform-origin: bottom center;
-
+  
   &.visible {
     transform: translateY(0);
   }
 }
+
+.stretch{}
+
+
 
 .popup-wrapper.stretch {
   display: flex;
@@ -157,3 +161,27 @@
   width: 100%;
   height: 100%;
 }
+
+.popup-wrapper {
+}
+
+.popup-trigger {
+  // position: relative;
+  // z-index:8000;
+
+}
+
+.popup-container {
+  // position: absolute;
+}
+
+// .popup-trigger {
+//   position: absolute;
+//   top: 50%;
+//   transform: translateY(-50%);
+//     button{
+
+
+//   }
+
+// }

@@ -6,7 +6,7 @@
 import { removeColumnValue, setColumnValue } from "../../../../../../store/actions/board.actions";
 
 // === Hooks / React
-import { useRef } from "react";
+import { useRef, useState } from "react";
 
 // === Imgs
 
@@ -19,6 +19,8 @@ import { StatusPicker } from "../../value-setter/StatusPicker";
 
 export function CellContentStatus({ task, column, columnValue }) {
     // === Consts
+    const [isFocused, setIsFocused] = useState(false)
+
       const taskId = task.id
     // === Effects
 
@@ -54,6 +56,8 @@ export function CellContentStatus({ task, column, columnValue }) {
                 gap={4}
                 noArrow={false}
                 position="bottom"
+                onOpen={() => setIsFocused(true)}
+                onClose={() => setIsFocused(false)}
                 renderContent={({ onCloseModal }) => (
                     <StatusPicker
                     column={column}
@@ -64,7 +68,7 @@ export function CellContentStatus({ task, column, columnValue }) {
                     />
                 )}
             >
-                <div className={`cell-content centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'}`}>
+                <div className={`cell-content centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'} ${isFocused ? 'cell-focused' : ''}`}>
                     <div className="fold" />
                     {columnValue && <p>{labelName}</p>}
                 </div>
