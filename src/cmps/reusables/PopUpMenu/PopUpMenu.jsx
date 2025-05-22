@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom'; //added
+
 import './PopUpMenu.scss';
 
 export function PopUpMenu({
@@ -128,11 +130,13 @@ export function PopUpMenu({
         {children}
       </div>
 
-      {isOpen && (
+      {isOpen && createPortal( //added createPortal
         <div
           ref={popupRef}
           className={`popup-container ${placement}`}
-          style={getGapStyle(placement, gap)}
+          // style={getGapStyle(placement, gap)}
+          style={getPopupPosition(wrapperRef.current, popupRef.current, placement, gap)} //added instead of previous line
+
         >
           <div
             className={`popup-menu-inner ${noAnimation ? 'no-animation' : isVisible ? 'visible' : ''
@@ -143,15 +147,53 @@ export function PopUpMenu({
             {renderContent({ onCloseModal: close })}
             {!noArrow && <div className={`popup-arrow popup-arrow-${placement}`} />}
           </div>
-        </div>
+        </div>, //added comma
+        document.body //added
       )}
     </div>
   );
 }
 
-function getGapStyle(position, gap) {
-  const px = `${gap}px`
-  if (position.startsWith('top')) return { marginBottom: px }
-  if (position.startsWith('bottom')) return { marginTop: px }
-  return {}
+// function getGapStyle(position, gap) {
+//   const px = `${gap}px`
+//   if (position.startsWith('top')) return { marginBottom: px }
+//   if (position.startsWith('bottom')) return { marginTop: px }
+//   return {}
+// }
+
+function getPopupPosition(triggerEl, popupEl, placement, gap) { //added instead of previous function
+  if (!triggerEl || !popupEl) return { top: 0, left: 0 };
+
+  const triggerRect = triggerEl.getBoundingClientRect();
+  const style = { position: 'absolute' };
+
+  switch (placement) {
+    case 'bottom':
+      style.top = `${triggerRect.bottom + gap}px`;
+      style.left = `${triggerRect.left + triggerRect.width / 2 - popupEl.offsetWidth / 2}px`;
+      break;
+    case 'top':
+      style.top = `${triggerRect.top - popupEl.offsetHeight - gap}px`;
+      style.left = `${triggerRect.left + triggerRect.width / 2 - popupEl.offsetWidth / 2}px`;
+      break;
+    case 'bottom-start':
+      style.top = `${triggerRect.bottom + gap}px`;
+      style.left = `${triggerRect.left}px`;
+      break;
+    case 'bottom-end':
+      style.top = `${triggerRect.bottom + gap}px`;
+      style.left = `${triggerRect.right - popupEl.offsetWidth}px`;
+      break;
+    case 'top-start':
+      style.top = `${triggerRect.top - popupEl.offsetHeight - gap}px`;
+      style.left = `${triggerRect.left}px`;
+      break;
+    case 'top-end':
+      style.top = `${triggerRect.top - popupEl.offsetHeight - gap}px`;
+      style.left = `${triggerRect.right - popupEl.offsetWidth}px`;
+      break;
+  }
+
+  return style;
 }
+

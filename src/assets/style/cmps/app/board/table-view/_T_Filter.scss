@@ -119,11 +119,14 @@
                     background-color: var(--card-selected-background-color);
                 }
 
-                img {
-                    height: 30px;
-                    width: 30px;
-                    cursor: pointer;
-    
+                .profile-img-wrapper {
+
+                    img {
+                        height: 30px;
+                        width: 30px;
+                        cursor: pointer;
+        
+                    }
                 }
             }
             

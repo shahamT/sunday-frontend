@@ -1,17 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import './Tooltip.scss'
 
-/**
- * Tooltip Component
- * 
- * Props:
- * - title (string): The text to display inside the tooltip.
- * - position (string): One of 12 options: (default: "top")
- *   "top", "top-start", "top-end", "bottom", "bottom-start", "bottom-end", "left", "left-start", "left-end", "right", "right-start", "right-end"
- * - gap (number): Distance in pixels between the element and the tooltip. (default: 8)
- * - noArrow (boolean): If true, hides the tooltip arrow. (default: false)
- * - noAnimation (boolean): If true, disables fade + grow animation. (default: false)
- */
 export function Tooltip({
   children,
   title,
@@ -22,20 +12,29 @@ export function Tooltip({
   delayIn = 300,
   delayOut = 150,
   additionalClass = '',
-    stretchWraper = false
-
+  stretchWraper = false
 }) {
   const [visible, setVisible] = useState(false)
-  const wrapperRef = useRef(null) 
+  const [coords, setCoords] = useState(null)
+  const wrapperRef = useRef(null)
   const enterTimeout = useRef(null)
   const exitTimeout = useRef(null)
-  const hasFocusWithin = useRef(false) 
+  const hasFocusWithin = useRef(false)
 
   function show() {
-    if (hasFocusWithin.current) return // prevent tooltip if a child is focused
+    if (hasFocusWithin.current) return
     clearTimeout(exitTimeout.current)
     enterTimeout.current = setTimeout(() => {
-      setVisible(true)
+      if (wrapperRef.current) {
+        const rect = wrapperRef.current.getBoundingClientRect()
+        setCoords({
+          top: rect.top + window.scrollY,
+          left: rect.left + window.scrollX,
+          width: rect.width,
+          height: rect.height,
+        })
+        setVisible(true)
+      }
     }, delayIn)
   }
 
@@ -46,17 +45,16 @@ export function Tooltip({
     }, delayOut)
   }
 
-  // monitor focus events within children
   useEffect(() => {
     const el = wrapperRef.current
     if (!el) return
 
-    function handleFocusIn() {
+    const handleFocusIn = () => {
       hasFocusWithin.current = true
       setVisible(false)
     }
 
-    function handleFocusOut() {
+    const handleFocusOut = () => {
       hasFocusWithin.current = false
     }
 
@@ -70,22 +68,41 @@ export function Tooltip({
   }, [])
 
   return (
-    <div
-      className={`tooltip-wrapper ${additionalClass} ${stretchWraper ? 'stretched' : ''}`}
-      onMouseEnter={show}
-      onMouseLeave={hide}
-      ref={wrapperRef}
-    >
-      {children}
-      <div className={`tooltip-box tooltip-${position}`}>
-        <div className="tooltip-gap" style={getGapStyle(position, gap)}>
-          <div className={`tooltip-inner ${visible ? 'visible' : ''} ${noAnimation ? 'no-animation' : ''}`}>
-            {title}
-            {!noArrow && <div className={`tooltip-arrow tooltip-arrow-${position}`}></div>}
-          </div>
-        </div>
+    <>
+      <div
+        className={`tooltip-wrapper ${additionalClass} ${stretchWraper ? 'stretched' : ''}`}
+        onMouseEnter={show}
+        onMouseLeave={hide}
+        ref={wrapperRef}
+      >
+        {children}
       </div>
-    </div>
+
+      {visible && coords &&
+        createPortal(
+          <div
+            style={{
+              position: 'absolute',
+              top: coords.top,
+              left: coords.left,
+              width: coords.width,
+              height: coords.height,
+              pointerEvents: 'none',
+              zIndex: 9999,
+            }}
+          >
+            <div className={`tooltip-box tooltip-${position}`}>
+              <div className="tooltip-gap" style={getGapStyle(position, gap)}>
+                <div className={`tooltip-inner ${visible ? 'visible' : ''} ${noAnimation ? 'no-animation' : ''}`}>
+                  {title}
+                  {!noArrow && <div className={`tooltip-arrow tooltip-arrow-${position}`}></div>}
+                </div>
+              </div>
+            </div>
+          </div>,
+          document.body
+        )}
+    </>
   )
 }
 
@@ -98,5 +115,3 @@ function getGapStyle(position, gap) {
   if (position.startsWith('right')) return { marginLeft: pxGap }
   return {}
 }
-
-

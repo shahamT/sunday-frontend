@@ -221,7 +221,7 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay=false ,isOver, g
 
                         </div>
                         <div className="title-wraper">
-                            {/* <Tooltip position='top' title={value} stretchWraper={true}> */}
+                            <Tooltip position='top' title={value} stretchWraper={true}>
                                 <EditableText
                                     setIsInputFocused={setIsInputFocused}
                                     isInputFocused={isInputFocused}
@@ -239,7 +239,7 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay=false ,isOver, g
                                     additionalClass="centered"
 
                                 />
-                            {/* </Tooltip> */}
+                            </Tooltip>
                         </div>
                     </>
                 }
