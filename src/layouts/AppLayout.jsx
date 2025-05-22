@@ -83,7 +83,7 @@ export function AppLayout() {
     }, [location.pathname]);
 
 
-console.log("sideNavWidth: ", sideNavWidth)
+// console.log("sideNavWidth: ", sideNavWidth)
     // // ====== Component ======
     // // =======================
     const isBoardRoute = location.pathname.startsWith('/app/board/');

@@ -46,7 +46,7 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
         loadBoard(boardId)
 
         const onBoardUpdate = (board) => {
-            console.log('GOT from socket', board._id)
+            // console.log('GOT from socket', board._id)
             dispatch(getCmdUpdateBoardFromSocket(board))
         }
 

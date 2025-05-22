@@ -11,7 +11,6 @@ import { boardService } from "../../../../../services/board"
 
 export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray, column }) {
     // === Consts
-    console.log(StatusArray)
     const [isEditable, setIsEditable] = useState(false)
 
     const [labelToEdit, setLabelToEdit] = useState(boardService.getEmptyLabel())

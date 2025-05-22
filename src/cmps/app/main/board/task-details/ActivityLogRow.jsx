@@ -24,7 +24,7 @@ export function ActivityLogRow({ activity, task, board }) {
   const [colName, setColName] = useState("");
   const [prevVal, setPrevVal] = useState(null);
   const [newVal, setNewVal] = useState(null);
-
+console.log(activity)
   // === Effects
   useEffect(() => {
     handleActivityType(activity.type);
@@ -42,6 +42,7 @@ export function ActivityLogRow({ activity, task, board }) {
         return;
 
       case "remove task":
+        console.log('remove')
         setActivityType("remove task");
         const prevGroup = board.groups.find((group) => {
           return group.tasks.find((t) => t.id === task.id);
@@ -50,30 +51,25 @@ export function ActivityLogRow({ activity, task, board }) {
         return;
 
       case "move task":
+        console.log('hi')
         if (activity.fromGroupId !== activity.toGroupId) {
           setActivityType("move task");
-          const fromGroup = board.groups.find(
-            (g) => g.id === activity.fromGroupId
-          );
-          const toGroup = board.groups.find((g) => g.id === activity.toGroupId);
+          const fromGroup = board.groups.find( g => g.id === activity.fromGroupId)
+          const toGroup = board.groups.find(g => g.id === activity.toGroupId)
 
-          setGroup({ fromGroup, toGroup });
+          setGroup({ fromGroup, toGroup })
         }
-        return;
+        return
 
       case "set column value":
         const currCol = board.columns.find((col) => col.id === activity.colId);
         setColName(currCol?.name || "");
         setActivityType("set column value");
         if (currCol.type.variant === "file") {
-          console.log(activity);
           setCvType("file");
         } else if (currCol.type.variant === "date") {
-          console.log(activity);
           if (activity.value) setNewVal(formatSmartDate(activity.value));
           if (activity.prevValue) setPrevVal(formatSmartDate(activity.prevValue));
-          console.log("newVal: ", newVal);
-          console.log("prevVal: ", prevVal);
           setCvType("date");
         } else if (currCol.type.variant === "status") {
           const currValue = activity.value
@@ -97,8 +93,6 @@ export function ActivityLogRow({ activity, task, board }) {
             return !activity.value?.some((user) => user._id === prevUser._id);
           });
 
-          console.log('currValue: ', currValue)
-          console.log('prevValue: ', prevValue)
           if (currValue) setNewVal(currValue[0]);
           if (prevValue) setPrevVal(prevValue[0]);
           setCvType("people");

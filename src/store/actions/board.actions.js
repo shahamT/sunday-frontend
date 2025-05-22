@@ -184,6 +184,7 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
     try {
         store.dispatch(getCmdMoveTask(task, fromGroupId, toGroupId, toIndex))
         await boardService.moveTask(task.id, fromGroupId, toGroupId, toIndex, boardId)
+        await createLog({ type: 'move task', task, fromGroupId, toGroupId })
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot move task', err)
@@ -365,6 +366,7 @@ export async function createLog(logObject) {
     logObject.id = makeId()
     logObject.createdAt = Date.now()
     logObject.createdBy = userService.getLoggedinUser().profileImg
+    console.log(`createLog: `, logObject)
     try {
         store.dispatch(getCmdCreateLog(logObject))
         await boardService.createLog(logObject, boardId)
