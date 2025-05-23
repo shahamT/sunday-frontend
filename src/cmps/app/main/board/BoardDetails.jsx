@@ -6,6 +6,7 @@ import { SOCKET_EVENT_BOARD_UPDATE, socketService } from "../../../../services/b
 
 // === Actions
 import { getCmdUpdateBoardFromSocket, loadBoard } from "../../../../store/actions/board.actions";
+import { updateUser } from "../../../../store/actions/user.actions";
 
 // === Hooks / React
 import { useDispatch, useSelector } from "react-redux";
@@ -24,8 +25,7 @@ import { T_Filter } from "./table-view/T_Filter";
 import { TaskDetails } from "./task-details/TaskDetails";
 import { T_GroupsList } from "./table-view/T_GroupsList";
 import { K_StatusList } from "./kanban-view/K-StatusList";
-import { updateUser } from "../../../../store/actions/user.actions";
-import { ColSumStatus } from "./table-view/T_ColumnSum/ColSumStatus";
+import { K_Filter } from "./kanban-view/K_Filter";
 
 // ====== Component ======
 // =======================
@@ -72,11 +72,10 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
         <section className="BoardDetails">
             <BoardHeader isSelected={isSelected} select={select} />
 
-            <T_Filter />
-            <div className="col-sum">
-            {isSelected('kanban') && sumValues && 
-                <ColSumStatus columnValues={sumValues.cv} column={sumValues.col} totalTasks={sumValues.totalTasks} />}
-            </div>
+            {isSelected('main-table') && 
+                <T_Filter/>}
+            {sumValues && isSelected('kanban') &&
+                <K_Filter columnValues={sumValues.cv} column={sumValues.col} totalTasks={sumValues.totalTasks} />}
             
             {isSelected('main-table') &&  <T_GroupsList />}
             {isSelected('kanban') &&  <K_StatusList setForSum={setForSum}/>}

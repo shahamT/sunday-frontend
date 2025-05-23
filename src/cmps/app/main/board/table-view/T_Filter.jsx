@@ -19,11 +19,12 @@ import { setFilterBy } from "../../../../../store/actions/board.actions.js"
 import { debounce } from "../../../../../services/base/util.service.js"
 import { store } from "../../../../../store/store.js"
 import { Tooltip } from "../../../../reusables/tooltip/Tooltip.jsx"
+import { ColSumStatus } from "./T_ColumnSum/ColSumStatus.jsx"
 
 // ====== Component ======
 // =======================
 
-export function T_Filter({ /* prop1, prop2 */ }) {
+export function T_Filter() {
     const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
     const users = useSelector(storeState => storeState.userModule.users)
     const modalCloseRef = useRef(null)
@@ -177,6 +178,7 @@ export function T_Filter({ /* prop1, prop2 */ }) {
                     Person
                     <div onClick={onRemovePersonFilterBy} className="close-btn clickable clear select icon-btn size-24 i-CloseRound"></div></div>}
             </PopUpMenu>
+
         </section>
     )
 }
