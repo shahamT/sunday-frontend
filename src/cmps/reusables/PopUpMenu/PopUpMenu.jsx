@@ -75,6 +75,8 @@ export function PopUpMenu({
 
     const triggerRect = wrapperRef.current.getBoundingClientRect()
     const popupRect = popupRef.current.getBoundingClientRect()
+    console.log('triggerRect: ', triggerRect)
+    console.log('popupRect: ', popupRect)
 
     const spaceAbove = triggerRect.top
     const spaceBelow = window.innerHeight - triggerRect.bottom
@@ -152,6 +154,7 @@ export function PopUpMenu({
 }
 
 function calculatePopupPosition(triggerRect, popupRect, placement, gap) {
+
   const [dir, align = 'center'] = placement.split('-')
   let top = 0
   let left = 0
@@ -166,6 +169,8 @@ function calculatePopupPosition(triggerRect, popupRect, placement, gap) {
     left = triggerRect.left
   } else if (align === 'end') {
     left = triggerRect.right - popupRect.width
+
+    console.log(popupRect.width)
   } else {
     // center
     left = triggerRect.left + (triggerRect.width - popupRect.width) / 2

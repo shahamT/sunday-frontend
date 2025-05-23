@@ -15,7 +15,11 @@ body {
 	margin: 0;
 	padding: 0;
 	color: var(--gray3);
-		height: 100vh;
+	height: 100vh;
+
+	&::-webkit-scrollbar { //added this patch
+		display: none;
+	}
 
 }
 
