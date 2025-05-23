@@ -6,6 +6,7 @@
     border: 1px solid var(--layout-border-color);
     border-radius: var(--border-radius-md);
     background-color: var(--primary-background-color);
+    overflow-x: hidden;
     
     .divider {
         height: 1px;
@@ -30,6 +31,15 @@
             background-color: var(--primary-background-hover-color);
             margin-inline-end: 8px;
             margin-block-end: 8px;
+            max-width: 218px;
+            height: 24px;
+            min-width: 0;
+            
+            .text {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+            }
         }
         
         .status {

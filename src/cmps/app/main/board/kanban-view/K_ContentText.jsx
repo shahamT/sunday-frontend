@@ -23,7 +23,7 @@ export function K_ContentText({ colId, value }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentText">
-            <div className="content text clickable clear size-24">{value} (Text)</div>
+            <div className="content clickable clear size-24"><span className="text">{value} (Text)</span></div>
         </section>
     )
 }
