@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from "react";
 
 import { useSortable } from '@dnd-kit/sortable';
 import { CSS } from "@dnd-kit/utilities"
-import { useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 import { BoardMenu } from "../popupMenu/BoardMenu";
 import { updateUser } from "../../../../../store/actions/user.actions";
@@ -16,8 +16,10 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
   const inputRef = useRef(null)
   const { boardId } = useParams()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  // try
   const wasDragged = useRef(false)
+
+    const location = useLocation();
+    const isKanbanRoute = location.pathname.endsWith('/kanban');
 
 
   const style = {
@@ -33,7 +35,11 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
 
   function handleClick() {
     if (!wasDragged.current) {
-      navigate(`/app/board/${board._id}`)
+      if (isKanbanRoute) {
+        navigate(`/app/board/${board._id}/kanban`)
+      } else {
+        navigate(`/app/board/${board._id}`)
+      }
       // updateUser(board._id)
     }
   }

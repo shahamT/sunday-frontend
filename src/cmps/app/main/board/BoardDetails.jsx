@@ -11,7 +11,7 @@ import { updateUser } from "../../../../store/actions/user.actions";
 // === Hooks / React
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 import { useSelected } from '../../../../hooks/useSelected.js'
 import { useOutletContext } from 'react-router-dom';
 
@@ -34,13 +34,16 @@ const SN_STORAGE_KEY = 'sideNavWidth';
 export function BoardDetails({ /* prop1, prop2 */ }) {
     // === Consts
     const { boardId } = useParams()
-    const { selected, isSelected, select } = useSelected('main-table')
+    // const { selected, isSelected, select } = useSelected('main-table')
     const dispatch = useDispatch()
-    const board = useSelector(storeState => storeState.boardModule.board)
+    // const board = useSelector(storeState => storeState.boardModule.board)
     const { sideNavWidth } = useOutletContext()
     const [vpWidth, setVpWidth] = useState(() => window.innerWidth);
-    const user = useSelector(storeState => storeState.userModule.loggedinUser)
+    // const user = useSelector(storeState => storeState.userModule.loggedinUser)
     const [sumValues, setSumValues] = useState(null);
+
+    const location = useLocation();
+    const isKanbanRoute = location.pathname.endsWith('/kanban');
 
     // === Effects
 
@@ -70,15 +73,15 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
 
     return (
         <section className="BoardDetails">
-            <BoardHeader isSelected={isSelected} select={select} />
+            <BoardHeader />
 
-            {isSelected('main-table') && 
+            {!isKanbanRoute && 
                 <T_Filter/>}
-            {sumValues && isSelected('kanban') &&
+            {sumValues && isKanbanRoute &&
                 <K_Filter columnValues={sumValues.cv} column={sumValues.col} totalTasks={sumValues.totalTasks} />}
             
-            {isSelected('main-table') &&  <T_GroupsList />}
-            {isSelected('kanban') &&  <K_StatusList setForSum={setForSum}/>}
+            {!isKanbanRoute &&  <T_GroupsList />}
+            {isKanbanRoute &&  <K_StatusList setForSum={setForSum}/>}
 
             <TaskPanel
                 side='right'

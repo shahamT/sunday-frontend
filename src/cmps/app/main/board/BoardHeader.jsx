@@ -10,6 +10,7 @@ import { EditableText } from '../../../../cmps/reusables/EditableText/EditableTe
 import { useControlledInput } from '../../../../hooks/useControlledInput.js'
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux";
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // === Imgs
 
@@ -18,10 +19,14 @@ import { useSelector } from "react-redux";
 // ====== Component ======
 // =======================
 
-export function BoardHeader({ isSelected, select }) {
+export function BoardHeader() {
     // === Consts
     const board = useSelector(storeState => storeState.boardModule.board)
     const [value, handleChange, reset, set] = useControlledInput(undefined)
+    const location = useLocation()
+    const isKanbanRoute = location.pathname.endsWith('/kanban')
+
+    const navigate = useNavigate()
 
     // === Effects
     useEffect(() => {
@@ -44,6 +49,16 @@ export function BoardHeader({ isSelected, select }) {
         }
     }
 
+    // function onChooseMainTable() {
+    //     select("main-table")
+    //     navigate(`/app/board/${board._id}`)
+    // }
+
+    // function onChooseKanban() {
+    //     select("kanban")
+    //     navigate(`/app/board/${board._id}/kanban`)
+    // }
+
     // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardHeader">
@@ -61,10 +76,10 @@ export function BoardHeader({ isSelected, select }) {
             </div>
 
             <div className="tab-bar">
-                <div key="main-table tab" className={`tab ${isSelected('main-table') ? 'tab-underline' : ''}`} onClick={() => select("main-table")}>
+                <div key="main-table tab" className={`tab ${!isKanbanRoute ? 'tab-underline' : ''}`} onClick={() => navigate(`/app/board/${board._id}`)}>
                     <div className="tab-btn clickable clear size-32 select">Main table</div>
                 </div>
-                <div key="kanban" className={`tab ${isSelected('kanban') ? 'tab-underline' : ''}`} onClick={() => select("kanban")}>
+                <div key="kanban" className={`tab ${isKanbanRoute ? 'tab-underline' : ''}`} onClick={() => navigate(`/app/board/${board._id}/kanban`)}>
                     <div className="tab-btn clickable clear size-32 select">Kanban</div>
                 </div>
             </div>

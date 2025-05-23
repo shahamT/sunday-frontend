@@ -25,7 +25,7 @@ export function K_ContentStatus({ column, value }) {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentStatus">
-            <div className={`status clickable size-24 ${label.color}-bg`} >{label.name}</div>
+            <div className={`status clickable size-24 ${label?.color}-bg`} >{label?.name}</div>
         </section>
     )
 }

@@ -39,6 +39,7 @@ import { BoardDetails } from './cmps/app/main/board/BoardDetails'
 // === Global Components
 import { FlashMsg } from './cmps/reusables/FlashMsg/FlashMsg.jsx'
 import { GlobalModal } from './cmps/reusables/GlobalModal/GlobalModal.jsx'
+import { K_StatusList } from './cmps/app/main/board/kanban-view/K-StatusList';
 
 
 export default function App() {
@@ -78,6 +79,7 @@ export default function App() {
                                 <Route path="/app" element={<Navigate to="/app/home" />} />
                                 <Route path="/app/home" element={<AppHome />} />
                                 <Route path="/app/board/:boardId" element={<BoardDetails />} />
+                                <Route path="/app/board/:boardId/*" element={<BoardDetails />} />
                                 <Route path="/app/board/:boardId/task/:taskId" element={<BoardDetails />} />
                             </Route>
 
