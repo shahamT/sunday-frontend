@@ -2,7 +2,7 @@ import { Tooltip } from "../../../../../reusables/tooltip/Tooltip"
 
 export function ColSumStatus({ columnValues, column, group, totalTasks }) {
 
-  console.log(columnValues)
+  // console.log(columnValues)
   const totalItems = group ? group.tasks.length : totalTasks
   const lableSummary = lableCounter(columnValues, column)
   const lableSummeryPrecent = precentCalculate(lableSummary)

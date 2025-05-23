@@ -18,7 +18,7 @@ import { CSS } from "@dnd-kit/utilities"
 // ====== Component ======
 // =======================
 
-export function K_StatusPreview({ label,activeId }) {
+export function K_StatusPreview({ label, activeId }) {
     // === Consts
     //  === DND 
   

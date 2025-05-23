@@ -25,7 +25,6 @@ import { updateBoard } from "../../../../../store/actions/board.actions"
 
 export function K_StatusList({ setForSum }) {
     // === Consts
-    // const board = useSelector(storeState => storeState.boardModule.board)
     const storeBoard = useSelector(storeState => storeState.boardModule.board)
     const [statusCol, setStatusCol] = useState(null)
     const [board, setBoard] = useState(null)
@@ -121,13 +120,12 @@ export function K_StatusList({ setForSum }) {
                 color: 'unselected-gray',
                 tasks: blankTasks
             })
-        }
-        if (blankTasks.length) {
+        } else {
             tasksByStatusArray.push({
                 id: makeId(),
                 name: 'Blank',
                 color: 'unselected-gray',
-                tasks: blankTasks
+                tasks: []
             })
         }
 
@@ -138,9 +136,11 @@ export function K_StatusList({ setForSum }) {
     
     // === Functions
     function sendLabelIds(tasksBy, totalTasks) {
-        const onlyColumnValues = tasksBy.map(label => label.id)
+        const repeatedLabelIds = tasksBy
+            .filter(label => label.tasks.length > 0)
+            .flatMap(label => Array(label.tasks.length).fill(label.id))
 
-        setForSum(onlyColumnValues, statusCol, totalTasks)
+        setForSum(repeatedLabelIds, statusCol, totalTasks)
     }
     
     function handleDragEnd(event) {
