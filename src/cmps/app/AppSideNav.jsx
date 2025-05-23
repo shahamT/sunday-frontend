@@ -34,6 +34,9 @@ export function AppSideNav({ }) {
         (board?.name || '').toLowerCase().includes((boardsFilterBy?.txt || '').toLowerCase())
     ) : []
 
+    // console.log('boards: ', boards)
+    // console.log('filteredBoards: ', filteredBoards)
+
     const { boardId } = useParams()
     const dispatch = useDispatch()
 
@@ -100,8 +103,6 @@ export function AppSideNav({ }) {
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
 
         updateBoards(reorderedBoards)
-        
-
     }
 
     const sensors = useSensors(
@@ -215,14 +216,16 @@ export function AppSideNav({ }) {
                                 onDragStart={handleDragStart}
                             >
                                 <SortableContext items={Array.isArray(filteredBoards) ? filteredBoards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
-                                    {filteredBoards.map(board =>
-                                        <BoardNavBarLink board={board}
+                                    {filteredBoards.map(board => {
+                                        // console.log(board.name)
+                                        return <BoardNavBarLink board={board}
                                             key={board._id}
                                             editedTitle={editedTitle}
                                             editingBoardId={editingBoardId}
                                             setEditedTitle={setEditedTitle}
                                             setEditingBoardId={setEditingBoardId}
                                             handleRename={handleRename} />
+                                    }
 
                                     )}
                                 </SortableContext>
