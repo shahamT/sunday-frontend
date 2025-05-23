@@ -115,14 +115,14 @@ export function K_StatusList({ setForSum }) {
 
         if (blankTasks.length) {
             tasksByStatusArray.push({
-                id: makeId(),
+                id: 'blankId',
                 name: 'Blank',
                 color: 'unselected-gray',
                 tasks: blankTasks
             })
         } else {
             tasksByStatusArray.push({
-                id: makeId(),
+                id: 'blankId',
                 name: 'Blank',
                 color: 'unselected-gray',
                 tasks: []
@@ -153,7 +153,10 @@ export function K_StatusList({ setForSum }) {
         const newOrder = arrayMove(tasksByStatus, oldIndex, newIndex)
         setTasksByStatus(newOrder)
 
-        const newLabels = newOrder.map(({ id, name, color }) => ({ id, name, color }))
+        const newLabels = newOrder
+        .filter(({ id }) => id !== 'blankId')
+        .map(({ id, name, color }) => ({ id, name, color }))
+
         const updatedBoard = {
             ...board,
             columns: board.columns.map(col =>

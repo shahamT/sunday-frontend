@@ -17,6 +17,9 @@
 
     .task-name {
         margin-block-end: 8px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
     }
     
     .CVs {

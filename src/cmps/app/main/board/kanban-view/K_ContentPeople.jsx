@@ -17,6 +17,7 @@ import { PersonsPreview } from "../table-view/T_CellContent/PersonsPreview"
 // =======================
 
 export function K_ContentPeople({ column, value }) {
+    console.log(value)
     // === Consts
     const users = useSelector(storeState => storeState.userModule.users)
     const [personsArray, setPersonsArray] = useState([])
