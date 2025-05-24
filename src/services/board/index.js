@@ -233,9 +233,9 @@ function getEmptyGroup() {
     }
 }
 
-async function getEmptyTask(taskName, colId) {
+async function getEmptyTask(taskName, colId, columnValue) {
     const board = structuredClone(store.getState().boardModule.board)
-    return {
+    const task =  {
         id: makeId(),
         createdAt: Date.now(),
         createdBy: userService.getLoggedinUser()?._id || null,
@@ -244,6 +244,10 @@ async function getEmptyTask(taskName, colId) {
         ],
         updates: []
     }
+
+    if(columnValue) task.columnValues.push(columnValue)
+
+    return task
 }
 
 function getEmptyUpdate (txt) {

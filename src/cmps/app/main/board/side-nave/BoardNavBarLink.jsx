@@ -40,7 +40,6 @@ export const BoardNavBarLink = ({ board, editedTitle, editingBoardId, setEditedT
       } else {
         navigate(`/app/board/${board._id}`)
       }
-      // updateUser(board._id)
     }
   }
 

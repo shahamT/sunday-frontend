@@ -21,7 +21,7 @@ import { K_ContentFile } from "./K_ContentFile";
 // ====== Component ======
 // =======================
 
-export function K_ContentPreview({ colId, value }) {
+export function K_ContentPreview({ colId, value, taskId }) {
     // === Consts
     const componentMap = {
         // item: K_ContentItem,
@@ -48,11 +48,9 @@ export function K_ContentPreview({ colId, value }) {
             <DynamicComponent
             column={column}
             value={value}
+            taskId={taskId}
             />
         )}
-
-            {/* editable text - task name */}
-            {/* map on CV - clickables dynamic someclassname to help add before and after and the correct cmp to edit CV. dynamic??  */}
 
         </section>
     )

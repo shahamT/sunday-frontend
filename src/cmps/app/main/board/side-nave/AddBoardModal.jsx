@@ -4,32 +4,20 @@ import { boardService } from "../../../../../services/board"
 import { addBoard } from "../../../../../store/actions/board.actions"
 import { useNavigate } from "react-router-dom"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
-import { updateUser } from "../../../../../store/actions/user.actions"
 import { closeGlobalModal } from "../../../../../store/actions/app.actions"
-// import { useSelector } from "react-redux"
-// import { getBoardAI } from "../../../../../services/base/getBoardAI"
 import { getBoardAI } from '../../../../../services/base/getBoardAI'
-import { useSelector } from "react-redux"
 // === Services
 
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================
 
-export function AddBoardModal() {
-  // const board= useSelector(storeState => storeState.boardModule.board)
+export function AddBoardModal({setAddBoardModalState}) {
 
   // === Consts
   const [newBoard, setNewBoard] = useState('')
   const navigate = useNavigate()
-  const [isAi, setAi] = useState(false)
+  const [isAi, setAi] = useState(setAddBoardModalState)
   const [isLoading, setIsLoading] = useState(false)
 
   // === Effects

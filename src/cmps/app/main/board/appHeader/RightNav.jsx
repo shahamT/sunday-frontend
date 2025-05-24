@@ -1,22 +1,14 @@
 // === Libs
 
-import { openGlobalModal,closeGlobalModal } from "../../../../../store/actions/app.actions";
-import { AddAiModal } from "../side-nave/AddAiModal";
+import { openGlobalModal } from "../../../../../store/actions/app.actions";
+import { AddBoardModal } from "../side-nave/AddBoardModal";
 
-// === Services
 
-// === Actions
-
-// === Hooks / React
-
-// === Imgs
-
-// === Child Components
 
 // ====== Component ======
 // =======================
 
-export function RightNav({ /* prop1, prop2 */ }) {
+export function RightNav({}) {
     // === Consts
 
     // === Effects
@@ -33,7 +25,7 @@ export function RightNav({ /* prop1, prop2 */ }) {
                 </div>
                 <p>Boost your workflow in minutes with ready-made templates</p>
                 <div className="create-ai-board-btn clickable clear size-40 full-width outlined icon-start i-Robot"
-               onClick={() => openGlobalModal(<AddAiModal closeGlobalModal={closeGlobalModal} />)}
+               onClick={() => openGlobalModal(<AddBoardModal setAddBoardModalState={true} />)}
                 > Create board with AI</div>
 
             </article>
