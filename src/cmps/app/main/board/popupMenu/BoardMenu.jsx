@@ -83,7 +83,6 @@ const {boardId}=useParams()
 
 
 
-    if (!boardToEdit) return <div>Loading...</div>
     const { isStarred, _id } = boardToEdit
     return (
         <section className="board-popup-menu" 
