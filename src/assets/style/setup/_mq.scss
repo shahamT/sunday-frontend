@@ -1,26 +1,12 @@
+/* Mobile */
 
-/* SMALL */
 
-@media (width < 600px) {
+@mixin for-mobile {
+    @media (max-width: 600px) {
+        @content;
+    }
+}
+
+ @include for-mobile {
     
-}
-
-/* MEDIUM */
-
-@media (width < 900px) {
-
-}
-
-/* Large */
-
-@media (width < 1200px) {
-
-
-}
-
-/* X-Large */
-
-@media (width >= 1200px) {
-
-
-}
+        }

@@ -25,14 +25,29 @@ export function T_Group({
   const [activeTaskId, activeGroupId] = activeId?.split('|') || []
   const isActiveGroup = activeGroupId === group.id
   const activeTask = group.tasks.find(t => t.id === activeTaskId)
+  const mobileView = window.matchMedia("(max-width: 600px)");
 
-  const templateCols = `6px ${columns
-    .map(col => {
-      const liveWidth = liveColumnWidthsRef?.current?.[col.id] ?? col.width
-      return `${liveWidth}px`
-    })
-    .join(" ")} minmax(min-content, 1fr)`
+  const templateCols = getSubgridTempCol()
 
+
+    function getSubgridTempCol() {
+      if (mobileView.matches) {
+        return (`6px ${columns
+          .map(col => {
+            if (col.type?.variant === 'item') return '160px'
+            return `100px`
+          })
+          .join(" ")} minmax(min-content, 1fr)`)
+      } else {
+        return (`6px ${columns
+          .map(col => {
+            const liveWidth = liveColumnWidthsRef?.current?.[col.id] ?? col.width
+            return `${liveWidth}px`
+          })
+          .join(" ")} minmax(min-content, 1fr)`)
+      }
+
+    }
 
   return (
     <section
@@ -43,8 +58,8 @@ export function T_Group({
     >
 
       <T_GroupHeader group={group} />
-     
-      <T_GroupHeadRow 
+
+      <T_GroupHeadRow
         group={group}
         liveColumnWidthsRef={liveColumnWidthsRef}
         resizeVersion={resizeVersion}

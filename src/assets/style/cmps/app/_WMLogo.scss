@@ -5,6 +5,7 @@
     justify-self: start;
     gap: 6px;
 
+
     &.clickable {
         padding-inline-start: 6px;
         padding-inline-end: 10px;
@@ -16,16 +17,30 @@
         width: 25px;
         margin: 4px;
         margin-block-end: 7px;
-        
+
     }
 
     .logo-txt {
         font-size: 1rem;
         line-height: 16px;
-        .main{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+
+        @include for-mobile {
+            flex-direction: column;
+            align-items: start;
+            gap: 0px;
+
+            font-size: 12px;
+        }
+
+        .main {
             font-weight: 700;
         }
-        .regular{
+
+        .regular {
             font-weight: 300;
         }
     }

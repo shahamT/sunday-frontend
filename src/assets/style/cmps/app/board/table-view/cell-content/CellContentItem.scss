@@ -10,12 +10,17 @@
         }
     }
 
+
     .text-container {
         display: flex;
         min-width: 0;
         padding-inline-start: 24px;
         padding-inline-end: 8px;
 
+        @include for-mobile {
+            padding-inline-start: 8px;
+
+        }
     }
 
 
@@ -28,6 +33,10 @@
         height: 100%;
         border-inline-start: 1px solid var(--layout-border-color);
         cursor: pointer;
+
+        @include for-mobile {
+            display: none;
+        }
     }
 
     .expand-icon-wraper {
