@@ -1,7 +1,7 @@
 // === Style
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
@@ -60,7 +60,7 @@ export function AppSideNav({ }) {
         return () => {
             socketService.off(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
         }
-    }, []) 
+    }, [])
 
 
 
@@ -174,8 +174,8 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
-            {/* create new board */}
-                        <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
+                        {/* create new board */}
+                        <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal setAddBoardModalState={false} />)} />
                     </section>
 
 
