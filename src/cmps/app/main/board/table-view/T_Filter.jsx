@@ -126,6 +126,7 @@ export function T_Filter() {
                     <div className="seperator"></div>
                         <PopUpMenu
                             position="bottom-start"
+                            gap={6}
                             renderContent={({ onCloseModal }) => (
                                 <AddNewSelection onCloseModal={onCloseModal} />
                             )}>

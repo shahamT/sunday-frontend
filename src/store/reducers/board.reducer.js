@@ -404,7 +404,6 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case SET_BOARD_FILTER_BY:
-            console.log('reducer: ' ,{ ...state.filterBy, ...action.filterBy, person: action.filterBy.person === '' ? '' : action.filterBy.person })
 
             return {
                 ...state,

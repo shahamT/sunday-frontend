@@ -9,6 +9,7 @@ import { useEffect, useRef, useState } from 'react'
 import { PopUpMenu } from '../../../../reusables/PopUpMenu/PopUpMenu'
 import { TaskMenu } from '../popupMenu/TaskMenu'
 import { T_Cell } from './T_Cell'
+import { useOutletContext } from 'react-router-dom'
 
 // ====== Component ======
 // =======================
@@ -16,6 +17,7 @@ import { T_Cell } from './T_Cell'
 export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = false, liveColumnWidthsRef }) {
   // === Consts
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { sideNavWidth } = useOutletContext()
 
   const {
     attributes,
@@ -74,7 +76,7 @@ export function T_TaskRow({ task, columns, group, isOverlay = false, isBuffer = 
       window.removeEventListener('scroll', updatePos, true);
       window.removeEventListener('resize', updatePos);
     };
-  }, []);
+  }, [isDragging, transform, group, sideNavWidth]);
 
 
 

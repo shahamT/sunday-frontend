@@ -150,7 +150,7 @@ export function TaskDetails() {
         }
     }
 
-    if (!task || !board) return <div>Loading...</div>
+    if (!task || !board) return 
     return (
         <section className="TaskDetails">
             <section className="task-details-header">
