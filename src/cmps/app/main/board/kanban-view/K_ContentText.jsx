@@ -49,6 +49,7 @@ export function K_ContentText({ column, value, taskId }) {
             <div className="content text clickable clear size-24 select">
                 <EditableText
                     value={newValue}
+                    preserveWidthOnFocus={true}
                     full={false}
                     size="small"
                     handleChange={handleChange}

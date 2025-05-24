@@ -50,6 +50,7 @@ export function K_ContentNumber({ column, value, taskId }) {
             <div className="content number clickable clear size-24 select">
                 <EditableText
                     value={newValue}
+                    preserveWidthOnFocus={true}
                     full={false}
                     size="small"
                     handleChange={handleChange}
