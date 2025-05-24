@@ -6,7 +6,7 @@ export function PopUpMenu({
   children,
   renderContent,
   position = 'bottom',
-  gap = 10,
+  gap = 4,
   noArrow = true,
   noAnimation = false,
   stretchTrigger = false,
@@ -71,8 +71,9 @@ export function PopUpMenu({
   }, [isOpen])
 
   useEffect(() => {
-    if (!isOpen || !popupRef.current || !wrapperRef.current) return
+  if (!isOpen || !popupRef.current || !wrapperRef.current) return
 
+  const updatePopupPosition = () => {
     const triggerRect = wrapperRef.current.getBoundingClientRect()
     const popupRect = popupRef.current.getBoundingClientRect()
 
@@ -97,7 +98,18 @@ export function PopUpMenu({
 
     const style = calculatePopupPosition(triggerRect, popupRect, newPlacement, gap)
     setPopupStyle(style)
-  }, [isOpen, position, gap])
+  }
+
+  updatePopupPosition()
+
+  window.addEventListener('scroll', updatePopupPosition, true)
+  window.addEventListener('resize', updatePopupPosition)
+
+  return () => {
+    window.removeEventListener('scroll', updatePopupPosition, true)
+    window.removeEventListener('resize', updatePopupPosition)
+  }
+}, [isOpen, position, gap])
 
   function handleMouseEnter() {
     if (!showOnHover) return
