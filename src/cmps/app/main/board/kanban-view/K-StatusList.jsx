@@ -10,8 +10,8 @@ import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 
 //  === DND
-import { DndContext } from "@dnd-kit/core"
-import { SortableContext, arrayMove, rectSortingStrategy } from "@dnd-kit/sortable"
+import { DndContext, useSensor, useSensors, PointerSensor, KeyboardSensor, } from "@dnd-kit/core"
+import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 
 // === Imgs
 
@@ -33,38 +33,50 @@ export function K_StatusList({ setForSum }) {
 
     // === DND
     const [activeId, setActiveId] = useState(null)
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                delay: 250,
+                tolerance: 5
+            }
+        }),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    )
+
     // === Effects
     useEffect(() => {
-        if(!storeBoard) return
+        if (!storeBoard) return
         const col = storeBoard.columns.find(col => col.type?.variant === 'status')
         setStatusCol(col)
 
-    },[storeBoard])
+    }, [storeBoard])
 
     useEffect(() => {
         if (!storeBoard) return
-        
+
         const regex = filterBy.txt ? new RegExp(filterBy.txt, 'i') : null
         const peopleCol = storeBoard.columns.find(col => col.type?.variant === 'people')
         const personId = filterBy.person
-        
+
         if (!regex && !personId) {
             setBoard(storeBoard)
             return
         }
-        
+
         const filteredGroups = storeBoard.groups.map(group => {
             // const groupNameMatches = regex?.test(group.name)
             const matchingTasks = group.tasks.filter(task => {
                 let matchesTasks = true
                 let matchesPerson = true
-                
+
                 if (regex) {
                     const taskName = task.columnValues[0]?.value || ''
                     matchesTasks = regex.test(taskName) ? true : false
                     // matchesText = groupNameMatches || taskMatches
                 }
-                
+
                 if (personId && peopleCol) {
                     matchesPerson = task.columnValues.some(cv =>
                         cv.colId === peopleCol.id &&
@@ -74,23 +86,23 @@ export function K_StatusList({ setForSum }) {
                 }
                 return matchesTasks && matchesPerson
             })
-            
+
             if (matchingTasks?.length) {
                 return {
                     ...group,
                     tasks: matchingTasks
                 }
             }
-            
+
             return null
         }).filter(Boolean)
-        
-        setBoard({...storeBoard, groups: filteredGroups})
-        
+
+        setBoard({ ...storeBoard, groups: filteredGroups })
+
     }, [filterBy, storeBoard])
-    
+
     useEffect(() => {
-        if(!board) return
+        if (!board) return
 
         if (!statusCol) return
         const tasksByStatusArray = statusCol.type.labels.map(label => {
@@ -101,10 +113,11 @@ export function K_StatusList({ setForSum }) {
                 })
             )
 
-        return {
-            ...label,
-            tasks
-        }})
+            return {
+                ...label,
+                tasks
+            }
+        })
 
         const blankTasks = board.groups.flatMap(group =>
             group.tasks.filter(task => {
@@ -132,8 +145,8 @@ export function K_StatusList({ setForSum }) {
         const totalTasks = board.groups.reduce((acc, group) => acc + group.tasks.length, 0)
         setTasksByStatus(tasksByStatusArray)
         sendLabelIds(tasksByStatusArray, totalTasks)
-    },[statusCol, board])
-    
+    }, [statusCol, board])
+
     // === Functions
     function sendLabelIds(tasksBy, totalTasks) {
         const repeatedLabelIds = tasksBy
@@ -142,7 +155,9 @@ export function K_StatusList({ setForSum }) {
 
         setForSum(repeatedLabelIds, statusCol, totalTasks)
     }
-    
+
+
+
     function handleDragEnd(event) {
         const { active, over } = event
         if (!over || active.id === over.id) return
@@ -175,7 +190,7 @@ export function K_StatusList({ setForSum }) {
     if (!tasksByStatus) return <div>Loading...</div>
     return (
         <DndContext
-             onDragEnd={handleDragEnd }
+            onDragEnd={handleDragEnd}
             onDragStart={({ active }) => setActiveId(active.id)}
         >
             <SortableContext
@@ -187,7 +202,7 @@ export function K_StatusList({ setForSum }) {
                     {tasksByStatus?.map(label => {
                         return <K_StatusPreview key={label.id} activeId={activeId} label={label} />
                     })}
-                        
+
                 </section>
             </SortableContext>
         </DndContext>
