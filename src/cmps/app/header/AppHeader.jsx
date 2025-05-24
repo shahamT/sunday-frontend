@@ -4,13 +4,9 @@ import { MainLogo } from './WMLogo'
 import { Tooltip } from '../../reusables/tooltip/Tooltip'
 import { PopUpMenu } from '../../reusables/PopUpMenu/PopUpMenu'
 import { logout } from '../../../store/actions/user.actions'
-import { useState } from 'react'
-import { AppSideNav } from '../AppSideNav'
-import { MobileMenu } from '../main/board/appHeader/MobileMenu'
 
 export function AppHeader(props) {
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
-const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
     const profileImg = user?.profileImg || "https://res.cloudinary.com/dqaq55tup/image/upload/v1746718601/default_user_photo_ak7mer.png"
     return (
@@ -42,16 +38,7 @@ const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
                 <Tooltip position="bottom" title="Help" additionalClass='help-btn-wraper'>
                     <div className="help-btn clickable clear icon-btn select size-40 icon-big i-Help" />
                 </Tooltip>
-                {/* media-query */}
-                <div className="mq-memu-btn clickable clear icon-btn select size-40 icon-big i-MondayLogoOutline" 
-                onClick={()=>setIsMobileMenuOpen(prev => !prev)}
-                />
-                {isMobileMenuOpen &&<>
-                    <div className="backdrop" onClick={() => setIsMobileMenuOpen(false)} />
-                    <MobileMenu/>
-                </>
-                }
-
+                
                 <div className="divider" />
 
                 <Tooltip position="bottom" title="Products switcher" additionalClass='switcher-btn-wraper'>
