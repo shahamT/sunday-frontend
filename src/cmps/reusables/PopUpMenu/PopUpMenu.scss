@@ -55,7 +55,6 @@
   transform: translateY(0px);
   transform-origin: center center;
   transition: none;
-  overflow-y: auto;
   
   &.visible {
     transition: opacity 0.12s ease, transform 0.16s ease-out;
