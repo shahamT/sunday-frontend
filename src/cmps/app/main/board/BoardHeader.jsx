@@ -25,6 +25,7 @@ export function BoardHeader() {
     const [value, handleChange, reset, set] = useControlledInput(undefined)
     const location = useLocation()
     const isKanbanRoute = location.pathname.endsWith('/kanban')
+    const mobileView = window.matchMedia("(max-width: 600px)");
 
     const navigate = useNavigate()
 
@@ -66,7 +67,7 @@ export function BoardHeader() {
                 <div className="title-wraper">
                     <EditableText
                         value={value}
-                        size="title"
+                        size= {mobileView.matches ?"g-title" :"title"}
                         handleChange={handleChange}
                         onBlur={onSetName}
                         onPressEnter={onSetName}

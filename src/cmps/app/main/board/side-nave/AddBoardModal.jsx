@@ -98,7 +98,7 @@ export function AddBoardModal({setAddBoardModalState}) {
           ) : (
             <button
               type="button"
-              className="ai-btn clickable i-Robot icon-start clear size-48"
+              className="ai-btn clickable i-Robot icon-start clear size-48 full-width"
               onClick={() => setAi(true)}
             >
               Create board with AI

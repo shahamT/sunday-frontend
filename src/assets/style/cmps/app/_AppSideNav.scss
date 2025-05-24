@@ -11,6 +11,11 @@
         padding-block-start: 6px;
         color: var(--primary-text-color);
 
+        @include for-mobile {
+                padding-block-start: 48px;
+                padding-inline-end: 8px;
+        }
+
         .nav-section,
         .favorites-boards {
                 display: flex;
@@ -252,7 +257,7 @@
 
 
         input[type="text"] {
-                background-color: #f0f0f000; 
+                background-color: #f0f0f000;
                 width: 100%;
                 padding: 0.2em 0.5em;
                 border: 1px solid #c4c4c4;
@@ -265,7 +270,7 @@
                         outline: none;
                         border-color: #0073ea;
                 }
-            
+
         }
 
         .divider {
@@ -278,35 +283,32 @@
         }
 
 
-.board-list-empty-state-wraper {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        color: var(--secondary-text-color);
+        .board-list-empty-state-wraper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                color: var(--secondary-text-color);
 
-        .empty-state-img {
-          height: 140px;
-          margin-block-start: 24px;
-          margin-block-end: 16px;
+                .empty-state-img {
+                        height: 140px;
+                        margin-block-start: 24px;
+                        margin-block-end: 16px;
+                }
+
+                .empty-state-title {
+                        font-size: 16px;
+                        margin-block-end: 16px;
+                        font-weight: 500;
+
+                }
+
+                .empty-state-subtitle {
+                        margin-block-end: 16px;
+                }
+
         }
-
-        .empty-state-title {
-          font-size: 16px;
-          margin-block-end: 16px;
-          font-weight: 500;
-
-        }
-
-        .empty-state-subtitle {
-          margin-block-end: 16px;
-        }
-
-      }
 
 
 }
-
-
-      
