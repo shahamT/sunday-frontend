@@ -188,7 +188,7 @@ export function K_StatusList({ setForSum }) {
             >
                 <section className="K_StatusList">
                     {tasksByStatus?.map(label => {
-                        return <K_StatusPreview key={label.id} activeId={activeId} label={label} />
+                        return <K_StatusPreview key={label.id} activeId={activeId} label={label} board={storeBoard} colId={statusCol.id} />
                     })}
                         
                 </section>

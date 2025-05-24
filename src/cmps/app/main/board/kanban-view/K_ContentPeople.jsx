@@ -36,7 +36,7 @@ export function K_ContentPeople({ column, value, taskId }) {
             return value.some(v => v._id === user._id)
         })
         setPersonsArray(persons)
-    },[users])
+    },[users, value])
 
     // === Functions
     function setPersons(persons) {

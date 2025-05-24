@@ -37,11 +37,19 @@
             max-width: 218px;
             height: 24px;
             min-width: 0;
-            
-            .text {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                white-space: nowrap;
+        }
+        
+        .text, .number {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+
+            .EditableText {
+                .text-input {
+                    padding-inline: 2px;
+                    height: 16px;
+
+                }
             }
         }
         

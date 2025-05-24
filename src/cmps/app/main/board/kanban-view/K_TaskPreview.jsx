@@ -63,7 +63,7 @@ export function K_TaskPreview({ task }) {
     return (
         <section className="K_TaskPreview">
 
-            <div className="task-name ">
+            <div className="task-name">
                 <EditableText
                     value={value}
                     full={true}
@@ -72,7 +72,7 @@ export function K_TaskPreview({ task }) {
                     onBlur={onSetName}
                     onPressEnter={onSetName}
                 />    
-            </div> {/** needs to be editable text */}
+            </div>
 
             <div className="divider" />
             

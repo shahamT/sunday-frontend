@@ -85,13 +85,52 @@
         background-color: var(--grey-background-color);
         border-bottom-left-radius: var(--border-radius-md);
         border-bottom-right-radius: var(--border-radius-md);
+
+        &:focus-within {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         .add-task-btn {
             width: 236px;
             height: 40px;
-            font-size: 1rem;
+            font-size: 14px;
             margin-block: 12px;
             justify-content: start;
             z-index: 3;
+            color: var(--secondary-text-color);
+        }
+
+        .add-item-input {
+            padding-inline-start: 4px;
+
+            & input {
+                width: 236px;
+                height: 40px;
+                margin-block: 12px;
+                justify-content: start;
+                border: none;
+                outline: none;
+                border: 1px solid transparent;
+                padding-inline-start: 5px;
+                font-size: 14px;
+
+                min-width: 0;
+
+                letter-spacing: inherit;
+                color: var(--primary-text-color);
+                font-family: var(--font-family);
+                background-color: transparent;
+
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+
+                &:focus-visible {
+                    outline: none;
+                }
+            }
         }
     }
 }
