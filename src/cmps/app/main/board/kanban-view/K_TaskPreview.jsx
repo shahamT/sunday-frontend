@@ -1,9 +1,5 @@
 // === Libs
 
-import { K_ContentFile } from "./K_ContentFile"
-import { K_ContentPeople } from "./K_ContentPeople"
-import { K_ContentPreview } from "./K_ContentPreview"
-
 // === Services
 
 // === Actions
@@ -19,6 +15,9 @@ import { setColumnValue } from "../../../../../store/actions/board.actions"
 // === Imgs
 
 // === Child Components
+import { K_ContentFile } from "./K_ContentFile"
+import { K_ContentPeople } from "./K_ContentPeople"
+import { K_ContentPreview } from "./K_ContentPreview"
 
 // ====== Component ======
 // =======================
@@ -29,8 +28,8 @@ export function K_TaskPreview({ task }) {
     const [peopleCol, setPeopleCol] = useState(null)
     const [fileCol, setFileCol] = useState(null)
     const [value, handleChange, reset, set] = useControlledInput(task.columnValues[0].value)
+    
 
-    console.log(peopleCol)
     // === Effects
     useEffect(() => {
         if(!board) return
@@ -90,20 +89,22 @@ export function K_TaskPreview({ task }) {
                 <div className="special-content">
                     {peopleCol &&
                     <>
-                        {task.columnValues.map(cv => {
+                         <K_ContentPeople column={peopleCol.colId} value={peopleCol.value} taskId={task.id}/>
+                        {/* {task.columnValues.map(cv => {
                             if(cv.colId === peopleCol.id) {
                                 return <K_ContentPeople key={cv.colId} colId={cv.colId} value={cv.value}/>
                             }
-                        })}
+                        })} */}
                     </>
                     }
                     {fileCol &&
                     <>
-                    {task.columnValues.map(cv => {
+                        <K_ContentFile column={fileCol.colId} value={fileCol.value}/>
+                    {/* {task.columnValues.map(cv => {
                         if(cv.colId === fileCol.id) {
                                 return <K_ContentFile key={cv.colId} colId={cv.colId} value={cv.value}/>
                             }
-                        })}
+                        })} */}
                     </>
                     }
                 </div>

@@ -52,9 +52,6 @@ export function K_ContentPreview({ colId, value, taskId }) {
             />
         )}
 
-            {/* editable text - task name */}
-            {/* map on CV - clickables dynamic someclassname to help add before and after and the correct cmp to edit CV. dynamic??  */}
-
         </section>
     )
 }

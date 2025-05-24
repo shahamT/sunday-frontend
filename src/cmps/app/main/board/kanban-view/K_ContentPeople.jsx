@@ -1,26 +1,33 @@
 // === Libs
 
 // === Services
+import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 
 // === Actions
+import { removeColumnValue, setColumnValue } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
 import { useSelector } from "react-redux"
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 
 // === Imgs
 
 // === Child Components
 import { PersonsPreview } from "../table-view/T_CellContent/PersonsPreview"
+import { PersonsPicker } from "../value-setter/PersonsPicker"
 
 // ====== Component ======
 // =======================
 
-export function K_ContentPeople({ column, value }) {
-    console.log(value)
+export function K_ContentPeople({ column, value, taskId }) {
+
     // === Consts
     const users = useSelector(storeState => storeState.userModule.users)
     const [personsArray, setPersonsArray] = useState([])
+    const hasMounted = useRef(false)
+    const [animationKey, setAnimationKey] = useState(0)
+
     
     // === Effects
     useEffect(() => {
@@ -32,13 +39,57 @@ export function K_ContentPeople({ column, value }) {
     },[users])
 
     // === Functions
+    function setPersons(persons) {
+    
+        try {
+            if (!persons.length) onClearPersons();
+            else setColumnValue(taskId, column, persons, value);
+
+            // Prevent animation on first mount
+            if (!hasMounted.current) {
+                hasMounted.current = true;
+                return;
+            }
+
+            // Trigger animation after first interaction
+            setAnimationKey(prev => prev + 1);
+    
+            } catch (err) {
+                showErrorMsg(`Something went wrong`);
+            }
+        }
+    
+        function onClearPersons() {
+            try {
+                removeColumnValue(taskId, column.id, value);
+            } catch (err) {
+                showErrorMsg(`Something went wrong`);
+            }
+        }
 
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentPeople">
-            <div className="people" style={{ paddingInlineStart: personsArray.length === 1 ? '0' : '7px'}}>
-                <PersonsPreview selectedPersons={personsArray} amount={1} />
-            </div>
+
+            <PopUpMenu
+                stretchTrigger={true}
+                gap={4}
+                noArrow={false}
+                position="bottom"
+                renderContent={({ onCloseModal }) => (
+                    <PersonsPicker
+                        onCloseModal={onCloseModal}
+                        currSelectedPersons={personsArray || []}
+                        setPersons={setPersons}
+                    />
+                )}
+            >
+                <div className={`people persons-preview-wraper ${hasMounted.current ? 'animate__animated animate__bounceIn' : ''}`}
+                 style={{ paddingInlineStart: personsArray.length === 1 ? '0' : '7px'}}>
+                    <PersonsPreview selectedPersons={personsArray} amount={1} />
+                </div>
+
+            </PopUpMenu>
         </section>
     )
 }
