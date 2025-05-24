@@ -190,7 +190,11 @@ export function K_StatusList({ setForSum }) {
     }
 
 
-    if (!tasksByStatus) return <div>Loading...</div>
+    // if (!tasksByStatus) return <div>Loading...</div>
+    if (!tasksByStatus) return <div className="main-loader-container" >
+    <img className="loader" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747552268/loader_cymybj.gif" alt="loader" />
+     </div>
+
     return (
         <DndContext
             onDragEnd={handleDragEnd}
