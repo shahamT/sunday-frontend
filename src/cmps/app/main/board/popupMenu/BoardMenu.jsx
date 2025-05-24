@@ -86,7 +86,11 @@ const {boardId}=useParams()
     if (!boardToEdit) return <div>Loading...</div>
     const { isStarred, _id } = boardToEdit
     return (
-        <section className="board-popup-menu">
+        <section className="board-popup-menu" 
+        onPointerDown={(ev) => {
+            ev.stopPropagation()
+            ev.preventDefault()
+          }}>
 
             <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
             <div className="divider" />
