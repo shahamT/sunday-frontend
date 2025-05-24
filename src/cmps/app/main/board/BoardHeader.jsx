@@ -42,12 +42,14 @@ export function BoardHeader() {
             return
         }
 
-        try {
-            updateBoard({ ...board, name: value })
-        }
-        catch (err) {
-            showErrorMsg(`Somthing went wrong`)
-        }
+        if(value !== board?.name) {
+            }
+            try {
+                updateBoard({ ...board, name: value })
+            }
+            catch (err) {
+                showErrorMsg(`Somthing went wrong`)
+            }
     }
 
     // function onChooseMainTable() {
