@@ -1,7 +1,7 @@
 // === Style
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useParams } from "react-router-dom";
 
@@ -19,7 +19,7 @@ import { getCmdUpdateMiniBoardsFromSocket, loadBoards, updateBoard, updateBoards
 
 // === Child Components
 import { FavoritesBoards } from "./main/board/side-nave/FavoritesBoards";
-import { closeGlobalModal, openGlobalModal } from "../../store/actions/app.actions";
+import { openGlobalModal } from "../../store/actions/app.actions";
 import { AddBoardModal } from "./main/board/side-nave/AddBoardModal";
 import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
@@ -60,7 +60,7 @@ export function AppSideNav({ }) {
         return () => {
             socketService.off(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
         }
-    }, []) 
+    }, [])
 
 
 
@@ -104,23 +104,22 @@ export function AppSideNav({ }) {
 
         updateBoards(reorderedBoards)
     }
+    const isMobile = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
 
-    const sensors = useSensors(
-        useSensor(PointerSensor, {
-            activationConstraint: {
-                delay: 150,
-                tolerance: 30,
-            },
-
+    const rawSensors = [
+        !isMobile && useSensor(PointerSensor, {
+          activationConstraint: {
+            delay: 150,
+            tolerance: 30,
+          },
         }),
-        // useSensor(PointerSensor),
-        useSensor(MouseSensor),
-        useSensor(TouchSensor),
-        useSensor(KeyboardSensor, {
-            coordinateGetter: sortableKeyboardCoordinates,
+        !isMobile && useSensor(MouseSensor),
+        !isMobile && useSensor(KeyboardSensor, {
+          coordinateGetter: sortableKeyboardCoordinates,
         })
-    )
-
+      ];
+      
+      const sensors = useSensors(...rawSensors.filter(Boolean));
 
     return (
         <nav className="AppSideNav" >
@@ -174,8 +173,8 @@ export function AppSideNav({ }) {
 
                             <p>Main Workspaces</p>
                         </div>
-            {/* create new board */}
-                        <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal closeGlobalModal={closeGlobalModal} />)} />
+                        {/* create new board */}
+                        <div className="add-btn clickable i-Add icon-btn filled size-32" onClick={() => openGlobalModal(<AddBoardModal setAddBoardModalState={false} />)} />
                     </section>
 
 
@@ -217,7 +216,6 @@ export function AppSideNav({ }) {
                             >
                                 <SortableContext items={Array.isArray(filteredBoards) ? filteredBoards.map(b => b._id) : []} strategy={verticalListSortingStrategy}>
                                     {filteredBoards.map(board => {
-                                        // console.log(board.name)
                                         return <BoardNavBarLink board={board}
                                             key={board._id}
                                             editedTitle={editedTitle}

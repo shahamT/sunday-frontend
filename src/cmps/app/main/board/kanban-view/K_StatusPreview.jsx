@@ -27,7 +27,15 @@ export function K_StatusPreview({ label, activeId, board, colId }) {
     const [value, setValue] = useState('')
 
     //  === DND 
-    const { attributes, listeners, setNodeRef, transform, transition,isDragging } = useSortable({ id: label.id })
+  
+
+    const { attributes, listeners, setNodeRef, transform, transition,isDragging } = useSortable({
+        id: label.id,
+        activationConstraint: {
+          delay: 250,
+          tolerance: 5
+        }
+      })
     
     const style = {
         transform: CSS.Transform.toString(transform),
@@ -73,7 +81,7 @@ export function K_StatusPreview({ label, activeId, board, colId }) {
         <section className="K_StatusPreview" style={style} ref={setNodeRef}>
 
             {/* **************label header*************** */}
-            <div className={`status-header ${label.color}-bg-static ${isDragging ? 'dragging' : ''}`} {...attributes} {...listeners}>
+            <div className={`status-header ${label.color}-bg-static ${isDragging ? 'dragging' : ''}`}  {...attributes} {...listeners}>
                 <span className="name">{label.name || 'Blank'}</span>
                 <span className="amount">{label.tasks.length}</span>
             </div>
