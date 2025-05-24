@@ -215,16 +215,21 @@
                     min-width: 61px;
                     width: 100%;
                     padding-inline: 8px;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+                    // display: flex;
+                    // justify-content: center;
+                    // align-items: center;
                     border-radius: 2px;
 
-                    white-space: nowrap;
+                    // white-space: nowrap;
+                    // overflow: hidden;
+                    // text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-line-clamp: 1;
+                    -webkit-box-orient: vertical;
                     overflow: hidden;
-                    text-overflow: ellipsis;
 
-
+                    text-align: center;
+                    line-height: 39px;
                 }
 
 

@@ -45,6 +45,7 @@
   padding: 8px;
   border-radius: 4px;
   min-width: 160px;
+  max-height: 360px;
   // max-width: calc(100vw - 16px);
   font-size: 14px;
   color: #323338;
@@ -54,6 +55,7 @@
   transform: translateY(0px);
   transform-origin: center center;
   transition: none;
+  overflow-y: auto;
   
   &.visible {
     transition: opacity 0.12s ease, transform 0.16s ease-out;
