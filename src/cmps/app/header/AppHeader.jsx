@@ -8,7 +8,6 @@ import { logout } from '../../../store/actions/user.actions'
 export function AppHeader(props) {
     const user = useSelector(storeState => storeState.userModule.loggedinUser)
 
-
     const profileImg = user?.profileImg || "https://res.cloudinary.com/dqaq55tup/image/upload/v1746718601/default_user_photo_ak7mer.png"
     return (
         <header className="app-header">
@@ -39,7 +38,7 @@ export function AppHeader(props) {
                 <Tooltip position="bottom" title="Help" additionalClass='help-btn-wraper'>
                     <div className="help-btn clickable clear icon-btn select size-40 icon-big i-Help" />
                 </Tooltip>
-
+                
                 <div className="divider" />
 
                 <Tooltip position="bottom" title="Products switcher" additionalClass='switcher-btn-wraper'>
@@ -88,7 +87,7 @@ function UserAccountMenu() {
                 />
                 <p>Hi {user?.firstName}!</p>
             </div>
-            <div className="h-divider"/>
+            <div className="h-divider" />
             <div className="logout-btn clickable clear size-32 full-width icon-start i-LogOut"
                 onClick={onLogout}
 

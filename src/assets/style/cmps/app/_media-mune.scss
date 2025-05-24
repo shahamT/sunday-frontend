@@ -1,0 +1,43 @@
+.backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.658);
+    z-index: 999;
+}
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    // left: %;
+    right: 0;
+    background-color: white;
+    z-index: 1000;
+    display: flex;
+    flex-direction: row;
+    // padding: 1em;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    
+    
+    
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translateY(-100%);
+    }
+
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp{
+    from {
+        transform: translateY(0);
+    }
+    
+    to {
+        transform: translateY(-100%);
+    }
+}
