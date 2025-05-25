@@ -3,6 +3,9 @@
 
     p {
         color: var(--text-color-on-inverted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .fold {
