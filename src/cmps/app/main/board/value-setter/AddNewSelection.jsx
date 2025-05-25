@@ -21,7 +21,7 @@ export function AddNewSelection({ onCloseModal }) {
 
     // === Functions
     function onAddGroup() {
-        addGroup(true)
+        addGroup({isTop: true})
         onCloseModal()
     }
 

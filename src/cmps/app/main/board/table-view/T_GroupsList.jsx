@@ -99,7 +99,7 @@ export function T_GroupsList({}) {
 
   // === Functions
   function onAddGroup() {
-    addGroup()
+    addGroup({isTop: false})
   }
 
   const [activeId, setActiveId] = useState(null)

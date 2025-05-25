@@ -102,11 +102,11 @@ export function PopUpMenu({
 
   updatePopupPosition()
 
-  window.addEventListener('scroll', updatePopupPosition, true)
+  window.addEventListener('scroll', updatePopupPosition)
   window.addEventListener('resize', updatePopupPosition)
 
   return () => {
-    window.removeEventListener('scroll', updatePopupPosition, true)
+    window.removeEventListener('scroll', updatePopupPosition)
     window.removeEventListener('resize', updatePopupPosition)
   }
 }, [isOpen, position, gap])
