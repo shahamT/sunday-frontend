@@ -31,7 +31,7 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
         setBoardToEdit(board)
 
         return () => {
-            setBoardToEdit(null);
+            setBoardToEdit(null)
         }
     }, [board])
 

@@ -11,6 +11,7 @@ import { FileModal } from "../../cmps/app/main/board/popupMenu/FileModal";
 import { IsStarred } from "../../cmps/app/main/board/value-setter/IsStarred";
 import { useSelector } from "react-redux";
 import { closeGlobalModal } from "../../store/actions/app.actions";
+import { Animations } from "../../cmps/app/main/board/value-setter/Animations";
 
 // === Services
 
@@ -27,7 +28,6 @@ import { closeGlobalModal } from "../../store/actions/app.actions";
 
 export function DevPage2({ /* prop1, prop2 */ }) {
 
-    const boards = useSelector(storeState => storeState.boardModule.boards)
 
 
     return (
@@ -36,9 +36,14 @@ export function DevPage2({ /* prop1, prop2 */ }) {
             <div className="container">
             </div>
 
+<section className="chosen-status">
+</section>
+
+
             <section class="sticky">
             <div className="status-picker-example">
-                <div class="bubbles">
+    <Animations/>
+                {/* <div class="bubbles">
                     <div class="bubble"></div>
                     <div class="bubble"></div>
                     <div class="bubble"></div>
@@ -55,12 +60,13 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                     <div class="bubble"></div>
                     <div class="bubble"></div>
                     <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
-                    <div class="bubble"></div>
+                    
+                    
+                    <div class="capsule"></div>
+                    <div class="capsule"></div> */}
 
-                </div></div>
+                </div>
+                {/* </div> */}
             </section>
         </section>
     )
