@@ -30,27 +30,28 @@ export function DevPage2({ /* prop1, prop2 */ }) {
     const boards = useSelector(storeState => storeState.boardModule.boards)
 
 
-    const imgUrl = "https://img.freepik.com/premium-photo/playful-cute-fish-photo_960396-928043.jpg"
     return (
-        
+
         <section className='dev-page-center'>
             <div className="container">
-                {/* <IsStarred board={boards[0]}/> */}
-                  {/* <FileModal imgUrl={imgUrl} closeGlobalModal={closeGlobalModal}/>  */}
             </div>
-          
-            <h1>dev2</h1>
-            <PopUpMenu
-                position="start-end"
-                renderContent={({ onCloseModal }) => (
-                    <MiniFilePreview
-                        onCloseModal={onCloseModal}
-                        imgUrl={imgUrl}
-                    />
-                )}
-            >
-                <div className="menu-btn clickable clear size-24 icon-btn i-Menu" />
-            </PopUpMenu>
+
+            <section class="sticky">
+            <div className="status-picker-example">
+                <div class="bubbles">
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+
+                </div></div>
+            </section>
         </section>
     )
 }

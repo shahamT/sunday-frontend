@@ -52,6 +52,7 @@
         .add-btn {
             width: 152px;
             align-self: start;
+
             &::before {
                 margin-inline-end: 2px;
             }
@@ -72,9 +73,5 @@
         }
 
     }
-
-
-
-
 
 }
