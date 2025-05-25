@@ -53,9 +53,9 @@ async function remove(boardId) {
 
 //////GROUP//////
 
-async function createGroup(group, boardId, isTop = false) {
+async function createGroup(group, boardId, isTop = false, idx) {
 
-    return httpService.post(`board/${boardId}/group`, { group, isTop })
+    return httpService.post(`board/${boardId}/group`, { group, isTop, idx })
 
 }
 

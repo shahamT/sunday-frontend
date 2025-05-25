@@ -37,7 +37,7 @@ export function GroupMenu({ onCloseModal, group }) {
         <section className="group-menu">
 
 
-            <div className="clickable clear size-32 icon-start i-AddSmall full-width full-width left-aligned" onClick={() => addGroup()}>
+            <div className="clickable clear size-32 icon-start i-AddSmall full-width full-width left-aligned" onClick={() => addGroup({currGroupId: group.id})}>
                 Add group
             </div>
             <div className="divider" />

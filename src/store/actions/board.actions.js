@@ -100,12 +100,19 @@ export function setBoardsFilterBy(boardsFilterBy) {
 }
 
 // ========= Group =========
-export async function addGroup(isTop = false) {
-    const boardId = getBoardId()
+export async function addGroup({isTop = false, currGroupId = ''}) {
+    console.log(isTop)
+    // const boardId = getBoardId()
+    const board = structuredClone(getBoard())
+    let idx = null
+    if (currGroupId) {
+        const foundIdx = board.groups.findIndex(group => group.id === currGroupId)
+        if(foundIdx !== -1) idx = foundIdx
+    }
     const group = boardService.getEmptyGroup()
     try {
-        store.dispatch(getCmdAddGroup(group, isTop))
-        const savedGroup = await boardService.createGroup(group, boardId, isTop)
+        store.dispatch(getCmdAddGroup(group, isTop, idx))
+        const savedGroup = await boardService.createGroup(group, board._id, isTop, idx)
         return savedGroup
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
@@ -465,11 +472,12 @@ function getCmdRemoveGroup(groupId) {
     }
 }
 
-function getCmdAddGroup(group, isTop) {
+function getCmdAddGroup(group, isTop, idx) {
     return {
         type: ADD_GROUP,
         group,
-        isTop
+        isTop,
+        idx
     }
 }
 

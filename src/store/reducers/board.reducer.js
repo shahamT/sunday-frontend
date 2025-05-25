@@ -83,6 +83,7 @@ export function boardReducer(state = initialState, action = {}) {
             return {
                 ...state,
                 boards: state.boards.filter(board => board._id !== action.boardId),
+                board: state.board?._id === action.boardId ? null : state.board,
                 lastBoards
             }
 
@@ -157,9 +158,19 @@ export function boardReducer(state = initialState, action = {}) {
             lastBoard = { ...state.board }
 
             return {
-                ...state,
-                board: { ...state.board, groups: action.isTop ? [action.group, ...state.board.groups] : [...state.board.groups, action.group] },
-                lastBoard
+            ...state,
+            board: {...state.board, groups: (() => {
+                const groups = [...state.board.groups]
+                if (action.idx !== null && typeof action.idx === 'number') {
+                    const insertAt = action.idx + 1
+                    groups.splice(insertAt, 0, action.group)
+                    return groups
+                }
+                return action.isTop
+                    ? [action.group, ...groups]
+                    : [...groups, action.group]
+                })()},
+            lastBoard
             }
 
         case UPDATE_GROUP:

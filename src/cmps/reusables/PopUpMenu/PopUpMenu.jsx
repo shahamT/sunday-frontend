@@ -100,13 +100,22 @@ export function PopUpMenu({
     setPopupStyle(style)
   }
 
+  const scrollHandler = (e) => {
+    // Prevent re-positioning when scrolling inside popup or trigger
+    if (
+      popupRef.current?.contains(e.target) ||
+      wrapperRef.current?.contains(e.target)
+    ) return
+    updatePopupPosition()
+  }
+
   updatePopupPosition()
 
-  window.addEventListener('scroll', updatePopupPosition, true)
+  window.addEventListener('scroll', scrollHandler, true)
   window.addEventListener('resize', updatePopupPosition)
 
   return () => {
-    window.removeEventListener('scroll', updatePopupPosition, true)
+    window.removeEventListener('scroll', scrollHandler, true)
     window.removeEventListener('resize', updatePopupPosition)
   }
 }, [isOpen, position, gap])
