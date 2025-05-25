@@ -11,7 +11,8 @@ export function HappyLabelAnimation() {
     const [animationType, setAnimationType] = useState(null);
 
     useEffect(() => {
-        const states = ['bubbles-animation', 'confettie-animation', 'stars-animation'];
+        // const states = ['bubbles-animation', 'confettie-animation', 'stars-animation'];
+        const states = ['stars-animation'];
         const randomIndex = Math.floor(Math.random() * states.length);
         setAnimationType(states[randomIndex]);
     }, [])
@@ -54,7 +55,7 @@ export function HappyLabelAnimation() {
                         {[...Array(5)].map((_, i) => {
                             const left = Math.random() * 100
                             const delay = Math.random() * 2
-                            const duration = Math.random() * 5 + 2
+                            const duration = Math.random() * 5 +2
                             const backgroundColor = colors[Math.floor(Math.random() * colors.length)]
 
                             return (
@@ -127,7 +128,7 @@ export function HappyLabelAnimation() {
             <section className='stars'>
                 {animationType === 'stars-animation' && (
                     <>
-                        {[...Array(15)].map((_, i) => {
+                        {[...Array(20)].map((_, i) => {
                             const size = Math.floor(Math.random() * 6) + 3
                             const left = Math.random() * 100
                             const delay = Math.random() * 2
@@ -147,9 +148,9 @@ export function HappyLabelAnimation() {
                                 />
                             )
                         })}
-                        {[...Array(5)].map((_, i) => {
+                        {[...Array(10)].map((_, i) => {
                             const left = Math.random() * 100
-                            const delay = Math.random() * 3
+                            const delay = Math.random() * 4
                             const backgroundColor = colors[Math.floor(Math.random() * colors.length)]
 
                             return (

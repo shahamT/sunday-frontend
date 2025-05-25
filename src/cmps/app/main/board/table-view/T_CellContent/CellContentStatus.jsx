@@ -34,7 +34,7 @@ export function CellContentStatus({ task, column, columnValue }) {
             setIsLabelHappy(true)
             setTimeout(() => {
                 setIsLabelHappy(false)
-            }, 10000);
+            }, 8000);
         }
 
         try {

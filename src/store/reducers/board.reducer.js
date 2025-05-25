@@ -100,7 +100,6 @@ export function boardReducer(state = initialState, action = {}) {
             }
 
         case UPDATE_BOARD:
-
             return {
                 ...state,
                 boards: state.boards.map(board => board._id === action.board._id ? action.board : board)
@@ -158,19 +157,21 @@ export function boardReducer(state = initialState, action = {}) {
             lastBoard = { ...state.board }
 
             return {
-            ...state,
-            board: {...state.board, groups: (() => {
-                const groups = [...state.board.groups]
-                if (action.idx !== null && typeof action.idx === 'number') {
-                    const insertAt = action.idx + 1
-                    groups.splice(insertAt, 0, action.group)
-                    return groups
-                }
-                return action.isTop
-                    ? [action.group, ...groups]
-                    : [...groups, action.group]
-                })()},
-            lastBoard
+                ...state,
+                board: {
+                    ...state.board, groups: (() => {
+                        const groups = [...state.board.groups]
+                        if (action.idx !== null && typeof action.idx === 'number') {
+                            const insertAt = action.idx + 1
+                            groups.splice(insertAt, 0, action.group)
+                            return groups
+                        }
+                        return action.isTop
+                            ? [action.group, ...groups]
+                            : [...groups, action.group]
+                    })()
+                },
+                lastBoard
             }
 
         case UPDATE_GROUP:
@@ -213,7 +214,7 @@ export function boardReducer(state = initialState, action = {}) {
                 board: { ...state.board, columns: state.board.columns.map(column => column.id === action.column.id ? action.column : column) },
                 lastBoard
             }
-           
+
 
         // LABELS
         case UPDATE_LABEL: {
