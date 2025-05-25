@@ -86,7 +86,7 @@ function getEmptyBoard() {
                 name: 'Status',
                 type: {
                     variant: 'status', labels: [
-                        { id: labelId1, name: 'Working On It', color: 'working_orange' },
+                        { id: labelId1, name: 'Working On It', color: 'working_orange', isHappyLabel: true },
                         { id: labelId2, name: 'Stuck', color: 'stuck-red' },
                         { id: makeId(), name: 'Done', color: 'done-green' },
                     ]
@@ -272,7 +272,7 @@ function getEmptyColumn(type) {
     if (type === 'status') {
         emptyCol.type = {
             ...emptyCol.type, labels: [
-                { id: makeId(), name: 'Working On It', color: 'working_orange' },
+                { id: makeId(), name: 'Working On It', color: 'working_orange', isHappyLabel: true },
                 { id: makeId(), name: 'Stuck', color: 'stuck-red' },
                 { id: makeId(), name: 'Done', color: 'done-green' },
             ]
