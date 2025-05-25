@@ -312,7 +312,7 @@ export async function removeColumn(columnId) {
     try {
         store.dispatch(getCmdRemoveColumn(columnId))
         await boardService.removeColumn(columnId, boardId)
-        return { removed: true }
+        // return { removed: true }
     } catch (err) {
         store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot remove column', err)
