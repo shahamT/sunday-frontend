@@ -61,7 +61,7 @@ export function CellContentFile({ task, column, columnValue }) {
 
 
     return (
-        <div className={`CellContentFile cell-content`}>
+        <div className={`CellContentFile cell-content ${isUploading ? 'uploading' : ''}`}>
 
 
             {columnValue

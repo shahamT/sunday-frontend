@@ -45,30 +45,40 @@ export function ColSumStatus({ columnValues, column, group, totalTasks }) {
         const color = lableSummary[labelName].color
 
         return (
-          //     <Tooltip
-          //     key={labelName}
-          //     title={`${labelName} ${lableSummary[labelName].count}/${totalItems}   ${percent}%`}
-          //     position="top"
-          //     stretchWraper= {true}
-
-          //   >
-          <div
+        <div key={labelName} style={{ width: `${percent}%` }}>
+          <Tooltip
             key={labelName}
-            className={`label-status-item ${color}-bg-static`}
-            style={{
-              width: `${percent}%`,
-            }}
             title={`${labelName} ${lableSummary[labelName].count}/${totalItems}   ${percent}%`}
-          />
-          //  </Tooltip>
+            position="top"
+            stretchWraper= {true}
+          >
+            <div
+              // key={labelName}
+              className={`label-status-item ${color}-bg-static`}
+              // style={{
+              //   width: `${percent}%`,
+              // }}
+              // title={`${labelName} ${lableSummary[labelName].count}/${totalItems}   ${percent}%`}
+            />
+          </Tooltip>
+        </div>
         )
       })}
         {remainingPercent > 0 && (
-        <div
-          className={`label-status-item default-status `}
-          style={{ width: `${remainingPercent}%` }}
-          title={`${tasksWithStatus}/${totalItems} ${remainingPercent}%`}
-        />
+          <div style={{ width: `${remainingPercent}%` }}>
+            <Tooltip
+              title={`${tasksWithStatus}/${totalItems} ${remainingPercent}%`}
+              position="top"
+              stretchWraper= {true}
+            >
+              
+            <div
+              className={`label-status-item default-status `}
+              // style={{ width: `${remainingPercent}%` }}
+              // title={`${tasksWithStatus}/${totalItems} ${remainingPercent}%`}
+              />
+            </Tooltip>
+          </div>
       )}
     </section>
   )
