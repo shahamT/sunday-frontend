@@ -131,15 +131,12 @@
         left: 0;
 
         .confetti {
-            // background: red;
             position: absolute;
             top: -10%;
             left: 0;
             opacity: 1;
             width: 3px;
-            // height: 3px;
             border-radius: 50%;
-            // clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
             z-index: 1;
             animation: confetti 2s ease-in forwards;
         }
@@ -192,14 +189,8 @@
 
         }
 
-        .capsule:nth-child(16) {}
-
-        .capsule:nth-child(17) {
-            // top: 30%;
-            // background: #f30000;
-
-            // left: 90%;
-        }
+        
+        
     }
 }
 
