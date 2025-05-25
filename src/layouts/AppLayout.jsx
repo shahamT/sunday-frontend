@@ -11,7 +11,6 @@ import { useAuthGuard } from '../hooks/useAuthGuard';
 const SN_STORAGE_KEY = 'sideNavWidth';
 const MIN_SIDE_NAV_WIDTH = 200;
 const MAX_SIDE_NAV_WIDTH = 575;
-const COLLAPSED_SIDE_NAV_WIDTH = 30;
 
 export function AppLayout() {
     const loggedinUser = useAuthGuard()
@@ -21,8 +20,13 @@ export function AppLayout() {
     const isSideNavOpen = useSelector(storeState => storeState.appModule.isSideNavOpen)
     const [isDragging, setIsDragging] = useState(false);
     const [enableTransition, setEnableTransition] = useState(true);
+    const mobileView = window.matchMedia("(max-width: 600px)");
     const [sideNavWidth, setSideNavWidth] = useState(() => {
-        return parseInt(localStorage.getItem(SN_STORAGE_KEY), 10) || 280;
+        if (mobileView.matches) {
+            return window.innerWidth - 24
+        } else {
+            return parseInt(localStorage.getItem(SN_STORAGE_KEY), 10) || 280;
+        }
     });
 
     // Enable sidenav transition only when collapsing or expanding
@@ -67,7 +71,6 @@ export function AppLayout() {
         if (isSideNavOpen) closeSidePanel()
     }
 
-    const NavWidth = isSideNavOpen ? sideNavWidth : COLLAPSED_SIDE_NAV_WIDTH;
 
     // ===== task details panel=====
     // =============================
@@ -83,7 +86,7 @@ export function AppLayout() {
     }, [location.pathname]);
 
 
-// console.log("sideNavWidth: ", sideNavWidth)
+    // console.log("sideNavWidth: ", sideNavWidth)
     // // ====== Component ======
     // // =======================
     const isBoardRoute = location.pathname.startsWith('/app/board/');
@@ -91,7 +94,7 @@ export function AppLayout() {
     if (!loggedinUser) return <div className="main-loader-container" >
         <img className="loader" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747552268/loader_cymybj.gif" alt="loader" />
     </div>
-    
+
     return (
         <section className="AppLayout">
             <AppHeader />
@@ -112,7 +115,7 @@ export function AppLayout() {
                     <Tooltip
                         title={isSideNavOpen ? 'Close navigation' : 'Open navigation'}
                         position="right"
-                        additionalClass='close-btn-wraper'
+                        additionalClass={`close-btn-wraper ${isSideNavOpen ? 'opened' : 'closed'}`}
                         gap={16}
                     >
                         <div
@@ -127,7 +130,7 @@ export function AppLayout() {
                 <main className="main-content-panel">
 
                     <div className="main-content-wraper">
-                        <Outlet context={{ sideNavWidth }}/>
+                        <Outlet context={{ sideNavWidth }} />
                     </div>
 
                 </main>

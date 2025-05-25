@@ -39,14 +39,15 @@
     .T_ColumnSumRow> :nth-child(n + 3) {
         border-block-end: 1px solid var(--layout-border-color);
     }
-// =================================DND
 
-// .T_GroupHeadRow> :nth-child(n + 4),
-// .T_GroupHeadRow> :nth-child(2),
+    // =================================DND
+
+    // .T_GroupHeadRow> :nth-child(n + 4),
+    // .T_GroupHeadRow> :nth-child(2),
     // .T_GroupHeadRow> :nth-child(n + 2),
-// אלה הקווים שרואים וצריך להסיר בזמן גרירת טורים
+    // אלה הקווים שרואים וצריך להסיר בזמן גרירת טורים
 
-// =================================DND
+    // =================================DND
     // last cell expandable
     .T_GroupHeadRow> :last-child,
     .T_TaskRow> :last-child,
@@ -62,6 +63,10 @@
         top: 156px;
         z-index: 10;
         background-color: var(--primary-background-color);
+
+        @include for-mobile {
+            top: 152px;
+        }
     }
 
     .T_GroupHeadRow {
@@ -69,6 +74,10 @@
         top: 196px;
         z-index: 9;
         background-color: var(--primary-background-color);
+
+        @include for-mobile {
+            top: 192px;
+        }
     }
 
     // horizontal stickyness
@@ -144,6 +153,10 @@
         border-inline-end: 1px solid var(--layout-border-color);
         flex-shrink: 0;
 
+        @include for-mobile {
+            display: none;
+        }
+
         &.disabled {
             pointer-events: none;
 
@@ -155,7 +168,7 @@
 
     }
 
-    
+
     .cell-content {
         display: flex;
         align-items: center;
@@ -165,10 +178,10 @@
         p {
             font-size: 14px;
         }
-        
+
         &.centered {
             justify-content: center;
         }
     }
-    
+
 }

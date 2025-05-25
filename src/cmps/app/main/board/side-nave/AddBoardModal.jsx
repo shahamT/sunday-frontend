@@ -12,7 +12,7 @@ import { getBoardAI } from '../../../../../services/base/getBoardAI'
 // ====== Component ======
 // =======================
 
-export function AddBoardModal({setAddBoardModalState}) {
+export function AddBoardModal({ setAddBoardModalState }) {
 
   // === Consts
   const [newBoard, setNewBoard] = useState('')
@@ -33,26 +33,27 @@ export function AddBoardModal({setAddBoardModalState}) {
     setNewBoard(prevNewBoard => ({ ...prevNewBoard, [field]: value }))
   }
 
-  const aiBoard = getBoardAI()
-
-
   async function onSubmit(ev) {
     setIsLoading(true)
     ev.preventDefault()
-    const boardToCreate = isAi ? aiBoard : newBoard
-    setTimeout(async () => {
-      try {
-        const savedBoard = await addBoard(boardToCreate)
-        // updateUser(savedBoard._id)
+    const boardToCreate = isAi ? getBoardAI() : newBoard
+    const delay = isAi ? 2500 : 0
+
+    try {
+      const savedBoard = await addBoard(boardToCreate)
+      setTimeout(async () => {
         closeGlobalModal()
         navigate(`/app/board/${savedBoard._id}`)
-      } catch (err) {
-        console.error('Save failed')
-        showErrorMsg('Save failed')
-      } finally {
+      }, delay)
+    } catch (err) {
+      console.error('Save failed')
+      showErrorMsg('Save failed')
+    } finally {
+      setTimeout(async () => {
         setIsLoading(false)
-      }
-    }, 1000)
+      }, delay)
+    }
+
   }
 
   const { name } = newBoard
@@ -60,51 +61,55 @@ export function AddBoardModal({setAddBoardModalState}) {
   return (
     <section className="add-board-modal">
       <button className="close-btn clickable clear size-32 i-Close" onClick={closeGlobalModal} />
-      <form onSubmit={onSubmit}>
-        <h1 className="title-add-modal">Create Board</h1>
+      <h1 className="title-add-modal">Create Board</h1>
 
-        {!isAi ? (
-          <>
-            <p className="title">Board name</p>
-            <input
-              type="text"
-              name="name"
-              value={name || ''}
-              autoFocus
-              onChange={hendleChange}
-            />
-          </>
-        ) : (
-          <>
-            <p className="title">Use AI to Create Board</p>
+      <form onSubmit={onSubmit}>
+
+        <div className="input-group">
+          <div className="title-wraper">
+            <label className="input-title">Board name</label>
+          </div>
+          <input
+            type="text"
+            name="name"
+            value={name || ''}
+            autoFocus
+            onChange={hendleChange}
+          />
+        </div>
+
+
+
+        {isAi && (
+          <div className="input-group">
+            <div className="title-wraper">
+              <label className="input-title animate__animated animate__fadeIn">
+                Talk with the AI...
+              </label>
+              <div className="clickable clear size-32 icon-start i-DropdownChevronLeft"
+                onClick={() => setAi(false)}>
+                back to regular mode
+              </div>
+            </div>
             <textarea
-              className="ai-textarea"
+              className="ai-textarea animate__animated animate__fadeIn"
               name="aiBoardPrompt"
               placeholder={`Describe the board you need. For example:\n'Plan a marketing campaign for a new product'`}
               rows={4}
             />
-          </>
+          </div>
         )}
 
-        <section>
-          {isAi ? (
-            <button
-              type="button"
-              className="ai-btn clickable i-UserDomain icon-start clear size-48"
-              onClick={() => setAi(false)}
-            >
-              Create board by yourself
-            </button>
-          ) : (
-            <button
-              type="button"
-              className="ai-btn clickable i-Robot icon-start clear size-48"
-              onClick={() => setAi(true)}
-            >
-              Create board with AI
-            </button>
-          )}
-        </section>
+        {!isAi && (
+
+          <button
+            type="button"
+            className="ai-btn clickable i-Robot icon-start clear size-48 full-width"
+            onClick={() => setAi(true)}
+          >
+            Create board with AI
+          </button>
+        )}
 
         <p className="new-board-encourage">
           Let’s get you started with a fresh new board!
@@ -127,7 +132,7 @@ export function AddBoardModal({setAddBoardModalState}) {
               disabled={isLoading}
               onClick={onSubmit}
             >
-              Create Board
+              {isAi ? 'Create AI Board' : 'Create Board'}
             </div>
           </div>
         </section>

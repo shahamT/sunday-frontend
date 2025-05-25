@@ -34,12 +34,9 @@ const SN_STORAGE_KEY = 'sideNavWidth';
 export function BoardDetails({ /* prop1, prop2 */ }) {
     // === Consts
     const { boardId } = useParams()
-    // const { selected, isSelected, select } = useSelected('main-table')
     const dispatch = useDispatch()
-    // const board = useSelector(storeState => storeState.boardModule.board)
     const { sideNavWidth } = useOutletContext()
     const [vpWidth, setVpWidth] = useState(() => window.innerWidth);
-    // const user = useSelector(storeState => storeState.userModule.loggedinUser)
     const [sumValues, setSumValues] = useState(null);
 
     const location = useLocation();

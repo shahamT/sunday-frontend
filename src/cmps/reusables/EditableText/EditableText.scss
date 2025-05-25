@@ -31,6 +31,10 @@
         &:focus {
             border: 1px solid var(--primary-color);
             background-color: var(--primary-background-color);
+            // width: 100% !important;
+        }
+
+        &.stretch-on-focus:focus {
             width: 100% !important;
         }
 

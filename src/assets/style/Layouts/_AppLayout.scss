@@ -59,8 +59,18 @@
         width: 30px;
         transition: width 300ms ease-in-out;
 
+        @include for-mobile {
+          width: 0px;
+
+        }
+
         &:hover {
           width: 36px;
+
+          @include for-mobile {
+            width: 0px;
+
+          }
 
           &::before {
             content: "";
@@ -104,6 +114,10 @@
         opacity: 0;
         transition: opacity 0.3s ease-in-out;
 
+        @include for-mobile {
+          display: none;
+        }
+
         &:hover,
         &.dragging {
           opacity: 1;
@@ -137,6 +151,23 @@
 
         transition: opacity var(--transition-sm);
 
+        &.closed {
+          @include for-mobile {
+            top: 17px;
+            right: -34px;
+          }
+        }
+
+        &.opened {
+          @include for-mobile {
+            top: 17px;
+            right: 20px;
+            opacity: 1;
+          }
+        }
+
+
+
         &:hover {
           opacity: 1;
           pointer-events: auto;
@@ -149,6 +180,8 @@
           background-color: var(--primary-surface-color);
           border-radius: var(--border-radius-round);
           cursor: pointer;
+
+          @include for-mobile {}
 
           &::before {
             display: flex;
@@ -180,6 +213,10 @@
       width: 40px;
       background-color: var(--primary-background-color);
       border-top-left-radius: 12px;
+
+      @include for-mobile {
+        width: 16px;
+      }
 
     }
 

@@ -13,6 +13,9 @@
 
     background-color: var(--primary-background-color);
 
+    @include for-mobile {
+           top: 88px;
+    }
 
     .new-item-btn {
         margin-inline-end: 14px;

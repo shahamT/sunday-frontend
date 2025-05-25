@@ -1,23 +1,24 @@
 // === Libs
 
 // === Services
+import { debounce } from "../../../../../services/base/util.service.js"
 
 // === Actions
-import { useSelector } from "react-redux"
 import { addTask } from "../../../../../store/actions/board.actions.js"
+import { setFilterBy } from "../../../../../store/actions/board.actions.js"
+import { store } from "../../../../../store/store.js"
 
 // === Hooks / React
+import { useControlledInput } from "../../../../../hooks/useControlledInput.js"
+import { useSelector } from "react-redux"
+import { useLocation } from "react-router-dom"
+import { useEffect, useRef, useState } from "react"
 
 // === Imgs
 
 // === Child Components
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu.jsx"
 import { AddNewSelection } from "../value-setter/AddNewSelection.jsx"
-import { useEffect, useRef, useState } from "react"
-import { useControlledInput } from "../../../../../hooks/useControlledInput.js"
-import { setFilterBy } from "../../../../../store/actions/board.actions.js"
-import { debounce } from "../../../../../services/base/util.service.js"
-import { store } from "../../../../../store/store.js"
 import { Tooltip } from "../../../../reusables/tooltip/Tooltip.jsx"
 import { ColSumStatus } from "./T_ColumnSum/ColSumStatus.jsx"
 
@@ -35,6 +36,9 @@ export function T_Filter() {
     const [value, setValue] = useState('')
     const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [selectedPerson, setSelectedPerson] = useState(null)
+
+    const location = useLocation();
+    const isKanbanRoute = location.pathname.endsWith('/kanban');
 
     
     const debouncedSetFilterBy = useRef(
@@ -116,18 +120,20 @@ export function T_Filter() {
     // if (!data) return <div>Loading...</div>
     return (
         <section className="T_Filter">
-            <div className="split-button size-32 filled new-item-btn">
-                <div className="clickable btn-left filled" onClick={onAddTask}>New item</div>
-                <div className="seperator"></div>
-                    <PopUpMenu
-                        position="bottom-start"
-                        renderContent={({ onCloseModal }) => (
-                            <AddNewSelection onCloseModal={onCloseModal} />
-                        )}>
-                        <div className="clickable btn-right filled icon-btn i-DropdownChevronDown"></div>
-                     </PopUpMenu>
+            {!isKanbanRoute &&
+                <div className="split-button size-32 filled new-item-btn">
+                    <div className="clickable btn-left filled" onClick={onAddTask}>New item</div>
+                    <div className="seperator"></div>
+                        <PopUpMenu
+                            position="bottom-start"
+                            gap={6}
+                            renderContent={({ onCloseModal }) => (
+                                <AddNewSelection onCloseModal={onCloseModal} />
+                            )}>
+                            <div className="clickable btn-right filled icon-btn i-DropdownChevronDown"></div>
+                        </PopUpMenu>
 
-            </div>
+                </div>}
             {isInput 
             ? ( 
                 <div className={`filter-search-bar ${hasText ? 'has-text' : ''}`}>

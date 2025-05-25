@@ -16,33 +16,33 @@ export function AppHeader(props) {
 
 
                 <Tooltip position="bottom" title="Notifications" additionalClass='notifications-btn-wraper'>
-                    <div className="notifications-btn clickable clear icon-btn select size-40 icon-big i-Notifications" />
+                    <div className="notifications-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Notifications" />
                 </Tooltip>
 
                 <Tooltip position="bottom" title="Update feed" additionalClass='inbox-btn-wraper'>
-                    <div className="inbox-btn clickable clear icon-btn select size-40 icon-big i-Inbox" />
+                    <div className="inbox-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Inbox" />
                 </Tooltip>
 
                 <Tooltip position="bottom" title="Invite members" additionalClass='invite-btn-wraper'>
-                    <div className="invite-btn clickable clear icon-btn select size-40 icon-big i-Invite" />
+                    <div className="invite-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Invite" />
                 </Tooltip>
 
                 <Tooltip position="bottom" title="sunday marketplace" additionalClass='apps-btn-wraper'>
-                    <div className="apps-btn clickable clear icon-btn select size-40 icon-big i-Apps" />
+                    <div className="apps-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Apps" />
                 </Tooltip>
 
                 <Tooltip position="bottom" title="Search everything" additionalClass='search-btn-wraper'>
-                    <div className="search-btn clickable clear icon-btn select size-40 icon-big i-Search" />
+                    <div className="search-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Search" />
                 </Tooltip>
 
                 <Tooltip position="bottom" title="Help" additionalClass='help-btn-wraper'>
-                    <div className="help-btn clickable clear icon-btn select size-40 icon-big i-Help" />
+                    <div className="help-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Help" />
                 </Tooltip>
-                
+
                 <div className="divider" />
 
                 <Tooltip position="bottom" title="Products switcher" additionalClass='switcher-btn-wraper'>
-                    <div className="switcher-btn clickable clear icon-btn select size-40 icon-big i-Switcher" />
+                    <div className="switcher-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Switcher" />
                 </Tooltip>
 
                 <div className='UserAccountMenu-wrapper'>

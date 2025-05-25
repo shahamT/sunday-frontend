@@ -1,5 +1,10 @@
 // === Libs
 
+import { showErrorMsg } from "../../../../../services/base/event-bus.service";
+import { setColumnValue } from "../../../../../store/actions/board.actions";
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
+import { DatePickerColumn } from "../value-setter/DatePicker";
+
 // === Services
 
 // === Actions
@@ -13,7 +18,7 @@
 // ====== Component ======
 // =======================
 
-export function K_ContentDate({ column, value }) {
+export function K_ContentDate({ column, value, taskId }) {
     // === Consts
     const formattedValue = formatTimestamp(value)
 
@@ -35,10 +40,34 @@ export function K_ContentDate({ column, value }) {
         return date.toLocaleDateString('en-US', options);
     }
 
+    function onSetDate(date) {
+        try {
+            setColumnValue(taskId, column.id, date, value)
+        }
+        catch (err) {
+            showErrorMsg(`Somthing went wrong`)
+        }
+    }
+
     // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentDate">
-            <button className="content date clickable clear size-24 icon-start i-Calendar">{formattedValue}</button>
+
+            <PopUpMenu
+                position="bottom"
+                gap={1}
+                stretchTrigger={true}
+                renderContent={({ onCloseModal }) => (
+                    <DatePickerColumn
+                        onCloseModal={onCloseModal}
+                        setDate={onSetDate}
+                        defaultDate={value || null}
+                    />
+                )}
+            >
+                <button className="content date clickable clear size-24 icon-start i-Calendar">{formattedValue}</button>
+            </PopUpMenu>
+
         </section>
     )
 }

@@ -12,9 +12,14 @@
     .main-section {
         display: flex;
         justify-content: space-between;
-        .title-wraper{
-             flex: 1 1 auto;
-        display: flex;
+
+        .title-wraper {
+            flex: 1 1 auto;
+            display: flex;
+
+            @include for-mobile {
+                margin-inline-start: 24px;
+            }
         }
     }
 

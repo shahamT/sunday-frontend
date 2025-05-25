@@ -7,20 +7,25 @@
     justify-content: space-between;
     padding-inline-end: 30px;
 
+    @include for-mobile {
+           top: 88px;
+    }
+
     .status-sum {
         width: 140px;
         padding-block: 8px;
         height: max-content;
         align-items: center;
-        
+
         .col-sum-status {
+
             // padding: 0;
-            & > *:first-child {
+            &>*:first-child {
                 border-bottom-left-radius: var(--border-radius-sm);
                 border-top-left-radius: var(--border-radius-sm);
             }
 
-            & > *:last-child {
+            &>*:last-child {
                 border-bottom-right-radius: var(--border-radius-sm);
                 border-top-right-radius: var(--border-radius-sm);
             }

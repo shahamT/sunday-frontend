@@ -24,7 +24,6 @@ import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { TaskMenu } from "../popupMenu/TaskMenu"
 import { useSelected } from "../../../../../hooks/useSelected"
 import { TaskDetailsUpdates } from "./TaskDetailsUpdates"
-import { TaskDetailsFiles } from "./TaskDetailsFiles"
 import { TaskDetailsActivityLog } from "./TaskDetailsActivityLog"
 import { PersonsPicker } from "../value-setter/PersonsPicker"
 
@@ -151,7 +150,7 @@ export function TaskDetails() {
         }
     }
 
-    if (!task || !board) return <div>Loading...</div>
+    if (!task || !board) return 
     return (
         <section className="TaskDetails">
             <section className="task-details-header">

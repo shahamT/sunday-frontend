@@ -22,6 +22,7 @@ export const EditableText = forwardRef(function EditableText({
     additionalClass = '',
     centerText = false,
     colorPicker = null,
+    preserveWidthOnFocus = false,
     setIsInputFocused
 }, ref) {
     const spanRef = useRef(null);
@@ -104,7 +105,7 @@ export const EditableText = forwardRef(function EditableText({
                 type={type}
                 value={value}
                 placeholder={placeholder}
-                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass}`}
+                className={`text-input ${full ? 'full' : ''} ${size} ${emojiPicker ? 'xl-padding-end' : ''} ${centerText ? 'text-centered' : ''} ${additionalClass} ${isFocused && !preserveWidthOnFocus ? 'stretch-on-focus' : ''}`}
                 onClick={(e) => {e.stopPropagation()
                     // if(setIsInputFocused) setIsInputFocused(true)     
 
@@ -138,7 +139,11 @@ export const EditableText = forwardRef(function EditableText({
                 }}
                 style={{
                     ...(paddingStart ? { paddingInlineStart: paddingStart + 'px' } : {}),
-                    ...(full ? {} : { width: `${inputWidth}px` }),
+                    ...(full ? {} : (isFocused && preserveWidthOnFocus
+                        ? { width: `${inputWidth}px` }
+                        : !isFocused
+                            ? { width: `${inputWidth}px` }
+                            : {})),
                     ...(colorPicker && isFocused
                         ? { paddingInlineStart: (paddingStart || 0) + 32 + 'px' }
                         : paddingStart
