@@ -101,8 +101,6 @@ export function setBoardsFilterBy(boardsFilterBy) {
 
 // ========= Group =========
 export async function addGroup({isTop = false, currGroupId = ''}) {
-    console.log(isTop)
-    // const boardId = getBoardId()
     const board = structuredClone(getBoard())
     let idx = null
     if (currGroupId) {
