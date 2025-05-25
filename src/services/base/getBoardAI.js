@@ -1,6 +1,6 @@
 export function getBoardAI() {
+  
   return {
-    name: "Yard Makeover 2025",
     activities: [
     ],
     columns: [

@@ -13,7 +13,6 @@ import TextStyle from '@tiptap/extension-text-style'
 import ListItem from '@tiptap/extension-list-item'
 import OrderedList from '@tiptap/extension-ordered-list'
 import BulletList from '@tiptap/extension-bullet-list'
-import Gapcursor from '@tiptap/extension-gapcursor'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
@@ -49,7 +48,7 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
     const [destroy, setDestroy] = useState(false)
 
     const extensions = [StarterKit, Document, Paragraph, Text, Bold, Italic, Underline, Strike, TextStyle, Color,
-        OrderedList, ListItem, BulletList, Gapcursor, Table.configure({ resizable: true, }), TableRow, TableHeader,
+        OrderedList, ListItem, BulletList, Table.configure({ resizable: true, }), TableRow, TableHeader,
         TableCell, Code, Heading, HorizontalRule,
         Link.configure({
         openOnClick: false,

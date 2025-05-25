@@ -60,9 +60,9 @@ export function T_GroupHeadRow({ group, liveColumnWidthsRef, resizeVersion, bump
                 <div className={`t-left-indicator top ${group.color}-bg-static`}>
                     {/* <div className="top-line-hider"></div> */}
                 </div>
-                <ColumnsDndContext setOverId={setOverId} columns={board.columns} group={group} board={board}>
+                <ColumnsDndContext setOverId={setOverId} columns={board?.columns} group={group} board={board}>
                     <SortableContext
-                        items={board.columns.map(col => col.id)}
+                        items={board?.columns.map(col => col.id)}
                         strategy={()=>null}
                     >
                         {board.columns.map((column, idx) => {
