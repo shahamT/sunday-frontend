@@ -59,6 +59,7 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
                 ))}
             </div>
             {!!selectedPersons?.length && <div className="divider"></div>}
+            <div className="persons-list">
             {users.map(user => {
                 if (user.account === boardAccountId && !selectedPersons.some(person => person._id === user._id)) {
                     return (
@@ -71,6 +72,7 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
                     )
                 }
             })}
+            </div>
         </section>
     )
 }
