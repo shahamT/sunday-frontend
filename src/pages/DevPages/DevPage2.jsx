@@ -11,7 +11,7 @@ import { FileModal } from "../../cmps/app/main/board/popupMenu/FileModal";
 import { IsStarred } from "../../cmps/app/main/board/value-setter/IsStarred";
 import { useSelector } from "react-redux";
 import { closeGlobalModal } from "../../store/actions/app.actions";
-import { Animations } from "../../cmps/app/main/board/value-setter/Animations";
+import { HappyLabelAnimation } from "../../cmps/app/main/board/value-setter/HappyLabelAnimation";
 
 // === Services
 
@@ -40,9 +40,9 @@ export function DevPage2({ /* prop1, prop2 */ }) {
 </section>
 
 
-            <section class="sticky">
+            <section className="sticky">
             <div className="status-picker-example">
-    <Animations/>
+    <HappyLabelAnimation/>
                 {/* <div class="bubbles">
                     <div class="bubble"></div>
                     <div class="bubble"></div>
