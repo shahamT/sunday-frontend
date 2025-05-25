@@ -12,6 +12,7 @@ const SN_STORAGE_KEY = 'sideNavWidth';
 const MIN_SIDE_NAV_WIDTH = 200;
 const MAX_SIDE_NAV_WIDTH = 575;
 
+
 export function AppLayout() {
     const loggedinUser = useAuthGuard()
     // ========= side nav ==========

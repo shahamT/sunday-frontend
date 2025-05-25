@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+apikeys.note
+src/services/board/aiBoard.service.js
+src/services/board/aiBoard.service.js

@@ -55,12 +55,12 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
 
     async function onRemoveBoard(id) {
         try {
-            await removeBoard(id)
-            showSuccessMsg('We successfully deleted the board')
             if (boardId === id) {
                 navigate(`/app/home/`)
 
             }
+            await removeBoard(id)
+            showSuccessMsg('We successfully deleted the board')
 
         }
         catch (err) {

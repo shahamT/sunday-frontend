@@ -1,11 +1,8 @@
-import { useSortable } from '@dnd-kit/sortable'
-import { CSS } from '@dnd-kit/utilities'
-import { T_Cell } from './Demo-T_Cell'
 
 // ====== T_TaskRow Component ======
 // =================================
 
-export function T_TaskRow({ task, columns, group, }) {
+export function TaskRowPreview({ task, columns, group, }) {
 
     // ==== drag and drop ====
     const {
@@ -27,7 +24,7 @@ export function T_TaskRow({ task, columns, group, }) {
         return (
             <article
                 ref={setNodeRef}
-                className="T_TaskRow buffer"
+                className="TaskRowPreview buffer"
                 style={{
                     height: '0px',
                     padding: 0,
@@ -41,7 +38,7 @@ export function T_TaskRow({ task, columns, group, }) {
     }
 
     return (
-        <article className={`T_TaskRow ${isDragging ? 'dragging' : ''}`}>
+        <article className={`TaskRowPreview ${isDragging ? 'dragging' : ''}`}>
 
             {/* ==== Task-row rendering ==== */}
 
