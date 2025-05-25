@@ -289,8 +289,6 @@ function getEmptyColumn(type) {
         }
     }
 
-    console.log(emptyCol)
-
     return emptyCol
 }
 

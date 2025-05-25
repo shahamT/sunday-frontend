@@ -1,0 +1,229 @@
+.status-picker-example {
+    display: block;
+    position: relative;
+    height: 56px;
+    width: 300px;
+    background-color: #00c875;
+    overflow: hidden;
+}
+
+.bubbles-animation {
+
+    .bubbles {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+
+        .bubble {
+            position: absolute;
+            bottom: -30%;
+            border-radius: 50%;
+            animation: rise 1.5s ease-in forwards;
+        }
+
+        .capsule {
+            position: absolute;
+            bottom: -30%;
+            width: 8px;
+            height: 16px;
+            border-radius: 999px;
+            z-index: 1;
+            animation:
+                riseCapsule 2s ease-in forwards,
+                spinCapsule 2s linear forwards;
+
+
+        }
+
+    }
+
+}
+
+@keyframes rise {
+    0% {
+        bottom: -100%;
+        transform: translateX(0) scale(1) rotate(0deg);
+
+    }
+
+    30% {
+        transform: translateX(10px) scale(1.2) rotate(45deg);
+    }
+
+    60% {
+        transform: translateX(-20px) scale(0.9) rotate(-30deg);
+    }
+
+    100% {
+        bottom: 130%;
+        transform: translateX(10px) scale(1) rotate(360deg);
+    }
+}
+
+@keyframes riseCapsule {
+    0% {
+        bottom: -100%;
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        bottom: 130%;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes spinCapsule {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
+
+
+
+
+.confettie-animation {
+    .conffeties {
+        position: absolute;
+        width: 100%;
+        height: calc(100% + 10px);
+        z-index: 0;
+        overflow: hidden;
+        top: -10px;
+        left: 0;
+
+        .confetti {
+            position: absolute;
+            top: -10%;
+            left: 0;
+            border-radius: 50%;
+            z-index: 1;
+            animation: confetti 2s ease-in forwards;
+        }
+
+        .capsule {
+            position: absolute;
+            top: -10px;
+            width: 8px;
+            height: 16px;
+            border-radius: 999px;
+            z-index: 1;
+            animation:
+                confetti 2s ease-in forwards,
+                spinCapsule 2s ease-in forwards;
+        }
+
+    }
+
+}
+
+@keyframes confetti {
+    100% {
+        top: 100%;
+    }
+}
+
+.stars-animation {
+    .stars {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+        top: 0;
+        left: 0;
+
+        .star {
+            position: absolute;
+            top: 40%;
+            left: 0;
+            border-radius: 50%;
+            z-index: 1;
+            animation: spiralMove 3s linear forwards, spiralFade 3s ease-out forwards;
+            opacity: 0;
+
+        }
+
+        .capsule {
+            position: absolute;
+            top: 40%;
+            bottom: 0px;
+            width: 5px;
+            height: 10px;
+            border-radius: 999px;
+            background: linear-gradient(to right, #fff);
+            z-index: 1;
+            animation: spiralMove 3s linear forwards, spiralFade 3s ease-out forwards, spinCapsule 3s linear forwards;
+            opacity: 0;
+
+        }
+
+    }
+}
+
+
+
+@keyframes spiralMove {
+    0% {
+        transform: rotate(0deg) translateX(0);
+    }
+
+    100% {
+        transform: rotate(720deg) translateX(var(--distance));
+    }
+}
+
+@keyframes spiralFade {
+    0% {
+        opacity: 0;
+    }
+
+    25% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes riseCapsule {
+    0% {
+        bottom: -50px;
+        transform: translateX(0px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    100% {
+        bottom: 100%;
+        transform: translateX(-20px);
+    }
+}
+
+@keyframes spinCapsule {
+    0% {
+        rotate: 0deg;
+    }
+
+    100% {
+        rotate: 360deg;
+    }
+}
