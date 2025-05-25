@@ -50,7 +50,6 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
                     )
                     :
                     (
-
                         <EditStatusPicker
                             columnId={column.id}
                             StatusArray={StatusArray}
