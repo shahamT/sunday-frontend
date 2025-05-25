@@ -11,8 +11,7 @@ export function HappyLabelAnimation() {
     const [animationType, setAnimationType] = useState(null);
 
     useEffect(() => {
-        // const states = ['bubbles-animation', 'confettie-animation', 'stars-animation'];
-        const states = ['stars-animation'];
+        const states = ['bubbles-animation', 'confettie-animation', 'stars-animation'];
         const randomIndex = Math.floor(Math.random() * states.length);
         setAnimationType(states[randomIndex]);
     }, [])
