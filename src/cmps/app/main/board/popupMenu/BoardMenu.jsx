@@ -21,11 +21,10 @@ import { openGlobalModal, closeGlobalModal } from "../../../../../store/actions/
 // =======================
 
 export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseModal }) {
-const {boardId}=useParams()
+    const { boardId } = useParams()
     // === Consts
-    const [boardToEdit, setBoardToEdit] = useState(null)
+    const [boardToEdit, setBoardToEdit] = useState(board)
     const navigate = useNavigate()
-    // const debounceOnSetTxtToEdit = useRef(debounce(setTxtToEdit, 200))
 
     // === Effects
     useEffect(() => {
@@ -59,9 +58,9 @@ const {boardId}=useParams()
             await removeBoard(id)
             showSuccessMsg('We successfully deleted the board')
             if (boardId === id) {
-            navigate(`/app/home/`)
+                navigate(`/app/home/`)
 
-        }
+            }
 
         }
         catch (err) {
@@ -85,11 +84,11 @@ const {boardId}=useParams()
 
     const { isStarred, _id } = boardToEdit
     return (
-        <section className="board-popup-menu" 
-        onPointerDown={(ev) => {
-            ev.stopPropagation()
-            ev.preventDefault()
-          }}>
+        <section className="board-popup-menu"
+            onPointerDown={(ev) => {
+                ev.stopPropagation()
+                ev.preventDefault()
+            }}>
 
             <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
             <div className="divider" />
