@@ -180,8 +180,8 @@
 .bubble{
   position: absolute;
   bottom:-100px;
-  width:10px;
-  height:10px;
+  width:4px;
+  height:4px;
   background:#f30000;
   border-radius:50%;
   // opacity:0.5;
@@ -195,8 +195,8 @@
   // animation-duration:3s;
 }
 .bubble:nth-child(2){
-  width:10px;
-  height:10px;
+  width:5px;
+  height:5px;
   left:20%;
   background:#ffffff;
   animation-duration:4s;
@@ -243,8 +243,8 @@
   animation-delay:1s;
 }
 .bubble:nth-child(8){
-  width:10px;
-  height:10px;
+  width:5px;
+  height:5px;
   left:80%;
   animation-duration:6s;
   animation-delay:2s;
@@ -256,7 +256,7 @@
   animation-duration:5s;
   // animation-delay:1s;
 }
-.bubble:nth-child(10){
+.bubble:nth-child(10 ){
   width:9px;
   height:9px;
   left:25%;
