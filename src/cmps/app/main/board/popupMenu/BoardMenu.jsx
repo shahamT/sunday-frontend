@@ -31,7 +31,7 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
         setBoardToEdit(board)
 
         return () => {
-            setBoardToEdit(null);
+            setBoardToEdit(null)
         }
     }, [board])
 
@@ -89,8 +89,12 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
                 ev.stopPropagation()
                 ev.preventDefault()
             }}>
-
-            <a href={`${window.location.origin}/app/board/${board._id}`} className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer">Open in new tab</a>
+            <a href={`${window.location.origin}/app/board/${board._id}`}
+             className="clickable clear size-32 icon-start full-width left-aligned i-ExternalPage" target="_blank" rel="noopener noreferrer"
+             onClick={(e) => {
+                e.stopPropagation()
+              }}
+             >Open in new tab</a>
             <div className="divider" />
             <div className="clickable clear size-32 i-Edit icon-start full-width left-aligned" onClick={(e) => {
                 e.stopPropagation()
@@ -107,19 +111,22 @@ export function BoardMenu({ board, setEditingBoardId, setEditedTitle, onCloseMod
 
             <div
                 className="clickable clear size-32 icon-start full-width i-Delete full-width left-aligned"
-                onClick={() =>
-                    openGlobalModal(
-                        <DeleteBoardModal
-                            id={_id}
-                            onRemoveBoard={onRemoveBoard}
-                            closeGlobalModal={closeGlobalModal}
-                        />
-                    )
+                onClick={(e) =>
+                    {
+                        e.stopPropagation()
+                        openGlobalModal(
+                <DeleteBoardModal
+                    id={_id}
+                    onRemoveBoard={onRemoveBoard}
+                    closeGlobalModal={closeGlobalModal}
+                />
+                )
+                    }
                 }
             >
-                Delete
-            </div>
-        </section>
+            Delete
+        </div>
+        </section >
 
     )
 }
