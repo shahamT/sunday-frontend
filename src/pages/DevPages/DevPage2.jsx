@@ -31,12 +31,27 @@ export function DevPage2({ /* prop1, prop2 */ }) {
 
 
     return (
-        
+
         <section className='dev-page-center'>
             <div className="container">
             </div>
-          <div className="status-picker-example">Done</div>
-        
+
+            <section class="sticky">
+            <div className="status-picker-example">
+                <div class="bubbles">
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+
+                </div></div>
+            </section>
         </section>
     )
 }
