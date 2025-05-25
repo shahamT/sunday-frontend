@@ -49,6 +49,16 @@ export function DevPage2({ /* prop1, prop2 */ }) {
                     <div class="bubble"></div>
                     <div class="bubble"></div>
                     <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
+                    <div class="bubble"></div>
 
                 </div></div>
             </section>
