@@ -8,7 +8,7 @@ import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 import { getBoardAI } from '../../../../../services/base/getBoardAI'
 import { useControlledInput } from "../../../../../hooks/useControlledInput"
 import { useSelector } from "react-redux"
-import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
+// import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
 // === Services
 
 
@@ -57,29 +57,29 @@ export function AddBoardModal({ setAddBoardModalState }) {
 
   }
 
-  async function onSubmit(ev) {
-    ev.preventDefault()
-    setIsLoading(true)
+  // async function onSubmit(ev) {
+  //   ev.preventDefault()
+  //   setIsLoading(true)
 
-    try {
-      const boardToCreate = isAi
-        ? await generateAIBoard(userPrompt, boardName, user)
-        : getRegularBoard(user, boardName)
+  //   try {
+  //     const boardToCreate = isAi
+  //       ? await generateAIBoard(userPrompt, boardName, user)
+  //       : getRegularBoard(user, boardName)
 
-      const savedBoard = await addBoard(boardToCreate)
+  //     const savedBoard = await addBoard(boardToCreate)
 
-      closeGlobalModal()
-      navigate(`/app/board/${savedBoard._id}`)
-    }
-    catch (err) {
-      console.error(err)
-      showErrorMsg('Somthing went wrong')
-    }
-    finally {
-      setIsLoading(false)
-    }
+  //     closeGlobalModal()
+  //     navigate(`/app/board/${savedBoard._id}`)
+  //   }
+  //   catch (err) {
+  //     console.error(err)
+  //     showErrorMsg('Somthing went wrong')
+  //   }
+  //   finally {
+  //     setIsLoading(false)
+  //   }
 
-  }
+  // }
 
 
   return (

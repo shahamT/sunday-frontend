@@ -6,6 +6,7 @@ import boardSchema from "./boardSchema.json";
 
 export async function generateAIBoard(userPrompt, boardName, user) {
     const openai = new OpenAI({
+        apiKey: "",
         dangerouslyAllowBrowser: true,
     });
 
