@@ -11,7 +11,13 @@
         .file-empty-state {
             opacity: 1;
         }
+    }
 
+    &.uploading {
+
+        .file-empty-state {
+            opacity: 1;
+        }
     }
 
     .clickable-area {

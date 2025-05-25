@@ -95,7 +95,7 @@ export function DatePickerColumn({ onCloseModal, setDate, defaultDate }) {
                         <select className="year-btn clickable clear size-40"
                          onMouseDown={(e) => e.preventDefault()} 
                             value={getYear(date)}
-                            onChange={({ target: { value } }) => changeYear(value)}
+                            onChange={({ target: { value } }) => changeYear(+value)}
                         >
                             {years.map((option) => (
                                 <option key={option} value={option}>
