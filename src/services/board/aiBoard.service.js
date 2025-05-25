@@ -3,7 +3,6 @@ import Ajv from "ajv";
 import addFormats from "ajv-formats";
 import boardSchema from "./boardSchema.json";
 
-
 export async function generateAIBoard(userPrompt, boardName, user) {
     const openai = new OpenAI({
         apiKey: "",
