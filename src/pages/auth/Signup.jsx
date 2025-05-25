@@ -100,9 +100,9 @@ export function Signup() {
 
     }
 
-        // ======== google auth =======
+    // ======== google auth =======
 
-        
+
     async function loginToDemoAccount() {
         const userCred = {
             email: "shahamt@gmail.com",
@@ -111,12 +111,12 @@ export function Signup() {
         try {
             const user = await loginUser(userCred)
             navigate('/app/home')
-                    console.log('got here')
+            console.log('got here')
 
         }
         catch (err) {
             // showErrorMsg(err)
-console.log("err: ", err)
+            console.log("err: ", err)
         }
     }
 
@@ -136,7 +136,6 @@ console.log("err: ", err)
                 }
 
                 try {
-                    console.log('Received ID token:', idToken)
                     await googleAuth({ idToken }) // Send token to backend
                     navigate('/app/home')
                 } catch (err) {
@@ -166,8 +165,8 @@ console.log("err: ", err)
                     <h2 className='subtitle'>Get started - it's free. No credit card needed.</h2>
 
                     <div id="googleSignInDiv"></div>
-                    
-                    
+
+
                     {/* <div
                         className='google-auth-btn clickable clear full-width size-40'
                         onClick={() => signupWithGoogle()}
