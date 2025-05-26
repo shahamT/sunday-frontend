@@ -12,29 +12,34 @@
     .bubbles {
         position: absolute;
         width: 100%;
-        height: 100%;
+        height: 120%;
         z-index: 0;
         overflow: hidden;
-        top: 0;
+        bottom: -20%;
         left: 0;
 
         .bubble {
             position: absolute;
-            bottom: -30%;
             border-radius: 50%;
             animation: rise 1.5s ease-in forwards;
+            opacity: 0;
+            bottom: -3%;
+
         }
 
         .capsule {
             position: absolute;
-            bottom: -30%;
             width: 8px;
             height: 16px;
+            bottom: -3%;
+
             border-radius: 999px;
             z-index: 1;
             animation:
-                riseCapsule 2s ease-in forwards,
-                spinCapsule 2s linear forwards;
+                riseCapsule 2s ease-in 0s forwards,
+                spinCapsule 2s linear 0s forwards;
+            // opacity: 0;
+
 
 
         }
@@ -45,38 +50,59 @@
 
 @keyframes rise {
     0% {
-        bottom: -100%;
+        opacity: 0;
+
+        // bottom: 0;
         transform: translateX(0) scale(1) rotate(0deg);
 
     }
 
+    10% {
+        opacity: 1;
+        bottom: 15%;
+    }
+
     30% {
         transform: translateX(10px) scale(1.2) rotate(45deg);
+        opacity: 1;
     }
 
     60% {
         transform: translateX(-20px) scale(0.9) rotate(-30deg);
+        opacity: 1;
     }
 
     100% {
         bottom: 130%;
         transform: translateX(10px) scale(1) rotate(360deg);
+        opacity: 1;
     }
 }
 
 @keyframes riseCapsule {
     0% {
-        bottom: -100%;
+        opacity: 1;
+
+        // bottom: 0;
         transform: translateX(0px);
+    }
+
+    10% {
+        opacity: 1;
+        bottom: 15%;
+
     }
 
     50% {
         transform: translateX(10px);
+        opacity: 1;
     }
 
     100% {
         bottom: 130%;
         transform: translateX(-20px);
+        opacity: 1;
+
     }
 }
 
@@ -87,6 +113,7 @@
 
     100% {
         rotate: 360deg;
+
     }
 }
 
@@ -149,8 +176,7 @@
             top: 40%;
             left: 0;
             border-radius: 50%;
-            z-index: 1;
-            animation: spiralMove 3s linear forwards, spiralFade 3s ease-out forwards;
+            animation: spiral 3s linear forwards;
             opacity: 0;
 
         }
@@ -163,8 +189,7 @@
             height: 10px;
             border-radius: 999px;
             background: linear-gradient(to right, #fff);
-            z-index: 1;
-            animation: spiralMove 3s linear forwards, spiralFade 3s ease-out forwards, spinCapsule 3s linear forwards;
+            animation: spiral 4s linear forwards;
             opacity: 0;
 
         }
@@ -173,10 +198,36 @@
 }
 
 
+@keyframes spiral {
+    0% {
+        transform: rotate(0deg);
+        opacity: 0;
+    }
+
+    12% {
+opacity: 0;
+    }
+
+    50% {
+        bottom: 25%;
+        transform: rotate(360deg) translateX(calc(var(--distance) * 0.5));
+          opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        bottom: 100%;
+        transform: rotate(720deg) translateX(var(--distance));
+        opacity: 0;
+    }
+}
 
 @keyframes spiralMove {
     0% {
-        transform: rotate(0deg) translateX(0);
+        transform: rotate(0deg);
     }
 
     100% {

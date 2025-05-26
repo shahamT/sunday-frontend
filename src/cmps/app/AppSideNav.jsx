@@ -52,7 +52,7 @@ export function AppSideNav({ }) {
         loadBoards()
 
         const onBoardsUpdate = (boards) => {
-            dispatch(getCmdUpdateMiniBoardsFromSocket(boards))
+            // dispatch(getCmdUpdateMiniBoardsFromSocket(boards))
         }
 
         socketService.on(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
@@ -189,16 +189,6 @@ export function AppSideNav({ }) {
                         </div>)
                     }
 
-                    {/* {boards.length === 0 &&
-                        (<div className="global-loader-container" >
-                            <Loader
-                                size={4}
-                                width={6}
-                                color="#0073ea"
-                                textSize={1.2}
-                            />
-                        </div>)
-                    } */}
 
                     {boards.length !== 0 && filteredBoards.length === 0 ?
                         <div className="board-list-empty-state-wraper">
