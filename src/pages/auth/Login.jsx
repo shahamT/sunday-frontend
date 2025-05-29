@@ -126,8 +126,8 @@ export function Login() {
 
     async function loginToDemoAccount() {
         const userCred = {
-            email: "shahamt@gmail.com",
-            password: "12345678"
+            email: "yair.cohen@gmail.com",
+            password: "yair1234"
         }
         try {
             const user = await loginUser(userCred)

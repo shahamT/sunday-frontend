@@ -1,5 +1,5 @@
 
-// ====== T_Cell Component ======
+// ====== CellPreview Component ======
 // ==============================
 
 export function CellPreview({ column, columnValue, task, groupId }) {
