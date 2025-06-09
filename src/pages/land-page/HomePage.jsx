@@ -7,7 +7,7 @@
 // === Actions
 
 // === React
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useSelected } from "../../hooks/useSelected"
 import { useNavigate } from "react-router-dom"
 
@@ -22,6 +22,42 @@ import { useNavigate } from "react-router-dom"
 export function HomePage() {
     const { selected, isSelected, select, } = useSelected(null)
     const navigate = useNavigate()
+    const mobileView = window.matchMedia("(max-width: 600px)");
+    const intervalRef = useRef(null)
+    const idxRef = useRef(0)
+    const assets = [
+        'projects',
+        'task',
+        'marketing',
+        'design',
+        'crm',
+        'software',
+        'it',
+        'operations',
+        'product'
+    ]
+
+
+    //mobile view hero imgs transition
+    useEffect(() => {
+        if (!mobileView.matches) {
+            clearInterval(intervalRef.current)
+            intervalRef.current = null
+            return
+        }
+
+        intervalRef.current = setInterval(() => {
+            select(assets[idxRef.current])
+            idxRef.current = (idxRef.current + 1) % assets.length
+        }, 2500)
+
+        return () => {
+            clearInterval(intervalRef.current)
+            intervalRef.current = null
+        }
+    }, [mobileView])
+
+
     return (
         <section className="HomePage">
 
@@ -122,7 +158,7 @@ export function HomePage() {
 
 
             <section className="products-section">
-                <p className="section-title">Products built for <br />every business need</p>
+                <p className="section-title">Products built for {!mobileView.matches && <br/> }every business need</p>
 
                 <div className="subtitle-wraper">
                     <p>Extend the power of the platform with tailored, AI-infused products that fit your exact needs.</p>

@@ -1,12 +1,21 @@
 /* Mobile */
 
-
 @mixin for-mobile {
     @media (max-width: 600px) {
         @content;
     }
 }
 
+@mixin for-tablet {
+    @media (max-width: 1150px) {
+        @content;
+    }
+}
+
  @include for-mobile {
     
+        }
+        
+ @include for-tablet {
+
         }

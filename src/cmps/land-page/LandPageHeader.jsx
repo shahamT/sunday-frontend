@@ -2,12 +2,15 @@ import { useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { MondayMainLogo } from './MondayMainLogo'
 import { useEffect, useRef } from 'react'
+import { HamburgerIcon } from '../reusables/HamburgerIcon/HamburgerIcon'
+import { useToggle } from '../../hooks/useToggle'
 
 export function LandPageHeader(props) {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
     const navigate = useNavigate()
     const headerRef = useRef();
     const sentinelRef = useRef();
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useToggle(false)
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -32,20 +35,31 @@ export function LandPageHeader(props) {
             <header ref={headerRef} className="LandPageHeader">
                 <div className="header-content">
                     <MondayMainLogo />
-                    <nav className="land-page-nav">
-                        {/* <a href="https://vibe.monday.com/?path=/docs/components-icon--docs#icons-list">icons</a> */}
-                        {/* <NavLink to="/reusables" >Reusables</NavLink>
+
+                        <nav className={`land-page-nav ${isMobileMenuOpen ? 'opened' : ''}`}>
+                            {/* <a href="https://vibe.monday.com/?path=/docs/components-icon--docs#icons-list">icons</a> */}
+                            {/* <NavLink to="/reusables" >Reusables</NavLink>
                         <NavLink to="/dev-page-1" >dev1</NavLink>
                         <NavLink to="/dev-page-2" >dev2</NavLink>
                         <NavLink to="/dev-page-3" >dev3</NavLink> */}
-                        <NavLink to="/#" >About us</NavLink>
-                        <NavLink to="/app/home" >Log in</NavLink>
-                        <div
-                            className="get-started-btn clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"
-                            onClick={() => navigate('/signup')}
-                        >Get Started</div>
+                            <NavLink to="/#" >About us</NavLink>
+                            <NavLink to="/app/home" >Log in</NavLink>
+                            <div
+                                className="get-started-btn clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"
+                                onClick={() => navigate('/signup')}
+                            >Get Started</div>
 
-                    </nav>
+                        </nav>
+                    <a className='mobile-menu-btn'
+                        onClick={setIsMobileMenuOpen}
+                    >
+                        < HamburgerIcon
+                            isOpen={isMobileMenuOpen}
+                            onClick={setIsMobileMenuOpen}
+                            color="#323338"
+                            size={0.6}
+                        />
+                    </a>
                 </div>
             </header>
         </>

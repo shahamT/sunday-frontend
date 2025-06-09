@@ -4,6 +4,10 @@
     grid-template-columns: 6fr 4fr;
     grid-template-rows: 1fr 85px;
 
+    @include for-mobile {
+        grid-template-columns: 1fr;
+    }
+
     a {
         color: var(--link-color);
         font-weight: 500;
@@ -22,6 +26,11 @@
         grid-template-columns: minmax(24px, 1fr) max-content minmax(24px, 1fr);
         align-content: center;
 
+        @include for-mobile {
+            padding-block-start: 80px;
+            padding-block-end: 32px;
+            grid-template-columns: minmax(32px, 1fr) auto minmax(32px, 1fr);
+        }
 
         .content-wraper {
 
@@ -42,12 +51,20 @@
                 &.login-title {
                     font-weight: 400;
                     margin-block-end: 48px;
+
+                    @include for-mobile {
+                        margin-block-end: 24px;
+                    }
                 }
             }
 
             .subtitle {
                 font-weight: 400;
                 margin-block-end: 48px;
+
+                @include for-mobile {
+                    margin-block-end: 24px;
+                }
             }
 
 
@@ -86,15 +103,27 @@
                 gap: 16px;
                 margin-block-end: 16px;
 
+                @include for-mobile {
+                    grid-template-columns: 1fr;
+                }
+
                 &.signup-form {
                     > :nth-child(n + 3) {
                         grid-column: 1/3;
+
+                        @include for-mobile {
+                            grid-column: 1;
+                        }
                     }
                 }
 
                 &.login-form {
                     >* {
                         grid-column: 1/3;
+
+                        @include for-mobile {
+                            grid-column: 1;
+                        }
                     }
 
                 }
@@ -175,6 +204,11 @@
             background-color: var(--layout-border-color);
             --animate-delay: 1s;
 
+            @include for-mobile {
+                height: 56px;
+
+            }
+
             p {
                 color: var(--primary-text-color);
             }
@@ -202,6 +236,10 @@
         .side-img {
             min-height: 100%;
             object-fit: cover;
+        }
+
+        @include for-mobile {
+            display: none;
         }
     }
 

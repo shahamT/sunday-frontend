@@ -10,7 +10,7 @@
 // === Child cmps
 import { BoardNavBarLink } from "./BoardNavBarLink"
 
-export function FavoritesBoards({ boards, setEditedTitle, editingBoardId, handleRename, editedTitle, setEditingBoardId }) {
+export function FavoritesBoards({ boards, setEditedTitle, editingBoardId, handleRename, editedTitle, setEditingBoardId, handleMobileClick }) {
   const starredBoards = boards.filter(board => board.isStarred)
 
 
@@ -24,7 +24,10 @@ export function FavoritesBoards({ boards, setEditedTitle, editingBoardId, handle
           editingBoardId={editingBoardId}
           setEditedTitle={setEditedTitle}
           setEditingBoardId={setEditingBoardId}
-          handleRename={handleRename} />
+          handleRename={handleRename}
+          handleMobileClick={handleMobileClick}
+          />
+          
       )
       )}
     </section>
