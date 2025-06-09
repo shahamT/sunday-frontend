@@ -30,13 +30,14 @@
             display: flex;
             align-items: center;
 
-            a {
+            a, button {
                 padding: 8px 10px;
                 border-radius: var(--border-radius-md);
                 font-family: var(--title-font-family);
                 font-size: 14px;
                 font-weight: 300;
                 color: #535768;
+                cursor: pointer;
 
                 &:hover {
                     background-color: #F0F3FF;

@@ -2,6 +2,8 @@ import { useSelector } from 'react-redux'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { MondayMainLogo } from './MondayMainLogo'
 import { useEffect, useRef } from 'react'
+import { AboutUs } from '../../pages/land-page/AboutUs'
+import { openGlobalModal } from '../../store/actions/app.actions'
 
 export function LandPageHeader(props) {
     const user = useSelector(storeState => storeState.userModule.loggedInUser)
@@ -38,7 +40,7 @@ export function LandPageHeader(props) {
                         <NavLink to="/dev-page-1" >dev1</NavLink>
                         <NavLink to="/dev-page-2" >dev2</NavLink>
                         <NavLink to="/dev-page-3" >dev3</NavLink> */}
-                        <NavLink to="/#" >About us</NavLink>
+                        <button to="/#" onClick={() => openGlobalModal(<AboutUs />)} >About us</button>
                         <NavLink to="/app/home" >Log in</NavLink>
                         <div
                             className="get-started-btn clickable land-page primary full size-40 icon-end i-MoveArrowRightNarrow"

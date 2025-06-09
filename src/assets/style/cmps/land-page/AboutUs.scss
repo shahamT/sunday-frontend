@@ -1,0 +1,41 @@
+.AboutUs {
+        min-height: 120px;
+        padding-inline: 80px;
+
+        .logo {
+            height: 30px;
+            margin-block-end: 24px;
+        }
+
+        p {
+            font-family: var(--title-font-family);
+            font-size: 13px;
+
+            a {
+                font-weight: 500;
+                color: var(--link-color);
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+
+            }
+        }
+
+        .credits {
+            font-weight: 500;
+            font-size: 14px;
+
+            a {
+                color: var(--primary-text-color);
+                text-decoration: underline;
+
+                &:hover {
+                    color: black;
+                }
+            }
+
+        }
+
+    }
