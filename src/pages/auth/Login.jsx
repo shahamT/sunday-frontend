@@ -102,7 +102,6 @@ export function Login() {
                 }
 
                 try {
-                    console.log('Received ID token:', idToken)
                     await googleAuth({ idToken }) // Send token to backend
                     navigate('/app/home')
                 } catch (err) {

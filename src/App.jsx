@@ -4,7 +4,7 @@ import 'animate.css';
 
 //pages
 import { HomePage } from './pages/land-page/HomePage.jsx'
-import { AboutUs } from './pages/land-page/AboutUs.jsx'
+// import { AboutUs } from './pages/land-page/AboutUs.jsx'
 import { Signup } from './pages/auth/Signup'
 import { Login } from './pages/auth/Login';
 
@@ -62,7 +62,7 @@ export default function App() {
                             <Route element={<LandPageLayout />}>
                                 <Route path="/" element={<Navigate to="/home" />} />
                                 <Route path="/home" element={<HomePage />} />
-                                <Route path="/about" element={<AboutUs />} />
+                                {/* <Route path="/about" element={<AboutUs />} /> */}
                             </Route>
 
 
@@ -74,7 +74,7 @@ export default function App() {
 
 
                             {/* app routes */}
-
+        
                             <Route element={<AppLayout />}>
                                 <Route path="/app" element={<Navigate to="/app/home" />} />
                                 <Route path="/app/home" element={<AppHome />} />

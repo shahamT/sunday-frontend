@@ -93,6 +93,7 @@ export function Signup() {
 
         try {
             const user = await signupUser(userToEdit)
+            console.log(user)
             navigate('/app/home')
         } catch (err) {
             // showErrorMsg(err)

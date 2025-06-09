@@ -3,7 +3,6 @@
 import { useSelector } from "react-redux"
 import { BoardList } from "../board/appHeader/BoardList"
 import { RightNav } from "../board/appHeader/RightNav"
-import { useEffect } from "react"
 
 // ====== Component ======
 // =======================

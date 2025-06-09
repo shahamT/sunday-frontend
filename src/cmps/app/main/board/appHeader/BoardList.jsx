@@ -5,12 +5,10 @@ import { AddBoardModal } from "../side-nave/AddBoardModal"
 import { useNavigate } from "react-router-dom"
 import { IsStarred } from "../value-setter/IsStarred"
 import { useEffect, useState } from "react"
-import { updateUser } from "../../../../../store/actions/user.actions"
 import { openGlobalModal } from "../../../../../store/actions/app.actions"
 import { Loader } from "../../../../reusables/Loader/Loader"
 
 // === Services
-import { loadBoards } from "../../../../../store/actions/board.actions"
 
 // === Actions
 
@@ -42,7 +40,6 @@ export function BoardList({ /* prop1, prop2 */ }) {
     // === Functions
     function onChoooseBoard(boardId) {
         navigate(`/app/board/${boardId}`)
-        // updateUser(boardId)
     }
 
     // if (boards.length === 0) return (
