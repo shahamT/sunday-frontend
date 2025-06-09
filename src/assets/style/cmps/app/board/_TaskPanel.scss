@@ -83,6 +83,11 @@
         opacity: 0;
         transition: var(--transition-lg);
 
+        @include for-mobile {
+            display: none;
+        }
+
+
         &[data-resize-handle-state='hover'],
         &[data-resize-handle-state='drag'] {
             background-color: #F5F6F8;

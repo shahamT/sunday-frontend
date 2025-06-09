@@ -64,7 +64,7 @@ export function ColumnsDndContext({ setOverId, children, columns, group, board }
     >
       {children}
 
-      <DragOverlay dropAnimation={null}>
+      <DragOverlay dropAnimation={null} >
         {activeColumn && (
           <div className="drag-column-overlay"
           >

@@ -19,6 +19,12 @@
         border-radius: 40px;
         text-align: center;
 
+        @include for-mobile {
+            padding-block-end: var(--space-32);
+            gap: 32px;
+
+        }
+
         .main-section-wraper {
             display: flex;
             flex-direction: column;
@@ -61,6 +67,10 @@
 
                 margin-block-end: 16px;
 
+                @include for-mobile {
+                    font-size: 3.5rem;
+                    line-height: 4rem;
+                }
             }
 
             .leading-text {
@@ -68,6 +78,11 @@
                 line-height: 2rem;
                 font-weight: 300;
                 margin-block-end: 34px;
+
+                @include for-mobile {
+                    font-size: 1rem;
+                    line-height: 1.75rem;
+                }
             }
 
             .reassurance-text {
@@ -77,6 +92,9 @@
                 font-size: 0.8125rem;
                 color: #676879;
 
+                @include for-mobile {
+                    margin-block-start: 32px;
+                }
             }
         }
 
@@ -108,6 +126,15 @@
                 border-radius: 12px;
                 background: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 40%, rgba(240, 243, 255, 0.3) 80%);
                 box-shadow: 3.977px 3.977px 34.8px 0 rgba(0, 0, 0, 0.15);
+
+
+                @include for-tablet {
+                    right: 20px;
+                }
+
+                @include for-mobile {
+                    display: none;
+                }
 
                 .title {
                     font-size: 15px;
@@ -196,6 +223,12 @@
                 width: 100%;
                 max-width: 1040px;
 
+                @include for-mobile {
+                    padding-inline-end: var(--space-24);
+                    padding-inline-start: var(--space-16);
+
+                }
+
                 &.regular {
                     position: absolute;
                     z-index: 2;
@@ -232,10 +265,19 @@
             grid-column: 2;
         }
 
+        @include for-mobile {
+            margin-block: 64px;
+            gap: 40px;
+        }
+
         .title-wraper {
             display: flex;
             align-items: center;
             gap: 5px;
+
+            @include for-mobile {
+                flex-direction: column;
+            }
 
             p {
                 font-size: 16px;
@@ -253,6 +295,12 @@
             font-weight: 200;
             font-family: var(--title-font-family);
             line-height: 82px;
+
+            @include for-mobile {
+                font-size: 48px;
+                line-height: 70px;
+
+            }
         }
     }
 
@@ -277,6 +325,16 @@
             font-family: var(--title-font-family);
             line-height: 82px;
 
+            @include for-tablet {
+                padding-inline: 24px;
+            }
+
+            @include for-mobile {
+                font-size: 48px;
+                line-height: 70px;
+            }
+
+
         }
 
         .subtitle-wraper {
@@ -285,14 +343,31 @@
             gap: 60px;
             padding-inline: 96px;
 
+            @include for-tablet {
+                flex-direction: column;
+            }
+
+            @include for-mobile {
+                padding-inline: 24px;
+
+            }
 
             p {
                 max-width: 400px;
                 text-align: start;
+
+                @include for-tablet {
+                    text-align: center;
+                }
             }
 
             .products-logos {
                 height: 46px;
+                flex: 0;
+
+                @include for-mobile {
+                    display: none;
+                }
             }
         }
 
@@ -307,12 +382,25 @@
                 grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
                 gap: 12px;
                 padding-inline: 24px;
+                justify-items: center;
 
                 width: 100%;
+
+
+                @include for-tablet {
+                    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+                }
+
+                @include for-mobile {
+                    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+                    gap: 24px;
+
+                }
 
                 .card {
                     position: relative;
                     width: 100%;
+                    max-width: 670px;
                     aspect-ratio: 1/1;
                     background-size: cover;
                     background-position: center;
@@ -355,11 +443,17 @@
 
                         width: 100%;
                         padding-inline: 40px;
+                        padding-block-end: 40px;
 
                         display: flex;
                         flex-direction: column;
                         justify-content: center;
                         align-items: center;
+
+                        background: linear-gradient(to bottom,
+                                #313339 0%,
+                                #313339 80%,
+                                rgba(49, 51, 57, 0) 100%);
 
                         .card-title {
                             font-size: 36px;
@@ -424,6 +518,13 @@
         margin-block-start: 64px;
         padding-block-start: 48px;
         padding-inline: 80px;
+
+        @include for-mobile {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
         .footer-logo {
             height: 30px;

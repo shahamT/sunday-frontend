@@ -1,8 +1,8 @@
 
-// ====== T_TaskRow Component ======
+// ====== TaskRowPreview Component ======
 // =================================
 
-export function TaskRowPreview({ task, columns, group, }) {
+export function TaskRowPreview({ task, columns, group }) {
 
     // ==== drag and drop ====
     const {
@@ -45,7 +45,7 @@ export function TaskRowPreview({ task, columns, group, }) {
             {columns.map((column, idx) => {
                 const columnValue = task.columnValues.find(cv => cv.colId === column.id)
                 return (
-                    <T_Cell
+                    <CellPreview
                         key={column.id + idx}
                         column={column}
                         columnValue={columnValue}

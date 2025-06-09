@@ -26,12 +26,14 @@ import { TaskDetails } from "./task-details/TaskDetails";
 import { T_GroupsList } from "./table-view/T_GroupsList";
 import { K_StatusList } from "./kanban-view/K-StatusList";
 import { K_Filter } from "./kanban-view/K_Filter";
+import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { useBreakpoint } from "../../../../hooks/useBreakpoint";
 
 // ====== Component ======
 // =======================
 const SN_STORAGE_KEY = 'sideNavWidth';
 
-export function BoardDetails({ /* prop1, prop2 */ }) {
+export function BoardDetails({ }) {
     // === Consts
     const { boardId } = useParams()
     const dispatch = useDispatch()
@@ -42,6 +44,10 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
     const location = useLocation();
     const isKanbanRoute = location.pathname.endsWith('/kanban');
 
+    const { sWidth } = useScreenSize()
+    const breakpoint = useBreakpoint()
+
+
     // === Effects
 
     //fetch board data
@@ -50,7 +56,6 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
         updateUser(boardId)
 
         const onBoardUpdate = (board) => {
-            // console.log('GOT from socket', board._id)
             dispatch(getCmdUpdateBoardFromSocket(board))
         }
 
@@ -65,26 +70,26 @@ export function BoardDetails({ /* prop1, prop2 */ }) {
 
     // === Functions
     function setForSum(cv, col, totalTasks) {
-        setSumValues({cv, col, totalTasks})
+        setSumValues({ cv, col, totalTasks })
     }
 
     return (
         <section className="BoardDetails">
             <BoardHeader />
 
-            {!isKanbanRoute && 
-                <T_Filter/>}
+            {!isKanbanRoute &&
+                <T_Filter />}
             {sumValues && isKanbanRoute &&
                 <K_Filter columnValues={sumValues.cv} column={sumValues.col} totalTasks={sumValues.totalTasks} />}
-            
-            {!isKanbanRoute &&  <T_GroupsList />}
-            {isKanbanRoute &&  <K_StatusList setForSum={setForSum}/>}
+
+            {!isKanbanRoute && <T_GroupsList />}
+            {isKanbanRoute && <K_StatusList setForSum={setForSum} />}
 
             <TaskPanel
                 side='right'
-                defaultWidth={500}
-                minWidth={570}
-                maxWidth={vpWidth - sideNavWidth}
+                defaultWidth={breakpoint === 'mobile' ? 1000 : 500}
+                minWidth={breakpoint === 'mobile' ? 1000 : 570}
+                maxWidth={breakpoint === 'mobile' ? 1000 : vpWidth - sideNavWidth}
             >
                 <TaskDetails />
             </TaskPanel>

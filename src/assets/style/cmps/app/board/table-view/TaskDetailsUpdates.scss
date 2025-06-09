@@ -1,7 +1,5 @@
 .TaskDetailsUpdates {
-    // height: 100vh;
-    // overflow: auto; 
-    height: 100%;
+    height: calc(100% - 32px);
 
     .no-updates {
         display: grid;

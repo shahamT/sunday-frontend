@@ -2,58 +2,64 @@
     position: relative;
     padding-inline: 5px;
     cursor: grab;
+    &.is-dragging{
+        background-color: #f5f5f5;
+    }
 
     &.item-column {
         padding-inline-start: 0px;
     }
-
+    
     &:hover:not(:focus-within),
     &.menu-in-focus {
         .menu-btn-wraper {
             display: block;
         }
+        
     }
-
+    
     .menu-btn-wraper {
         order: 2;
         position: absolute;
         z-index: 10;
         right: 8px;
         display: none;
-
+        
         .menu-btn::before {
             font-size: 17px;
         }
     }
-
+    
     .title-wraper {
         order: 1;
         flex: 1 1 auto;
         display: flex;
         justify-content: center;
-        
+
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+
     }
     
-    
+   
+
     .column-resize-handle {
         position: absolute;
         top: 0;
         right: -3px;
         z-index: 2;
-        
+
         width: 6px;
         height: 100%;
 
         cursor: ew-resize;
         border-radius: var(--border-radius-round);
         background-color: var(--layout-border-color);
-        
+
         opacity: 0;
         transition: opacity 0.15s ease-in;
-        
+
         &:hover {
             background-color: var(--primary-color, #0073ea);
             transition: opacity 0.3s ease-in;
@@ -66,15 +72,15 @@
             opacity: 1;
 
             transition: none;
-    
+
 
         }
     }
-    
+
     .centered {
         text-align: center;
     }
-    
+
     .column-drag-overlay {
         position: fixed;
         inset: 0;
@@ -83,5 +89,5 @@
         cursor: ew-resize;
         user-select: none;
     }
-    
+
 }
