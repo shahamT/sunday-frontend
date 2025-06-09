@@ -3,37 +3,33 @@
   outline-offset: -1.3px;
   background-color: #f5f5f5;
   transition: 0.2s ease;
+  
+  
 }
 .column-header-cell {
-    border:#f5f5f5; 
-    padding: 150px; // פה זה הטווח שהוא קולט את האחד מתחתיו, ככל שיותר גדול ככה הוא יעביר את הקוקו יותר ברגישות
-    transition: background-color 0.1s ease;
+  border:#f5f5f5; 
+  padding: 150px; // פה זה הטווח שהוא קולט את האחד מתחתיו, ככל שיותר גדול ככה הוא יעביר את הקוקו יותר ברגישות
+  transition: background-color 0.1s ease;
+ 
   }
-
+  
   
   .T_ColumnHeaderCell.drag-overlay {
-    z-index: 1000;
-    background-color: white;
+    z-index: 1000 !important;
     border: 1px solid var(--layout-border-color);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    opacity: 0.95;
+    // opacity: 0.95;
     pointer-events: none;
-    cursor: grabbing;
-    transform: rotate(2deg) scale(1.03);
-
-
+    transform: rotate(2deg) scale(1.06);
+    
+    background-color:  #ffff;
+    
   }
-
+  
   .drag-column-overlay {
-    .T_GroupHeadRow > :nth-child(2),
-    .T_GroupHeadRow > :nth-child(n + 2),
-    .T_TaskRow > :nth-child(2),
-    .T_TaskRow > :nth-child(n + 2),
-    .T_ColumnSumRow > :nth-child(n + 2),
-    .T_ColumnSumRow > :nth-child(n + 3) {
-      border: none !important;
-    }
+    cursor: grabbing;
+
   }
 
 

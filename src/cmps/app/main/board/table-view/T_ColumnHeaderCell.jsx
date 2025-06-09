@@ -22,24 +22,33 @@ import { ColumnMenu } from "../popupMenu/ColumnMenu";
 // ====== Component ======
 // =======================
 
-export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
+export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId, liveColumnWidthsRef, bumpResizeVersion }) {
     // D & D
     const variant = column.type.variant
-    const sortable = variant !== 'item' ? useSortable({ id: column.id }) : null
-    const [canDrag, setCanDrag] = useState(false)
+
     const [isInputFocused, setIsInputFocused] = useState(false)
-    const dragTimeoutRef = useRef(null)
-    const pressStartTimeRef = useRef(null)
 
-
-    const style = sortable
-        ? { transform: CSS.Transform.toString(sortable.transform), transition: sortable.transition }
+    const sortable = variant !== 'item'
+        ? useSortable({
+            id: column.id,
+            activationConstraint: {
+                delay: 1000,
+                tolerance: 5,
+            },
+        })
+        : null
+        
+       
+        const style = sortable
+        ? { transform: CSS.Transform.toString(sortable.transform),
+             transition: sortable.transition || 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1)'
+         }
         : {}
 
     const setNodeRef = sortable?.setNodeRef || undefined
     const listeners = sortable?.listeners || {}
     const attributes = sortable?.attributes || {}
-    const isDraggingClass = sortable?.isDragging ? 'is-dragging' : ''
+    // const isDraggingClass = sortable?.isDragging ? 'is-dragging' : ''
     // const isDragging = sortable?.isDragging
 
 
@@ -61,13 +70,6 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupI
         }
     }, [column.width])
 
-    useEffect(() => {
-        if (canDrag) {
-          document.body.classList.add('drag-mode')
-        } else {
-          document.body.classList.remove('drag-mode')
-        }
-      }, [canDrag])
 
 
     // resize columns 
@@ -81,6 +83,7 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupI
 
     function onMouseDown(e) {
         e.stopPropagation()
+
         setHasMouseDown(true)      // start tracking
         setIsDragging(true)
 
@@ -153,40 +156,29 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupI
 
     }
 
-
-    function handleMouseUp() {
-        clearTimeout(dragTimeoutRef.current)
-        const pressDuration = Date.now() - pressStartTimeRef.current
-      
-        if (pressDuration < 100) {
-          setCanDrag(false)
-        }
-      }
-    function handleMouseDown() {
+    function handleMouseDown(e) {
         if (isInputFocused) return
-        pressStartTimeRef.current = Date.now()
-      
-        dragTimeoutRef.current = setTimeout(() => {
-          setCanDrag(true)
-        }, 90)
-      }
+        if (listeners?.onPointerDown) {
+            listeners.onPointerDown(e)
+        } else {
+            console.warn('[mousedown] listeners.onPointerDown not found')
+        }
+    }
+
+
 
     return (
         <div
-            className={`T_ColumnHeaderCell ${isDraggingOverlay ? 'drag-overlay' : ''} ${isDraggingClass} ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
-            // className={`T_ColumnHeaderCell ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
+            className={`T_ColumnHeaderCell ${isDraggingOverlay ? 'drag-overlay' : ''} ${sortable?.isDragging ? 'is-dragging' : ''} ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''} `}
             ref={setNodeRef}
             style={style}
-            onMouseUp={handleMouseUp}
-            onMouseDown={handleMouseDown}
-            onMouseLeave={handleMouseUp}
-            {...(canDrag ? { ...listeners, ...attributes } : {})}
+            {...(sortable && !isInputFocused ? { ...listeners, ...attributes } : {})}
         >
 
 
             <div className="cell-content" >
-            {/* <div className={`cell-content ${isDraggingOverlay ? 'drag-overlay' : ''}  ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}` }  */}
-            
+                {/* <div className={`cell-content ${isDraggingOverlay ? 'drag-overlay' : ''}  ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}` }  */}
+
                 {variant === 'item'
                     ?
                     <>
@@ -213,10 +205,16 @@ export function T_ColumnHeaderCell({ column,  isDraggingOverlay  ,isOver, groupI
                                     <ColumnMenu
                                         onCloseModal={onCloseModal}
                                         column={column}
+                                        setIsInputFocused={setIsInputFocused}
                                     />
                                 )}
                             >
-                                <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`} />
+                                <div className={`menu-btn clickable clear size-24 icon-btn i-Menu ${isMenuOpen ? 'in-focus' : ''}`}
+                                    onPointerDown={(e) => {
+                                        e.stopPropagation()
+                                        e.preventDefault()
+                                    }
+                                    } />
                             </PopUpMenu>
 
 

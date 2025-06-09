@@ -12,12 +12,12 @@
 import { SortableContext } from '@dnd-kit/sortable'
 
 // === Child Components
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react"
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { ColTypePicker } from "../value-setter/ColTypePicker"
 import { T_ColumnHeaderCell } from "./T_ColumnHeaderCell"
 import { ColumnsDndContext } from './ColumnsDndContext'
-import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux'
 
 
 // ====== Component ======

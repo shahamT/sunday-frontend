@@ -8,7 +8,7 @@
     border-radius: var(--border-radius-md);
 
 
-    
+
     .status-header {
         border-top-left-radius: var(--border-radius-md);
         border-top-right-radius: var(--border-radius-md);
@@ -18,16 +18,21 @@
         display: flex;
         align-items: center;
         color: white;
+        // D&D
+        touch-action: none;
+        cursor: grab;
 
-        touch-action: none; // => D&D
+        // D&D
+        &.dragging {
+            cursor: grabbing;
+        }
 
-    
         .name {
             font-weight: 600;
             padding-inline-end: 4px;
             line-height: 24px;
         }
-        
+
         .amount {
             font-weight: 400;
             padding-inline-start: 4px;
@@ -45,15 +50,15 @@
             display: none;
         }
 
-        
+
         .tasks {
             overflow-y: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
-        } 
+        }
     }
-    
+
     &:hover .add-btn-container {
         display: flex;
         align-items: center;
