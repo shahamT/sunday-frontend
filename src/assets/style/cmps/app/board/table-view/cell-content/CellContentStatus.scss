@@ -1,5 +1,6 @@
 .CellContentStatus {
     position: relative;
+    overflow: hidden;
 
     p {
         color: var(--text-color-on-inverted);

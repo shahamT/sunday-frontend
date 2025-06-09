@@ -80,9 +80,9 @@ export async function updateBoard(board) {
 }
 
 export async function addBoard(board) {
-
     try {
         const savedBoard = await boardService.save(board)
+        console.log('got here')
         store.dispatch(getCmdAddBoard(savedBoard))
         return savedBoard
     } catch (err) {
