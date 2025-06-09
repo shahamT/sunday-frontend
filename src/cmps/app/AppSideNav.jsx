@@ -1,14 +1,13 @@
 // === Style
 import mainWSIcon from '../../assets/img/icons/mainWS.icon.png';
 // === Libs
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink, useParams } from "react-router-dom";
+import { useEffect, useRef, useState } from "react";
+import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 
 // Dnd kit
 import { SortableContext, sortableKeyboardCoordinates, verticalListSortingStrategy, arrayMove } from '@dnd-kit/sortable';
-import { closestCenter, DndContext, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
-import { DragOverlay } from '@dnd-kit/core'
+import { closestCenter, DragOverlay, DndContext, KeyboardSensor, MouseSensor, PointerSensor, TouchSensor, useSensor, useSensors } from '@dnd-kit/core';
 
 // === Services
 
@@ -25,20 +24,18 @@ import { BoardNavBarLink } from './main/board/side-nave/BoardNavBarLink';
 import { SearchSideNav } from './main/board/side-nave/SearchSideNav';
 import { Loader } from '../reusables/Loader/Loader';
 import { SOCKET_EVENT_MINI_BOARDS_UPDATE, socketService } from '../../services/base/socket.service';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
 
 // ====== Component ======
 // =======================
-export function AppSideNav({ }) {
+
+export function AppSideNav({ onSideNavCollapse }) {
     const { boards, boardsFilterBy } = useSelector(storeState => storeState.boardModule)
     const filteredBoards = Array.isArray(boards) ? boards.filter(board =>
         (board?.name || '').toLowerCase().includes((boardsFilterBy?.txt || '').toLowerCase())
     ) : []
 
-    // console.log('boards: ', boards)
-    // console.log('filteredBoards: ', filteredBoards)
-
-    const { boardId } = useParams()
-    const dispatch = useDispatch()
+    const breakpoint = useBreakpoint()
 
     const [editingBoardId, setEditingBoardId] = useState(null)
     const [editedTitle, setEditedTitle] = useState('')
@@ -48,6 +45,7 @@ export function AppSideNav({ }) {
     const [boardFilterBy, setBoardFilterBy] = useState('')
 
 
+    //fetch data + sockets events
     useEffect(() => {
         loadBoards()
 
@@ -61,7 +59,6 @@ export function AppSideNav({ }) {
             socketService.off(SOCKET_EVENT_MINI_BOARDS_UPDATE, onBoardsUpdate)
         }
     }, [])
-
 
 
     function handleRename(board) {
@@ -78,6 +75,12 @@ export function AppSideNav({ }) {
             .catch(() => console.error("Rename failed"));
     }
 
+
+    function handleMobileClick() {
+        if (breakpoint === 'mobile') {
+            onSideNavCollapse()
+        }
+    }
 
     function getPos(boardId) {
         if (!Array.isArray(boards)) return -1
@@ -108,25 +111,25 @@ export function AppSideNav({ }) {
 
     const rawSensors = [
         !isMobile && useSensor(PointerSensor, {
-          activationConstraint: {
-            delay: 150,
-            tolerance: 30,
-          },
+            activationConstraint: {
+                delay: 150,
+                tolerance: 30,
+            },
         }),
         !isMobile && useSensor(MouseSensor),
         !isMobile && useSensor(KeyboardSensor, {
-          coordinateGetter: sortableKeyboardCoordinates,
+            coordinateGetter: sortableKeyboardCoordinates,
         })
-      ];
-      
-      const sensors = useSensors(...rawSensors.filter(Boolean));
+    ];
+
+    const sensors = useSensors(...rawSensors.filter(Boolean));
 
     return (
         <nav className="AppSideNav" >
 
             {/* Home section */}
             <section className="main-section nav-section">
-                <NavLink to="/app/home" className="clickable select full-width clear size-32 icon-start i-Home left-aligned" >Home </NavLink>
+                <NavLink to="/app/home" className="clickable select full-width clear size-32 icon-start i-Home left-aligned" onClick={handleMobileClick}>Home </NavLink>
             </section>
 
             <div className="divider" />
@@ -148,7 +151,15 @@ export function AppSideNav({ }) {
             {!isFavoritesOpen ? <div className="divider" /> : null}
 
             {isFavoritesOpen ?
-                <FavoritesBoards boards={boards} editingBoardId={editingBoardId} setEditedTitle={setEditedTitle} setEditingBoardId={setEditingBoardId} editedTitle={editedTitle} handleRename={handleRename} /> :
+                <FavoritesBoards
+                boards={boards}
+                editingBoardId={editingBoardId}
+                setEditedTitle={setEditedTitle}
+                setEditingBoardId={setEditingBoardId}
+                editedTitle={editedTitle}
+                handleRename={handleRename}
+                handleMobileClick={handleMobileClick}
+                /> :
 
 
                 <section className="workspaces-section nav-section">
@@ -212,7 +223,9 @@ export function AppSideNav({ }) {
                                             editingBoardId={editingBoardId}
                                             setEditedTitle={setEditedTitle}
                                             setEditingBoardId={setEditingBoardId}
-                                            handleRename={handleRename} />
+                                            handleRename={handleRename}
+                                            handleMobileClick={handleMobileClick}
+                                            />
                                     }
 
                                     )}

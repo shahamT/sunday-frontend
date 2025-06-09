@@ -25,7 +25,9 @@
       gap: 20px;
       padding: 16px 16px 24px 16px;
 
-
+      @include for-mobile {
+        padding: 16px 0px 0px 0px;
+      }
 
       .board-preview {
         padding: 8px;
@@ -37,9 +39,6 @@
         transition: var(--transition-xs);
         cursor: pointer;
         max-width: 500px;
-
-
-
 
 
         &:hover {

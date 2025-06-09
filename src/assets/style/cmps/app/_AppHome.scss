@@ -14,12 +14,20 @@
 
     .header {
         grid-area: header;
-        padding-inline-start: 20px;
+        padding-inline: 20px;
         height: 75px;
         align-content: center;
         overflow: hidden;
         box-shadow: 0px 3px 12px #e6e9ef;
         color: #323338;
+
+        @include for-mobile {
+                   height: 82px;
+
+            padding-inline-start: 48px;
+            padding-inline-end: 16px;
+
+        }
 
         .greeting {
             font-size: 14px;
@@ -31,7 +39,6 @@
             font-size: 16px;
             font-weight: 500;
         }
-
     }
 
     .main {
@@ -45,9 +52,19 @@
         ;
         gap: 24px;
 
+        @include for-mobile {
+            grid-template-columns: 1fr;
+            grid-template-areas:
+                'list'
+            ;
+        }
+
         .right-nav {
             grid-area: nav;
 
+            @include for-mobile {
+                display: none;
+            }
         }
 
         .board-list {

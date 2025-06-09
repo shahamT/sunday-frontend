@@ -2,5 +2,9 @@
     .logo-img {
         height: 35px;
         cursor: pointer;
+
+        @include for-tablet {
+            height: 28px;
+        }
     }
 }

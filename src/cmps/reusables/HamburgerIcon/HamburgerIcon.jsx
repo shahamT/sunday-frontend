@@ -2,12 +2,15 @@ import './HamburgerIcon.scss'
 
 
 export function HamburgerIcon({ isOpen, color = '#000', size = 1, onClick }) {
-    
+
     return (
         <button
             className={`hamburger-icon hamburger--spin ${isOpen ? 'is-active' : ''}`}
-            onClick={onClick}
-            style={{ transform: `scale(${size})`, color }} 
+            onClick={(ev) => {
+                ev.stopPropagation()
+                onClick()
+            }}
+            style={{ transform: `scale(${size})`, color }}
             aria-label="Menu"
             aria-expanded={isOpen}
         >
@@ -23,9 +26,9 @@ export function HamburgerIcon({ isOpen, color = '#000', size = 1, onClick }) {
 
 // const [isOpen, setIsOpen] = useToggle(false)
 
-    // < HamburgerIcon
-    //     isOpen = { isOpen }
-    //     onClick = { setIsOpen }
-    //     color = "var(--clr-accent-base)"
-    //     size = { 1}
-    // />
+// < HamburgerIcon
+//     isOpen = { isOpen }
+//     onClick = { setIsOpen }
+//     color = "var(--clr-accent-base)"
+//     size = { 1}
+// />
