@@ -15,9 +15,9 @@ export function AppHeader(props) {
             <nav className="app-nav">
 
 
-                <Tooltip position="bottom" title="Notifications" additionalClass='notifications-btn-wraper'>
+                {/* <Tooltip position="bottom" title="Notifications" additionalClass='notifications-btn-wraper'>
                     <div className="notifications-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Notifications" />
-                </Tooltip>
+                </Tooltip> */}
 
                 <Tooltip position="bottom" title="Update feed" additionalClass='inbox-btn-wraper'>
                     <div className="inbox-btn reg-menu-btn clickable clear icon-btn select size-40 icon-big i-Inbox" />
