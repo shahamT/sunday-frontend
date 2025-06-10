@@ -5,10 +5,8 @@ import { addBoard } from "../../../../../store/actions/board.actions"
 import { useNavigate } from "react-router-dom"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 import { closeGlobalModal } from "../../../../../store/actions/app.actions"
-import { getBoardAI } from '../../../../../services/base/getBoardAI'
 import { useControlledInput } from "../../../../../hooks/useControlledInput"
 import { useSelector } from "react-redux"
-import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
 // import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
 // === Services
 
@@ -64,7 +62,7 @@ export function AddBoardModal({ setAddBoardModalState }) {
 
     try {
       const boardToCreate = isAi
-        ? await generateAIBoard(userPrompt, boardName, user)
+        ? await boardService.getAiBoard(userPrompt, boardName, user)
         : getRegularBoard(user, boardName)
 
       const savedBoard = await addBoard(boardToCreate)
