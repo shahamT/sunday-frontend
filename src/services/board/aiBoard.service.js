@@ -11,11 +11,10 @@ export async function generateAIBoard(userPrompt, boardName, user) {
 
     const { _id: userId, account: userAccount } = user
 
-    /* ░1  Board skeleton in the system prompt ░ */
     const skeleton = {
         name: "",
-        account: userAccount,          // ⚑ required & pre-filled
-        createdBy: userId,             // ⚑ required & pre-filled
+        account: userAccount,
+        createdBy: userId,
         activities: [],
         columns: [
             {
@@ -40,7 +39,6 @@ export async function generateAIBoard(userPrompt, boardName, user) {
                     ]
                 }
             },
-            /* …4–6 more columns… */
         ],
         groups: [
             {
@@ -134,19 +132,55 @@ Return raw JSON only – no markdown fences, no wrapper object
     });
 
     const raw = choices[0].message.content;
-    console.log("%c🟡 Raw JSON string from OpenAI ↓", "color:orange;font-weight:bold");
-    console.log(raw);          // <-- exactly as received (may contain \n)
 
-    /* --- 2️⃣  Pretty-print helper (optional) ---------------------- */
+    // Log raw and pretty and answer:
+    console.log("%c🟡 Raw JSON string from OpenAI ↓", "color:orange;font-weight:bold");
+    console.log(raw);
     try {
         const pretty = JSON.stringify(JSON.parse(raw), null, 2);
-        console.log("%c🟢 Pretty-printed preview ↓", "color:green;font-weight:bold");
-        console.log(pretty);
+        // console.log("%c🟢 Pretty-printed preview ↓", "color:green;font-weight:bold");
+        // console.log(pretty);
     } catch (err) {
         console.warn("Raw output was not valid JSON:", err);
     }
 
     const board = JSON.parse(raw);
+
+
+    /* ---------- Validations and formatting of the board" ---------- */
+
+    /* ---------- Fallback: change any un-recognised color to "tan" ---------- */
+    const allowedColours = new Set([
+        "grass_green", "done-green", "bright-green", "saladish", "egg_yolk",
+        "working_orange", "dark-orange", "peach", "sunset", "stuck-red",
+        "dark-red", "sofia_pink", "lipstick", "bubble", "purple", "dark_purple",
+        "berry", "dark_indigo", "indigo", "navy", "bright-blue", "dark-blue",
+        "aquamarine", "chili-blue", "river", "winter", "explosive",
+        "american_gray", "blackish", "brown", "orchid", "tan", "sky", "coffee",
+        "royal", "teal", "lavender", "steel", "lilac", "pecan"
+    ]);
+
+    function fixColour(col) {
+        return allowedColours.has(col) ? col : "tan";
+    }
+
+    // group colors
+    board.groups.forEach(g => {
+        g.color = fixColour(g.color);
+    });
+
+    // status-label colors
+    board.columns.forEach(col => {
+        if (col.type.variant === "status" && Array.isArray(col.type.labels)) {
+            col.type.labels.forEach(lbl => {
+                lbl.color = fixColour(lbl.color);
+            });
+        }
+    });
+    /* ----------------------------------------------------------------------- */
+
+
+    //build board basic info + createdby:
     board.name = boardName;
     board.account = userAccount;
     board.createdBy = userId;
@@ -158,7 +192,7 @@ Return raw JSON only – no markdown fences, no wrapper object
         g.tasks.forEach(t => (t.createdBy = userId));
     });
 
-    /* ░2b  Remove blank columnValues ░ */
+    /*  Remove blank columnValues (validation) ░ */
     board.groups.forEach(g =>
         g.tasks.forEach(t => {
             t.columnValues = t.columnValues.filter(v =>
@@ -175,7 +209,7 @@ Return raw JSON only – no markdown fences, no wrapper object
         );
     });
 
-    /* ░3 Validate ░ */
+    /*  Validate ░ */
     const ajv = new Ajv({ allErrors: true, strict: false })
     addFormats(ajv)
     const validate = ajv.compile(boardSchema);
@@ -184,7 +218,7 @@ Return raw JSON only – no markdown fences, no wrapper object
         throw new Error("🛑 Generated board failed schema validation")
     }
 
-    /* ░4 Domain checks: item value present & people/file empty ░ */
+    /*  Domain checks: item value present & people/file empty ░ */
     const colVariant = Object.fromEntries(board.columns.map(c => [c.id, c.type.variant]))
     board.groups.forEach(g =>
         g.tasks.forEach(t => {
@@ -199,5 +233,5 @@ Return raw JSON only – no markdown fences, no wrapper object
     );
 
     console.log("✅ board:", board);
-    return board;          // ← ready to POST to backend
+    return board;          // ready to POST to backend
 }

@@ -102,9 +102,6 @@ export function Signup() {
 
     }
 
-    // ======== google auth =======
-
-
     async function loginToDemoAccount() {
         const userCred = {
             email: "yair.cohen@gmail.com",
@@ -121,6 +118,8 @@ export function Signup() {
             console.log("err: ", err)
         }
     }
+
+    // ======== google auth =======
 
     useEffect(() => {
         if (!window.google?.accounts?.id) {
@@ -168,14 +167,6 @@ export function Signup() {
 
                     <div id="googleSignInDiv"></div>
 
-
-                    {/* <div
-                        className='google-auth-btn clickable clear full-width size-40'
-                        onClick={() => signupWithGoogle()}
-                    >
-                        <img className='google-icon' src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747598560/Google__G__logo.svg_igbjrb.png" />
-                        Continue with Google
-                    </div> */}
 
                     <div className="divider">
                         <div className="line" />

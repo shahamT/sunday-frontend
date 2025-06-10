@@ -37,12 +37,13 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
             },
         })
         : null
-        
-       
-        const style = sortable
-        ? { transform: CSS.Transform.toString(sortable.transform),
-             transition: sortable.transition || 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1)'
-         }
+
+
+    const style = sortable
+        ? {
+            transform: CSS.Transform.toString(sortable.transform),
+            transition: sortable.transition || 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1)'
+        }
         : {}
 
     const setNodeRef = sortable?.setNodeRef || undefined
