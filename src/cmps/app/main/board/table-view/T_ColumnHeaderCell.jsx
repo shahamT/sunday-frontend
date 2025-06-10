@@ -50,8 +50,6 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
     const setNodeRef = sortable?.setNodeRef || undefined
     const listeners = sortable?.listeners || {}
     const attributes = sortable?.attributes || {}
-    // const isDraggingClass = sortable?.isDragging ? 'is-dragging' : ''
-    // const isDragging = sortable?.isDragging
 
 
     // === Consts
@@ -176,7 +174,7 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
             style={style}
             {...(sortable && !isInputFocused ? { ...listeners, ...attributes } : {})}
         >
-<div className={`blue-target ${isOver ? 'is-drag-over' : ''}`}></div>
+            <div className={`blue-target ${isOver ? 'is-drag-over' : ''}`} />
 
             <div className="cell-content" >
                 {/* <div className={`cell-content ${isDraggingOverlay ? 'drag-overlay' : ''}  ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}` }  */}
@@ -262,7 +260,7 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
             {isDragging && (
                 <div
                     className="column-drag-overlay"
-                    
+
                     style={{ pointerEvents: hasMouseDown ? 'all' : 'none' }}
                 />
             )}
