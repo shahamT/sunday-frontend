@@ -92,19 +92,23 @@ export function AppSideNav({ onSideNavCollapse }) {
         const { active } = event
         const dragged = boards.find(b => b._id === active.id)
         setActiveBoard(dragged)
+       document.body.style.cursor = 'grabbing ';
+
     }
 
     function handleDragEnd(event) {
+        document.body.style.cursor = ''
         const { active, over } = event
         if (!over) return
         if (active.id === over.id) return
-
+        
         const originalPos = getPos(active.id)
         const newPos = getPos(over.id)
-
+        
         if (originalPos === -1 || newPos === -1) return
         const reorderedBoards = arrayMove(boards, originalPos, newPos)
-
+        
+        // setActiveBoard(null)
         updateBoards(reorderedBoards)
     }
     const isMobile = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches;
@@ -152,13 +156,13 @@ export function AppSideNav({ onSideNavCollapse }) {
 
             {isFavoritesOpen ?
                 <FavoritesBoards
-                boards={boards}
-                editingBoardId={editingBoardId}
-                setEditedTitle={setEditedTitle}
-                setEditingBoardId={setEditingBoardId}
-                editedTitle={editedTitle}
-                handleRename={handleRename}
-                handleMobileClick={handleMobileClick}
+                    boards={boards}
+                    editingBoardId={editingBoardId}
+                    setEditedTitle={setEditedTitle}
+                    setEditingBoardId={setEditingBoardId}
+                    editedTitle={editedTitle}
+                    handleRename={handleRename}
+                    handleMobileClick={handleMobileClick}
                 /> :
 
 
@@ -225,14 +229,14 @@ export function AppSideNav({ onSideNavCollapse }) {
                                             setEditingBoardId={setEditingBoardId}
                                             handleRename={handleRename}
                                             handleMobileClick={handleMobileClick}
-                                            />
+                                        />
                                     }
 
                                     )}
                                 </SortableContext>
                                 <DragOverlay>
                                     {activeBoard ? (
-                                        <div className="drag-overlay-board">
+                                        <div className={`drag-overlay-board ${(activeBoard !== null) ? 'dragging':''}`} >
                                             <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
                                                 <p>{activeBoard.name}</p>
                                             </div>
