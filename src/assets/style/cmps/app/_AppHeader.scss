@@ -81,7 +81,7 @@
 
     @include for-mobile {
         width: calc(100vw - 60px);
-        height: calc(100vh - 100px);
+        min-height: 40vh
     }
 
     .menu-header {

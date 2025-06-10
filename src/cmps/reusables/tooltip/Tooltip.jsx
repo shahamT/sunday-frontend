@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import './Tooltip.scss'
+import { useBreakpoint } from '../../../hooks/useBreakpoint'
 
 export function Tooltip({
   children,
@@ -20,8 +21,10 @@ export function Tooltip({
   const enterTimeout = useRef(null)
   const exitTimeout = useRef(null)
   const hasFocusWithin = useRef(false)
+  const breakPoint = useBreakpoint()
 
   function show() {
+    if (breakPoint === 'mobile') return
     if (hasFocusWithin.current) return
     clearTimeout(exitTimeout.current)
     enterTimeout.current = setTimeout(() => {

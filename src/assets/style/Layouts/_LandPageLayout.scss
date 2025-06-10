@@ -1,6 +1,8 @@
-.LandPageLayout{
+.LandPageLayout {
+    width: 100vw;
+    overflow-x: hidden;
 
-    .topLine{
+    .topLine {
         height: 0px;
     }
 }
