@@ -1,35 +1,35 @@
 .T_ColumnHeaderCell {
     position: relative;
     padding-inline: 5px;
-    cursor: grab;
-    &.is-dragging{
-        background-color: #f5f5f5;
+
+    .T_ColumnHeaderCell> :first-child {
+        cursor: default;
+    
     }
 
     &.item-column {
         padding-inline-start: 0px;
     }
-    
+
     &:hover:not(:focus-within),
     &.menu-in-focus {
         .menu-btn-wraper {
             display: block;
         }
-        
     }
-    
+
     .menu-btn-wraper {
         order: 2;
         position: absolute;
         z-index: 10;
         right: 8px;
         display: none;
-        
+
         .menu-btn::before {
             font-size: 17px;
         }
     }
-    
+
     .title-wraper {
         order: 1;
         flex: 1 1 auto;
@@ -39,10 +39,12 @@
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
-
     }
-    
-   
+
+    .title-wraper:nth-of-type(n+2) {
+        cursor: grab;
+    }
+
 
     .column-resize-handle {
         position: absolute;
