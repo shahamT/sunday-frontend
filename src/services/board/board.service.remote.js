@@ -5,6 +5,7 @@ export const boardService = {
     getById,
     saveBoards,
     save,
+    getAiBoard,
     remove,
     removeGroup,
     createGroup,
@@ -40,6 +41,10 @@ async function save(board) {
     return board._id
         ? httpService.put(`board/${board._id}`, board)
         : httpService.post('board', board)
+}
+
+async function getAiBoard(userPrompt, boardName, user) {
+    return httpService.post('board/ai', { userPrompt, boardName, user })
 }
 
 async function saveBoards(reorderedBoards) {
