@@ -8,6 +8,7 @@ import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 import { getBoardAI } from '../../../../../services/base/getBoardAI'
 import { useControlledInput } from "../../../../../hooks/useControlledInput"
 import { useSelector } from "react-redux"
+import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
 // import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
 // === Services
 
@@ -32,54 +33,54 @@ export function AddBoardModal({ setAddBoardModalState }) {
     return board
   }
 
-  async function onSubmitFake(ev) {
-    setIsLoading(true)
-    ev.preventDefault()
-
-    const boardToCreate = isAi ? getBoardAI() : getRegularBoard()
-    boardToCreate.name = boardName
-    const delay = isAi ? 2500 : 0
-
-    try {
-      const savedBoard = await addBoard(boardToCreate)
-      setTimeout(async () => {
-        closeGlobalModal()
-        navigate(`/app/board/${savedBoard._id}`)
-      }, delay)
-    } catch (err) {
-      console.error('Save failed')
-      showErrorMsg('Save failed')
-    } finally {
-      setTimeout(async () => {
-        setIsLoading(false)
-      }, delay)
-    }
-
-  }
-
-  // async function onSubmit(ev) {
-  //   ev.preventDefault()
+  // async function onSubmitFake(ev) {
   //   setIsLoading(true)
+  //   ev.preventDefault()
+
+  //   const boardToCreate = isAi ? getBoardAI() : getRegularBoard()
+  //   boardToCreate.name = boardName
+  //   const delay = isAi ? 2500 : 0
 
   //   try {
-  //     const boardToCreate = isAi
-  //       ? await generateAIBoard(userPrompt, boardName, user)
-  //       : getRegularBoard(user, boardName)
-
   //     const savedBoard = await addBoard(boardToCreate)
-
-  //     closeGlobalModal()
-  //     navigate(`/app/board/${savedBoard._id}`)
-  //   }
-  //   catch (err) {
-  //     console.error(err)
-  //     showErrorMsg('Somthing went wrong')
-  //   }
-  //   finally {
-  //     setIsLoading(false)
+  //     setTimeout(async () => {
+  //       closeGlobalModal()
+  //       navigate(`/app/board/${savedBoard._id}`)
+  //     }, delay)
+  //   } catch (err) {
+  //     console.error('Save failed')
+  //     showErrorMsg('Save failed')
+  //   } finally {
+  //     setTimeout(async () => {
+  //       setIsLoading(false)
+  //     }, delay)
   //   }
 
   // }
+
+  async function onSubmit(ev) {
+    ev.preventDefault()
+    setIsLoading(true)
+
+    try {
+      const boardToCreate = isAi
+        ? await generateAIBoard(userPrompt, boardName, user)
+        : getRegularBoard(user, boardName)
+
+      const savedBoard = await addBoard(boardToCreate)
+
+      closeGlobalModal()
+      navigate(`/app/board/${savedBoard._id}`)
+    }
+    catch (err) {
+      console.error(err)
+      showErrorMsg('Somthing went wrong')
+    }
+    finally {
+      setIsLoading(false)
+    }
+
+  }
 
 
   return (
@@ -157,7 +158,7 @@ export function AddBoardModal({ setAddBoardModalState }) {
           <div
             className={`create-btn clickable filled size-40 ${isLoading ? "loading" : ""}`}
             disabled={isLoading}
-            onClick={onSubmitFake}
+            onClick={onSubmit}
           >
             {isAi ? 'Create AI Board' : 'Create Board'}
           </div>
