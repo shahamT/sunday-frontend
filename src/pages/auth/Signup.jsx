@@ -21,7 +21,8 @@ import { useEffect } from 'react';
 
 
 
-const GOOGLE_CLIENT_ID = '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com'
+// const GOOGLE_CLIENT_ID = '198663761522-osnjd48065j34p2k59162s0hg0trvvp9.apps.googleusercontent.com'
+const GOOGLE_CLIENT_ID = import.meta.env.VITE_GOOGLE_CLIENT_ID
 
 // ====== Component ======
 // =======================
