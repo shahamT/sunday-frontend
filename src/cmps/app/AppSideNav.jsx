@@ -92,7 +92,7 @@ export function AppSideNav({ onSideNavCollapse }) {
         const { active } = event
         const dragged = boards.find(b => b._id === active.id)
         setActiveBoard(dragged)
-       document.body.style.cursor = 'grabbing';
+       document.body.style.cursor = 'grabbing ';
 
     }
 
@@ -236,7 +236,7 @@ export function AppSideNav({ onSideNavCollapse }) {
                                 </SortableContext>
                                 <DragOverlay>
                                     {activeBoard ? (
-                                        <div className="drag-overlay-board">
+                                        <div className={`drag-overlay-board ${(activeBoard !== null) ? 'dragging':''}`} >
                                             <div className="board-btn clickable size-32 icon-start left-aligned i-Board" >
                                                 <p>{activeBoard.name}</p>
                                             </div>

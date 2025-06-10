@@ -26,7 +26,7 @@
 
 
 .BoardNavBarLink.dragging {
-    // ***** The dragging crusur is hard-coded in AppSideNav CMP in handleDragStart() & handleDragEnd() functions *****
+    // ***** The dragging cursor is hard-coded in AppSideNav CMP in handleDragStart() & handleDragEnd() functions *****
     background-color: #C4C7D0;
 
 
@@ -41,6 +41,11 @@
     // cursor: grabbing !important;
 }
 
+.drag-overlay-board.dragging > *{
+    //  **** Making the cursor to be "grabbing" also on the <p> - the name of the board
+    cursor: grabbing !important;
+
+}
 .BoardNavBarLink.dragging .board-btn {
     visibility: hidden;
 }
