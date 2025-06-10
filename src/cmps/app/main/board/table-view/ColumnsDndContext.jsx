@@ -27,7 +27,7 @@ export function ColumnsDndContext({ setOverId, children, columns, group, board }
 
   function handleDragEnd(event) {
     const { active, over } = event
-
+    setOverId(null)
     if (!over || active.id === over.id) {
       setActiveId(null)
       setOverId(null)
@@ -68,7 +68,7 @@ export function ColumnsDndContext({ setOverId, children, columns, group, board }
         {activeColumn && (
           <div className="drag-column-overlay"
           >
-            <T_ColumnHeaderCell column={activeColumn} groupId={group.id}  isDraggingOverlay={true} />
+            <T_ColumnHeaderCell column={activeColumn} groupId={group.id} isDraggingOverlay={true} />
             {/* <T_ColumnBody column={activeColumn} group={group}  /> */}
           </div>
         )}

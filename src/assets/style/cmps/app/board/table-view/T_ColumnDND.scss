@@ -1,23 +1,46 @@
 .T_ColumnHeaderCell.is-drag-over {
-  outline: 1px dashed var(--layout-border-color) ;
+  
+  border: 1px dashed var(--layout-border-color) ;
+  // outline: 1px dashed var(--layout-border-color) ;
   outline-offset: -1.3px;
   background-color: #f5f5f5;
   transition: 0.2s ease;
+  // height: 100%;
   
-  
+  .blue-target{
+    position: absolute;
+    top: 0;
+    left: -3px;
+    z-index: 2;
+    
+    width: 6px;
+        height: 100%;
+
+        cursor: ew-resize;
+        border-radius: var(--border-radius-round);
+        background-color: var(--layout-border-color);
+        transition: opacity 0.15s ease-in;
+
+        &.is-drag-over  {
+            background-color: var(--primary-color, #0073ea);
+            transition: opacity 0.3s ease-in;
+            transition: none;
+        }
+  }
 }
+
 .column-header-cell {
   border:#f5f5f5; 
   padding: 150px; // פה זה הטווח שהוא קולט את האחד מתחתיו, ככל שיותר גדול ככה הוא יעביר את הקוקו יותר ברגישות
   transition: background-color 0.1s ease;
- 
-  }
+  
+}
   
   
-  .T_ColumnHeaderCell.drag-overlay {
-    z-index: 1000 !important;
-    border: 1px solid var(--layout-border-color);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+.T_ColumnHeaderCell.drag-overlay {
+  z-index: 1000 !important;
+  border: 1px solid var(--layout-border-color);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     // opacity: 0.95;
     pointer-events: none;

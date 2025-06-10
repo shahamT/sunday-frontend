@@ -176,7 +176,7 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
             style={style}
             {...(sortable && !isInputFocused ? { ...listeners, ...attributes } : {})}
         >
-
+<div className={`blue-target ${isOver ? 'is-drag-over' : ''}`}></div>
 
             <div className="cell-content" >
                 {/* <div className={`cell-content ${isDraggingOverlay ? 'drag-overlay' : ''}  ${isOver ? 'is-drag-over' : ''} ${variant === 'item' ? 'item-column' : ''} ${isMenuOpen ? 'menu-in-focus' : ''}` }  */}
