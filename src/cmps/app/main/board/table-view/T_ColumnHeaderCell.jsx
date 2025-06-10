@@ -160,8 +160,6 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
         if (isInputFocused) return
         if (listeners?.onPointerDown) {
             listeners.onPointerDown(e)
-        } else {
-            console.warn('[mousedown] listeners.onPointerDown not found')
         }
     }
 
