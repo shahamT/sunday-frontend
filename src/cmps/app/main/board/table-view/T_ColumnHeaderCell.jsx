@@ -28,21 +28,23 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
 
     const [isInputFocused, setIsInputFocused] = useState(false)
 
-    const sortable = variant !== 'item'
+    const sortable = (variant !== 'item')
         ? useSortable({
             id: column.id,
             activationConstraint: {
                 delay: 1000,
                 tolerance: 5,
             },
+
         })
         : null
-        
-       
-        const style = sortable
-        ? { transform: CSS.Transform.toString(sortable.transform),
-             transition: sortable.transition || 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1)'
-         }
+
+
+    const style = sortable
+        ? {
+            transform: CSS.Transform.toString(sortable.transform),
+            transition: sortable.transition || 'transform 250ms cubic-bezier(0.22, 1, 0.36, 1)'
+        }
         : {}
 
     const setNodeRef = sortable?.setNodeRef || undefined
@@ -189,7 +191,10 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
 
                         <div className="title-wraper">
                             <Tooltip position='top' title={`Task title can't be changed`}>
-                                <p>{value}</p>
+                                <p onPointerDown={(e) => {
+                                    e.stopPropagation()
+
+                                }}>{value}</p>
                             </Tooltip>
                         </div>
                     </>
@@ -229,7 +234,13 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
                                     centered={true}
                                     size="small"
                                     handleChange={handleChange}
-                                    onClick={() => setIsInputFocused(true)}
+                                    onPointerDown={(e) => {
+                                        e.stopPropagation()
+                                    }}
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setIsInputFocused(true)
+                                    }}
                                     onBlur={() => {
                                         onUpdateColumnName()
                                         setIsInputFocused(false)
@@ -243,10 +254,15 @@ export function T_ColumnHeaderCell({ column, isDraggingOverlay, isOver, groupId,
                     </>
                 }
             </div>
-            <div className="column-resize-handle" onMouseDown={onMouseDown} />
+            <div className="column-resize-handle"
+                onPointerDown={(e) => {
+                    e.stopPropagation()
+                }}
+                onMouseDown={onMouseDown} />
             {isDragging && (
                 <div
                     className="column-drag-overlay"
+                    
                     style={{ pointerEvents: hasMouseDown ? 'all' : 'none' }}
                 />
             )}
