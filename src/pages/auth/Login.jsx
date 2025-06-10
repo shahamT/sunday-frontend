@@ -83,6 +83,20 @@ export function Login() {
         }
     }
 
+ async function loginToDemoAccount() {
+        const userCred = {
+            email: "yair.cohen@gmail.com",
+            password: "yair1234"
+        }
+        try {
+            const user = await loginUser(userCred)
+            navigate('/app/home')
+        }
+        catch (err) {
+            showErrorMsg(err)
+        }
+    }
+
 
     // ======== google auth =======
 
@@ -123,20 +137,7 @@ export function Login() {
     }, [])
 
 
-    async function loginToDemoAccount() {
-        const userCred = {
-            email: "yair.cohen@gmail.com",
-            password: "yair1234"
-        }
-        try {
-            const user = await loginUser(userCred)
-            navigate('/app/home')
-        }
-        catch (err) {
-            showErrorMsg(err)
-        }
-    }
-
+   
     return (
         <div className="Login">
             <div className="main-content">
@@ -186,14 +187,6 @@ export function Login() {
                     </div>
 
                     <div id="googleSignInDiv"></div>
-                    {/* <div
-                        className='google-auth-btn clickable clear full-width size-40'
-                        onClick={() => loginWithGoogle()}
-                    >
-                        <img className='google-icon' src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747598560/Google__G__logo.svg_igbjrb.png" />
-                        Continue with Google
-                    </div> */}
-
 
                     <p className='terms-and-cond-text'>
                         Don't have an account yet? &nbsp;
