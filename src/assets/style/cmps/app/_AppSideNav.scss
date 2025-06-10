@@ -8,8 +8,17 @@
 
 
 .AppSideNav {
+        display: grid;
+        grid-template-rows: auto auto auto auto 1fr;
+        align-items: start;
+
+        height: 100%;
+        overflow-y: hidden;
+
         padding-block-start: 6px;
+
         color: var(--primary-text-color);
+
 
         @include for-mobile {
                 padding-block-start: 48px;
@@ -85,94 +94,99 @@
 
         }
 
-        .workspaces-bar {
-                position: relative;
-                display: flex;
-                align-items: center;
+        .workspaces-section {
+                height: 100%;
+                overflow-y: auto;
 
-                .workspase-icon {
-                        align-self: center;
-                        padding: var(--space-8);
 
-                        &::before {
-                                font-size: 18px;
+                .workspaces-bar {
+                        position: relative;
+                        display: flex;
+                        align-items: center;
+
+                        .workspase-icon {
+                                align-self: center;
+                                padding: var(--space-8);
+
+                                &::before {
+                                        font-size: 18px;
+                                }
+
+                        }
+
+                        p {
+                                font-size: 14px;
+                        }
+
+                        .search-btn {
+                                margin-left: auto;
+                        }
+
+
+                }
+
+                .workspaces-container {
+
+                        display: flex;
+                        align-items: center;
+                        gap: 4px;
+
+                        p {
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                        }
+
+
+                        .add-btn {
+                                margin-left: auto;
+                                flex-grow: 0;
+                                flex-shrink: 0;
+                        }
+
+                        .currWorkSpace {
+                                display: inline;
                         }
 
                 }
 
-                p {
-                        font-size: 14px;
-                }
+                .curr-wordspace-input {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-items: center;
+                        padding-left: 1px;
+                        margin: 4px;
+                        border: 1px solid #d0d0d0;
+                        border-radius: 5px;
 
-                .search-btn {
-                        margin-left: auto;
-                }
+                        height: 32px;
+                        width: 100%;
+                        padding-inline-start: 1px;
+                        padding-inline-end: 8px;
+                        border: 1px solid var(--layout-border-color);
 
-
-        }
-
-        .workspaces-container {
-
-                display: flex;
-                align-items: center;
-                gap: 4px;
-
-                p {
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                }
+                        border-radius: var(--border-radius-sm);
 
 
-                .add-btn {
-                        margin-left: auto;
-                        flex-grow: 0;
-                        flex-shrink: 0;
-                }
+                        img {
+                                width: 28px;
 
-                .currWorkSpace {
-                        display: inline;
+                        }
+
+                        p {
+                                color: var(--primary-text-color);
+                                text-overflow: ellipsis;
+                                font-weight: 600;
+                        }
                 }
 
         }
-
-        .curr-wordspace-input {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                padding-left: 1px;
-                margin: 4px;
-                border: 1px solid #d0d0d0;
-                border-radius: 5px;
-
-                height: 32px;
-                width: 100%;
-                padding-inline-start: 1px;
-                padding-inline-end: 8px;
-                border: 1px solid var(--layout-border-color);
-
-                border-radius: var(--border-radius-sm);
-
-
-                img {
-                        width: 28px;
-
-                }
-
-                p {
-                        color: var(--primary-text-color);
-                        text-overflow: ellipsis;
-                        font-weight: 600;
-                }
-        }
-
-
 
         .board-list {
                 display: flex;
                 flex-direction: column;
                 gap: 4px;
-
+                overflow-y: auto;
         }
 
 
@@ -205,15 +219,7 @@
 
         }
 
-        // .drag-handle {
-        //         width: 100%;        
-        //         height: 100%;      
-        //         position: absolute; 
-        //         top: 0;
-        //         left: 0;
-        //         // cursor: grab;
-        //         z-index: 10;
-        //       }
+
         .BoardNavBarLink {
                 touch-action: none;
                 padding-inline-start: 1px;

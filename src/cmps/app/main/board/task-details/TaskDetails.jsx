@@ -215,7 +215,7 @@ export function TaskDetails() {
                 </div>
             </section>
 
-            <section className="task-details-tab-content">
+            <section className="task-details-tab-content slim-scroll">
                 {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
                 {/* {isSelected('files') && <TaskDetailsFiles />} */}
                 {isSelected('activity-log') && <TaskDetailsActivityLog task={task} board={board} />}

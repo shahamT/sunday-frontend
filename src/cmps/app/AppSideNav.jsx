@@ -212,7 +212,7 @@ export function AppSideNav({ onSideNavCollapse }) {
                         </div>
 
                         :
-                        <div className="board-list">
+                        <div className="board-list slim-scroll">
                             <DndContext
                                 sensors={sensors}
                                 collisionDetection={closestCenter}

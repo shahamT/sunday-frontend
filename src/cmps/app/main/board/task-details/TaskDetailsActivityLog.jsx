@@ -29,7 +29,7 @@ export function TaskDetailsActivityLog({ task, board }) {
 
     // if (!data) return <div>Loading...</div>
     return (
-        <section className="TaskDetailsActivityLog">
+        <section className="TaskDetailsActivityLog slim-scroll">
             {/* <h1>
                 <pre>{JSON.stringify(activities, null, 2)}</pre>
             </h1> */}
