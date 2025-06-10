@@ -5,7 +5,7 @@ import boardSchema from "./boardSchema.json";
 
 export async function generateAIBoard(userPrompt, boardName, user) {
     const openai = new OpenAI({
-        apiKey: "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",
+        apiKey: "",
         dangerouslyAllowBrowser: true,
     });
 
