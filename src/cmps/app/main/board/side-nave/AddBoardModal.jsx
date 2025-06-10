@@ -7,6 +7,7 @@ import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 import { closeGlobalModal } from "../../../../../store/actions/app.actions"
 import { useControlledInput } from "../../../../../hooks/useControlledInput"
 import { useSelector } from "react-redux"
+import { AiBoardGenLoader } from "./AiBoardGenLoader"
 // import { generateAIBoard } from "../../../../../services/board/aiBoard.service"
 // === Services
 
@@ -58,6 +59,10 @@ export function AddBoardModal({ setAddBoardModalState }) {
 
   async function onSubmit(ev) {
     ev.preventDefault()
+    if (!boardName?.trim()) {
+      showErrorMsg('Cannot create a board without a name');
+      return
+    }
     setIsLoading(true)
 
     try {
@@ -79,6 +84,13 @@ export function AddBoardModal({ setAddBoardModalState }) {
     }
 
   }
+
+
+if(isLoading && isAi) return(
+  <section className="ai-loader">
+    <AiBoardGenLoader/>
+  </section>
+)
 
 
   return (
@@ -107,11 +119,11 @@ export function AddBoardModal({ setAddBoardModalState }) {
           <div className="input-group">
             <div className="title-wraper">
               <label className="input-title animate__animated animate__fadeIn">
-                Talk with the AI...
+                Describe your board...
               </label>
               <div className="clickable clear size-32 icon-start i-DropdownChevronLeft"
                 onClick={() => setAi(false)}>
-                back to regular mode
+                back to standard mode
               </div>
             </div>
             <textarea

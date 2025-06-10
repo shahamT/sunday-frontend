@@ -68,3 +68,22 @@ button {
 select {
 	cursor: pointer;
 }
+
+
+// scrollbar
+
+.slim-scroll {
+  scrollbar-width: thin;        /* Firefox */
+  scrollbar-color: #929292 transparent;  /* thumb | track */
+}
+
+.slim-scroll::-webkit-scrollbar {
+  width: 8px;               
+  height: 8px;                  
+}
+
+.slim-scroll::-webkit-scrollbar-thumb {
+  background-color:  #929292;      
+  border-radius: 4px;           
+  border: 2px solid transparent;
+}

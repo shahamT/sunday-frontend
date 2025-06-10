@@ -89,12 +89,13 @@
     }
 
     .new-board-encourage {
-        margin-top: auto;
+        margin-block: 16px;
         color: rgb(164, 165, 172);
         font-size: 15px;
         font-weight: 400;
-        justify-content: end;
-        align-self: center;
+
+        text-align: center;
+
 
 
     }
@@ -121,11 +122,39 @@
         }
     }
 
+}
 
+.AiBoardGenLoader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
 
-    .closer {
+    width: 300px;
 
-        // margin-top: auto;
+    .loader-title {
+        font-size: 20px;
+        font-weight: 600;
     }
 
+    .loader-subtitle {
+        margin-block-end: 16px;
+    }
+
+    .msg-wraper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-block-end: 16px;
+
+        p {
+            font-size: 18px;
+            color:var(--primary-color);
+        }
+
+        .dots{
+            width: 12px;
+        }
+    }
 }

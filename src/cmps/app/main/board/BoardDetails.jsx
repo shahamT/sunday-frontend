@@ -74,7 +74,7 @@ export function BoardDetails({ }) {
     }
 
     return (
-        <section className="BoardDetails">
+        <section className="BoardDetails slim-scroll">
             <BoardHeader />
 
             {!isKanbanRoute &&
