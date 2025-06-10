@@ -8,11 +8,10 @@
     width: 100%;
     // font-size: 0.95rem;
     opacity: 0.95;
-    cursor: grabbing;
-
+    
     transform: scale(0.95) rotate(2deg);
     transition: transform 0.2s ease;
-
+    
 
     display: flex;
     align-items: center ;
@@ -25,15 +24,21 @@
  
 }
 
+
 .BoardNavBarLink.dragging {
+    // ***** The dragging crusur is hard-coded in AppSideNav CMP in handleDragStart() & handleDragEnd() functions *****
     background-color: #C4C7D0;
+
+
     outline: 0.8px dashed #9EA3B0;
     border-radius: 4px;
     opacity: 1;
-    pointer-events: none;
+    // pointer-events: none;
     user-select: none;
     overflow: hidden;
     transition: background-color 0.2s ease;
+
+    // cursor: grabbing !important;
 }
 
 .BoardNavBarLink.dragging .board-btn {
