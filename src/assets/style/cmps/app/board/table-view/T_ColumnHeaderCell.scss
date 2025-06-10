@@ -30,6 +30,14 @@
         }
     }
 
+    .menu-btn {
+        background-color: var(--ui-background-color);
+
+        &:hover {
+            background-color:  var(--ui-border-color);
+        }
+    }
+
     .title-wraper {
         order: 1;
         flex: 1 1 auto;
