@@ -44,7 +44,6 @@ export function K_ContentStatus({ column, value, taskId }) {
         }
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentStatus">
             
@@ -65,10 +64,6 @@ export function K_ContentStatus({ column, value, taskId }) {
                     />
                 )}
             >
-                {/* <div className={`cell-content centered ${labelColor}-bg-static ${columnValue ? '' : 'default-color'} ${isFocused ? 'cell-focused' : ''}`}>
-                    <div className="fold" />
-                    {columnValue && <p>{labelName}</p>}
-                </div> */}
                 <div className={`status clickable size-24 ${label?.color}-bg`} >{label?.name}</div>
             </PopUpMenu>
 

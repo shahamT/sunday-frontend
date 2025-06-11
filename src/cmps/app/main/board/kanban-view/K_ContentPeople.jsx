@@ -9,13 +9,13 @@ import { removeColumnValue, setColumnValue } from "../../../../../store/actions/
 // === Hooks / React
 import { useSelector } from "react-redux"
 import { useEffect, useRef, useState } from "react"
-import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 
 // === Imgs
 
 // === Child Components
 import { PersonsPreview } from "../table-view/T_CellContent/PersonsPreview"
 import { PersonsPicker } from "../value-setter/PersonsPicker"
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 
 // ====== Component ======
 // =======================
@@ -67,7 +67,6 @@ export function K_ContentPeople({ column, value, taskId }) {
             }
         }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentPeople">
 

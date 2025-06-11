@@ -9,7 +9,6 @@ import { setFilterBy } from "../../../../../store/actions/board.actions.js"
 import { store } from "../../../../../store/store.js"
 
 // === Hooks / React
-import { useControlledInput } from "../../../../../hooks/useControlledInput.js"
 import { useSelector } from "react-redux"
 import { useLocation } from "react-router-dom"
 import { useEffect, useRef, useState } from "react"
@@ -20,12 +19,13 @@ import { useEffect, useRef, useState } from "react"
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu.jsx"
 import { AddNewSelection } from "../value-setter/AddNewSelection.jsx"
 import { Tooltip } from "../../../../reusables/tooltip/Tooltip.jsx"
-import { ColSumStatus } from "./T_ColumnSum/ColSumStatus.jsx"
 
 // ====== Component ======
 // =======================
 
 export function T_Filter() {
+ 
+    // === Consts
     const filterBy = useSelector(storeState => storeState.boardModule.filterBy)
     const users = useSelector(storeState => storeState.userModule.users)
     const modalCloseRef = useRef(null)
@@ -40,20 +40,16 @@ export function T_Filter() {
     const location = useLocation();
     const isKanbanRoute = location.pathname.endsWith('/kanban');
 
-    
     const debouncedSetFilterBy = useRef(
         debounce((val) => {
             try {
                 
             setFilterBy({ ...store.getState().boardModule.filterBy, txt: val })
-            // setFilterBy({ ...filterBy, txt: val })
             } catch (err) {
             showErrorMsg('Something went wrong')
             }
         }, 300)
     )
-
-    // === Consts
 
     // === Effects
     useEffect(() => {
@@ -117,7 +113,6 @@ export function T_Filter() {
         }
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="T_Filter">
             {!isKanbanRoute &&
@@ -165,9 +160,7 @@ export function T_Filter() {
                                 {users.map(user => {
                                     return <div key={user._id} className={`specific-img-wrapper ${selectedPerson?._id === user._id ? 'select' : ''}`}  onClick={() => onHandlePersonFilterBy(user)} > 
                                             <Tooltip title={`${user.firstName} ${user.lastName}`}>
-                                                    {/* <div className="profile-img-wrapper"> */}
                                                     <img className="specific-img" src={user.profileImg} alt=""/>
-                                                    {/* </div> */}
                                             </Tooltip>
                                         </div>
                                 })}

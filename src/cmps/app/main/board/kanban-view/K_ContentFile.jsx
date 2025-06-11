@@ -13,7 +13,7 @@
 // ====== Component ======
 // =======================
 
-export function K_ContentFile({ colId, value }) {
+export function K_ContentFile({ value }) {
     // === Consts
 
     // === Effects

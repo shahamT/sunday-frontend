@@ -1,16 +1,15 @@
 // === Libs
 
 // === Services
+import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 
 // === Actions
+import { setColumnValue } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
-import { EditableText } from '../../../../reusables/EditableText/EditableText.jsx'
 import { useControlledInput } from '../../../../../hooks/useControlledInput.js'
-import { showErrorMsg } from "../../../../../services/base/event-bus.service"
-import { setColumnValue } from "../../../../../store/actions/board.actions"
 
 // === Imgs
 
@@ -18,6 +17,7 @@ import { setColumnValue } from "../../../../../store/actions/board.actions"
 import { K_ContentFile } from "./K_ContentFile"
 import { K_ContentPeople } from "./K_ContentPeople"
 import { K_ContentPreview } from "./K_ContentPreview"
+import { EditableText } from '../../../../reusables/EditableText/EditableText.jsx'
 
 // ====== Component ======
 // =======================
@@ -41,8 +41,8 @@ export function K_TaskPreview({ task }) {
         setFileCol(file)
 
     },[board])
-    // === Functions
 
+    // === Functions
     function onSetName() {
         if (!value.trim()) {
             showErrorMsg(`Task name can't be empty`)
@@ -52,14 +52,12 @@ export function K_TaskPreview({ task }) {
 
         try {
             setColumnValue(task.id, task?.columnValues[0]?.colId, value, task?.columnValues[0]?.value)
-            //set task?
         }
         catch (err) {
             showErrorMsg(`Somthing went wrong`)
         }
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_TaskPreview">
 
@@ -90,21 +88,11 @@ export function K_TaskPreview({ task }) {
                     {peopleCol &&
                     <>
                          <K_ContentPeople column={peopleCol.colId} value={peopleCol.value} taskId={task.id}/>
-                        {/* {task.columnValues.map(cv => {
-                            if(cv.colId === peopleCol.id) {
-                                return <K_ContentPeople key={cv.colId} colId={cv.colId} value={cv.value}/>
-                            }
-                        })} */}
                     </>
                     }
                     {fileCol &&
                     <>
                         <K_ContentFile column={fileCol.colId} value={fileCol.value}/>
-                    {/* {task.columnValues.map(cv => {
-                        if(cv.colId === fileCol.id) {
-                                return <K_ContentFile key={cv.colId} colId={cv.colId} value={cv.value}/>
-                            }
-                        })} */}
                     </>
                     }
                 </div>

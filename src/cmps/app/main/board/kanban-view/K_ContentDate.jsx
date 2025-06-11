@@ -1,23 +1,21 @@
 // === Libs
 
-import { showErrorMsg } from "../../../../../services/base/event-bus.service";
-import { setColumnValue } from "../../../../../store/actions/board.actions";
-import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
-import { DatePickerColumn } from "../value-setter/DatePicker";
-
 // === Services
+import { showErrorMsg } from "../../../../../services/base/event-bus.service";
 
 // === Actions
+import { setColumnValue } from "../../../../../store/actions/board.actions";
 
 // === Hooks / React
 
 // === Imgs
 
 // === Child Components
+import { DatePickerColumn } from "../value-setter/DatePicker";
+import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu";
 
 // ====== Component ======
 // =======================
-
 export function K_ContentDate({ column, value, taskId }) {
     // === Consts
     const formattedValue = formatTimestamp(value)
@@ -49,7 +47,6 @@ export function K_ContentDate({ column, value, taskId }) {
         }
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentDate">
 

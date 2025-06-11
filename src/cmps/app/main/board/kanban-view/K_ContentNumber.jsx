@@ -42,10 +42,8 @@ export function K_ContentNumber({ column, value, taskId }) {
         }
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentNumber">
-            {/* <div className="content number clickable clear size-24">{value} (Numbers)</div> */}
 
             <div className="content number clickable clear size-24 select">
                 <EditableText

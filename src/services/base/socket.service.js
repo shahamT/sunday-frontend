@@ -2,14 +2,6 @@ import io from 'socket.io-client'
 import { userService } from '../user'
 const { VITE_LOCAL, DEV } = import.meta.env
 
-// export const SOCKET_EMIT_SEND_MSG = 'chat-send-msg'
-// export const SOCKET_EMIT_SET_TOPIC = 'chat-set-topic'
-// export const SOCKET_EMIT_USER_WATCH = 'user-watch'
-// export const SOCKET_EVENT_ADD_MSG = 'chat-add-msg'
-// export const SOCKET_EVENT_USER_UPDATED = 'user-updated'
-// export const SOCKET_EVENT_REVIEW_ADDED = 'review-added'
-// export const SOCKET_EVENT_REVIEW_REMOVED = 'review-removed'
-// export const SOCKET_EVENT_REVIEW_ABOUT_YOU = 'review-about-you'
 export const SOCKET_EVENT_BOARD_UPDATE = 'board-update'
 export const SOCKET_EVENT_MINI_BOARDS_UPDATE = 'mini-boards-update'
 
@@ -107,13 +99,3 @@ function createDummySocketService() {
   window.listenersMap = listenersMap
   return socketService
 }
-
-
-// Basic Tests
-// function cb(x) {console.log('Socket Test - Expected Puk, Actual:', x)}
-// socketService.on('baba', cb)
-// socketService.on('baba', cb)
-// socketService.on('baba', cb)
-// socketService.on('mama', cb)
-// socketService.emit('baba', 'Puk')
-// socketService.off('baba', cb)

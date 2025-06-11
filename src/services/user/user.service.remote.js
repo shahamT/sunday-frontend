@@ -32,10 +32,7 @@ async function update(boardId) {
 	const loggedinUser = getLoggedinUser()
 	const user = await httpService.put(`user/${loggedinUser._id}`, { boardId })
 
-	// When admin updates other user's details, do not update loggedinUser
-	// if (loggedinUser._id === user._id && loggedinUser.role !== 'admin') 
 	saveLoggedinUser(user)
-
 	return user
 }
 

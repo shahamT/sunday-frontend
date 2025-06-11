@@ -29,7 +29,6 @@ export const boardService = {
 //////BOARD//////
 
 async function query() {
-   
     return httpService.get(`board/mini`)
 }
 
@@ -48,7 +47,6 @@ async function getAiBoard(userPrompt, boardName, user) {
 }
 
 async function saveBoards(reorderedBoards) {
-    
     return httpService.put('board/boards/reorder', { reorderedBoards })
 }
 
@@ -59,92 +57,64 @@ async function remove(boardId) {
 //////GROUP//////
 
 async function createGroup(group, boardId, isTop = false, idx) {
-
     return httpService.post(`board/${boardId}/group`, { group, isTop, idx })
-
 }
 
 async function updateGroup(group, boardId) {
-
     return httpService.put(`board/${boardId}/group/${group.id}`, { group })
 }
 
 async function removeGroup(groupId, boardId) {
-
     return httpService.delete(`board/${boardId}/group/${groupId}`)
 }
 
 //////COLUMN//////
 
 async function createColumn(column, boardId) {
-
     return httpService.post(`board/${boardId}/column`, { column })
-
 }
 
 async function updateColumn(column, boardId) {
-
     return httpService.put(`board/${boardId}/column/${column.id}`, { column })
-
 }
 
 async function removeColumn(columnId, boardId) {
-    
     return httpService.delete(`board/${boardId}/column/${columnId}`)
-    
-    
-    
 }
+
 //////LABEL//////
 async function updateLabel(boardId, columnId,labelToUpdate) {
-
     return httpService.put(`board/${boardId}/column/${columnId}/label/${labelToUpdate.id}`, { labelToUpdate })
-
-    
 }
 
 async function createLabel(label, columnId, boardId) {
-
     return httpService.post(`board/${boardId}/column/${columnId}/label`, { label })
-
 }
 
-async function removeLabel(labelId,columnId, boardId) {
-    
-    return httpService.delete(`board/${boardId}/column/${columnId}/label/${labelId}`)
-    
-    
-    
+async function removeLabel(labelId,columnId, boardId) {   
+    return httpService.delete(`board/${boardId}/column/${columnId}/label/${labelId}`)  
 }
 
 
 
 //////TASK//////
-
-async function createTask(task, boardId, groupId, isTop = false) {
-    
+async function createTask(task, boardId, groupId, isTop = false) {  
     return httpService.post(`board/${boardId}/group/${groupId}/task`, { task, isTop })
-
 }
 
 async function removeTask(taskId, groupId, boardId) {
-
     return httpService.delete(`board/${boardId}/group/${groupId}/task/${taskId}`)
 }
 
 async function addTaskUpdate(boardId, groupId, taskId, update) {
-    
     return httpService.post(`board/${boardId}/group/${groupId}/task/${taskId}/update`, { update })
-
 }
 
 async function removeTaskUpdate(boardId, groupId, taskId, updateId) {
-    
     return httpService.post(`board/${boardId}/group/${groupId}/task/${taskId}/update/${updateId}`)
-
 }
 
-function setColumnValue(board, taskId, colId, value) { //add the before value
+function setColumnValue(board, taskId, colId, value) { 
 
     if (!Array.isArray(board.groups)) return
 

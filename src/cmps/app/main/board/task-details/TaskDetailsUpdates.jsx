@@ -1,20 +1,18 @@
 // === Libs
 
-import { TaskDetailsTextEditor } from "./TaskDetailsTextEditor";
-
 // === Services
 
 // === Actions
 import { addTaskUpdate } from "../../../../../store/actions/board.actions";
-import { Updates } from "./Updates";
-import { update } from "lodash";
-import { useEffect, useState } from "react";
 
 // === Hooks / React
+import { useEffect, useState } from "react";
 
 // === Imgs
 
 // === Child Components
+import { Updates } from "./Updates";
+import { TaskDetailsTextEditor } from "./TaskDetailsTextEditor";
 
 // ====== Component ======
 // =======================
@@ -35,7 +33,6 @@ export function TaskDetailsUpdates({ boardId, groupId, taskId, task}) {
     })
   }
 
-  // if (!data) return <div>Loading...</div>
   return (
     <section className="TaskDetailsUpdates">
       <TaskDetailsTextEditor saveUpdate={saveUpdate} /> 

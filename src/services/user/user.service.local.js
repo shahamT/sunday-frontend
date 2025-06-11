@@ -39,10 +39,6 @@ async function update({ _id, visitedBoardId }) {
     user.lastViewedBoards.unshift(boardId)
     await storageService.put('user', user)
 
-	// When admin updates other user's details, do not update loggedinUser
-    const loggedinUser = getLoggedinUser()
-    if (loggedinUser._id === user._id && loggedinUser.role !== 'admin') saveLoggedinUser(user)
-
     return user
 }
 
@@ -64,16 +60,7 @@ async function logout() {
     sessionStorage.removeItem(STORAGE_KEY_LOGGEDIN_USER)
 }
 
-function getLoggedinUser() { //TODO change this from hardcoded user back to service
-//     return {
-//     _id: "rL2Yi",
-//     account: "acc001",
-//     firstName: "John",
-//     lastName: "Doe",
-//     email: "user1@company.com",
-//     lastViewedBoards: [],
-//     profileImg: "https://ui-avatars.com/api/?name=John+Doe&background=0D8ABC&color=fff&length=2&rounded=true&bold=true",
-//   }
+function getLoggedinUser() {
     return JSON.parse(sessionStorage.getItem(STORAGE_KEY_LOGGEDIN_USER))
 }
 
@@ -90,22 +77,6 @@ function saveLoggedinUser(user) {
 	sessionStorage.setItem(STORAGE_KEY_LOGGEDIN_USER, JSON.stringify(user))
 	return user
 }
-
-// To quickly create an admin user, uncomment the next line
-//TODO if relevent, update
-// _createAdmin()
-// async function _createAdmin() {
-//     const user = {
-//         username: 'admin',
-//         password: 'admin',
-//         fullname: 'Mustafa Adminsky',
-//         imgUrl: 'https://cdn.pixabay.com/photo/2020/07/01/12/58/icon-5359553_1280.png',
-//         score: 10000,
-//     }
-
-//     const newUser = await storageService.post('user', userCred)
-//     console.log('newUser: ', newUser)
-// }
 
 async function _createUsers() {
     const users = await storageService.query(STORAGE_KEY_USERS)

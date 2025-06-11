@@ -4,8 +4,7 @@
 // === Services
 
 // === Actions
-import { useEffect } from "react"
-import { addColumn, loadBoard } from "../../../../../store/actions/board.actions"
+import { addColumn } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
 

@@ -1,19 +1,18 @@
 // === Libs
 
-import { useSelector } from "react-redux"
-
 // === Services
 import { getFormattedTime } from "../../../../../services/base/util.service"
-import { TaskComment } from "./TaskComment"
 
 // === Actions
 import { removeTaskUpdate } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
+import { useSelector } from "react-redux"
 
 // === Imgs
 
 // === Child Components
+import { TaskComment } from "./TaskComment"
 
 // ====== Component ======
 // =======================

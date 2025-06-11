@@ -7,11 +7,11 @@ import { getShortRelativeTime } from "../../../../../services/base/util.service"
 
 // === Hooks / React
 import { useEffect, useState } from "react";
-import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 
 // === Imgs
 
 // === Child Components
+import { Tooltip } from "../../../../reusables/tooltip/Tooltip";
 
 // ====== Component ======
 // =======================
@@ -35,7 +35,7 @@ export function ActivityLogRow({ activity = {}, task, board }) {
 
   // === Functions
   function handleActivityType(type) {
-
+    
     switch (type) {
       case "add task":
         setActivityType("add task")

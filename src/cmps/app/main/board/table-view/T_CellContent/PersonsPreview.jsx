@@ -1,7 +1,5 @@
 // === Libs
 
-import { Tooltip } from "../../../../../reusables/tooltip/Tooltip"
-
 // === Services
 
 // === Actions
@@ -11,6 +9,7 @@ import { Tooltip } from "../../../../../reusables/tooltip/Tooltip"
 // === Imgs
 
 // === Child Components
+import { Tooltip } from "../../../../../reusables/tooltip/Tooltip"
 
 // ====== Component ======
 // =======================
@@ -23,7 +22,6 @@ export function PersonsPreview({ selectedPersons = [], amount = 0 }) {
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="PersonsPreview" >
             {selectedPersons.slice(0, amount).map(person => {

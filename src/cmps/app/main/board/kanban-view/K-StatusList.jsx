@@ -1,24 +1,20 @@
 // === Libs
-
+import { DndContext, useSensor, useSensors, PointerSensor, KeyboardSensor, } from "@dnd-kit/core"
+import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
 
 // === Services
 
 // === Actions
+import { updateBoard } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
 import { useState, useEffect } from "react"
 import { useSelector } from "react-redux"
 
-//  === DND
-import { DndContext, useSensor, useSensors, PointerSensor, KeyboardSensor, } from "@dnd-kit/core"
-import { SortableContext, arrayMove, rectSortingStrategy, sortableKeyboardCoordinates } from "@dnd-kit/sortable"
-
 // === Imgs
 
 // === Child Components
 import { K_StatusPreview } from "./K_StatusPreview"
-import { makeId } from "../../../../../services/base/util.service"
-import { updateBoard } from "../../../../../store/actions/board.actions"
 
 // ====== Component ======
 // =======================
@@ -66,7 +62,6 @@ export function K_StatusList({ setForSum }) {
         }
 
         const filteredGroups = storeBoard.groups.map(group => {
-            // const groupNameMatches = regex?.test(group.name)
             const matchingTasks = group.tasks.filter(task => {
                 let matchesTasks = true
                 let matchesPerson = true
@@ -74,7 +69,6 @@ export function K_StatusList({ setForSum }) {
                 if (regex) {
                     const taskName = task.columnValues[0]?.value || ''
                     matchesTasks = regex.test(taskName) ? true : false
-                    // matchesText = groupNameMatches || taskMatches
                 }
 
                 if (personId && peopleCol) {
@@ -156,8 +150,6 @@ export function K_StatusList({ setForSum }) {
         setForSum(repeatedLabelIds, statusCol, totalTasks)
     }
 
-
-
     function handleDragEnd(event) {
         const { active, over } = event
         if (!over || active.id === over.id) return
@@ -189,8 +181,6 @@ export function K_StatusList({ setForSum }) {
         updateBoard(updatedBoard)
     }
 
-
-    // if (!tasksByStatus) return <div>Loading...</div>
     if (!tasksByStatus) return <div className="main-loader-container" >
     <img className="loader" src="https://res.cloudinary.com/dqaq55tup/image/upload/v1747552268/loader_cymybj.gif" alt="loader" />
      </div>

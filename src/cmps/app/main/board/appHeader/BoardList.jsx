@@ -1,28 +1,24 @@
 // === Libs
 
-import { useSelector } from "react-redux"
-import { AddBoardModal } from "../side-nave/AddBoardModal"
-import { useNavigate } from "react-router-dom"
-import { IsStarred } from "../value-setter/IsStarred"
-import { useEffect, useState } from "react"
-import { openGlobalModal } from "../../../../../store/actions/app.actions"
-import { Loader } from "../../../../reusables/Loader/Loader"
-
 // === Services
+import { openGlobalModal } from "../../../../../store/actions/app.actions"
 
 // === Actions
 
 // === Hooks / React
+import { useEffect, useState } from "react"
+import { useSelector } from "react-redux"
+import { useNavigate } from "react-router-dom"
 
 // === Imgs
 
 // === Child Components
+import { AddBoardModal } from "../side-nave/AddBoardModal"
+import { Loader } from "../../../../reusables/Loader/Loader"
+import { IsStarred } from "../value-setter/IsStarred"
 
 // ====== Component ======
 // =======================
-
-
-
 export function BoardList({ /* prop1, prop2 */ }) {
     // === Consts
     const boards = useSelector(storeState => storeState.boardModule.boards)
@@ -41,17 +37,6 @@ export function BoardList({ /* prop1, prop2 */ }) {
     function onChoooseBoard(boardId) {
         navigate(`/app/board/${boardId}`)
     }
-
-    // if (boards.length === 0) return (
-    //     <div className="global-loader-container" >
-    //         <Loader
-    //             size={4}
-    //             width={6}
-    //             color="#0073ea"
-    //             textSize={1.2}
-    //         />
-    //     </div>
-    // )
 
     if (!boards) return (
         <div className="global-loader-container" >

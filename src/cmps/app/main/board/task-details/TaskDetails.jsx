@@ -3,26 +3,26 @@
 // === Services
 import { userService } from "../../../../../services/user"
 import { showErrorMsg } from "../../../../../services/base/event-bus.service"
-import { removeColumnValue, setColumnValue } from "../../../../../store/actions/board.actions.js"
-import { loadUsers } from "../../../../../store/actions/user.actions"
 
 // === Actions
+import { removeColumnValue, setColumnValue } from "../../../../../store/actions/board.actions.js"
+import { loadUsers } from "../../../../../store/actions/user.actions"
 
 // === Hooks / React
 import { useEffect, useState } from "react"
 import { useNavigate } from 'react-router'
 import { useParams } from 'react-router-dom'
 import { useSelector } from "react-redux"
-import { EditableText } from '../../../../reusables/EditableText/EditableText.jsx'
 import { useControlledInput } from '../../../../../hooks/useControlledInput.js'
+import { useSelected } from "../../../../../hooks/useSelected"
 
 // === Imgs
 
 // === Child Components
 import { PersonsPreview } from "../table-view/T_CellContent/PersonsPreview"
+import { EditableText } from '../../../../reusables/EditableText/EditableText.jsx'
 import { PopUpMenu } from "../../../../reusables/PopUpMenu/PopUpMenu"
 import { TaskMenu } from "../popupMenu/TaskMenu"
-import { useSelected } from "../../../../../hooks/useSelected"
 import { TaskDetailsUpdates } from "./TaskDetailsUpdates"
 import { TaskDetailsActivityLog } from "./TaskDetailsActivityLog"
 import { PersonsPicker } from "../value-setter/PersonsPicker"
@@ -31,6 +31,7 @@ import { PersonsPicker } from "../value-setter/PersonsPicker"
 // =======================
 
 export function TaskDetails() {
+
     // === Consts
     const navigate = useNavigate()
     const { boardId, taskId } = useParams()
@@ -86,8 +87,6 @@ export function TaskDetails() {
         }
 
         enrich()
-
-
     }, [task, columns])
 
     useEffect(() => {
@@ -164,12 +163,7 @@ export function TaskDetails() {
                         onBlur={onSetName}
                         onPressEnter={onSetName}
                     />
-                    <div className="in-task-persons" style={{ paddingInlineEnd: `${12 + 7 * (selectedPersons.length - 1)}px` }}>
-                        {/* <div className="in-task-persons" style={{ paddingInlineEnd: selectedPersons.length === 1
-                        ? '5px'
-                        : `${19 + 7 * (selectedPersons.length - 1)}px`
-                    }}> */}
-                        <div>
+                    <div className="in-task-persons" style={{ paddingInlineEnd: `${12 + 7 * (selectedPersons.length - 1)}px` }}><div>
                             <PopUpMenu
                                 stretchTrigger={true}
                                 gap={4}
@@ -206,9 +200,6 @@ export function TaskDetails() {
                     <div key="updates" className={isSelected('updates') ? 'tab-underline' : ''} onClick={() => select("updates")}>
                         <div className="tab-btn clickable clear size-32 select icon-start i-Home">Updates</div>
                     </div>
-                    {/* <div key="files" className={isSelected('files') ? 'tab-underline' : ''} onClick={() => select("files")}>
-                        <div className="tab-btn clickable clear size-32 select">Files</div>
-                    </div> */}
                     <div key="activity-log" className={isSelected('activity-log') ? 'tab-underline' : ''} onClick={() => select("activity-log")}>
                         <div className="tab-btn clickable clear size-32 select">Activity Log</div>
                     </div>
@@ -217,7 +208,6 @@ export function TaskDetails() {
 
             <section className="task-details-tab-content slim-scroll">
                 {isSelected('updates') && <TaskDetailsUpdates boardId={boardId} groupId={groupId} taskId={taskId} task={task} />}
-                {/* {isSelected('files') && <TaskDetailsFiles />} */}
                 {isSelected('activity-log') && <TaskDetailsActivityLog task={task} board={board} />}
             </section>
         </section>

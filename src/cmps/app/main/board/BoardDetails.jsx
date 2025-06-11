@@ -1,6 +1,5 @@
 // === Libs
 
-
 // === Services
 import { SOCKET_EVENT_BOARD_UPDATE, socketService } from "../../../../services/base/socket.service";
 
@@ -9,12 +8,12 @@ import { getCmdUpdateBoardFromSocket, loadBoard } from "../../../../store/action
 import { updateUser } from "../../../../store/actions/user.actions";
 
 // === Hooks / React
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
-import { useSelected } from '../../../../hooks/useSelected.js'
 import { useOutletContext } from 'react-router-dom';
-
+import { useScreenSize } from "../../../../hooks/useScreenSize";
+import { useBreakpoint } from "../../../../hooks/useBreakpoint";
 
 // === Imgs
 
@@ -26,8 +25,6 @@ import { TaskDetails } from "./task-details/TaskDetails";
 import { T_GroupsList } from "./table-view/T_GroupsList";
 import { K_StatusList } from "./kanban-view/K-StatusList";
 import { K_Filter } from "./kanban-view/K_Filter";
-import { useScreenSize } from "../../../../hooks/useScreenSize";
-import { useBreakpoint } from "../../../../hooks/useBreakpoint";
 
 // ====== Component ======
 // =======================
@@ -66,7 +63,6 @@ export function BoardDetails({ }) {
         }
 
     }, [boardId])
-
 
     // === Functions
     function setForSum(cv, col, totalTasks) {

@@ -1,18 +1,17 @@
 // === Libs
 
-import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
-import { ActivityLogRow } from "./ActivityLogRow"
-
 // === Services
 
 // === Actions
 
 // === Hooks / React
+import { useEffect } from "react"
+import { useSelector } from "react-redux"
 
 // === Imgs
 
 // === Child Components
+import { ActivityLogRow } from "./ActivityLogRow"
 
 // ====== Component ======
 // =======================
@@ -20,6 +19,7 @@ import { ActivityLogRow } from "./ActivityLogRow"
 export function TaskDetailsActivityLog({ task, board }) {
     // === Consts
     const activities = useSelector(storeState => storeState.boardModule.board.activities)
+    
     // === Effects
     useEffect(() => {
 
@@ -27,12 +27,9 @@ export function TaskDetailsActivityLog({ task, board }) {
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="TaskDetailsActivityLog slim-scroll">
-            {/* <h1>
-                <pre>{JSON.stringify(activities, null, 2)}</pre>
-            </h1> */}
+
             {activities?.map(activity => {
                 if(activity.taskId === task.id) {
                    return <ActivityLogRow key={activity.id} activity={activity} task={task} board={board} />

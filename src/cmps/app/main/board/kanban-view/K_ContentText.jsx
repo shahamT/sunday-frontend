@@ -42,7 +42,6 @@ export function K_ContentText({ column, value, taskId }) {
         }
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_ContentText">
 

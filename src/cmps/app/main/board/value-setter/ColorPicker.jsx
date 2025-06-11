@@ -1,15 +1,12 @@
 // === Libs
 
-import { getRandomIntInclusive } from '../../../../../services/base/util.service.js'
-
-
 // === Services
+import { boardService } from '../../../../../services/board/board.service.local.js';
 
 // === Actions
 
 // === Hooks / React
 
-import { boardService } from '../../../../../services/board/board.service.local.js';
 // === Imgs
 
 // === Child Components
@@ -19,6 +16,7 @@ import { boardService } from '../../../../../services/board/board.service.local.
 
 export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = 'full', setIsPickingColor, setIsNewLabelOpen, relevantColors }) {
     
+    // === Consts
     const fullColors = boardService.getColors()
     const availableColors = fullColors.filter(
         color => color !== 'explosive' && !relevantColors?.includes(color)
@@ -45,17 +43,13 @@ export function ColorPicker({ onCloseModal, setColor, selectedColor, variant = '
         'blackish'
     ]
 
-
     const colors = (variant === 'full') ? availableColors : limitColors
     const shape = (variant === 'full') ? 'square ' : 'circle'
-    // === Consts
-
 
     // === Effects
 
     // === Functions
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="color-picker-container">
             {colors.map(color => (color === selectedColor ? null :

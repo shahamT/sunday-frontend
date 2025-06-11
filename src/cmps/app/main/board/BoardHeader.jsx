@@ -6,15 +6,15 @@
 import { updateBoard } from '../../../../store/actions/board.actions.js'
 
 // === Hooks / React
-import { EditableText } from '../../../../cmps/reusables/EditableText/EditableText.jsx'
 import { useControlledInput } from '../../../../hooks/useControlledInput.js'
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from 'react-router-dom';
 
 // === Imgs
 
 // === Child Components
+import { EditableText } from '../../../../cmps/reusables/EditableText/EditableText.jsx'
 
 // ====== Component ======
 // =======================
@@ -52,17 +52,6 @@ export function BoardHeader() {
             }
     }
 
-    // function onChooseMainTable() {
-    //     select("main-table")
-    //     navigate(`/app/board/${board._id}`)
-    // }
-
-    // function onChooseKanban() {
-    //     select("kanban")
-    //     navigate(`/app/board/${board._id}/kanban`)
-    // }
-
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="BoardHeader">
             <div className='main-section'>

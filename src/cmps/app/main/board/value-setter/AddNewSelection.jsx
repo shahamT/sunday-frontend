@@ -25,7 +25,6 @@ export function AddNewSelection({ onCloseModal }) {
         onCloseModal()
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="AddNewSelection">
             <div className="add-group-btn clickable clear size-32 icon-start i-Group" onClick={onAddGroup}>New group of items</div>

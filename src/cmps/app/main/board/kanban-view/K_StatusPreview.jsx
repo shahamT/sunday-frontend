@@ -1,11 +1,12 @@
 // === Libs
-
-//  === DND
 import { useSortable } from "@dnd-kit/sortable"
 import { CSS } from "@dnd-kit/utilities"
+
 // === Services
+import { showErrorMsg } from "../../../../../services/base/event-bus.service"
 
 // === Actions
+import { addTask } from "../../../../../store/actions/board.actions"
 
 // === Hooks / React
 import { useState } from "react"
@@ -16,8 +17,6 @@ import { useState } from "react"
 
 // ====== Component ======
 import { K_TaskPreview } from "./K_TaskPreview"
-import { showErrorMsg } from "../../../../../services/base/event-bus.service"
-import { addTask, setColumnValue } from "../../../../../store/actions/board.actions"
 
 // =======================
 
@@ -76,7 +75,6 @@ export function K_StatusPreview({ label, activeId, board, colId }) {
 
     }
 
-    // if (!data) return <div>Loading...</div>
     return (
         <section className="K_StatusPreview" style={style} ref={setNodeRef}>
 

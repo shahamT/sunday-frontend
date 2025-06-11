@@ -242,8 +242,7 @@ async function removeTask(taskId, groupId, boardId) {
 }
 
 async function moveTask(taskId, fromGroupId, toGroupId, toIndex, boardId) {
-  // Load current board from storage/server
-  const board = await getById(boardId); // or however you fetch the board
+  const board = await getById(boardId)
 
   const fromGroup = board.groups.find(group => group.id === fromGroupId);
   const toGroup = board.groups.find(group => group.id === toGroupId);
@@ -255,7 +254,7 @@ async function moveTask(taskId, fromGroupId, toGroupId, toIndex, boardId) {
   fromGroup.tasks = fromGroup.tasks.filter(t => t.id !== taskId);
   toGroup.tasks.splice(toIndex, 0, task);
 
-  return await save(board); // or your save method
+  return await save(board)
 }
 
 function setColumnValue(board, taskId, colId, value) {

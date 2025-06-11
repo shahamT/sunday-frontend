@@ -19,10 +19,11 @@ import { useEffectUpdate } from "../../../../../hooks/useEffectUpdate"
 
 export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons }) {
     // === Consts
-    // === Effects
     const users = useSelector(storeState => storeState.userModule.users)
     const boardAccountId = useSelector(storeState => storeState.boardModule.board.account)
     const [selectedPersons, setSelectedPersons] = useState(currSelectedPersons || [])
+    
+    // === Effects
     useEffect(() => {
         loadUsers()
     }, [])
@@ -44,7 +45,7 @@ export function PersonsPicker({ onCloseModal, currSelectedPersons, setPersons })
         })
     }
 
-    if (!users || !boardAccountId) return <div>Loading...</div>
+    if (!users || !boardAccountId) return
     return (
         <section className="PersonsPicker">
             <div className="selected-persons">

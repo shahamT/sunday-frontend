@@ -1,7 +1,5 @@
 import { boardService } from "../../services/board"
 
-export const CREATE_LOG = 'CREATE_LOG'
-
 // Boards
 export const SET_BOARDS = 'SET_BOARDS'
 export const SET_BOARD = 'SET_BOARD'
@@ -12,6 +10,7 @@ export const REVERT_BOARDS = 'REVERT_BOARDS'
 export const REVERT_BOARD = 'REVERT_BOARD'
 export const UPDATE_BOARD_FROM_SOCKET = 'UPDATE_BOARD_FROM_SOCKET'
 export const UPDATE_MINI_BOARDS_FROM_SOCKET = 'UPDATE_MINI_BOARDS_FROM_SOCKET'
+export const CREATE_LOG = 'CREATE_LOG'
 
 // Groups
 export const REMOVE_GROUP = 'REMOVE_GROUP'
@@ -23,12 +22,10 @@ export const REMOVE_COLUMN = 'REMOVE_COLUMN'
 export const ADD_COLUMN = 'ADD_COLUMN'
 export const UPDATE_COLUMN = 'UPDATE_COLUMN'
 
-
 // Labels
 export const UPDATE_LABEL = 'UPDATE_LABEL'
 export const ADD_LABEL = 'ADD_LABEL'
 export const REMOVE_LABEL = 'REMOVE_LABEL'
-
 
 // Tasks
 export const REMOVE_TASK = 'REMOVE_TASK'

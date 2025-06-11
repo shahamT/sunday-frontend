@@ -15,9 +15,7 @@ export function StatusPicker({ onCloseModal, setStatus, clearStatus, StatusArray
     // === Functions
     function handleApply() {
         setIsEditable(false)
-
     }
-
 
     return (
         <section className="status-picker-container">

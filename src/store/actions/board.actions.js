@@ -11,7 +11,6 @@ import {
 } from "../reducers/board.reducer.js"
 import { boardService } from "../../services/board";
 import { store } from "../store.js";
-import { userReducer } from "../reducers/user.reducer.js";
 import { userService } from "../../services/user/user.service.remote.js";
 import { makeId } from "../../services/base/util.service.js";
 
@@ -164,7 +163,6 @@ export async function addTask({ valueToSave = 'New item', itemColId, isTop = fal
         console.log('board action -> Cannot add task', err)
         throw err
     }
-
 }
 
 export async function removeTask(taskId, groupId) {
@@ -180,7 +178,6 @@ export async function removeTask(taskId, groupId) {
     }
 }
 
-
 export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
     const board = structuredClone(store.getState().boardModule.board)
     const boardId = board._id
@@ -194,7 +191,6 @@ export async function moveTask({ task, fromGroupId, toGroupId, toIndex }) {
         console.log('board action -> Cannot move task', err)
         throw err
     }
-    
 }
 
 export async function addTaskUpdate(boardId, groupId, taskId, txt) {
@@ -249,32 +245,6 @@ export async function removeColumnValue(taskId, colId, prevValue) {
         throw err
     }
 }
-// export async function setColumnValue(taskId, colId, value) { OLD - LOCAL
-//     const board = structuredClone(store.getState().boardModule.board)
-//     board.groups = boardService.setColumnValue(board, taskId, colId, value)
-//     try {
-//         store.dispatch(getCmdSetBoard(board))
-//         await boardService.save(board)
-//     } catch (err) {
-//         store.dispatch({ type: REVERT_BOARD })
-//         console.log('board action -> Cannot set column value', err)
-//         throw err
-//     }
-// }
-
-// export async function removeColumnValue(taskId, colId) { OLD - LOCAL
-//     const board = structuredClone(store.getState().boardModule.board)
-//     board.groups = boardService.removeColumnValue(board, taskId, colId)
-
-//     try {
-//         store.dispatch(getCmdSetBoard(board))
-//         await boardService.save(board)
-//     } catch (err) {
-//         store.dispatch({ type: REVERT_BOARD })
-//         console.log('board action -> Cannot remove column value', err)
-//         throw err
-//     }
-// }
 
 // ========= Column =========
 export async function addColumn(type) {
@@ -329,7 +299,6 @@ export async function moveColumns(board) {
 
 }
 // ========= Status Lables =========
-
 export async function updateLabel(columnId, labelToUpdate) {
     const boardId = getBoardId()
     try {
@@ -374,7 +343,6 @@ export async function removeLabel(labelId, columnId) {
 }
 
 // ========= ================= =========
-
 export async function createLog(logObject) {
     const board = getBoard()
     logObject.id = makeId()
@@ -389,7 +357,6 @@ export async function createLog(logObject) {
         await boardService.createLog(logObject, board._id)
         return logObject
     } catch (err) {
-        // store.dispatch({ type: REVERT_BOARD })
         console.log('board action -> Cannot log action', err)
         throw err
     }
@@ -607,18 +574,5 @@ export function getCmdUpdateLabel(columnId, labelToUpdate) {
         labelToUpdate
     }
 
-}
-
-
-// unitTestActions()
-async function unitTestActions() {
-    await loadBoards()
-    await addBoard(boardService.getEmptyBoard())
-    await updateBoard({
-        _id: 'm1oC7',
-        // vendor: 'Board-Good',
-    })
-    await removeBoard('m1oC7')
-    // TODO unit test addBoardMsg
 }
 

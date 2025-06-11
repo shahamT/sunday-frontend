@@ -13,7 +13,6 @@ export const USERS_LOADING_DONE = 'USERS_LOADING_DONE'
 
 const initialState = {
     loggedinUser: userService.getLoggedinUser(),
-    // lastViewedBoards: [],
     users: [],
     isUsersLoading: false
 }

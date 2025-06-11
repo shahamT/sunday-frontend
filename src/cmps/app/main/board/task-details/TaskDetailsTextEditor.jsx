@@ -31,7 +31,7 @@ import Placeholder from '@tiptap/extension-placeholder'
 // === Actions
 
 // === Hooks / React
-import { useEffect, useState, useMemo, useCallback } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { useSelector } from 'react-redux'
 
 // === Imgs
@@ -46,6 +46,7 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
 
     const isOpen = useSelector(storeState => storeState.boardModule.isTaskPanelOpen)
     const [destroy, setDestroy] = useState(false)
+    const [hasContent, setHasContent] = useState(false)
 
     const extensions = [StarterKit, Document, Paragraph, Text, Bold, Italic, Underline, Strike, TextStyle, Color,
         OrderedList, ListItem, BulletList, Table.configure({ resizable: true, }), TableRow, TableHeader,
@@ -137,8 +138,6 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
         }
     },[destroy])
 
-    const [hasContent, setHasContent] = useState(false)
-
     useEffect(() => {
         if (!editor) return
 
@@ -210,7 +209,6 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
                     className={`${editor.isActive('strike') ? 'is-active' : ''} icon-btn strikethrough clickable clear icon-btn size-32`}></button>
 
                 <button className='icon-btn text-height clickable clear icon-btn size-32'></button>  {/*  pop up*/}
-                {/* onChange={(e) => {const fontSize = e.target.value editor.chain().focus().setMark('textStyle', { fontSize }).run() }} */}
 
                 <label htmlFor="color-input" >
                     <div className='icon-btn paint-roller clickable clear icon-btn size-32'></div>
@@ -224,23 +222,9 @@ export function TaskDetailsTextEditor({ saveUpdate }) {
                     className={`${editor.isActive('bulletList') ? 'is-active' : ''} icon-btn list-ul clickable clear icon-btn size-32`}></button> 
                 <button onClick={() => editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: false }).run()}
                     className='icon-btn table clickable clear icon-btn size-32'></button>
-                {/* <button onClick={() => editor.chain().focus().addColumnBefore().run()}> Add column before</button>
-                <button onClick={() => editor.chain().focus().addColumnAfter().run()}>Add column after</button>
-                <button onClick={() => editor.chain().focus().deleteColumn().run()}>Delete column</button>
-                <button onClick={() => editor.chain().focus().addRowBefore().run()}>Add row before</button>
-                <button onClick={() => editor.chain().focus().addRowAfter().run()}>Add row after</button>
-                <button onClick={() => editor.chain().focus().deleteRow().run()}>Delete row</button>
-                <button onClick={() => editor.chain().focus().deleteTable().run()}>Delete table</button>
-                <button onClick={() => editor.chain().focus().toggleHeaderRow().run()}>Toggle header row</button> */}
                 <button onClick={setLink} className={`${editor.isActive('link') ? 'is-active' : ''} icon-btn link clickable clear icon-btn size-32`}></button>
                 
                 <button className='icon-btn align-left clickable clear icon-btn size-32'></button>
-                {/* <button onClick={() => editor.chain().focus().setTextAlign('left').run()}
-                    className={editor.isActive({ textAlign: 'left' }) ? 'is-active' : ''}> Left </button>
-                <button onClick={() => editor.chain().focus().setTextAlign('center').run()}
-                    className={editor.isActive({ textAlign: 'center' }) ? 'is-active' : ''}> Center </button>
-                <button onClick={() => editor.chain().focus().setTextAlign('right').run()}
-                    className={editor.isActive({ textAlign: 'right' }) ? 'is-active' : ''}> Right </button> */}
                 
                 <button onClick={() => editor.chain().focus().setHorizontalRule().run()} className='icon-btn horizontal-rule clickable clear icon-btn size-32'></button>
             </div>)}
