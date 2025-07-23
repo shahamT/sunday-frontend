@@ -30,7 +30,7 @@ The app allows users to manage boards, tasks, groups, columns, and labels — wi
 |-------|--------------|
 | **Frontend** | React, SCSS, Redux, @dnd-kit, Axios, Socket.io-client |
 | **Backend** | Node.js, Express.js, MongoDB, Mongoose, Socket.io |
-| **Deployment** | (Add URL here if deployed) |
+| **Deployment** | https://sunday-jjn6.onrender.com/ |
 
 ---
 
