@@ -7,7 +7,8 @@ _A full-featured Monday.com clone, built as a final project for Coding Academy's
 
 The app allows users to manage boards, tasks, groups, columns, and labels — with full drag-and-drop support, live editing, filtering, and real-time collaboration features.
 
-👉 GitHub repo: [https://github.com/shahamT/sunday-frontend](https://github.com/shahamT/sunday-frontend)
+👉 GitHub repos: [https://github.com/shahamT/sunday-frontend](https://github.com/shahamT/sunday-frontend)
+https://github.com/DunYeahh/sunday-backend
 
 ---
 
